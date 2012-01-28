@@ -1,95 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Module>
-  <ModulePrefs title="Weather Gadget" title_url="http://www.reveldigital.com" description="Displays weather information for any postal code in various layouts" author="RevelDigital" height="400">		
-            <Require feature="flash" />
-	</ModulePrefs>
-	<UserPref name="id" display_name="ID" datatype="hidden" default_value="swf" />
-	<UserPref name="url" display_name="URL" default_value="" required="true" />
-  <UserPref name="postalcode" display_name="Postal Code" default_value="58103" required="true" />
-	<Content type="html">
-            <![CDATA[
-            <style type="text/css">
-                body {
-                    background-color: transparent;
-                }
-                
-                #player {
-                    width: 500px;
-                    height: 500px;
-                }
-            </style>
-    
-            <div id="player" />
-            
-            <script type="text/javascript">
-                var prefs = new gadgets.Prefs();
-                
-                //Initialize the gadget.
-                function showViewer() {
-                    var id = prefs.getString("id");
-                    //var url = prefs.getString("url");
-                    var postalcode = prefs.getString("postalcode");
-                    var url = "http://uploads.reveldigital.com/11829!weatherV.swf";
-                    var player = document.getElementById("player");
-                    var params, ok;  										    																
-                    //Generate a random number to append to the URL so that the Flash will not be cached. 
-                    url = url + "?dummyVar=" + Math.ceil(Math.random() * 100); 				
-                    
-                    //Use Google Gadget API to embed Flash movie.
-                    params = {allowScriptAccess: "always", loop: "false", play: "true", wmode: "transparent" };
-                    ok = gadgets.flash.embedCachedFlash(url, "player", 9, params);
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Trevor Does Tricks" height="300">
+  <Require feature="flash" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
 
-                    if (!ok) {
-                        console.error("Could not embed Flash player!");
-                        player.style.display = "none";
-                    }
-                    else {
-                        //var onloadCall = document.createElement("script");
-                        //onloadCall.appendChild(document.createTextNode("readyEvent();"));
-                        //player.appendChild(onloadCall);					
-                    }
-                }
-                
-                //Play Flash movie.
-                function playFlash() {
-                    var fl = getFlashMovieObject("swfContainer0");
+<style type="text/css">
+</style>
 
-                    if (fl) {
-                        fl.Play();
-                    }
-                    else {
-                        console.error("No flash to play!");
-                    }
-                }
+<div id="flashcontainer" style="text-align: center;"></div> 
 
-                //Pause Flash movie.
-                function pauseFlash() {
-                    var fl = getFlashMovieObject("swfContainer0");
-                    
-                    if (fl) {
-                        fl.StopPlay();
-                    }
-                    else {
-                        console.error("No flash to pause!");
-                    }
-                }
-                
-                //Return Flash movie object embedded in a page.
-                function getFlashMovieObject(movieName) {
-                    if (window.document[movieName]) {
-                        return window.document[movieName];
-                    }
-                    
-                    if (navigator.appName.indexOf("Microsoft Internet") == -1) {
-                        if (document.embeds && document.embeds[movieName])
-                            return document.embeds[movieName];
-                    }
-                    else {
-                        return document.getElementById(movieName);
-                    }
-                }
-                
-                gadgets.util.registerOnLoadHandler(showViewer);
-        </script>]]>
-    </Content>
+<script type="text/javascript">
+
+  // Play .swf file for specified trick.
+  function onLoad(trick) {
+
+    // The URL for the .swf file that shows the specified trick.
+    var url = "http://uploads.reveldigital.com/11829!weatherV.swf";
+
+    // Play .swf file.
+    gadgets.flash.embedFlash(url, "flashcontainer", {
+      swf_version: 9,
+      id: "flashid",
+      width: 300,
+      height: 250
+    })
+  }
+
+  // When gadget first loads, display still photo.
+  gadgets.util.registerOnLoadHandler(onLoad);
+  </script>
+  ]]>
+</Content>
 </Module>
