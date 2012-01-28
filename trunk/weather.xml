@@ -3,7 +3,7 @@
   <ModulePrefs title="Weather Gadget" title_url="http://www.reveldigital.com" description="Displays weather information for any postal code in various layouts" author="RevelDigital" height="400">		
             <Require feature="flash" />
 	</ModulePrefs>
-	<UserPref name="id" display_name="ID" datatype="hidden" default_value="" />
+	<UserPref name="id" display_name="ID" datatype="hidden" default_value="swf" />
 	<UserPref name="url" display_name="URL" default_value="" required="true" />
   <UserPref name="postalcode" display_name="Postal Code" default_value="58103" required="true" />
 	<Content type="html">
