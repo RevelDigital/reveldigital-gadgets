@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="Weather Gadget" height="400" title_url="">		
+            <Require feature="flash" />
+	</ModulePrefs>
+	<UserPref name="id" display_name="ID" datatype="hidden" default_value="" />
+	<UserPref name="url" display_name="URL" default_value="" required="true" />
+  <UserPref name="postalcode" display_name="Postal Code" default_value="58103" required="true" />
+	<UserPref name="width" display_name="Container Height" datatype="hidden" />
+	<UserPref name="height" display_name="Container Width" datatype="hidden" />
+	<Content type="html">
+            <![CDATA[
+            <style type="text/css">
+                body {
+                    background-color: transparent;
+                }
+                
+                #player {
+                    width: __UP_width__;
+                    height: __UP_height__;
+                }
+            </style>
+    
+            <div id="player" />
+            
+            <script type="text/javascript">
+                var prefs = new gadgets.Prefs();
+                
+                //Initialize the gadget.
+                function showViewer() {
+                    var id = prefs.getString("id");
+                    //var url = prefs.getString("url");
+                    var postalcode = prefs.getString("postalcode");
+                    var url = "https://as1.reveldigital.com/Uploads/11829!weatherV.swf";
+                    var player = document.getElementById("player");
+                    var params, ok;  										    																
+                    //Generate a random number to append to the URL so that the Flash will not be cached. 
+                    url = url + "?dummyVar=" + Math.ceil(Math.random() * 100); 				
+                    
+                    //Use Google Gadget API to embed Flash movie.
+                    params = {allowScriptAccess: "always", loop: "false", play: "true", wmode: "transparent" };
+                    ok = gadgets.flash.embedCachedFlash(url, "player", 9, params);
+
+                    if (!ok) {
+                        console.error("Could not embed Flash player!");
+                        player.style.display = "none";
+                    }
+                    else {
+                        //var onloadCall = document.createElement("script");
+                        //onloadCall.appendChild(document.createTextNode("readyEvent();"));
+                        //player.appendChild(onloadCall);					
+                    }
+                }
+                
+                //Play Flash movie.
+                function playFlash() {
+                    var fl = getFlashMovieObject("swfContainer0");
+
+                    if (fl) {
+                        fl.Play();
+                    }
+                    else {
+                        console.error("No flash to play!");
+                    }
+                }
+
+                //Pause Flash movie.
+                function pauseFlash() {
+                    var fl = getFlashMovieObject("swfContainer0");
+                    
+                    if (fl) {
+                        fl.StopPlay();
+                    }
+                    else {
+                        console.error("No flash to pause!");
+                    }
+                }
+                
+                //Return Flash movie object embedded in a page.
+                function getFlashMovieObject(movieName) {
+                    if (window.document[movieName]) {
+                        return window.document[movieName];
+                    }
+                    
+                    if (navigator.appName.indexOf("Microsoft Internet") == -1) {
+                        if (document.embeds && document.embeds[movieName])
+                            return document.embeds[movieName];
+                    }
+                    else {
+                        return document.getElementById(movieName);
+                    }
+                }
+                
+                gadgets.util.registerOnLoadHandler(showViewer);
+        </script>]]>
+    </Content>
+</Module>
