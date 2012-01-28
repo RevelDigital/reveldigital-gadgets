@@ -14,7 +14,7 @@
 <script type="text/javascript">
 
   // Play .swf file for specified trick.
-  function onLoad(trick) {
+  function onLoad() {
 
     // The URL for the .swf file that shows the specified trick.
     var url = "http://uploads.reveldigital.com/11829!weatherV.swf";
