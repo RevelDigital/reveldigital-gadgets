@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Weather Gadget" height="400" title_url="">		
+  <ModulePrefs title="Weather Gadget" title_url="http://www.reveldigital.com" description="Displays weather information for any postal code in various layouts" author="RevelDigital" height="400">		
             <Require feature="flash" />
 	</ModulePrefs>
 	<UserPref name="id" display_name="ID" datatype="hidden" default_value="" />
