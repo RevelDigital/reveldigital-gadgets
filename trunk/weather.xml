@@ -1,57 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Trevor Does Tricks" height="300">
+<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital">
   <Require feature="flash" />
+  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
+    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+  </UserPref> 
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 
 <style type="text/css">
-  input.mybutton
-  {
-     background-color:#FFCC99;
-     border-style:solid;
-     border-color:#000000;
-     font-family:Comic Sans MS,sans-serif;
-     font-size:14px;
-  }
 </style>
 
 <div id="flashcontainer" style="text-align: center;"></div> 
 
 <script type="text/javascript">
 
-  // Display still photo.
   function showPhoto() {
     document.getElementById("flashcontainer").innerHTML = "<img src='http://doc.examples.googlepages.com/Trevor.JPG' />";
   }
 
-  // Play .swf file for specified trick.
-  function doTrick(trick) {
+  function loadFlash() {
 
-    // The URL for the .swf file that shows the specified trick.
-    var url = "http://uploads.reveldigital.com/11829!weatherV.swf";
+    var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
-    // Play .swf file.
-      gadgets.flash.embedFlash(url, "flashcontainer", {
-      swf_version: 6,
+    gadgets.flash.embedFlash(url, "flashcontainer", {
+      swf_version: 9,
       id: "flashid",
-      width: 300,
-      height: 250
+      width: prefs.getInt("w"),
+      height: prefs.getInt("h")
     })
   }
 
   // When gadget first loads, display still photo.
-  gadgets.util.registerOnLoadHandler(showPhoto);
-  </script>
-  <br />
-  <div style="text-align: center;"> 
-    <input type=submit class="mybutton" value="Spin" onClick="doTrick('spin')">
-    <input type=submit class="mybutton" value="Speak" onClick="doTrick('speak')">
-    <input type=submit class="mybutton" value="Sit" onClick="doTrick('sit')">
-    <input type=submit class="mybutton" value="Down" onClick="doTrick('down')">
-    <input type=submit class="mybutton" value="Stop" onClick="showPhoto()">
-  </div>
-  ]]>
+  gadgets.util.registerOnLoadHandler(loadFlash);
+</script>
+]]>
 </Content>
 </Module>
