@@ -33,7 +33,7 @@
     }
     
     var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
-      "Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "FF00FF") + "&" +
+      "Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
       "Location=" + encodeURI(prefs.getString("location")) + "&" +
       "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
       "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
