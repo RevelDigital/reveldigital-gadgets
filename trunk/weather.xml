@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital">
+<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
   <Require feature="flash" />
   <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
     <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
@@ -10,10 +10,10 @@
 <![CDATA[
 
 <style type="text/css">
-  body.background-color: "#ff00ff"
+  body { background-color: transparent; }
 </style>
 
-<div id="flashcontainer"></div> 
+<div id="flashcontainer" style="background-color:transparent;"></div> 
 
 <script type="text/javascript">
 
