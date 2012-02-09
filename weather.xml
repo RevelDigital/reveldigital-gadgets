@@ -26,6 +26,7 @@
     var embed = document.createElement("embed");
     embed.setAttribute("width", prefs.getString("w"));
     embed.setAttribute("height", prefs.getString("h"));
+    embed.setAttribute("wmode", "transparent");
     embed.setAttribute("type", "application/x-shockwave-flash");
     embed.setAttribute("src", url);
     embed.setAttribute("flashvars", prefs.getString("FlashVars"));
