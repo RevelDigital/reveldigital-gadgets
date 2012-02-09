@@ -27,7 +27,7 @@
     embed.setAttribute('width', prefs.getInt("w"));
     embed.setAttribute('height', prefs.getInt("h"));
     embed.setAttribute('type', 'application/x-shockwave-flash');
-    embed.setAttribute('src', uri);
+    embed.setAttribute('src', url);
     document.getElementById("flashcontainer").appendChild(embed);
   }
 
