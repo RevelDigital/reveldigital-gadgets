@@ -15,8 +15,6 @@
 
 <div id="flashcontainer" style="background-color:transparent;"></div> 
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
@@ -25,19 +23,12 @@
 
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
-    var flashvars = {
-        src: url
-    };
-    
-    var params = {
-        allowfullscreen: "true",
-        allowscriptaccess: "always",
-        wmode: "transparent"
-    };
-     
-    var attributes = {};
-    
-    swfobject.embedSWF(url, "flashcontainer", prefs.getInt("h"), prefs.getInt("w"), "10", "", flashvars, params, attributes);
+    var embed = document.createElement('embed');
+    embed.setAttribute('width', prefs.getInt("w"));
+    embed.setAttribute('height', prefs.getInt("h"));
+    embed.setAttribute('type', 'application/x-shockwave-flash');
+    embed.setAttribute('src', uri);
+    document.getElementById("flashcontainer").appendChild(embed);
   }
 
   // When gadget first loads, display still photo.
