@@ -13,7 +13,7 @@
   body.background-color: "#ff00ff"
 </style>
 
-<div id="flashcontainer" style="text-align: center;"></div> 
+<div id="flashcontainer"></div> 
 
 <script type="text/javascript">
 
@@ -29,8 +29,8 @@
       width: prefs.getInt("w"),
       height: prefs.getInt("h"),
       wmode: "transparent",
-      flashvars: prefs.getString("FlashVars")
-    })
+      allowScriptAccess: "always"
+    });
   }
 
   // When gadget first loads, display still photo.
