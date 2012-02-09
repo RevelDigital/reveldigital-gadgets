@@ -16,9 +16,7 @@
 
 <script type="text/javascript">
 
-  function showPhoto() {
-    document.getElementById("flashcontainer").innerHTML = "<img src='http://doc.examples.googlepages.com/Trevor.JPG' />";
-  }
+  var prefs = new gadgets.Prefs();
 
   function loadFlash() {
 
