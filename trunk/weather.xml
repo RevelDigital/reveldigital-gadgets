@@ -24,8 +24,8 @@
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
     gadgets.flash.embedFlash(url, "flashcontainer", {
-      swf_version: 9,
-      "wmode": "transparent",
+      swf_version: 8,
+      wmode: "transparent",
       id: "flashid",
       width: prefs.getInt("w"),
       height: prefs.getInt("h"),
