@@ -4,7 +4,12 @@
   <Require feature="flash" />
   <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
     <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
-  </UserPref> 
+  </UserPref>
+  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
+    <EnumValue value="f" display_value="Farenheight" />
+    <EnumValue value="c" display_value="Celcius" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -23,6 +28,8 @@
 
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
+    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" + "Custom=" + prefs.getString("BackColor") == "" ? "transparent" : "" + "&" + "Location=" + encodeURI(prefs.getString("Location"));
+    
     var embed = document.createElement("embed");
     embed.setAttribute("width", window.innerWidth);
     embed.setAttribute("height", window.innerHeight);
@@ -30,7 +37,7 @@
     embed.setAttribute("scale", "exactFit");
     embed.setAttribute("type", "application/x-shockwave-flash");
     embed.setAttribute("src", url);
-    embed.setAttribute("flashvars", prefs.getString("FlashVars"));
+    embed.setAttribute("flashvars", flashvars);
     document.getElementById("flashcontainer").appendChild(embed);
   }
 
