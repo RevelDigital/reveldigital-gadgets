@@ -28,7 +28,12 @@
 
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
-    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" + "Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" + "Location=" + encodeURI(prefs.getString("location"));
+    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
+      "Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
+      "Location=" + encodeURI(prefs.getString("location")) + "&" +
+      "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
+      "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
+      "Opacity=" + encodeURI(prefs.getString("Opacity"));
     
     var embed = document.createElement("embed");
     embed.setAttribute("width", window.innerWidth);
