@@ -15,9 +15,7 @@
 
 <div id="flashcontainer" style="background-color:transparent;"></div> 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-
-<embed src="player.swf" width="300" height="300" allowscriptaccess="always" wmode="transparent" type="application/x-shockwave-flash" flashvars="" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 
 <script type="text/javascript">
 
@@ -39,7 +37,7 @@
      
     var attributes = {};
     
-    swfobject.embedSWF(url, "flashcontainer", prefs.getInt("h"), prefs.getInt("w"), "10", "", flashvars, params, attributes );
+    swfobject.embedSWF(url, "flashcontainer", prefs.getInt("h"), prefs.getInt("w"), "10", "", flashvars, params, attributes);
   }
 
   // When gadget first loads, display still photo.
