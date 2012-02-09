@@ -29,7 +29,7 @@
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
     if (prefs.getString("BackColor") != "") {
-      body.style.backgroundColor = "#" + prefs.getString("BackColor");
+      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
     }
     
     var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
