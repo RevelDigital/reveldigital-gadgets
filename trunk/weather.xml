@@ -26,7 +26,9 @@
       swf_version: 9,
       id: "flashid",
       width: prefs.getInt("w"),
-      height: prefs.getInt("h")
+      height: prefs.getInt("h"),
+      wmode: "transparent",
+      flashvars: prefs.getString("FlashVars")
     })
   }
 
