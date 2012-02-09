@@ -29,12 +29,12 @@
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
     if (prefs.getString("BackColor") != "") {
-      //document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
+      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
     }
     
     var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
-      "Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
-      //"Custom=transparent" + "&" +
+      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
+      "Custom=transparent" + "&" +
       "Location=" + encodeURI(prefs.getString("location")) + "&" +
       "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
       "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
