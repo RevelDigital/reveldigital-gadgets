@@ -24,8 +24,8 @@
     var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
 
     var embed = document.createElement("embed");
-    embed.setAttribute("width", prefs.getString("w"));
-    embed.setAttribute("height", prefs.getString("h"));
+    embed.setAttribute("width", window.innerWidth);
+    embed.setAttribute("height", window.innerHeight);
     embed.setAttribute("wmode", "transparent");
     embed.setAttribute("type", "application/x-shockwave-flash");
     embed.setAttribute("src", url);
