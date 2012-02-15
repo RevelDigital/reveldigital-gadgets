@@ -26,7 +26,7 @@
 
   function loadFlash() {
 
-    var url = "http://uploads.reveldigital.com/49928!TwitterApp.swf";
+    var url = "http://as1.reveldigital.com/Uploads/49928!TwitterApp.swf";
 
     if (prefs.getString("BackColor") != "") {
       document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
