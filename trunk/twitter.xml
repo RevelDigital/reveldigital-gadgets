@@ -34,11 +34,10 @@
     
     var flashvars =
       "searchQuery=" + encodeURI(prefs.getString("searchQuery")) + "&" +
-      "username=" + encodeURI(prefs.getString("username")) + "&" + 
-      "numTweets=" + encodeURI(prefs.getString("numTweets")) + "&" + 
-      "renew=10" + "&" + 
+      "username=" + encodeURI(prefs.getString("username")) + "&" +
+      "numTweets=" + encodeURI(prefs.getString("numTweets")) + "&" +
+      "renew=10" + "&" +
       "moveSpeed=" + encodeURI(prefs.getString("moveSpeed")) + "&" +
-      "Location=" + encodeURI(prefs.getString("location")) + "&" +
       "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
       "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
       "Opacity=" + encodeURI(prefs.getString("Opacity"));
