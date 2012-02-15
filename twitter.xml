@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
+  <Require feature="flash" />
+  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
+    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+  </UserPref>
+  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
+    <EnumValue value="f" display_value="Farenheight" />
+    <EnumValue value="c" display_value="Celcius" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+  body { background-color: transparent; }
+</style>
+
+<div id="flashcontainer" style="background-color:transparent;"></div> 
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function loadFlash() {
+
+    var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
+
+    if (prefs.getString("BackColor") != "") {
+      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
+    }
+    
+    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
+      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
+      "Custom=transparent" + "&" +
+      "Location=" + encodeURI(prefs.getString("location")) + "&" +
+      "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
+      "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
+      "Opacity=" + encodeURI(prefs.getString("Opacity"));
+    
+    var embed = document.createElement("embed");
+    embed.setAttribute("width", window.innerWidth);
+    embed.setAttribute("height", window.innerHeight);
+    embed.setAttribute("wmode", "transparent");
+    embed.setAttribute("scale", "exactFit");
+    embed.setAttribute("type", "application/x-shockwave-flash");
+    embed.setAttribute("src", url);
+    embed.setAttribute("flashvars", flashvars);
+    document.getElementById("flashcontainer").appendChild(embed);
+  }
+
+  // When gadget first loads, display still photo.
+  gadgets.util.registerOnLoadHandler(loadFlash);
+</script>
+]]>
+</Content>
+</Module>
