@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Twitter Gadget" description="Displays tweets from specific users or queries" author="RevelDigital" background="transparent">
   <Require feature="flash" />
-  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
-    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+  <UserPref name="username" display_name="Twitter Username" datatype="string" />
+  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
+  <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
+  <UserPref name="moveSpeed" display_name="Scroll Speed" default_value="10" datatype="enum" >
+    <EnumValue value="1" display_value="Slow" />
+    <EnumValue value="10" display_value="Normal" />
+    <EnumValue value="20" display_value="Fast" />
   </UserPref>
-  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
-    <EnumValue value="f" display_value="Farenheight" />
-    <EnumValue value="c" display_value="Celcius" />
-  </UserPref>
-  <UserPref name="location" display_name="Location" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -26,15 +26,18 @@
 
   function loadFlash() {
 
-    var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
+    var url = "http://uploads.reveldigital.com/49928!TwitterApp.swf";
 
     if (prefs.getString("BackColor") != "") {
       document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
     }
     
-    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
-      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
-      "Custom=transparent" + "&" +
+    var flashvars =
+      "searchQuery=" + encodeURI(prefs.getString("searchQuery")) + "&" +
+      "username=" + encodeURI(prefs.getString("username")) + "&" + 
+      "numTweets=" + encodeURI(prefs.getString("numTweets")) + "&" + 
+      "renew=10" + "&" + 
+      "moveSpeed=" + encodeURI(prefs.getString("moveSpeed")) + "&" +
       "Location=" + encodeURI(prefs.getString("location")) + "&" +
       "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
       "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
