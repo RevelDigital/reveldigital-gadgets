@@ -33,8 +33,6 @@
     }
     
     var flashvars =
-      "searchquery=" + encodeURI(prefs.getString("searchQuery")) + "&" +
-      "username=" + encodeURI(prefs.getString("username")) + "&" +
       "numTweets=" + encodeURI(prefs.getString("numTweets")) + "&" +
       "renew=10" + "&" +
       "moveSpeed=" + encodeURI(prefs.getString("moveSpeed")) + "&" +
@@ -42,6 +40,12 @@
       "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
       "Opacity=" + encodeURI(prefs.getString("Opacity"));
     
+    var query = prefs.getString("searchQuery");
+    if (query.length > 0) {
+      flashvars = flashvars + "&searchquery=" + encodeURI(query);
+    } else {
+      flashvars = flashvars + "&username=" + encodeURI(prefs.getString("username"));
+    }
     var embed = document.createElement("embed");
     embed.setAttribute("width", window.innerWidth);
     embed.setAttribute("height", window.innerHeight);
