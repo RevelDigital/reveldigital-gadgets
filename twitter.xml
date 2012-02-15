@@ -33,7 +33,7 @@
     }
     
     var flashvars =
-      "searchQuery=" + encodeURI(prefs.getString("searchQuery")) + "&" +
+      "searchquery=" + encodeURI(prefs.getString("searchQuery")) + "&" +
       "username=" + encodeURI(prefs.getString("username")) + "&" +
       "numTweets=" + encodeURI(prefs.getString("numTweets")) + "&" +
       "renew=10" + "&" +
