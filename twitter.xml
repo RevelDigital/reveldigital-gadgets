@@ -6,9 +6,9 @@
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
   <UserPref name="moveSpeed" display_name="Scroll Speed" default_value="10" datatype="enum" >
-    <EnumValue value="1" display_value="Slow" />
+    <EnumValue value="15" display_value="Slow" />
     <EnumValue value="10" display_value="Normal" />
-    <EnumValue value="20" display_value="Fast" />
+    <EnumValue value="5" display_value="Fast" />
   </UserPref>
 </ModulePrefs>
 <Content type="html">
