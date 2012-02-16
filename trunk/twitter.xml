@@ -47,8 +47,8 @@
       flashvars = flashvars + "&username=" + encodeURI(prefs.getString("username"));
     }
     var embed = document.createElement("embed");
-    embed.setAttribute("width", window.innerWidth);
-    embed.setAttribute("height", window.innerHeight);
+    embed.setAttribute("width", "100%");
+    embed.setAttribute("height", "100%");
     embed.setAttribute("wmode", "transparent");
     embed.setAttribute("scale", "exactFit");
     embed.setAttribute("type", "application/x-shockwave-flash");
