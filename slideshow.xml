@@ -6,74 +6,61 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://c803761.r61.cf2.rackcdn.com/Sequence/Sequence.js"></script>
-<link href="http://c803761.r61.cf2.rackcdn.com/Sequence/slide-in.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/files/Sequence.js"></script>
+
+<link type="text/css" href="http://reveldigital-gadgets.googlecode.com/files/slide-in.css" rel="stylesheet">
 <style type="text/css">
-                  body {
-                    background-color: white;
-                  }
-                  #sequence {
-                    width: 600px;
-                  }
-                  #sequence img {
-                    width: 300px;
-                  }
-                  h2, h3 {
-                    color: black;
-                    font-family: Arial, Helvetica, sans-serif;
-                  }
-                  h3 {
-                    color: #0A5DC3;
-                  }
-                  .model, .model.animate-in, .model.animate-out {
-                    top: 160px;
-                  }
-                  .title {
-                    left: 50px;
-                    top: 10px;
-                  }
-                  .subtitle {
-                    left: 50px;
-                    top: 130px;
-                  }
-                  .title.animate-in {
-                    left: 50px;
-                    top: 50px;
-                  }
-                  .title.animate-out {
-                    left: 50px;
-                    top: 50px;
-                  }
-                  .subtitle.animate-in {
-                    left: 50px;
-                    top: 90px;
-                  }
-                  .subtitle.animate-out {
-                    left: 50px;
-                    top: 90px;
-                  }
-          	</style>
+  body {
+    background-color: white;
+  }
+  #sequence {
+    width: 600px;
+  }
+  #sequence img {
+    width: 300px;
+  }
+  h2, h3 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h3 {
+    color: #0A5DC3;
+  }
+  .model, .model.animate-in, .model.animate-out {
+    top: 160px;
+  }
+  .title {
+    left: 50px;
+    top: 10px;
+  }
+  .subtitle {
+    left: 50px;
+    top: 130px;
+  }
+  .title.animate-in {
+    left: 50px;
+    top: 50px;
+  }
+  .title.animate-out {
+    left: 50px;
+    top: 50px;
+  }
+  .subtitle.animate-in {
+    left: 50px;
+    top: 90px;
+  }
+  .subtitle.animate-out {
+    left: 50px;
+    top: 90px;
+  }
+</style>
 
 <div id="sequence">
   <ul style="width: 100%; height: 100%; ">
-    <li class="">
-      <h2 class="title animate-out" style="">Sports</h2>
-      <h3 class="subtitle animate-out" style="">Ideal digital signage for sports bars, pubs, and restaurants.</h3>
-					<img class="model animate-out" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/11/SportsPreview.jpg" alt="Sports" style="">
-				</li>
-				<li class="">
-					<h2 class="title animate-out" style="">Photo Gallery</h2>
-					<h3 class="subtitle animate-out" style="">Ideal for digital signage in galleries, libraries, museums, and other cultural venues.</h3>
-					<img class="model animate-out" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/07/Prezo_PhotoGallery_01.jpg" alt="Photo Gallery" style="">
-				</li>
-				<li class="frame3 current">
-					<h2 class="title animate-in" style="">Restaurant Main Course</h2>
-					<h3 class="subtitle animate-in" style="">Ideal for digital signage for restaurants, cafes, bars, sports bars, pubs, brewery, cigar bars.</h3>
-					<img class="model animate-in" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/08/Prezo_Restaurant-MainCourse.jpg" alt="Restaurant" style="">
-				</li>
-    </ul>
+  </ul>
 </div>
+
 
 <script type="text/javascript">
 
@@ -83,11 +70,34 @@
 
     var apikey = prefs.getString("apikey");
     
+    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=o7Zg6tFvYOg&id=7csEtHPQkvw", function (data) {
+      $.each(data, function (idx, playlist) {
+        $.each(playlist.sources, function (sourceIdx, source) {
+          if (source.type == "Image" && source.media_id != null) {
+            $.getJSON("http://api.reveldigital.com/media.json?api_key=o7Zg6tFvYOg&id=" + source.media_id, function (media) {
+              if (media.length > 0) {
+                var li = $("<li></li>");
+                li.append($("<h2 class=\"title\">" + media[0].name + "</h2>"));
+                if (media[0].tags != null) {
+                  li.append($("<h3 class=\"subtitle\">" + media[0].tags + "</h3>"));
+                }
+                li.append($("<img class=\"model\" src=\"" + media[0].file_url + "\" />"));
+                $("div#sequence ul").append(li);
+              }
+            });
+          }
+        });
+      });
+    });
+      
     var options = {
       autoPlay: true,
       autoPlayDelay: 3000
     }
-    var sequence = $("#sequence").sequence(options);
+    
+    setTimeout(function() {
+      var sequence = $("#sequence").sequence(options);
+    }, 3000);
   }
 
   gadgets.util.registerOnLoadHandler(load);
