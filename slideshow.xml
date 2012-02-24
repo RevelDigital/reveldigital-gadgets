@@ -78,7 +78,7 @@
               if (media.length > 0) {
                 var li = $("<li></li>");
                 var h2 = $("<h2 class=\"title\">" + media[0].name + "</h2>");
-                h2.style.color = prefs.getString("ForeColor");
+                $(h2).css("color", prefs.getString("ForeColor"));
                 li.append(h2);
                 if (media[0].tags != null) {
                   li.append($("<h3 class=\"subtitle\">" + media[0].tags + "</h3>"));
