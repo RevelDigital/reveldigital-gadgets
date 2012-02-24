@@ -70,7 +70,7 @@
 
     var apikey = prefs.getString("apikey");
     
-    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=o7Zg6tFvYOg", function (data) {
+    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
       $.each(data, function (idx, playlist) {
         if (playlist.name.toLowerCase() == prefs.getString("playlist").toLowerCase()) {
           $.each(playlist.sources, function (sourceIdx, source) {
