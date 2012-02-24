@@ -12,7 +12,7 @@
 <link type="text/css" href="http://reveldigital-gadgets.googlecode.com/files/slide-in.css" rel="stylesheet">
 <style type="text/css">
   body {
-    background-color: white;
+    background-color: transparent;
   }
   #sequence {
     width: 600px;
