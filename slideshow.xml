@@ -38,7 +38,7 @@
     var sequence = $("#sequence").sequence(options);
   }
 
-  gadgets.util.registerOnLoadHandler(loadFlash);
+  gadgets.util.registerOnLoadHandler(load);
 </script>
 ]]>
 </Content>
