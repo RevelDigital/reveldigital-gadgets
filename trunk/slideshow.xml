@@ -9,7 +9,7 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://c803761.r61.cf2.rackcdn.com/Sequence/Sequence.js"></script>
 <link href="http://c803761.r61.cf2.rackcdn.com/Sequence/slide-in.css" rel="stylesheet" type="text/css">
-<style>
+<style type="text/css">
   .model { top: 160px; }
 </style>
 
