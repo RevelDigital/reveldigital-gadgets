@@ -21,7 +21,7 @@
     width: 300px;
   }
   h2, h3 {
-    color: __UP_ForeColor__;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
   }
   h3 {
@@ -77,7 +77,9 @@
             $.getJSON("http://api.reveldigital.com/media.json?api_key=o7Zg6tFvYOg&id=" + source.media_id, function (media) {
               if (media.length > 0) {
                 var li = $("<li></li>");
-                li.append($("<h2 class=\"title\">" + media[0].name + "</h2>"));
+                var h2 = $("<h2 class=\"title\">" + media[0].name + "</h2>");
+                h2.style.color = prefs.getString("ForeColor");
+                li.append(h2);
                 if (media[0].tags != null) {
                   li.append($("<h3 class=\"subtitle\">" + media[0].tags + "</h3>"));
                 }
