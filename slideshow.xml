@@ -11,19 +11,37 @@
 
 <style type="text/css">
   body { background-color: transparent; }
+  
+  #sequence{
+    border: black solid 3px;
+    height: 370px;
+    margin: 40px auto;
+    position: relative;
+    width: 450px;
+  }
+  
+  #sequence li > *{
+    position: absolute;
+  }
 </style>
 
 <div id="sequence">
-    <ul>
-        <li>
-            <!--Frame 1 content here-->
-        </li>
-        <li>
-            <!--Frame 2 content here-->
-        </li>
-        <li>
-            <!--Frame 3 content here-->
-        </li>
+  <ul style="width: 100%; height: 100%; ">
+    <li class="">
+      <h2 class="title animate-out" style="">Sports</h2>
+      <h3 class="subtitle animate-out" style="">Ideal digital signage for sports bars, pubs, and restaurants.</h3>
+					<img class="model animate-out" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/11/SportsPreview.jpg" alt="Sports" style="">
+				</li>
+				<li class="">
+					<h2 class="title animate-out" style="">Photo Gallery</h2>
+					<h3 class="subtitle animate-out" style="">Ideal for digital signage in galleries, libraries, museums, and other cultural venues.</h3>
+					<img class="model animate-out" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/07/Prezo_PhotoGallery_01.jpg" alt="Photo Gallery" style="">
+				</li>
+				<li class="frame3 current">
+					<h2 class="title animate-in" style="">Restaurant Main Course</h2>
+					<h3 class="subtitle animate-in" style="">Ideal for digital signage for restaurants, cafes, bars, sports bars, pubs, brewery, cigar bars.</h3>
+					<img class="model animate-in" src="http://djak7iah1v3ci.cloudfront.net/wp-content/uploads/2011/08/Prezo_Restaurant-MainCourse.jpg" alt="Restaurant" style="">
+				</li>
     </ul>
 </div>
 
@@ -35,6 +53,10 @@
 
     var apikey = prefs.getString("apikey");
     
+    var options = {
+      autoPlay: true,
+      autoPlayDelay: 3000
+    }
     var sequence = $("#sequence").sequence(options);
   }
 
