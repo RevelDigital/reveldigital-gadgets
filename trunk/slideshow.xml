@@ -9,6 +9,9 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://c803761.r61.cf2.rackcdn.com/Sequence/Sequence.js"></script>
 <link href="http://c803761.r61.cf2.rackcdn.com/Sequence/slide-in.css" rel="stylesheet" type="text/css">
+<style>
+  .model { top: 160px; }
+</style>
 
 <div id="sequence">
   <ul style="width: 100%; height: 100%; ">
