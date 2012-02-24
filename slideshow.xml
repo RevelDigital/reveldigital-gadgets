@@ -72,7 +72,7 @@
     
     var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=o7Zg6tFvYOg", function (data) {
       $.each(data, function (idx, playlist) {
-        if (playlist.name == prefs.getString("playlist")) {
+        if (playlist.name.toLowerCase() == prefs.getString("playlist").toLowerCase()) {
           $.each(playlist.sources, function (sourceIdx, source) {
             if (source.type == "Image" && source.media_id != null) {
               $.getJSON("http://api.reveldigital.com/media.json?api_key=o7Zg6tFvYOg&id=" + source.media_id, function (media) {
