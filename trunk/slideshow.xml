@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Slideshow Gadget" description="Transitions between images from the specified playlist" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" />
-  <UserPref name="playlistId" display_name="Playlist" datatype="string" />
+  <UserPref name="playlist" display_name="Playlist" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -70,25 +70,27 @@
 
     var apikey = prefs.getString("apikey");
     
-    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=o7Zg6tFvYOg&id=7csEtHPQkvw", function (data) {
+    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=o7Zg6tFvYOg", function (data) {
       $.each(data, function (idx, playlist) {
-        $.each(playlist.sources, function (sourceIdx, source) {
-          if (source.type == "Image" && source.media_id != null) {
-            $.getJSON("http://api.reveldigital.com/media.json?api_key=o7Zg6tFvYOg&id=" + source.media_id, function (media) {
-              if (media.length > 0) {
-                var li = $("<li></li>");
-                var h2 = $("<h2 class=\"title\">" + media[0].name + "</h2>");
-                $(h2).css("color", prefs.getString("ForeColor"));
-                li.append(h2);
-                if (media[0].tags != null) {
-                  li.append($("<h3 class=\"subtitle\">" + media[0].tags + "</h3>"));
+        if (playlist.name == prefs.getString("playlist")) {
+          $.each(playlist.sources, function (sourceIdx, source) {
+            if (source.type == "Image" && source.media_id != null) {
+              $.getJSON("http://api.reveldigital.com/media.json?api_key=o7Zg6tFvYOg&id=" + source.media_id, function (media) {
+                if (media.length > 0) {
+                  var li = $("<li></li>");
+                  var h2 = $("<h2 class=\"title\">" + media[0].name + "</h2>");
+                  $(h2).css("color", prefs.getString("ForeColor"));
+                  li.append(h2);
+                  if (media[0].tags != null) {
+                    li.append($("<h3 class=\"subtitle\">" + media[0].tags + "</h3>"));
+                  }
+                  li.append($("<img class=\"model\" src=\"" + media[0].file_url + "\" />"));
+                  $("div#sequence ul").append(li);
                 }
-                li.append($("<img class=\"model\" src=\"" + media[0].file_url + "\" />"));
-                $("div#sequence ul").append(li);
-              }
-            });
-          }
-        });
+              });
+            }
+          });
+        }
       });
     });
       
