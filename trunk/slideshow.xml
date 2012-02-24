@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Slideshow Gadget" description="Transitions between images from the specified playlist" author="RevelDigital" background="transparent">
+  <UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" />
+  <UserPref name="playlistId" display_name="Playlist" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://c803761.r61.cf2.rackcdn.com/Sequence/Sequence.js"></script>
+
+<style type="text/css">
+  body { background-color: transparent; }
+</style>
+
+<div id="sequence">
+    <ul>
+        <li>
+            <!--Frame 1 content here-->
+        </li>
+        <li>
+            <!--Frame 2 content here-->
+        </li>
+        <li>
+            <!--Frame 3 content here-->
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    var apikey = prefs.getString("apikey");
+    
+    var sequence = $("#sequence").sequence(options);
+  }
+
+  gadgets.util.registerOnLoadHandler(loadFlash);
+</script>
+]]>
+</Content>
+</Module>
+
