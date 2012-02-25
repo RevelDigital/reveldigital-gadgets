@@ -48,7 +48,7 @@
     }).render().start();
   }
 
-  gadgets.util.registerOnLoadHandler(loadFlash);
+  gadgets.util.registerOnLoadHandler(load);
 </script>
 ]]>
 </Content>
