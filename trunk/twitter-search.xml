@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
+  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
+  <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="30" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+  body { background-color: transparent; }
+</style>
+
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    new TWTR.Widget({
+      version: 2,
+      type: 'search',
+      search: 'rainbow',
+      interval: 30000,
+      title: 'It\'s a double rainbow',
+      subject: 'Across the sky',
+      width: 250,
+      height: 300,
+      theme: {
+        shell: {
+          background: '#8ec1da',
+          color: '#ffffff'
+        },
+        tweets: {
+          background: '#ffffff',
+          color: '#444444',
+          links: '#1985b5'
+        }
+      },
+      features: {
+        scrollbar: false,
+        loop: true,
+        live: true,
+        behavior: 'default'
+      }
+    }).render().start();
+  }
+
+  gadgets.util.registerOnLoadHandler(loadFlash);
+</script>
+]]>
+</Content>
+</Module>
