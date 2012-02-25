@@ -27,7 +27,7 @@
       title: 'It\'s a double rainbow',
       subject: 'Across the sky',
       width: 'auto',
-      height: 'auto; -arnom-nl: 0',
+      height: '800',
       theme: {
         shell: {
           background: '#8ec1da',
