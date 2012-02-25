@@ -26,8 +26,8 @@
       interval: 30000,
       title: 'It\'s a double rainbow',
       subject: 'Across the sky',
-      width: 250,
-      height: 300,
+      width: prefs.getInt("w"),
+      height: prefs.getInt("h"),
       theme: {
         shell: {
           background: '#8ec1da',
