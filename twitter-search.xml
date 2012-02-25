@@ -19,6 +19,8 @@
 
   function load() {
 
+    alert(prefs.getInt("h"));
+    
     new TWTR.Widget({
       version: 2,
       type: 'search',
@@ -27,7 +29,7 @@
       title: 'It\'s a double rainbow',
       subject: 'Across the sky',
       width: 'auto',
-      height: '800',
+      height: prefs.getInt("h"),
       theme: {
         shell: {
           background: '#8ec1da',
