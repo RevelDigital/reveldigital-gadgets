@@ -19,8 +19,6 @@
   var prefs = new gadgets.Prefs();
 
   function load() {
-
-    alert(prefs.getInt("h"));
     
     new TWTR.Widget({
       version: 2,
@@ -29,8 +27,8 @@
       interval: 30000,
       title: 'It\'s a double rainbow',
       subject: 'Across the sky',
-      width: $(window).width(),
-      height: $(window).height(),
+      width: $(document).width(),
+      height: $(document).height(),
       theme: {
         shell: {
           background: '#8ec1da',
