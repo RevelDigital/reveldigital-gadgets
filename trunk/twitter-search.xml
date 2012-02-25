@@ -11,6 +11,7 @@
   body { background-color: transparent; }
 </style>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 
 <script type="text/javascript">
@@ -28,8 +29,8 @@
       interval: 30000,
       title: 'It\'s a double rainbow',
       subject: 'Across the sky',
-      width: 'auto',
-      height: prefs.getInt("h"),
+      width: $(window).width(),
+      height: $(window).height(),
       theme: {
         shell: {
           background: '#8ec1da',
