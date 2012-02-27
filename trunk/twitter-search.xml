@@ -88,6 +88,7 @@ span.when
   var prefs = new gadgets.Prefs();
 
   function load() {
+    update();
     setInterval(update, 30000);
   }
 
