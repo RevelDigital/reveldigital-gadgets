@@ -103,7 +103,7 @@ span.when
 
   function load() {
   
-    $("#div.tweetscontainer").height(prefs.getInt("h")).width(prefs.getInt("w"));
+    $("div.tweetscontainer").height(prefs.getInt("h")).width(prefs.getInt("w"));
     
     update();
     
