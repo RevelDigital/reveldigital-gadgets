@@ -92,7 +92,7 @@ img
   function load() {
   
     $("div.quotescontainer").height($(window).height()).width($(window).width());
-    $("div.quotescontainer").css("color", prefs.getString("ForeColor"));
+    $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
     $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
     
     update();
