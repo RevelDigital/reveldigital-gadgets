@@ -36,7 +36,7 @@ border-radius: 5px;
 box-shadow: 5px 5px 2px #777;
 }
 
-div.tweetsContainer
+div.tweetscontainer
 {
   text-align: left;
   overflow: hidden;
@@ -103,7 +103,7 @@ span.when
 
   function load() {
   
-    //$("div.tweetscontainer").height(prefs.getInt("h")).width(prefs.getInt("w"));
+    $("div.tweetscontainer").height($(window).height()).width($(window).width());
     
     update();
     
@@ -127,9 +127,7 @@ span.when
     var thashuri = "http://search.twitter.com/search?q=%23";
   
     $.getJSON(url+query, function(json){
-    
-      $("#twitterresults").html('<h4><a class="searchlink" href="' + url.replace('search\.json','search')+query + 
-        '" title="see the search query via Twitter">Testing: ' + url+query + '</a></h4>');
+
       if(json) {
         max_id = json.max_id;
         var display = '';
