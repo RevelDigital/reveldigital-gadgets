@@ -93,8 +93,6 @@ span.when
 <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 
 <div class="tweetscontainer">
-<dl class="tweets clearfix">
-</dl>
 </div>
 
 <script type="text/javascript">
@@ -147,7 +145,7 @@ span.when
             '<h3>' + ttext + '</h3>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
             '</div></div>';
         });
-        $(display).hide().prependTo("dl.tweets").fadeIn();
+        $(display).hide().prependTo("div.tweetscontainer").fadeIn();
         
         $("span.when").each(function (idx) {
           $(this).text(timeAgo($(this).data("timestamp")));
