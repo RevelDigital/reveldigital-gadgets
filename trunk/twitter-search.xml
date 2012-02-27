@@ -21,6 +21,21 @@ body
   background: transparent;
 }
 
+a
+{
+  text-decoration: none;
+  color: #0A5DC3;
+}
+
+img
+{
+-moz-border-radius: 5px;
+border-radius: 5px;
+-moz-box-shadow: 5px 5px 5px #777;
+-webkit-box-shadow: 5px 5px 5px #777;
+box-shadow: 5px 5px 5px #777;
+}
+
 div.tweetsContainer
 {
   text-align: left;
