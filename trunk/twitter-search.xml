@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
-  <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="30" />
+  <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -90,7 +90,6 @@ span.when
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 
 <div class="tweetscontainer">
 </div>
@@ -119,7 +118,7 @@ span.when
   
   var update = function () {
   
-    var url="http://search.twitter.com/search.json?rpp=5&since_id=" + max_id + "&callback=?&q=";
+    var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("numTweets") + "&since_id=" + max_id + "&callback=?&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
