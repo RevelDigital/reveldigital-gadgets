@@ -103,7 +103,11 @@ span.when
   var prefs = new gadgets.Prefs();
 
   function load() {
+  
+    $("#div.tweetscontainer").height(prefs.getInt("h")).width(prefs.getInt("w"));
+    
     update();
+    
     setInterval(update, 30000);
   }
 
