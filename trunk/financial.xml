@@ -33,6 +33,11 @@ div.quotescontainer
   font-weight: bold;
 }
 
+table
+{
+  width: 100%;
+}
+
 td, th
 {
   padding: 10px;
@@ -112,7 +117,7 @@ img
     var query = escape( query=prefs.getString("symbols") );
   
     $.getJSON(url+query, function(json){
-            
+
       if(json) {
       
         $("div.quotescontainer > table > tbody").empty();
