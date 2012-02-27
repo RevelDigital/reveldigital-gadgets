@@ -96,7 +96,7 @@ img
     
     update();
     
-    setInterval(update, 30000);
+    setInterval(update, 120000);
   }
 
   gadgets.util.registerOnLoadHandler(load);
