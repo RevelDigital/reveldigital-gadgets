@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
-  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
-  <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="30" />
+<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
+  <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -21,78 +20,69 @@ body
   background: transparent;
 }
 
-a
-{
-  text-decoration: none;
-  color: #0A5DC3;
-}
-
-img
-{
--moz-border-radius: 5px;
-border-radius: 5px;
--moz-box-shadow: 2px 2px 4px #777;
--webkit-box-shadow: 2px 2px 4px #777;
-box-shadow: 2px 2px 4px #777;
-}
-
-div.tweetscontainer
+div.quotescontainer
 {
   text-align: left;
   overflow: hidden;
 }
 
-div.tweet
+.symbol
 {
-  display:block;
-}
-
-.item
-{
-  padding: 20px 5px;
-  border-bottom: solid 1px #ccc;
-}
-
-.avatar
-{
-  float: left;
-  overflow: hidden;
-  display: block;
-  width: 80px;
-  height: 80px;
-}
-
-.text
-{
-  margin-left: 90px;
-}
-
-h2 {
   font-size: 150%;
-  padding: 0;
-  margin: 0;
+  text-align: left;
+  font-weight: bold;
 }
 
-h3
+td, th
 {
-  margin: 0;
-  padding: 0;
-  font-size: 140%;
-  font-weight: normal;
+  padding: 10px;
 }
 
-span.when
+th
 {
-  display:block;
+  font-weight: bold;
+  font-color: #888;
+  font-size: 120%;
+  text-align: right;
+}
+
+img
+{
+  height: 32px;
+  width: 32px;
+}
+
+.value
+{
+  font-size: 150%;
+  text-align: right;
+}
+
+.when
+{
   opacity: 0.7;
   margin-top: 2px;
+  text-align: right;
 }
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 
-<div class="tweetscontainer">
+<div class="quotescontainer">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Last</th>
+        <th></th>
+        <th>Change</th>
+        <th>% Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
 </div>
 
 <script type="text/javascript">
@@ -101,9 +91,9 @@ span.when
 
   function load() {
   
-    $("div.tweetscontainer").height($(window).height()).width($(window).width());
-    $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
-    $("div.tweetscontainer").css("background-color", prefs.getString("BackColor"));
+    $("div.quotescontainer").height($(window).height()).width($(window).width());
+    $("div.quotescontainer").css("color", prefs.getString("ForeColor"));
+    $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
     
     update();
     
@@ -118,38 +108,35 @@ span.when
   var max_id = 0;
   
   var update = function () {
-  
-    var url="http://search.twitter.com/search.json?rpp=5&since_id=" + max_id + "&callback=?&q=";
-    var query = escape( query=prefs.getString("searchQuery") );
-    var display = '<div class="tweetDisplayContainer error">no records found</div>';
-    var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
-    var hashrex = /\#+([\w\d:#@%/;$()~_?\+-=\\\.&]*)/g;
-    var thashuri = "http://search.twitter.com/search?q=%23";
+
+    var url="http://www.google.com/finance/info?infotype=infoquoteall&callback=?&q=";
+    var query = escape( query=prefs.getString("symbols") );
   
     $.getJSON(url+query, function(json){
-
+            
       if(json) {
-        max_id = json.max_id;
-        var display = '';
-        $.each(json.results,function(i,tweet) {
-          display += '<div class="item">';
-          ttext = tweet.text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
-          ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
-          display += '<div class="avatar tweet' + i + '">' +
-            '<img src="' + tweet.profile_image_url.replace(/_normal\./, '_bigger.') + '"  />' + 
-            '</div>' +
-            '<div class="text tweet' + i + '">' +
-            '<h2><a href="http://twitter.com/' + tweet.from_user + 
-            '" title="tweets by ' + tweet.from_user + 
-            '">@' + tweet.from_user + '</a></h2>' + 
-            '<h3>' + ttext + '</h3>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
-            '</div></div>';
-        });
-        $(display).hide().prependTo("div.tweetscontainer").fadeIn();
+      
+        $("div.quotescontainer > table > tbody").empty();
         
-        $("span.when").each(function (idx) {
-          $(this).text(timeAgo($(this).data("timestamp")));
+        var display = '';
+        var when = '';
+        $.each(json,function(i, quote) {
+          display += '<tr class="item">';
+          display += '<td class="symbol">' + quote.t + '</td>';
+          display += '<td class="value">' + quote.l + '</td>';
+          if (quote.l >= 0) {
+            display += '<td class="icon"><img src="http://reveldigital-gadgets.googlecode.com/svn/trunk/images/up_arrow_48.png" alt=""/></td>';
+          } else {
+            display += '<td class="icon"><img src="http://reveldigital-gadgets.googlecode.com/svn/trunk/images/down_arrow_48.png" alt=""/></td>';
+          }
+          display += '<td class="value">' + quote.c + '</td>';
+          display += '<td class="value">' + quote.cp + '%</td>';
+          display += '</tr>';
+          when = quote.lt;
         });
+        display += '<tr><td class="when" colspan="5">Last updated: ' + when + '</td></tr>';
+        
+        $(display).hide().prependTo("div.quotescontainer > table > tbody").fadeIn();
       }
     });
   }
