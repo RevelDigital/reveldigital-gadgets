@@ -39,6 +39,7 @@ body
 table
 {
   width: 100%;
+  font-size: 120%;
 }
 
 td, th
