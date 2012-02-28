@@ -25,9 +25,8 @@
 <![CDATA[
 
 <style type="text/css">
-body
+body *
 {
-  font-family: Verdana, arial, sans-serif; 
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal; 
@@ -46,11 +45,11 @@ a
 
 img
 {
--moz-border-radius: 5px;
-border-radius: 5px;
--moz-box-shadow: 2px 2px 4px #777;
--webkit-box-shadow: 2px 2px 4px #777;
-box-shadow: 2px 2px 4px #777;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 2px 2px 4px #777;
+  -webkit-box-shadow: 2px 2px 4px #777;
+  box-shadow: 2px 2px 4px #777;
 }
 
 div.tweetscontainer
