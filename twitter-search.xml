@@ -3,6 +3,23 @@
 <ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
+  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
+    <EnumValue value="times new roman" display_value="Times New Roman" />
+    <EnumValue value="courier new" display_value="Courier New" />
+    <EnumValue value="verdana" display_value="Verdana" />
+    <EnumValue value="arial" display_value="Arial" />
+    <EnumValue value="tahoma" display_value="Tahoma" />
+    <EnumValue value="impact" display_value="Impact" />
+  </UserPref>
+  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
+    <EnumValue value="xx-small" display_value="XX Small" />
+    <EnumValue value="x-small" display_value="X Small" />
+    <EnumValue value="small" display_value="Small" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="large" display_value="Large" />
+    <EnumValue value="x-large" display_value="X Large" />
+    <EnumValue value="xx-large" display_value="XX Large" />
+  </UserPref>
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -100,6 +117,8 @@ span.when
 
   function load() {
   
+    $("div.tweetscontainer").css("font-size", prefs.getString("fontSize"));
+    $("div.tweetscontainer").css("font-family", prefs.getString("fontFamily"));
     $("div.tweetscontainer").height($(window).height()).width($(window).width());
     $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
     $("div.tweetscontainer").css("background-color", prefs.getString("BackColor"));
