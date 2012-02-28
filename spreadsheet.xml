@@ -61,12 +61,6 @@ th
 
 <div id="data">
   <table id="output">
-    <thead>
-    
-    </thead>
-    <tbody>
-    
-    </tbody>
   </table>
 </div>
 
@@ -107,7 +101,9 @@ th
 
   function cellEntries(json) {
     
-    $('#data table tbody').empty();
+    $("#data table").empty();
+    
+    var tbody = $("<tbody></tbody>")';
     
     var tr;
     for (var i=0; i < json.feed.entry.length; i++) {
@@ -124,8 +120,11 @@ th
       var td = $('<td/>');
       $(td).text(entry.content.$t);
       
-      $('#data table tbody').append(td);
-    } 
+      $(tr).append(td);
+    }
+    $(tbody).append(tr);
+    
+    $(tbody).hide().prependTo("#data > table").fadeIn();
   }
  
   var googleUrl = function (sourceIdentifier) {
