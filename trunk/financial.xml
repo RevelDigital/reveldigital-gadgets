@@ -2,6 +2,15 @@
 <Module> 
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
+    <EnumValue value="xx-small" display_value="XX Small" />
+    <EnumValue value="x-small" display_value="X Small" />
+    <EnumValue value="small" display_value="Small" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="large" display_value="Large" />
+    <EnumValue value="x-large" display_value="X Large" />
+    <EnumValue value="xx-large" display_value="XX Large" />
+  </UserPref>
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -95,6 +104,7 @@ img
 
   function load() {
   
+    $("body").css("font-size", prefs.getString("fontSize"));
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
     $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
