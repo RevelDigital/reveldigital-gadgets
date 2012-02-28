@@ -117,7 +117,7 @@ span.when
 
   function load() {
   
-    $("body,td,div,span,p").css("font-family", prefs.getString("fontFamily"));
+    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
     $("body,td,div,span,p").css("font-size", prefs.getString("fontSize"));
     $("div.tweetscontainer").height($(window).height()).width($(window).width());
     $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
