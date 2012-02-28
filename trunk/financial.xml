@@ -104,7 +104,7 @@ img
 
   function load() {
   
-    $("body").css("font-size", prefs.getString("fontSize"));
+    $("div.quotescontainer table").css("font-size", prefs.getString("fontSize"));
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
     $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
