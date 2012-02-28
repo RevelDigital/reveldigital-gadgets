@@ -113,7 +113,7 @@ th
   
       var entry = json.feed.entry[i];
       
-      if (entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
+      if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
         if (tr != null) {
           $(thead).append(tr);
         }
@@ -126,7 +126,7 @@ th
       }
       
       var td;
-      if (entry.gs$cell.row == '1') {
+      if (prefs.getBool("hasTitle") && entry.gs$cell.row == '1') {
         td = $("<th/>");
       } else {
         td = $("<td class=\"item\"/>");
