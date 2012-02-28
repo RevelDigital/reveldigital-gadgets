@@ -27,7 +27,6 @@
 <style type="text/css">
 body *
 {
-  font-family: '__UP_fontFamily__';
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal; 
@@ -117,8 +116,8 @@ span.when
 
   function load() {
   
-    $("div.tweetscontainer").css("font-family", prefs.getString("fontFamily"));
-    $("div.tweetscontainer").css("font-size", prefs.getString("fontSize"));
+    $("body *").css("font-family", prefs.getString("fontFamily"));
+    $("body *").css("font-size", prefs.getString("fontSize"));
     $("div.tweetscontainer").height($(window).height()).width($(window).width());
     $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
     $("div.tweetscontainer").css("background-color", prefs.getString("BackColor"));
