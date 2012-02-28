@@ -53,7 +53,7 @@ th
   font-weight: bold;
   font-color: #888;
   font-size: 120%;
-  text-align: right;
+  text-align: left;
   text-shadow: 2px 2px 2px #ccc;
 }
 
@@ -127,9 +127,9 @@ th
       
       var td;
       if (entry.gs$cell.row == '1') {
-        td = $("<td/>");
-      } else {
         td = $("<th/>");
+      } else {
+        td = $("<td/>");
       }
       $(td).text(entry.content.$t);
       
