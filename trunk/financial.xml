@@ -65,6 +65,7 @@ th
   font-color: #888;
   font-size: 120%;
   text-align: right;
+  text-shadow: 2px 2px 2px #ccc;
 }
 
 img
