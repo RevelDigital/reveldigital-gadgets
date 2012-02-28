@@ -117,7 +117,7 @@ span.when
   function load() {
   
     $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    $("body").prepend("<style type=\"text/css\"> body * { font-size: '" + prefs.getString("fontSize") + "'; } </style>");
+    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("div.tweetscontainer").height($(window).height()).width($(window).width());
     $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
     $("div.tweetscontainer").css("background-color", prefs.getString("BackColor"));
