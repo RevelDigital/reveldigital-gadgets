@@ -111,8 +111,9 @@ img
 
   function load() {
   
-    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
     $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+    $("div.quotescontainer *").css("font-family", prefs.getString("fontFamily"));
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
     $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
