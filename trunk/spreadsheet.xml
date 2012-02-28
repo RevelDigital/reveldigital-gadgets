@@ -106,8 +106,10 @@ th
     $("#data table").empty();
     
     var tbody = $("<tbody></tbody>");
+    var thead = $("<thead></thead>");
     
     var tr;
+    var th;
     for (var i=0; i < json.feed.entry.length; i++) {
   
       var entry = json.feed.entry[i];
@@ -116,8 +118,11 @@ th
         if (tr != null) {
           $(tbody).append(tr);
         }
+        if (th != null) {
+          $(thead).append(th);
+        }
         if (i == 0) {
-          tr = $("<th/>");
+          th = $("<th/>");
         } else {
           tr = $('<tr/>');
         }
@@ -126,11 +131,17 @@ th
       var td = $('<td/>');
       $(td).text(entry.content.$t);
       
-      $(tr).append(td);
+      if (i == 0) {
+        $(th).append(td);
+      } else {
+        $(tr).append(td);
+      }
     }
     $(tbody).append(tr);
+    $(thead).append(th);
     
-    $(tbody).hide().prependTo("#data > table").fadeIn();
+    $(thead).hide().appendTo("#data > table").fadeIn();
+    $(tbody).hide().appendTo("#data > table").fadeIn();
   }
  
   var googleUrl = function (sourceIdentifier) {
