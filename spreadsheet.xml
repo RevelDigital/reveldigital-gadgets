@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
+    <EnumValue value="times new roman" display_value="Times New Roman" />
+    <EnumValue value="courier new" display_value="Courier New" />
+    <EnumValue value="verdana" display_value="Verdana" />
+    <EnumValue value="arial" display_value="Arial" />
+    <EnumValue value="tahoma" display_value="Tahoma" />
+    <EnumValue value="impact" display_value="Impact" />
+  </UserPref>
+  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
+    <EnumValue value="xx-small" display_value="XX Small" />
+    <EnumValue value="x-small" display_value="X Small" />
+    <EnumValue value="small" display_value="Small" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="large" display_value="Large" />
+    <EnumValue value="x-large" display_value="X Large" />
+    <EnumValue value="xx-large" display_value="XX Large" />
+  </UserPref>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+}
+
+table
+{
+  width: 100%;
+}
+
+td, th
+{
+  padding: 10px;
+}
+
+th
+{
+  font-weight: bold;
+  font-color: #888;
+  font-size: 120%;
+  text-align: right;
+  text-shadow: 2px 2px 2px #ccc;
+}
+
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<div id="data"></div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+  
+    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
+    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+    $("div#data").height($(window).height()).width($(window).width());
+    $("div#data").css("color", prefs.getString("ForeColor"));
+    $("div#data").css("background-color", prefs.getString("BackColor"));
+    
+    update();
+    
+    setInterval(update, 120000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
+  var max_id = 0;
+  
+  var update = function () {
+
+    var url = googleUrl( prefs.getString("spreadsheetUrl") );
+    
+    $.getJSON(url, function(json){
+      if(json) {
+        cellEntries(json);
+      }
+    });
+  }
+
+  function cellEntries(json) {
+  
+    var table = $('<table></table>');
+    $(table).attr('id', 'output');
+    var tbody = $('<tbody></tbody>');
+    
+    var tr;
+    for (var i=0; i < json.feed.entry.length; i++) {
+  
+      var entry = json.feed.entry[i];
+      
+      if (entry.gs$cell.col == '1') {
+        if (tr != null) {
+          $(tbody).append(tr);
+        }
+        tr = $('<tr/>');
+      }
+      
+      var td = $('<td/>');
+      $(td).text(entry.content.$t);
+      $(tr).append(td);
+    } 
+   
+    $(tbody).append(tr);
+    $(table).append(tbody);
+    
+    $('#data').empty().append(table);
+  }
+ 
+  var googleUrl = function (sourceIdentifier) {
+  
+    this.sourceIdentifier = sourceIdentifier;
+    if (this.sourceIdentifier.match(/http(s)*:/)) {
+      this.url = this.sourceIdentifier;
+      try {
+        this.key = this.url.match(/key=(.*?)&/)[1];
+      } catch (error) {
+        this.key = this.url.match(/(cells|list|values)\/(.*?)\//)[2];
+      }
+    } else {
+      this.key = this.sourceIdentifier;
+    }    
+    return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+  }
+</script>
+]]>
+</Content>
+</Module>
