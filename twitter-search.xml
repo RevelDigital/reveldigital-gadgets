@@ -27,6 +27,7 @@
 <style type="text/css">
 body *
 {
+  font-family: '__UP_fontFamily__';
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal; 
