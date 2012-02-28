@@ -59,7 +59,16 @@ th
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-<div id="data"></div>
+<div id="data">
+  <table id="output">
+    <thead>
+    
+    </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript">
 
@@ -97,11 +106,7 @@ th
   }
 
   function cellEntries(json) {
-  
-    var table = $('<table></table>');
-    $(table).attr('id', 'output');
-    var tbody = $('<tbody></tbody>');
-    
+      
     var tr;
     for (var i=0; i < json.feed.entry.length; i++) {
   
@@ -118,11 +123,8 @@ th
       $(td).text(entry.content.$t);
       $(tr).append(td);
     } 
-   
-    $(tbody).append(tr);
-    $(table).append(tbody);
     
-    $('#data').empty().append(table);
+    $('#data table tbody').empty().append(table);
   }
  
   var googleUrl = function (sourceIdentifier) {
