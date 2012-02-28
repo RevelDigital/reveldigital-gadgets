@@ -111,7 +111,7 @@ img
 
   function load() {
   
-    $("div.quotescontainer table").css("font-family", prefs.getString("fontFamily"));
+    $("document").css("font-family", prefs.getString("fontFamily"));
     $("div.quotescontainer table").css("font-size", prefs.getString("fontSize"));
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
