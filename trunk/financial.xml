@@ -2,6 +2,14 @@
 <Module> 
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
+    <EnumValue value="times new roman" display_value="Times New Roman" />
+    <EnumValue value="courier new" display_value="Courier New" />
+    <EnumValue value="verdana" display_value="Verdana" />
+    <EnumValue value="arial" display_value="Arial" />
+    <EnumValue value="tahoma" display_value="Tahoma" />
+    <EnumValue value="impact" display_value="Impact" />
+  </UserPref>
   <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
     <EnumValue value="xx-small" display_value="XX Small" />
     <EnumValue value="x-small" display_value="X Small" />
@@ -105,6 +113,7 @@ img
   function load() {
   
     $("div.quotescontainer table").css("font-size", prefs.getString("fontSize"));
+    $("div.quotescontainer table").css("font-family", prefs.getString("fontFamily"));
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     $("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
     $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
