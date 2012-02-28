@@ -109,16 +109,15 @@ th
     var thead = $("<thead></thead>");
     
     var tr;
-    var th;
     for (var i=0; i<json.feed.entry.length; i++) {
   
       var entry = json.feed.entry[i];
       
       if (entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
-        if (th != null) {
-          $(thead).append(th);
+        if (tr != null) {
+          $(thead).append(tr);
         }
-        th = $("<th/>");
+        tr = $("<tr/>");
       } else if (entry.gs$cell.col == '1') {
         if (tr != null) {
           $(tbody).append(tr);
@@ -126,17 +125,18 @@ th
         tr = $('<tr/>');
       }
       
-      var td = $('<td/>');
+      var td;
+      if (entry.gs$cell.row == '1') {
+        td = $("<td/>");
+      } else {
+        td = $("<th/>");
+      }
       $(td).text(entry.content.$t);
       
-      if (entry.gs$cell.row == '1') {
-        $(th).append(td);
-      } else {
-        $(tr).append(td);
-      }
+      $(tr).append(td);
     }
-    $(tbody).append(tr);
-    $(thead).append(th);
+    $(tbody).append(tr_body);
+    $(thead).append(tr_head);
     
     $(thead).hide().appendTo("#data > table").fadeIn();
     $(tbody).hide().appendTo("#data > table").fadeIn();
