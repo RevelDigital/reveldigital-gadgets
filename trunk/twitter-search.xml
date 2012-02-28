@@ -81,7 +81,6 @@ div.tweet
 .text
 {
   margin-left: 90px;
-  clear: both;
 }
 
 h2 {
@@ -161,7 +160,7 @@ span.when
             '" title="tweets by ' + tweet.from_user + 
             '">@' + tweet.from_user + '</a></h2>' + 
             '<h3>' + ttext + '</h3>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
-            '</div></div>';
+            '</div><div style="clear:both;"></div></div>';
         });
         $(display).hide().prependTo("div.tweetscontainer").fadeIn();
         
