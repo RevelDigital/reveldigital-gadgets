@@ -81,6 +81,7 @@ div.tweet
 .text
 {
   margin-left: 90px;
+  clear: both;
 }
 
 h2 {
