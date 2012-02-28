@@ -110,28 +110,26 @@ th
     
     var tr;
     var th;
-    for (var i=0; i < json.feed.entry.length; i++) {
+    for (var i=0; i<json.feed.entry.length; i++) {
   
       var entry = json.feed.entry[i];
       
-      if (entry.gs$cell.col == '1') {
-        if (tr != null) {
-          $(tbody).append(tr);
-        }
+      if (entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
         if (th != null) {
           $(thead).append(th);
         }
-        if (i == 0) {
-          th = $("<th/>");
-        } else {
-          tr = $('<tr/>');
+        th = $("<th/>");
+      } else if (entry.gs$cell.col == '1') {
+        if (tr != null) {
+          $(tbody).append(tr);
         }
+        tr = $('<tr/>');
       }
       
       var td = $('<td/>');
       $(td).text(entry.content.$t);
       
-      if (i == 0) {
+      if (entry.gs$cell.row == '1') {
         $(th).append(td);
       } else {
         $(tr).append(td);
