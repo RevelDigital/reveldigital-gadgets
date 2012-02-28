@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true"/>
+  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
