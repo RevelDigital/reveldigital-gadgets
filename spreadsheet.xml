@@ -103,7 +103,7 @@ th
     
     $("#data table").empty();
     
-    var tbody = $("<tbody></tbody>")';
+    var tbody = $("<tbody></tbody>");
     
     var tr;
     for (var i=0; i < json.feed.entry.length; i++) {
