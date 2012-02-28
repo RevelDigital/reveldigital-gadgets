@@ -106,7 +106,9 @@ th
   }
 
   function cellEntries(json) {
-      
+    
+    $('#data table tbody').empty();
+    
     var tr;
     for (var i=0; i < json.feed.entry.length; i++) {
   
@@ -121,10 +123,9 @@ th
       
       var td = $('<td/>');
       $(td).text(entry.content.$t);
-      $(tr).append(td);
+      
+      $('#data table tbody').append(td);
     } 
-    
-    $('#data table tbody').empty().append(table);
   }
  
   var googleUrl = function (sourceIdentifier) {
