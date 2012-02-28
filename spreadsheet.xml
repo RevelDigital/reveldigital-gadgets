@@ -46,7 +46,7 @@ table
 td, th
 {
   font-size: 120% !important;
-  padding: 10px;
+  padding: 8px;
 }
 
 th
