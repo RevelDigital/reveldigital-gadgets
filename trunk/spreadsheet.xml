@@ -57,6 +57,12 @@ th
   text-shadow: 2px 2px 2px #ccc;
 }
 
+.value
+{
+  font-size: 150%;
+  text-align: right;
+}
+
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -129,7 +135,7 @@ th
       if (entry.gs$cell.row == '1') {
         td = $("<th/>");
       } else {
-        td = $("<td/>");
+        td = $("<td class=\"item\"/>");
       }
       $(td).text(entry.content.$t);
       
