@@ -135,9 +135,6 @@ th
       
       $(tr).append(td);
     }
-    $(tbody).append(tr_body);
-    $(thead).append(tr_head);
-    
     $(thead).hide().appendTo("#data > table").fadeIn();
     $(tbody).hide().appendTo("#data > table").fadeIn();
   }
