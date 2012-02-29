@@ -83,6 +83,7 @@ ul.slider li
   
     $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
     $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+    $("body").prepend("<style type=\"text/css\"> li.item { height:" + $(window).height() + "px; } </style>");
     
     $("div#data").height($(window).height()).width($(window).width());
     $("div#data").css("color", prefs.getString("ForeColor"));
