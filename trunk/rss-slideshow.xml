@@ -130,7 +130,8 @@ ul.slider li
           mode: 'vertical',
           pager: false,
           controls: false,
-          auto: prefs.getInt("delay") * 1000
+          auto: true,
+          pause: prefs.getInt("delay") * 1000
         });
       }
     });
