@@ -78,7 +78,8 @@ ul.slider li
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
-
+  var slider = null;
+  
   function load() {
   
     $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
