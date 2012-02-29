@@ -52,7 +52,6 @@ ul.slider
 ul.slider li
 {
   overflow: hidden;
-  height: 400px;
   padding: 0;
   margin: 0;
 }
@@ -86,7 +85,6 @@ ul.slider li
     $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     
     $("div#data").height($(window).height()).width($(window).width());
-    $("div.bxwindow").height($(window).height()).width($(window).width());
     $("div#data").css("color", prefs.getString("ForeColor"));
     $("div#data").css("background-color", prefs.getString("BackColor"));
     
