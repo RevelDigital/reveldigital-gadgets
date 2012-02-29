@@ -40,12 +40,11 @@ body
 table
 {
   width: 100%;
-  font-size: 120%;
 }
 
 td, th
 {
-  font-size: 120% !important;
+  font-size: 140% !important;
   padding: 8px;
 }
 
@@ -53,7 +52,7 @@ th
 {
   font-weight: bold;
   font-color: #888;
-  font-size: 120%;
+  font-size: 140%;
   text-align: left;
   text-shadow: 2px 2px 2px #888;
 }
