@@ -133,7 +133,7 @@ span.when
 
 <script type="text/javascript">
 
-  var max_id = 0;
+  var max_id;
   
   var update = function () {
   
@@ -147,7 +147,7 @@ span.when
     $.getJSON(url+query, function(json){
 
       if(json) {
-        max_id = json.max_id;
+        max_id = json.max_id_str;
         var display = '';
         $.each(json.results,function(i,tweet) {
           display += '<div class="item">';
