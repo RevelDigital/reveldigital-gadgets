@@ -124,7 +124,7 @@ h3
     $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("#data").height($(window).height()).width($(window).width());
     $("#data table").css("color", prefs.getString("ForeColor"));
-    $("#event-container"").css("color", prefs.getString("ForeColor"));
+    $("#event-container").css("color", prefs.getString("ForeColor"));
     $("#data").css("background-color", prefs.getString("BackColor"));
     
     if (prefs.getString("displayFormat") == "table") {
