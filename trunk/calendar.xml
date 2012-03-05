@@ -43,6 +43,11 @@ body
   background: transparent;
 }
 
+#event-container
+{
+  display: none;
+}
+
 table
 {
   width: 100%;
@@ -111,6 +116,8 @@ h3
       </tr>
     </thead>
   </table>
+  <div id="event-container">
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -128,6 +135,8 @@ h3
     
     if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
+    } else {
+      $("#event-container").show();
     }
     if (prefs.getBool("showHeader") == true) {
       $("#output thead").show();
@@ -161,14 +170,12 @@ h3
 
 function formatDiv(json) {
 
-  $("#data").empty();
+  $("#event-container").empty();
 
   if (!("entry" in json.feed)) {
     return;
   }
-  
-  var container = $("<div id=\"event-container\"></div>");
-  
+    
   for (var i=0; i<json.feed.entry.length; i++) {
   
     var entry = json.feed.entry[i];
@@ -206,9 +213,8 @@ function formatDiv(json) {
     }
     $(div).append(span);
     
-    $(container).append(div);
+    $("#event-container").append(div);
   }
-  $("#data").append(container);
 }
 
 function formatTable(json) {
