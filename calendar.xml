@@ -124,7 +124,7 @@ h3
     $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("#data").height($(window).height()).width($(window).width());
     $("#data table").css("color", prefs.getString("ForeColor"));
-    $("body").css("color", prefs.getString("ForeColor"));
+    $("#event-container"").css("color", prefs.getString("ForeColor"));
     $("#data").css("background-color", prefs.getString("BackColor"));
     
     if (prefs.getString("displayFormat") == "table") {
@@ -168,6 +168,8 @@ function formatDiv(json) {
     return;
   }
   
+  var container = $("<div id=\"event-container\"></div>");
+  
   for (var i=0; i<json.feed.entry.length; i++) {
   
     var entry = json.feed.entry[i];
@@ -205,8 +207,9 @@ function formatDiv(json) {
     }
     $(div).append(span);
     
-    $("#data").append(div);
+    $("#event-container").append(div);
   }
+  $("#data").append(container);
 }
 
 function formatTable(json) {
