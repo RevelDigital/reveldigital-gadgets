@@ -6,7 +6,7 @@
     <EnumValue value="div" display_value="Consolidated" />
     <EnumValue value="table" display_value="Tabular" />
   </UserPref>
-  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" />
+  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
@@ -208,7 +208,6 @@ function formatTable(json) {
     $("#data table tbody").empty();
     
     var tbody = $("<tbody></tbody>");
-    //var thead = $("<thead></thead>");
     
     var tr;
     for (var i=0; i<json.feed.entry.length; i++) {
@@ -249,7 +248,7 @@ function formatTable(json) {
       
       $(tbody).append(tr);
     }
-    //$(thead).hide().appendTo("#data > table > tbody").fadeIn();
+    
     $(tbody).hide().appendTo("#data > table").fadeIn();
 }
 
