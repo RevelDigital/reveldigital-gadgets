@@ -7,6 +7,8 @@
     <EnumValue value="table" display_value="Tabular" />
   </UserPref>
   <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
+  <UserPref name="numEvents" display_name="Number of Events" datatype="string" default_value="15" />
+  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
@@ -334,7 +336,7 @@ var googleUrl = function (sourceIdentifier) {
     } else {
       this.key = this.sourceIdentifier + "/public";
     }
-    return "https://www.google.com/calendar/feeds/" + this.key + "/full?alt=json-in-script&callback=?&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&q=203";
+    return "https://www.google.com/calendar/feeds/" + this.key + "/full?alt=json-in-script&callback=?&orderby=starttime&max-results=" + prefs.getInt("numEvents") + "&singleevents=true&sortorder=ascending&futureevents=true&q=" + prefs.getString("searchQuery");
 }
 </script>
 ]]>
