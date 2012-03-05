@@ -344,10 +344,11 @@ var googleUrl = function (sourceIdentifier) {
     } else {
       this.key = this.sourceIdentifier + "/public";
     }
-    var url = "https://www.google.com/calendar/feeds/" + this.key + "/full?alt=json-in-script&callback=?&orderby=starttime&max-results=" + prefs.getInt("maxResults") + "&singleevents=true&sortorder=ascending&futureevents=true";
+    var ret = "https://www.google.com/calendar/feeds/" + this.key + "/full?alt=json-in-script&callback=?&orderby=starttime&max-results=" + prefs.getInt("maxResults") + "&singleevents=true&sortorder=ascending&futureevents=true";
     if (prefs.getString("searchQuery") != "") {
-      url = url + "&q=" + encodeURI(prefs.getString("searchQuery"));
+      ret = ret + "&q=" + encodeURI(prefs.getString("searchQuery"));
     }
+    return ret;
 }
 </script>
 ]]>
