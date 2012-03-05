@@ -164,7 +164,7 @@ function formatDiv(json) {
 
   $("#data").empty();
 
-  if (!json.feed.entry) {
+  if (!("entry" in json.feed)) {
     return;
   }
   
@@ -213,7 +213,7 @@ function formatTable(json) {
 
     $("#data table tbody").empty();
     
-    if (!json.feed.entry) {
+    if (!("entry in json.feed)) {
       return;
     }
     
