@@ -346,7 +346,7 @@ var googleUrl = function (sourceIdentifier) {
     }
     var url = "https://www.google.com/calendar/feeds/" + this.key + "/full?alt=json-in-script&callback=?&orderby=starttime&max-results=" + prefs.getInt("maxResults") + "&singleevents=true&sortorder=ascending&futureevents=true";
     if (prefs.getString("searchQuery") != "") {
-      url = url + "&q=" + encodeURI(prefs.getString("searchQuery");
+      url = url + "&q=" + encodeURI(prefs.getString("searchQuery"));
     }
 }
 </script>
