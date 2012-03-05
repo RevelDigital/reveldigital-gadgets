@@ -164,6 +164,10 @@ function formatDiv(json) {
 
   $("#data").empty();
 
+  if (!json.feed.entry) {
+    return;
+  }
+  
   for (var i=0; i<json.feed.entry.length; i++) {
   
     var entry = json.feed.entry[i];
@@ -208,6 +212,10 @@ function formatDiv(json) {
 function formatTable(json) {
 
     $("#data table tbody").empty();
+    
+    if (!json.feed.entry) {
+      return;
+    }
     
     var tbody = $("<tbody></tbody>");
     
