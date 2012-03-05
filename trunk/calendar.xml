@@ -206,7 +206,7 @@ function formatDiv(json) {
     }
     $(div).append(span);
     
-    $("#event-container").append(div);
+    $(container).append(div);
   }
   $("#data").append(container);
 }
