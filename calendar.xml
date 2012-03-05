@@ -213,7 +213,7 @@ function formatTable(json) {
 
     $("#data table tbody").empty();
     
-    if (!("entry in json.feed)) {
+    if (!("entry" in json.feed)) {
       return;
     }
     
