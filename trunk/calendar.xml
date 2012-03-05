@@ -2,7 +2,11 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="calendarUrl" display_name="Google Calendar URL" datatype="string" />
-  <UserPref name="displayFormat" display_name="Display Format"  datatype="bool" default_value="true" />
+  <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
+    <EnumValue value="div" display_value="Consolidated" />
+    <EnumValue value="table" display_value="Tabular" />
+  </UserPref>
+  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
@@ -40,6 +44,12 @@ body
 table
 {
   width: 100%;
+  display: none;
+}
+
+thead
+{
+  display: none;
 }
 
 td, th
@@ -56,12 +66,49 @@ th
   text-align: left;
   text-shadow: 2px 2px 2px #888;
 }
+
+h2
+{
+  font-size: 180%;
+  padding: 0;
+  margin: 0;
+}
+
+h3
+{
+  margin: 0;
+  padding: 0;
+  font-size: 140%;
+  font-weight: normal;
+}
+
+
+.entry
+{
+  padding: 20px 5px;
+  border-bottom: solid 1px #ccc;
+}
+
+.when
+{
+  display:block;
+  opacity: 0.7;
+  margin-top: 2px;
+  font-size: 90%;
+}
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <div id="data">
   <table id="output">
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>Event</th>
+        <th>Location</th>
+      </tr>
+    </thead>
   </table>
 </div>
 
@@ -77,6 +124,12 @@ th
     $("#data table").css("color", prefs.getString("ForeColor"));
     $("#data").css("background-color", prefs.getString("BackColor"));
     
+    if (prefs.getString("format") == "table") {
+      $("#output").show();
+    }
+    if (prefs.getBool("showHeader") == true) {
+      $("#output thead").show();
+    }
     update();
     
     setInterval(update, 120000);
