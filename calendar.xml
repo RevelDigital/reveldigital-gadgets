@@ -125,7 +125,7 @@ h3
     $("#data div.entry").css("color", prefs.getString("ForeColor"));
     $("#data").css("background-color", prefs.getString("BackColor"));
     
-    if (prefs.getString("format") == "table") {
+    if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
     }
     if (prefs.getBool("showHeader") == true) {
