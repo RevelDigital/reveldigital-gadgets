@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
-  <UserPref name="calendarUrl" display_name="Google Calendar URL" datatype="string" />
+<ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+  <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
   <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
     <EnumValue value="table" display_value="Tabular" />
