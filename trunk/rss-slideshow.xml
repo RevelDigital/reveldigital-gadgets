@@ -88,6 +88,7 @@ ul.slider li
     
     $("div#data").height($(window).height()).width($(window).width());
     $("div#data").css("color", prefs.getString("ForeColor"));
+    $("div#data table").css("color", prefs.getString("ForeColor"));
     $("div#data").css("background-color", prefs.getString("BackColor"));
     
     update();
