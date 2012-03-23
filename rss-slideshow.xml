@@ -114,6 +114,7 @@ ul.slider li
       if (json && json.responseStatus == 200) {
       
         if (slider != null) {
+          slider.stopShow();
           slider.destroyShow();
         }
         $("#data ul.slider").empty();
