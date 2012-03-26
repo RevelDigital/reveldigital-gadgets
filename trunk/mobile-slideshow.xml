@@ -84,7 +84,7 @@ var rnd = prefs.getBool("RND");
 var clp = null;
 var b_clp = prefs.getBool("CLP");
 if (b_clp) {
-  clp = "_blank";
+  clp = google.feeds.LINK_TARGET_BLANK;
 }
 
 
@@ -97,8 +97,8 @@ function load_feed()
 
   var options = {
     fullControlPanel: nab,
-    fullControlPanelSmallIcons: nab,
-    fullControlPanelFadeOutTime: 1000,
+    fullControlPanelSmallIcons: false,
+    fullControlPanelFadeOutTime: 2000,
     pauseOnHover: false,
     scaleImages : true,
     displayTime: dti,
