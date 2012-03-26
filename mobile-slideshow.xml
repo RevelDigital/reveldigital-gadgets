@@ -7,163 +7,93 @@
     author_email="info@reveldigital.com">
   </ModulePrefs>
 
-  <UserPref name="FEED" display_name="Feed to display" required="true" default_value="http://picasaweb.google.fr/data/feed/base/user/philippe.chappuis/albumid/5297196325809923457?alt=rss&amp;kind=photo&amp;hl=en" />
-
-  <UserPref name="RDW" display_name="Width of pictures" required="true" default_value="280" datatype="hidden" />
-  <UserPref name="RDH" display_name="Height of pictures" required="true" default_value="190" datatype="hidden" />
-
-  <UserPref name="DTime" display_name="Display Time (ms)" required="false" />
-  <UserPref name="TTime" display_name="Transition Time (ms)" required="false" />
-  <UserPref name="RND" display_name="Random display (Yes - No)" required="false" datatype="bool" />
-  <UserPref name="CLP" display_name="Open Picture on Clic (Yes - No)" required="false" datatype="bool" />
-  <UserPref name="NAB" display_name="Display Navigation Bar (Yes - No)" required="false" datatype="bool" />
+  <UserPref name="RDW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="RDH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   
-  <UserPref name="ForeColor" display_name="Background of Slide" required="true" default_value="#c3d9ff" />
-  <UserPref name="BackColor" display_name="Background of Container" required="true" default_value="#d1dae3" />
-
-  <UserPref name="accountId" display_name="Account ID" required="true" />
+  <UserPref name="apikey" display_name="RevelDigital API Key" required="true" />
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
   
   <Content type="html"><![CDATA[
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-<script src="http://www.google.com/uds/solutions/slideshow/gfslideshow.js" type="text/javascript"></script>
-
-<style text="text/css">
-
-body
-{
-background-color: __UP_BackColor__;
-}
-
-#slide_box
-{
-width: __UP_RDW__px;
-height: __UP_RDH__px;
-margin: 0;
-background-color: __UP_BackColor__;
-padding: 0px;
-}
-
-#slide_box a img
-{
-border: 0;
-}
-
-#feed_title
-{
-display: none;
-}
-</style>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 
-// Global variables
-
-var prefs = new gadgets.Prefs();
-
-var s_fil = prefs.getString("FEED");
-
-var dti="4000";
-var s_dti = prefs.getString("DTime");
-if (s_dti)
-{
-if ((s_dti < 1000) | (s_dti > 12000)) dti="4000";
-dti=s_dti;
-}
-
-var tti="2000";
-var s_tti = prefs.getString("TTime");
-if (s_tti)
-{
-if ((s_tti < 500) | (s_tti > 6000)) tti="2000";
-tti=s_tti;
-}
-
-var rnd = prefs.getBool("RND");
-
-var clp = null;
-var b_clp = prefs.getBool("CLP");
-if (b_clp) {
-  clp = google.feeds.LINK_TARGET_BLANK;
-}
-
-
-// navbar
-var nab = prefs.getBool("NAB");
-
-function load_feed()
-{
-  var feed_input = s_fil; 
-
-  var options = {
-    fullControlPanel: nab,
-    fullControlPanelSmallIcons: false,
-    fullControlPanelFadeOutTime: 2000,
-    pauseOnHover: false,
-    scaleImages : true,
-    displayTime: dti,
-    transitionTime: tti,
-    numResults: 1000,
-    linkTarget: clp,
-    feedLoadCallback: FeedTitle,
-    thumbnailUrlResolver: UrlResolver, 
-    transitionCallback: TransitionHandler
-  };
-
-
-  if (rnd) /* Random call */
-  {
-    var processEntries = GFslideShow.prototype.processEntries;
-    GFslideShow.prototype.processEntries =
-      function(entries) {
-        for (var i=0, entry;  entry = entries[i];  i++) {
-          var j = Math.floor(Math.random() * entries.length);
-          var t = entries[j];
-          entries[j] = entries[i];
-          entries[i] = t;
-        }
-        processEntries.call(this, entries);
-      };
-  } 
-  new GFslideShow(feed_input, "slide_box", options);
-}
-
-// Find the title of the Feed
-function FeedTitle(result) {
-  if (result.error ) { alert("Error : " + result.error.mesage); }
-  else { document.getElementById("feed_title").innerHTML=" "; }
-}
-
-// Find title of pic
-function TransitionHandler(entry, transitionTime) {
-
-}
-
-// Get the full size (picasa send thumb from s288 (288 x 216) 
-function UrlResolver (entry) {
-
-var c=entry.content; 
-var s1 = c.indexOf("src=")+5;
-
-var i = c.toUpperCase().indexOf(".jpg".toUpperCase(),s1); 
-if (i==-1) {i=c.toUpperCase().indexOf(".gif".toUpperCase(),s1);}  
-if (i==-1) {i=c.toUpperCase().indexOf(".png".toUpperCase(),s1);} 
-
-var s2 = i + 4;  
-var thumb= c.substring(s1,s2); 
-
-// take the picture from s800
+  function load() {
+    loadResources([
+      'http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/mobile-slideshow-1.0.css',
+      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/photoswipe.css'
+    ],[
+      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/lib/klass.min.js',
+      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js'
+    ]);
+  }
+    
+  var apikey = prefs.getString("apikey");
+  var playlistId = prefs.getString("playlistId");
   
-thumb=thumb.replace("/s288/","/s800/");
-return(thumb);    
-}        
-  
-google.load("feeds", "1");
-google.setOnLoadCallback(load_feed);
+  function loadPlaylist() {
+    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + "o7Zg6tFvYOg" + "&id=" + "7csEtHPQkvw", function (data) {
+      $.each(data, function (idx, playlist) {
+        $("div.page-content h1").text(playlist.name);
+        $.each(playlist.sources, function (sourceIdx, source) {
+          if (source.type == "Image" && source.media != null) {
+            var li = $("<li></li>");
+            var a = $("<a></a>");
+            a.attr("href", source.media.file_url);
+            var img = $("<img></img>");
+            img.attr("src", source.media.thumbnail_url);
+            img.attr("alt", source.media.name);
+            a.append(img);
+            li.append(a);
+            $("ul#Gallery").append(li);
+          }
+        });
+      });
+      var options = {};
+      $("#Gallery a").photoSwipe(options);
+    });
+  }
+    
+  function loadResources(css, js) {
 
+    var head = document.getElementsByTagName("head")[0];
+    var cssNode = null;
+    var script = null;
+    var i;
+
+    //Load CSS.
+    for (i = 0; i < css.length; i++) {
+      cssNode = document.createElement("link");
+      cssNode.type = "text/css";
+      cssNode.rel = "stylesheet";
+      cssNode.href = css[i];
+      head.appendChild(cssNode);
+    }
+
+    //Load JavaScript.
+    for (i = 0; i < js.length; i++) {
+      script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = js[i];
+        
+      //Get spreadsheet data when last Javascript library has been loaded.
+      if (i == js.length - 1) {
+        script.onload = loadPlaylist();
+      }
+      head.appendChild(script);
+    }
+  }
+  
+  gadgets.util.registerOnLoadHandler(load);
+  
 </script>
 
-<center><div id="feed_title"></div><div id="slide_box">Loading pictures...</div></center>
+<div id="MainContent">
+  <div class="page-content">
+    <h1></h1>
+  </div>
+  <ul id="Gallery" class="gallery">
+  </ul>
+</div>
 
 ]]></Content>
 </Module>
