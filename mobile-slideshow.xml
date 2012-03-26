@@ -7,23 +7,24 @@
     author_email="info@reveldigital.com">
   </ModulePrefs>
 
-<UserPref name="FEED" display_name="Feed to display" required="true" default_value="http://picasaweb.google.fr/data/feed/base/user/philippe.chappuis/albumid/5297196325809923457?alt=rss&amp;kind=photo&amp;hl=en" />
+  <UserPref name="FEED" display_name="Feed to display" required="true" default_value="http://picasaweb.google.fr/data/feed/base/user/philippe.chappuis/albumid/5297196325809923457?alt=rss&amp;kind=photo&amp;hl=en" />
 
-<UserPref name="w" display_name="Width of pictures" required="true" default_value="280" />
-<UserPref name="h" display_name="Height of pictures" required="true" default_value="190" />
+  <UserPref name="RDW" display_name="Width of pictures" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="RDH" display_name="Height of pictures" required="true" default_value="190" datatype="hidden" />
 
-<UserPref name="DTime" display_name="Display Time (ms)" required="false" />
-<UserPref name="TTime" display_name="Transition Time (ms)" required="false" />
-<UserPref name="RND" display_name="Random display (Yes - No)" required="false" />
-<UserPref name="CLP" display_name="Open Picture on Clic (Yes - No)" required="false" />
-<UserPref name="NAB" display_name="Display Navigation Bar (Yes - No)" required="false" />
+  <UserPref name="DTime" display_name="Display Time (ms)" required="false" />
+  <UserPref name="TTime" display_name="Transition Time (ms)" required="false" />
+  <UserPref name="RND" display_name="Random display (Yes - No)" required="false" datatype="bool" />
+  <UserPref name="CLP" display_name="Open Picture on Clic (Yes - No)" required="false" datatype="bool" />
+  <UserPref name="NAB" display_name="Display Navigation Bar (Yes - No)" required="false" datatype="bool" />
   
-<UserPref name="SCOL" display_name="Background of Slide" required="true" default_value="#c3d9ff" />
-<UserPref name="CCOL" display_name="Background of Container" required="true" default_value="#d1dae3" />
+  <UserPref name="ForeColor" display_name="Background of Slide" required="true" default_value="#c3d9ff" />
+  <UserPref name="BackColor" display_name="Background of Container" required="true" default_value="#d1dae3" />
 
   <UserPref name="accountId" display_name="Account ID" required="true" />
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
-<Content type="html"><![CDATA[
+  
+  <Content type="html"><![CDATA[
 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
 <script src="http://www.google.com/uds/solutions/slideshow/gfslideshow.js" type="text/javascript"></script>
 
@@ -31,15 +32,15 @@
 
 body
 {
-background-color: __UP_CCOL__;
+background-color: __UP_BackColor__;
 }
 
 #slide_box
 {
-width: __UP_w__px;
-height: __UP_h__px;
+width: __UP_RDW__px;
+height: __UP_RDH__px;
 margin: 0;
-background-color: __UP_SCOL__;
+background-color: __UP_BackColor__;
 padding: 0px;
 }
 
@@ -78,65 +79,41 @@ if ((s_tti < 500) | (s_tti > 6000)) tti="2000";
 tti=s_tti;
 }
 
-var rnd="N";
-var s_rnd = prefs.getString("RND");
-if (s_rnd)
-{
-s_rnd=s_rnd.toUpperCase();
-if (s_rnd.substr(0,1) == 'N')
-   {rnd="N";}
-else
-   {rnd="Y";}
+var rnd = prefs.getBool("RND");
+
+var clp = null;
+var b_clp = prefs.getBool("CLP");
+if (b_clp) {
+  clp = "_blank";
 }
 
-var clp=null;
-var s_clp = prefs.getString("CLP");
-if (s_clp)
-{
-s_clp=s_clp.toUpperCase();
-if (s_clp.substr(0,1) == 'N')
-   {clp=null;}
-else
-   {clp="_blank";}
-}
 
 // navbar
-
-var nab=true;
-var s_nab = prefs.getString("NAB");
-if (s_nab)
-{
-s_nab=s_nab.toUpperCase();
-if (s_nab.substr(0,1) == 'N')
-   {nab=null;}
-else
-   {nab=true;}
-}
-
+var nab = prefs.getBool("NAB");
 
 function load_feed()
 {
-var feed_input = s_fil; 
+  var feed_input = s_fil; 
 
-var options = {
-fullControlPanel: nab,
-fullControlPanelSmallIcons: nab,
-fullControlPanelFadeOutTime: 1000,
-pauseOnHover: false,
-scaleImages : true,
-displayTime: dti,
-transitionTime: tti,
-numResults: 1000,
-linkTarget: clp,
-feedLoadCallback: FeedTitle,
-thumbnailUrlResolver: UrlResolver, 
-transitionCallback: TransitionHandler
-};
+  var options = {
+    fullControlPanel: nab,
+    fullControlPanelSmallIcons: nab,
+    fullControlPanelFadeOutTime: 1000,
+    pauseOnHover: false,
+    scaleImages : true,
+    displayTime: dti,
+    transitionTime: tti,
+    numResults: 1000,
+    linkTarget: clp,
+    feedLoadCallback: FeedTitle,
+    thumbnailUrlResolver: UrlResolver, 
+    transitionCallback: TransitionHandler
+  };
 
 
-if (rnd != "N") /* Random call */
-{
-  var processEntries = GFslideShow.prototype.processEntries;
+  if (rnd) /* Random call */
+  {
+    var processEntries = GFslideShow.prototype.processEntries;
     GFslideShow.prototype.processEntries =
       function(entries) {
         for (var i=0, entry;  entry = entries[i];  i++) {
@@ -147,31 +124,23 @@ if (rnd != "N") /* Random call */
         }
         processEntries.call(this, entries);
       };
- } 
-
-
-new GFslideShow(feed_input, "slide_box", options);
+  } 
+  new GFslideShow(feed_input, "slide_box", options);
 }
 
 // Find the title of the Feed
-
-function FeedTitle(result)
-{ if ( result.error ) { alert("Error : " + result.error.mesage); }
-else
-{document.getElementById("feed_title").innerHTML=" "; }
+function FeedTitle(result) {
+  if (result.error ) { alert("Error : " + result.error.mesage); }
+  else { document.getElementById("feed_title").innerHTML=" "; }
 }
 
 // Find title of pic
-
-function TransitionHandler(entry, transitionTime)
-{
+function TransitionHandler(entry, transitionTime) {
 
 }
 
 // Get the full size (picasa send thumb from s288 (288 x 216) 
-
-function UrlResolver (entry)
-{
+function UrlResolver (entry) {
 
 var c=entry.content; 
 var s1 = c.indexOf("src=")+5;
