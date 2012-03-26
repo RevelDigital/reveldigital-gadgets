@@ -9,8 +9,8 @@
 
 <UserPref name="FEED" display_name="Feed to display" required="true" default_value="http://picasaweb.google.fr/data/feed/base/user/philippe.chappuis/albumid/5297196325809923457?alt=rss&amp;kind=photo&amp;hl=en" />
 
-<UserPref name="PWH" display_name="Width of pictures" required="true" default_value="280" />
-<UserPref name="PHT" display_name="Height of pictures" required="true" default_value="190" />
+<UserPref name="w" display_name="Width of pictures" required="true" default_value="280" />
+<UserPref name="h" display_name="Height of pictures" required="true" default_value="190" />
 
 <UserPref name="DTime" display_name="Display Time (ms)" required="false" />
 <UserPref name="TTime" display_name="Transition Time (ms)" required="false" />
@@ -36,8 +36,8 @@ background-color: __UP_CCOL__;
 
 #slide_box
 {
-width: __UP_PWH__px;
-height: __UP_PHT__px;
+width: __UP_w__px;
+height: __UP_h__px;
 margin: 0;
 background-color: __UP_SCOL__;
 padding: 0px;
