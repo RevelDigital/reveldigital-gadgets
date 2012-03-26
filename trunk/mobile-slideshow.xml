@@ -14,8 +14,18 @@
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
   
   <Content type="html"><![CDATA[
+<div id="MainContent">
+  <div class="page-content">
+    <h1></h1>
+  </div>
+  <ul id="Gallery" class="gallery">
+  </ul>
+</div>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
 
   function load() {
     loadResources([
@@ -86,14 +96,5 @@
   gadgets.util.registerOnLoadHandler(load);
   
 </script>
-
-<div id="MainContent">
-  <div class="page-content">
-    <h1></h1>
-  </div>
-  <ul id="Gallery" class="gallery">
-  </ul>
-</div>
-
 ]]></Content>
 </Module>
