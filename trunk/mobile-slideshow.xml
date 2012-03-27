@@ -41,7 +41,7 @@
   var playlistId = prefs.getString("playlistId");
   
   function loadPlaylist() {
-    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + "o7Zg6tFvYOg" + "&id=" + "7csEtHPQkvw", function (data) {
+    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + apikey + "&id=" + playlistId, function (data) {
       $.each(data, function (idx, playlist) {
         $("div.page-content h1").text(playlist.name);
         $.each(playlist.sources, function (sourceIdx, source) {
