@@ -23,6 +23,9 @@
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/lib/klass.min.js"></script>
+<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js"></script>
+
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
@@ -31,10 +34,7 @@
     loadResources([
       'http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/mobile-slideshow-1.0.css',
       'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/photoswipe.css'
-    ],[
-      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/lib/klass.min.js',
-      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js'
-    ]);
+    ],[]);
   }
     
   var apikey = prefs.getString("apikey");
@@ -84,13 +84,12 @@
       script = document.createElement("script");
       script.type = "text/javascript";
       script.src = js[i];
-        
-      //Get spreadsheet data when last Javascript library has been loaded.
       if (i == js.length - 1) {
         script.onload = loadPlaylist();
       }
       head.appendChild(script);
     }
+    loadPlaylist();
   }
   
   gadgets.util.registerOnLoadHandler(load);
