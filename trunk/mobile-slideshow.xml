@@ -7,9 +7,8 @@
     author_email="info@reveldigital.com">
   </ModulePrefs>
 
-  <UserPref name="RDW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-  <UserPref name="RDH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="apikey" display_name="RevelDigital API Key" required="true" />
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
   
