@@ -24,7 +24,7 @@ body
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://reveldigital-gadgets.googlecode.com/files/jquery.backstretch.min.js" type="text/javascript"></script>
+<script src="http://reveldigital-gadgets.googlecode.com/files/jquery.backstretch.js" type="text/javascript"></script>
 <script src="http://reveldigital-gadgets.googlecode.com/files/preload.js" type="text/javascript"></script>
 
 <div id="data">
