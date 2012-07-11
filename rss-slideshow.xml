@@ -106,7 +106,7 @@ ul.slider li
   
   var update = function () {
 
-    var feedUrl = encodeURI(prefs.getString("feedUrl"));
+    var feedUrl = encodeURIComponent(prefs.getString("feedUrl"));
     var url = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + prefs.getInt("numEntries") + "&callback=?&q=" + feedUrl;
     
     $.getJSON(url, function(json) {
