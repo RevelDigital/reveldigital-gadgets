@@ -32,6 +32,11 @@ body
   height: __UP_rdH__px;
   display:block;
 }
+.slides_container div img
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
