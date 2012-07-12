@@ -4,6 +4,8 @@
   <UserPref name="feedUrl" display_name="RSS Feed (URL)" datatype="string" />
   <UserPref name="delay" display_name="Delay between items (seconds)" datatype="string" default_value="10" />
   <UserPref name="numEntries" display_name="Number of items to retrieve" datatype="string" default_value="10" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -21,13 +23,13 @@ body
 }
 .slides_container
 {
-  width:570px;
-  height:270px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
 }
 .slides_container div 
 {
-  width:570px;
-  height:270px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   display:block;
 }
 </style>
