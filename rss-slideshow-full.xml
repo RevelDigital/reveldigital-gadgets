@@ -89,7 +89,8 @@ body
           pagination: false,
           generatePagination: false,
           play: 5000,
-          preload: true
+          preload: true,
+          crossfade: true
         });
       }
     });
