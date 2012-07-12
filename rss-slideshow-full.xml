@@ -44,6 +44,7 @@ body
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
+  var x = __UP_rdW__;
   
   var imageIntervals = prefs.getInt("delay") * 1000;
 
