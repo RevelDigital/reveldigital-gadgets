@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
-<ModulePrefs title="RevelDigital RSS Slideshow Gadget" description="Rotates through items from an RSS feed" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital RSS Slideshow Gadget" description="Rotates through images from an RSS feed" author="RevelDigital" background="transparent">
   <UserPref name="feedUrl" display_name="RSS Feed (URL)" datatype="string" />
-  <UserPref name="delay" display_name="Delay between items (seconds)" datatype="string" default_value="10" />
-  <UserPref name="numEntries" display_name="Number of items to retrieve" datatype="string" default_value="10" />
+  <UserPref name="imageInterval" display_name="Interval between images (seconds)" datatype="string" default_value="10" />
+  <UserPref name="numEntries" display_name="Number of images to retrieve" datatype="string" default_value="10" />
+  <UserPref name="updateInterval" display_name="Interval between feed updates (minutes)" datatype="string" default_value="30" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -49,13 +50,12 @@ body
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
-  var x = __UP_rdW__;
+  var imageInterval = prefs.getInt("imageInterval") * 1000;
+  var updateInterval = prefs.getInt("updateInterval") * 60 * 1000;
   
-  var imageIntervals = prefs.getInt("delay") * 1000;
-
   function load() {
     update();
-    setInterval(update, 30 * 60 * 1000);
+    setInterval(update, updateInterval);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
@@ -88,7 +88,7 @@ body
           effect: 'fade',
           pagination: false,
           generatePagination: false,
-          play: 5000,
+          play: imageInterval,
           preload: true,
           crossfade: true
         });
