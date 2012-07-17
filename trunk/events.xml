@@ -41,8 +41,8 @@
     <UserPref name="description_font-style" display_name="Description Font" datatype="string" default_value=".description_font-style{font-family:Verdana, Verdana, Geneva, sans-serif;color:rgb(0, 0, 0);font-weight:normal;font-size:18px;}" required="true" />
     <UserPref name="scrollbarThickness" display_name="Scrollbar Thickness (pixels)" default_value="10" datatype="string" />
     <UserPref name="scrollbarColor" display_name="Scrollbar Color" default_value="#000000" datatype="string" />
-    <UserPref name="layoutURL" display_name="Layout URL" datatype="string" />
-    <UserPref name="styleURL" display_name="Style URL" datatype="string" />
+    <UserPref name="layoutURL" display_name="Layout URL" datatype="hidden" />
+    <UserPref name="styleURL" display_name="Style URL" datatype="hidden" />
     <UserPref name="rdH" display_name="Container Height" datatype="hidden" />
     <UserPref name="rdW" display_name="Container Width" datatype="hidden" />
     <Content type="html"><![CDATA[
