@@ -9,59 +9,55 @@ function Tabs() {
     this.autoScroll = prefs.getBool("autoScroll");
     this.scrollBy = prefs.getString("scrollBy");
 }
+
 Tabs.prototype.initTabs = function(daysCount) {
-    var i = 0,
+  var i = 0,
 	self = this,
 	currentDay = Date.today();
 
-    for (; i < daysCount; i++) {
-	var $day = $(".day").eq(i);
-	var $content = $(".scrollContainer").eq(i);
+  for (; i < daysCount; i++) {
+    var $day = $(".day").eq(i);
+    var $content = $(".scrollContainer").eq(i);
 	
-	$day.empty();
+    $day.empty();
 	
-	if (i == 0) {
-	    $day.text("Today");
-	}
-	else {
-	    $day.text(currentDay.toString("dddd"));
-	}
+    if (i == 0) {
+      $day.text("Today");
+    } else {
+      $day.text(currentDay.toString("dddd"));
+    }
 	
-	if ($day.hasClass("active")) {
-	    $content.css("z-index", 5);
-	}
-	else {
-	    $content.hide();
-	}
-
-	$day.click(function() {
-	    self.stopTimer();
-	    clearTimeout(window.events.interactivityTimerID);
-	    self.showTab($(this).text(), false);
+    if ($day.hasClass("active")) {
+      $content.css("z-index", 5);
+    } else {
+      $content.hide();
+    }
+    $day.click(function() {
+      self.stopTimer();
+      clearTimeout(window.events.interactivityTimerID);
+      self.showTab($(this).text(), false);
 	    
-	    window.events.interactivityTimerID = setTimeout(function() {
-		//Resume auto-scrolling if applicable.
-		if (self.autoScroll) {
-		    if (self.scrollBy == "row") {
-			self.scrollByRow();
-		    }
-		    else {
-			self.scrollByPage();
-		    }
-		}
+      window.events.interactivityTimerID = setTimeout(function() {
+        //Resume auto-scrolling if applicable.
+        if (self.autoScroll) {
+          if (self.scrollBy == "row") {
+            self.scrollByRow();
+          } else {
+            self.scrollByPage();
+          }
+        }
 	    }, self.interactivityTimeout);
-			    
+       
 	    return false;
-	});
-	
-	currentDay.setDate(currentDay.getDate() + 1);
-    }
+    });	
+    currentDay.setDate(currentDay.getDate() + 1);
+  }
     
-    //Remove any tabs that are not needed.
-    for (i = 6; i >= daysCount; i--) {
-	$(".scrollContainer").eq(i).remove();
-	$(".day").eq(i).remove();
-    }
+  //Remove any tabs that are not needed.
+  for (i = 6; i >= daysCount; i--) {
+    $(".scrollContainer").eq(i).remove();
+    $(".day").eq(i).remove();
+  }
 }
 //Show the selected tab.
 Tabs.prototype.showTab = function(day, startTimer) {
@@ -146,7 +142,7 @@ Tabs.prototype.scrollByRow = function() {
 	containerHeight = $(".scrollContainer").eq(this.dayIndex).height();
 
     //Not all events are visible.
-    if (($lastEvent.offset().top + $lastEvent.height()) > containerHeight) {	
+    if ($lastEvent != null && ($lastEvent.offset().top + $lastEvent.height()) > containerHeight) {	
 	$.each($events, function (i, val) {
 	    if (i == self.eventIndex) {
 		var scrollerTop = $content.css("margin-top"),
