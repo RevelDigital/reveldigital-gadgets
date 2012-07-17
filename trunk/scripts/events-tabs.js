@@ -142,7 +142,7 @@ Tabs.prototype.scrollByRow = function() {
 	containerHeight = $(".scrollContainer").eq(this.dayIndex).height();
 
     //Not all events are visible.
-    if ($lastEvent != null && ($lastEvent.offset().top + $lastEvent.height()) > containerHeight) {	
+    if ($lastEvent.offset() != null && ($lastEvent.offset().top + $lastEvent.height()) > containerHeight) {	
 	$.each($events, function (i, val) {
 	    if (i == self.eventIndex) {
 		var scrollerTop = $content.css("margin-top"),
