@@ -101,6 +101,9 @@
                     document.body.style.background = backgroundColor;
                 }
                 
+                loadCSS("http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-tabs.css");
+                loadCSS("http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-list.css");
+                
 		google.setOnLoadCallback(function() {
 		    window.events = new Events();	
 		    window.events.initialize();
