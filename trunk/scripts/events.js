@@ -159,7 +159,7 @@ Events.prototype.getCalendar = function() {
 	    self.isScrolling = null;
 	    self.getCalendar();
 	}, 300000);	//5 minutes
-	readyEvent();
+	//readyEvent();
     }, function(e) {
 	setTimeout(function() {
 	    clearInterval(self.scrollTimerID);
