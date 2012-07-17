@@ -241,9 +241,10 @@
       google.setOnLoadCallback(function() {
         window.events = new Events();	
         window.events.initialize();
+        window.events.play();
       });
     }
-            
+    
     gadgets.util.registerOnLoadHandler(initialize);
 </script>]]>
 </Content>
