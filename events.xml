@@ -46,173 +46,174 @@
     <UserPref name="rdH" display_name="Container Height" datatype="hidden" />
     <UserPref name="rdW" display_name="Container Width" datatype="hidden" />
     <Content type="html"><![CDATA[
-        <style type="text/css">
-            body {
-		background-color: transparent;
-	    }
+<style type="text/css">
+  body {
+    background-color: transparent;
+  }
 	    
-	    #container {		
-		width: __UP_rdW__px;
-		height: __UP_rdH__px;
-	    }
+  #container {		
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+  }
 	    	        
-	    .active {
-		color: __UP_activeColor__ !important;
-		background: __UP_activeBackgroundColor__;
-	    }
+  .active {
+    color: __UP_activeColor__ !important;
+    background: __UP_activeBackgroundColor__;
+  }
 	    
-	    .inactive {
-		color: __UP_inactiveColor__ !important;
-		background: __UP_inactiveBackgroundColor__;
-	    }
+  .inactive {
+    color: __UP_inactiveColor__ !important;
+    background: __UP_inactiveBackgroundColor__;
+  }
 	    
-	    .error {
-		color: red;
-	    }
+  .error {
+    color: red;
+  }
 	    
-	    __UP_tab_font-style__
-	    __UP_day_font-style__
-	    __UP_title_font-style__
-	    __UP_location_font-style__
-	    __UP_description_font-style__
-       
-       #eventsContainer {
+	__UP_tab_font-style__
+	__UP_day_font-style__
+  __UP_title_font-style__
+  __UP_location_font-style__
+  __UP_description_font-style__
+     
+  #eventsContainer {
     position: relative;
     width: 100%;
     height: 100%;
-}
-#eventsContainer ul {
+  }
+  #eventsContainer ul {
     list-style-type: none;
     margin: 0;
-}
-#eventsContainer #scroller {
+  }
+  #eventsContainer #scroller {
     padding: 0 20px;
-}
-#eventsContainer .day {
+  }
+  #eventsContainer .day {
     padding-top: 10px;
-}
-#eventsContainer .events {
+  }
+  #eventsContainer .events {
     padding: 10px 20px 0px 20px;
     border-bottom: 1px solid gray;
-}
-#eventsContainer .scrollContainer {
+  }
+  #eventsContainer .scrollContainer {
     position: absolute;
     margin: 0px;
     left: 0;
     bottom: 0;
     right: 0;
-}
-#eventsContainer .scrollContainer .customScrollBox {
+  }
+  #eventsContainer .scrollContainer .customScrollBox {
     position: relative;
     height: 100%;
     overflow: hidden;
-}
-#eventsContainer .scrollContainer .customScrollBox .container {
+  }
+  #eventsContainer .scrollContainer .customScrollBox .container {
     position: relative;
     width: 95%;
     top: 0;
     float: left;    
-}
-#eventsContainer .scrollContainer .customScrollBox .content {
+  }
+  #eventsContainer .scrollContainer .customScrollBox .content {
     clear: both;
-}
-#eventsContainer .scrollContainer .dragger_wrapper {
+  }
+  #eventsContainer .scrollContainer .dragger_wrapper {
     position: absolute;
     top: 0px;
     right: 0px;
-}
-#eventsContainer .scrollContainer .dragger_container {	/* Scrollbar line */
+  }
+  #eventsContainer .scrollContainer .dragger_container {	/* Scrollbar line */
     position: relative;
     float: left;
     border-left: 1px solid;
     cursor: pointer;
     width: 0px;
-}
-#eventsContainer .scrollContainer .dragger {	/* Scroll handle */
+  }
+  #eventsContainer .scrollContainer .dragger {	/* Scroll handle */
     position: absolute; 
     overflow: hidden; 
     cursor: pointer; 
-}
-#eventsContainer .scrollContainer .dragger_pressed {
+  }
+  #eventsContainer .scrollContainer .dragger_pressed {
     cursor: s-resize;
-}
-.tabbedArea {
+  }
+  .tabbedArea {
     position: relative;
     width: 100%;
     height: 100%;
-}
-.tabbedArea > div {
+  }
+  .tabbedArea > div {
     display: inline;
-}
-.tabbedArea > span {
+  }
+  .tabbedArea > span {
     margin-left: -1px;
     position: relative;
     left: 1px;
     display: block;
     float: left;
     padding: 5px 10px;
-}
-.tabbedArea > span:hover {
+  }
+  .tabbedArea > span:hover {
     cursor: pointer;
-}
-.tabbedArea > div:target {
+  }
+  .tabbedArea > div:target {
     position: absolute;
     z-index: -1;
-}
-/*article:not(:last-child) {*/
-.tabbedArea article {
+  }
+  /*article:not(:last-child) {*/
+  .tabbedArea article {
     border-bottom: 1px solid gray;
-}
-.tabbedArea article:not(:first-child) {
+  }
+  .tabbedArea article:not(:first-child) {
     padding-top: 10px;
-}
-.tabbedArea .time {
+  }
+  .tabbedArea .time {
     padding-right: 10px;
-}
-.tabbedArea .scrollContainer {
+  }
+  .tabbedArea .scrollContainer {
     position: absolute;
     margin: 0px;
     padding: 20px;
     left: 0;
     bottom: 0;
     right: 0;
-}
-.tabbedArea .scrollContainer .customScrollBox {
+  }
+  .tabbedArea .scrollContainer .customScrollBox {
     position: relative;
     height: 100%;
     overflow: hidden;
     /*padding: 20px;*/
-}
-.tabbedArea .scrollContainer .customScrollBox .container {
+  }
+  .tabbedArea .scrollContainer .customScrollBox .container {
     position: relative;
     width: 95%;
     top: 0;
     float: left;    
-}
-.tabbedArea .scrollContainer .customScrollBox .content {
+  }
+  .tabbedArea .scrollContainer .customScrollBox .content {
     clear: both;
-}
-.tabbedArea .scrollContainer .dragger_wrapper {
+  }
+  .tabbedArea .scrollContainer .dragger_wrapper {
     position: absolute;
     top: 0px;
     right: 0px;
-}
-.tabbedArea .scrollContainer .dragger_container {	/* Scrollbar line */
+  }
+  .tabbedArea .scrollContainer .dragger_container {	/* Scrollbar line */
     position: relative;
     float: left;
     border-left: 1px solid;
     cursor: pointer;
     width: 0px;
-}
-.tabbedArea .scrollContainer .dragger {	/* Scroll handle */
+  }
+  .tabbedArea .scrollContainer .dragger {	/* Scroll handle */
     position: absolute; 
     overflow: hidden; 
     cursor: pointer; 
-}
-.tabbedArea .scrollContainer .dragger_pressed {
+  }
+  .tabbedArea .scrollContainer .dragger_pressed {
     cursor: s-resize;
-}
-        </style>
+  }
+  </style>
+        
 	<div id="container">
 	</div>
 
@@ -226,28 +227,24 @@
 	<script type="text/javascript" src="http://c499672.r72.cf2.rackcdn.com/common/scroll/jquery.mCustomScrollbar.js"></script>
 	<script type="text/javascript" src="http://c499672.r72.cf2.rackcdn.com/common/scroll/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="http://c499672.r72.cf2.rackcdn.com/common/scroll/jquery.mousewheel.js"></script>
-        <script type="text/javascript">
-            var gadgetPrefs = new gadgets.Prefs();
+  <script type="text/javascript">
+    var gadgetPrefs = new gadgets.Prefs();
 	    
-	    google.load("gdata", "1");
+    google.load("gdata", "1");
 	    
-            function initialize() {  		
-                var backgroundColor = gadgetPrefs.getString("backgroundColor");
+    function initialize() {  		
+      var backgroundColor = gadgetPrefs.getString("backgroundColor");
 		
-                if (backgroundColor !== null && backgroundColor != "") {
-                    document.body.style.background = backgroundColor;
-                }
-                
-                loadCSS("http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-tabs.css");
-                loadCSS("http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-list.css");
-                
-		google.setOnLoadCallback(function() {
-		    window.events = new Events();	
-		    window.events.initialize();
-		});
-            }
+      if (backgroundColor !== null && backgroundColor != "") {
+         document.body.style.background = backgroundColor;
+      }          
+      google.setOnLoadCallback(function() {
+        window.events = new Events();	
+        window.events.initialize();
+      });
+    }
             
-            gadgets.util.registerOnLoadHandler(initialize);
-        </script>]]>
+    gadgets.util.registerOnLoadHandler(initialize);
+</script>]]>
 </Content>
 </Module>
