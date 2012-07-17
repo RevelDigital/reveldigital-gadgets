@@ -68,7 +68,7 @@ Events.prototype.initialize = function() {
 	self.layout = data.getElementsByTagName("Content")[0].childNodes[1].nodeValue;
 
 	if (self.isTabbed) {
-	    loadJS("http://reveldigital-gadgets.googlecode.com/svn/trunk/scripts/events.js", function() {
+	    loadJS("http://reveldigital-gadgets.googlecode.com/svn/trunk/scripts/events-tabs.js", function() {
 		$("#container").append(self.navigation);
 		self.tabs = new Tabs();
 		self.tabs.initTabs(self.daysCount);
