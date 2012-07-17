@@ -43,8 +43,8 @@
     <UserPref name="scrollbarColor" display_name="Scrollbar Color" default_value="#000000" datatype="string" />
     <UserPref name="layoutURL" display_name="Layout URL" datatype="string" />
     <UserPref name="styleURL" display_name="Style URL" datatype="string" />
-    <UserPref name="rsH" display_name="Container Height" datatype="hidden" />
-    <UserPref name="rsW" display_name="Container Width" datatype="hidden" />
+    <UserPref name="rdH" display_name="Container Height" datatype="hidden" />
+    <UserPref name="rdW" display_name="Container Width" datatype="hidden" />
     <Content type="html">
         <![CDATA[
         <style type="text/css">
