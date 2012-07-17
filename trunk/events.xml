@@ -46,9 +46,6 @@
     <UserPref name="rdH" display_name="Container Height" datatype="hidden" />
     <UserPref name="rdW" display_name="Container Width" datatype="hidden" />
     <Content type="html"><![CDATA[
-      <head>
-        <link type="text/css" rel="stylesheet" href="http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-tabs.css">
-        <link type="text/css" rel="stylesheet" href="http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-list.css">
         <style type="text/css">
             body {
 		background-color: transparent;
@@ -79,12 +76,9 @@
 	    __UP_location_font-style__
 	    __UP_description_font-style__
         </style>
-          </head>
-<body>
-
 	<div id="container">
 	</div>
-</body>
+
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
