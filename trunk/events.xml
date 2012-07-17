@@ -70,8 +70,8 @@
     color: red;
   }
 	    
-	__UP_tab_font-style__
-	__UP_day_font-style__
+  __UP_tab_font-style__
+  __UP_day_font-style__
   __UP_title_font-style__
   __UP_location_font-style__
   __UP_description_font-style__
