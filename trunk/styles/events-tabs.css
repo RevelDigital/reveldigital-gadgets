@@ -1,0 +1,76 @@
+.tabbedArea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.tabbedArea > div {
+    display: inline;
+}
+.tabbedArea > span {
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    display: block;
+    float: left;
+    padding: 5px 10px;
+}
+.tabbedArea > span:hover {
+    cursor: pointer;
+}
+.tabbedArea > div:target {
+    position: absolute;
+    z-index: -1;
+}
+/*article:not(:last-child) {*/
+article {
+    border-bottom: 1px solid gray;
+}
+article:not(:first-child) {
+    padding-top: 10px;
+}
+.tabbedArea .time {
+    padding-right: 10px;
+}
+.scrollContainer {
+    position: absolute;
+    margin: 0px;
+    padding: 20px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.scrollContainer .customScrollBox {
+    position: relative;
+    /*height: 100%;*/
+    overflow: hidden;
+    /*padding: 20px;*/
+}
+.scrollContainer .customScrollBox .container {
+    position: relative;
+    width: 95%;
+    top: 0;
+    float: left;    
+}
+.scrollContainer .customScrollBox .content {
+    clear: both;
+}
+.scrollContainer .dragger_wrapper {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.scrollContainer .dragger_container {	/* Scrollbar line */
+    position: relative;
+    float: left;
+    border-left: 1px solid;
+    cursor: pointer;
+    width: 0px;
+}
+.scrollContainer .dragger {	/* Scroll handle */
+    position: absolute; 
+    overflow: hidden; 
+    cursor: pointer; 
+}
+.scrollContainer .dragger_pressed {
+    cursor: s-resize;
+}
