@@ -51,7 +51,7 @@ Events.prototype.initialize = function() {
 	    rel: "stylesheet",
 	    href: this.styleURL
 	});
-	$("head").append(link);
+	//$("head").append(link);
     }
     
     params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
