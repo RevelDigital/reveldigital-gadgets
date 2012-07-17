@@ -7,54 +7,54 @@
     list-style-type: none;
     margin: 0;
 }
-#scroller {
+#eventsContainer #scroller {
     padding: 0 20px;
 }
-.day {
+#eventsContainer .day {
     padding-top: 10px;
 }
-.events {
+#eventsContainer .events {
     padding: 10px 20px 0px 20px;
     border-bottom: 1px solid gray;
 }
-.scrollContainer {
+#eventsContainer .scrollContainer {
     position: absolute;
     margin: 0px;
     left: 0;
     bottom: 0;
     right: 0;
 }
-.scrollContainer .customScrollBox {
+#eventsContainer .scrollContainer .customScrollBox {
     position: relative;
     height: 100%;
     overflow: hidden;
 }
-.scrollContainer .customScrollBox .container {
+#eventsContainer .scrollContainer .customScrollBox .container {
     position: relative;
     width: 95%;
     top: 0;
     float: left;    
 }
-.scrollContainer .customScrollBox .content {
+#eventsContainer .scrollContainer .customScrollBox .content {
     clear: both;
 }
-.scrollContainer .dragger_wrapper {
+#eventsContainer .scrollContainer .dragger_wrapper {
     position: absolute;
     top: 0px;
     right: 0px;
 }
-.scrollContainer .dragger_container {	/* Scrollbar line */
+#eventsContainer .scrollContainer .dragger_container {	/* Scrollbar line */
     position: relative;
     float: left;
     border-left: 1px solid;
     cursor: pointer;
     width: 0px;
 }
-.scrollContainer .dragger {	/* Scroll handle */
+#eventsContainer .scrollContainer .dragger {	/* Scroll handle */
     position: absolute; 
     overflow: hidden; 
     cursor: pointer; 
 }
-.scrollContainer .dragger_pressed {
+#eventsContainer .scrollContainer .dragger_pressed {
     cursor: s-resize;
 }
