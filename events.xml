@@ -53,8 +53,8 @@
 	    }
 	    
 	    #container {		
-		width: __UP_rsW__px;
-		height: __UP_rsH__px;
+		width: __UP_rdW__px;
+		height: __UP_rdH__px;
 	    }
 	    	        
 	    .active {
@@ -96,46 +96,17 @@
 	    
 	    google.load("gdata", "1");
 	    
-            function initialize() {
-                var id = gadgetPrefs.getString("id");						
+            function initialize() {  		
                 var backgroundColor = gadgetPrefs.getString("backgroundColor");
 		
                 if (backgroundColor !== null && backgroundColor != "") {
                     document.body.style.background = backgroundColor;
                 }
-		
-		if (id !== null && id != "") {
-		    gadgets.rpc.register("rscmd_play_" + id, play);
-		    gadgets.rpc.register("rscmd_pause_" + id, pause);
-		    gadgets.rpc.register("rscmd_stop_" + id, stop);
-		}
-				
+                
 		google.setOnLoadCallback(function() {
 		    window.events = new Events();	
 		    window.events.initialize();
 		});
-            }
-	    
-	    function play() {
-		window.events.play();
-	    }
-	    
-	    function pause() {
-		window.events.pause();
-	    }
-	    
-	    function stop() {
-		window.events.pause();
-	    }
-	    
-            // sends "READY" event to the Viewer
-            function readyEvent() {
-                gadgets.rpc.call('', 'rsevent_ready', null, gadgetPrefs.getString("id"), true, true, true, true, true);
-            }
-            
-            // sends "DONE" event to the Viewer
-            function doneEvent() {
-                gadgets.rpc.call('', 'rsevent_done', null, gadgetPrefs.getString("id"));
             }
             
             gadgets.util.registerOnLoadHandler(initialize);
