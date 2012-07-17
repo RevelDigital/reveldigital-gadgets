@@ -22,16 +22,16 @@
     z-index: -1;
 }
 /*article:not(:last-child) {*/
-article {
+.tabbedArea article {
     border-bottom: 1px solid gray;
 }
-article:not(:first-child) {
+.tabbedArea article:not(:first-child) {
     padding-top: 10px;
 }
 .tabbedArea .time {
     padding-right: 10px;
 }
-.scrollContainer {
+.tabbedArea .scrollContainer {
     position: absolute;
     margin: 0px;
     padding: 20px;
@@ -39,38 +39,38 @@ article:not(:first-child) {
     bottom: 0;
     right: 0;
 }
-.scrollContainer .customScrollBox {
+.tabbedArea .scrollContainer .customScrollBox {
     position: relative;
     height: 100%;
     overflow: hidden;
     /*padding: 20px;*/
 }
-.scrollContainer .customScrollBox .container {
+.tabbedArea .scrollContainer .customScrollBox .container {
     position: relative;
     width: 95%;
     top: 0;
     float: left;    
 }
-.scrollContainer .customScrollBox .content {
+.tabbedArea .scrollContainer .customScrollBox .content {
     clear: both;
 }
-.scrollContainer .dragger_wrapper {
+.tabbedArea .scrollContainer .dragger_wrapper {
     position: absolute;
     top: 0px;
     right: 0px;
 }
-.scrollContainer .dragger_container {	/* Scrollbar line */
+.tabbedArea .scrollContainer .dragger_container {	/* Scrollbar line */
     position: relative;
     float: left;
     border-left: 1px solid;
     cursor: pointer;
     width: 0px;
 }
-.scrollContainer .dragger {	/* Scroll handle */
+.tabbedArea .scrollContainer .dragger {	/* Scroll handle */
     position: absolute; 
     overflow: hidden; 
     cursor: pointer; 
 }
-.scrollContainer .dragger_pressed {
+.tabbedArea .scrollContainer .dragger_pressed {
     cursor: s-resize;
 }
