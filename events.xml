@@ -78,6 +78,9 @@
 	    __UP_description_font-style__
         </style>
     
+  <link type="text/css" rel="stylesheet" href="http://reveldigital-gadgets.googlecode.com/styles/events-tabs.js">
+  <link type="text/css" rel="stylesheet" href="http://reveldigital-gadgets.googlecode.com/styles/events-list.js">
+
 	<div id="container">
 	</div>
 
