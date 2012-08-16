@@ -129,7 +129,7 @@ __UP_body-style__
     } });
   }
   
-  var googleUrl = function (sourceIdentifier) {
+  function googleUrl(sourceIdentifier) {
 
     this.sourceIdentifier = sourceIdentifier;
     if (this.sourceIdentifier.match(/http(s)*:/)) {
@@ -147,6 +147,7 @@ __UP_body-style__
     if (prefs.getBool("hasTitle")) {
       url = url + "&headers=1";
     }
+    return url;
   }
 </script>
 ]]>
