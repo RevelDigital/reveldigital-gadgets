@@ -82,9 +82,6 @@ __UP_body-style__
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
-        if (!prefs.getBool("hasTitle")) {
-          //$(".header-style").height(0);
-        }
       }
     );
     
