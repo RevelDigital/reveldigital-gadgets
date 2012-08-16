@@ -93,7 +93,7 @@ __UP_body-style__
       }
     );
     
-    table.draw(dt, { allowHtml:false, cssClassNames: {
+    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
       tableRow: 'body-style',
