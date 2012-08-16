@@ -3,23 +3,6 @@
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
-    <EnumValue value="times new roman" display_value="Times New Roman" />
-    <EnumValue value="courier new" display_value="Courier New" />
-    <EnumValue value="verdana" display_value="Verdana" />
-    <EnumValue value="arial" display_value="Arial" />
-    <EnumValue value="tahoma" display_value="Tahoma" />
-    <EnumValue value="impact" display_value="Impact" />
-  </UserPref>
-  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
-    <EnumValue value="xx-small" display_value="XX Small" />
-    <EnumValue value="x-small" display_value="X Small" />
-    <EnumValue value="small" display_value="Small" />
-    <EnumValue value="medium" display_value="Medium" />
-    <EnumValue value="large" display_value="Large" />
-    <EnumValue value="x-large" display_value="X Large" />
-    <EnumValue value="xx-large" display_value="XX Large" />
-  </UserPref>
   <UserPref name="header-style" display_name="Header Style" datatype="string" default_value=".header-style{font-family:Verdana, Verdana, Geneva, sans-serif;color:rgb(0, 0, 0);font-weight:normal;font-size:28px;}" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="string" default_value=".body-style{font-family:Verdana, Verdana, Geneva, sans-serif;color:rgb(0, 0, 0);font-weight:normal;font-size:18px;}" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
