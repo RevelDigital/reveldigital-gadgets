@@ -126,7 +126,7 @@ __UP_body-style__
       selectedTableRow: 'body-style',
       oddTableRow: 'body-style',
       hoverTableRow: 'body-style',
-      rowNumberCell: 'body-style
+      rowNumberCell: 'body-style'
     } });
   }
   
