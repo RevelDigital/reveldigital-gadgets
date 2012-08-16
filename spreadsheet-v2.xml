@@ -141,7 +141,7 @@ __UP_body-style__
     } else {
       key = sourceIdentifier;
     }    
-    var ret = "https://spreadsheets.google.com/pub?key=" + this.key;
+    var ret = "https://spreadsheets.google.com/pub?key=" + key;
     
     if (prefs.getBool("hasTitle")) {
       ret = ret + "&headers=1";
