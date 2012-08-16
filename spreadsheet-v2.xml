@@ -152,6 +152,22 @@ table.google-visualization-table-table,
       rowNumberCell: 'table'
     } });
   }
+  
+  var googleUrl = function (sourceIdentifier) {
+
+    this.sourceIdentifier = sourceIdentifier;
+    if (this.sourceIdentifier.match(/http(s)*:/)) {
+      this.url = this.sourceIdentifier;
+      try {
+        this.key = this.url.match(/key=(.*?)&/)[1];
+      } catch (error) {
+        this.key = this.url.match(/(cells|list|values)\/(.*?)\//)[2];
+      }
+    } else {
+      this.key = this.sourceIdentifier;
+    }    
+    return "https://spreadsheets.google.com/pub?key=" + this.key + "&headers=1";
+  }
 </script>
 ]]>
 </Content>
