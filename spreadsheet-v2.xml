@@ -27,7 +27,6 @@ body
 table
 {
   width: __UP_rdW__px;
-  height: __UP_rdH__px;
 }
 
 table.google-visualization-table-table,
