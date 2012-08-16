@@ -20,6 +20,8 @@
     <EnumValue value="x-large" display_value="X Large" />
     <EnumValue value="xx-large" display_value="XX Large" />
   </UserPref>
+  <UserPref name="header-style" display_name="Header Style" datatype="string" default_value=".header-style{font-family:Verdana, Verdana, Geneva, sans-serif;color:rgb(0, 0, 0);font-weight:normal;font-size:28px;}" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="string" default_value=".body-style{font-family:Verdana, Verdana, Geneva, sans-serif;color:rgb(0, 0, 0);font-weight:normal;font-size:18px;}" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -41,21 +43,8 @@ body
 
 table
 {
-  width: 100%;
-}
-
-.header
-{
-  font-size: 140%;
-  border: none;
-  background: transparent;
-}
-
-.table
-{
-  font-size: 100%;
-  border: none;
-  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
 }
 
 table.google-visualization-table-table,
@@ -68,6 +57,9 @@ table.google-visualization-table-table,
 {
     background-color: transparent;
 }
+
+__UP_header-style__
+__UP_body-style__
 
 </style>
 
@@ -144,14 +136,14 @@ table.google-visualization-table-table,
     );
     
     table.draw(dt, { allowHtml:false, cssClassNames: {
-      headerRow: 'header',
-      headerCell: 'header',
-      tableRow: 'table',
-      tableCell: 'table',
-      selectedTableRow: 'table',
-      oddTableRow: 'table',
-      hoverTableRow: 'table',
-      rowNumberCell: 'table'
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style
     } });
   }
   
