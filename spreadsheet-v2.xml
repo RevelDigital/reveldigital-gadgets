@@ -83,7 +83,7 @@ __UP_body-style__
     google.visualization.events.addListener(table, "ready",
       function (event) {
         if (!prefs.getBool("hasTitle")) {
-          $(".header-style").height(0);
+          //$(".header-style").height(0);
         }
       }
     );
@@ -93,7 +93,9 @@ __UP_body-style__
       }
     );
     
-    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
+    var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
+    
+    table.draw(dt, { allowHtml:false, sort:sort, cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
       tableRow: 'body-style',
