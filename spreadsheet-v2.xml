@@ -90,9 +90,9 @@ __UP_body-style__
       }
     );
     
-    var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
+    //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
     
-    table.draw(dt, { allowHtml:false, sort:sort, cssClassNames: {
+    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
       tableRow: 'body-style',
