@@ -130,24 +130,23 @@ __UP_body-style__
   }
   
   function googleUrl(sourceIdentifier) {
-
-    this.sourceIdentifier = sourceIdentifier;
-    if (this.sourceIdentifier.match(/http(s)*:/)) {
-      this.url = this.sourceIdentifier;
+    var url, key;
+    if (sourceIdentifier.match(/http(s)*:/)) {
+      url = sourceIdentifier;
       try {
-        this.key = this.url.match(/key=(.*?)&/)[1];
+        key = url.match(/key=(.*?)&/)[1];
       } catch (error) {
-        this.key = this.url.match(/(cells|list|values)\/(.*?)\//)[2];
+        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
       }
     } else {
-      this.key = this.sourceIdentifier;
+      key = sourceIdentifier;
     }    
-    var url = "https://spreadsheets.google.com/pub?key=" + this.key;
+    var ret = "https://spreadsheets.google.com/pub?key=" + this.key;
     
     if (prefs.getBool("hasTitle")) {
-      url = url + "&headers=1";
+      ret = ret + "&headers=1";
     }
-    return url;
+    return ret;
   }
 </script>
 ]]>
