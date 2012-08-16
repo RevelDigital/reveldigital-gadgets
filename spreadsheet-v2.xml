@@ -20,6 +20,8 @@
     <EnumValue value="x-large" display_value="X Large" />
     <EnumValue value="xx-large" display_value="XX Large" />
   </UserPref>
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
