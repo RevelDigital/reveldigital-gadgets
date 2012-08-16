@@ -142,7 +142,7 @@ __UP_body-style__
     } else {
       this.key = this.sourceIdentifier;
     }    
-    return "https://spreadsheets.google.com/pub?key=" + this.key + "&headers=1";
+    return "https://spreadsheets.google.com/pub?key=" + this.key + prefs.getBool("hasTitle") ? "&headers=1" : "";
   }
 </script>
 ]]>
