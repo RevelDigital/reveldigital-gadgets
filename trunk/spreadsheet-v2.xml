@@ -52,21 +52,9 @@ __UP_body-style__
 </div>
 
 <script type="text/javascript">
-
   var prefs = new gadgets.Prefs();
 
-  function load() {
-  
-    //$("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    //$("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
-    //$("#data").height($(window).height()).width($(window).width());
-    //$("#data table").css("color", prefs.getString("ForeColor"));
-    //$("#data").css("background-color", prefs.getString("BackColor"));
-    
-    //update();
-    
-    //setInterval(update, 120000);
-    
+  function load() {    
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
   }
@@ -77,17 +65,10 @@ __UP_body-style__
 <script type="text/javascript">
   var container;
   var table;
-  var max_id = 0;
   
   var update = function () {
 
     var url = googleUrl( prefs.getString("spreadsheetUrl") );
-    
-    $.getJSON(url, function(json){
-      if(json) {
-        cellEntries(json);
-      }
-    });
   }
 
   function initialize() {
@@ -95,7 +76,7 @@ __UP_body-style__
     table = new google.visualization.Table(container);
     
     var query = new google.visualization.Query(googleUrl('https://docs.google.com/spreadsheet/pub?key=0ApSc3DpjNyLJdGJSVk1rYS1sT3hrSmVhYkp3aFJPaXc&output=html'));
-    
+    query.setRefreshInterval(5);
     query.send(draw);
   }
   
@@ -109,13 +90,11 @@ __UP_body-style__
         if (!prefs.getBool("hasTitle")) {
           $(".header-style").hide();
         }
-        //$(".cell").css("font-size", "30px");
       }
     );
     
     google.visualization.events.addListener(table, "sort",
       function (event) {
-        //$(".cell").css("font-size", "30px");
       }
     );
     
