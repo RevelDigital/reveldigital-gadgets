@@ -101,19 +101,21 @@ __UP_body-style__
   
   function draw(response) {
     if (response.isError()) {
-      alert('Error in query');
     }
     var dt = response.getDataTable();
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
-        $(".cell").css("font-size", "30px");
+        if (!prefs.getBool("hasTitle")) {
+          $(".header-style").hide();
+        }
+        //$(".cell").css("font-size", "30px");
       }
     );
     
     google.visualization.events.addListener(table, "sort",
       function (event) {
-        $(".cell").css("font-size", "30px");
+        //$(".cell").css("font-size", "30px");
       }
     );
     
