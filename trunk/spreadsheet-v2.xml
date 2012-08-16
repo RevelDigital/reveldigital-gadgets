@@ -65,18 +65,13 @@ __UP_body-style__
 <script type="text/javascript">
   var container;
   var table;
-  
-  var update = function () {
-
-    var url = googleUrl( prefs.getString("spreadsheetUrl") );
-  }
 
   function initialize() {
     container = document.getElementById("table");
     table = new google.visualization.Table(container);
     
-    var query = new google.visualization.Query(googleUrl('https://docs.google.com/spreadsheet/pub?key=0ApSc3DpjNyLJdGJSVk1rYS1sT3hrSmVhYkp3aFJPaXc&output=html'));
-    query.setRefreshInterval(5);
+    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
+    query.setRefreshInterval(300);
     query.send(draw);
   }
   
