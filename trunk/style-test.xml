@@ -21,12 +21,18 @@ body
 {
   background: transparent;
 }
+
+.header-style
+{
+  __UP_header-style__;
+}
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
-<div id="table">
+<div class="header-style">
+Sample Text
 </div>
 
 <script type="text/javascript">
