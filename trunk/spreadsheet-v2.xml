@@ -3,8 +3,8 @@
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="string" default_value=".header-style{font-family:Verdana,sans-serif;color:rgb(255, 255, 255);font-weight:normal;font-size:24px;}" required="true" />
-  <UserPref name="body-style" display_name="Body Style" datatype="string" default_value=".body-style{font-family:Verdana,sans-serif;color:rgb(255, 255, 255);font-weight:normal;font-size:18px;}" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="string" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="string" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -40,9 +40,15 @@ table.google-visualization-table-table,
     background-color: transparent;
 }
 
-__UP_header-style__
-__UP_body-style__
+.body-style
+{
+  __UP_body-style__
+}
 
+.header-style
+{
+  __UP_header-style__
+}
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
