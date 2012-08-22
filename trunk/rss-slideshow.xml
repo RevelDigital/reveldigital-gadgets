@@ -2,9 +2,9 @@
 <Module> 
 <ModulePrefs title="RevelDigital RSS Slideshow Gadget" description="Rotates through items from an RSS feed" author="RevelDigital" background="transparent">
   <UserPref name="feedUrl" display_name="RSS Feed (URL)" datatype="string" />
-  <UserPref name="delay" display_name="Delay between items (seconds)" datatype="string" default_value="10" />
-  <UserPref name="updateInterval" display_name="Interval between feed updates (minutes)" datatype="string" default_value="30" />
+  <UserPref name="itemInterval" display_name="Interval between items (seconds)" datatype="string" default_value="10" />
   <UserPref name="numEntries" display_name="Number of items to retrieve" datatype="string" default_value="10" />
+  <UserPref name="updateInterval" display_name="Interval between feed updates (minutes)" datatype="string" default_value="30" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
@@ -135,7 +135,7 @@ ul.slider li
           pager: false,
           controls: false,
           auto: true,
-          pause: prefs.getInt("delay") * 1000
+          pause: prefs.getInt("itemInterval") * 1000
         });
       }
     });
