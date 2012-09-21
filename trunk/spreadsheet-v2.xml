@@ -115,7 +115,6 @@ table.google-visualization-table-table,
     if (sourceIdentifier.match(/http(s)*:/)) {
       url = sourceIdentifier;
       try {
-        //key = url.match(/key=(.*?)/)[1];
         key = url.replace(/.*key=/,'').replace(/&.*/,'');
       } catch (error) {
         key = url.match(/(cells|list|values)\/(.*?)\//)[2];
