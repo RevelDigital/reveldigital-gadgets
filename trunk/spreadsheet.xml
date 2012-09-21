@@ -144,7 +144,7 @@ th
     if (this.sourceIdentifier.match(/http(s)*:/)) {
       this.url = this.sourceIdentifier;
       try {
-        this.key = this.url.match(/key=(.*?)&/)[1];
+        this.key = this.url.replace(/.*key=/,'').replace(/&.*/,'');
       } catch (error) {
         this.key = this.url.match(/(cells|list)\/(.*?)\//)[2];
       }
