@@ -20,6 +20,8 @@
     <EnumValue value="x-large" display_value="X Large" />
     <EnumValue value="xx-large" display_value="XX Large" />
   </UserPref>
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -29,7 +31,9 @@ body *
 {
   line-height: 1.2em; 
   letter-spacing: 0; 
-  word-spacing: normal; 
+  word-spacing: normal;
+  font-family: __UP_fontFamily__;
+  font-size: __UP_fontSize__;
 }
 
 body
@@ -56,6 +60,8 @@ div.tweetscontainer
 {
   text-align: left;
   overflow: hidden;
+  color: #__UP_ForeColor__;
+  background-color: #__UP_BackColor__;
 }
 
 div.tweet
@@ -118,11 +124,7 @@ span.when
 
   function load() {
   
-    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("div.tweetscontainer").height($(window).height()).width($(window).width());
-    $("div.tweetscontainer").css("color", prefs.getString("ForeColor"));
-    $("div.tweetscontainer").css("background-color", prefs.getString("BackColor"));
     
     update();
     
