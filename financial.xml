@@ -121,9 +121,7 @@ img
   var prefs = new gadgets.Prefs();
 
   function load() {
-  
-    //$("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    //$("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+
     $("div.quotescontainer").height($(window).height()).width($(window).width());
     
     update();
