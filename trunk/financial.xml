@@ -42,6 +42,11 @@ div.quotescontainer
   overflow: hidden;
 }
 
+div.quotescontainer table
+{
+  color: #__UP_ForeColor__;
+}
+
 .symbol
 {
   font-size: 150%;
