@@ -2,6 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+  <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
