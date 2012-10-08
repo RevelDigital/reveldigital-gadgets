@@ -3,6 +3,7 @@
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
   <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
     <EnumValue value="times new roman" display_value="Times New Roman" />
     <EnumValue value="courier new" display_value="Courier New" />
@@ -30,6 +31,8 @@ body *
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal; 
+  font-family: __UP_fontFamily__;
+  font-size: __UP_fontSize__;
 }
 
 body
@@ -41,6 +44,7 @@ div.quotescontainer
 {
   text-align: left;
   overflow: hidden;
+  background-color: #__UP_BackColor__;
 }
 
 div.quotescontainer table
@@ -118,11 +122,9 @@ img
 
   function load() {
   
-    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("div.quotescontainer").height($(window).height()).width($(window).width());
-    //$("div.quotescontainer table").css("color", prefs.getString("ForeColor"));
-    $("div.quotescontainer").css("background-color", prefs.getString("BackColor"));
     
     update();
     
