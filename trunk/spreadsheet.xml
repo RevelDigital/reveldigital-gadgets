@@ -20,6 +20,8 @@
     <EnumValue value="x-large" display_value="X Large" />
     <EnumValue value="xx-large" display_value="XX Large" />
   </UserPref>
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -29,12 +31,24 @@ body *
 {
   line-height: 1.2em; 
   letter-spacing: 0; 
-  word-spacing: normal; 
+  word-spacing: normal;
+  font-family: __UP_fontFamily__;
+  font-size: __UP_fontSize__;
 }
 
 body
 {
   background: transparent;
+}
+
+#data
+{
+  background-color: #__UP_BackColor__;
+}
+
+#data table
+{
+  color: #__UP_ForeColor__;
 }
 
 table
@@ -71,11 +85,7 @@ th
 
   function load() {
   
-    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
     $("#data").height($(window).height()).width($(window).width());
-    $("#data table").css("color", prefs.getString("ForeColor"));
-    $("#data").css("background-color", prefs.getString("BackColor"));
     
     update();
     
