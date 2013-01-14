@@ -97,7 +97,7 @@ table.google-visualization-table-table,
     );
     
     //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
-    table.draw(dt, { allowHtml:false, sort:'disable'});
+    table.draw(dt, { allowHtml:false, height:parseInt(prefs.getString("rdH")), width:parseInt(prefs.getString("rdW")), sort:'disable'});
   }
   
   function googleUrl(sourceIdentifier) {
