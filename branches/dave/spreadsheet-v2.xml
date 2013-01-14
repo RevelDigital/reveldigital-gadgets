@@ -81,8 +81,8 @@ table.google-visualization-table-table,
     query.setRefreshInterval(300);
     query.send(draw);
 	console.log(prefs.getString("rdW"));
-	console.log("__UP_rdW"); 
-	console.log(prefs.getString("rdW"));
+	console.log("__UP_rdWaaa"); 
+	console.log(parseInt(prefs.getString("rdW")));
   }
   
   function draw(response) {
