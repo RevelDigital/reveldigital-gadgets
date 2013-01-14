@@ -80,7 +80,7 @@ table.google-visualization-table-table,
     query.setRefreshInterval(300);
     query.send(draw);
 	console.log("test");
-	console.log("__UP_rdW__px");
+	console.log("__UP_rdW__px"); 
   }
   
   function draw(response) {
