@@ -8,7 +8,7 @@
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
-<Content type="html">
+<Content type="html"> 
 <![CDATA[
 
 <style type="text/css">
@@ -17,6 +17,7 @@ body *
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal; 
+  test 
 }
 
 body
