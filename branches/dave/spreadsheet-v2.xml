@@ -81,8 +81,8 @@ table.google-visualization-table-table,
     query.setRefreshInterval(300);
     query.send(draw);
 	console.log(prefs.getString("rdW"));
-	console.log("__UP_rdWaaa"); 
-	console.log(parseInt(prefs.getString("rdW")));
+	console.log("__UP_rdW"); 
+	console.log(prefs.getString("rdW"));
   }
   
   function draw(response) {
@@ -101,7 +101,16 @@ table.google-visualization-table-table,
     );
     
     //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
-    table.draw(dt, { allowHtml:false, sort:'disable');
+    table.draw(dt, { allowHtml:false, height:parseInt(prefs.getString("rdH")), width:parseInt(prefs.getString("rdW")), sort:'disable', cssClassNames: {
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style'
+    } });
   }
   
   function googleUrl(sourceIdentifier) {
