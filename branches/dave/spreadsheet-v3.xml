@@ -25,6 +25,18 @@ body
   background: transparent;
 }
 
+
+table.google-visualization-table-table,
+.google-visualization-table-tr-head,
+.google-visualization-table-tr-over,
+.google-visualization-table-tr,
+.google-visualization-table-tr-head td,
+.google-visualization-table-tr-over td,
+.google-visualization-table-tr td
+{
+    background-color: transparent;
+}
+
 .body-style
 {
   __UP_body-style__
