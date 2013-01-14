@@ -82,6 +82,7 @@ table.google-visualization-table-table,
     query.send(draw);
 	console.log(prefs.getString("rdW"));
 	console.log("__UP_rdW"); 
+	console.log(prefs.getString("rdW"));
   }
   
   function draw(response) {
@@ -101,7 +102,7 @@ table.google-visualization-table-table,
     
     //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
     alert(prefs.getString("rdH"));
-    table.draw(dt, { allowHtml:false, height:prefs.getString("rdH"), width:prefs.getString("rdW"), sort:'disable', cssClassNames: {
+    table.draw(dt, { allowHtml:false, height:parseInt(prefs.getString("rdH")), width:parseInt(prefs.getString("rdW")), sort:'disable', cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
       tableRow: 'body-style',
