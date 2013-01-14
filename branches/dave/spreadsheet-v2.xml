@@ -4,7 +4,7 @@
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="scrollSpeed" display_name="Scroll Speed ( 0 = disable )" datatype="number" />
+  <UserPref name="scrollSpeed" display_name="Scroll Speed ( 0 = disable )" datatype="string" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
