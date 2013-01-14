@@ -101,7 +101,6 @@ table.google-visualization-table-table,
     );
     
     //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
-    alert(prefs.getString("rdH"));
     table.draw(dt, { allowHtml:false, height:parseInt(prefs.getString("rdH")), width:parseInt(prefs.getString("rdW")), sort:'disable', cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
