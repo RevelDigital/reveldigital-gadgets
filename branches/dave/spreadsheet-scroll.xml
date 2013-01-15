@@ -31,6 +31,8 @@ body
 	clear: both;
 	overflow: hidden;
 	width: __UP_rdW__px;
+	color:#FFFFFF;
+	background-color:#CCCCCC;
 }
 
 th{
