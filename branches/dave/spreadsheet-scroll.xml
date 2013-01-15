@@ -115,7 +115,7 @@ th{
 				numRows = Math.floor(dif / $("#r_1").height())+1;
 				
 				console.log(Math.floor(numRows));
-				setInterval(scrollTable, parseInt(prefs.getString("rdW") * 1000);
+				setInterval(scrollTable, parseInt(prefs.getString("rdW")) * 1000);
 			}
 		}
     });
