@@ -61,7 +61,7 @@ table.google-visualization-table-table,
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
   }
-
+s
   gadgets.util.registerOnLoadHandler(load);
 </script>
 
