@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="scrollSpeed" display_name="Scroll Speed ( 0 = disable )" datatype="string" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html"> 
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+}
+
+
+/* define height and width of scrollable area. Add 16px to width for scrollbar          */
+#container {
+	clear: both;
+	overflow: hidden;
+	width: __UP_rdW__px;
+}
+
+th{
+	text-align:left;	
+}
+
+#tableHeader{
+	width:100%;
+}
+#dataTable{
+	width:100%;	
+}
+#tableContainer{
+	height: __UP_rdH__px;
+	overflow:hidden;	
+}
+
+.body-style
+{
+  __UP_body-style__
+}
+
+.header-style
+{
+  __UP_header-style__
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/branches/dave/jquery.csv-0.71.js"></script>
+
+<div id="container">
+    <div id="headerContainer"></div>
+    <div id="tableContainer"></div>
+</div>
+
+<script type="text/javascript">
+
+  var header;
+  var table;
+  var rowIndex = 0;
+  var numRows;
+  
+  $(document).ready(initialize());
+  
+  function initialize() {
+	$.get(googleUrl('0Ao5rgV9VZSWOdGZTeUt2UVZlTHNoMnBlZXRxUHlycVE'), function(data) {
+		var arr = $.csv.toArrays(data);
+		if (prefs.getBool("hasTitle")) {  // Static header
+			var headerContent = '';
+			var headerArr = arr.shift();
+			headerContent += '<table id="tableHeader"><thead class="fixedHeader"><tr>';
+			for (var col in headerArr) {
+				headerContent += '<th>' + headerArr[col] + '</th>';
+			}
+			headerContent += '</tr></thead></table>';
+			$('#headerContainer').html(headerContent); 
+		}
+		var gen = '';
+		gen += '<table id="dataTable">';
+		
+		numRows = 0;
+		
+		for (var row in arr) {
+			gen += '<tr id="r_'+row+'">';
+			for (var col in arr[row]) {
+		   		gen += '<td>' + arr[row][col] + '</td>';
+				
+			}
+			gen += '</tr>';
+		}
+		gen += '</table>';
+		$('#tableContainer').html(gen); 
+		
+		$("#tableHeader tr th").each(function (i){
+			   $(this).width($($("#tableContainer tr:first td")[i]).width());
+		})
+
+		if(parseInt(prefs.getString("rdW")) > 0){
+			if( $('#dataTable').height() > $('#tableContainer').height() ){
+			
+				var dif = $('#dataTable').height() - $('#tableContainer').height();
+				numRows = Math.floor(dif / $("#r_1").height())+1;
+				
+				console.log(Math.floor(numRows));
+				setInterval(scrollTable, parseInt(prefs.getString("rdW") * 1000);
+			}
+		}
+    });
+  }
+  
+	function scrollTable(){
+		rowIndex++;
+		
+		var w = $('#dataTable');
+		var curRow = $("#r_"+rowIndex);
+		if(rowIndex >= numRows){
+			$('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
+			rowIndex = 0;
+		}else{
+			$('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');	
+		}
+		console.log(curRow.offset().top - w.offset().top);
+		console.log(rowIndex +":"+ numRows);
+	}
+
+  function googleUrl(sourceIdentifier) {
+    var url, key;
+    if (sourceIdentifier.match(/http(s)*:/)) {
+      url = sourceIdentifier;
+      try {
+        key = url.replace(/.*key=/,'').replace(/&.*/,'');
+      } catch (error) {
+        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
+      }
+    } else {
+      key = sourceIdentifier;
+    }    
+    var ret = "https://spreadsheets.google.com/pub?key=" + key+"&hl=en&output=csv";
+    return ret;
+  }
+</script>
+
+]]>
+</Content>
+</Module>
