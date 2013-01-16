@@ -29,10 +29,8 @@ body
 /* define height and width of scrollable area. Add 16px to width for scrollbar          */
 #container {
 	clear: both;
-	overflow: hidden;
 	width: __UP_rdW__px;
-	color:#FFFFFF;
-	background-color:#CCCCCC;
+	height: __UP_rdH__px;
 }
 
 th{
@@ -40,25 +38,20 @@ th{
 }
 
 #tableHeader{
-	width:100%;
+	width: __UP_rdW__px;
+	__UP_header-style__ 
 }
 #dataTable{
-	width:100%;	
+	width: __UP_rdW__px;
+	__UP_body-style__
+	
 }
 #tableContainer{
 	height: __UP_rdH__px;
-	overflow:hidden;	
+	overflow:hidden;
+	width: __UP_rdW__px;	
 }
 
-.body-style
-{
-  __UP_body-style__
-}
-
-.header-style
-{
-  __UP_header-style__
-}
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/branches/dave/jquery.csv-0.71.js"></script>
@@ -77,9 +70,8 @@ th{
   var numRows;
   var prefs = new gadgets.Prefs();
   $(document).ready(initialize());
-  
   function initialize() {
-	$.get(googleUrl('0Ao5rgV9VZSWOdGZTeUt2UVZlTHNoMnBlZXRxUHlycVE'), function(data) {
+	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
 		if (prefs.getBool("hasTitle")) {  // Static header
 			var headerContent = '';
@@ -111,14 +103,14 @@ th{
 			   $(this).width($($("#tableContainer tr:first td")[i]).width());
 		})
 
-		if(parseInt(prefs.getString("rdW")) > 0){
+		if(parseInt(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
 			
 				var dif = $('#dataTable').height() - $('#tableContainer').height();
 				numRows = Math.floor(dif / $("#r_1").height())+1;
 				
 				console.log(Math.floor(numRows));
-				setInterval(scrollTable, parseInt(prefs.getString("rdW")) * 1000);
+				setInterval(scrollTable, parseInt(prefs.getString("scrollSpeed")) * 1000);
 			}
 		}
     });
