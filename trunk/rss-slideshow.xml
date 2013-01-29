@@ -41,8 +41,6 @@ body *
 body
 {
   background: transparent;
-  font-family: __UP_fontFamily__;
-  font-size: __UP_fontSize__;
 }
 
 h2
@@ -53,6 +51,8 @@ h2
 
 div#data
 {
+  font-family: __UP_fontFamily__;
+  font-size: __UP_fontSize__;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   color: #__UP_ForeColor__;
