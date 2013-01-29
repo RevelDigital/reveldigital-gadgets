@@ -43,6 +43,11 @@ body
   background: transparent;
 }
 
+body, td, div, span, p
+{
+  font-family: __UP_fontFamily__ !important;
+}
+
 h2
 {
   font-size: 150% !important;
@@ -51,7 +56,6 @@ h2
 
 div#data
 {
-  font-family: __UP_fontFamily__ !important;
   font-size: __UP_fontSize__ !important;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
