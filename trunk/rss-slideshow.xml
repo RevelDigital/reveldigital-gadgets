@@ -22,6 +22,10 @@
     <EnumValue value="x-large" display_value="X Large" />
     <EnumValue value="xx-large" display_value="XX Large" />
   </UserPref>
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -37,12 +41,27 @@ body *
 body
 {
   background: transparent;
+  font-family: __UP_fontFamily__;
+  font-size: __UP_fontSize__;
 }
 
 h2
 {
   font-size: 150% !important;
   font-weight: bold;
+}
+
+div#data
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  color: #__UP_ForeColor__;
+  background-color: #__UP_BackColor__;
+}
+
+div#data table
+{
+  color: #__UP_ForeColor__;
 }
 
 ul.slider
@@ -56,6 +75,11 @@ ul.slider li
   overflow: hidden;
   padding: 0;
   margin: 0;
+}
+
+ul.slider li.item
+{
+  height: __UP_rdH__px;
 }
 
 .when
@@ -83,15 +107,15 @@ ul.slider li
   
   function load() {
   
-    $("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
-    $("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
-    $("body").prepend("<style type=\"text/css\"> li.item { height:" + $(window).height() + "px; } </style>");
-    $("body").prepend("<style type=\"text/css\"> table { color:" + prefs.getString("ForeColor") + "; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> body * { font-family: '" + prefs.getString("fontFamily") + "'; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> body * { font-size: " + prefs.getString("fontSize") + "; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> li.item { height:" + $(window).height() + "px; } </style>");
+    //$("body").prepend("<style type=\"text/css\"> table { color:" + prefs.getString("ForeColor") + "; } </style>");
     
-    $("div#data").height($(window).height()).width($(window).width());
-    $("div#data").css("color", prefs.getString("ForeColor"));
-    $("div#data table").css("color", prefs.getString("ForeColor"));
-    $("div#data").css("background-color", prefs.getString("BackColor"));
+    //$("div#data").height($(window).height()).width($(window).width());
+    //$("div#data").css("color", prefs.getString("ForeColor"));
+    //$("div#data table").css("color", prefs.getString("ForeColor"));
+    //$("div#data").css("background-color", prefs.getString("BackColor"));
     
     update();
     
