@@ -68,6 +68,7 @@ th{
   var table;
   var rowIndex = 0;
   var numRows;
+  var timer;
   var prefs = new gadgets.Prefs();
   $(document).ready(initialize());
   function initialize() {
@@ -110,7 +111,7 @@ th{
 				numRows = Math.floor(dif / $("#r_1").height())+1;
 				
 				console.log(Math.floor(numRows));
-				setInterval(scrollTable, parseInt(prefs.getString("scrollSpeed")) * 1000);
+				timer = setInterval(scrollTable, 6000);
 			}
 		}
     });
@@ -118,10 +119,15 @@ th{
   
 	function scrollTable(){
 		rowIndex++;
-		
+		if(rowIndex == 1){
+			clearTimeout(timer)
+			timer = setInterval(scrollTable, parseFloat(prefs.getString("scrollSpeed")) * 1000);
+		}
 		var w = $('#dataTable');
 		var curRow = $("#r_"+rowIndex);
 		if(rowIndex >= numRows){
+			clearTimeout(timer)
+			timer = setInterval(scrollTable, 6000);
 			$('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
 			rowIndex = 0;
 		}else{
