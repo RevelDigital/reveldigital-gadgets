@@ -48,8 +48,7 @@ th{
 }
 #tableContainer{
 	overflow:hidden;
-	width: __UP_rdW__px;
-	height:100%;	
+	width: __UP_rdW__px;	
 }
 
 </style>
@@ -74,7 +73,6 @@ th{
   function initialize() {
   
 
-  
 	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
 		if (prefs.getBool("hasTitle")) {  // Static header
@@ -113,7 +111,9 @@ th{
 		$("#dataTable tr").each(function (i){
 			   $(this).height($("#r_1").height());
 		})
-
+		$('#tableContainer').height( $('#container').height() - $('#tableHeader').height() );
+     	console.log($('#tableHeader').height());
+		alert($('#tableHeader').height());
 		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
 			
