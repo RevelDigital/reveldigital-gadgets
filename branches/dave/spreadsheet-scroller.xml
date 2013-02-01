@@ -48,7 +48,8 @@ th{
 }
 #tableContainer{
 	overflow:hidden;
-	width: __UP_rdW__px;	
+	width: __UP_rdW__px;
+	height:100%;	
 }
 
 </style>
@@ -72,7 +73,7 @@ th{
   $(document).ready(initialize());
   function initialize() {
   
-  	$('#tableContainer').height( $('#container').height() - $('#tableHeader').height() );
+
   
 	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
