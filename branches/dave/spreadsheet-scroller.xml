@@ -125,11 +125,10 @@ th{
 		}
 		var w = $('#dataTable');
 		var curRow = $("#r_"+rowIndex);
-		if(rowIndex >= numRows){
-			clearTimeout(timer)
-			timer = setInterval(scrollTable, 6000);
-			$('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
-			rowIndex = 0;
+		if(rowIndex > numRows){
+			clearTimeout(timer);
+			timer = setTimeout( function(){ $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear',function() {rowIndex = 0;clearTimeout(timer);timer = setInterval(scrollTable, 6000);})}, 3000);
+			
 		}else{
 			$('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');	
 		}
