@@ -47,7 +47,6 @@ th{
 	
 }
 #tableContainer{
-	height: __UP_rdH__px;
 	overflow:hidden;
 	width: __UP_rdW__px;	
 }
