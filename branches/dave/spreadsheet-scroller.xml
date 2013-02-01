@@ -106,15 +106,21 @@ th{
 		$("#tableHeader tr th").each(function (i){
 			   $(this).width($($("#tableContainer tr:first td")[i]).width());
 		})
+		
+		$("#dataTable tr").each(function (i){
+			   $(this).height($("#r_1").height());
+		})
 
 		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
 			
 				var dif = $('#dataTable').height() - $('#tableContainer').height();
-				numRows = Math.floor(dif / $("#r_1").height())+1;
+				numRows = Math.floor(dif / $("#r_1").height());
 				
 				console.log(Math.floor(numRows));
 				timer = setInterval(scrollTable, 6000);
+				console.log($('#dataTable').height()+" : "+$('#tableContainer').height());
+				console.log($("#r_1").height());
 			}
 		}
     });
@@ -135,8 +141,9 @@ th{
 		}else{
 			$('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');	
 		}
-		console.log(curRow.offset().top - w.offset().top);
-		console.log(rowIndex +":"+ numRows);
+		
+		//console.log(curRow.offset().top - w.offset().top);
+		//console.log(rowIndex +":"+ numRows);
 	}
 
   function googleUrl(sourceIdentifier) {
