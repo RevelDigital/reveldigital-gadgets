@@ -104,7 +104,7 @@ th{
 			   $(this).width($($("#tableContainer tr:first td")[i]).width());
 		})
 
-		if(parseInt(prefs.getString("scrollSpeed")) > 0){
+		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
 			
 				var dif = $('#dataTable').height() - $('#tableContainer').height();
