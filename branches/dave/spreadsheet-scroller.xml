@@ -75,6 +75,7 @@ th{
 
 	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
+		alert($('#tableHeader').height());
 		if (prefs.getBool("hasTitle")) {  // Static header
 			var headerContent = '';
 			var headerArr = arr.shift();
@@ -113,7 +114,7 @@ th{
 		})
 		$('#tableContainer').height( $('#container').height() - $('#tableHeader').height() );
      	console.log($('#tableHeader').height());
-		alert($('#tableHeader').height());
+		
 		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
 			
