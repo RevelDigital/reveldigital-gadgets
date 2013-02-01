@@ -92,6 +92,9 @@ th{
 		for (var row in arr) {
 			gen += '<tr id="r_'+row+'">';
 			for (var col in arr[row]) {
+				if(arr[row][col] == ""){
+					arr[row][col] = " ";
+				}
 		   		gen += '<td>' + arr[row][col] + '</td>';
 				
 			}
