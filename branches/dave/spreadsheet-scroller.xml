@@ -69,10 +69,12 @@ th{
   var rowIndex = 0;
   var numRows;
   var timer;
-  var currentY = 0;
   var prefs = new gadgets.Prefs();
   $(document).ready(initialize());
   function initialize() {
+  
+  	$('#tableContainer).height( $('#container).height() - $('#tableHeader).height() );
+  
 	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
 		if (prefs.getBool("hasTitle")) {  // Static header
@@ -114,9 +116,7 @@ th{
 
 		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
 			if( $('#dataTable').height() > $('#tableContainer').height() ){
-				delayStart();
-				//timer = setInterval(moveTable, 50);
-				/*
+			
 				var dif = $('#dataTable').height() - $('#tableContainer').height();
 				numRows = Math.floor(dif / $("#r_1").height());
 				
@@ -124,25 +124,10 @@ th{
 				timer = setInterval(scrollTable, 6000);
 				console.log($('#dataTable').height()+" : "+$('#tableContainer').height());
 				console.log($("#r_1").height());
-				*/
 			}
 		}
     });
   }
-
-  	function moveTable(){
-		$('#tableContainer').scrollTop($('#tableContainer').scrollTop()+parseFloat(prefs.getString("scrollSpeed")));
-		if(currentY == $('#tableContainer').scrollTop()){
-			clearTimeout(timer);
-			timer = setTimeout( function(){ $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear',function() {delayStart()})}, 6000);
-		}
-		currentY = $('#tableContainer').scrollTop();
-		console.log($('#tableContainer').scrollTop());
-	}
-	
-	function delayStart(){
-		timer = setInterval(function(){clearTimeout(timer); timer = setInterval(moveTable, 50);}, 6000);
-	}
   
 	function scrollTable(){
 		rowIndex++;
