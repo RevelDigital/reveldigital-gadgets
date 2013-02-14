@@ -51,6 +51,11 @@ table th
 {
   __UP_header-style__;
 }
+
+td.price
+{
+  text-align: right;
+}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -115,8 +120,8 @@ table th
           numRows = 0;
           
           gen += '<tr id="r_' + row++ + '">';
-          gen += '<td>' + desc.text() + '</td>';
-          gen += '<td>$' + price.text() + '</td>';
+          gen += '<td class="name">' + desc.text() + '</td>';
+          gen += '<td class="price">$' + price.text() + '</td>';
           gen += '</tr>';
         }
       });
