@@ -76,7 +76,7 @@ function loadDivisions() {
     });
     
     loadItems();
-  });
+  }, 'xml');
 }
 
 function loadItems() {
