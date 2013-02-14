@@ -62,77 +62,77 @@ table th
 
 <script type="text/javascript">
 
-var divisions = [];
+  var divisions = [];
 
-function loadDivisions() {
+  function loadDivisions() {
 
-  $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
-  
-    $(data).find('ConfigExport Divisions Division').each(function() {
+    $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
     
-      var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
+      $(data).find('ConfigExport Divisions Division').each(function() {
       
-      divisions.push(div);
-    });
-    
-    loadItems();
-  }, 'xml');
-}
-
-function loadItems() {
-
-  var div = findDivision(prefs.getString('division')[0];
-  
-  $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
-  
-    var row = 0;
-    var gen = '';
-    gen += '<table id="dataTable">';
-    $(data).find('ConfigExport SaleItems SaleItem').each(function() {
-    
-      var desc = $(this).find("Description");
-      var price = $(this).find("RevenueCenter[Name='DINING'] Price1");
-      var division = $(this).find("Division");
-      
-      console.debug(division.text());
-      
-      if (division.text() == div.id) {
-
-        console.debug(desc.text());
+        var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
         
-        numRows = 0;
-        
-        gen += '<tr id="r_' + row++ + '">';
-        gen += '<td>' + desc.text() + '</td>';
-        gen += '<td>$' + price.text() + '</td>';
-        gen += '</tr>';
-      }
-    });
-    
-    gen += '</table>';
-    $('#tableContainer').html(gen); 
-  }, 'xml');
-}
-
-function findDivision(name){
-  return $.grep(divisions, function(n, i){
-    return n.name == name;
-  });
-};
-
-function scrollTable() {
-
-  rowIndex++;
-
-  var w = $('#dataTable');
-  var curRow = $("#r_"+rowIndex);
-  if (rowIndex >= numRows) {
-    $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
-    rowIndex = 0;
-  } else {
-    $('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');        
+        divisions.push(div);
+      });
+      
+      loadItems();
+    }, 'xml');
   }
-}
+
+  function loadItems() {
+
+    var div = findDivision(prefs.getString('division')[0];
+    
+    $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
+    
+      var row = 0;
+      var gen = '';
+      gen += '<table id="dataTable">';
+      $(data).find('ConfigExport SaleItems SaleItem').each(function() {
+      
+        var desc = $(this).find("Description");
+        var price = $(this).find("RevenueCenter[Name='DINING'] Price1");
+        var division = $(this).find("Division");
+        
+        console.debug(division.text());
+        
+        if (division.text() == div.id) {
+
+          console.debug(desc.text());
+          
+          numRows = 0;
+          
+          gen += '<tr id="r_' + row++ + '">';
+          gen += '<td>' + desc.text() + '</td>';
+          gen += '<td>$' + price.text() + '</td>';
+          gen += '</tr>';
+        }
+      });
+      
+      gen += '</table>';
+      $('#tableContainer').html(gen); 
+    }, 'xml');
+  }
+
+  function findDivision(name){
+    return $.grep(divisions, function(n, i){
+      return n.name == name;
+    });
+  };
+
+  function scrollTable() {
+
+    rowIndex++;
+
+    var w = $('#dataTable');
+    var curRow = $("#r_"+rowIndex);
+    if (rowIndex >= numRows) {
+      $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
+      rowIndex = 0;
+    } else {
+      $('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');        
+    }
+  }
 </script>
 
 <script type="text/javascript">
