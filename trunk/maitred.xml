@@ -3,6 +3,8 @@
 <ModulePrefs title="MaitreD Menu Gadget" description="MaitreD integration gadget for displaying menu items by division" author="RevelDigital" background="transparent">
   <UserPref name="host" display_name="Database Host" datatype="string" />
   <UserPref name="division" display_name="Division" datatype="string" />
+  <UserPref name="mode" display_name="Mode" datatype="string" />
+  <UserPref name="revenueCenter" display_name="Revenue Center" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -107,21 +109,19 @@ td.price
       gen += '<table id="dataTable">';
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
       
-        var desc = $(this).find("Description");
-        var price = $(this).find("RevenueCenter[Name='DINING'] Price1");
-        var division = $(this).find("Division");
+        var available = $(this).children("Available:contains(1)");
+        var desc = $(this).children("Description");
+        var revenueCenter = $(this).find("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
+        var division = $(this).children("Division");
+        var mode = $(revenueCenter).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
         
-        console.debug(division.text());
-        
-        if (division.text() == div.id) {
+        if (mode.length > 0 && available.length > 0 && division.text() == div.id) {
 
-          console.debug(desc.text());
-          
-          numRows = 0;
+          var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
           
           gen += '<tr id="r_' + row++ + '">';
-          gen += '<td class="name">' + desc.text() + '</td>';
-          gen += '<td class="price">$' + price.text() + '</td>';
+          gen += '<td>' + desc.text() + '</td>';
+          gen += '<td>$' + price.text() + '</td>';
           gen += '</tr>';
         }
       });
