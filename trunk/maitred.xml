@@ -114,11 +114,12 @@ table th
     }, 'xml');
   }
 
-  function findDivision(name){
-    return $.grep(divisions, function(n, i){
+  function findDivision(name) {
+  
+    return $.grep(divisions, function(n, i) {
       return n.name == name;
     });
-  };
+  }
 
   function scrollTable() {
 
