@@ -62,9 +62,22 @@ table th
 
 <script type="text/javascript">
 
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    loadDivisions();
+    
+    setInterval(loadDivisions, 120000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
   var divisions = [];
 
-  function loadDivisions() {
+  var loadDivisions = function() {
 
     $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
     
@@ -79,7 +92,7 @@ table th
     }, 'xml');
   }
 
-  function loadItems() {
+  var loadItems = function() {
 
     var div = findDivision(prefs.getString('division')[0];
     
@@ -114,39 +127,13 @@ table th
     }, 'xml');
   }
 
-  function findDivision(name) {
+  var findDivision = function(name) {
   
     return $.grep(divisions, function(n, i) {
       return n.name == name;
     });
   }
-
-  function scrollTable() {
-
-    rowIndex++;
-
-    var w = $('#dataTable');
-    var curRow = $("#r_"+rowIndex);
-    if (rowIndex >= numRows) {
-      $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
-      rowIndex = 0;
-    } else {
-      $('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');        
-    }
-  }
-</script>
-
-<script type="text/javascript">
-
-  var prefs = new gadgets.Prefs();
-
-  function load() {
-
-    loadDivisions();
-    
-    setInterval(loadDivisions, 120000);
-  }
-  gadgets.util.registerOnLoadHandler(load);
+  
 </script>
 ]]>
 </Content>
