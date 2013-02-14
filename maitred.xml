@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="MaitreD Menu Gadget" description="MaitreD integration gadget for displaying menu items by division" author="RevelDigital" background="transparent">
+  <UserPref name="host" display_name="Database Host" datatype="string" />
+  <UserPref name="division" display_name="Division" datatype="string" />
+  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+}
+
+table
+{
+  width: __UP_rdW__px;
+}
+
+#container {
+  clear: both;
+  width: __UP_rdW__px;
+  height: 100%;
+}
+
+th {
+  text-align:left;        
+}
+
+.body-style
+{
+  __UP_body-style__
+}
+
+.header-style
+{
+  __UP_header-style__
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<div id="container">
+  <div id="headerContainer"></div>
+  <div id="tableContainer"></div>
+</div>
+
+<script type="text/javascript">
+
+var divisions = [];
+
+$(document).ready(function() {
+
+  loadDivisions();
+});
+
+function loadDivisions() {
+
+  $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
+  
+    $(data).find('ConfigExport Divisions Division').each(function() {
+    
+      var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
+      
+      divisions.push(div);
+    });
+    
+    loadItems();
+  });
+}
+
+function loadItems() {
+
+  var div = findDivision(prefs.getString('division')[0];
+  
+  $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
+  
+    var row = 0;
+    var gen = '';
+    gen += '<table id="dataTable">';
+    $(data).find('ConfigExport SaleItems SaleItem').each(function() {
+    
+      var desc = $(this).find("Description");
+      var price = $(this).find("RevenueCenter[Name='DINING'] Price1");
+      var division = $(this).find("Division");
+      
+      console.debug(division.text());
+      
+      if (division.text() == div.id) {
+
+        console.debug(desc.text());
+        
+        numRows = 0;
+        
+        gen += '<tr id="r_' + row++ + '">';
+        gen += '<td>' + desc.text() + '</td>';
+        gen += '<td>$' + price.text() + '</td>';
+        gen += '</tr>';
+      }
+    });
+    
+    gen += '</table>';
+    $('#tableContainer').html(gen); 
+  }, 'xml');
+}
+
+function findDivision(name){
+  return $.grep(divisions, function(n, i){
+    return n.name == name;
+  });
+};
+
+function scrollTable() {
+
+  rowIndex++;
+
+  var w = $('#dataTable');
+  var curRow = $("#r_"+rowIndex);
+  if (rowIndex >= numRows) {
+    $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear');
+    rowIndex = 0;
+  } else {
+    $('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');        
+  }
+}
+</script>
+]]>
+</Content>
+</Module>
