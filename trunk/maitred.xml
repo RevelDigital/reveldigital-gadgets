@@ -62,6 +62,7 @@ table th
 
 <script type="text/javascript">
 
+  var divisions = [];
   var prefs = new gadgets.Prefs();
 
   function load() {
@@ -74,8 +75,6 @@ table th
 </script>
 
 <script type="text/javascript">
-
-  var divisions = [];
 
   var loadDivisions = function() {
 
