@@ -60,12 +60,20 @@ th {
 
 <script type="text/javascript">
 
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    loadDivisions();
+    
+    setInterval(loadDivisions, 120000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
 var divisions = [];
-
-$(document).ready(function() {
-
-  loadDivisions();
-});
 
 function loadDivisions() {
 
