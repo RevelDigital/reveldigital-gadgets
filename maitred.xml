@@ -93,7 +93,7 @@ table th
 
   var loadItems = function() {
 
-    var div = findDivision(prefs.getString('division')[0];
+    var div = findDivision(prefs.getString('division'))[0];
     
     $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
     
