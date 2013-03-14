@@ -77,7 +77,7 @@ td.price
 
     loadDivisions();
     
-    setInterval(loadDivisions, prefs.getString("updateInterval"));
+    setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
