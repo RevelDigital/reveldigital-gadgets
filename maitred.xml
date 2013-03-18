@@ -101,7 +101,10 @@ td.price
 
   var loadItems = function() {
 
-    var div = findDivision(prefs.getString('division'))[0];
+    var div = findDivision(prefs.getString('division'));
+    if (div.length == 0) {
+      return;
+    }
     
     $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
     
@@ -116,7 +119,7 @@ td.price
         var division = $(this).children("Division");
         var mode = $(revenueCenter).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
         
-        if (mode.length > 0 && available.length > 0 && division.text() == div.id) {
+        if (mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
 
           var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
           
