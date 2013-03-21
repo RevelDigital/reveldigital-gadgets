@@ -114,12 +114,12 @@ td.price
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
       
         var available = $(this).children("Available:contains(1)");
-        var desc = $(this).children("Description");
+        var desc = $(this).children("Description2");
         var revenueCenter = $(this).find("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
         var division = $(this).children("Division");
         var mode = $(revenueCenter).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
         
-        if (mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
+        if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
 
           var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
           
