@@ -121,7 +121,8 @@ td.price
         
         if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
 
-          var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
+          //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
+          var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
           
           gen += '<tr id="r_' + row++ + '">';
           gen += '<td>' + desc.text() + '</td>';
