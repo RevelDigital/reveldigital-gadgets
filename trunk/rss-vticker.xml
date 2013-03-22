@@ -5,9 +5,10 @@
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+  <UserPref name="scrollSpeed" display_name="Seconds between scrolling" datatype="string" default_value="5" />
   <UserPref name="showContent" display_name="Display feed description" datatype="bool" default_value="true" />
+  <UserPref name="snippet" display_name="Display a short description" datatype="bool" default_value="true" />
   <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
-  <UserPref name="snippet" display_name="If true, shows a short description" datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -101,7 +102,10 @@ h1, h2, h3, h4, h5
       snippet: prefs.getBool("snippet"),
       header: prefs.getBool("showHeader")
     }, function (e) {
-      $('#ticker div.rssBody').vTicker({ showItems: prefs.getString("numItems") });
+      $('#ticker div.rssBody').vTicker({
+        showItems: prefs.getString("numItems"),
+        speed: parseInt(prefs.getString("scrollSpeed")) * 1000
+      });
     });
   }
 
