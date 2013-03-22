@@ -26,10 +26,21 @@ body
 
 .rssFeed
 {
-	__UP_body-style__;
 	width: __UP_rdW__px;
 	height: __UP_rdH__px;
 	overflow: hidden;
+}
+
+.rssFeed a
+{
+	__UP_body-style__;
+	text-decoration: none;
+}
+
+.rssFeed a:hover
+{
+	__UP_body-style__;
+	text-decoration: none;
 }
 
 .rssHeader
@@ -41,6 +52,7 @@ body
 {
   border: 0px solid #fff;
   height: __UP_rdH__px;
+  __UP_body-style__;
 }
 
 .rssRow h4, .rssRow p, .rssRow div
