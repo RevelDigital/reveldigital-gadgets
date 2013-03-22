@@ -1,11 +1,17 @@
 /*
 * Tadas Juozapaitis ( kasp3rito@gmail.com )
+*
+* Modifed by Zazar:
+* 24.06.2011 - Corrected pausing issue with multiple instances
+*
 */
+
 (function($){
+
 $.fn.vTicker = function(options) {
 	var defaults = {
 		speed: 700,
-		pause: 8000,
+		pause: 4000,
 		showItems: 3,
 		animation: '',
 		mousePause: true,
@@ -14,57 +20,56 @@ $.fn.vTicker = function(options) {
 
 	var options = $.extend(defaults, options);
 
-	moveUp = function(obj2, height){
-		if(options.isPaused)
-			return;
+	moveUp = function(obj2, height, paused){
+		if(paused) return;
 		
 		var obj = obj2.children('ul');
 		
-    	first = obj.children('li:first').clone(true);
+	    	first = obj.children('li:first').clone(true);
 		
-    	obj.animate({top: '-=' + height + 'px'}, options.speed, function() {
-        	$(this).children('li:first').remove();
-        	$(this).css('top', '0px');
-        });
+    		obj.animate({top: '-=' + height + 'px'}, options.speed, function() {
+        		$(this).children('li:first').remove();
+	        	$(this).css('top', '0px');
+        	});
 		
-		if(options.animation == 'fade')
-		{
+		if(options.animation == 'fade') {
 			obj.children('li:first').fadeOut(options.speed);
 			obj.children('li:last').hide().fadeIn(options.speed);
 		}
 
-    	first.appendTo(obj);
+	    	first.appendTo(obj);
 	};
 	
 	return this.each(function() {
 		var obj = $(this);
 		var maxHeight = 0;
+		var itempause = options.isPaused;
 
 		obj.css({overflow: 'hidden', position: 'relative'})
 			.children('ul').css({position: 'absolute', margin: 0, padding: 0})
 			.children('li').css({margin: 0, padding: 0});
 
 		obj.children('ul').children('li').each(function(){
-			if($(this).height() > maxHeight)
-			{
+
+			if($(this).height() > maxHeight) {
 				maxHeight = $(this).height();
 			}
 		});
 
-		obj.children('ul').children('li').each(function(){
+		obj.children('ul').children('li').each(function() {
 			$(this).height(maxHeight);
 		});
 
 		obj.height(maxHeight * options.showItems);
 		
-    	var interval = setInterval(function(){ moveUp(obj, maxHeight); }, options.pause);
+    		var interval = setInterval(function(){ moveUp(obj, maxHeight, itempause); }, options.pause);
 		
-		if(options.mousePause)
+		if (options.mousePause)
 		{
-			obj.bind("mouseenter",function(){
-				options.isPaused = true;
-			}).bind("mouseleave",function(){
-				options.isPaused = false;
+			obj.bind("mouseenter",function() {
+				itempause = true;
+			}).bind("mouseleave",function() {
+				itempause = false;
 			});
 		}
 	});
