@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
-  <UserPref name="feedUrl" display_name="RSS Feed URL" datatype="string" />
-  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
+  <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
+  <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
+  <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+  <UserPref name="showContent" display_name="Display feed description" datatype="bool" default_value="true" />
+  <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
+  <UserPref name="snippet" display_name="If true, shows a short description" datatype="bool" default_value="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style"default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -85,8 +90,13 @@ body
 
   function load() {    
     $("#ticker").rssfeed(prefs.getString("feedUrl"), {
+      limit: prefs.getString("maxItems"),
+      content: prefs.getBool("showContent"),
+      date: prefs.getBool("showDate"),
+      snippet: prefs.getBool("snippet"),
+      header: prefs.getBool("showHeader")
     }, function (e) {
-      $('#ticker div.rssBody').vTicker({ showItems: 1});
+      $('#ticker div.rssBody').vTicker({ showItems: prefs.getString("numItems") });
     });
   }
 
