@@ -32,18 +32,6 @@ body
 	overflow: hidden;
 }
 
-.rssFeed a
-{
-	color: #820024;
-	text-decoration: none;
-}
-
-.rssFeed a:hover
-{
-	color: #000;
-	text-decoration: underline;
-}
-
 .rssHeader
 {
   __UP_header-style__;
