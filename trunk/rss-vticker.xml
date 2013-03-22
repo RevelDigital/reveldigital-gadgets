@@ -8,7 +8,7 @@
   <UserPref name="showContent" display_name="Display feed description" datatype="bool" default_value="true" />
   <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
   <UserPref name="snippet" display_name="If true, shows a short description" datatype="bool" default_value="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style"default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
