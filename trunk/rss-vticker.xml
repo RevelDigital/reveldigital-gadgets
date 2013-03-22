@@ -31,11 +31,6 @@ body
 	overflow: hidden;
 }
 
-.rssFeed h4
-{
-  __UP_header-style__;
-}
-
 .rssFeed a
 {
 	__UP_body-style__;
@@ -64,6 +59,11 @@ body
 {
 	margin: 0;
 	width: __UP_rdW__px;
+}
+
+.rssRow h4
+{
+  __UP_header-style__;
 }
 
 #ticker1 .odd { background-color: #fff; }
