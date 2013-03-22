@@ -5,7 +5,7 @@
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
-  <UserPref name="scrollSpeed" display_name="Seconds between scrolling" datatype="string" default_value="5" />
+  <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
   <UserPref name="showContent" display_name="Display feed description" datatype="bool" default_value="true" />
   <UserPref name="snippet" display_name="Display a short description" datatype="bool" default_value="true" />
   <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5
     }, function (e) {
       $('#ticker div.rssBody').vTicker({
         showItems: prefs.getString("numItems"),
-        speed: parseInt(prefs.getString("scrollSpeed")) * 1000
+        pause: parseInt(prefs.getString("pause")) * 1000
       });
     });
   }
