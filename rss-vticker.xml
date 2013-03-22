@@ -104,7 +104,8 @@ h1, h2, h3, h4, h5
     }, function (e) {
       $('#ticker div.rssBody').vTicker({
         showItems: prefs.getString("numItems"),
-        pause: parseInt(prefs.getString("pause")) * 1000
+        pause: parseInt(prefs.getString("pause")) * 1000,
+        delay: 1000
       });
     });
   }
