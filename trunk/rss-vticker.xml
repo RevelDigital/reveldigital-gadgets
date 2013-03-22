@@ -43,7 +43,7 @@ body
 	text-decoration: none;
 }
 
-.rssHeader
+.rssHeader, .rssHeader a
 {
   __UP_header-style__;
 }
@@ -61,7 +61,7 @@ body
 	width: __UP_rdW__px;
 }
 
-.rssRow h4
+.rssRow h4, .rssRow a
 {
   __UP_header-style__;
 }
