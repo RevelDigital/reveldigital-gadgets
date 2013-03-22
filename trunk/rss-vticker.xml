@@ -79,7 +79,8 @@ body
   var prefs = new gadgets.Prefs();
 
   function load() {    
-    $("#ticker").rssfeed(prefs.getString("feedUrl")).ajaxStop(function() {
+    $("#ticker").rssfeed(prefs.getString("feedUrl"), {
+    }, function (e) {
       $('#ticker div.rssBody').vTicker({ showItems: 1});
     });
   }
