@@ -35,9 +35,22 @@ table
 
 #container
 {
+  position: relative;
   clear: both;
   width: __UP_rdW__px;
   height: 100%;
+}
+
+#loader
+{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/images/ajax-loader.gif');
+  background-repeat: no-repeat;
+  display: none;
 }
 
 th
@@ -66,6 +79,7 @@ td.price
 <div id="container">
   <div id="headerContainer"></div>
   <div id="tableContainer"></div>
+  <div id="loader"></div>
 </div>
 
 <script type="text/javascript">
@@ -86,6 +100,8 @@ td.price
 
   var loadDivisions = function() {
 
+    $('#loader').show();
+    
     $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
     
       $(data).find('ConfigExport Divisions Division').each(function() {
@@ -94,6 +110,8 @@ td.price
         
         divisions.push(div);
       });
+      
+      $('#loader').hide();
       
       loadItems();
     }, 'xml');
@@ -105,6 +123,8 @@ td.price
     if (div.length == 0) {
       return;
     }
+    
+    $('#loader').show();
     
     $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
     
@@ -133,6 +153,9 @@ td.price
       
       gen += '</table>';
       $('#tableContainer').html(gen); 
+      
+      $('#loader').hide();
+      
     }, 'xml');
   }
 
