@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital RSS Vertical Scroller" description="Rotates through RSS feed items in a vertical scroller" author="RevelDigital" background="transparent">
   <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
