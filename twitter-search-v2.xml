@@ -51,7 +51,7 @@ img
   box-shadow: 2px 2px 4px #777;
 }
 
-ul
+ul, p
 {
   padding: 0;
   margin: 0;
