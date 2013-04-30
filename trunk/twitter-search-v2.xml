@@ -127,7 +127,7 @@ span.when
   
   var update = function () {
   
-    var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("numTweets") + "&since_id=" + max_id + "&callback=?&q=";
+    var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
