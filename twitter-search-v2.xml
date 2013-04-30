@@ -154,7 +154,7 @@ span.when
         max_id = json.max_id_str;
         var display = '';
         $.each(json.results,function(i,tweet) {
-          display += '<div class="item">';
+          display += '<li><div class="item">';
           ttext = tweet.text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
           ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
           display += '<div class="avatar tweet' + i + '">' +
@@ -165,7 +165,7 @@ span.when
             '" title="tweets by ' + tweet.from_user + 
             '">@' + tweet.from_user + '</a></h2>' + 
             '<h3>' + ttext + '</h3>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
-            '</div><div style="clear:both;"></div></div>';
+            '</div><div style="clear:both;"></div></div></li>';
         });
         $(display).prependTo("div.tweetscontainer");
         
