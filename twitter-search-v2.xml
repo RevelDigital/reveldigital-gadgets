@@ -5,6 +5,7 @@
   <UserPref name="numItems" display_name="Number of tweets visible at the same time"  datatype="string" default_value="3" />
   <UserPref name="maxItems" display_name="Maximum number of tweets" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between tweets" datatype="string" default_value="5" />
+  <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -163,6 +164,9 @@ span.when
         }
         max_id = json.max_id_str;
         
+        if (prefs.getBool("showSeparator") == false) {
+          $("div.tweetscontainer .item").css("border", "none");
+        }
         $("span.when").each(function (idx) {
           $(this).text(timeAgo($(this).data("timestamp")));
         });
