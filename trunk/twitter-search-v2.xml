@@ -38,7 +38,7 @@ a
 
 a:hover
 {
-  __UP_body-style__;
+  __UP_link-style__;
   text-decoration:none;
 }
 
