@@ -161,10 +161,10 @@ span.when
             '<img src="' + tweet.profile_image_url.replace(/_normal\./, '_bigger.') + '"  />' + 
             '</div>' +
             '<div class="text tweet' + i + '">' +
-            '<h2><a href="http://twitter.com/' + tweet.from_user + 
+            '<a href="http://twitter.com/' + tweet.from_user + 
             '" title="tweets by ' + tweet.from_user + 
-            '">@' + tweet.from_user + '</a></h2>' + 
-            '<h3>' + ttext + '</h3>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
+            '">@' + tweet.from_user + '</a>' + 
+            '<p>' + ttext + '</p>' + '<span class="when" data-timestamp="' + tweet.created_at + '">' + timeAgo(tweet.created_at) + '</span>' +
             '</div><div style="clear:both;"></div></div></li>';
         });
         $(display).prependTo("div.tweetscontainer ul");
