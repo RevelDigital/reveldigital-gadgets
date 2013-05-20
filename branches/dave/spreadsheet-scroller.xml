@@ -75,7 +75,7 @@ th{
 
 	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
 		var arr = $.csv.toArrays(data);
-		alert($('#tableHeader').height());
+		//alert($('#tableHeader').height());
 		if (prefs.getBool("hasTitle")) {  // Static header
 			var headerContent = '';
 			var headerArr = arr.shift();
