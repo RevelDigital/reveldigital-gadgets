@@ -225,7 +225,7 @@ function formatDiv(json) {
     } else {
       span.text(startDate + ", " + startTime + " - " + endDate + ", " + endTime);
     }
-    $(div).append(span);
+    $(h3).append(span);
     
     $("#event-container").append(div);
   }
