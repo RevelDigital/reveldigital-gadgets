@@ -97,7 +97,7 @@ td
 h2
 {
   padding: 0;
-  margin: 0;
+  margin: 0 0 10px 0;
   __UP_header-style__
 }
 
