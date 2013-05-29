@@ -228,7 +228,7 @@ function formatDiv(json) {
 
 function formatTable(json) {
 
-    $("#data table").empty();
+    $("#data table tbody").remove();
     
     if (!("entry" in json.feed)) {
       return;
