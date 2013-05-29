@@ -21,9 +21,9 @@
   </ul>
 </div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/lib/klass.min.js"></script>
-<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/lib/klass.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js"></script>
 
 <script type="text/javascript">
 
@@ -31,8 +31,8 @@
 
   function load() {
     loadResources([
-      'http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/mobile-slideshow-1.0.css',
-      'http://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/photoswipe.css'
+      'https://reveldigital-gadgets.googlecode.com/svn/trunk/styles/mobile-slideshow-1.0.css',
+      'https://reveldigital-gadgets.googlecode.com/svn/third-party/photoswipe-3.0.4/photoswipe.css'
     ],[]);
   }
     
