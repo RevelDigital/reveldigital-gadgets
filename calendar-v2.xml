@@ -9,29 +9,12 @@
   <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
-  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
-    <EnumValue value="times new roman" display_value="Times New Roman" />
-    <EnumValue value="courier new" display_value="Courier New" />
-    <EnumValue value="verdana" display_value="Verdana" />
-    <EnumValue value="arial" display_value="Arial" />
-    <EnumValue value="tahoma" display_value="Tahoma" />
-    <EnumValue value="impact" display_value="Impact" />
-  </UserPref>
-  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
-    <EnumValue value="xx-small" display_value="XX Small" />
-    <EnumValue value="x-small" display_value="X Small" />
-    <EnumValue value="small" display_value="Small" />
-    <EnumValue value="medium" display_value="Medium" />
-    <EnumValue value="large" display_value="Large" />
-    <EnumValue value="x-large" display_value="X Large" />
-    <EnumValue value="xx-large" display_value="XX Large" />
-  </UserPref>
-  <UserPref name="ForeColor" datatype="hidden" />
-  <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
