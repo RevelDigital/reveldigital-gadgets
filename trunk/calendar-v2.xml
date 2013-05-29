@@ -89,6 +89,11 @@ th
   __UP_header-style__
 }
 
+td
+{
+  __UP_body-style__
+}
+
 h2
 {
   font-size: 180% !important;
@@ -119,7 +124,7 @@ h3
 }
 </style>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/date.format.js" type="text/javascript"></script>
 
 <div id="data">
