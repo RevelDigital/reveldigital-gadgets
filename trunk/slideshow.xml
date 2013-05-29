@@ -6,10 +6,10 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/files/Sequence.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/Sequence.js"></script>
 
-<link type="text/css" href="http://reveldigital-gadgets.googlecode.com/files/slide-in.css" rel="stylesheet">
+<link type="text/css" href="https://reveldigital-gadgets.googlecode.com/svn/third-party/slide-in.css" rel="stylesheet">
 <style type="text/css">
   body {
     background-color: transparent;
