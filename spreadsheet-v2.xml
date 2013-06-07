@@ -88,6 +88,9 @@ table.google-visualization-table-table,
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
+        if (!prefs.getBool("hasTitle")) {
+          $(".header-style").remove();
+        }
       }
     );
     
