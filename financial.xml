@@ -138,7 +138,7 @@ img
   
   var update = function () {
 
-    var url="http://www.google.com/finance/info?infotype=infoquoteall&callback=?&q=";
+    var url="https://www.google.com/finance/info?infotype=infoquoteall&callback=?&q=";
     var query = escape( query=prefs.getString("symbols") );
   
     $.getJSON(url+query, function(json){
@@ -154,9 +154,9 @@ img
           display += '<td class="symbol">' + quote.t + '</td>';
           display += '<td class="value">' + quote.l + '</td>';
           if (parseFloat(quote.c) >= 0) {
-            display += '<td class="icon"><img src="http://reveldigital-gadgets.googlecode.com/svn/trunk/images/up_arrow_48.png" alt=""/></td>';
+            display += '<td class="icon"><img src="https://reveldigital-gadgets.googlecode.com/svn/trunk/images/up_arrow_48.png" alt=""/></td>';
           } else {
-            display += '<td class="icon"><img src="http://reveldigital-gadgets.googlecode.com/svn/trunk/images/down_arrow_48.png" alt=""/></td>';
+            display += '<td class="icon"><img src="https://reveldigital-gadgets.googlecode.com/svn/trunk/images/down_arrow_48.png" alt=""/></td>';
           }
           display += '<td class="value">' + quote.c + '</td>';
           display += '<td class="value">' + quote.cp + '%</td>';
