@@ -37,7 +37,7 @@ a
   text-decoration:none;
 }
 
-a:hover
+a:hover,a:visited,a:active,a:link
 {
   __UP_link-style__;
   text-decoration:none;
