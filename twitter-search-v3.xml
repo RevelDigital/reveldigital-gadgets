@@ -125,14 +125,14 @@ span.when
   var update = function () {
   
     //var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
-    var url = "http://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?q=from:CBS&format=json";
+    var url = "http://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?format=json&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
     var hashrex = /\#+([\w\d:#@%/;$()~_?\+-=\\\.&]*)/g;
     var thashuri = "https://twitter.com/search?q=%23";
   
-    $.getJSON(url, function(json){
+    $.getJSON(url+query, function(json){
 
       if(json) {
         var display = '';
