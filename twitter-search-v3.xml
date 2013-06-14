@@ -132,11 +132,11 @@ span.when
     var hashrex = /\#+([\w\d:#@%/;$()~_?\+-=\\\.&]*)/g;
     var thashuri = "https://twitter.com/search?q=%23";
   
-    $.getJSON(url+query, function(json){
+    $.getJSON(url, function(json){
 
       if(json) {
         var display = '';
-        $.each(json.results,function(i,tweet) {
+        $.each(json.Statuses,function(i,tweet) {
           display += '<li><div class="item">';
           ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
           ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
@@ -176,7 +176,7 @@ span.when
 
   var timeAgo = function (dateString) {
     var rightNow = new Date(),
-    then = new Date(parseInt(str.substr(6))),
+    then = new Date(parseInt(dateString.substr(6))),
     diff = rightNow - then,
     second = 1000,
     minute = second * 60,
