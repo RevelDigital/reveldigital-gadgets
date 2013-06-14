@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget. Search options available here: https://dev.twitter.com/docs/using-search" author="RevelDigital" background="transparent">
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="numItems" display_name="Number of tweets visible at the same time"  datatype="string" default_value="3" />
   <UserPref name="maxItems" display_name="Maximum number of tweets" datatype="string" default_value="10" />
