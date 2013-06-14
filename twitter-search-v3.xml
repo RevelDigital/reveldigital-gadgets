@@ -112,7 +112,7 @@ span.when
       
     update();
     
-    setInterval(update, 30000);
+    setInterval(update, 1000 * 60 * 10); // 10 min update
   }
 
   gadgets.util.registerOnLoadHandler(load);
@@ -162,7 +162,6 @@ span.when
           pause: parseInt(prefs.getString("pause")) * 1000,
           delay: 1000
         });
-        //max_id = json.max_id_str;
         
         if (prefs.getBool("showSeparator") == false) {
           $("div.tweetscontainer .item").css("border", "none");
