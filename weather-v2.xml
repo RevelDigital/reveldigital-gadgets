@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+  <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
+  <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
+    <EnumValue value="div" display_value="Consolidated" />
+    <EnumValue value="table" display_value="Tabular" />
+  </UserPref>
+  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
+  <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
+  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: transparent;
+  width: 793px;
+  height: 503px;
+  font-size: 150%;
+}
+.fe_container
+{
+  width:100%;
+  font-weight:300;
+  color:#333;
+  margin:0 auto;
+  width: 1600px;
+}
+
+.fe_container .fe_forecast
+{
+  width: 100%;
+}
+
+.fe_container .fe_currently
+{
+  float:left;
+  position:relative;
+
+  height:100%;
+  font-size:1.4em;
+  text-align:center;
+  padding-top:5px;
+}
+
+#fe_current_icon
+{
+  width: 150px;
+  height: 150px;
+  float: left;
+}
+
+.fe_container .fe_currently .fe_temp
+{
+  display:inline-block;
+  position:relative;
+  margin-left:5px;
+  font-size:3em;
+  font-weight:700;
+  text-align:center;
+  line-height:.65em;
+}
+
+.fe_container .fe_currently .fe_temp .fe_dir
+{
+  position:relative;
+  left:-5px;
+  display:block;
+  font-size:.3em;
+  font-weight:400;
+}
+
+.fe_container .fe_currently .fe_summary
+{
+  font-size:1em;
+  font-weight:700;
+}
+
+.fe_container .fe_currently .fe_wind
+{
+  font-size:.7em;
+}
+
+.fe_container .fe_daily
+{
+  float:left;
+  display:table;
+
+  height:100%;
+  font-size:1em;
+  text-align:center;
+}
+
+.fe_container .fe_daily .fe_day
+{
+  display:table-cell;
+  text-align:center;
+}
+.fe_container .fe_daily .fe_day .fe_label {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+}
+.fe_container .fe_daily .fe_day .fe_temp_bar {
+  position: relative;
+  width: 40px;
+  margin: 40px auto 0;
+  font-size: 1.2em;
+  border-radius: 200px;
+}
+.fe_container .fe_daily .fe_day .fe_low_temp {
+  position: absolute;
+  width: 100%;
+  bottom: -1.2em;
+  left: -.0em;
+}
+.fe_container .fe_daily .fe_day .fe_high_temp {
+  position: absolute;
+  width: 100%;
+  top: -1.2em;
+  left: -.0em;
+}
+.fe_container .fe_daily .fe_day .fe_high_temp:after,
+.fe_container .fe_daily .fe_day .fe_low_temp:after,
+.fe_temp:after {
+    content: "\00b0";
+}
+.fe_container .fe_daily .fe_day .fe_icon {
+  width: 70px;
+  height: 70px;
+}</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/skycons.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div id="forecast_embed" class="fe_container">
+  <div class="fe_forecast">
+     <div class="fe_currently">
+        <canvas id="fe_current_icon" width="200" height="200"></canvas>
+        <div class="fe_temp"> <span class="fe_dir"></span></div>
+        <div style="clear:left"></div>
+        <div class="fe_summary"></div>
+        <div class="fe_wind"></div>
+     </div>
+     <div class="fe_daily">
+        <div class="fe_day">
+           <span class="fe_label">Today</span>           
+           <canvas class="fe_icon" width="70" height="70" id="fe_day_icon0"></canvas>
+           <div class="fe_temp_bar" style="height: 8px; top: 0px; background-color: rgb(51, 51, 51);"><span class="fe_high_temp"></span><span class="fe_low_temp"></span></div>
+        </div>
+        <div class="fe_day">
+           <span class="fe_label"></span>
+           <canvas class="fe_icon" width="52" height="52" id="fe_day_icon1"></canvas>
+           <div class="fe_temp_bar" style="height: 18.27931960608776px; top: 61.738585496866605px; background-color: rgb(51, 51, 51);"><span class="fe_high_temp"></span><span class="fe_low_temp"></span></div>
+        </div>
+        <div class="fe_day">
+           <span class="fe_label"></span>           
+           <canvas class="fe_icon" width="52" height="52" id="fe_day_icon2"></canvas>
+           <div class="fe_temp_bar" style="height: 21.179051029543416px; top: 58.72873769024175px; background-color: rgb(51, 51, 51);"><span class="fe_high_temp"></span><span class="fe_low_temp"></span></div>
+        </div>
+        <div class="fe_day">
+           <span class="fe_label"></span>           
+           <canvas class="fe_icon" width="52" height="52" id="fe_day_icon3"></canvas>
+           <div class="fe_temp_bar" style="height: 53.29632945389437px; top: 22.537153088630273px; background-color: rgb(51, 51, 51);"><span class="fe_high_temp"></span><span class="fe_low_temp"></span></div>
+        </div>
+        <div class="fe_day">
+           <span class="fe_label"></span>           
+           <canvas class="fe_icon" width="52" height="52" id="fe_day_icon4"></canvas>
+           <div class="fe_temp_bar" style="height: 50.83706356311549px; top: 19.45389435989257px; background-color: rgb(51, 51, 51);"><span class="fe_high_temp"></span><span class="fe_low_temp"></span></div>
+        </div>
+     </div>
+     <div style="clear:left"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var prefs = new gadgets.Prefs();
+  var geocoder = new google.maps.Geocoder();
+  
+  function mapIcon(icon) {
+    switch (icon) {
+      case 'clear-day':
+        return Skycons.CLEAR_DAY;
+      case 'clear-night':
+        return Skycons.CLEAR_NIGHT;
+      case 'partly-cloudy-night':
+        return Skycons.PARTLY_CLOUDY_NIGHT;
+      case 'partly-cloudy-day':
+        return Skycons.PARTLY_CLOUDY_DAY;
+      case 'cloudy':
+        return Skycons.CLOUDY;
+      case 'rain':
+        return Skycons.RAIN;
+      case 'sleet':
+        return Skycons.SLEET;
+      case 'snow':
+        return Skycons.SNOW;
+      case 'wind':
+        return Skycons.WIND;
+      case 'fog':
+        return Skycons.FOG;
+      default:
+        return Skycons.CLEAR_DAY;
+    }
+  }
+  
+  function load() {
+    
+    $.getJSON('https://api.forecast.io/forecast/0b37c606ca5921a48efd415f56fd9fef/47.04835979706026,-97.36630800781245?callback=?', function(data) {
+      skycons.add("fe_current_icon", mapIcon(data.currently.icon));
+      $(".fe_temp").text(parseInt(data.currently.temperature));
+      $(".fe_summary").text(data.currently.summary);
+      $(".fe_wind").text("Wind: " + parseInt(data.currently.windSpeed) + " mph");
+      $.each(data.daily.data, function (i, val) {
+        if (i < 5) {
+        var t = new Date(1970,0,1);
+        t.setSeconds(val.time);
+        skycons.add('fe_day_icon' + i, mapIcon(val.icon));
+        var idx = i + 1;
+        $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_high_temp').text(parseInt(val.temperatureMax));
+        $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_low_temp').text(parseInt(val.temperatureMin));
+        $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_label').text(days[t.getDay()]);
+        }
+      });
+      skycons.play();
+    });
+    
+    var skycons = new Skycons({"color": "pink"});
+    
+    
+    
+
+    //update();
+    
+    //setInterval(update, 5000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+  var update = function () {
+  
+    geocoder.geocode({ 'address': '503 7th St. N., Fargo, ND, 58102'}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        $('#forecast_embed').attr('src', 'http://forecast.io/embed/#lat=' + results[0].geometry.location.lat() + '&lon=' + results[0].geometry.location.lng() + '&name=Downtown Boston');
+      }
+    });
+  }
+</script>
+
+]]>
+</Content>
+</Module>
