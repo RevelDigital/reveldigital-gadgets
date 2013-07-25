@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Weather Gadget" description="Local weather details with forecast" author="RevelDigital" background="transparent">
   <UserPref name="Location" display_name="City, State for Weather" datatype="string" required="true" />
-  <UserPref name="Units" display_name="Temperature Units"  datatype="enum" default_value="div">
+  <UserPref name="Units" display_name="Temperature Units"  datatype="enum" default_value="US">
     <EnumValue value="us" display_value="US" />
     <EnumValue value="si" display_value="Metric" />
   </UserPref>
@@ -26,18 +26,18 @@ body *
 
 body
 {
-  font-family:HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  __UP_TextStyle__;
   background:transparent;
-  width:793px;
-  height:503px;
-  font-size:20px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
 }
 
 .fe_container
 {
   font-weight:300;
   color:#333;
-  width:1600px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   margin:0 auto;
 }
 
@@ -123,8 +123,7 @@ body
   width:40px;
   font-size:1.5em;
   border-radius:200px;
-  color:#0f0;
-  background:#0f0;
+  background: _UP_IconColor__;
   margin:40px auto 0;
 }
 
