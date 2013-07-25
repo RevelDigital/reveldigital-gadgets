@@ -176,8 +176,6 @@ body
 
 <script type="text/javascript">
 
-  var loc = "Miami, FL";
-  var forecastDays = prefs.getInt("ForecastDays");
   var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var prefs = new gadgets.Prefs();
   var geocoder = new google.maps.Geocoder();
@@ -230,7 +228,7 @@ body
       var max = data.currently.temperature;
       var min = data.currently.temperature;
       $.each(data.daily.data, function (i, val) {
-        if (i < Math.min(8, forecastDays)) {
+        if (i < Math.min(8, prefs.getInt("ForecastDays"))) {
           max = Math.max(max, val.temperatureMax);
           min = Math.min(min, val.temperatureMin);
           var t = new Date(1970,0,1);
