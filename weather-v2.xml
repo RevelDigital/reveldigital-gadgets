@@ -123,7 +123,7 @@ body
   width:40px;
   font-size:1.5em;
   border-radius:200px;
-  background: _UP_IconColor__;
+  background: __UP_IconColor__;
   margin:40px auto 0;
 }
 
@@ -177,7 +177,7 @@ body
 <script type="text/javascript">
 
   var loc = "Miami, FL";
-  var forecastDays = 8;
+  var forecastDays = prefs.getInt("ForecastDays");
   var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var prefs = new gadgets.Prefs();
   var geocoder = new google.maps.Geocoder();
@@ -272,7 +272,7 @@ body
   
   function update() {
   
-    geocoder.geocode({'address': loc}, function(results, status) {
+    geocoder.geocode({'address': prefs.getString("Location")}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         renderWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
       }
