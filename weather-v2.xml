@@ -35,7 +35,6 @@ body
 .fe_container
 {
   font-weight:300;
-  color:#333;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   margin:0 auto;
