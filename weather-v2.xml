@@ -264,7 +264,7 @@ body
       skycons.play();
     });
     
-    var skycons = new Skycons({"color": "blue"});
+    var skycons = new Skycons({"color": prefs.getString("IconColor")});
   }
   
   function update() {
