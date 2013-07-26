@@ -211,7 +211,7 @@ body
     
     update();
     
-    //setInterval(load, 5000);
+    setInterval(update, 1800000);
   }
 
   function renderWeather(lat, lng) {
