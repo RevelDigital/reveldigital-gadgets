@@ -113,27 +113,30 @@ td.price
       
         var available = $(this).children("Available:contains(1)");
         var desc = $(this).children("Description2");
-        var revenueCenter = $(this).find("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
-        var division = $(this).children("Division");
-        var mode = $(revenueCenter).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
+        var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
+        if (revenueCenter.length > 0) {
         
-        if (desc.text().length > 0 && prefs.getString("mode").length == 0 && division.text() == div[0].id) {
-        
-          var price = revenueCenter.find("Price1");
+          var division = $(this).children("Division");
+          var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
-          gen += '<tr id="r_' + row++ + '">';
-          gen += '<td>' + desc.text() + '</td>';
-          gen += '<td>$' + price.text() + '</td>';
-          gen += '</tr>';
-        } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
-        
-          //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
-          var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
+          if (desc.text().length > 0 && prefs.getString("mode").length == 0 && division.text() == div[0].id) {
           
-          gen += '<tr id="r_' + row++ + '">';
-          gen += '<td>' + desc.text() + '</td>';
-          gen += '<td>$' + price.text() + '</td>';
-          gen += '</tr>';
+            var price = revenueCenter.find("Price1");
+            
+            gen += '<tr id="r_' + row++ + '">';
+            gen += '<td>' + desc.text() + '</td>';
+            gen += '<td>$' + price.text() + '</td>';
+            gen += '</tr>';
+          } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
+          
+            //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
+            var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
+            
+            gen += '<tr id="r_' + row++ + '">';
+            gen += '<td>' + desc.text() + '</td>';
+            gen += '<td>$' + price.text() + '</td>';
+            gen += '</tr>';
+          }
         }
       });
       
