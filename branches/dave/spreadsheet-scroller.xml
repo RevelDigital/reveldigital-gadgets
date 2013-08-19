@@ -137,7 +137,7 @@ th {
       }, 3000);
 		} else {
 			$('#dataTable').animate({top: -curRow.position().top});
-			setTimeout(scrollTable, parseFloat(prefs.getString("scrollSpeed")));
+			setTimeout(scrollTable, parseFloat(prefs.getString("scrollSpeed")) * 1000);
 		}
 	}
 
