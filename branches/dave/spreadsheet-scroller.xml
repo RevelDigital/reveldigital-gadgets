@@ -113,7 +113,7 @@ th {
       $("#dataTable tr").each(function (i) {
         $(this).height($("#r_1").height());
       });
-      if (parseFloat(prefs.getString("scrollSpeed"))) {
+      if (parseFloat(prefs.getString("scrollSpeed")) > 0) {
         if ($('#dataTable').height() > $('#tableContainer').height()) {
           setTimeout(scrollTable, 1000);
         }
