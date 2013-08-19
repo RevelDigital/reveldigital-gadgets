@@ -33,32 +33,34 @@ body
 	height: __UP_rdH__px;
 }
 
-th{
+th {
 	text-align:left;	
 }
 
-#tableHeader{
+#tableHeader {
 	width: __UP_rdW__px;
 	__UP_header-style__ 
 }
-#dataTable{
+#dataTable {
+  position: absolute;
 	width: __UP_rdW__px;
 	__UP_body-style__
-	
 }
-#tableContainer{
-	overflow:hidden;
-	width: __UP_rdW__px;	
+#tableContainer {
+  position: relative;
+	overflow: hidden;
+	width: __UP_rdW__px;
+	height: __UP_rdH__px;
 }
 
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/branches/dave/jquery.csv-0.71.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
 <div id="container">
-    <div id="headerContainer"></div>
-    <div id="tableContainer"></div>
+  <div id="headerContainer"></div>
+  <div id="tableContainer"></div>
 </div>
 
 <script type="text/javascript">
@@ -69,85 +71,74 @@ th{
   var numRows;
   var timer;
   var prefs = new gadgets.Prefs();
-  $(document).ready(initialize());
-  function initialize() {
   
+  gadgets.util.registerOnLoadHandler(initialize);
+  
+  function initialize() {
+    $.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
+      var arr = $.csv.toArrays(data);
+      if (prefs.getBool("hasTitle")) {  // Static header
 
-	$.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
-		var arr = $.csv.toArrays(data);
-		//alert($('#tableHeader').height());
-		if (prefs.getBool("hasTitle")) {  // Static header
-			var headerContent = '';
-			var headerArr = arr.shift();
-			headerContent += '<table id="tableHeader"><thead class="fixedHeader"><tr>';
-			for (var col in headerArr) {
-				headerContent += '<th>' + headerArr[col] + '</th>';
-			}
-			headerContent += '</tr></thead></table>';
-			$('#headerContainer').html(headerContent); 
-		}
-		var gen = '';
-		gen += '<table id="dataTable">';
-		
-		numRows = 0;
-		
-		for (var row in arr) {
-			gen += '<tr id="r_'+row+'">';
-			for (var col in arr[row]) {
-				if(arr[row][col] == ""){
-					arr[row][col] = " ";
-				}
-		   		gen += '<td>' + arr[row][col] + '</td>';
-				
-			}
-			gen += '</tr>';
-		}
-		gen += '</table>';
-		$('#tableContainer').html(gen); 
-		
-		$("#tableHeader tr th").each(function (i){
-			   $(this).width($($("#tableContainer tr:first td")[i]).width());
-		})
-		
-		$("#dataTable tr").each(function (i){
-			   $(this).height($("#r_1").height());
-		})
-		$('#tableContainer').height( $('#container').height() - $('#tableHeader').height() );
-     	console.log($('#tableHeader').height());
-		
-		if(parseFloat(prefs.getString("scrollSpeed")) > 0){
-			if( $('#dataTable').height() > $('#tableContainer').height() ){
-			
-				var dif = $('#dataTable').height() - $('#tableContainer').height();
-				numRows = Math.floor(dif / $("#r_1").height());
-				
-				console.log(Math.floor(numRows));
-				timer = setInterval(scrollTable, 6000);
-				console.log($('#dataTable').height()+" : "+$('#tableContainer').height());
-				console.log($("#r_1").height());
-			}
-		}
+        var headerArr = arr.shift();
+        var tableHeader = $("<table id='tableHeader'/>");
+        var thead = $("<thead class='fixedHeader'/>");
+        
+        for (var col in headerArr) {
+          thead.append($("<th>" + headerArr[col] + "</th>"));
+        }
+        tableHeader.append(thead);
+        $('#headerContainer').append(tableHeader);
+      }
+
+      var dataTable = $("<table id='dataTable'/>");
+      numRows = 0;
+      for (var row in arr) {
+        var tr = $("<tr id='r_" + row + "'/>");
+        for (var col in arr[row]) {
+          if(arr[row][col] == ""){
+            arr[row][col] = " ";
+          }
+          tr.append($("<td>" + arr[row][col] + "</td>"));
+        }
+        dataTable.append(tr);
+        numRows++;
+      }
+
+      $('#tableContainer').append(dataTable);
+
+      //$("#tableHeader tr th").each(function (i) {
+      //  $(this).width($($("#tableContainer tr:first td")[i]).width());
+      //})
+
+      $("#dataTable tr").each(function (i) {
+        $(this).height($("#r_1").height());
+      });
+      if (parseFloat(prefs.getString("scrollSpeed")) {
+        if ($('#dataTable').height() > $('#tableContainer').height()) {
+          setTimeout(scrollTable, 1000);
+        }
+      }
     });
   }
   
 	function scrollTable(){
 		rowIndex++;
-		if(rowIndex == 1){
-			clearTimeout(timer)
-			timer = setInterval(scrollTable, parseFloat(prefs.getString("scrollSpeed")) * 1000);
-		}
-		var w = $('#dataTable');
-		var curRow = $("#r_"+rowIndex);
-		if(rowIndex > numRows){
-			clearTimeout(timer);
-			timer = setTimeout( function(){ $('#tableContainer').animate( {scrollTop: 0}, 1500, 'linear',function() {rowIndex = 0;clearTimeout(timer);timer = setInterval(scrollTable, 6000);})}, 3000);
-			
-		}else{
-			$('#tableContainer').animate( {scrollTop: curRow.offset().top - w.offset().top}, 200, 'linear');	
-		}
 		
-		//console.log(curRow.offset().top - w.offset().top);
-		//console.log(rowIndex +":"+ numRows);
+		var curRow = $('#dataTable tr:nth-child(' + (rowIndex+1) + ')');
+				
+		if (rowIndex >= numRows){
+			setTimeout(function() {
+        $('#tableContainer').animate({
+          top: 0
+        }, 1000, 'linear', function() {
+          rowIndex = 0;
+          setTimeout(scrollTable, parseFloat(1000));
+        })
+      }, 3000);
+		} else {
+			$('#dataTable').animate({top: -curRow.position().top});
+			setTimeout(scrollTable, parseFloat(prefs.getString("scrollSpeed")));
+		}
 	}
 
   function googleUrl(sourceIdentifier) {
