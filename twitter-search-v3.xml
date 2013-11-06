@@ -175,7 +175,7 @@ span.when
 
   var timeAgo = function (dateString) {
     var rightNow = new Date(),
-    then = new Date.parse(dateString),
+    then = Date.parse(dateString),
     diff = rightNow - then,
     second = 1000,
     minute = second * 60,
