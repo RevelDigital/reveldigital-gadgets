@@ -178,6 +178,7 @@ body
   var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var prefs = new gadgets.Prefs();
   var geocoder = new google.maps.Geocoder();
+  var skycons;
   
   function mapIcon(icon) {
   
@@ -209,6 +210,7 @@ body
   
   function load() {
     
+    skycons = new Skycons({"color": prefs.getString("IconColor")});
     skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
     
     update();
@@ -266,7 +268,7 @@ body
       skycons.play();
     });
     
-    var skycons = new Skycons({"color": prefs.getString("IconColor")});
+    
   }
   
   function update() {
