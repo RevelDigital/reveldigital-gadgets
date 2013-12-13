@@ -100,7 +100,8 @@ h1, h2, h3, h4, h5
       content: prefs.getBool("showContent"),
       date: prefs.getBool("showDate"),
       snippet: prefs.getBool("snippet"),
-      header: prefs.getBool("showHeader")
+      header: prefs.getBool("showHeader"),
+      ssl: true
     }, function (e) {
       $('#ticker div.rssBody').vTicker({
         showItems: prefs.getString("numItems"),
