@@ -124,8 +124,8 @@ span.when
   
   var update = function () {
   
-    //var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
-    var url = "http://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=";
+    //var url="https://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
+    var url = "https://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
@@ -144,7 +144,7 @@ span.when
             '<img src="' + tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.') + '"  />' + 
             '</div>' +
             '<div class="text tweet' + i + '">' +
-            '<a href="http://twitter.com/' + tweet.User.Identifier.ScreenName + 
+            '<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + 
             '" title="tweets by ' + tweet.User.Identifier.ScreenName + 
             '">@' +tweet.User.Identifier.ScreenName + '</a>' + 
             '<p>' + ttext + '</p>' + '<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + timeAgo(tweet.CreatedAt) + '</span>' +
