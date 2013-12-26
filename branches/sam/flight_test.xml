@@ -167,7 +167,7 @@ console.log(data);
 
 
           console.log(data.flightStatuses.length);  
-          var rowCounter = 1;
+          var rowCounter = 0;
 
           for (var i = 0; i < data.flightStatuses.length; i++) {
 
