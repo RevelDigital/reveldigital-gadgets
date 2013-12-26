@@ -53,7 +53,7 @@
 
 <div id="forecast_embed" class="fe_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><td>Arrival Time</td><td>Flight #</td><td>From</td><td>Airline</td><td>Status</td><td>Gate</td></tr>
+    <tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
