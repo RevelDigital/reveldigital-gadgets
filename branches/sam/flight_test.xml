@@ -186,6 +186,7 @@ console.log(data);
               row.id='rowb';
             }
             
+            rowCounter++;
 
 
             var cells = [];
