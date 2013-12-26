@@ -123,9 +123,9 @@ function refresh() {
   }
 
    airportCode = prefs.getString('airport_code');
-   arrival = prefs.getBool('arrival');
-   numHours = prefs.getInteger('num_hours');
-   numHours = prefs.getInteger('max_flights');
+   arrival = prefs.getString('arrival');
+   numHours = prefs.getString('num_hours');
+   numHours = prefs.getString('max_flights');
 
 
   var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arrival + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
