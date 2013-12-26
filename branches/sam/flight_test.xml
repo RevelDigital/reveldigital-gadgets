@@ -64,7 +64,7 @@
 
     refresh();
 
-    //setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
