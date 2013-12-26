@@ -85,7 +85,7 @@ function getStatus(arg) {
 }
 
 
-
+gadgets.util.registerOnLoadHandler(load);
 
 
 
@@ -236,7 +236,7 @@ console.log(data);
   }
 
   
-gadgets.util.registerOnLoadHandler(load);
+
 
 
 
