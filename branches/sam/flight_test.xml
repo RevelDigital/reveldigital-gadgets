@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
   
-  <UserPref name="airport_code" display_name="Airport Code" datatype="string" />
+  <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="5" />
@@ -120,7 +120,12 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-  $("#flight_table td").parent().remove();
+  try {
+$("#flight_table td").parent().remove();
+  }
+  catch(e) {
+    console.log("error");
+  }
   var airportCode;
   var maxFlights;
   var numHours;
