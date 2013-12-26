@@ -52,8 +52,10 @@
 
 
 <div id="forecast_embed" class="fe_container">
- <table id="flight_table"><tbody>
+ <table id="flight_table"><thead>
     <tr id="header"><td>Arrival Time</td><td>Flight #</td><td>From</td><td>Airline</td><td>Status</td><td>Gate</td></tr>
+    </thead>
+    <tbody>
   </tbody></table>
 </div>
 
@@ -118,6 +120,7 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
+  $('#flight_table tbody').remove();
   var airportCode;
   var maxFlights;
   var numHours;
