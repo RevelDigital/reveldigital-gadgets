@@ -10,6 +10,8 @@
     <EnumValue value="true" display_value="Arrivals" />
     <EnumValue value="false" display_value="Departures" />
   </UserPref>
+  <UserPref name="row_a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
+  <UserPref name="row_b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -31,7 +33,7 @@
 }
 
 .tr {
-  __UP_row-style__ 
+  __UP_row-style__
 }
 
 
@@ -166,7 +168,7 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
-
+            row.background = prefs.getString("row_a");
 
             var cells = [];
 
