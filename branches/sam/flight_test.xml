@@ -175,7 +175,7 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
-            
+            console.log("Row Counter: " + rowCounter);
             if(rowCounter%2 == 0) {
               console.log("even");
               row.id='rowa';
