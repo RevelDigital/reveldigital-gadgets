@@ -120,7 +120,7 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-  $('#flight_table tbody').remove();
+  $("#flight_table td").parent().remove();
   var airportCode;
   var maxFlights;
   var numHours;
