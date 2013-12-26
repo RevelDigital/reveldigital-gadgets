@@ -5,7 +5,7 @@
   <UserPref name="airport_code" display_name="Airport Code" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
-  <UserPref name="update_interval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="300" />
   <UserPref name="arrival" display_name="Type" default_value="true" datatype="enum" >
     <EnumValue value="true" display_value="Arrivals" />
     <EnumValue value="false" display_value="Departures" />
@@ -63,6 +63,8 @@
   function load() {
 
     refresh();
+
+    setInterval(refresh, (prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
