@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  
+  <UserPref name="airport_code" display_name="Airport Code" datatype="string" />
+  <UserPref name="num_hours" display_name="Number of hours" datatype="string" />
+  <UserPref name="max_flights" display_name="Max Flights to display" datatype="string" />
+  <UserPref name="update_interval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
+  <UserPref name="arrival" display_name="Type" default_value="true" datatype="enum" >
+    <EnumValue value="true" display_value="Arrivals" />
+    <EnumValue value="false" display_value="Departures" />
+  </UserPref>
+  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+
+
+#flight_table {
+  text-align:left;
+  width:100%;
+}
+
+#header {
+  font-weight:bold;
+}
+
+
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/skycons.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div id="forecast_embed" class="fe_container">
+ <table id="flight_table"><tbody>
+    <tr id="header"><td>Arrival Time</td><td>Flight #</td><td>From</td><td>Airline</td><td>Status</td><td>Gate</td></tr>
+  </tbody></table>
+</div>
+
+<script type="text/javascript">
+
+//var prefs = new gadgets.Prefs();
+
+function updateFlights() {
+
+}
+
+function compareArrivalTimes(a,b) {
+  if (a.arrivalDate.dateLocal < b.arrivalDate.dateLocal)
+     return 1;
+  if (a.arrivalDate.dateLocal > b.arrivalDate.dateLocal)
+    return -1;
+  return 0;
+}
+
+function getStatus(arg) {
+  switch(arg) {
+    case 'S':
+      return "On Time";
+    break;
+    case 'A':
+      return "On Time";
+    break;
+    case 'C':
+      return "Canceled";
+    break;
+    case 'D':
+      return "Diverted";
+    break;
+    case 'L':
+      return "Landed";
+    break;
+    case 'R':
+      return "Redirected";
+    break;
+    default:
+    break;
+  }
+}
+
+
+
+
+
+
+function refresh() {
+  var airportCode = 'FAR';
+  var arrival = true;
+  var maxFlights = 5;
+  var numHours = 5;
+  var currentDate = new Date();
+  var month = currentDate.getMonth() + 1;
+  var day = currentDate.getDate();
+  var year = currentDate.getFullYear();
+  var hour = currentDate.getHours();
+
+  if(arrival) {
+    arrival = 'arr';
+  }
+  else {
+    arrival = 'dep';
+  }
+
+
+  var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arrival + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
+
+  // airportCode = prefs.getString('airport_code');
+  // arrival = prefs.getBoolean('arrival');
+  // numHours = prefs.getInteger('num_hours');
+
+  
+
+  $.ajax({
+
+
+
+      url: url,
+      dataType: 'JSONP',
+      jsonpCallback: 'callback',
+      type: 'GET',
+      success: function (data) {
+
+console.log(data);
+
+        data.flightStatuses.sort(compareArrivalTimes);
+
+
+
+          console.log(data.flightStatuses.length);  
+
+          for (var i = 0; i < data.flightStatuses.length; i++) {
+
+            var currentFlight = data.flightStatuses[i];
+
+            var rowCounter = 1;
+
+
+
+            var arrivalTime = new Date(Date.parse(currentFlight.arrivalDate.dateLocal + '-0600'));
+            var depatureTime = new Date(currentFlight.departureDate.dateLocal + '-0600');
+            var table = document.getElementById("flight_table");
+
+            var row = table.insertRow(rowCounter);
+
+
+            var cells = [];
+
+            for(var j = 0; j < 6; j++) {
+              cells[j] = row.insertCell(j);
+            }
+
+            cells[1].innerHTML = currentFlight.flightNumber;
+
+
+
+            for(var k = 0; k < data.appendix.airports.length; k++) {
+              if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+                cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+              }
+            }
+
+            for(var l = 0; l < data.appendix.airlines.length; l++) {
+              if(currentFlight.carrierFsCode == data.appendix.airlines[l].fs) {
+                cells[3].innerHTML = data.appendix.airlines[l].name;
+              }
+            }
+
+            
+
+
+            
+            cells[4].innerHTML = getStatus(currentFlight.status);
+            
+            
+
+
+
+            if(true) {
+              try {
+                cells[0].innerHTML = arrivalTime.toLocaleTimeString();
+                cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
+              }
+              catch(e) {
+                console.log(e);
+              }
+              
+            }
+            else {
+              cells[0].innerHTML = depatureTime.toLocaleTimeString();
+              cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
+            }
+
+
+          //check to see if issues will arise with daylight savings time
+          //format the table to be better
+          //setup prefs for airport, timezone?, and formatting
+          //setup interval function and interval prefs
+
+
+           
+            
+            rowCounter++;
+            
+            }
+
+          
+
+
+
+
+          
+      }
+  });
+}
+
+
+
+
+  
+  function load() {
+
+    refresh();
+
+    
+
+
+  }
+
+  
+$(function() {
+  load();
+});
+
+
+
+</script>
+
+]]>
+</Content>
+</Module>
