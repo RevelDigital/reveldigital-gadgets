@@ -81,8 +81,11 @@
 
 
 
-function updateFlights() {
-
+function clearFlights() {
+  var length = $('#flight_table tbody tr').length
+  for(int i=0; i < length; i++) {
+    document.getElementById("flight_table").deleteRow(i);
+  }
 }
 
 function compareArrivalTimes(a,b) {
@@ -121,7 +124,7 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-
+clearFlights();
   var airportCode;
   var maxFlights;
   var numHours;
