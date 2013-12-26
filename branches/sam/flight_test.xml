@@ -168,7 +168,7 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
-            $(row).css('background-color', prefs.getString('row_a'));
+            $('#flight_table tr').css('background-color', #333);
 
             var cells = [];
 
