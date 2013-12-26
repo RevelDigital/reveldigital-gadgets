@@ -117,6 +117,7 @@ function getStatus(arg) {
 
 
 function refresh() {
+  console.log("Updated");
   var airportCode;
   var maxFlights;
   var numHours;
