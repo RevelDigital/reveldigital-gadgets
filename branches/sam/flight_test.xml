@@ -52,8 +52,10 @@
 
 
 <div id="forecast_embed" class="fe_container">
- <table id="flight_table"><tbody>
+ <table id="flight_table"><theader>
     <tr id="header"><td>Arrival Time</td><td>Flight #</td><td>From</td><td>Airline</td><td>Status</td><td>Gate</td></tr>
+    </theader>
+    <tbody>
   </tbody></table>
 </div>
 
@@ -118,8 +120,8 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-    try {
-$("#flight_table td").parent().remove();
+  try {
+    $("#flight_table td").parent().remove();
   }
   catch(e) {
     console.log("error");
