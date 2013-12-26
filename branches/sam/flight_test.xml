@@ -175,9 +175,9 @@ console.log(data);
             var depatureTime = new Date(currentFlight.departureDate.dateLocal + '-0600');
             var table = document.getElementById("flight_table");
 
-            var row = table.insertRow(rowCounter);
-            console.log("Row Counter: " + rowCounter);
-            if(rowCounter%2 == 0) {
+            var row = table.insertRow(i);
+            
+            if(i%2 == 0) {
               console.log("even");
               row.id='rowa';
             }
@@ -186,7 +186,7 @@ console.log(data);
               row.id='rowb';
             }
             
-            rowCounter++;
+            ;
 
 
             var cells = [];
