@@ -26,6 +26,7 @@
 #flight_table {
   text-align:left;
   width:100%;
+  border: none;
 }
 
 #header {
