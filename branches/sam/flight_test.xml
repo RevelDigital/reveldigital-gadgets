@@ -27,7 +27,7 @@
 }
 
 #header {
-  font-weight:bold;
+  __UP_header-style__
 }
 
 
@@ -184,7 +184,7 @@ console.log(data);
 
 
 
-            if(true) {
+            if(arrival) {
               try {
                 cells[0].innerHTML = arrivalTime.toLocaleTimeString();
                 cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
