@@ -10,8 +10,8 @@
     <EnumValue value="true" display_value="Arrivals" />
     <EnumValue value="false" display_value="Departures" />
   </UserPref>
-  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -49,7 +49,19 @@
 
 <script type="text/javascript">
 
-var prefs = new gadgets.Prefs();
+  
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    refresh();
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
+
 
 function updateFlights() {
 
@@ -87,10 +99,6 @@ function getStatus(arg) {
     break;
   }
 }
-
-
-gadgets.util.registerOnLoadHandler(load);
-
 
 
 function refresh() {
@@ -228,16 +236,6 @@ console.log(data);
 
 
 
-
-  
-  function load() {
-
-    refresh();
-
-    
-
-
-  }
 
   
 
