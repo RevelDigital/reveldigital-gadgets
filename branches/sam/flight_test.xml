@@ -108,7 +108,6 @@ function getStatus(arg) {
 
 function refresh() {
   var airportCode;
-  var arrival;
   var maxFlights;
   var numHours;
   var currentDate = new Date();
@@ -118,18 +117,18 @@ function refresh() {
   var hour = currentDate.getHours();
   var arr;
 
-  if(arrival) {
-    arr = 'arr';
-  }
-  else {
-    arr = 'dep';
-  }
 
    airportCode = prefs.getString('airport_code');
    arrival = prefs.getString('arrival');
    numHours = prefs.getString('num_hours');
    maxFlights = prefs.getString('max_flights');
 
+  if(arrival) {
+    arr = 'arr';
+  }
+  else {
+    arr = 'dep';
+  }
 
   var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arr + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
 
@@ -168,7 +167,7 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
-            $('#flight_table tr').css('background-color', #333);
+
 
             var cells = [];
 
