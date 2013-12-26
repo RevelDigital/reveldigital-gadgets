@@ -178,11 +178,9 @@ console.log(data);
             var row = table.insertRow(rowCounter);
             
             if(i%2 == 0) {
-              console.log("even");
               row.id='rowa';
             }
             else {
-              console.log("odd");
               row.id='rowb';
             }
             
