@@ -30,6 +30,10 @@
   __UP_header-style__
 }
 
+.tr {
+  __UP_row-style__ 
+}
+
 
 </style>
 
