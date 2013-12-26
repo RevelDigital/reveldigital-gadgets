@@ -37,10 +37,12 @@
 }
 
 #rowa {
+  __UP_row-style__;
   background-color: __UP_row-a__;
 }
 
 #rowb {
+  __UP_row-style__;
   background-color: __UP_row-b__;
 }
 
@@ -64,7 +66,7 @@
 
     refresh();
 
-    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+    //setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
@@ -118,7 +120,7 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-$("flight_table").find("tr:gt(0)").remove();
+
   var airportCode;
   var maxFlights;
   var numHours;
