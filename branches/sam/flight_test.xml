@@ -52,10 +52,8 @@
 
 
 <div id="forecast_embed" class="fe_container">
- <table id="flight_table"><thead>
+ <table id="flight_table"><tbody>
     <tr id="header"><td>Arrival Time</td><td>Flight #</td><td>From</td><td>Airline</td><td>Status</td><td>Gate</td></tr>
-    </thead>
-    <tbody>
   </tbody></table>
 </div>
 
@@ -120,6 +118,12 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
+    try {
+$("#flight_table td").parent().remove();
+  }
+  catch(e) {
+    console.log("error");
+  }
 
   var airportCode;
   var maxFlights;
@@ -167,7 +171,7 @@ console.log(data);
 
 
           console.log(data.flightStatuses.length);  
-          var rowCounter = 0;
+          var rowCounter = 1;
 
           for (var i = 0; i < data.flightStatuses.length; i++) {
 
