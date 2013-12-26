@@ -41,7 +41,7 @@
 }
 
 #rowb {
-
+  background-color:blue;
 }
 
 
@@ -175,7 +175,14 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
-            row.id='rowa';
+            
+            if(rowCounter%2 == 0) {
+              row.id='rowa';
+            }
+            else {
+              row.id='rowb';
+            }
+            
 
 
             var cells = [];
