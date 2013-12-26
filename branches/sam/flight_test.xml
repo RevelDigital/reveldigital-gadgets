@@ -82,7 +82,7 @@
 
 
 function clearFlights() {
-  var length = $('#flight_table tbody tr').length
+  var length = $('#flight_table tbody tr').length;
   for(int i=0; i < length; i++) {
     document.getElementById("flight_table").deleteRow(i);
   }
@@ -124,7 +124,7 @@ function getStatus(arg) {
 
 function refresh() {
   console.log("Updated");
-//clearFlights();
+clearFlights();
   var airportCode;
   var maxFlights;
   var numHours;
