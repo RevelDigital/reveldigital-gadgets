@@ -36,6 +36,14 @@
   __UP_row-style__
 }
 
+#rowa {
+  background-color:yellow;
+}
+
+#rowb {
+
+}
+
 
 </style>
 
@@ -167,6 +175,7 @@ console.log(data);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
+            row.id='rowa';
 
 
             var cells = [];
@@ -227,14 +236,7 @@ console.log(data);
             
             rowCounter++;
             
-            }
-
-          
-
-
-
-
-          
+            }   
       }
   });
 }
