@@ -31,6 +31,7 @@
 
   #header {
     __UP_header-style__;
+    background-color: __header-style__;
   }
 
   #rowa {
