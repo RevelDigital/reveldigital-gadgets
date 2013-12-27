@@ -35,7 +35,7 @@
   __UP_header-style__;
 }
 
-.table_container {
+#table_container {
   background-color:black;
 }
 
