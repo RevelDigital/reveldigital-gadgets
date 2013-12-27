@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="black">
   
   <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
