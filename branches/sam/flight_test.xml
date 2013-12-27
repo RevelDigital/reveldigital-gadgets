@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="black">
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
   
   <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
@@ -39,10 +39,6 @@
   background-color:black;
 }
 
-.tr {
-  __UP_row-style__;
-  background-color:black;
-}
 
 #rowa {
   __UP_row-style__;
@@ -60,13 +56,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 
-<body>
+
 <div id="table_container">
  <table id="flight_table"><tbody>
     <tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
-</body>
+
 
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
