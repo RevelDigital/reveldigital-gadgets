@@ -27,6 +27,7 @@
   text-align:left;
   width:100%;
   border: none;
+  background-color:black;
 }
 
 #header {
