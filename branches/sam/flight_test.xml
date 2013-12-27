@@ -37,6 +37,11 @@
 
 #table_container {
   background-color:black;
+  color:black;
+}
+
+#flight_table {
+  color:black;
 }
 
 
