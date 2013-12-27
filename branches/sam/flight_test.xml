@@ -94,7 +94,7 @@ function clearFlights() {
   
   for(var i=1; i < length; i++) {
     console.log("Index: " + i);
-    console.log("Before Length: " + length);
+    console.log("Before Length: " + $('#flight_table tbody tr').length);
     document.getElementById("flight_table").deleteRow(i);
     console.log("After Length: " + $('#flight_table tbody tr').length);
   }
