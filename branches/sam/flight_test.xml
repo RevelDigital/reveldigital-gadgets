@@ -35,7 +35,7 @@
   __UP_header-style__;
 }
 
-.table {
+.table_container {
   background-color:black;
 }
 
@@ -61,7 +61,7 @@
 
 
 <body>
-<div id="forecast_embed" class="fe_container">
+<div id="table_container">
  <table id="flight_table"><tbody>
     <tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
