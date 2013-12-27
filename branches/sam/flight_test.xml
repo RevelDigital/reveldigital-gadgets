@@ -27,7 +27,7 @@
 #flight_table {
   text-align:left;
   width:100%;
-  border: none;
+  border-collapse:collapse;
   background-color:black;
   color:black;
 }
