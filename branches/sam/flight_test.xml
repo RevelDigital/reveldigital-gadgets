@@ -137,11 +137,11 @@
     maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      $('#arrive_depart').html('Arrival Time');
+      document.getElementById('arrive_depart').innerHTML="Arrival Time";
       arriveOrDepart = 'arr';
     }
     else {
-      $('#arrive_depart').html('Departure Time');
+      document.getElementById('arrive_depart').innerHTML="Departure Time";
       arriveOrDepart = 'dep';
     }
 
