@@ -121,6 +121,7 @@
   function refresh() {
     console.log("Updated");
     clearFlights();
+    var arrival;
     var airportCode;
     var maxFlights;
     var numHours;
