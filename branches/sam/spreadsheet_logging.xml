@@ -3,25 +3,10 @@
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
-    <EnumValue value="times new roman" display_value="Times New Roman" />
-    <EnumValue value="courier new" display_value="Courier New" />
-    <EnumValue value="verdana" display_value="Verdana" />
-    <EnumValue value="arial" display_value="Arial" />
-    <EnumValue value="tahoma" display_value="Tahoma" />
-    <EnumValue value="impact" display_value="Impact" />
-  </UserPref>
-  <UserPref name="fontSize" display_name="Font Size" default_value="medium" datatype="enum" >
-    <EnumValue value="xx-small" display_value="XX Small" />
-    <EnumValue value="x-small" display_value="X Small" />
-    <EnumValue value="small" display_value="Small" />
-    <EnumValue value="medium" display_value="Medium" />
-    <EnumValue value="large" display_value="Large" />
-    <EnumValue value="x-large" display_value="X Large" />
-    <EnumValue value="xx-large" display_value="XX Large" />
-  </UserPref>
-  <UserPref name="ForeColor" datatype="hidden" />
-  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -31,9 +16,7 @@ body *
 {
   line-height: 1.2em; 
   letter-spacing: 0; 
-  word-spacing: normal;
-  font-family: __UP_fontFamily__;
-  font-size: __UP_fontSize__;
+  word-spacing: normal; 
 }
 
 body
@@ -41,127 +24,113 @@ body
   background: transparent;
 }
 
-#data
-{
-  background-color: #__UP_BackColor__;
-}
-
-#data table
-{
-  color: #__UP_ForeColor__;
-}
-
 table
 {
-  width: 100%;
+  width: __UP_rdW__px;
 }
 
-td, th
+table.google-visualization-table-table,
+.google-visualization-table-tr-head,
+.google-visualization-table-tr-over,
+.google-visualization-table-tr,
+.google-visualization-table-tr-head td,
+.google-visualization-table-tr-over td,
+.google-visualization-table-tr td
 {
-  font-size: 140% !important;
-  padding: 8px;
+    background-color: transparent;
 }
 
-th
+.body-style
 {
-  font-weight: bold;
-  font-color: #888;
-  font-size: 140%;
-  text-align: left;
-  text-shadow: 2px 2px 2px #888;
+  __UP_body-style__
+}
+
+.header-style
+{
+  __UP_header-style__
 }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-<div id="data">
-  <table id="output">
-  </table>
+<div id="table">
 </div>
 
 <script type="text/javascript">
-
   var prefs = new gadgets.Prefs();
 
-  function load() {
-  
-    $("#data").height($(window).height()).width($(window).width());
-    
-    update();
-    
-    setInterval(update, 120000);
+  function load() {    
+    google.load('visualization', '1', {'packages': ['table']});
+    google.setOnLoadCallback(initialize);
   }
 
   gadgets.util.registerOnLoadHandler(load);
 </script>
 
 <script type="text/javascript">
+  var container;
+  var table;
 
-  var max_id = 0;
-  
-  var update = function () {
-
-    var url = googleUrl( prefs.getString("spreadsheetUrl") );
+  function initialize() {
+    container = document.getElementById("table");
+    table = new google.visualization.Table(container);
     
-    $.getJSON(url, function(json){
-      if(json) {
-        cellEntries(json);
-      }
-    });
+    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
+    query.setRefreshInterval(300);
+    query.send(draw);
   }
-
-  function cellEntries(json) {
-    
-    $("#data table").empty();
-    console.log(json);
-    var tbody = $("<tbody></tbody>");
-    var thead = $("<thead></thead>");
-    
-    var tr;
-    for (var i=0; i<json.feed.entry.length; i++) {
   
-      var entry = json.feed.entry[i];
-      
-      if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
-        if (tr != null) {
-          $(thead).append(tr);
-        }
-        tr = $("<tr/>");
-      } else if (entry.gs$cell.col == '1') {
-        if (tr != null) {
-          $(tbody).append(tr);
-        }
-        tr = $('<tr/>');
-      }
-      
-      var td;
-      if (prefs.getBool("hasTitle") && entry.gs$cell.row == '1') {
-        td = $("<th/>");
-      } else {
-        td = $("<td class=\"item\"/>");
-      }
-      $(td).text(entry.content.$t);
-      
-      $(tr).append(td);
+  function draw(response) {
+    if (response.isError()) {
     }
-    $(thead).hide().appendTo("#data > table").fadeIn();
-    $(tbody).hide().appendTo("#data > table").fadeIn();
+    var dt = response.getDataTable();
+    
+    google.visualization.events.addListener(table, "ready",
+      function (event) {
+        if (!prefs.getBool("hasTitle")) {
+          $(".header-style").remove();
+        }
+      }
+    );
+    
+    google.visualization.events.addListener(table, "sort",
+      function (event) {
+      }
+    );
+    
+    //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
+    
+    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style'
+    } });
   }
- 
-  var googleUrl = function (sourceIdentifier) {
   
-    this.sourceIdentifier = sourceIdentifier;
-    if (this.sourceIdentifier.match(/http(s)*:/)) {
-      this.url = this.sourceIdentifier;
+  function googleUrl(sourceIdentifier) {
+    var url, key;
+    if (sourceIdentifier.match(/http(s)*:/)) {
+      url = sourceIdentifier;
       try {
-        this.key = this.url.replace(/.*key=/,'').replace(/&.*/,'');
+        key = url.replace(/.*key=/,'').replace(/&.*/,'');
       } catch (error) {
-        this.key = this.url.match(/(cells|list)\/(.*?)\//)[2];
+        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
       }
     } else {
-      this.key = this.sourceIdentifier;
+      key = sourceIdentifier;
     }    
-    return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+    var ret = "https://spreadsheets.google.com/pub?key=" + key;
+    
+    if (prefs.getBool("hasTitle")) {
+      ret = ret + "&headers=1";
+    }
+    return ret;
   }
 </script>
 ]]>
