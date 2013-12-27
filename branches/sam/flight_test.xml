@@ -200,6 +200,7 @@ console.log(data);
 
 
             var arrivalTime = new Date(currentFlight.arrivalDate.dateLocal);
+            console.log("Arrival Time: " + arrivalTime);
             var depatureTime = new Date(currentFlight.departureDate.dateLocal);
             var table = document.getElementById("flight_table");
 
@@ -263,10 +264,10 @@ console.log(data);
             }
 
 
-          //check to see if issues will arise with daylight savings time
-          //format the table to be better
-          //setup prefs for airport, timezone?, and formatting
-          //setup interval function and interval prefs
+          
+          
+          
+          
 
 
            
