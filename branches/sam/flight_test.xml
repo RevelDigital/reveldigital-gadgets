@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
-  
   <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
-  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="5" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
   <UserPref name="arrival" display_name="Type" default_value="true" datatype="enum" >
     <EnumValue value="true" display_value="Arrivals" />
     <EnumValue value="false" display_value="Departures" />
@@ -23,64 +22,43 @@
 
 <style type="text/css">
 
+  #flight_table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    height:100%;
+  }
 
-#flight_table {
-  text-align:left;
-  width:100%;
-  border-collapse:collapse;
-  background-color:black;
-  color:black;
-  height:100%;
-}
+  #header {
+    __UP_header-style__;
+  }
 
-#header {
-  __UP_header-style__;
-}
+  #rowa {
+    __UP_row-style__;
+    background-color: __UP_row-a__;
+  }
 
-#table_container {
-  background-color:black;
-  color:black;
-  height:100%;
-}
-.body {
-   background-color:black;
-  color:black;
-  height:100%;
-}
-
-
-
-#rowa {
-  __UP_row-style__;
-  background-color: __UP_row-a__;
-}
-
-#rowb {
-  __UP_row-style__;
-  background-color: __UP_row-b__;
-}
-
+  #rowb {
+    __UP_row-style__;
+    background-color: __UP_row-b__;
+  }
 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 
-
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
 
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
-
   function load() {
-
     refresh();
-
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
@@ -88,94 +66,95 @@
 
 
 
-
-
-
 <script type="text/javascript">
 
-
-
-function clearFlights() {
-  var length = $('#flight_table tbody tr').length;
-  
-  for(var i=length-1; i > 0; i--) {
-    console.log("Index: " + i);
-    console.log("Before Length: " + $('#flight_table tbody tr').length);
-    document.getElementById("flight_table").deleteRow(i);
-    console.log("After Length: " + $('#flight_table tbody tr').length);
-  }
-}
-
-function compareArrivalTimes(a,b) {
-  if (a.arrivalDate.dateLocal < b.arrivalDate.dateLocal)
-     return 1;
-  if (a.arrivalDate.dateLocal > b.arrivalDate.dateLocal)
-    return -1;
-  return 0;
-}
-
-function getStatus(arg) {
-  switch(arg) {
-    case 'S':
-      return "On Time";
-    break;
-    case 'A':
-      return "On Time";
-    break;
-    case 'C':
-      return "Canceled";
-    break;
-    case 'D':
-      return "Diverted";
-    break;
-    case 'L':
-      return "Landed";
-    break;
-    case 'R':
-      return "Redirected";
-    break;
-    default:
-    break;
-  }
-}
-
-
-function refresh() {
-  console.log("Updated");
-clearFlights();
-  var airportCode;
-  var maxFlights;
-  var numHours;
-  var currentDate = new Date();
-  var month = currentDate.getMonth() + 1;
-  var day = currentDate.getDate();
-  var year = currentDate.getFullYear();
-  var hour = currentDate.getHours();
-  var arriveOrDepart;
-
-
-  airportCode = prefs.getString('airport_code');
-  arrival = prefs.getString('arrival');
-  numHours = prefs.getString('num_hours');
-  maxFlights = prefs.getString('max_flights');
-
-  if(arrival) {
-    arriveOrDepart = 'arr';
-  }
-  else {
-    arriveOrDepart = 'dep';
+  function clearFlights() {
+    var length = $('#flight_table tbody tr').length;
+    for(var i=length-1; i > 0; i--) {
+      document.getElementById("flight_table").deleteRow(i);
+    }
   }
 
-  var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
-    console.log("URL: " + url);
-  $.ajax({
+  function compareArrivalTimes(a,b) {
+    if (a.arrivalDate.dateLocal < b.arrivalDate.dateLocal)
+       return 1;
+    if (a.arrivalDate.dateLocal > b.arrivalDate.dateLocal)
+      return -1;
+    return 0;
+  }
+
+  function compareDepartureTimes(a,b) {
+    if (a.departureDate.dateLocal < b.departureDate.dateLocal)
+       return 1;
+    if (a.departureDate.dateLocal > b.departureDate.dateLocal)
+      return -1;
+    return 0;
+  }
+
+  function getStatus(arg) {
+    switch(arg) {
+      case 'S':
+        return "On Time";
+      break;
+      case 'A':
+        return "On Time";
+      break;
+      case 'C':
+        return "Canceled";
+      break;
+      case 'D':
+        return "Diverted";
+      break;
+      case 'L':
+        return "Landed";
+      break;
+      case 'R':
+        return "Redirected";
+      break;
+      default:
+      break;
+    }
+  }
+
+
+  function refresh() {
+    console.log("Updated");
+    clearFlights();
+    var airportCode;
+    var maxFlights;
+    var numHours;
+    var currentDate = new Date();
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
+    var year = currentDate.getFullYear();
+    var hour = currentDate.getHours();
+    var arriveOrDepart;
+
+
+    airportCode = prefs.getString('airport_code');
+    arrival = prefs.getString('arrival');
+    numHours = prefs.getString('num_hours');
+    maxFlights = prefs.getString('max_flights');
+
+    if(arrival) {
+      $('#arrive_depart').html('Arrival Time');
+      arriveOrDepart = 'arr';
+    }
+    else {
+      $('#arrive_depart').html('Departure Time');
+      arriveOrDepart = 'dep';
+    }
+
+    var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
+      console.log("URL: " + url);
+    $.ajax({
       url: url,
       dataType: 'JSONP',
       jsonpCallback: 'callback',
       type: 'GET',
       success: function (data) {
 
-          console.log(data);
+            console.log(data);
 
         data.flightStatuses.sort(compareArrivalTimes);
 
@@ -187,24 +166,20 @@ clearFlights();
           var currentFlight = data.flightStatuses[i];
           var cells = [];
           var arrivalTime = new Date(currentFlight.arrivalDate.dateLocal);
-            console.log("Arrival Time: " + arrivalTime);
+              console.log("Arrival Time: " + arrivalTime);
           var depatureTime = new Date(currentFlight.departureDate.dateLocal);
           var table = document.getElementById("flight_table");
           var row = table.insertRow(rowCounter);
 
-
-          
-            
           if(i%2 == 0) {
             row.id='rowa';
           }
           else {
             row.id='rowb';
-          }
-           
+          }  
           rowCounter++;
 
-          
+            
 
           for(var j = 0; j < 6; j++) {
             cells[j] = row.insertCell(j);
@@ -235,15 +210,19 @@ clearFlights();
             }    
           }
           else {
-            cells[0].innerHTML = depatureTime.toLocaleTimeString();
-            cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
+            try {
+              cells[0].innerHTML = depatureTime.toLocaleTimeString();
+              cells[5].innerHTML = currentFlight.airportResources.arrivalGate;  
+            }
+            catch(e) {
+              console.log(e);
+            }
           }
 
-            
         }   
       }
-  });
-}
+    });
+  }
 </script>
 
 ]]>
