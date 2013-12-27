@@ -119,24 +119,19 @@
 
 
   function refresh() {
-    console.log("Updated");
+    console.log("Updating...");
     clearFlights();
-    var arrival;
-    var airportCode;
-    var maxFlights;
-    var numHours;
+
     var currentDate = new Date();
     var month = currentDate.getMonth() + 1;
     var day = currentDate.getDate();
     var year = currentDate.getFullYear();
     var hour = currentDate.getHours();
     var arriveOrDepart;
-
-
-    airportCode = prefs.getString('airport_code');
-    arrival = prefs.getString('arrival');
-    numHours = prefs.getString('num_hours');
-    maxFlights = prefs.getString('max_flights');
+    var airportCode = prefs.getString('airport_code');
+    var arrival = prefs.getString('arrival');
+    var numHours = prefs.getString('num_hours');
+    var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
       document.getElementById('arrive_depart').innerHTML="Arrival Time";
@@ -181,7 +176,6 @@
           }  
           rowCounter++;
 
-            
 
           for(var j = 0; j < 6; j++) {
             cells[j] = row.insertCell(j);
@@ -189,6 +183,7 @@
 
           cells[1].innerHTML = currentFlight.flightNumber;
           cells[4].innerHTML = getStatus(currentFlight.status);
+          
 
           for(var k = 0; k < data.appendix.airports.length; k++) {
             if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
