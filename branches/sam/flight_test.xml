@@ -29,6 +29,7 @@
   width:100%;
   border: none;
   background-color:black;
+  color:black;
 }
 
 #header {
@@ -40,9 +41,6 @@
   color:black;
 }
 
-#flight_table {
-  color:black;
-}
 
 
 #rowa {
