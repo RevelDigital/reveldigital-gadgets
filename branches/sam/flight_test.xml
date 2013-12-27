@@ -34,6 +34,10 @@
   __UP_header-style__;
 }
 
+.body {
+  background-color:black;
+}
+
 .tr {
   __UP_row-style__;
 }
