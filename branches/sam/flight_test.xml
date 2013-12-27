@@ -31,7 +31,7 @@
 
   #header {
     __UP_header-style__;
-    background-color: __header-style__;
+    background-color: __header-background__;
   }
 
   #rowa {
@@ -213,7 +213,7 @@
           else {
             try {
               cells[0].innerHTML = depatureTime.toLocaleTimeString();
-              cells[5].innerHTML = currentFlight.airportResources.arrivalGate;  
+              cells[5].innerHTML = currentFlight.airportResources.departureGate;  
             }
             catch(e) {
               console.log(e);
