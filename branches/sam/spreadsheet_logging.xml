@@ -77,7 +77,7 @@ table.google-visualization-table-table,
     table = new google.visualization.Table(container);
     
     var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
-    console.log(query);
+console.log("query: " + query);
     query.setRefreshInterval(300);
     query.send(draw);
   }
@@ -86,6 +86,7 @@ table.google-visualization-table-table,
     if (response.isError()) {
     }
     var dt = response.getDataTable();
+    console.log("dt: " + dt);
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
