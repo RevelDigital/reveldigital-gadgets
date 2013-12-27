@@ -192,8 +192,8 @@ console.log(data);
 
 
 
-            var arrivalTime = new Date(Date.parse(currentFlight.arrivalDate.dateLocal));
-            var depatureTime = new Date(Date.parse(currentFlight.departureDate.dateLocal));
+            var arrivalTime = new Date(currentFlight.arrivalDate.dateLocal);
+            var depatureTime = new Date(currentFlight.departureDate.dateLocal);
             var table = document.getElementById("flight_table");
 
             var row = table.insertRow(rowCounter);
