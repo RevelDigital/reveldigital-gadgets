@@ -11,6 +11,47 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
+
+
+
+
+
+<style type="text/css">
+
+body
+{
+  background: transparent;
+}
+
+table
+{
+  width: 100%;
+}
+
+th
+{
+  font-size: 140% !important;
+  padding: 8px;
+}
+
+th
+{
+  font-weight: bold;
+  font-color: #888;
+  font-size: 140%;
+  text-align: left;
+  text-shadow: 2px 2px 2px #888;
+}
+</style>
+
+
+
+<div id="data">
+  <table id="output">
+  </table>
+</div>
+
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -114,17 +155,89 @@
     }    
     return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
+
+  function isNormalInteger(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n >= 0;
+}
+
+
+
+function addColumnStyleClass(input, className) {
+  var colors = ['black', 'blue', 'brown', 'gray', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'yellow'];
+  var styles = ['bold', 'italic', 'underline'];
+
+  var array = input.replace(" ", "").split(';');
+  var color;
+  var style = [];
+  var size;
+
+
+  for(var i = 0; i < array.length; i++) {
+    
+    var temp = array[i].toLowerCase();
+
+    if(/^#[0-9A-F]{6}$/i.test(temp)) {
+      color = temp;
+    }
+    else if(isNormalInteger(temp)) {
+      size = temp;
+    }
+    else {
+
+      for(var j=0; j<colors.length; j++) {
+        if(temp == colors[j]) {
+          color = colors[j]
+          break;
+        }
+      }
+
+      for(var k=0; k<styles.length; k++) {
+        if(temp == styles[k]) {
+          style[k] = styles[k];
+          break;
+        }
+      }
+    }
+  }
+
+
+  var columnStyle = '<style>' + className + ' {';
+
+  if(color != null) {
+    columnStyle += 'color: ' + color + ';';
+  }
+
+  if(style != null) {
+    for(var i=0; i<style.length; i++) {
+      var styleType = style[i];
+      switch(style[i]) {
+        case 'bold':
+          columnStyle += 'text-weight: ' + styleType + ';';
+          break;
+        case 'italic':
+          columnStyle += 'font-style: ' + styleType + ';';
+          break;
+        case 'underline':
+          columnStyle += 'text-decoration: ' + styleType + ';';
+          break;
+      } 
+    }
+  }
+
+  if(size != null) {
+    columnStyle += 'font-size: ' + size + 'pt;';
+  }
+
+  columnStyle += '}</style>';
+
+  $('html > head').append(columnStyle);
+console.log(columnStyle);
+
+}
+
+
 </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
