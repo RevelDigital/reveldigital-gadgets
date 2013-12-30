@@ -168,7 +168,7 @@ console.log("URL: " + url);
       type: 'GET',
       success: function (data) {
 
-console.log(data);
+console.log(data.flightStatuses);
 
         data.flightStatuses.sort(compareArrivalTimes);
 
