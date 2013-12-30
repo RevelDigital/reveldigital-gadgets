@@ -11,7 +11,7 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 
  var prefs = new gadgets.Prefs();
@@ -37,7 +37,7 @@
   
   var update = function () {
 
-    var url = googleUrl('https://docs.google.com/spreadsheet/pub?key=0Ap7nAQROD_R7dHM1N29UV1RvczVCT2tSanZfRTNuYmc&output=html');
+    var url = googleUrl(prefs.getString("spreadsheetUrl"));
     
     $.getJSON(url, function(json){
       if(json) {
