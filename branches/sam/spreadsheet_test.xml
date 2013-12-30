@@ -154,13 +154,8 @@ th
       this.key = this.sourceIdentifier;
     }
     var pathname = window.location.pathname;
-    if(pathname == '/gadgets/ifr') {
-      return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";  
-    }
-    else {
-      return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";      
-    }
-    
+    console.log(pathname);
+    return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 
   function isNormalInteger(str) {
