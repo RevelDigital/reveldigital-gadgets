@@ -5,34 +5,25 @@
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="hasFormat" display_name="Use second row for formatting"  datatype="bool" default_value="false" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 
-
-
-
-
 <style type="text/css">
+  body {
+    background: transparent;
+  }
 
-body
-{
-  background: transparent;
-}
+  table {
+    width: 100%;
+  }
 
-table
-{
-  width: 100%;
-}
-
-th
-{
-  __UP_header-style__;
-}
-
+  th {
+    __UP_header-style__;
+    text-align: left;
+  }
 </style>
 
 
@@ -70,19 +61,17 @@ th
   var update = function () {
 
     var url = googleUrl(prefs.getString("spreadsheetUrl"));
-    
+      
     $.getJSON(url, function(json){
       if(json) {
         cellEntries(json);
       }
     });
+
   }
 
   function cellEntries(json) {
 
-    
-    
-    
     $("#data table").empty();
     
     var tbody = $("<tbody></tbody>");
@@ -123,7 +112,6 @@ th
         $(tbody).append(tr);
       }
       
-     
     }
 
     $(thead).hide().appendTo("#data > table").fadeIn();
@@ -144,15 +132,13 @@ th
     } else {
       this.key = this.sourceIdentifier;
     }
-    var pathname = window.location.pathname;
-    console.log(pathname);
     return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 
   function isNormalInteger(str) {
     var n = ~~Number(str);
     return String(n) === str && n >= 0;
-}
+  }
 
 
 
@@ -225,15 +211,12 @@ function addColumnStyleClass(input, className) {
   columnStyle += '}</style>';
 
   $('html > head').append(columnStyle);
-console.log(columnStyle);
+
 
 }
 
 
 </script>
-
-
-
 ]]>
 </Content>
 </Module>
