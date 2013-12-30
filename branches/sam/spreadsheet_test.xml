@@ -142,6 +142,7 @@
         } 
         else {
           td = $("<td class=column_" + entry.gs$cell.col + "/>");
+          console.log("<td class=column_" + entry.gs$cell.col + "/>");
         }
         $(td).text(entry.content.$t);
 
