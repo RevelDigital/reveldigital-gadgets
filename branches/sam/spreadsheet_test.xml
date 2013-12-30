@@ -152,8 +152,10 @@ th
       }
     } else {
       this.key = this.sourceIdentifier;
-    }    
-    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+    }
+    var pathname = window.location.pathname;
+    console.log(pathname.substring(0,44))
+;    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 
   function isNormalInteger(str) {
