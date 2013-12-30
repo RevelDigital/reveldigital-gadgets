@@ -21,8 +21,8 @@
   }
 
   th {
-    __UP_header-style__;
     text-align: left;
+    __UP_header-style__;
   }
 </style>
 
