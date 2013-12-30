@@ -141,8 +141,8 @@
           td = $("<th/>");
         } 
         else {
-          td = $("<td class=column_" + entry.gs$cell.col + "/>");
-          console.log("<td class=column_" + entry.gs$cell.col + "/>");
+          td = $("<td class=column" + entry.gs$cell.col + "/>");
+          console.log("<td class=column" + entry.gs$cell.col + "/>");
         }
         $(td).text(entry.content.$t);
 
