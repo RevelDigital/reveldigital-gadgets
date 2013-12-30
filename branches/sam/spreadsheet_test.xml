@@ -5,6 +5,19 @@
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="hasFormat" display_name="Use second row for formatting"  datatype="bool" default_value="false" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+
+
+  <UserPref name="column-style-1" display_name="Column 1 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-2" display_name="Column 2 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-3" display_name="Column 3 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-4" display_name="Column 4 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-5" display_name="Column 5 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-6" display_name="Column 6 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+
+
+
+
+
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
@@ -81,11 +94,12 @@
     for (var i=0; i<json.feed.entry.length; i++) {
   
       var entry = json.feed.entry[i];
-
+/*
       if (prefs.getBool("hasFormat") && entry.gs$cell.row == '2') {
         addColumnStyleClass(entry.content.$t, '.column_' + entry.gs$cell.col);
       }
-
+*/
+console.log(prefs.getStyle('column-style-4'));
       else {
         if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
           if (tr != null) {
@@ -139,81 +153,6 @@
     var n = ~~Number(str);
     return String(n) === str && n >= 0;
   }
-
-
-
-function addColumnStyleClass(input, className) {
-  var colors = ['black', 'blue', 'brown', 'gray', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'yellow'];
-  var styles = ['bold', 'italic', 'underline'];
-
-  var array = input.replace(" ", "").split(';');
-  var color;
-  var style = [];
-  var size;
-
-
-  for(var i = 0; i < array.length; i++) {
-    
-    var temp = array[i].toLowerCase();
-
-    if(/^#[0-9A-F]{6}$/i.test(temp)) {
-      color = temp;
-    }
-    else if(isNormalInteger(temp)) {
-      size = temp;
-    }
-    else {
-
-      for(var j=0; j<colors.length; j++) {
-        if(temp == colors[j]) {
-          color = colors[j]
-          break;
-        }
-      }
-
-      for(var k=0; k<styles.length; k++) {
-        if(temp == styles[k]) {
-          style[k] = styles[k];
-          break;
-        }
-      }
-    }
-  }
-
-
-  var columnStyle = '<style>' + className + ' {';
-
-  if(color != null) {
-    columnStyle += 'color: ' + color + ';';
-  }
-
-  if(style != null) {
-    for(var i=0; i<style.length; i++) {
-      var styleType = style[i];
-      switch(style[i]) {
-        case 'bold':
-          columnStyle += 'text-weight: ' + styleType + ';';
-          break;
-        case 'italic':
-          columnStyle += 'font-style: ' + styleType + ';';
-          break;
-        case 'underline':
-          columnStyle += 'text-decoration: ' + styleType + ';';
-          break;
-      } 
-    }
-  }
-
-  if(size != null) {
-    columnStyle += 'font-size: ' + size + 'pt;';
-  }
-
-  columnStyle += '}</style>';
-
-  $('html > head').append(columnStyle);
-
-
-}
 
 
 </script>
