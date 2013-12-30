@@ -3,7 +3,7 @@
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;" required="true" />
 
 
   <UserPref name="column-style-1" display_name="Column 1 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
