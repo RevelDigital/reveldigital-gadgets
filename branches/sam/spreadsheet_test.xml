@@ -58,7 +58,7 @@ th
  var prefs = new gadgets.Prefs();
 
   function load() {
-  
+  console.log("new");
     $("#data").height($(window).height()).width($(window).width());
     
     update();
