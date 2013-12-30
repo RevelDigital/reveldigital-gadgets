@@ -100,7 +100,7 @@
       }
 */
 console.log(prefs.getStyle('column-style-4'));
-      else {
+
         if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
           if (tr != null) {
             $(thead).append(tr);
@@ -124,7 +124,7 @@ console.log(prefs.getStyle('column-style-4'));
 
         $(tr).append(td);
         $(tbody).append(tr);
-      }
+      
       
     }
 
