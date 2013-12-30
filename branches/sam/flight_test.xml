@@ -179,7 +179,7 @@ console.log(data);
 
           var currentFlight = data.flightStatuses[i];
           var cells = [];
-          var arrivalTime = new Date(currentFlight.arrivalDate.dateLocal);
+          var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
 console.log("Arrival Time: " + arrivalTime);
           var depatureTime = new Date(currentFlight.departureDate.dateLocal);
           var table = document.getElementById("flight_table");
