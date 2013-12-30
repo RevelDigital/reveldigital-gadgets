@@ -112,7 +112,7 @@
     } else {
       this.key = this.sourceIdentifier;
     }    
-    return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 </script>
 
