@@ -81,21 +81,21 @@
   }
 
   function compareArrivalTimes(a,b) {
-    if (a.arrivalDate.dateLocal < b.arrivalDate.dateLocal) {
-      return 1;
-    } 
-    if (a.arrivalDate.dateLocal > b.arrivalDate.dateLocal) {
+    if (a.arrivalDate.dateUtc < b.arrivalDate.dateUtc) {
       return -1;
+    } 
+    if (a.arrivalDate.dateUtc > b.arrivalDate.dateUtc) {
+      return 1;
     }
     return 0;
   }
 
   function compareDepartureTimes(a,b) {
-    if (a.departureDate.dateLocal < b.departureDate.dateLocal) {
-      return 1;
-    }
-    if (a.departureDate.dateLocal > b.departureDate.dateLocal) {
+    if (a.departureDate.dateUtc < b.departureDate.dateUtc) {
       return -1;
+    }
+    if (a.departureDate.dateUtc > b.departureDate.dateUtc) {
+      return 1;
     }
     return 0;
   }
