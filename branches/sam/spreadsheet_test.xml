@@ -154,8 +154,8 @@ th
       this.key = this.sourceIdentifier;
     }
     var pathname = window.location.pathname;
-    console.log(pathname.substring(0,44))
-;    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+    console.log(pathname);
+    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 
   function isNormalInteger(str) {
