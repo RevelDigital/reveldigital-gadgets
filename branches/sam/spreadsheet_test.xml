@@ -52,13 +52,13 @@ th
 </div>
 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 
  var prefs = new gadgets.Prefs();
 
   function load() {
-  console.log("new");
+  
     $("#data").height($(window).height()).width($(window).width());
     
     update();
@@ -153,7 +153,7 @@ th
     } else {
       this.key = this.sourceIdentifier;
     }    
-    return "https://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
+    return "http://spreadsheets.google.com/feeds/cells/" + this.key + "/od6/public/values?alt=json-in-script&callback=?";
   }
 
   function isNormalInteger(str) {
