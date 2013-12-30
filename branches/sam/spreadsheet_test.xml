@@ -6,12 +6,12 @@
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
 
 
-  <UserPref name="column-style-1" display_name="Column 1 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
-  <UserPref name="column-style-2" display_name="Column 2 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
-  <UserPref name="column-style-3" display_name="Column 3 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
-  <UserPref name="column-style-4" display_name="Column 4 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
-  <UserPref name="column-style-5" display_name="Column 5 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
-  <UserPref name="column-style-6" display_name="Column 6 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="false" />
+  <UserPref name="column-style-1" display_name="Column 1 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
+  <UserPref name="column-style-2" display_name="Column 2 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
+  <UserPref name="column-style-3" display_name="Column 3 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
+  <UserPref name="column-style-4" display_name="Column 4 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
+  <UserPref name="column-style-5" display_name="Column 5 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
+  <UserPref name="column-style-6" display_name="Column 6 Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="false" />
 
 
 
