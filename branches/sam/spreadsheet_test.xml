@@ -3,7 +3,6 @@
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
-  <UserPref name="hasFormat" display_name="Use second row for formatting"  datatype="bool" default_value="false" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
 
 
@@ -99,7 +98,7 @@
         addColumnStyleClass(entry.content.$t, '.column_' + entry.gs$cell.col);
       }
 */
-console.log(prefs.getStyle('column-style-4'));
+console.log(prefs.getString('column-style-4'));
 
         if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
           if (tr != null) {
