@@ -12,6 +12,7 @@
 <Content type="html">
 <![CDATA[
 
+<script type="text/javascript">
 
  var prefs = new gadgets.Prefs();
 
