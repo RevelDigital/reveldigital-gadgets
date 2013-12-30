@@ -36,6 +36,30 @@
     text-align: left;
     __UP_header-style__;
   }
+
+
+  .column1 {
+    __UP_column-style-1__;
+  }
+  .column2 {
+   __UP_column-style-2__; 
+  }
+  .column3 {
+    __UP_column-style-3__;
+  }
+  .column4 {
+    __UP_column-style-4__;
+  }
+  .column5 {
+    __UP_column-style-5__;
+  }
+  .column6 {
+    __UP_column-style-6__;
+  }
+
+
+
+
 </style>
 
 
@@ -98,7 +122,7 @@
         addColumnStyleClass(entry.content.$t, '.column_' + entry.gs$cell.col);
       }
 */
-console.log(prefs.getString('column-style-4'));
+
 
         if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
           if (tr != null) {
