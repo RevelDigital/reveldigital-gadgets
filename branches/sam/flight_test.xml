@@ -216,7 +216,7 @@ console.log(data.flightStatuses);
 
           if(arrival) {
             try {
-              cells[0].innerHTML = arrivalTime.toLocaleTimeString();
+              cells[0].innerHTML = arrivalTime.toTimeString();
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
             catch(e) {
@@ -225,7 +225,7 @@ console.log(data.flightStatuses);
           }
           else {
             try {
-              cells[0].innerHTML = depatureTime.toLocaleTimeString();
+              cells[0].innerHTML = depatureTime.toTimeString();
               cells[5].innerHTML = currentFlight.airportResources.departureGate;  
             }
             catch(e) {
