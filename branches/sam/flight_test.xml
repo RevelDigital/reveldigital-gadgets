@@ -180,8 +180,7 @@ console.log(data.flightStatuses);
           var currentFlight = data.flightStatuses[i];
           var cells = [];
           var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
-console.log("Arrival Time: " + arrivalTime);
-          var depatureTime = new Date(currentFlight.departureDate.dateLocal);
+          var depatureTime = new Date(currentFlight.departureDate.dateUtc);
           var table = document.getElementById("flight_table");
           var row = table.insertRow(rowCounter);
 
@@ -200,6 +199,7 @@ console.log("Arrival Time: " + arrivalTime);
 
           cells[1].innerHTML = currentFlight.flightNumber;
           cells[4].innerHTML = getStatus(currentFlight.status);
+          console.log("Status: " + currentFlight.status);
           
 
           for(var k = 0; k < data.appendix.airports.length; k++) {
