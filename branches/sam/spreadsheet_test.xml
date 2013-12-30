@@ -30,18 +30,9 @@ table
 
 th
 {
-  font-size: 140% !important;
-  padding: 8px;
+  __UP_header-style__;
 }
 
-th
-{
-  font-weight: bold;
-  font-color: #888;
-  font-size: 140%;
-  text-align: left;
-  text-shadow: 2px 2px 2px #888;
-}
 </style>
 
 
@@ -89,8 +80,8 @@ th
 
   function cellEntries(json) {
 
-    var header = true;
-    var format = true;
+    
+    
     
     $("#data table").empty();
     
@@ -102,12 +93,12 @@ th
   
       var entry = json.feed.entry[i];
 
-      if (format && entry.gs$cell.row == '2') {
+      if (prefs.getBool("hasFormat") && entry.gs$cell.row == '2') {
         addColumnStyleClass(entry.content.$t, '.column_' + entry.gs$cell.col);
       }
 
       else {
-        if (header && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
+        if (prefs.getBool("hasTitle") && entry.gs$cell.col == '1' && entry.gs$cell.row == '1') {
           if (tr != null) {
             $(thead).append(tr);
           }
@@ -120,7 +111,7 @@ th
         }
         
         var td;
-        if (header && entry.gs$cell.row == '1') {
+        if (prefs.getBool("hasTitle") && entry.gs$cell.row == '1') {
           td = $("<th/>");
         } 
         else {
