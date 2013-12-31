@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    
+    <tr id="header"><th>Time</th><th>Flight #</th><th>'Location'</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -181,11 +181,6 @@ console.log(data.flightStatuses);
           var depatureTime = new Date(currentFlight.departureDate.dateUtc);
           var table = document.getElementById("flight_table");
           var row = table.insertRow(rowCounter);
-
-          if(arrival) {
-            var arriveRow = table.insertRow(0);
-            arriveRow.innerHTML = '<tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>';
-          }
 
           if(i%2 == 0) {
             row.id='rowa';
