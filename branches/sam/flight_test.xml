@@ -222,6 +222,7 @@ console.log("Status: " + currentFlight.status);
             }
             else {
               cells[5].innerHTML = '--';
+            }
           }
           else {
             cells[0].innerHTML = depatureTime.toLocaleTimeString();
