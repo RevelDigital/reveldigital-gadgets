@@ -11,7 +11,6 @@
   </UserPref>
   <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
   <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
-  <UserPref name="header-background" display_name="Header Background Color" datatype="color" default_value="grey" required="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -35,7 +34,6 @@
 
   #header {
     __UP_header-style__;
-    background-color: __header-background__;
   }
 
   #rowa {
