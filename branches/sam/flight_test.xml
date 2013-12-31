@@ -183,13 +183,15 @@ console.log(data.flightStatuses);
           var depatureTime = new Date(currentFlight.departureDate.dateUtc);
           var table = document.getElementById("flight_table");
           var row = table.insertRow(rowCounter);
-
+/*
           if(i%2 == 0) {
             row.id='rowa';
           }
           else {
             row.id='rowb';
-          }  
+          }
+          */
+          $( "tr:even" ).addClass('rowa');
           rowCounter++;
 
 
