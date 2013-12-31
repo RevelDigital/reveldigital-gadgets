@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th><td id="arrive_depart">Arrival Time</td></th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -153,6 +153,7 @@ console.log("Updating...");
       arriveOrDepart = 'arr';
     }
     else {
+      $("th").first().css( "background-color", "red" );
       document.getElementById('arrive_depart').innerHTML="Departure Time";
       arriveOrDepart = 'dep';
     }
