@@ -146,7 +146,7 @@ console.log("Updating...");
     var numHours = prefs.getString('num_hours');
     var maxFlights = prefs.getString('max_flights');
 
-    if(arrival) {
+    if(arrival == 'true') {
       arriveOrDepart = 'arr';
     }
     else {
