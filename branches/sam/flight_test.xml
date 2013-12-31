@@ -54,9 +54,9 @@
 
 
 <div id="table_container">
- <table id="flight_table">
-    <tr id="header"></tr>
- <tbody> </tbody></table>
+ <table id="flight_table"><tbody>
+    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+  </tbody></table>
 </div>
 
 
@@ -78,7 +78,6 @@
     for(var i=length-1; i > 0; i--) {
       document.getElementById("flight_table").deleteRow(i);
     }
-    //document.getElementById("flight_table").deleteTHead();
   }
 
   function compareArrivalTimes(a,b) {
@@ -150,10 +149,11 @@ console.log("Updating...");
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
+      document.getElementById('arrive_depart').innerHTML="Arrival Time";
       arriveOrDepart = 'arr';
-      //document.getElementById("header").innerHTML = '<th id="arrive_depart">Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th>';
     }
     else {
+      document.getElementById('arrive_depart').innerHTML="Departure Time";
       arriveOrDepart = 'dep';
     }
 
@@ -184,8 +184,6 @@ console.log(data.flightStatuses);
           var table = document.getElementById("flight_table");
           var row = table.insertRow(rowCounter);
 
-
-
           if(i%2 == 0) {
             row.id='rowa';
           }
@@ -201,7 +199,7 @@ console.log(data.flightStatuses);
 
           cells[1].innerHTML = currentFlight.flightNumber;
           cells[4].innerHTML = getStatus(currentFlight.status);
-console.log("Status: " + currentFlight.status);
+          console.log("Status: " + currentFlight.status);
           
 
           for(var k = 0; k < data.appendix.airports.length; k++) {
@@ -217,22 +215,20 @@ console.log("Status: " + currentFlight.status);
           }
 
           if(arrival) {
-            cells[0].innerHTML = arrivalTime.toLocaleTimeString();
             try {
+              cells[0].innerHTML = arrivalTime.toLocaleTimeString();
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
             catch(e) {
-              cells[5].innerHTML = '--';
               console.log(e);
             }    
           }
           else {
-            cells[0].innerHTML = depatureTime.toLocaleTimeString();
             try {
-              cells[5].innerHTML = currentFlight.airportResources.departureGate;
+              cells[0].innerHTML = depatureTime.toLocaleTimeString();
+              cells[5].innerHTML = currentFlight.airportResources.departureGate;  
             }
             catch(e) {
-              cells[5].innerHTML = '--';
               console.log(e);
             }
           }
