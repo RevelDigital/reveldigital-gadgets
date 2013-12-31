@@ -199,7 +199,6 @@
 
           cells[1].innerHTML = currentFlight.flightNumber;
           cells[4].innerHTML = getStatus(currentFlight.status);
-          console.log("Status: " + currentFlight.status);
           
 
           for(var k = 0; k < data.appendix.airports.length; k++) {
@@ -232,7 +231,6 @@
               console.log(e);
             }
           }
-
         }   
       }
     });
