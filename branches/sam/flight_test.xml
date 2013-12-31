@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <thead><tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr></thead>
+    <tr id="header"><th id="arrive_depart">Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -149,11 +149,9 @@ console.log("Updating...");
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      document.getElementById('arrive_depart').innerHTML="Arrival Time";
       arriveOrDepart = 'arr';
     }
     else {
-      document.getElementById('arrive_depart').innerHTML="Departure Time";
       arriveOrDepart = 'dep';
     }
 
@@ -182,7 +180,6 @@ console.log(data.flightStatuses);
           var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
           var depatureTime = new Date(currentFlight.departureDate.dateUtc);
           var table = document.getElementById("flight_table");
-
           var row = table.insertRow(rowCounter);
 
           if(i%2 == 0) {
@@ -217,20 +214,22 @@ console.log("Status: " + currentFlight.status);
 
           if(arrival) {
             cells[0].innerHTML = arrivalTime.toLocaleTimeString();
-            if(currentFlight.airportResources.arrivalGate !== undefined) {
+            try {
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
-            else {
+            catch(e) {
               cells[5].innerHTML = '--';
-            }
+              console.log(e);
+            }    
           }
           else {
             cells[0].innerHTML = depatureTime.toLocaleTimeString();
-            if(currentFlight.airportResources.departureGate !== undefined) {
-              cells[5].innerHTML = currentFlight.airportResources.departureGate;  
+            try {
+              cells[5].innerHTML = currentFlight.airportResources.departureGate;
             }
-            else {
+            catch(e) {
               cells[5].innerHTML = '--';
+              console.log(e);
             }
           }
 
