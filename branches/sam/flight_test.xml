@@ -136,7 +136,7 @@
   function refresh() {
 
     clearFlights();
-$("#header:first-child").text('d');
+
 
     var currentDate = new Date();
     var month = currentDate.getMonth() + 1;
@@ -151,6 +151,7 @@ $("#header:first-child").text('d');
 
     if(arrival) {
       document.getElementById('arrive_depart').innerHTML="Arrival Time";
+      $('#arrive_depart').text('d');
       arriveOrDepart = 'arr';
     }
     else {
