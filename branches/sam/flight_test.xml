@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th id="to_from">From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -150,12 +150,13 @@
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      document.getElementById('arrive_depart').innerHTML="Arrival Time";
-      $('#arrive_depart').text('d');
+      $('#arrive_depart').text('Arrival Time');
+      $('#to_from').text('From');
       arriveOrDepart = 'arr';
     }
     else {
-      document.getElementById('arrive_depart').innerHTML="Departure Time";
+      $('#arrive_depart').text('Departure Time');
+      $('#to_from').text('To');
       arriveOrDepart = 'dep';
     }
 
