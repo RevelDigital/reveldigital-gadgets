@@ -202,7 +202,7 @@ console.log(currentFlight.airportResources.arrivalGate);
           if(arriveOrDepart == 'arr') {
             try {
               cells[0].innerHTML = arrivalTime.toLocaleTimeString();
-              if(currentFlight.airportResources.arrivalGate === null) {
+              if(currentFlight.airportResources.arrivalGate === undefined) {
                 
                 cells[5].innerHTML = 'N/A';
               }
