@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th>Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -149,11 +149,13 @@ console.log("Updating...");
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      $('th:first').text("Arrivals Time");
+      $('th:first').text("Arrival Time");
+      $('th:nth-child(3)').text("From");
       arriveOrDepart = 'arr';
     }
     else {
-      $('#arrive_depart').text("Departure Time");
+      $('th:first').text("Departure Time");
+      $('th:nth-child(3)').text("To");
       arriveOrDepart = 'dep';
     }
 
