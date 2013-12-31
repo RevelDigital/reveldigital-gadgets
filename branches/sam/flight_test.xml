@@ -149,13 +149,9 @@ console.log("Updating...");
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      $('th:first').text("Arrival Time");
-      $('th:nth-child(3)').text("From");
       arriveOrDepart = 'arr';
     }
     else {
-      $('th:first').text("Departure Time");
-      $('th:nth-child(3)').text("To");
       arriveOrDepart = 'dep';
     }
 
