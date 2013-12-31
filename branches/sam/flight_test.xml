@@ -217,7 +217,7 @@ console.log("Status: " + currentFlight.status);
 
           if(arrival) {
             cells[0].innerHTML = arrivalTime.toLocaleTimeString();
-            if(currentFlight.airportResources.arrivalGate != null) {
+            if(currentFlight.airportResources.arrivalGate !== undefined) {
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
             else {
@@ -226,7 +226,7 @@ console.log("Status: " + currentFlight.status);
           }
           else {
             cells[0].innerHTML = depatureTime.toLocaleTimeString();
-            if(currentFlight.airportResources.departureGate != null) {
+            if(currentFlight.airportResources.departureGate !== undefined) {
               cells[5].innerHTML = currentFlight.airportResources.departureGate;  
             }
             else {
