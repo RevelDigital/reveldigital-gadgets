@@ -133,11 +133,12 @@
 
   function timeConvert (time) {
     
-    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
 
     if (time.length > 1) { 
       time = time.slice (1);
-      time[5] = +time[0] < 12 ? 'AM' : 'PM';
+      time.pop();
+      time[5] = +time[0] < 12 ? ' AM' : ' PM';
       time[0] = +time[0] % 12 || 12;
     }
     return time.join ('');
@@ -215,7 +216,6 @@ console.log("URLs: " + url);
             try {
               cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
               if(currentFlight.airportResources.arrivalGate === undefined) {
-                
                 cells[5].innerHTML = 'N/A';
               }
               else {
@@ -228,11 +228,15 @@ console.log("URLs: " + url);
           }
           else {
             try {
-              cells[0].innerHTML = depatureTime.toLocaleTimeString();
-              cells[5].innerHTML = currentFlight.airportResources.departureGate;
+              cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
+              if(currentFlight.airportResources.departureGate === undefined) {
+                cells[5].innerHTML = 'N/A';
+              }
+              else {
+                cells[5].innerHTML = currentFlight.airportResources.departureGate;  
+              }
             }
             catch(e) {
-              cells[5].innerHTML = 'N/A';
               console.log(e);
             }
           }
