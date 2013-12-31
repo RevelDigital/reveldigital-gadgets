@@ -151,7 +151,7 @@
 
     if(arrival) {
 console.log("ARRIVAL");
-      $('#arrive_depart').text('Arrival Time');
+      //$('#arrive_depart').text('Arrival Time');
       $('#to_from').text('From');
       arriveOrDepart = 'arr';
     }
