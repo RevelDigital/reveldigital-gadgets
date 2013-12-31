@@ -51,6 +51,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 
+
 <div id="table_container">
  <table id="flight_table"><tbody>
     <tr id="header"><th>Time</th><th>Flight #</th><th>Location</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
@@ -201,10 +202,14 @@ console.log("URLs: " + url);
           if(arriveOrDepart == 'arr') {
             try {
               cells[0].innerHTML = arrivalTime.toLocaleTimeString();
-              cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
+              if(currentFlight.airportResources.arrivalGate === 'undefined') {
+                cells[5].innerHTML = 'N/A';
+              }
+              else {
+                cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
+              }
             }
             catch(e) {
-              cells[5].innerHTML = 'N/A';
               console.log(e);
             }    
           }
