@@ -132,7 +132,7 @@
 
 
   function refresh() {
-console.log("Updating...");
+
     clearFlights();
 
     var currentDate = new Date();
@@ -156,10 +156,7 @@ console.log("URLs: " + url);
       type: 'GET',
       success: function (data) {
 
-console.log(data.flightStatuses);
-
         data.flightStatuses.sort(compareArrivalTimes);
-
 
         var rowCounter = 1;
 
@@ -207,15 +204,17 @@ console.log(data.flightStatuses);
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
             catch(e) {
+              cells[5].innerHTML = 'N/A';
               console.log(e);
             }    
           }
           else {
             try {
               cells[0].innerHTML = depatureTime.toLocaleTimeString();
-              cells[5].innerHTML = currentFlight.airportResources.departureGate;  
+              cells[5].innerHTML = currentFlight.airportResources.departureGate;
             }
             catch(e) {
+              cells[5].innerHTML = 'N/A';
               console.log(e);
             }
           }
