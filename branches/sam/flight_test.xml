@@ -5,7 +5,7 @@
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
-  <UserPref name="arrival" display_name="Type" default_value="true" datatype="enum" >
+  <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
     <EnumValue value="arr" display_value="Arrivals" />
     <EnumValue value="dep" display_value="Departures" />
   </UserPref>
