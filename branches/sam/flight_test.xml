@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table">
-    <tr id="header"><th id="arrive_depart">Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"></tr>
  <tbody> </tbody></table>
 </div>
 
@@ -151,6 +151,7 @@ console.log("Updating...");
 
     if(arrival) {
       arriveOrDepart = 'arr';
+      document.getElementById("header").innerHTML = '<th id="arrive_depart">Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th>';
     }
     else {
       arriveOrDepart = 'dep';
