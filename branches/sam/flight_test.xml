@@ -146,13 +146,15 @@ console.log("Updating...");
     var numHours = prefs.getString('num_hours');
     var maxFlights = prefs.getString('max_flights');
 
+/*
     if(arrival == 'true') {
       arriveOrDepart = 'arr';
     }
     else {
+      */
       arriveOrDepart = 'dep';
-    }
-console.log("ISARRIVAL: " + arrival);
+    //}
+
 
 
     var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
