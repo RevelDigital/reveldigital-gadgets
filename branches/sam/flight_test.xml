@@ -6,8 +6,8 @@
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
   <UserPref name="arrival" display_name="Type" default_value="true" datatype="enum" >
-    <EnumValue value="true" display_value="Arrivals" />
-    <EnumValue value="false" display_value="Departures" />
+    <EnumValue value="arr" display_value="Arrivals" />
+    <EnumValue value="dep" display_value="Departures" />
   </UserPref>
   <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
   <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
@@ -140,20 +140,10 @@ console.log("Updating...");
     var day = currentDate.getDate();
     var year = currentDate.getFullYear();
     var hour = currentDate.getHours();
-    var arriveOrDepart;
+    var arriveOrDepart = prefs.getString('arrival');
     var airportCode = prefs.getString('airport_code');
-    var arrival = prefs.getString('arrival');
     var numHours = prefs.getString('num_hours');
     var maxFlights = prefs.getString('max_flights');
-
-/*
-    if(arrival == 'true') {
-      arriveOrDepart = 'arr';
-    }
-    else {
-      */
-      arriveOrDepart = 'dep';
-    //}
 
 
 
@@ -211,7 +201,7 @@ console.log(data.flightStatuses);
             }
           }
 
-          if(arrival) {
+          if(arriveOrDepart == 'arr') {
             try {
               cells[0].innerHTML = arrivalTime.toLocaleTimeString();
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
