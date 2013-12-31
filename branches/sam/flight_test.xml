@@ -134,8 +134,9 @@
 
 
   function refresh() {
-console.log("Updating...");
+
     clearFlights();
+$("#header:first-child").text('d');
 
     var currentDate = new Date();
     var month = currentDate.getMonth() + 1;
@@ -160,15 +161,12 @@ console.log("Updating...");
 
 
     var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
-console.log("URL: " + url);
     $.ajax({
       url: url,
       dataType: 'JSONP',
       jsonpCallback: 'callback',
       type: 'GET',
       success: function (data) {
-
-console.log(data.flightStatuses);
 
         data.flightStatuses.sort(compareArrivalTimes);
 
