@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th>Time</th><th>Flight #</th><th>'Location'</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th>Time</th><th>Flight #</th><th>Location</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
