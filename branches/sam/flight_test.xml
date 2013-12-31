@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th id="to_from">From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <tr id="header"><th id="arrive_depart"></th><th>Flight #</th><th id="to_from">From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
   </tbody></table>
 </div>
 
@@ -150,13 +150,13 @@
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-      console.log("ARRIVAL");
+console.log("ARRIVAL");
       $('#arrive_depart').text('Arrival Time');
       $('#to_from').text('From');
       arriveOrDepart = 'arr';
     }
     else {
-      console.log("DEPARTURE");
+console.log("DEPARTURE");
       $('#arrive_depart').text('Departure Time');
       $('#to_from').text('To');
       arriveOrDepart = 'dep';
@@ -216,6 +216,7 @@ console.log(data);
           }
 
           if(arrival) {
+console.log("GATE: " + currentFlight.airportResources.arrivalGate);
             try {
               cells[0].innerHTML = arrivalTime.toLocaleTimeString();
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
