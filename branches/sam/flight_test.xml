@@ -198,12 +198,12 @@ console.log("URLs: " + url);
               cells[3].innerHTML = data.appendix.airlines[l].name;
             }
           }
-
+console.log(currentFlight.airportResources.arrivalGate);
           if(arriveOrDepart == 'arr') {
             try {
               cells[0].innerHTML = arrivalTime.toLocaleTimeString();
               if(currentFlight.airportResources.arrivalGate === null) {
-                console.log(currentFlight.airportResources.arrivalGate);
+                
                 cells[5].innerHTML = 'N/A';
               }
               else {
