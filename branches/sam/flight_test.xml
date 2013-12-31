@@ -131,6 +131,18 @@
     }
   }
 
+  function timeConvert (time) {
+    
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) { 
+      time = time.slice (1);
+      time[5] = +time[0] < 12 ? 'AM' : 'PM';
+      time[0] = +time[0] % 12 || 12;
+    }
+    return time.join ('');
+  }
+
 
   function refresh() {
 
@@ -198,10 +210,10 @@ console.log("URLs: " + url);
               cells[3].innerHTML = data.appendix.airlines[l].name;
             }
           }
-console.log(currentFlight.airportResources.arrivalGate);
+
           if(arriveOrDepart == 'arr') {
             try {
-              cells[0].innerHTML = arrivalTime.toLocaleTimeString();
+              cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
               if(currentFlight.airportResources.arrivalGate === undefined) {
                 
                 cells[5].innerHTML = 'N/A';
