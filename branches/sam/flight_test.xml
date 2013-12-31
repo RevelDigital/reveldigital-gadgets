@@ -150,15 +150,9 @@
     var maxFlights = prefs.getString('max_flights');
 
     if(arrival) {
-console.log("ARRIVAL");
-      //$('#arrive_depart').text('Arrival Time');
-      $('#to_from').text('From');
       arriveOrDepart = 'arr';
     }
     else {
-console.log("DEPARTURE");
-      $('#arrive_depart').text('Departure Time');
-      $('#to_from').text('To');
       arriveOrDepart = 'dep';
     }
 
