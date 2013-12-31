@@ -55,7 +55,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+    <thead><tr id="header"><th id="arrive_depart">Arrival Time</th><th>Flight #</th><th>From</th><th>Airline</th><th>Status</th><th>Gate</th></tr></thead>
   </tbody></table>
 </div>
 
@@ -182,6 +182,7 @@ console.log(data.flightStatuses);
           var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
           var depatureTime = new Date(currentFlight.departureDate.dateUtc);
           var table = document.getElementById("flight_table");
+
           var row = table.insertRow(rowCounter);
 
           if(i%2 == 0) {
@@ -199,7 +200,7 @@ console.log(data.flightStatuses);
 
           cells[1].innerHTML = currentFlight.flightNumber;
           cells[4].innerHTML = getStatus(currentFlight.status);
-          console.log("Status: " + currentFlight.status);
+console.log("Status: " + currentFlight.status);
           
 
           for(var k = 0; k < data.appendix.airports.length; k++) {
@@ -215,21 +216,20 @@ console.log(data.flightStatuses);
           }
 
           if(arrival) {
-            try {
-              cells[0].innerHTML = arrivalTime.toLocaleTimeString();
+            cells[0].innerHTML = arrivalTime.toLocaleTimeString();
+            if(currentFlight.airportResources.arrivalGate != null) {
               cells[5].innerHTML = currentFlight.airportResources.arrivalGate;
             }
-            catch(e) {
-              console.log(e);
-            }    
+            else {
+              cells[5].innerHTML = '--';
           }
           else {
-            try {
-              cells[0].innerHTML = depatureTime.toLocaleTimeString();
+            cells[0].innerHTML = depatureTime.toLocaleTimeString();
+            if(currentFlight.airportResources.departureGate != null) {
               cells[5].innerHTML = currentFlight.airportResources.departureGate;  
             }
-            catch(e) {
-              console.log(e);
+            else {
+              cells[5].innerHTML = '--';
             }
           }
 
