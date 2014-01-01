@@ -66,6 +66,10 @@
 
  var prefs = new gadgets.Prefs();
 
+ setInterval(function(){
+  $('.flip').click();
+}, 5000);
+
   
 
 
