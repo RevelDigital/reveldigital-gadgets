@@ -45,21 +45,145 @@
     
 }
 
+.team {
+  text-align: left;
+    
+}
+
+.score {
+    text-align: right;
+}
+
+table {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
 
 </style>
+
+
+
+
+
+
+
 
 
 
 <div class="flip"> 
         <div class="card"> 
             <div class="face front"> 
-                Front
+                <table>
+  <tr>
+    <td>
+
+      <table>
+        <tr>
+          <td class="team">
+            PITTSBURGH
+          </td>
+          <td class="score">
+            5
+          </td>
+        </tr>
+        <tr>
+          <td class="team">
+            BOSTON
+          </td>
+          <td class="score">
+            7
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td class="team">
+            PITTSBURGH
+          </td>
+          <td class="score">
+            3
+          </td>
+        </tr>
+        <tr>
+          <td class="team">
+            BOSTON
+          </td>
+          <td class="score">
+            9
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
             </div> 
             <div class="face back"> 
-                Back
+                <table>
+  <tr>
+    <td>
+
+      <table>
+        <tr>
+          <td class="team">
+            PITTSBURGH
+          </td>
+          <td class="score">
+            5
+          </td>
+        </tr>
+        <tr>
+          <td class="team">
+            BOSTON
+          </td>
+          <td class="score">
+            7
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td class="team">
+            PITTSBURGH
+          </td>
+          <td class="score">
+            3
+          </td>
+        </tr>
+        <tr>
+          <td class="team">
+            BOSTON
+          </td>
+          <td class="score">
+            9
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
             </div> 
         </div> 
     </div> 
+
+
+
+
+
+
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -74,7 +198,7 @@
 
 
   $('.flip').click(function(){
-  console.log("click");
+  console.log("clicky");
         if(!$(this).find('.card').hasClass("flipped")) {
           $(this).find('.card').addClass('flipped');
         }
