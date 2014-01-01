@@ -13,8 +13,8 @@
 
 .flip {
   -webkit-perspective: 800;
-   width: 50&;
-   height: 50&;
+   width: 100&;
+   height: 100&;
     position: relative;
     margin: 50px auto;
 }
@@ -56,8 +56,8 @@
 
 table {
   margin: auto;
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -198,7 +198,7 @@ table {
 
 
   $('.flip').click(function(){
-  console.log("clicky");
+  console.log("clicks");
         if(!$(this).find('.card').hasClass("flipped")) {
           $(this).find('.card').addClass('flipped');
         }
