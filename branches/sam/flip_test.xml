@@ -13,8 +13,8 @@
 
 .flip {
   -webkit-perspective: 800;
-   width: 400px;
-   height: 200px;
+   width: 50&;
+   height: 50&;
     position: relative;
     margin: 50px auto;
 }
