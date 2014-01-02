@@ -6,10 +6,6 @@
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
-  <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
-    <EnumValue value="arr" display_value="Arrivals" />
-    <EnumValue value="dep" display_value="Departures" />
-  </UserPref>
   <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
   <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
@@ -63,9 +59,9 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    refresh(arr);
+    refresh('arr');
     if($('#flight_table tbody tr').length == 1) {
-      refresh(dep);
+      refresh('dep');
     }
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
