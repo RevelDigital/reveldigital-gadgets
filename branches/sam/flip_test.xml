@@ -28,7 +28,7 @@ body {
     margin: auto;
 }
 .flip .card.flipped {
-  -webkit-transform: rotatex(-270deg);
+  -webkit-transform: rotatex(-180deg);
 }
 .flip .card {
 
@@ -50,7 +50,7 @@ body {
 }
 .flip .card .back {
   overflow:hidden;
-  -webkit-transform: rotatex(-180deg);
+  -webkit-transform: rotatex(-270deg);
   -webkit-backface-visibility: hidden;
     background: green;
     color: black;
