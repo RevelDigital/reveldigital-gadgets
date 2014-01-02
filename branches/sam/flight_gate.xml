@@ -223,7 +223,8 @@ console.log("URLs: " + url);
             
 
             for(var k = 0; k < data.appendix.airports.length; k++) {
-              if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+              console.log('test');
+              if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
                 cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
               }
             }
