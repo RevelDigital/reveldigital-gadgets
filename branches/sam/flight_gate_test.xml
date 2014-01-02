@@ -239,17 +239,19 @@ gadgets.util.registerOnLoadHandler(load);
   function result(data, toggle) {
         
         var gate = prefs.getString('airport_gate');
+        var currentTime = new Date();
 
 
         var rowCounter = 1;
         
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
-          
+          var checkFlight;
 
           if(toggle == 'arr') {
             try {
               gateCheck = currentFlight.airportResources.arrivalGate;  
+              checkFlight = new Date(flight.arrivalDate.dateUtc);
             }
             catch(e) {
               console.log(e);
@@ -259,6 +261,7 @@ gadgets.util.registerOnLoadHandler(load);
           else {
             try {
               gateCheck = currentFlight.airportResources.departureGate;  
+              checkFlight = new Date(flight.departureDate.dateUtc);
             }
             catch(e) {
               console.log(e);
@@ -266,7 +269,7 @@ gadgets.util.registerOnLoadHandler(load);
             
           }
 
-          if(gateCheck == gate) {
+          if(gateCheck == gate && currentTime < checkFlight) {
             flightObject=new Object();
             flightObject.data = data;
             flightObject.flight = currentFlight;
