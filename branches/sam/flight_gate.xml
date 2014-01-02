@@ -167,7 +167,7 @@ console.log("URLs: " + url);
     $.ajax({
       url: url,
       dataType: 'JSONP',
-      jsonpCallback: 'callback',
+      //jsonpCallback: 'callback',
       type: 'GET',
       success: function (data) {
 
@@ -259,6 +259,9 @@ console.log("URLs: " + url);
       }
     });
   }
+
+
+
 </script>
 
 ]]>
