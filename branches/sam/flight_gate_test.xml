@@ -53,6 +53,9 @@
     __UP_next-flight-header-style__;
   }
 
+  #next_flight {
+    padding-top:5cm;
+  }
 
 
 
@@ -240,9 +243,6 @@ gadgets.util.registerOnLoadHandler(load);
         
         var gate = prefs.getString('airport_gate');
         var currentTime = new Date();
-
-
-        var rowCounter = 1;
         
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
@@ -254,7 +254,7 @@ gadgets.util.registerOnLoadHandler(load);
               checkFlight = new Date(currentFlight.arrivalDate.dateUtc);
             }
             catch(e) {
-              console.log(e);
+              
             }
             
           }
@@ -264,7 +264,7 @@ gadgets.util.registerOnLoadHandler(load);
               checkFlight = new Date(currentFlight.departureDate.dateUtc);
             }
             catch(e) {
-              console.log(e);
+              
             }
             
           }
@@ -274,7 +274,6 @@ gadgets.util.registerOnLoadHandler(load);
             flightObject.data = data;
             flightObject.flight = currentFlight;
             flights.push(flightObject);
-            console.log(flights.length);
           }
 
         }
@@ -283,7 +282,6 @@ gadgets.util.registerOnLoadHandler(load);
 
         if(toggle == 'dep') {
           flights.sort(compareTime);
-          console.log(flights);
           try {
             showCurrentFlight(flights[0]);
           }
@@ -315,15 +313,10 @@ gadgets.util.registerOnLoadHandler(load);
     var data = flight.data;
     var flight = flight.flight;
 
-    console.log("code: " + flight.arrivalAirportFsCode)
 
     if(flight.arrivalAirportFsCode == 'MSP') {
       arrivalToggle = true;
     }
-
-
-
-
 
     $('#current_number').text('Flight #: ' + flight.flightNumber);
 
@@ -370,10 +363,6 @@ gadgets.util.registerOnLoadHandler(load);
           }
 
           
-          
-           
-
-
 
           var cells = [];
           var arrivalTime = new Date(flight.arrivalDate.dateUtc);
@@ -381,8 +370,6 @@ gadgets.util.registerOnLoadHandler(load);
           var table = document.getElementById("next_flight_table");
           var row = table.insertRow(1);
 
-    
- 
 
 
           for(var j = 0; j < 6; j++) {
@@ -411,7 +398,7 @@ gadgets.util.registerOnLoadHandler(load);
               cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
             }
             catch(e) {
-              console.log(e);
+              
             }    
           }
           else {
@@ -424,7 +411,7 @@ gadgets.util.registerOnLoadHandler(load);
               cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
             }
             catch(e) {
-              console.log(e);
+              
             }
           }
   }
