@@ -43,13 +43,14 @@ body {
 }
 .flip .card .front {
   overflow:hidden;
-
+-webkit-backface-visibility: hidden;
     background: black;
     color: white;
     
 }
 .flip .card .back {
   -webkit-transform: rotatex(-180deg);
+  webkit-backface-visibility: hidden;
     background: green;
     color: black;
     
