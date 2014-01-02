@@ -5,8 +5,7 @@
   <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
-  <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
-  <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
+  <UserPref name="row" display_name="Row Color" datatype="color" default_value="white" required="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -21,7 +20,7 @@
     background: transparent;
   }
 
-  #flight_table {
+  #next_flight_table {
     text-align:left;
     width:100%;
     border-collapse:collapse;
@@ -32,24 +31,34 @@
     __UP_header-style__;
   }
 
-  #rowa {
+  #row {
     __UP_row-style__;
-    background-color: __UP_row-a__;
+    background-color: __UP_row__;
   }
 
-  #rowb {
-    __UP_row-style__;
-    background-color: __UP_row-b__;
-  }
+
 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
+<div id="current_flight">
+  <tr>
+    <td id="current_number">Flight #: </td>
+  </tr>
+  <tr>
+    <td id="current_location">Location: </td>
+  </tr>
+  <tr>
+    <td id="current_time">Time: </td>
+  </tr>
+  <tr>
+    <td id="current_status">Status: </td>
+  </tr>
+</div>
 
-
-<div id="table_container">
- <table id="flight_table"><tbody>
+<div id="next_flight">
+ <table id="next_flight_table"><tbody>
     <tr id="header"><th>Time</th><th>Flight #</th><th><div id='tofrom'>Location</div></th><th>Airline</th><th>Status</th></tr>
   </tbody></table>
 </div>
@@ -59,7 +68,7 @@
   var prefs = new gadgets.Prefs();
   function load() {
     refresh('arr');
-    if($('#flight_table tbody tr').length == 1) {
+    if($('#next_flight_table tbody tr').length == 1) {
       refresh('dep');
     }
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -72,9 +81,9 @@
 <script type="text/javascript">
 
   function clearFlights() {
-    var length = $('#flight_table tbody tr').length;
+    var length = $('#next_flight_table tbody tr').length;
     for(var i=length-1; i > 0; i--) {
-      document.getElementById("flight_table").deleteRow(i);
+      document.getElementById("next_flight_table").deleteRow(i);
     }
   }
 
@@ -170,14 +179,17 @@
 
         data.flightStatuses.sort(compareArrivalTimes);
 
+
+
+
         var rowCounter = 1;
 
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
+          var flights = [];
 
           if(toggle == 'arr') {
             try {
-              $('#tofrom').text("From");
               gateCheck = currentFlight.airportResources.arrivalGate;  
             }
             catch(e) {
@@ -187,7 +199,6 @@
           }
           else {
             try {
-              $('#tofrom').text("To");
               gateCheck = currentFlight.airportResources.departureGate;  
             }
             catch(e) {
@@ -197,72 +208,75 @@
           }
 
           if(gateCheck == gate) {
-            var cells = [];
-            var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
-            var depatureTime = new Date(currentFlight.departureDate.dateUtc);
-            var table = document.getElementById("flight_table");
-            var row = table.insertRow(rowCounter);
-
-            if(i%2 == 0) {
-              row.id='rowa';
-            }
-            else {
-              row.id='rowb';
-            }  
-            rowCounter++;
-
-
-            for(var j = 0; j < 6; j++) {
-              cells[j] = row.insertCell(j);
-            }
-
-            cells[1].innerHTML = currentFlight.flightNumber;
-            cells[4].innerHTML = getStatus(currentFlight.status);
-            
-
-            
-
-            for(var l = 0; l < data.appendix.airlines.length; l++) {
-              if(currentFlight.carrierFsCode == data.appendix.airlines[l].fs) {
-                cells[3].innerHTML = data.appendix.airlines[l].name;
-              }
-            }
-
-            if(arriveOrDepart == 'arr') {
-              for(var k = 0; k < data.appendix.airports.length; k++) {
-                if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
-                  cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
-                }
-              }
-              try {
-                cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
-               
-              }
-              catch(e) {
-                console.log(e);
-              }    
-            }
-            else {
-              for(var k = 0; k < data.appendix.airports.length; k++) {
-                if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
-                  cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
-                }
-              }
-              try {
-                cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
-               
-              }
-              catch(e) {
-                console.log(e);
-              }
-            }
+            flights.push(currentFlight);
           }
+
           
 
 
-        }   
+
+
+        }
+
+          showCurrentFlight(flights[0], data);
+          showNextFlight(flights[1], data);
+
+            
+          
+          
+
+
+          
       }
     });
+  }
+
+
+  function showCurrentFlight(flight, data) {
+
+    var arrivalToggle = true;
+
+    if(flight.airportResources.arrivalGate === undefined) {
+      arrivalToggle = false;
+    }
+
+
+
+    $('#current_number').text('Flight #: ' + flight.flightNumber);
+
+    if(arrivalToggle) {
+      var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
+
+      for(var k = 0; k < data.appendix.airports.length; k++) {
+       if(flight.departureAirportFsCode == data.appendix.airports[k].fs) {
+          $('#current_location').text('From: ' + data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa);
+        }
+      }
+
+      $('#current_time').text('Arrival: ' + timeConvert(arrivalTime.toLocaleTimeString());
+    }
+    else {
+      var depatureTime = new Date(currentFlight.departureDate.dateUtc);
+
+      for(var k = 0; k < data.appendix.airports.length; k++) {
+        if(flight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+          $('#current_location').text('Destination: ' + data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa);
+        }
+      }
+
+      $('#current_time').text('Departure: ' + timeConvert(depatureTime.toLocaleTimeString());
+    }
+    
+    $('#current_status').text(getStatus(flight.status));
+
+
+
+  }
+
+
+
+  function showNextFlight(flight) {
+
   }
 
 
