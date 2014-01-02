@@ -179,10 +179,22 @@ console.log("URLs: " + url);
           var currentFlight = data.flightStatuses[i];
 
           if(toggle == 'arr') {
-            gateCheck = currentFlight.airportResources.arrivalGate;
+            try {
+              gateCheck = currentFlight.airportResources.arrivalGate;  
+            }
+            catch(e) {
+              console.log(e);
+            }
+            
           }
           else {
-            gateCheck = currentFlight.airportResources.departureGate;
+            try {
+              gateCheck = currentFlight.airportResources.departureGate;  
+            }
+            catch(e) {
+              console.log(e);
+            }
+            
           }
 
           if(gateCheck == gate) {
