@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
+  <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
+  <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
+  <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
+  <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
+    <EnumValue value="arr" display_value="Arrivals" />
+    <EnumValue value="dep" display_value="Departures" />
+  </UserPref>
+  <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
+  <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+
+  body {
+    background: transparent;
+  }
+
+  #flight_table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    height:100%;
+  }
+
+  #header {
+    __UP_header-style__;
+  }
+
+  #rowa {
+    __UP_row-style__;
+    background-color: __UP_row-a__;
+  }
+
+  #rowb {
+    __UP_row-style__;
+    background-color: __UP_row-b__;
+  }
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
+
+<div id="table_container">
+ <table id="flight_table"><tbody>
+    <tr id="header"><th>Time</th><th>Flight #</th><th>Location</th><th>Airline</th><th>Status</th></tr>
+  </tbody></table>
+</div>
+
+
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    //refresh(arr);
+    //if(#tal) {
+    //  refresh(dep);
+    //}
+    console.log($('#flight_table tbody tr'.length));
+    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+
+
+<script type="text/javascript">
+
+  function clearFlights() {
+    var length = $('#flight_table tbody tr').length;
+    for(var i=length-1; i > 0; i--) {
+      document.getElementById("flight_table").deleteRow(i);
+    }
+  }
+
+  function compareArrivalTimes(a,b) {
+    if (a.arrivalDate.dateUtc < b.arrivalDate.dateUtc) {
+      return -1;
+    } 
+    if (a.arrivalDate.dateUtc > b.arrivalDate.dateUtc) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function compareDepartureTimes(a,b) {
+    if (a.departureDate.dateUtc < b.departureDate.dateUtc) {
+      return -1;
+    }
+    if (a.departureDate.dateUtc > b.departureDate.dateUtc) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getStatus(arg) {
+    switch(arg) {
+      case 'S':
+        return "On Time";
+        break;
+      case 'A':
+        return "On Time";
+        break;
+      case 'C':
+        return "Canceled";
+          break;
+      case 'D':
+        return "Diverted";
+        break;
+      case 'L':
+        return "Landed";
+        break;
+      case 'R':
+        return "Redirected";
+        break;
+      case 'U':
+        return "Unknown";
+        break;
+      case 'NO':
+        return "Not Operational";
+        break;
+      default:
+        return "Unknown";
+        break;
+    }
+  }
+
+  function timeConvert (time) {
+    
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) { 
+      time = time.slice (1);
+      time.pop();
+      time[5] = +time[0] < 12 ? ' AM' : ' PM';
+      time[0] = +time[0] % 12 || 12;
+    }
+    return time.join ('');
+  }
+
+
+  function refresh(toggle) {
+
+    clearFlights();
+
+    var currentDate = new Date();
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
+    var year = currentDate.getFullYear();
+    var hour = currentDate.getHours();
+    var arriveOrDepart = toggle;
+    var airportCode = prefs.getString('airport_code');
+    var numHours = prefs.getString('num_hours');
+    var maxFlights = prefs.getString('max_flights');
+    var gate = prefs.getString('airport_gate');
+
+
+
+    var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
+console.log("URLs: " + url);
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      jsonpCallback: 'callback',
+      type: 'GET',
+      success: function (data) {
+
+        data.flightStatuses.sort(compareArrivalTimes);
+
+        var rowCounter = 1;
+
+        for (var i = 0; i < data.flightStatuses.length; i++) {
+          var currentFlight = data.flightStatuses[i];
+
+          if(currentFlight.airportResources.departureGate == gate || currentFlight.airportResources.arrivalGate == gate) {
+            var cells = [];
+            var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
+            var depatureTime = new Date(currentFlight.departureDate.dateUtc);
+            var table = document.getElementById("flight_table");
+            var row = table.insertRow(rowCounter);
+
+            if(i%2 == 0) {
+              row.id='rowa';
+            }
+            else {
+              row.id='rowb';
+            }  
+            rowCounter++;
+
+
+            for(var j = 0; j < 6; j++) {
+              cells[j] = row.insertCell(j);
+            }
+
+            cells[1].innerHTML = currentFlight.flightNumber;
+            cells[4].innerHTML = getStatus(currentFlight.status);
+            
+
+            for(var k = 0; k < data.appendix.airports.length; k++) {
+              if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+                cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+              }
+            }
+
+            for(var l = 0; l < data.appendix.airlines.length; l++) {
+              if(currentFlight.carrierFsCode == data.appendix.airlines[l].fs) {
+                cells[3].innerHTML = data.appendix.airlines[l].name;
+              }
+            }
+
+            if(arriveOrDepart == 'arr') {
+              try {
+                cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
+               
+              }
+              catch(e) {
+                console.log(e);
+              }    
+            }
+            else {
+              try {
+                cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
+               
+              }
+              catch(e) {
+                console.log(e);
+              }
+            }
+          }
+          
+
+
+        }   
+      }
+    });
+  }
+</script>
+
+]]>
+</Content>
+</Module>
