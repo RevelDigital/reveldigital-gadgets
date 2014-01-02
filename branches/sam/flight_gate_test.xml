@@ -5,9 +5,14 @@
   <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
-  <UserPref name="row" display_name="Row Color" datatype="color" default_value="white" required="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
-  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  
+
+
+
+  <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-header-style" display_name="Next Flight Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -23,10 +28,16 @@
   }
 
   #current_flight {
-    margin: auto;
+  	margin: auto;
+  }
+
+  #current_flight_table {
+  	text-align:center;
+    height:100%;
     width:100%;
-    __UP_row-style__;
-    background-color: __UP_row__;
+    border-collapse:collapse;
+    __UP_current-flight-style__;
+    
   }
 
   #next_flight_table {
@@ -34,12 +45,12 @@
     width:100%;
     border-collapse:collapse;
     height:100%;
-    __UP_row-style__;
-    background-color: __UP_row__;
+    __UP_next-flight-style__;
+    
   }
 
   #header {
-    __UP_header-style__;
+    __UP_next-flight-header-style__;
   }
 
 
@@ -49,7 +60,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
-<table id="current_flight">
+<div id="current_flight">
+<table id="current_flight_table">
   <tr>
     <div id="current_number"></div>
   </tr>
@@ -63,6 +75,7 @@
     <div id="current_status">Status: </div>
   </tr>
 </table>
+</div>
 
 <div id="next_flight">
  <table id="next_flight_table"><tbody>
