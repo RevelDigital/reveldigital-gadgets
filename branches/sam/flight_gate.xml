@@ -178,7 +178,14 @@ console.log("URLs: " + url);
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
 
-          if(currentFlight.airportResources.departureGate == gate || currentFlight.airportResources.arrivalGate == gate) {
+          if(toggle == 'arr') {
+            gateCheck = currentFlight.airportResources.arrivalGate;
+          }
+          else {
+            gateCheck = currentFlight.airportResources.departureGate;
+          }
+
+          if(gateCheck == gate) {
             var cells = [];
             var arrivalTime = new Date(currentFlight.arrivalDate.dateUtc);
             var depatureTime = new Date(currentFlight.departureDate.dateUtc);
