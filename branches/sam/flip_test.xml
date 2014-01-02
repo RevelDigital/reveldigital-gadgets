@@ -28,7 +28,7 @@ body {
     margin: auto;
 }
 .flip .card.flipped {
-  -webkit-transform: rotatex(-180deg);
+  -webkit-transform: rotatex(-270deg);
 }
 .flip .card {
 
