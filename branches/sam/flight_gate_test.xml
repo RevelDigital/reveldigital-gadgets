@@ -97,7 +97,7 @@ gadgets.util.registerOnLoadHandler(load);
   		document.getElementById("next_flight_table").deleteRow(1);	
   	}
   	catch(e) {
-  		
+
   	}
     
   }
@@ -225,7 +225,7 @@ gadgets.util.registerOnLoadHandler(load);
 
   function result(data, toggle) {
         
-        var gate = '56';
+        var gate = 'A13';
 
 
         var rowCounter = 1;
