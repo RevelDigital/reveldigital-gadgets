@@ -63,11 +63,10 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    //refresh(arr);
-    //if(#tal) {
-    //  refresh(dep);
-    //}
-    console.log($('#flight_table tbody tr').length);
+    refresh(arr);
+    if($('#flight_table tbody tr').length == 1) {
+      refresh(dep);
+    }
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
