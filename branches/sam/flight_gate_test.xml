@@ -62,18 +62,18 @@
 
 <div id="current_flight">
 <table id="current_flight_table">
-  <tr>
+  <tr><td>
     <div id="current_number"></div>
-  </tr>
-  <tr>
+  </td></tr>
+  <tr><td>
     <div id="current_location">Location: </div>
-  </tr>
-  <tr>
+  </td></tr>
+  <tr><td>
     <div id="current_time">Time: </div>
-  </tr>
-  <tr>
+  </td></tr>
+  <tr><td>
     <div id="current_status">Status: </div>
-  </tr>
+  </td></tr>
 </table>
 </div>
 
