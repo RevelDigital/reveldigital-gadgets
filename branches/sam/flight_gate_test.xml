@@ -25,6 +25,8 @@
   #current_flight {
     margin: auto;
     width:100%;
+    __UP_row-style__;
+    background-color: __UP_row__;
   }
 
   #next_flight_table {
@@ -32,16 +34,14 @@
     width:100%;
     border-collapse:collapse;
     height:100%;
+    __UP_row-style__;
+    background-color: __UP_row__;
   }
 
   #header {
     __UP_header-style__;
   }
 
-  #row {
-    __UP_row-style__;
-    background-color: __UP_row__;
-  }
 
 
 
