@@ -137,10 +137,10 @@ gadgets.util.registerOnLoadHandler(load);
       }
 
       if (testA < testB) {
-      return -1;
+      return 1;
       } 
       if (testA > testB) {
-        return 1;
+        return -1;
       }
       return 0;
 
@@ -282,13 +282,13 @@ gadgets.util.registerOnLoadHandler(load);
           flights.sort(compareTime);
           console.log(flights);
           try {
-            showCurrentFlight(flights[1]);
+            showCurrentFlight(flights[0]);
           }
           catch(e) {
 
           }
           try {
-            showNextFlight(flights[0]);
+            showNextFlight(flights[1]);
           }
           catch(e) {
 
