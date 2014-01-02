@@ -211,8 +211,8 @@ gadgets.util.registerOnLoadHandler(load);
     var year = currentDate.getFullYear();
     var hour = currentDate.getHours();
     var arriveOrDepart = toggle;
-    var airportCode = 'MSP';
-    var numHours = '6';
+    var airportCode = prefs.getString('airport_code');
+    var numHours = prefs.getString('num_hours');
  
 
 
@@ -238,7 +238,7 @@ gadgets.util.registerOnLoadHandler(load);
 
   function result(data, toggle) {
         
-        var gate = 'A13';
+        var gate = prefs.getString('airport_gate');
 
 
         var rowCounter = 1;
