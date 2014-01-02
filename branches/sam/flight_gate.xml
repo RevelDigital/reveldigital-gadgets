@@ -4,7 +4,6 @@
   <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
   <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
-  <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
   <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
   <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
@@ -157,19 +156,19 @@
     var arriveOrDepart = toggle;
     var airportCode = prefs.getString('airport_code');
     var numHours = prefs.getString('num_hours');
-    var maxFlights = prefs.getString('max_flights');
+    var maxFlights = 1;
     var gate = prefs.getString('airport_gate');
 
 
 
     var url = 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/' + airportCode + '/' + arriveOrDepart + '/' + year + '/' + month + '/' + day + '/' + hour + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=' + numHours + '&maxFlights=' + maxFlights;
-console.log("URLs: " + url);
+
     $.ajax({
       url: url,
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-console.log(toggle);
+
         data.flightStatuses.sort(compareArrivalTimes);
 
         var rowCounter = 1;
