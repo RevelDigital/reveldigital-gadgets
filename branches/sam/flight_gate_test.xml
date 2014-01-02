@@ -246,7 +246,7 @@ gadgets.util.registerOnLoadHandler(load);
         
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
-          var checkFlight;
+          var checkFlight = null;
 
           if(toggle == 'arr') {
             try {
