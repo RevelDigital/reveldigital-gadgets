@@ -21,7 +21,7 @@ body {
   -moz-perspective: 800px;
   -ms-perspective: 800px;
   -o-perspective: 800px;
-  perspective: 800px;
+  
    width: 100%;
    height: 100%;
     position: relative;
@@ -49,6 +49,7 @@ body {
     
 }
 .flip .card .back {
+  overflow:hidden;
   -webkit-transform: rotatex(-180deg);
   -webkit-backface-visibility: hidden;
     background: green;
