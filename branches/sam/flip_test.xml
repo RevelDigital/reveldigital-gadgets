@@ -28,19 +28,7 @@ body {
     margin: auto;
 }
 .flip .card.flipped {
-  -webkit-transform: rotateX(0deg) rotateY(0deg);
-  -webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-
-  -moz-transform: rotateX(0deg) rotateY(0deg);
-  -moz-transform-style: preserve-3d;
-  -moz-backface-visibility: hidden;
-
-  -o-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -moz-transition: all .9s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .9s ease-in-out;
+  -webkit-transform: rotatex(-180deg);
 }
 .flip .card {
 
@@ -62,21 +50,6 @@ body {
 }
 .flip .card .back {
   -webkit-transform: rotatex(-180deg);
--webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-
-  -moz-transform: rotatex(-179deg);
-  -moz-transform-style: preserve-3d;
-  -moz-backface-visibility: hidden;
-
-  -o-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -moz-transition: all .9s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .9s ease-in-out;
-
-
-
     background: green;
     color: black;
     
