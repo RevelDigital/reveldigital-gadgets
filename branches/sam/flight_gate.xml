@@ -169,7 +169,7 @@ console.log("URLs: " + url);
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-
+console.log(toggle);
         data.flightStatuses.sort(compareArrivalTimes);
 
         var rowCounter = 1;
