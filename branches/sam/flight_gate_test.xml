@@ -92,9 +92,9 @@ var prefs = new gadgets.Prefs();
 
   function load() {
     flights = [];
+    clearFlights();
     refresh('arr');
-    
-    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+    setInterval(load, prefs.getInt("update_interval") * 60 * 1000);
   }
   
 gadgets.util.registerOnLoadHandler(load);
@@ -203,7 +203,7 @@ gadgets.util.registerOnLoadHandler(load);
 
   function refresh(toggle) {
 
-    clearFlights();
+    
 
     var currentDate = new Date();
     var month = currentDate.getMonth() + 1;
