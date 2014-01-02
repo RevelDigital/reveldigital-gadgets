@@ -50,7 +50,7 @@ body {
 }
 .flip .card .back {
   -webkit-transform: rotatex(-180deg);
-  webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
     background: green;
     color: black;
     
