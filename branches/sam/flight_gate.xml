@@ -253,7 +253,7 @@
         }
       }
 
-      $('#current_time').text('Arrival: ' + timeConvert(arrivalTime.toLocaleTimeString());
+      $('#current_time').text('Arrival: ' + timeConvert(arrivalTime.toLocaleTimeString()));
     }
     else {
       var depatureTime = new Date(currentFlight.departureDate.dateUtc);
@@ -264,7 +264,7 @@
         }
       }
 
-      $('#current_time').text('Departure: ' + timeConvert(depatureTime.toLocaleTimeString());
+      $('#current_time').text('Departure: ' + timeConvert(depatureTime.toLocaleTimeString()));
     }
     
     $('#current_status').text(getStatus(flight.status));
