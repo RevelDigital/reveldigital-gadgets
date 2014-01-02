@@ -222,12 +222,7 @@ console.log("URLs: " + url);
             cells[4].innerHTML = getStatus(currentFlight.status);
             
 
-            for(var k = 0; k < data.appendix.airports.length; k++) {
-              console.log('test');
-              if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
-                cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
-              }
-            }
+            
 
             for(var l = 0; l < data.appendix.airlines.length; l++) {
               if(currentFlight.carrierFsCode == data.appendix.airlines[l].fs) {
@@ -236,6 +231,11 @@ console.log("URLs: " + url);
             }
 
             if(arriveOrDepart == 'arr') {
+              for(var k = 0; k < data.appendix.airports.length; k++) {
+                if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+                  cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+                }
+              }
               try {
                 cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
                
@@ -245,6 +245,11 @@ console.log("URLs: " + url);
               }    
             }
             else {
+              for(var k = 0; k < data.appendix.airports.length; k++) {
+                if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+                  cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+                }
+              }
               try {
                 cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
                
