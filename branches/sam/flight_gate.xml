@@ -51,7 +51,7 @@
 
 <div id="table_container">
  <table id="flight_table"><tbody>
-    <tr id="header"><th>Time</th><th>Flight #</th><th>Location</th><th>Airline</th><th>Status</th></tr>
+    <tr id="header"><th>Time</th><th>Flight #</th><th><div id='tofrom'>Location</div></th><th>Airline</th><th>Status</th></tr>
   </tbody></table>
 </div>
 
@@ -167,7 +167,6 @@ console.log("URLs: " + url);
     $.ajax({
       url: url,
       dataType: 'JSONP',
-      //jsonpCallback: 'callback',
       type: 'GET',
       success: function (data) {
 
@@ -180,6 +179,7 @@ console.log("URLs: " + url);
 
           if(toggle == 'arr') {
             try {
+              $('#tofrom').text("From");
               gateCheck = currentFlight.airportResources.arrivalGate;  
             }
             catch(e) {
@@ -189,6 +189,7 @@ console.log("URLs: " + url);
           }
           else {
             try {
+              $('#tofrom').text("To");
               gateCheck = currentFlight.airportResources.departureGate;  
             }
             catch(e) {
