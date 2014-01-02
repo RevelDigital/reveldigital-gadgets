@@ -232,7 +232,7 @@ console.log(toggle);
 
             if(arriveOrDepart == 'arr') {
               for(var k = 0; k < data.appendix.airports.length; k++) {
-                if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+                if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
                   cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
                 }
               }
@@ -246,7 +246,7 @@ console.log(toggle);
             }
             else {
               for(var k = 0; k < data.appendix.airports.length; k++) {
-                if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+                if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
                   cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
                 }
               }
