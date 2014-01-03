@@ -153,9 +153,11 @@ function changeClass(){
 
   var prefs = new gadgets.Prefs();
   function load() {
+    $('.back').css('-webkit-transform: rotateX(180deg);')
+    $('.rotated').css('-webkit-transform: rotateX(180deg);')
     update();
     setInterval(function(){
-       console.log('Version: ?');
+       console.log('Version: ???');
         $('.block').click();
       }, 5000);
   }
