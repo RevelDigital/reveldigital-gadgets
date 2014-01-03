@@ -155,7 +155,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: ?');
+       console.log('Version: 3');
         $('.block').click();
       }, 5000);
   }
