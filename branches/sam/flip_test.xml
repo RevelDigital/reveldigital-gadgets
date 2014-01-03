@@ -50,7 +50,7 @@ body {
     -webkit-transition: -webkit-transform 1.5s;
 }
 .rotated{
-    -webkit-transform: rotateY(180deg);
+    
 }
 .side{
     position: absolute;
@@ -63,7 +63,7 @@ body {
 }
 .back{
     
-    -webkit-transform: rotateY(180deg);
+    
     
     background-color: __UP_side-b__;
 }
@@ -153,11 +153,11 @@ function changeClass(){
 
   var prefs = new gadgets.Prefs();
   function load() {
-    $('.back').css('-webkit-transform: rotateX(180deg);')
-    $('.rotated').css('-webkit-transform: rotateX(180deg);')
+    $('.back').css('-webkit-transform: rotateX(180deg)')
+    $('.rotated').css('-webkit-transform: rotateX(180deg)')
     update();
     setInterval(function(){
-       console.log('Version: ???');
+       console.log('Version: ?');
         $('.block').click();
       }, 5000);
   }
