@@ -16,17 +16,10 @@
 <style type="text/css">
 
 
-
-#container{
-    height: 360px;
-    width: 620px;
-    position: relative;
-    -webkit-perspective: 500;
-} 
 .block {
     
-    height: 260px;
-    width: 320px;
+    height: 100%;
+    width: 100%;
     left: 50px;
     top: 50px;
     -webkit-transform-style: preserve-3d;
