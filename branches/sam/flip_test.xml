@@ -156,7 +156,7 @@ td {
 
 
 
-<script type="text/javascript">
+
   var prefs = new gadgets.Prefs();
   function load() {
     setInterval(function(){
@@ -165,7 +165,7 @@ td {
       }, 5000);
   }
   gadgets.util.registerOnLoadHandler(load);
-</script>
+
 
 
 
