@@ -64,14 +64,13 @@
     width: 100%;
     
     -webkit-transform: rotateY(180deg);
+    background: blue;
     
-    background-color:rgba(0,0,255,0.5);
 }
 
 #font_side {
   width: 100%;
   border-collapse: collapse;
-  background-color: red;
 }
 
 
@@ -157,7 +156,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: 25');
+       console.log('Version: 27');
         $('.block').click();
       }, 5000);
   }
