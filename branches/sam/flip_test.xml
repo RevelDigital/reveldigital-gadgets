@@ -57,7 +57,7 @@
 .front{
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-color:rgba(255,0,0,0.5);
 }
 .back{
     height: 100%;
@@ -65,36 +65,32 @@
     
     -webkit-transform: rotateY(180deg);
     
-    background-color: black;
+    background-color:rgba(0,0,255,0.5);
 }
 
 #font_side {
   width: 100%;
-  border-collapse: collapse; 
-  background-color: black;
+  border-collapse: collapse;
+  background-color: red;
 }
 
 
 #back_side {
   width: 100%;
   border-collapse: collapse; 
-  background-color: black;
 }
 
 .title {
   font-weight: bold;
   font-size: 23px;
-  background-color: black;
 }
 
 .desc {
   font-size: 15px;
-  background-color: black;
 }
 
 #title_cell {
   padding-bottom:25px;
-  background-color: black;
   text-align: center;
 }
 
@@ -161,7 +157,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: 21');
+       console.log('Version: 25');
         $('.block').click();
       }, 5000);
   }
