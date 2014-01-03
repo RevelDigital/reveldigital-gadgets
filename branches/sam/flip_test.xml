@@ -35,7 +35,7 @@
 <style type="text/css">
 
 
-
+body { float:left;}
 
 .block {
     
@@ -64,8 +64,8 @@
     width: 100%;
     
     -webkit-transform: rotateY(180deg);
-    background: blue;
     
+    background-color:rgba(0,0,255,0.5);
 }
 
 #font_side {
@@ -156,7 +156,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: 27');
+       console.log('Version: 29');
         $('.block').click();
       }, 5000);
   }
