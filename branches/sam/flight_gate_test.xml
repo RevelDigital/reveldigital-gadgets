@@ -343,7 +343,7 @@ gadgets.util.registerOnLoadHandler(load);
       var arrivalTime = new Date(flight.arrivalDate.dateUtc);
 
       for(var k = 0; k < data.appendix.airports.length; k++) {
-       if(flight.departureAirportFsCode == data.appendix.airports[k].fs) {
+       if(flight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
           $('#current_location').text('From: ' + data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa);
         }
       }
@@ -354,7 +354,7 @@ gadgets.util.registerOnLoadHandler(load);
       var depatureTime = new Date(flight.departureDate.dateUtc);
 
       for(var k = 0; k < data.appendix.airports.length; k++) {
-        if(flight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+        if(flight.departureAirportFsCode == data.appendix.airports[k].fs) {
           $('#current_location').text('Destination: ' + data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa);
         }
       }
@@ -410,7 +410,7 @@ gadgets.util.registerOnLoadHandler(load);
 
           if(arrivalToggle) {
             for(var k = 0; k < data.appendix.airports.length; k++) {
-              if(flight.departureAirportFsCode == data.appendix.airports[k].fs) {
+              if(flight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
                 cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
               }
             }
@@ -418,7 +418,7 @@ gadgets.util.registerOnLoadHandler(load);
           }
           else {
             for(var k = 0; k < data.appendix.airports.length; k++) {
-              if(flight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+              if(flight.departureAirportFsCode == data.appendix.airports[k].fs) {
                 cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
               }
             }
