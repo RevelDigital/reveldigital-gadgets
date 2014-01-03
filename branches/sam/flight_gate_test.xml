@@ -5,14 +5,9 @@
   <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
   <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
-  
-
-
-
   <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="next-flight-header-style" display_name="Next Flight Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
-
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -95,7 +90,7 @@
 
 var prefs = new gadgets.Prefs();
 
-
+// clear flights array, clear next flight table, begin flight calls, set timer
   function load() {
     flights = [];
     clearFlights();
@@ -111,6 +106,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 <script type="text/javascript">
 
+// clear next flight row if it exists
   function clearFlights() {
   	try {
   		document.getElementById("next_flight_table").deleteRow(1);	
@@ -122,7 +118,7 @@ gadgets.util.registerOnLoadHandler(load);
   }
 
 
-
+// find out if departure or arrival, then compare times
   function compareTime(code) {
     return function(a, b) {
       var testA;
@@ -193,6 +189,7 @@ gadgets.util.registerOnLoadHandler(load);
     }
   }
 
+// convert time to ensure 12-hour format
   function timeConvert (time) {
     
     time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -206,7 +203,8 @@ gadgets.util.registerOnLoadHandler(load);
     return time.join ('');
   }
 
-
+// make jsonp call for stats, call results sending data and toggle
+// toggle determines arrival or departure call
   function refresh(toggle) {
 
     
@@ -242,14 +240,20 @@ gadgets.util.registerOnLoadHandler(load);
 
   }
 
+// fill in the two tables with data from jsonp call
   function result(data, toggle) {
         
+
         var gate = prefs.getString('airport_gate');
         var currentTime = new Date();
+
+// cycle through the flights
         
         for (var i = 0; i < data.flightStatuses.length; i++) {
           var currentFlight = data.flightStatuses[i];
           var checkFlight;
+
+// determine arrival or departure and get time of flight
 
           if(toggle == 'arr') {
             try {
@@ -272,6 +276,9 @@ gadgets.util.registerOnLoadHandler(load);
             
           }
 
+// check if flight matches gate and is before current time
+// if true add to global flight array
+
           if(gateCheck == gate && currentTime < checkFlight) {
             flightObject=new Object();
             flightObject.data = data;
@@ -281,7 +288,8 @@ gadgets.util.registerOnLoadHandler(load);
 
         }
 
-
+// check if departure, it isn't run refresh again to get departure flights
+// if it is a departure display the two soonest flights on the tables
 
         if(toggle == 'dep') {
           flights.sort(compareTime);
@@ -308,20 +316,27 @@ gadgets.util.registerOnLoadHandler(load);
 
   }
 
+// show soonest flight in table
 
   function showCurrentFlight(flight) {
 
-    var arrivalToggle = false;
+// instantiate arrival toggle, flight data, and flight
 
+    var arrivalToggle = false;
     var data = flight.data;
     var flight = flight.flight;
 
+// if flight arrival code matches the pref, flight is arrival
 
-    if(flight.arrivalAirportFsCode == 'MSP') {
+    if(flight.arrivalAirportFsCode == prefs.getString('airport_gate')) {
       arrivalToggle = true;
     }
 
     $('#current_number').text('Flight #: ' + flight.flightNumber);
+    $('#current_status').text('Status: ' + getStatus(flight.status));
+
+// if flight is arrival display correct verbage and show city and aiport faa id
+// if flight is departure do opposite
 
     if(arrivalToggle) {
       var arrivalTime = new Date(flight.arrivalDate.dateUtc);
@@ -345,28 +360,27 @@ gadgets.util.registerOnLoadHandler(load);
 
       $('#current_time').text('Departure: ' + timeConvert(depatureTime.toLocaleTimeString()));
     }
-    
-    $('#current_status').text('Status: ' + getStatus(flight.status));
-
-
-
   }
 
-
+// display second soonest flight into table
 
   function showNextFlight(flight) {
+
+// instantiate arrival toggle, flight data, and flight
 
           var arrivalToggle = false;
           var data = flight.data;
           var flight = flight.flight;
 
-          if(flight.arrivalAirportFsCode == 'MSP') {
+// if flight arrival code matches the pref, flight is arrival
+
+          if(flight.arrivalAirportFsCode == prefs.getString('airport_gate')) {
             arrivalToggle = true;
             $('#toFrom').text('To');
           }
 
-          
-
+        
+// parse times into date objects, insert a new row into table
           var cells = [];
           var arrivalTime = new Date(flight.arrivalDate.dateUtc);
           var depatureTime = new Date(flight.departureDate.dateUtc);
@@ -374,7 +388,7 @@ gadgets.util.registerOnLoadHandler(load);
           var row = table.insertRow(1);
 
 
-
+// create 5 cells for new row inserted into table
           for(var j = 0; j < 6; j++) {
             cells[j] = row.insertCell(j);
           }
@@ -382,14 +396,16 @@ gadgets.util.registerOnLoadHandler(load);
           cells[1].innerHTML = flight.flightNumber;
           cells[4].innerHTML = getStatus(flight.status);
           
+// find the name of the aiport based on fs code          
+
           for(var l = 0; l < data.appendix.airlines.length; l++) {
             if(flight.carrierFsCode == data.appendix.airlines[l].fs) {
               cells[3].innerHTML = data.appendix.airlines[l].name;
             }
           }
           
-
-          
+// if arrival or departure set the corresponding city and faa code
+// also set the time, using time conversion function          
 
           if(arrivalToggle) {
             for(var k = 0; k < data.appendix.airports.length; k++) {
@@ -397,12 +413,7 @@ gadgets.util.registerOnLoadHandler(load);
                 cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
               }
             }
-            try {
-              cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
-            }
-            catch(e) {
-              
-            }    
+            cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());  
           }
           else {
             for(var k = 0; k < data.appendix.airports.length; k++) {
@@ -410,16 +421,9 @@ gadgets.util.registerOnLoadHandler(load);
                 cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
               }
             }
-            try {
-              cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
-            }
-            catch(e) {
-              
-            }
+            cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
           }
   }
-
-
 
 </script>
 
