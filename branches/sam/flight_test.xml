@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
   <UserPref name="airport_code" display_name="Airport Code" required="true" datatype="string" />
-  <UserPref name="num_hours" display_name="Number of hours" default_value="5" datatype="string" />
+  <UserPref name="num_hours" display_name="Number of hours (6 maximum)" default_value="5" datatype="string" />
   <UserPref name="max_flights" display_name="Max Flights to display" default_value="5" datatype="string" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
   <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
@@ -200,11 +200,7 @@ console.log("URLs: " + url);
           cells[4].innerHTML = getStatus(currentFlight.status);
           
 
-          for(var k = 0; k < data.appendix.airports.length; k++) {
-            if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
-              cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
-            }
-          }
+          
 
           for(var l = 0; l < data.appendix.airlines.length; l++) {
             if(currentFlight.carrierFsCode == data.appendix.airlines[l].fs) {
@@ -213,6 +209,11 @@ console.log("URLs: " + url);
           }
 
           if(arriveOrDepart == 'arr') {
+            for(var k = 0; k < data.appendix.airports.length; k++) {
+              if(currentFlight.arrivalAirportFsCode == data.appendix.airports[k].fs) {
+                cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+              }
+            }
             try {
               cells[0].innerHTML = timeConvert(arrivalTime.toLocaleTimeString());
               if(currentFlight.airportResources.arrivalGate === undefined) {
@@ -227,6 +228,11 @@ console.log("URLs: " + url);
             }    
           }
           else {
+            for(var k = 0; k < data.appendix.airports.length; k++) {
+              if(currentFlight.departureAirportFsCode == data.appendix.airports[k].fs) {
+                cells[2].innerHTML = data.appendix.airports[k].city + " - " + data.appendix.airports[k].faa;
+              }
+            }
             try {
               cells[0].innerHTML = timeConvert(depatureTime.toLocaleTimeString());
               if(currentFlight.airportResources.departureGate === undefined) {
