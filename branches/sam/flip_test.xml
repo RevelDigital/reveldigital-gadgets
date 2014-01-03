@@ -50,7 +50,7 @@ body {
     -webkit-transition: -webkit-transform 1.5s;
 }
 .rotated{
-    -webkit-transform: rotateY(180deg);
+    -webkit-transform: rotate__UP_orientation__(180deg);
 }
 .side{
     position: absolute;
@@ -63,7 +63,7 @@ body {
 }
 .back{
     
-    -webkit-transform: rotateY(180deg);
+    -webkit-transform: rotate__UP_orientation__(180deg);
     
     background-color: __UP_side-b__;
 }
@@ -155,7 +155,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: ?');
+       console.log('Version: more stupid');
         $('.block').click();
       }, 5000);
   }
