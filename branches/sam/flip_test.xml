@@ -144,6 +144,7 @@ td {
 
 
  setInterval(function(){
+  console.log('Version: 1')
   $('.block').click();
 }, 5000);
 
