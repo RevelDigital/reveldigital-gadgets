@@ -57,7 +57,7 @@
 .front{
     height: 100%;
     width: 100%;
-    background-color:rgba(255,0,0,0.5);
+    background-color: black;
 }
 .back{
     height: 100%;
@@ -65,31 +65,36 @@
     
     -webkit-transform: rotateY(180deg);
     
-    background-color:rgba(0,0,255,0.5);
+    background-color: black;
 }
 
 #font_side {
   width: 100%;
   border-collapse: collapse; 
+  background-color: black;
 }
 
 
 #back_side {
   width: 100%;
   border-collapse: collapse; 
+  background-color: black;
 }
 
 .title {
   font-weight: bold;
   font-size: 23px;
+  background-color: black;
 }
 
 .desc {
   font-size: 15px;
+  background-color: black;
 }
 
 #title_cell {
   padding-bottom:25px;
+  background-color: black;
   text-align: center;
 }
 
@@ -128,9 +133,6 @@
 
 
 
- setInterval(function(){
-  $('.block').click();
-}, 5000);
 
 
 
