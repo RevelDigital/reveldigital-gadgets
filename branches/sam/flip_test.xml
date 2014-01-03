@@ -161,7 +161,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: 15');
+       console.log('Version: 21');
         $('.block').click();
       }, 5000);
   }
