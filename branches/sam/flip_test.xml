@@ -43,7 +43,7 @@
 .front{
     height: 260px;
     width: 320px;
-    __UP_side-a__;
+    background-color: __UP_side-a__;
     
 }
 .back{
@@ -52,7 +52,7 @@
     
     -webkit-transform: rotateY(180deg);
     
-    __UP_side-b__;
+    background-color: __UP_side-b__;
 }
 
 #scores {
