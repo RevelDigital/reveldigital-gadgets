@@ -50,7 +50,7 @@ body {
     -webkit-transition: -webkit-transform 1.5s;
 }
 .rotated{
-    -webkit-transform: rotate__UP_orientation__(180deg);
+    -webkit-transform: rotate__UP_orientation__(-180deg);
 }
 .side{
     position: absolute;
@@ -155,7 +155,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: more stupid');
+       console.log('Version: noes');
         $('.block').click();
       }, 5000);
   }
