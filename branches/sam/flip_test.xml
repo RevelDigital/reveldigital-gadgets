@@ -33,10 +33,6 @@
 <![CDATA[
 
 
-    
-    
-
-
 <style type="text/css">
 
 
@@ -93,12 +89,6 @@ body {
   text-align: center;
 }
 
-
-
-
-
-
-
 </style>
 
 
@@ -107,37 +97,19 @@ body {
 
 
 <div id="block" class="block" onclick="changeClass()">
-    <div class="front side">
-       <table id='front_table'>
-        
-      </table>
-
-    </div>
-    <div class="back side">
-       <table id='back_table'>
-        
-      </table>
-    </div>
+  <div class="front side">
+    <table id='front_table'>
+    </table>
+  </div>
+  <div class="back side">
+    <table id='back_table'>
+    </table>
+  </div>
 </div>
-
-
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function changeClass(){
@@ -152,15 +124,16 @@ function changeClass(){
 
 
 
-  var prefs = new gadgets.Prefs();
-  function load() {
-    update();
-    setInterval(function(){
-       console.log('Version: 5');
-        $('.block').click();
-      }, prefs.getInt('time_delay')*1000);
-  }
-  gadgets.util.registerOnLoadHandler(load);
+var prefs = new gadgets.Prefs();
+function load() {
+  update();
+  setInterval(function(){
+    console.log('Version: 7');
+      $('.block').click();
+    }, prefs.getInt('time_delay')*1000);
+}
+
+gadgets.util.registerOnLoadHandler(load);
 
 
 
@@ -186,39 +159,48 @@ function refreshFlipper(data) {
 
   for(var i=0; i<data.responseData.feed.entries.length; i++) {
 
-            var currentEntry = data.responseData.feed.entries[i];
-            console.log(currentEntry.title);
+    var currentEntry = data.responseData.feed.entries[i];
+      console.log(currentEntry.title);
 
       if(i%2 == 0) {
 
-          var table = document.getElementById("front_table");
+        var table = document.getElementById("front_table");
           
 
-          var titleRow = table.insertRow(0);
-          var titleCell = titleRow.insertCell(0);
-          titleCell.id = 'title_cell';
-          titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
+        var titleRow = table.insertRow(0);
+        var titleCell = titleRow.insertCell(0);
+        titleCell.id = 'title_cell';
+        titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
 
-          var descRow = table.insertRow(1);
-          var descCell = descRow.insertCell(0);
-          descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
+        var descRow = table.insertRow(1);
+        var descCell = descRow.insertCell(0);
+        if (currentEntry.content.toLowerCase().indexOf("<div>") >= 0) {
+            descCell.innerHTML = "<span class='desc'>" + currentEntry.content.substring(0, currentEntry.content.indexOf('<div>')) + "</span>";
+          }
+          else {
+            descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
+          }
 
       }
 
       else {
 
-          var table = document.getElementById("back_table");
-          var titleRow = table.insertRow(0);
-          var titleCell = titleRow.insertCell(0);
-          titleCell.id = 'title_cell';
-          titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
-
-          var descRow = table.insertRow(1);
-          var descCell = descRow.insertCell(0);
-          descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
-
+        var table = document.getElementById("back_table");
+        var titleRow = table.insertRow(0);
+        var titleCell = titleRow.insertCell(0);
+        titleCell.id = 'title_cell';
+        titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
+        var descRow = table.insertRow(1);
+        var descCell = descRow.insertCell(0);
+        if (currentEntry.content.toLowerCase().indexOf("<div>") >= 0) {
+            descCell.innerHTML = "<span class='desc'>" + currentEntry.content.substring(0, currentEntry.content.indexOf('<div>')) + "</span>";
+          }
+          else {
+            descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
+          }
 
       }
+
   }
 
 
@@ -227,10 +209,6 @@ function refreshFlipper(data) {
 
 
 </script>
-
-
-
-
 
 ]]>
 </Content>
