@@ -6,6 +6,7 @@
   <UserPref name="side-b" display_name="Side B Color" datatype="color" default_value="grey" required="true" />
 
   <UserPref name="num_stories" display_name="Number of Stories To Display" datatype="string" />
+  <UserPref name="time_delay" display_name="Time Delay Before Flip (seconds)" datatype="string" />
 
   <UserPref name="orientation" display_name="Orientation" default_value="-webkit-transform: rotateY(180deg)" datatype="enum" >
     <EnumValue value="-webkit-transform: rotateX(180deg)" display_value="Vertical" />
@@ -157,7 +158,7 @@ function changeClass(){
     setInterval(function(){
        console.log('Version: 5');
         $('.block').click();
-      }, 5000);
+      }, prefs.getInt('time_delay')*1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 
