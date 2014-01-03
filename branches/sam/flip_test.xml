@@ -36,7 +36,7 @@
 .front{
     height: 100%;
     width: 100%;
-    background-color: __UP_side-a__;
+    background-color: black;
     
 }
 .back{
@@ -45,7 +45,7 @@
     
     -webkit-transform: rotateY(180deg);
     
-    background-color: __UP_side-b__;
+    background-color: black;
 }
 
 #scores {
@@ -64,7 +64,7 @@ td {
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
-  color: black;
+  color: white;
 }
 
 .winning {
@@ -144,7 +144,7 @@ td {
 
 
  setInterval(function(){
-  console.log('Version: 2')
+  console.log('Version: 3')
   $('.block').click();
 }, 5000);
 
