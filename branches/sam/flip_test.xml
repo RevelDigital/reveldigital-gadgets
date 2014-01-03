@@ -5,6 +5,11 @@
   <UserPref name="side-a" display_name="Side A Color" datatype="color" default_value="grey" required="true" />
   <UserPref name="side-b" display_name="Side B Color" datatype="color" default_value="grey" required="true" />
 
+  <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
+    <EnumValue value="x" display_value="Vertical" />
+    <EnumValue value="y" display_value="Horizontal" />
+  </UserPref>
+
 
 </ModulePrefs>
 <Content type="html">
@@ -40,7 +45,7 @@ body {
 .front{
     height: 100%;
     width: 100%;
-    background-color: blue;
+    background-color: __UP_side-a__;
     
 }
 .back{
@@ -147,14 +152,20 @@ td {
 
 
 
- setInterval(function(){
- console.log('Version: 7')
-  $('.block').click();
-}, 5000);
+ 
 
 
 
-
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    setInterval(function(){
+       console.log('Version: 10')
+        $('.block').click();
+      }, 5000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
 
 
 
