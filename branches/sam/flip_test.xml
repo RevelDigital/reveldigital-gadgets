@@ -7,7 +7,7 @@
 
   <UserPref name="num_stories" display_name="Number of Stories To Display" datatype="string" />
 
-  <UserPref name="orientation" display_name="Orientation" default_value="-webkit-transform: rotateY(180deg);" datatype="enum" >
+  <UserPref name="orientation" display_name="Orientation" default_value="-webkit-transform: rotateY(180deg)" datatype="enum" >
     <EnumValue value="-webkit-transform: rotateX(180deg)" display_value="Vertical" />
     <EnumValue value="-webkit-transform: rotateY(180deg)" display_value="Horizontal" />
   </UserPref>
