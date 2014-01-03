@@ -92,7 +92,7 @@ var prefs = new gadgets.Prefs();
 
 // clear flights array, clear next flight table, begin flight calls, set timer
   function load() {
-    console.log('load5');
+    console.log('load6');
     flights = [];
     clearFlights();
     refresh('arr');
@@ -140,7 +140,7 @@ gadgets.util.registerOnLoadHandler(load);
       }
 
       if (testA > testB) {
-      return 1;
+        return 1;
       } 
       if (testA < testB) {
         return -1;
@@ -293,7 +293,7 @@ gadgets.util.registerOnLoadHandler(load);
 // if it is a departure display the two soonest flights on the tables
 
         if(toggle == 'dep') {
-          flights.sort(compareTime);
+          flights.sort(compareTime(prefs.getString('airport_code')));
           try {
             showCurrentFlight(flights[0]);
           }
