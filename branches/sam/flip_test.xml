@@ -7,9 +7,9 @@
 
   <UserPref name="num_stories" display_name="Number of Stories To Display" datatype="string" />
 
-  <UserPref name="orientation" display_name="Orientation" default_value="Y" datatype="enum" >
-    <EnumValue value="X" display_value="Vertical" />
-    <EnumValue value="Y" display_value="Horizontal" />
+  <UserPref name="orientation" display_name="Orientation" default_value="-webkit-transform: rotateY(180deg);" datatype="enum" >
+    <EnumValue value="-webkit-transform: rotateX(180deg);" display_value="Vertical" />
+    <EnumValue value="-webkit-transform: rotateY(180deg);" display_value="Horizontal" />
   </UserPref>
 
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:23px;" required="true" />
@@ -50,7 +50,7 @@ body {
     -webkit-transition: -webkit-transform 1.5s;
 }
 .rotated{
-    -webkit-transform: rotate__UP_orientation__(-180deg);
+    __UP_orientation__;
 }
 .side{
     position: absolute;
@@ -63,7 +63,7 @@ body {
 }
 .back{
     
-    -webkit-transform: rotate__UP_orientation__(180deg);
+    __UP_orientation__;
     
     background-color: __UP_side-b__;
 }
@@ -155,7 +155,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: noes');
+       console.log('Version: ?');
         $('.block').click();
       }, 5000);
   }
