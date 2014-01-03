@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
-  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+
+  <UserPref name="side-a" display_name="Side A Color" datatype="color" default_value="grey" required="true" />
+  <UserPref name="side-b" display_name="Side B Color" datatype="color" default_value="grey" required="true" />
+
 
 </ModulePrefs>
 <Content type="html">
@@ -19,9 +22,9 @@
     width: 620px;
     position: relative;
     -webkit-perspective: 500;
-}
+} 
 .block {
-    position: absolute;
+    
     height: 260px;
     width: 320px;
     left: 50px;
@@ -40,15 +43,43 @@
 .front{
     height: 260px;
     width: 320px;
-    background-color: blue;
+    __UP_side-a__;
+    
 }
 .back{
-    height: 280px;
+    height: 260px;
     width: 320px;
-    padding: 10px;
+    
     -webkit-transform: rotateY(180deg);
-    background-color: red;
+    
+    __UP_side-b__;
 }
+
+#scores {
+  font-size: 25px;
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+tr {
+  border-bottom: 1pt solid rgba(255,255,255,0.5);
+
+}
+
+
+td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  color: white;
+}
+
+.winning {
+  color: yellow;
+  font-weight: bold;
+}
+
+
 
 
 
@@ -58,108 +89,56 @@
 
 
 
+
 <div id="block" class="block" onclick="changeClass()">
     <div class="front side">
-       <table>
-  <tr>
-    <td>
-
-      <table>
+       <table id='scores'>
         <tr>
-          <td class="team">
-            PITTSBURGH
-          </td>
-          <td class="score">
-            5
-          </td>
+          <td>Green Bay</td>
+          <td>5 - <span class='winning'>6</span></td>
+          <td>Minnesota</td>
         </tr>
         <tr>
-          <td class="team">
-            BOSTON
-          </td>
-          <td class="score">
-            7
-          </td>
-        </tr>
-      </table>
-
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <table>
-        <tr>
-          <td class="team">
-            PITTSBURGH
-          </td>
-          <td class="score">
-            3
-          </td>
+          <td>Green Bay</td>
+          <td><span class='winning'>6</span> - 4</td>
+          <td>Minnesota</td>
         </tr>
         <tr>
-          <td class="team">
-            BOSTON
-          </td>
-          <td class="score">
-            9
-          </td>
+          <td>Green Bay</td>
+          <td><span class='winning'>6</span> - 3</td>
+          <td>Minnesota</td>
+        </tr>
+        <tr>
+          <td>Green Bay</td>
+          <td>7 - <span class='winning'>10</span></td>
+          <td>Minnesota</td>
         </tr>
       </table>
-    </td>
-  </tr>
-</table>
+
     </div>
     <div class="back side">
-        <table>
-  <tr>
-    <td>
-
-      <table>
+       <table id='scores'>
         <tr>
-          <td class="team">
-            PITTSBURGH
-          </td>
-          <td class="score">
-            5
-          </td>
+          <td>Green Bay</td>
+          <td>5 - <span class='winning'>6</span></td>
+          <td>Minnesota</td>
         </tr>
         <tr>
-          <td class="team">
-            BOSTON
-          </td>
-          <td class="score">
-            7
-          </td>
-        </tr>
-      </table>
-
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <table>
-        <tr>
-          <td class="team">
-            PITTSBURGH
-          </td>
-          <td class="score">
-            3
-          </td>
+          <td>Green Bay</td>
+          <td><span class='winning'>6</span> - 4</td>
+          <td>Minnesota</td>
         </tr>
         <tr>
-          <td class="team">
-            BOSTON
-          </td>
-          <td class="score">
-            9
-          </td>
+          <td>Green Bay</td>
+          <td><span class='winning'>6</span> - 3</td>
+          <td>Minnesota</td>
+        </tr>
+        <tr>
+          <td>Green Bay</td>
+          <td>7 - <span class='winning'>10</span></td>
+          <td>Minnesota</td>
         </tr>
       </table>
-    </td>
-  </tr>
-</table>
     </div>
 </div>
 
@@ -197,8 +176,12 @@ function changeClass(){
 
 
 
-</script>
 
+
+
+
+
+</script>
 
 
 ]]>
