@@ -92,7 +92,7 @@ var prefs = new gadgets.Prefs();
 
 // clear flights array, clear next flight table, begin flight calls, set timer
   function load() {
-    console.log('load2');
+    console.log('load3');
     flights = [];
     clearFlights();
     refresh('arr');
@@ -329,7 +329,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 // if flight arrival code matches the pref, flight is arrival
 
-    if(flight.arrivalAirportFsCode == prefs.getString('airport_gate')) {
+    if(flight.arrivalAirportFsCode == prefs.getString('airport_code')) {
       arrivalToggle = true;
     }
 
@@ -375,7 +375,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 // if flight arrival code matches the pref, flight is arrival
 
-          if(flight.arrivalAirportFsCode == prefs.getString('airport_gate')) {
+          if(flight.arrivalAirportFsCode == prefs.getString('airport_code')) {
             arrivalToggle = true;
             $('#toFrom').text('To');
           }
