@@ -92,7 +92,7 @@ var prefs = new gadgets.Prefs();
 
 // clear flights array, clear next flight table, begin flight calls, set timer
   function load() {
-    console.log('load7');
+    console.log('load9');
     flights = [];
     clearFlights();
     refresh('arr');
@@ -140,10 +140,10 @@ gadgets.util.registerOnLoadHandler(load);
       }
 
       if (testA > testB) {
-        return 1;
+        return -1;
       } 
       if (testA < testB) {
-        return -1;
+        return 1;
       }
       return 0;
 
