@@ -92,6 +92,7 @@ var prefs = new gadgets.Prefs();
 
 // clear flights array, clear next flight table, begin flight calls, set timer
   function load() {
+    console.log('load');
     flights = [];
     clearFlights();
     refresh('arr');
