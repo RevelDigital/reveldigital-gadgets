@@ -12,6 +12,9 @@
     <EnumValue value="Y" display_value="Horizontal" />
   </UserPref>
 
+  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:23px;" required="true" />
+  <UserPref name="story-style" display_name="Story Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:20px;" required="true" />
+
   <UserPref name="source" display_name="News Category" default_value="http://www.cbsnews.com/latest/rss/main" datatype="enum" >
     <EnumValue value="http://www.cbsnews.com/latest/rss/main" display_value="Top Stories" />
     <EnumValue value="http://www.cbsnews.com/feeds/rss/national.rss" display_value="National" />
@@ -29,7 +32,8 @@
 <![CDATA[
 
 
-
+    
+    
 
 
 <style type="text/css">
@@ -40,8 +44,6 @@ body {
 }
 
 .block {
-    
-    
     left: 50px;
     top: 50px;
     -webkit-transform-style: preserve-3d;
@@ -56,34 +58,33 @@ body {
     -webkit-box-shadow: 0 2px 5px #666;
 }
 .front{
-  
-    background-color:rgba(255,0,0,0.5);
+
+    background-color: __UP_side-a__;
 }
 .back{
-   
+    
     -webkit-transform: rotateY(180deg);
     
-    background-color:rgba(0,0,255,0.5);
+    background-color: __UP_side-b__;
 }
 
 #font_side {
- 
+
   border-collapse: collapse;
 }
 
 
 #back_side {
-  
+
   border-collapse: collapse; 
 }
 
 .title {
-  font-weight: bold;
-  font-size: 23px;
+  __UP_title-style__;
 }
 
 .desc {
-  font-size: 15px;
+  __UP_story-style__;
 }
 
 #title_cell {
@@ -154,7 +155,7 @@ function changeClass(){
   function load() {
     update();
     setInterval(function(){
-       console.log('Version: stupid');
+       console.log('Version: ?');
         $('.block').click();
       }, 5000);
   }
