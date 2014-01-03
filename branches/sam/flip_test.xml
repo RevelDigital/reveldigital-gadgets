@@ -5,9 +5,22 @@
   <UserPref name="side-a" display_name="Side A Color" datatype="color" default_value="grey" required="true" />
   <UserPref name="side-b" display_name="Side B Color" datatype="color" default_value="grey" required="true" />
 
-  <UserPref name="arrival" display_name="Type" default_value="arr" datatype="enum" >
-    <EnumValue value="x" display_value="Vertical" />
-    <EnumValue value="y" display_value="Horizontal" />
+  <UserPref name="num_stories" display_name="Number of Stories To Display" datatype="string" />
+
+  <UserPref name="orientation" display_name="Orientation" default_value="Y" datatype="enum" >
+    <EnumValue value="X" display_value="Vertical" />
+    <EnumValue value="Y" display_value="Horizontal" />
+  </UserPref>
+
+  <UserPref name="source" display_name="News Category" default_value="http://www.cbsnews.com/latest/rss/main" datatype="enum" >
+    <EnumValue value="http://www.cbsnews.com/latest/rss/main" display_value="Top Stories" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/national.rss" display_value="National" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/world.rss" display_value="World" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/politics.rss" display_value="Politics" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/health.rss" display_value="Health" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/entertainment.rss" display_value="Entertainment" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/business.rss" display_value="Business" />
+    <EnumValue value="http://www.cbsnews.com/feeds/rss/mostpopular/story.rss" display_value="Most Popular" />
   </UserPref>
 
 
@@ -18,12 +31,11 @@
 
 
 
+
 <style type="text/css">
 
 
-body {
-    background: transparent;
-  }
+
 
 .block {
     
@@ -45,8 +57,7 @@ body {
 .front{
     height: 100%;
     width: 100%;
-    background-color: __UP_side-a__;
-    
+    background-color:rgba(255,0,0,0.5);
 }
 .back{
     height: 100%;
@@ -54,32 +65,35 @@ body {
     
     -webkit-transform: rotateY(180deg);
     
-    background-color: __UP_side-b__;
+    background-color:rgba(0,0,255,0.5);
 }
 
-#scores {
-  font-size: 25px;
+#font_side {
   width: 100%;
   border-collapse: collapse; 
 }
 
-tr {
-  border-bottom: 1pt solid rgba(255,255,255,0.5);
 
+#back_side {
+  width: 100%;
+  border-collapse: collapse; 
 }
 
-
-td {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-align: center;
-  color: black;
-}
-
-.winning {
-  color: yellow;
+.title {
   font-weight: bold;
+  font-size: 23px;
 }
+
+.desc {
+  font-size: 15px;
+}
+
+#title_cell {
+  padding-bottom:25px;
+  text-align: center;
+}
+
+
 
 
 
@@ -94,52 +108,14 @@ td {
 
 <div id="block" class="block" onclick="changeClass()">
     <div class="front side">
-       <table id='scores'>
-        <tr>
-          <td>Green Bay</td>
-          <td>5 - <span class='winning'>6</span></td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td><span class='winning'>6</span> - 4</td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td><span class='winning'>6</span> - 3</td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td>7 - <span class='winning'>10</span></td>
-          <td>Minnesota</td>
-        </tr>
+       <table id='front_table'>
+        
       </table>
 
     </div>
     <div class="back side">
-       <table id='scores'>
-        <tr>
-          <td>Green Bay</td>
-          <td>5 - <span class='winning'>6</span></td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td><span class='winning'>6</span> - 4</td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td><span class='winning'>6</span> - 3</td>
-          <td>Minnesota</td>
-        </tr>
-        <tr>
-          <td>Green Bay</td>
-          <td>7 - <span class='winning'>10</span></td>
-          <td>Minnesota</td>
-        </tr>
+       <table id='back_table'>
+        
       </table>
     </div>
 </div>
@@ -152,19 +128,12 @@ td {
 
 
 
- 
+ setInterval(function(){
+  $('.block').click();
+}, 5000);
 
 
 
-
-  var prefs = new gadgets.Prefs();
-  function load() {
-    setInterval(function(){
-       console.log('Version: 10');
-        $('.block').click();
-      }, 5000);
-  }
-  gadgets.util.registerOnLoadHandler(load);
 
 
 
@@ -186,11 +155,84 @@ function changeClass(){
 
 
 
+  var prefs = new gadgets.Prefs();
+  function load() {
+    update();
+    setInterval(function(){
+       console.log('Version: 15');
+        $('.block').click();
+      }, 5000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
 
+
+
+
+function update() {
+
+  var url = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + prefs.getString('num_stories') + "&callback=?&q=" + prefs.getString('source');
+
+  $.ajax({
+        url: url,
+        dataType: "JSONP",
+        success: function (data) {
+          
+          console.log(data);
+          refreshFlipper(data);
+        }
+  });
+
+}
+
+
+function refreshFlipper(data) {
+
+  for(var i=0; i<data.responseData.feed.entries.length; i++) {
+
+            var currentEntry = data.responseData.feed.entries[i];
+            console.log(currentEntry.title);
+
+      if(i%2 == 0) {
+
+          var table = document.getElementById("front_table");
+          
+
+          var titleRow = table.insertRow(0);
+          var titleCell = titleRow.insertCell(0);
+          titleCell.id = 'title_cell';
+          titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
+
+          var descRow = table.insertRow(1);
+          var descCell = descRow.insertCell(0);
+          descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
+
+      }
+
+      else {
+
+          var table = document.getElementById("back_table");
+          var titleRow = table.insertRow(0);
+          var titleCell = titleRow.insertCell(0);
+          titleCell.id = 'title_cell';
+          titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
+
+          var descRow = table.insertRow(1);
+          var descCell = descRow.insertCell(0);
+          descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
+
+
+      }
+  }
+
+
+}
 
 
 
 </script>
+
+
+
 
 
 ]]>
