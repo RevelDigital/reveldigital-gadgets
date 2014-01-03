@@ -40,7 +40,7 @@ body {
 .front{
     height: 100%;
     width: 100%;
-    background-color: __UP_side-a__;
+    background-color: blue;
     
 }
 .back{
@@ -148,7 +148,7 @@ td {
 
 
  setInterval(function(){
- console.log('Version: 5')
+ console.log('Version: 7')
   $('.block').click();
 }, 5000);
 
