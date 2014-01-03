@@ -34,14 +34,14 @@
     -webkit-box-shadow: 0 2px 5px #666;
 }
 .front{
-    height: 260px;
-    width: 320px;
+    height: 100%;
+    width: 100%;
     background-color: __UP_side-a__;
     
 }
 .back{
-    height: 260px;
-    width: 320px;
+    height: 100%;
+    width: 100%;
     
     -webkit-transform: rotateY(180deg);
     
@@ -144,7 +144,7 @@ td {
 
 
  setInterval(function(){
-  console.log('Version: 1')
+  console.log('Version: 2')
   $('.block').click();
 }, 5000);
 
