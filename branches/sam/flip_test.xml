@@ -160,7 +160,7 @@ td {
   var prefs = new gadgets.Prefs();
   function load() {
     setInterval(function(){
-       console.log('Version: 10')
+       console.log('Version: 10');
         $('.block').click();
       }, 5000);
   }
