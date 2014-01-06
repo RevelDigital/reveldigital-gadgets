@@ -97,7 +97,7 @@
 
         var current = data.results[0];
 
-
+console.log(current);
         try {
           var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
           createFlights(arrivals, toggle);
