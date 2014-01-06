@@ -171,7 +171,7 @@ function refreshFlipper() {
 
 
 
-  for(var i=0; i<3; i++) {
+  for(var i=0; i<2; i++) {
 
     if(storyCounter == stories.length) {
       storyCounter = 0;
