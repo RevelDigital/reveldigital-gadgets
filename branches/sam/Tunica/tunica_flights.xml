@@ -58,7 +58,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log('1');
+    
     setInterval(refresh(prefs.getString('arrival')), prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
@@ -82,6 +82,7 @@ flights = [];
 
 
   function refresh(toggle) {
+    console.log('2');
 
       clearFlights();
 
