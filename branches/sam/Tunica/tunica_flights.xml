@@ -97,16 +97,27 @@
 
         var current = data.results[0];
 
-console.log(current);
-        try {
-          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
-          createFlights(arrivals, toggle);
-          displayFlights();
+        if(toggle == 'arrival') {
+        	try {
+				var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
+          		createFlights(arrivals, 'arrival');
+        	}
+        	catch {
+
+        	}
+          
         }
-        catch(e) {
-          console.log('No Flights');
+        else {
+        	try {
+				var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9);
+          		createFlights(departures, 'departure');
+        	}
+        	catch {
+
+        	}
         }
-        
+
+        displayFlights();   
 
       }
     });
