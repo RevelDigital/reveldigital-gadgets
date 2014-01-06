@@ -64,6 +64,9 @@
     <div id="current_number"></div>
   </td></tr>
   <tr><td>
+    <div id="current_airline"></div>
+  </td></tr>
+  <tr><td>
     <div id="current_location">Location: </div>
   </td></tr>
   <tr><td>
@@ -140,7 +143,6 @@ gadgets.util.registerOnLoadHandler(load);
 
         var current = data.results[0];
 
-        console.log(data);
 
         try {
           var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
@@ -189,6 +191,7 @@ gadgets.util.registerOnLoadHandler(load);
 
     $('#current_number').text('Flight #: ' + flight.number);
     $('#current_status').text('Status: ' + flight.status);
+    $('#current_airline').text('Airline: ' + flight.airline);
 
     if(flight.type == 'arrival') {
           $('#current_location').text('From: ' + flight.fromTo);
