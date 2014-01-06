@@ -145,7 +145,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 
         try {
-          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
+          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9).trim();
           createFlights(arrivals, 'arrival');
         }
         catch(e) {
@@ -153,7 +153,7 @@ gadgets.util.registerOnLoadHandler(load);
         }
 
         try {
-          var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9);
+          var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
           createFlights(departures, 'departure');
         }
         catch(e) {
