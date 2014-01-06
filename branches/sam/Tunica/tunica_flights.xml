@@ -197,8 +197,9 @@ flights = [];
     if(i!=0) {
       var flight = new Flight(row.children, type);
         flights.push(flight);
-        console.log("number: " = flights.length);
+
     }
+    console.log("number: " = flights.length);
   }
 
 
