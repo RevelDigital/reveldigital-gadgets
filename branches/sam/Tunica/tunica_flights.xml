@@ -101,7 +101,7 @@
         	try {
 
 				      var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9).trim();
-              console.log(arrivals);
+              console.log('arrival text:' + arrivals);
           		createFlights(arrivals, 'arrival');
         	}
         	catch(e) {
