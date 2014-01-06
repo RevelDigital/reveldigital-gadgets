@@ -72,6 +72,7 @@
 
   function clearFlights() {
     var length = $('#flight_table tbody tr').length;
+    console.log("Length: " + length);
     for(var i=length-1; i > 0; i--) {
       document.getElementById("flight_table").deleteRow(i);
     }
