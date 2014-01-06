@@ -96,9 +96,10 @@
 
 var prefs = new gadgets.Prefs();
 
+flights = [];
 
   function load() {
-    flights = [];
+    
     clearFlights();
     refresh();
     setInterval(load, prefs.getInt("update_interval") * 60 * 1000);
@@ -118,6 +119,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 
   function clearFlights() {
+    flights.length = 0;
     try {
       document.getElementById("next_flight_table").deleteRow(1);  
     }
