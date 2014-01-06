@@ -170,8 +170,8 @@ gadgets.util.registerOnLoadHandler(load);
           showCurrentFlight(flights[0]);
         }
         else {
-          showCurrentFlight(flights[0]);
-          showNextFlight(flights[1]);
+          showCurrentFlight(flights[1]);
+          showNextFlight(flights[0]);
         }
         
         
