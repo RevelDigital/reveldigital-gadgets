@@ -99,8 +99,9 @@
 
         if(toggle == 'arrival') {
         	try {
-            console.log(current);
+
 				      var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
+              console.log(arrivals);
           		createFlights(arrivals, 'arrival');
         	}
         	catch(e) {
