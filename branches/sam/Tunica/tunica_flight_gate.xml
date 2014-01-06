@@ -100,7 +100,7 @@ flights = [];
 
   function load() {
     
-    
+    refresh();
     
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
