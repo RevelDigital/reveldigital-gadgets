@@ -83,7 +83,7 @@
 
     
 
-    var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
+    var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
 
     var arrivalsTest = '<table><tr><th>Airline</th><th>Flight No.</th><th>From/To</th><th>Gate</th><th>Status</th><th>Time</th></tr><tr class="row"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7273-2</td><td class="fromTo">Kinston - ISO</td><td class="gate">2</td><td class="status">On Time</td><td class="time">2:55 PM</td></tr><tr class="alt"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7273-1</td><td class="fromTo">Raleigh - RDU</td><td class="gate">2</td><td class="status">On Time</td><td class="time">2:55 PM</td></tr><tr class="row"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7276-2</td><td class="fromTo">Norfolk - ORF</td><td class="gate">2</td><td class="status">On Time</td><td class="time">11:10 PM</td></tr><tr class="alt"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7276-1</td><td class="fromTo">Richmond - RIC</td><td class="gate">2</td><td class="status">On Time</td><td class="time">11:10 PM</td></tr></table>';
 
