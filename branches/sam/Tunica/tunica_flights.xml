@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
+  <UserPref name="arrival" display_name="Type" default_value="arrival" datatype="enum" >
+    <EnumValue value="arrival" display_value="Arrivals" />
+    <EnumValue value="departure" display_value="Departures" />
+  </UserPref>
+  <UserPref name="row-a" display_name="Row A Color" datatype="color" default_value="white" required="true" />
+  <UserPref name="row-b" display_name="Row B Color" datatype="color" default_value="grey" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="row-style" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+<style type="text/css">
+
+  body {
+    background: transparent;
+  }
+
+  #flight_table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    height:100%;
+  }
+
+  #header {
+    __UP_header-style__;
+  }
+
+  #rowa {
+    __UP_row-style__;
+    background-color: __UP_row-a__;
+  }
+
+  #rowb {
+    __UP_row-style__;
+    background-color: __UP_row-b__;
+  }
+
+</style>
+
+
+<div id="table_container">
+ <table id="flight_table"><tbody>
+    <tr id="header"><th>Time</th><th>Flight #</th><th>Location</th><th>Airline</th><th>Status</th><th>Gate</th></tr>
+  </tbody></table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    flights = [];
+    clearFlights();
+    refresh(prefs.getString('arrival'));
+    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+
+
+<script type="text/javascript">
+
+  function clearFlights() {
+    var length = $('#flight_table tbody tr').length;
+    for(var i=length-1; i > 0; i--) {
+      document.getElementById("flight_table").deleteRow(i);
+    }
+  }
+
+
+
+  function refresh(toggle) {
+
+    
+
+    var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
+
+    var arrivalsTest = '<table><tr><th>Airline</th><th>Flight No.</th><th>From/To</th><th>Gate</th><th>Status</th><th>Time</th></tr><tr class="row"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7273-2</td><td class="fromTo">Kinston - ISO</td><td class="gate">2</td><td class="status">On Time</td><td class="time">2:55 PM</td></tr><tr class="alt"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7273-1</td><td class="fromTo">Raleigh - RDU</td><td class="gate">2</td><td class="status">On Time</td><td class="time">2:55 PM</td></tr><tr class="row"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7276-2</td><td class="fromTo">Norfolk - ORF</td><td class="gate">2</td><td class="status">On Time</td><td class="time">11:10 PM</td></tr><tr class="alt"><td class="airline">Allegiant Airlines</td><td class="flightNumber">7276-1</td><td class="fromTo">Richmond - RIC</td><td class="gate">2</td><td class="status">On Time</td><td class="time">11:10 PM</td></tr></table>';
+
+
+    
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        var current = data.results[0];
+
+
+        try {
+          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
+          createFlights(arrivals, toggle);
+          displayFlights();
+        }
+        catch(e) {
+          console.log('No Flights');
+        }
+        
+
+      }
+    });
+  }
+
+
+
+  function displayFlights() {
+    var rowCounter = 1;
+
+        for (var i = 0; i < flights.length; i++) {
+
+          var currentFlight = flights[i];
+          var cells = [];
+          var table = document.getElementById("flight_table");
+          var row = table.insertRow(rowCounter);
+
+          if(i%2 == 0) {
+            row.id='rowa';
+          }
+          else {
+            row.id='rowb';
+          }  
+          rowCounter++;
+
+
+          for(var j = 0; j < 6; j++) {
+            cells[j] = row.insertCell(j);
+          }
+
+          cells[0].innerHTML = currentFlight.time;
+          cells[1].innerHTML = currentFlight.number;
+          cells[2].innerHTML = currentFlight.fromTo;
+          cells[3].innerHTML = currentFlight.airline;
+          cells[4].innerHTML = currentFlight.status;
+          cells[5].innerHTML = currentFlight.gate;
+          
+        } 
+  }
+
+
+
+  function Flight(info, type) {
+  
+  this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+
+  this.type = type;
+
+  this.print=print;
+  function print() {
+    return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
+      '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
+      '\nStatus: ' + this.status + '\nTime: ' + this.time;
+  }
+
+}
+
+
+
+  function createFlights(data, type) {
+  var $data = $(data);
+
+    
+  for (var i = 0, row; row = $data[0].rows[i]; i++) {
+    row.children[0].innerHTML;
+
+    if(i!=0) {
+      var flight = new Flight(row.children, type);
+        flights.push(flight);
+    }
+  }
+
+
+//debug
+/*
+  for(var i = 0; i < flights.length; i++) {
+    console.log(flights[i].print());
+  }
+*/
+}
+
+
+
+
+
+</script>
+
+]]>
+</Content>
+</Module>

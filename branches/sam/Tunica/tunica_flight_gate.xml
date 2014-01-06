@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
+  <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-header-style" display_name="Next Flight Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+<style type="text/css">
+
+  body {
+    background: transparent;
+  }
+
+  #current_flight {
+    margin: auto;
+  }
+
+  #current_flight_table {
+    text-align:center;
+    height:100%;
+    width:100%;
+    border-collapse:collapse;
+    __UP_current-flight-style__;
+    
+  }
+
+  #next_flight_table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    height:100%;
+    __UP_next-flight-style__;
+    
+  }
+
+  #header {
+    __UP_next-flight-header-style__;
+  }
+
+  #next_flight {
+    padding-top:3cm;
+  }
+
+
+
+</style>
+
+
+
+<body>
+
+<div id="current_flight">
+<table id="current_flight_table">
+  <tr><td>
+    <div id="current_number"></div>
+  </td></tr>
+  <tr><td>
+    <div id="current_location">Location: </div>
+  </td></tr>
+  <tr><td>
+    <div id="current_time">Time: </div>
+  </td></tr>
+  <tr><td>
+    <div id="current_status">Status: </div>
+  </td></tr>
+</table>
+</div>
+
+<div id="next_flight">
+ <table id="next_flight_table"><tbody>
+    <tr id="header"><th>Time</th><th>Flight #</th><th><div id='tofrom'>From</div></th><th>Airline</th><th>Status</th></tr>
+  </tbody></table>
+</div>
+
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+<script type="text/javascript">
+
+
+var prefs = new gadgets.Prefs();
+
+
+  function load() {
+    flights = [];
+    clearFlights();
+    refresh();
+    setInterval(load, prefs.getInt("update_interval") * 60 * 1000);
+  }
+  
+gadgets.util.registerOnLoadHandler(load);
+
+</script>
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+  function clearFlights() {
+    try {
+      document.getElementById("next_flight_table").deleteRow(1);  
+    }
+    catch(e) {
+
+    }
+  }
+
+
+
+
+  function refresh() {
+
+    
+
+  var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
+
+  $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        var current = data.results[0];
+
+        console.log(data);
+
+        try {
+          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9);
+          createFlights(arrivals, 'arrival');
+        }
+        catch(e) {
+
+        }
+
+        try {
+          var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9);
+          createFlights(departures, 'departure');
+        }
+        catch(e) {
+          
+        }
+
+  
+        if(flights.length == 0) {
+          console.log('No Flights');
+        }
+        else if(flights.length == 1) {
+          showCurrentFlight(flights[0]);
+        }
+        else {
+          showCurrentFlight(flights[0]);
+          showNextFlight(flights[1]);
+        }
+        
+        
+
+          
+      }
+  }); 
+
+
+
+
+  }
+
+
+
+
+  function showCurrentFlight(flight) {
+
+
+    $('#current_number').text('Flight #: ' + flight.number);
+    $('#current_status').text('Status: ' + flight.status);
+
+    if(flight.type == 'arrival') {
+          $('#current_location').text('From: ' + flight.fromTo);
+           $('#current_time').text('Arrival: ' + flight.time);
+    }
+    else {
+          $('#current_location').text('To: ' + flight.fromTo);
+          $('#current_time').text('Departure: ' + flight.time);
+    }
+
+}
+  
+
+
+
+function showNextFlight(flight) {
+
+
+
+          if(flight.fromTo == 'departure') {
+            arrivalToggle = true;
+            $('#toFrom').text('To');
+          }   
+
+          var cells = [];
+          var table = document.getElementById("next_flight_table");
+          var row = table.insertRow(1);
+
+          for(var j = 0; j < 6; j++) {
+            cells[j] = row.insertCell(j);
+          }
+
+          cells[0].innerHTML = flight.time;
+          cells[1].innerHTML = flight.number;
+          cells[2].innerHTML = flight.fromTo;
+          cells[3].innerHTML = flight.airline;
+          cells[4].innerHTML = flight.status;
+
+  }
+
+
+  function Flight(info, type) {
+  
+  this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+
+  this.type = type;
+
+  this.print=print;
+  function print() {
+    return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
+      '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
+      '\nStatus: ' + this.status + '\nTime: ' + this.time;
+  }
+
+}
+
+
+
+function createFlights(data, type) {
+  var $data = $(data);
+
+    
+  for (var i = 0, row; row = $data[0].rows[i]; i++) {
+    row.children[0].innerHTML;
+
+    if(i!=0) {
+      var flight = new Flight(row.children, type);
+      if(flight.gate == prefs.getString('airport_gate')) {
+        flights.push(flight);
+      }
+    }
+  }
+
+/*
+//debug
+  for(var i = 0; i < flights.length; i++) {
+    console.log(flights[i].print());
+  }
+*/
+}
+
+
+
+</script>
+
+]]>
+</Content>
+</Module>
