@@ -61,7 +61,7 @@
     flights = [];
     clearFlights();
     refresh(prefs.getString('arrival'));
-    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+    setInterval(load, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
