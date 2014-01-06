@@ -58,6 +58,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
+    console.log('d');
     setInterval(refresh(prefs.getString('arrival'), prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
