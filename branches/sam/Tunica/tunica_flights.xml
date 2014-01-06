@@ -59,7 +59,7 @@
   var prefs = new gadgets.Prefs();
   function load() {
     
-    setInterval(refresh(prefs.getString('arrival')), prefs.getInt("update_interval") * 60 * 1000);
+    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
@@ -81,10 +81,12 @@ flights = [];
 
 
 
-  function refresh(toggle) {
-    console.log('3');
+  function refresh() {
+    console.log('5');
 
       clearFlights();
+
+      var toggle = prefs.getString('arrival');
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
 
