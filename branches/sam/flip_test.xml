@@ -118,6 +118,7 @@ function changeClass(){
     }
     else{
         document.getElementById("block").className = "block";
+        console.log("Back click");
     }
 }
 
@@ -126,9 +127,11 @@ function changeClass(){
 
 var prefs = new gadgets.Prefs();
 function load() {
+  storyCounter = 0;
+  stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 7');
+    console.log('Version: 9');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
@@ -148,57 +151,54 @@ function update() {
         success: function (data) {
           
           console.log(data);
-          refreshFlipper(data);
+
+
+          var entry = data.responseData.feed.entries;
+
+          for(var i=0; i < entry.length; i++) {
+            stories.push(entry[i]);
+          }
+
+
+          refreshFlipper();
         }
   });
 
 }
 
 
-function refreshFlipper(data) {
+function refreshFlipper() {
 
-  for(var i=0; i<data.responseData.feed.entries.length; i++) {
 
-    var currentEntry = data.responseData.feed.entries[i];
+
+  for(var i=0; i<3; i++) {
+
+    if(storyCounter == stories.length) {
+      storyCounter = 0;
+    }
+
+    var currentEntry = stories[storyCounter++];
       console.log(currentEntry.title);
 
       if(i%2 == 0) {
-
         var table = document.getElementById("front_table");
-          
-
-        var titleRow = table.insertRow(0);
-        var titleCell = titleRow.insertCell(0);
-        titleCell.id = 'title_cell';
-        titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
-
-        var descRow = table.insertRow(1);
-        var descCell = descRow.insertCell(0);
-        if (currentEntry.content.toLowerCase().indexOf("<div>") >= 0) {
-            descCell.innerHTML = "<span class='desc'>" + currentEntry.content.substring(0, currentEntry.content.indexOf('<div>')) + "</span>";
-          }
-          else {
-            descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
-          }
-
+      }
+      else {
+        var table = document.getElementById("back_table");
       }
 
+      var titleRow = table.insertRow(0);
+      var titleCell = titleRow.insertCell(0);
+      titleCell.id = 'title_cell';
+      titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
+
+      var descRow = table.insertRow(1);
+      var descCell = descRow.insertCell(0);
+      if (currentEntry.content.toLowerCase().indexOf("<div>") >= 0) {
+        descCell.innerHTML = "<span class='desc'>" + currentEntry.content.substring(0, currentEntry.content.indexOf('<div>')) + "</span>";
+      }
       else {
-
-        var table = document.getElementById("back_table");
-        var titleRow = table.insertRow(0);
-        var titleCell = titleRow.insertCell(0);
-        titleCell.id = 'title_cell';
-        titleCell.innerHTML = "<span class='title'>" + currentEntry.title + "</span>";
-        var descRow = table.insertRow(1);
-        var descCell = descRow.insertCell(0);
-        if (currentEntry.content.toLowerCase().indexOf("<div>") >= 0) {
-            descCell.innerHTML = "<span class='desc'>" + currentEntry.content.substring(0, currentEntry.content.indexOf('<div>')) + "</span>";
-          }
-          else {
-            descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
-          }
-
+        descCell.innerHTML = "<span class='desc'>" + currentEntry.content + "</span>";
       }
 
   }
