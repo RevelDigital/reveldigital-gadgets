@@ -118,7 +118,7 @@ function changeClass(){
     }
     else{
         document.getElementById("block").className = "block";
-        refresh();
+        refreshFlipper();
     }
 }
 
