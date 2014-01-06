@@ -72,7 +72,7 @@
 flights = [];
 
   function clearFlights() {
-    flights.length = 0;
+    
     var length = $('#flight_table tbody tr').length;
 
     for(var i=length-1; i > 0; i--) {
@@ -114,7 +114,7 @@ flights = [];
         }
         else {
         	try {
-				var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
+				      var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
           		createFlights(departures, 'departure');
         	}
         	catch(e) {
@@ -188,6 +188,8 @@ flights = [];
 
 
   function createFlights(data, type) {
+    flights.length = 0;
+    console.log('version');
   var $data = $(data);
 
     
@@ -197,9 +199,7 @@ flights = [];
     if(i!=0) {
       var flight = new Flight(row.children, type);
         flights.push(flight);
-
     }
-    console.log("number: " + flights.length);
   }
 
 
