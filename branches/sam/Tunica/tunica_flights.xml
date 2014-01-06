@@ -82,7 +82,7 @@ flights = [];
 
 
   function refresh(toggle) {
-    console.log('2');
+    console.log('3');
 
       clearFlights();
 
