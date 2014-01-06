@@ -199,7 +199,7 @@ flights = [];
         flights.push(flight);
 
     }
-    console.log("number: " = flights.length);
+    console.log("number: " + flights.length);
   }
 
 
