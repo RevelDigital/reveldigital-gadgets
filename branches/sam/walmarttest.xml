@@ -92,6 +92,7 @@ var url = 'https://walmartlabs.api.mashery.com/v1/search?query=television&format
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
           var tempImage = new Image();
+          tempImage.src = current.thumnailImage;
           current.preloadImage = tempImage;
           
           items.push(current);
@@ -176,7 +177,7 @@ function fillTable(index) {
           }
 
           rows[0].innerHTML = current.name;
-          rows[1].innerHTML = '<img src=' + current.thumbnailImage + '>';
+          rows[1].innerHTML = current.preloadImage;
           rows[2].innerHTML = 'List Price: $' + current.salePrice;
           
 
