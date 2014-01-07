@@ -124,7 +124,7 @@ function getSpectable(prodUrl, index) {
       success: function (data) {
 
         items[index].specTable = data.results;
-
+console.log('version: ');
         if(index == 0) {
           fillTable(indexer++);
         }
