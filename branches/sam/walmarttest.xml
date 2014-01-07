@@ -80,7 +80,7 @@ $( "#productTable" ).click(function() {
 
 function test() {
 
-var url = 'http://walmartlabs.api.mashery.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+var url = 'http://api.walmartlabs.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
 
     
     $.ajax({
