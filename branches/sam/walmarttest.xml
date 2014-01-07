@@ -101,7 +101,7 @@ var url = 'https://walmartlabs.api.mashery.com/v1/search?query=television&format
          // });
         }
 
-        
+        fillTable(indexer++);
       }
     });
 
@@ -132,9 +132,7 @@ var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%
 
         items[index].specTable = data.results;
 
-          if(index == items.length) {
-          	fillTable(indexer++);
-          }
+          
 
       }
     });
