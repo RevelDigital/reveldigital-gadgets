@@ -177,7 +177,7 @@ function fillTable(index) {
           }
 
           rows[0].innerHTML = current.name;
-          rows[1].innerHTML = current.preloadImage;
+          rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
           rows[2].innerHTML = 'List Price: $' + current.salePrice;
           
 
