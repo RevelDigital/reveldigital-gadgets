@@ -78,7 +78,7 @@ border-right: none;
   <table id="productTable">
   </table>
   </div>
-  <button id="specToggle">Show Specs</button>
+  <button id="next">Next</button>
   
   <button id="viewMore">View More</button>
   <div id="specTable">
@@ -126,16 +126,16 @@ $(function() {
   refresh('television');
 });
 
-$('#specToggle').click(function() {
-  $('#specTable').toggle();
+$('#next').click(function() {
+  fillTable(indexer++);
 });
 
-
+/*
 $( "#productTable" ).click(function() {
   console.log('Counter: ' + indexer);
   fillTable(indexer++);
 });
-
+*/
 
 $(function() {
     $( "#draggable" ).draggable({revert: "valid"});
@@ -187,7 +187,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 15");
+        console.log("Version: 20");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
