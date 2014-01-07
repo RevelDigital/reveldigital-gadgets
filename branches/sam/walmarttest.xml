@@ -43,7 +43,7 @@ body {
 
 #compare {
 border: 1px solid #000;
-width: 33%;
+width: 100%;
 height: 100%;
 border-collapse: collapse;
 }
@@ -51,6 +51,7 @@ border-collapse: collapse;
 #compare td {
 border-left: 1px solid #000;
 border-right: 1px solid #000;
+width: 33%;
 }
 
 #compare td:first-child {
@@ -182,7 +183,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 10");
+        console.log("Version: 11");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
