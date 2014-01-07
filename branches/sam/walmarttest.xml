@@ -10,7 +10,6 @@
 
 
 
-
 <style type="text/css">
 
 body {
@@ -37,11 +36,13 @@ body {
 
 #productTable {
   text-align: center;
+  font-weight: bold;
 }
 
 #specTable {
   overflow-y:scroll; 
   display:block;
+  height: 100%;
 }
 
 </style>
@@ -49,15 +50,10 @@ body {
 
 
 <body>
-
-
-<table id="productTable">
-</table>
-
-<div id="specTable">
-
-</div>
-
+  <table id="productTable">
+  </table>
+  <div id="specTable">
+  </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -70,19 +66,15 @@ indexer = 0;
 
 $(function() {
 
-  test();
+  refresh();
 });
 
-/*
-setInterval(function(){
-  $('#productTable').click();
-}, 5000);
-*/
+
 $( "#productTable" ).click(function() {
   fillTable(indexer++);
 });
 
-function test() {
+function refresh() {
 
 var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
 
@@ -93,27 +85,22 @@ var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&ap
       type: 'GET',
       success: function (data) {
 
-        console.log(data);
+        
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
           var tempImage = new Image();
-          tempImage.src = current.thumbnailImage //.replace('http://','https://');
+          tempImage.src = current.thumbnailImage;
           current.preloadImage = tempImage;
           
           items.push(current);
-          console.log(current);
+          
 
           getSpectable(current.productUrl, i);
 
-
-          // getSpectable(current.productUrl, function(tableSpec) {
-        //    console.log(i);
-            //items[i].specTable = tableSpec;
-         // });
         }
 
-        fillTable(indexer++);
+        
       }
     });
 
@@ -128,13 +115,7 @@ var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&ap
 
 function getSpectable(prodUrl, index) {
 
-//prodUrl.replace('http://','https://');
-
-var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
-
-
-
-
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
 
   $.ajax({
       url: url,
@@ -144,68 +125,47 @@ var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%
 
         items[index].specTable = data.results;
 
-          
+        if(index == 0) {
+          fillTable(indexer++);
+        }
 
       }
-    });
+  });
+
 }
-
-
-
-
-
-
-
-
-
 
 
 
 
 function fillTable(index) {
 
-    $('#productTable').empty();
+  $('#productTable').empty();
 
-    if(indexer == items.length) {
-      indexer = 0;
-    }
+  if(indexer == items.length) {
+    indexer = 0;
+  }
 
-
-   rowCounter = 0;
-          var rows = [];
-          var table = document.getElementById("productTable");
+  rowCounter = 0;
+  var rows = [];
+  var table = document.getElementById("productTable");
  
+  var current = items[index];
+  for(var j = 0; j < 6; j++) {
+    rows[j] = table.insertRow(j);
+  }
 
-          var current = items[index];
-
-          for(var j = 0; j < 6; j++) {
-            rows[j] = table.insertRow(j);
-          }
-
-          rows[0].innerHTML = current.name;
-          rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
-          rows[2].innerHTML = 'List Price: $' + current.salePrice;
+  rows[0].innerHTML = current.name;
+  rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
+  rows[2].innerHTML = 'List Price: $' + current.salePrice;
           
-
-          
-          var div = document.getElementById("specTable");
- 
-
-          div.innerHTML = current.specTable;
-
-
-
-
-
+  var div = document.getElementById("specTable");
+  div.innerHTML = current.specTable;
 
 }
 
+
+
 </script>
-
-
-
-
-
 
 
 
