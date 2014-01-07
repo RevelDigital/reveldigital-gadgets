@@ -87,6 +87,11 @@ border-right: none;
 
 
     <table id="compare" class="droppable">
+    <tr>
+      <td>
+        Drag to Compare
+      </td>
+    </tr>
       <tr>
         <td id="compare1"><p>Col 1</p></td>
         <td id="compare2"><p>Col 2</p></td>
@@ -115,7 +120,7 @@ border-right: none;
 
 
 items = [];
-indexer = 0;
+indexer = -1;
 queryCounter = 1;
 
 $('#viewMore').click(function() {
@@ -128,7 +133,7 @@ $(function() {
 });
 
 $('#next').click(function() {
-  fillTable(indexer++);
+  fillTable(++indexer);
 });
 
 /*
@@ -173,7 +178,7 @@ $(function() {
 function clearCurrentCache() {
   items.length = 0;
   queryCounter = 1;
-  indexer = 0;
+  indexer = -1;
 }
 
 function refresh(query) {
@@ -188,7 +193,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 21");
+        console.log("Version: 25");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -224,8 +229,8 @@ function getSpectable(prodUrl, index) {
 
         items[index].specTable = data.results;
 
-        if(index == 0) {
-          fillTable(indexer++);
+        if(index == -1) {
+          fillTable(++indexer);
         }
 
       }
@@ -241,7 +246,7 @@ function fillTable(index) {
   $('#productTable').empty();
 
   if(indexer == items.length) {
-    indexer = 0;
+    indexer = -1;
   }
 
   rowCounter = 0;
