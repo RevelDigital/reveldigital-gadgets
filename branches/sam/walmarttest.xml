@@ -193,7 +193,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 25");
+        console.log("Version: 27");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -229,7 +229,7 @@ function getSpectable(prodUrl, index) {
 
         items[index].specTable = data.results;
 
-        if(index == -1) {
+        if(index == 0) {
           fillTable(++indexer);
         }
 
