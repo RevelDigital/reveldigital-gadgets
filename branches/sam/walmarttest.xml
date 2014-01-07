@@ -19,11 +19,6 @@ body {
 
 .SectionHead {
   background-color: #CCC;
-
-}
-
-.LightRowHead {
-
 }
 
 .DarkRowhead {
@@ -45,39 +40,82 @@ body {
   height: 100%;
 }
 
+#draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+
 </style>
 
 
 
 <body>
+<div id="draggable" class="ui-widget-content">
   <table id="productTable">
   </table>
+  </div>
+  <button id="specToggle">Show Specs</button>
+  
+  <button id="viewMore">View More</button>
   <div id="specTable">
   </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 <script type="text/javascript">
 
 
 items = [];
 indexer = 0;
+queryCounter = 1;
+
+$('#viewMore').click(function() {
+  refresh('television');
+});
 
 $(function() {
+  $('#specTable').toggle();
+  refresh('television');
+});
 
-  refresh();
+$('#specToggle').click(function() {
+  $('#specTable').toggle();
 });
 
 
 $( "#productTable" ).click(function() {
+  console.log('Counter: ' + indexer);
   fillTable(indexer++);
 });
 
-function refresh() {
 
-var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+$(function() {
+    $( "#draggable" ).draggable();
+    $( "#droppable" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  });
 
+
+
+function clearCurrentCache() {
+  items.length = 0;
+  queryCounter = 1;
+  indexer = 0;
+}
+
+function refresh(query) {
+
+var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+queryCounter += 10;
     
     $.ajax({
       url: url,
@@ -85,7 +123,7 @@ var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&ap
       type: 'GET',
       success: function (data) {
 
-        
+        console.log(data);
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -104,11 +142,7 @@ var url = 'https://api.walmartlabs.com/v1/search?query=television&format=json&ap
       }
     });
 
-
-  
 }
-
-
 
 
 
@@ -124,7 +158,7 @@ function getSpectable(prodUrl, index) {
       success: function (data) {
 
         items[index].specTable = data.results;
-console.log('version: ');
+
         if(index == 0) {
           fillTable(indexer++);
         }
@@ -154,9 +188,10 @@ function fillTable(index) {
     rows[j] = table.insertRow(j);
   }
 
-  rows[0].innerHTML = current.name;
+  //rows[0].innerHTML = current.name;
   rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
   rows[2].innerHTML = 'List Price: $' + current.salePrice;
+
           
   var div = document.getElementById("specTable");
   div.innerHTML = current.specTable;
@@ -166,9 +201,6 @@ function fillTable(index) {
 
 
 </script>
-
-
-
 
 
 
