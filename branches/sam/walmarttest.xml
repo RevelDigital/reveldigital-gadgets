@@ -38,6 +38,8 @@
 
 #productTable {
   text-align: center;
+  overflow-y:scroll; 
+  display:block;
 }
 
 </style>
