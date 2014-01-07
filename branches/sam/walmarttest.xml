@@ -73,7 +73,7 @@ $( "#productTable" ).click(function() {
 
 function test() {
 
-var url = 'http://walmartlabs.api.mashery.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+var url = 'https://walmartlabs.api.mashery.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
 
     
     $.ajax({
@@ -116,7 +116,7 @@ var url = 'http://walmartlabs.api.mashery.com/v1/search?query=television&format=
 
 function getSpectable(prodUrl, index) {
 
-prodUrl.replace('http://','https://');  
+//prodUrl.replace('http://','https://');
 
 var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
 
