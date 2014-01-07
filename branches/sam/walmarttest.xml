@@ -30,6 +30,7 @@ body {
 }
 
 #productTable {
+  cursor: pointer;
   text-align: center;
   font-weight: bold;
 }
