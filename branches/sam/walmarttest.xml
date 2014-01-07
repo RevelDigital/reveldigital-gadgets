@@ -67,6 +67,13 @@ table td, table td * {
 border-right: none;
 }
 
+#comparePrompt {
+  font-size: 27px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
 #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
 .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 
@@ -80,22 +87,17 @@ border-right: none;
   </table>
   </div>
   <button id="next">Next</button>
-  
-  <button id="viewMore">View More</button>
+  <button id="viewMore">Load More</button>
+  <button id="reset">Reset</button>
   <div id="specTable">
   </div>
 
 
     <table id="compare" class="droppable">
-    <tr>
-      <td>
-        Drag to Compare
-      </td>
-    </tr>
       <tr>
-        <td id="compare1"><p>Col 1</p></td>
-        <td id="compare2"><p>Col 2</p></td>
-        <td id="compare3"><p>Col 3</p></td>
+        <td id="compare1"></td>
+        <td id="compare2"><div id="comparePrompt">Drag any television into any of the three columns to compare</div></td>
+        <td id="compare3"></td>
       <tr>
     </table>
 
@@ -134,6 +136,10 @@ $(function() {
 
 $('#next').click(function() {
   fillTable(++indexer);
+});
+
+$('#reset').click(function() {
+  clearCurrentCache();
 });
 
 /*
@@ -179,6 +185,9 @@ function clearCurrentCache() {
   items.length = 0;
   queryCounter = 1;
   indexer = -1;
+  $('#compare1').html('');
+  $('#compare2').html('<div id="comparePrompt">Drag any television into any of the three columns to compare</div>');
+  $('#compare3').html('');
 }
 
 function refresh(query) {
@@ -193,7 +202,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 27");
+        console.log("Version: 31");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -258,9 +267,10 @@ function fillTable(index) {
     rows[j] = table.insertRow(j);
   }
 
+//need cache for rating
   //rows[0].innerHTML = current.name;
   rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
-  rows[2].innerHTML = 'List Price: $' + current.salePrice;
+  rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
 
           
   //var div = document.getElementById("compare1");
