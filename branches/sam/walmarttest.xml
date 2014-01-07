@@ -41,8 +41,27 @@ body {
   height: 100%;
 }
 
+#compare {
+border: 1px solid #000;
+width: 100%;
+border-collapse: collapse;
+}
+
+#compare td {
+border-left: 1px solid #000;
+border-right: 1px solid #000;
+}
+
+#compare td:first-child {
+border-left: none;
+}
+
+#compare td:last-child {
+border-right: none;
+}
+
 #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+.droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 
 </style>
 
@@ -58,6 +77,24 @@ body {
   <button id="viewMore">View More</button>
   <div id="specTable">
   </div>
+
+
+    <table id="compare" class="droppable">
+      <tr>
+        <td id="compare1"><p>Col 1</p></td>
+        <td id="compare2"><p>Col 2</p></td>
+        <td id="compare3"><p>Col 3</p></td>
+      <tr>
+    </table>
+
+
+
+
+
+
+
+
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -96,12 +133,10 @@ $( "#productTable" ).click(function() {
 
 $(function() {
     $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
+    $( "#compare1" ).droppable({
       drop: function( event, ui ) {
         $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
+            .html( items[indexer].specTable );
       }
     });
   });
@@ -126,7 +161,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 3");
+        console.log("Version: 5");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -196,8 +231,8 @@ function fillTable(index) {
   rows[2].innerHTML = 'List Price: $' + current.salePrice;
 
           
-  var div = document.getElementById("specTable");
-  div.innerHTML = current.specTable;
+  //var div = document.getElementById("compare1");
+  //div.innerHTML = current.specTable;
 
 }
 
