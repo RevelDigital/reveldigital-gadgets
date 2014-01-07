@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+<ModulePrefs title="Walart Tv Tablet Test Gadget" description="Walart Tv Tablet Test Gadget" author="RevelDigital" background="transparent">
 
 </ModulePrefs>
 <Content type="html">
@@ -56,6 +56,10 @@ width: 33%;
 
 #compare td:first-child {
 border-left: none;
+}
+
+table td, table td * {
+    vertical-align: top;
 }
 
 #compare td:last-child {
@@ -183,7 +187,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 11");
+        console.log("Version: 15");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
