@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
+  <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-header-style" display_name="Next Flight Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+
+
+
+<style type="text/css">
+
+.SectionHead {
+  background-color: #CCC;
+
+}
+
+.LightRowHead {
+
+}
+
+.DarkRowhead {
+  background-color: #ddf0ff;
+}
+
+.DarkRow {
+  background-color: #ddf0ff;
+}
+
+#productTable {
+  text-align: center;
+}
+
+</style>
+
+
+
+
+
+
+<table id="productTable">
+</table>
+
+<div id="specTable">
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+items = [];
+indexer = 0;
+
+$(function() {
+  test();
+});
+
+$( "#productTable" ).click(function() {
+  fillTable(indexer++);
+});
+
+function test() {
+
+var url = 'http://walmartlabs.api.mashery.com/v1/search?query=television&format=json&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+
+    
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        console.log(data);
+
+        for(var i=0; i < data.items.length; i++) {
+          var current = data.items[i];
+          var tempImage = new Image();
+          current.preloadImage = tempImage;
+          
+          items.push(current);
+          console.log(current);
+
+          getSpectable(current.productUrl, i);
+
+
+          // getSpectable(current.productUrl, function(tableSpec) {
+        //    console.log(i);
+            //items[i].specTable = tableSpec;
+         // });
+        }
+
+        fillTable(indexer++);
+      }
+    });
+
+
+  
+}
+
+
+
+
+
+
+function getSpectable(prodUrl, index) {
+
+  
+
+var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
+
+
+
+
+
+  $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        items[index].specTable = data.results;
+
+          
+
+      }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fillTable(index) {
+
+    $('#productTable').empty();
+
+    if(indexer == items.length) {
+      indexer = 0;
+    }
+
+
+   rowCounter = 0;
+          var rows = [];
+          var table = document.getElementById("productTable");
+ 
+
+          var current = items[index];
+
+          for(var j = 0; j < 6; j++) {
+            rows[j] = table.insertRow(j);
+          }
+
+          rows[0].innerHTML = current.name;
+          rows[1].innerHTML = '<img src=' + current.thumbnailImage + '>';
+          rows[2].innerHTML = 'List Price: $' + current.salePrice;
+          
+
+          
+          var div = document.getElementById("specTable");
+ 
+
+          div.innerHTML = current.specTable;
+
+
+
+
+
+
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
