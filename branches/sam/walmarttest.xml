@@ -64,8 +64,13 @@ items = [];
 indexer = 0;
 
 $(function() {
+
   test();
 });
+
+setInterval(function(){
+  $('#productTable').click();
+}, 5000);
 
 $( "#productTable" ).click(function() {
   fillTable(indexer++);
