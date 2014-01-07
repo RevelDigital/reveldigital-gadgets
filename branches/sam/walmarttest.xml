@@ -142,6 +142,26 @@ $(function() {
     });
   });
 
+$(function() {
+    $( "#draggable" ).draggable({revert: "valid"});
+    $( "#compare2" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+            .html('<img src=' + items[indexer].preloadImage.src + '>' + items[indexer].specTable );
+      }
+    });
+  });
+
+$(function() {
+    $( "#draggable" ).draggable({revert: "valid"});
+    $( "#compare3" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+            .html('<img src=' + items[indexer].preloadImage.src + '>' + items[indexer].specTable );
+      }
+    });
+  });
+
 
 
 function clearCurrentCache() {
@@ -162,7 +182,7 @@ queryCounter += 10;
       success: function (data) {
 
         console.log(data);
-        console.log("Version: 9");
+        console.log("Version: 10");
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
