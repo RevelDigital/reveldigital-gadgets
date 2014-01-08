@@ -10,7 +10,6 @@
 
 
 
-
 <style type="text/css">
 
 body {
@@ -87,8 +86,8 @@ border-right: none;
    .roundabout-holder {
       list-style: none;
       padding: 0;
-      margin: 0;
-    
+      margin: auto;
+      width: 40%;
    }
    .roundabout-moveable-item {
       height: 4em;
@@ -100,12 +99,16 @@ border-right: none;
       cursor: auto;
    }
 
+   #padding {
+    padding-top: 10em;
+   }
+
 </style>
 
 
 
 <body>
-
+<div id='padding'>
 <ul>
    <li id='item1'></li>
    <li id='item2'>2</li>
@@ -113,7 +116,7 @@ border-right: none;
    <li id='item4'>4</li>
    <li id='item5'>5</li>
 </ul>
-
+</div>
 
 <button id="next">Next</button>
   <button id="viewMore">Load More</button>
