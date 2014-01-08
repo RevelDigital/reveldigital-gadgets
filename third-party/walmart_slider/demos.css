@@ -1,19 +1,4 @@
-body {
-	font-size: 62.5%;
-	background:#000;
-}
 
-table {
-	font-size: 1em;
-}
-
-h1 {
-  color:#fff;
-  font-size:30px;
-  letter-spacing:-1px;
-  font-family:Arial;
-  text-align:center;
-}
 
 /* Site
    -------------------------------- */
@@ -350,7 +335,7 @@ div.demo-description {
 
 div.wrapper {
 	height: 450px;
-	width: 800px; /*600*/
+	width: 100%; /*600*/
 	padding: 10px;
 	overflow: hidden;
 	position: relative;
@@ -389,26 +374,7 @@ div.wrapper {
 
 }
 
-#sortable {
-	list-style-type: none;
-	margin: 0 auto;
-	padding: 0;
-	width: 100%;
-}
 
-#sortable li {
-	margin: 0 3px 3px 3px;
-	padding: 0.4em;
-	padding-left: 1.5em;
-	font-size: 1.4em;
-	height: 18px;
-	border:none;
-}
-
-#sortable li span {
-	position: absolute;
-	margin-left: -1.3em;
-}
 
 .ui-selected {
 
@@ -424,26 +390,17 @@ div.wrapper {
 
 .pageWrapper {
 	margin: 0 auto;
-	width: 960px
+	width: 100%;
 }
 
-#imageCaption {
-	margin:10px auto 0;
-	width: 400px;
-	color: white;
-	font-family: Arial;
-	display: block;
-	font-size: 12px;
-	text-align: center;
-	
-}
+
 
 /* css for scrollbar*/
 
 #scroll-pane {
 	float: left;
 	overflow: auto;
-	width: 620px;
+	width: 100%;
 	height: 176px;
 	position: relative;
 	margin-left: 50px;
