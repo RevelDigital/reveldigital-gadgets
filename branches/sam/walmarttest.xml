@@ -306,21 +306,21 @@ $(function() {
 $(function() {
     $( "#compare2" ).droppable({
       drop: function( event, ui ) {
-        console.log(ui.draggable.find('tr').eq(0).text());
+        
         $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
       }
     });
     $( "#compare3" ).droppable({
       drop: function( event, ui ) {
         $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
       }
     });
     $( "#compare1" ).droppable({
       drop: function( event, ui ) {
         $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
       }
     });
   });
@@ -382,6 +382,7 @@ function getSpectable(prodUrl, index) {
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
+        console.log(data);
 
         items[index].specTable = data.results;
 
