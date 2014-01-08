@@ -96,6 +96,16 @@ border-right: none;
   text-align: center;
   font-weight: bold; width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
 
+  .buttons {
+    width:100%;
+    text-align: center;
+    margin: auto;
+  }
+
+  .tvtype {
+
+  }
+
 
 </style>
 
@@ -103,7 +113,12 @@ border-right: none;
 
 <body>
 
-
+<div class='buttons'>
+<button id='ledbutton' class='tvtype'>LED</button>
+<button id='lcdbutton' class='tvtype'>LCD</button>
+<button id='smartbutton' class='tvtype'>Smart</button>
+<button id='plasmabutton' class='tvtype'>Plasma</button>
+</div>
 
 
 
@@ -170,6 +185,39 @@ toggle = true;
 $(function() {
   refresh('television');
 });
+
+
+$('#ledbutton').click(function() {
+  clearAll();
+  refresh('led television');
+});
+
+$('#ldcbutton').click(function() {
+  clearAll();
+  refresh('lcd television');
+});
+
+$('#smartbutton').click(function() {
+  clearAll();
+  refresh('smart television');
+});
+
+$('#plasmabutton').click(function() {
+  clearAll();
+  refresh('plasma television');
+});
+
+function clearAll() {
+  items = [];
+  indexer = -1;
+  queryCounter = 1;
+  currentCompare = 1;
+  toggle = true;
+  $('#compare1').empty();
+  $('#compare2').empty();
+  $('#compare3').empty();
+  $('#scroll').empty();
+}
 
 
 
@@ -261,7 +309,7 @@ function createItems() {
   }
 
   if(toggle) {
-    refresh('television');  
+    //refresh('television');  
   }
 
 toggle = false;  
@@ -291,13 +339,6 @@ function fillTable(index) {
   table.append(row1);
   table.append(row2);
   
-
-
-
-//need cache for rating
-  //rows[0].innerHTML = current.name;
- // rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
- // rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
 
 return table;
       
