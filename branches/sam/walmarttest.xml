@@ -92,7 +92,7 @@ border-right: none;
 }
 
 
-#draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+#draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
 .droppable { width: 150px; height: 100%; padding: 0.5em; float: left; margin: 10px; }
 
 </style>
@@ -204,11 +204,17 @@ border-right: none;
             $('#scroll').css({
                 overflow: 'visible',
             });
+            $('#container').css({
+                overflow: 'visible',
+            });
         }
         
         function stoppedDrag() {
 
             $('#scroll').css({
+                overflow: 'auto',
+            });
+            $('#container').css({
                 overflow: 'auto',
             });
         }
@@ -409,7 +415,7 @@ function fillTable(index) {
   //rows[0].innerHTML = current.name;
   rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
   rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
-  
+
 
           
   //var div = document.getElementById("compare1");
