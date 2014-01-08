@@ -75,7 +75,10 @@ border-right: none;
 }
 
 #container {
- overflow: scroll; width: 100%; height: 210px; 
+ overflow: scroll;
+ width: 100%;
+ height: 210px; 
+ padding-bottom: 3em;
 }
 #scroll {
  width: 10000px;
@@ -406,6 +409,7 @@ function fillTable(index) {
   //rows[0].innerHTML = current.name;
   rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
   rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
+  
 
           
   //var div = document.getElementById("compare1");
