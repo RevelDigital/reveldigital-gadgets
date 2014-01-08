@@ -268,36 +268,28 @@ $(function() {
 
                 start: startedDrag,
                 stop:stoppedDrag});
-    
-  });
-$( "#draggable6" ).draggable({ revert: true,
+    $( "#draggable6" ).draggable({ revert: true,
                 zIndex: 9999,
 
                 start: startedDrag,
                 stop:stoppedDrag});
-    
-  });
-$( "#draggable7" ).draggable({ revert: true,
+    $( "#draggable7" ).draggable({ revert: true,
                 zIndex: 9999,
 
                 start: startedDrag,
                 stop:stoppedDrag});
-    
-  });
-$( "#draggable8" ).draggable({ revert: true,
+    $( "#draggable8" ).draggable({ revert: true,
                 zIndex: 9999,
 
                 start: startedDrag,
                 stop:stoppedDrag});
-    
-  });
-$( "#draggable9" ).draggable({ revert: true,
+    $( "#draggable9" ).draggable({ revert: true,
                 zIndex: 9999,
 
                 start: startedDrag,
                 stop:stoppedDrag});
-    
   });
+
 
 $(function() {
     $( "#compare2" ).droppable({
