@@ -89,7 +89,7 @@ border-right: none;
 }
 
 
-#draggable, #draggable2, #draggable3, #draggable4, #draggable5 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+#draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
 .droppable { width: 150px; height: 100%; padding: 0.5em; float: left; margin: 10px; }
 
 </style>
@@ -130,6 +130,23 @@ border-right: none;
   <table id="productTable4">
   </table>
   </div>
+  <div id="draggable6" class="ui-widget-content">
+  <table id="productTable5">
+  </table>
+  </div>
+  <div id="draggable7" class="ui-widget-content">
+  <table id="productTable6">
+  </table>
+  </div>
+  <div id="draggable8" class="ui-widget-content">
+  <table id="productTable7">
+  </table>
+  </div>
+  <div id="draggable9" class="ui-widget-content">
+  <table id="productTable8">
+  </table>
+  </div>
+
 
 </div>
 
