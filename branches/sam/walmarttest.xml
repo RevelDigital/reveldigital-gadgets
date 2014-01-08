@@ -157,7 +157,7 @@ border-right: none;
 </div>
 
 
-
+<p>Scroll Here</p>
 
 
   <table id="productTable">
@@ -202,25 +202,6 @@ border-right: none;
 
 <script type="text/javascript">
 
-   function startedDrag() {
-
-            $('#scroll').css({
-                overflow: 'visible',
-            });
-            $('#container').css({
-                overflow: 'visible',
-            });
-        }
-        
-        function stoppedDrag() {
-
-            $('#scroll').css({
-                overflow: 'auto',
-            });
-            $('#container').css({
-                overflow: 'auto',
-            });
-        }
 
 
 items = [];
@@ -255,51 +236,33 @@ $( "#productTable" ).click(function() {
 
 
 $(function() {
-    $( "#draggable" ).draggable({ revert: true,
+    $( "#draggable" ).draggable({ 
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable2" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable2" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable3" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable3" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable4" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable4" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable5" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable5" ).draggable({
+                 zIndex: 9999,
+                helper: "clone",});
+    $( "#draggable6" ).draggable({
+                 zIndex: 9999,
+                helper: "clone",});
+    $( "#draggable7" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable6" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable8" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable7" ).draggable({ revert: true,
+                helper: "clone",});
+    $( "#draggable9" ).draggable({
                 zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable8" ).draggable({ revert: true,
-                zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
-    $( "#draggable9" ).draggable({ revert: true,
-                zIndex: 9999,
-
-                start: startedDrag,
-                stop:stoppedDrag});
+                helper: "clone",});
   });
 
 
