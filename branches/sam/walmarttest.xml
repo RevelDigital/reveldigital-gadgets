@@ -65,13 +65,6 @@ table td, table td * {
 border-right: none;
 }
 
-#comparePrompt {
-  font-size: 27px;
-  font-weight: bold;
-  text-align: center;
-
-}
-
 #container {
  overflow: auto;
      white-space:nowrap;  
@@ -103,24 +96,18 @@ border-right: none;
   }
 
   .tvtype {
-  -moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
   -webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
   box-shadow:inset 0px 1px 0px 0px #dcecfb;
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
-  background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
   background-color:#bddbfa;
   -webkit-border-top-left-radius:0px;
-  -moz-border-radius-topleft:0px;
   border-top-left-radius:0px;
   -webkit-border-top-right-radius:0px;
-  -moz-border-radius-topright:0px;
   border-top-right-radius:0px;
   -webkit-border-bottom-right-radius:0px;
-  -moz-border-radius-bottomright:0px;
   border-bottom-right-radius:0px;
   -webkit-border-bottom-left-radius:0px;
-  -moz-border-radius-bottomleft:0px;
   border-bottom-left-radius:0px;
   text-indent:0;
   border:1px solid #84bbf3;
@@ -139,7 +126,6 @@ border-right: none;
 }
 .tvtype:hover {
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa) );
-  background:-moz-linear-gradient( center top, #80b5ea 5%, #bddbfa 100% );
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
   background-color:#80b5ea;
 }.tvtype:active {
@@ -151,8 +137,8 @@ border-right: none;
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-text-shadow: 1px 2px 3px #666;
-color: #FDBA31;
+  text-shadow: 1px 2px 3px #666;
+  color: #FDBA31;
 }
 
 
@@ -362,7 +348,7 @@ function createItems() {
       if(currentCompare == 4) {
         currentCompare = 1;
       }
-      $('#compare' + currentCompare++).html('<img src=' + items[this.id].preloadImage.src + '>' + items[this.id].specTable);
+      $('#compare' + currentCompare++).html(items[this.id].name.substring(0, items[this.id].name.indexOf(" ")) + items[this.id].name.substring(items[this.id].name.indexOf('"') - 3, items[this.id].name.indexOf('"') + 1) + '<br><img src=' + items[this.id].preloadImage.src + '>' + items[this.id].specTable);
     });
     tempDiv.append(temp.htmlTable);
     $('#scroll').append(tempDiv);
@@ -394,8 +380,11 @@ function fillTable(index) {
  
   var current = items[index];
 
+console.log(current.name);
+  var row0 = $('<tr></tr>').html(current.name.substring(0, current.name.indexOf(" ")) + current.name.substring(current.name.indexOf('"') - 3, current.name.indexOf('"') + 1));
   var row1 = $('<tr></tr>').html('<img src=' + current.preloadImage.src + '>');
   var row2 = $('<tr></tr>').html('$' + current.salePrice + '  ' + '<img src=' + current.preLoadRating.src + '>');
+  table.append(row0);
   table.append(row1);
   table.append(row2);
   
