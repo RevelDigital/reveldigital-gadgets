@@ -346,7 +346,7 @@ function createItems() {
       if(currentCompare == 4) {
         currentCompare = 1;
       }
-      $('#compare' + currentCompare++).html('<img src=' + items[this.id].preloadImage.src + '>' + items[this.id].name + items[this.id].specTable);
+      $('#compare' + currentCompare++).html('<img src=' + items[this.id].preloadImage.src + '>' + items[this.id].specTable);
     });
     tempDiv.append(temp.htmlTable);
     $('#scroll').append(tempDiv);
