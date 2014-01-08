@@ -49,7 +49,7 @@ border-collapse: collapse;
 #compare td {
 border-left: 1px solid #000;
 border-right: 1px solid #000;
-width: 33%;
+width: 32%;
 height: 100%;
 }
 
