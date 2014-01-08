@@ -1,0 +1,366 @@
+
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Walart Tv Tablet Test Gadget" description="Walart Tv Tablet Test Gadget" author="RevelDigital" background="transparent">
+
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.SectionHead {
+  background-color: #CCC;
+}
+
+.DarkRowhead {
+  background-color: #ddf0ff;
+}
+
+.DarkRow {
+  background-color: #ddf0ff;
+}
+
+.productTable {
+  border: 1px solid black;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.productTable td, tr {border: 0};
+
+#specTable {
+  overflow-y:scroll; 
+  display:block;
+  height: 100%;
+}
+
+#compare {
+border: 1px solid #000;
+width: 100%;
+height: 100%;
+border-collapse: collapse;
+}
+
+#compare td {
+border-left: 1px solid #000;
+border-right: 1px solid #000;
+width: 33%;
+height: 100%;
+}
+
+#compare td:first-child {
+border-left: none;
+}
+
+table td, table td * {
+    vertical-align: top;
+}
+
+#compare td:last-child {
+border-right: none;
+}
+
+#comparePrompt {
+  font-size: 27px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+#container {
+ overflow: scroll;
+ width: 100%;
+ height: 210px; 
+ padding-bottom: 3em;
+}
+#scroll {
+ width: 10000px;
+  height:180px;
+  border:2px solid #000;
+  overflow:auto;
+  white-space:nowrap;
+}
+
+
+
+
+
+#draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
+.droppable { width: 150px; height: 100%; padding: 0.5em; float: left; margin: 10px; }
+
+</style>
+
+
+
+<body>
+
+
+
+
+
+
+<button id="next">Next</button>
+  <button id="viewMore">Load More</button>
+  <button id="reset">Reset</button>
+
+
+<div id='container'>
+<div id="scroll">
+  <div id="draggable" >
+  <table id="productTable0" class="productTable">
+  </table>
+  </div>
+  <div id="draggable2">
+  <table id="productTable1" class="productTable">
+  </table>
+  </div>
+  <div id="draggable3">
+  <table id="productTable2" class="productTable">
+  </table>
+  </div>
+  <div id="draggable4">
+  <table id="productTable3" class="productTable">
+  </table>
+  </div>
+  <div id="draggable5">
+  <table id="productTable4" class="productTable">
+  </table>
+  </div>
+  <div id="draggable6">
+  <table id="productTable5" class="productTable">
+  </table>
+  </div>
+  <div id="draggable7">
+  <table id="productTable6" class="productTable">
+  </table>
+  </div>
+  <div id="draggable8">
+  <table id="productTable7" class="productTable">
+  </table>
+  </div>
+  <div id="draggable9">
+  <table id="productTable8" class="productTable">
+  </table>
+  </div>
+
+
+</div>
+
+
+
+
+
+  <table id="productTable">
+  </table>
+  </div>
+  
+
+
+</div>
+
+
+
+    <table id="compare">
+      <tr>
+        <td id="compare1"></td>
+        <td id="compare2"><div id="comparePrompt">Drag any television into any of the three columns to compare</div></td>
+        <td id="compare3"></td>
+      <tr>
+    </table>
+
+
+
+
+
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+
+ 
+
+  
+
+<script type="text/javascript">
+
+
+
+
+items = [];
+indexer = -1;
+queryCounter = 1;
+
+$('#viewMore').click(function() {
+  refresh('television');
+});
+
+$('#draggable').click(function() {
+  $('#compare1').html('<img src=' + items[0].preloadImage.src + '>' + items[0].specTable );
+});
+$('#draggable2').click(function() {
+  $('#compare2').html('<img src=' + items[1].preloadImage.src + '>' + items[1].specTable );
+});
+$('#draggable3').click(function() {
+  $('#compare3').html('<img src=' + items[2].preloadImage.src + '>' + items[2].specTable );
+});
+
+$(function() {
+  $('#specTable').toggle();
+  refresh('television');
+});
+
+$('#next').click(function() {
+  fillTable(++indexer);
+});
+
+$('#reset').click(function() {
+  clearCurrentCache();
+});
+
+/*
+$( "#productTable" ).click(function() {
+  console.log('Counter: ' + indexer);
+  fillTable(indexer++);
+});
+*/
+
+
+
+
+
+
+
+
+function clearCurrentCache() {
+  items.length = 0;
+  queryCounter = 1;
+  indexer = -1;
+  $('#compare1').html('');
+  $('#compare2').html('<div id="comparePrompt">Drag any television into any of the three columns to compare</div>');
+  $('#compare3').html('');
+}
+
+function refresh(query) {
+
+var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+queryCounter += 10;
+    
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        console.log(data);
+        console.log("Version: 31");
+
+        for(var i=0; i < data.items.length; i++) {
+          var current = data.items[i];
+          var tempImage = new Image();
+          tempImage.src = current.thumbnailImage;
+          current.preloadImage = tempImage;
+          $('#item' + i).html( '<img src=' + current.preloadImage.src + '>');
+          items.push(current);
+          
+
+          getSpectable(current.productUrl, i);
+
+        }
+
+        
+      }
+    });
+
+}
+
+
+
+
+function getSpectable(prodUrl, index) {
+
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
+
+  $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+        console.log(data);
+
+        items[index].specTable = data.results;
+
+        if(index == 0) {
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+
+        }
+
+      }
+  });
+
+}
+
+
+
+
+function fillTable(index) {
+
+  $('#productTable').empty();
+
+  if(indexer == items.length) {
+    indexer = -1;
+  }
+
+  rowCounter = 0;
+  var rows = [];
+  console.log(indexer)
+  var table = document.getElementById("productTable" + indexer);
+ 
+  var current = items[index];
+  for(var j = 0; j < 6; j++) {
+    rows[j] = table.insertRow(j);
+  }
+
+//need cache for rating
+  //rows[0].innerHTML = current.name;
+  rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
+  rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
+  rows[0].innerHTML = index;
+
+          
+  //var div = document.getElementById("compare1");
+  //div.innerHTML = current.specTable;
+
+      
+
+}
+
+
+
+</script>
+
+]]>
+</Content>
+</Module>
