@@ -29,14 +29,9 @@ body {
   background-color: #ddf0ff;
 }
 
-.productTable {
-  border: 1px solid black;
-  cursor: pointer;
-  text-align: center;
-  font-weight: bold;
-}
 
-.productTable td, tr {border: 0};
+
+
 
 #specTable {
   overflow-y:scroll; 
@@ -78,7 +73,7 @@ border-right: none;
 }
 
 #container {
- overflow: auto;
+ overflow: scroll;
  width: 100%;
  height: 210px; 
  padding-bottom: 3em;
@@ -95,8 +90,11 @@ border-right: none;
 
 
 
-#draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
-.droppable { width: 150px; height: 100%; padding: 0.5em; float: left; margin: 10px; }
+.item{  
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold; width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
+
 
 </style>
 
@@ -109,49 +107,9 @@ border-right: none;
 
 
 
-<button id="next">Next</button>
-  <button id="viewMore">Load More</button>
-  <button id="reset">Reset</button>
-
-
 <div id='container'>
 <div id="scroll">
-  <div id="draggable" >
-  <table id="productTable0" class="productTable">
-  </table>
-  </div>
-  <div id="draggable2">
-  <table id="productTable1" class="productTable">
-  </table>
-  </div>
-  <div id="draggable3">
-  <table id="productTable2" class="productTable">
-  </table>
-  </div>
-  <div id="draggable4">
-  <table id="productTable3" class="productTable">
-  </table>
-  </div>
-  <div id="draggable5">
-  <table id="productTable4" class="productTable">
-  </table>
-  </div>
-  <div id="draggable6">
-  <table id="productTable5" class="productTable">
-  </table>
-  </div>
-  <div id="draggable7">
-  <table id="productTable6" class="productTable">
-  </table>
-  </div>
-  <div id="draggable8">
-  <table id="productTable7" class="productTable">
-  </table>
-  </div>
-  <div id="draggable9">
-  <table id="productTable8" class="productTable">
-  </table>
-  </div>
+
 
 
 </div>
@@ -159,9 +117,6 @@ border-right: none;
 
 
 
-
-  <table id="productTable">
-  </table>
   </div>
   
 
@@ -170,10 +125,10 @@ border-right: none;
 
 
 
-    <table id="compare" class="droppable">
+    <table id="compare">
       <tr>
         <td id="compare1"></td>
-        <td id="compare2"><div id="comparePrompt">Drag any television into any of the three columns to compare</div></td>
+        <td id="compare2"><div id="comparePrompt">Tap any television to compare.</div></td>
         <td id="compare3"></td>
       <tr>
     </table>
@@ -204,102 +159,29 @@ border-right: none;
 
 
 
+
 items = [];
 indexer = -1;
 queryCounter = 1;
+currentCompare = 1;
+toggle = true;
 
-$('#viewMore').click(function() {
+$(function() {
   refresh('television');
 });
 
-$(function() {
-  $('#specTable').toggle();
-  refresh('television');
-});
-
-$('#next').click(function() {
-  fillTable(++indexer);
-});
-
-$('#reset').click(function() {
-  clearCurrentCache();
-});
-
-/*
-$( "#productTable" ).click(function() {
-  console.log('Counter: ' + indexer);
-  fillTable(indexer++);
-});
-*/
 
 
 
 
-$(function() {
-console.log("version: 21");
-    $( "#draggable" ).draggable({ 
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable2" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable3" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable4" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable5" ).draggable({
-                 zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable6" ).draggable({
-                 zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable7" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable8" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-    $( "#draggable9" ).draggable({
-                zIndex: 9999,
-                helper: "clone",});
-  });
-
-
-$(function() {
-    $( "#compare2" ).droppable({
-      drop: function( event, ui ) {
-        
-        $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
-      }
-    });
-    $( "#compare3" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
-      }
-    });
-    $( "#compare1" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-            .html('<img src=' + items[ui.draggable.find('tr').eq(0).text()].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0).text()].specTable );
-      }
-    });
-  });
-
-
-
-
-function clearCurrentCache() {
-  items.length = 0;
-  queryCounter = 1;
-  indexer = -1;
-  $('#compare1').html('');
-  $('#compare2').html('<div id="comparePrompt">Drag any television into any of the three columns to compare</div>');
-  $('#compare3').html('');
+var specTable = function(table, id) {
+  this.htmlTable = table;
+  this.itemId = id;
 }
+
+
+
+
 
 function refresh(query) {
 
@@ -320,7 +202,7 @@ queryCounter += 10;
           var tempImage = new Image();
           tempImage.src = current.thumbnailImage;
           current.preloadImage = tempImage;
-          $('#item' + i).html( '<img src=' + current.preloadImage.src + '>');
+
           items.push(current);
           
 
@@ -351,21 +233,38 @@ function getSpectable(prodUrl, index) {
         items[index].specTable = data.results;
 
         if(index == 0) {
+          createItems();
           fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
-          fillTable(++indexer);
+         
 
         }
 
       }
   });
 
+}
+
+function createItems() {
+
+
+  for(var i=0; i<items.length; i++) {
+    var temp = new specTable(fillTable(i), i);
+    var tempDiv = $('<div></div>').addClass('item').attr('id', i).click(function() {
+      if(currentCompare == 4) {
+        currentCompare = 1;
+      }
+      $('#compare' + currentCompare++).html('<img src=' + items[this.id].preloadImage.src + '>' + items[this.id].name + items[this.id].specTable);
+    });
+    tempDiv.append(temp.htmlTable);
+    $('#scroll').append(tempDiv);
+  }
+
+  if(toggle) {
+    refresh('television');  
+  }
+
+toggle = false;  
+  
 }
 
 
@@ -380,25 +279,26 @@ function fillTable(index) {
   }
 
   rowCounter = 0;
-  var rows = [];
-  console.log(indexer)
-  var table = document.getElementById("productTable" + indexer);
+
+
+  var table = $('<table></table>');
  
   var current = items[index];
-  for(var j = 0; j < 6; j++) {
-    rows[j] = table.insertRow(j);
-  }
+
+  var row1 = $('<tr></tr>').html('<img src=' + current.preloadImage.src + '>');
+  var row2 = $('<tr></tr>').html('$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>');
+  table.append(row1);
+  table.append(row2);
+  
+
+
 
 //need cache for rating
   //rows[0].innerHTML = current.name;
-  rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
-  rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
-  rows[0].innerHTML = index;
+ // rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
+ // rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
 
-          
-  //var div = document.getElementById("compare1");
-  //div.innerHTML = current.specTable;
-
+return table;
       
 
 }
