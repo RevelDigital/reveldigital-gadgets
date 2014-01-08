@@ -75,10 +75,10 @@ border-right: none;
 }
 
 #container {
-  width:100%;
+ overflow: scroll; width: 100%; height: 210px; 
 }
 #scroll {
-  width:100%;
+ width: 10000px;
   height:180px;
   border:2px solid #000;
   overflow:auto;
