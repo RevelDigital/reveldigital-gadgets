@@ -94,14 +94,15 @@ border-right: none;
 
     <div class="wrapper">
       <div id="coverflow">
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
-              <img src="http://www.openwarp.com/pix/testimage_SVGA.jpg" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
+              <img src="http://triangularpixels.com/Images/TestCards/TestCardA256x256.png" />
       </div>
     </div>
 
