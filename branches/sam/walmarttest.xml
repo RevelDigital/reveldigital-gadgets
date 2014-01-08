@@ -91,19 +91,7 @@ border-right: none;
   white-space:nowrap;
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-}
 
-::-webkit-scrollbar-track {
-  background: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background: -webkit-linear-gradient(left, #547c90, #002640);
-  border: 1px solid #333;
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.4);
-}
 
 
 
@@ -318,20 +306,21 @@ $(function() {
 $(function() {
     $( "#compare2" ).droppable({
       drop: function( event, ui ) {
+        console.log(ui.draggable.find('tr').eq(0).text());
         $( this )
-            .html('<img src=' + items[indexer].preloadImage.src + '>' + items[indexer].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
       }
     });
     $( "#compare3" ).droppable({
       drop: function( event, ui ) {
         $( this )
-            .html('<img src=' + items[indexer].preloadImage.src + '>' + items[indexer].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
       }
     });
     $( "#compare1" ).droppable({
       drop: function( event, ui ) {
         $( this )
-            .html('<img src=' + items[indexer].preloadImage.src + '>' + items[indexer].specTable );
+            .html('<img src=' + items[ui.draggable.find('tr').eq(0)].preloadImage.src + '>' + items[ui.draggable.find('tr').eq(0)].specTable );
       }
     });
   });
@@ -398,6 +387,15 @@ function getSpectable(prodUrl, index) {
 
         if(index == 0) {
           fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+          fillTable(++indexer);
+
         }
 
       }
@@ -430,7 +428,7 @@ function fillTable(index) {
   //rows[0].innerHTML = current.name;
   rows[1].innerHTML = '<img src=' + current.preloadImage.src + '>';
   rows[2].innerHTML =  '$' + current.salePrice + '  ' + '<img src=' + current.customerRatingImage + '>';
-
+  rows[0].innerHTML = index;
 
           
   //var div = document.getElementById("compare1");
