@@ -83,40 +83,12 @@ border-right: none;
 #draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
 .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 
-   .roundabout-holder {
-      list-style: none;
-      padding: 0;
-      margin: auto;
-      width: 40%;
-   }
-   .roundabout-moveable-item {
-      height: 4em;
-      width: 4em;
-      cursor: pointer;
-
-   }
-   .roundabout-in-focus {
-      cursor: auto;
-   }
-
-   #padding {
-    padding-top: 10em;
-   }
-
 </style>
 
 
 
 <body>
-<div id='padding'>
-<ul>
-   <li id='item1'></li>
-   <li id='item2'>2</li>
-   <li id='item3'>3</li>
-   <li id='item4'>4</li>
-   <li id='item5'>5</li>
-</ul>
-</div>
+
 
 <button id="next">Next</button>
   <button id="viewMore">Load More</button>
@@ -188,9 +160,6 @@ $('#viewMore').click(function() {
 });
 
 $(function() {
-   $('ul').roundabout({
-         enableDrag: true
-      });
   $('#specTable').toggle();
   refresh('television');
 });
