@@ -348,7 +348,7 @@ function createItems() {
       if(currentCompare == 4) {
         currentCompare = 1;
       }
-      $('#compare' + currentCompare++).html('<b>' + items[this.id].name.substring(0, items[this.id].name.indexOf(" ")) + items[this.id].name.substring(items[this.id].name.indexOf('"') - 3, items[this.id].name.indexOf('"') + 1) + '</b><br><img src=' + items[this.id].preloadImage.src + '>' + items[this.id].specTable);
+      $('#compare' + currentCompare++).html('<b>' + items[this.id].name.substring(0, items[this.id].name.indexOf(" ")) + items[this.id].name.substring(items[this.id].name.indexOf('"') - 3, items[this.id].name.indexOf('"') + 1) + '</b><br><img src=' + items[this.id].preloadImage.src + '><br>' + '$' + items[this.id].salePrice + '  ' + '<img src=' + items[this.id].preLoadRating.src + '>' + items[this.id].specTable);
     });
     tempDiv.append(temp.htmlTable);
     $('#scroll').append(tempDiv);
