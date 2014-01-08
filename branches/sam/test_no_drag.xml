@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="Walart Tv Tablet Test Gadget" description="Walart Tv Tablet Test Gadget" author="RevelDigital" background="transparent">
@@ -6,6 +5,7 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
+
 <style type="text/css">
 
 body {
