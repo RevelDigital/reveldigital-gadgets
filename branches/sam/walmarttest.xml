@@ -233,7 +233,7 @@ $('#ledbutton').click(function() {
   refresh('led television');
 });
 
-$('#ldcbutton').click(function() {
+$('#lcdbutton').click(function() {
   clearAll();
   refresh('lcd television');
 });
