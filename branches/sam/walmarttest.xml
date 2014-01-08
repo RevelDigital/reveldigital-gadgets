@@ -29,11 +29,14 @@ body {
   background-color: #ddf0ff;
 }
 
-#productTable {
+.productTable {
+  border: 1px solid black;
   cursor: pointer;
   text-align: center;
   font-weight: bold;
 }
+
+.productTable td, tr {border: 0};
 
 #specTable {
   overflow-y:scroll; 
@@ -87,9 +90,21 @@ border-right: none;
   overflow:auto;
   white-space:nowrap;
 }
-#scroll img {
-  margin:20px 10px 0 10px;
+
+::-webkit-scrollbar {
+  width: 12px;
 }
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: -webkit-linear-gradient(left, #547c90, #002640);
+  border: 1px solid #333;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.4);
+}
+
 
 
 #draggable, #draggable2, #draggable3, #draggable4, #draggable5, #draggable6, #draggable7, #draggable8, #draggable9 { width: 100px; height: 100px;  float: left; margin: 10px 10px 10px 0; }
@@ -113,40 +128,40 @@ border-right: none;
 
 <div id='container'>
 <div id="scroll">
-  <div id="draggable" class="ui-widget-content">
-  <table id="productTable0">
+  <div id="draggable" >
+  <table id="productTable0" class="productTable">
   </table>
   </div>
-  <div id="draggable2" class="ui-widget-content">
-  <table id="productTable1">
+  <div id="draggable2">
+  <table id="productTable1" class="productTable">
   </table>
   </div>
-  <div id="draggable3" class="ui-widget-content">
-  <table id="productTable2">
+  <div id="draggable3">
+  <table id="productTable2" class="productTable">
   </table>
   </div>
-  <div id="draggable4" class="ui-widget-content">
-  <table id="productTable3">
+  <div id="draggable4">
+  <table id="productTable3" class="productTable">
   </table>
   </div>
-  <div id="draggable5" class="ui-widget-content">
-  <table id="productTable4">
+  <div id="draggable5">
+  <table id="productTable4" class="productTable">
   </table>
   </div>
-  <div id="draggable6" class="ui-widget-content">
-  <table id="productTable5">
+  <div id="draggable6">
+  <table id="productTable5" class="productTable">
   </table>
   </div>
-  <div id="draggable7" class="ui-widget-content">
-  <table id="productTable6">
+  <div id="draggable7">
+  <table id="productTable6" class="productTable">
   </table>
   </div>
-  <div id="draggable8" class="ui-widget-content">
-  <table id="productTable7">
+  <div id="draggable8">
+  <table id="productTable7" class="productTable">
   </table>
   </div>
-  <div id="draggable9" class="ui-widget-content">
-  <table id="productTable8">
+  <div id="draggable9">
+  <table id="productTable8" class="productTable">
   </table>
   </div>
 
