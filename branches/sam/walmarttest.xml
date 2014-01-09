@@ -11,6 +11,8 @@
 
 
 
+
+
 <style type="text/css">
 
 body {
@@ -71,7 +73,7 @@ table td, table td * {
 
 #scroll {
   display:inline-block;
-  width: 10000px;
+  width: 5000px;
   height:180px;
   overflow:auto;
   white-space:nowrap;
@@ -194,14 +196,13 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 55);
+  console.log("Version: " + 75);
   $('#container').scroll(function () { 
     
 
 
-    if($(this).scrollLeft() > refresherCounter) {
+    if($(this).scrollLeft() > refresherCounter && queryCounter != 21) {
 
-      $("#scroll").width($('#scroll').width() + 1500);
       refresherCounter += 1000;
       refresh(currentSearch);  
     }
