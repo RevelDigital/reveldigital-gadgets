@@ -196,7 +196,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 10);
+  console.log("Version: " + 15);
   $('#container').scroll(function () { 
     
 
@@ -204,15 +204,10 @@ $(function() {
     console.log("ScrollLeft: " + $(this).scrollLeft());
     console.log("Width: " + $('#scroll').width());
     if($(this).scrollLeft() > refresherCounter) {
-      if(queryCounter == 30) {
-        console.log("STOP");
-      }
-      else {
-        $("#scroll").width($('#scroll').width() + 1500);
-        refresherCounter += 1000;
-        refresh(currentSearch);  
-      }
-      
+
+      $("#scroll").width($('#scroll').width() + 1500);
+      refresherCounter += 1000;
+      refresh(currentSearch);  
     }
        
   });
@@ -275,10 +270,9 @@ var specTable = function(table, id) {
 
 function refresh(query) {
 
-
-
-  var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
-  queryCounter += 10;
+  if(queryCounter != 30) {
+    var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+    queryCounter += 10;
     
     $.ajax({
       url: url,
@@ -306,6 +300,9 @@ function refresh(query) {
 
       }
     });
+  }
+
+  
 
 }
 
