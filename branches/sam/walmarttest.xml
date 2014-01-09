@@ -196,7 +196,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 9);
+  console.log("Version: " + 10);
   $('#container').scroll(function () { 
     
 
