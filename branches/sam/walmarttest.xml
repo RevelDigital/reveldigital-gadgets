@@ -196,7 +196,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 7);
+  console.log("Version: " + 9);
   $('#container').scroll(function () { 
     
 
@@ -204,7 +204,7 @@ $(function() {
     console.log("ScrollLeft: " + $(this).scrollLeft());
     console.log("Width: " + $('#scroll').width());
     if($(this).scrollLeft() > refresherCounter) {
-      if(!queryCounter == 30) {
+      if(queryCounter == 30) {
 
       }
       else {
@@ -223,6 +223,7 @@ $(function() {
 $('#ledbutton').click(function() {
   currentSearch = 'led television';
   clearAll();
+    $('#scroll').scrollLeft(0);
   spinner = new Spinner().spin(target);
   refresh(currentSearch);
 });
