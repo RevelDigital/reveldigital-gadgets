@@ -196,7 +196,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 27);
+  console.log("Version: " + 31);
   $('#container').scroll(function () { 
     
 
@@ -252,6 +252,7 @@ $('#allbutton').click(function() {
 });
 
 function clearAll() {
+  spinner.stop();
   items = [];
   indexer = -1;
   queryCounter = 1;
@@ -270,7 +271,7 @@ var specTable = function(table, id) {
 
 function refresh(query) {
 console.log("query: " + queryCounter);
-  if(queryCounter != 21) {
+  if(queryCounter != 11) {
     var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
     queryCounter += 10;
     
