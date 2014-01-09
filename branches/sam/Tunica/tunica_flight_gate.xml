@@ -146,13 +146,6 @@ gadgets.util.registerOnLoadHandler(load);
         var current = data.results[0];
 
 
-        try {
-          var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9).trim();
-          createFlights(arrivals, 'arrival');
-        }
-        catch(e) {
-
-        }
 
         try {
           var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
@@ -195,14 +188,11 @@ gadgets.util.registerOnLoadHandler(load);
     $('#current_status').text('Status: ' + flight.status);
     $('#current_airline').text('Airline: ' + flight.airline);
 
-    if(flight.type == 'arrival') {
-          $('#current_location').text('From: ' + flight.fromTo);
-           $('#current_time').text('Arrival: ' + flight.time);
-    }
-    else {
-          $('#current_location').text('To: ' + flight.fromTo);
-          $('#current_time').text('Departure: ' + flight.time);
-    }
+
+
+    $('#current_location').text('To: ' + flight.fromTo);
+    $('#current_time').text('Departure: ' + flight.time);
+    
 
 }
   
@@ -272,12 +262,7 @@ function createFlights(data, type) {
     }
   }
 
-/*
-//debug
-  for(var i = 0; i < flights.length; i++) {
-    console.log(flights[i].print());
-  }
-*/
+
 }
 
 
