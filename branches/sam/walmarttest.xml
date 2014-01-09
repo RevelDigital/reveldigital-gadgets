@@ -172,7 +172,7 @@ table td, table td * {
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-<script src="http://reveldigital-gadgets.googlecode.com/svn/third-party/spin.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/spin.min.js"></script>
   
 
 <script type="text/javascript">
