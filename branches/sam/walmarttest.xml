@@ -11,7 +11,6 @@
 
 
 
-
 <style type="text/css">
 
 body {
@@ -187,7 +186,6 @@ target = document.getElementById('container');
 spinner = new Spinner().spin(target);
 
 items = [];
-indexer = -1;
 queryCounter = 1;
 currentCompare = 1;
 refresherCounter = 400;
@@ -196,13 +194,11 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 31);
+  console.log("Version: " + 50);
   $('#container').scroll(function () { 
     
 
-    console.log("RefresherCounter: " + refresherCounter);
-    console.log("ScrollLeft: " + $(this).scrollLeft());
-    console.log("Width: " + $('#scroll').width());
+
     if($(this).scrollLeft() > refresherCounter) {
 
       $("#scroll").width($('#scroll').width() + 1500);
@@ -218,7 +214,6 @@ $(function() {
 $('#ledbutton').click(function() {
   currentSearch = 'led television';
   clearAll();
-    $('#scroll').scrollLeft(0);
   spinner = new Spinner().spin(target);
   refresh(currentSearch);
 });
@@ -252,9 +247,9 @@ $('#allbutton').click(function() {
 });
 
 function clearAll() {
+  $('#container').scrollLeft(0);
   spinner.stop();
   items = [];
-  indexer = -1;
   queryCounter = 1;
   currentCompare = 1;
   $('#compare1').empty();
@@ -271,7 +266,7 @@ var specTable = function(table, id) {
 
 function refresh(query) {
 console.log("query: " + queryCounter);
-  if(queryCounter != 11) {
+  if(queryCounter != 21) {
     var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
     queryCounter += 10;
     
@@ -280,6 +275,7 @@ console.log("query: " + queryCounter);
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
+        console.log(data);
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -292,9 +288,9 @@ console.log("query: " + queryCounter);
 
           items.push(current);
           
-          getSpectable(current.productUrl, i);
+          getSpectable(current.productUrl, items.length-1);
 
-          
+          console.log(items.length-1);
           
 
         }
@@ -320,9 +316,9 @@ function getSpectable(prodUrl, index) {
 
         items[index].specTable = data.results;
 
-        if(index == 0) {
-          createItems();
-          fillTable(++indexer);
+        if(index == 0 || index == 10) {
+          createItems(index);
+          fillTable(index);
           spinner.stop();
 
         }
@@ -332,10 +328,10 @@ function getSpectable(prodUrl, index) {
 
 }
 
-function createItems() {
+function createItems(start) {
 
 
-  for(var i=0; i<items.length; i++) {
+  for(var i=start; i<items.length; i++) {
     var temp = new specTable(fillTable(i), i);
     var tempDiv = $('<div></div>').addClass('item').attr('id', i).click(function() {
       try {
@@ -362,9 +358,7 @@ function fillTable(index) {
 
   $('#productTable').empty();
 
-  if(indexer == items.length) {
-    indexer = -1;
-  }
+
 
   rowCounter = 0;
 
