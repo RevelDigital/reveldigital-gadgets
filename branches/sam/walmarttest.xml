@@ -68,7 +68,7 @@ table td, table td * {
 
 #scroll {
   display:inline-block;
-  width: 200px;
+  width: 10000px;
   height:180px;
   overflow:auto;
   white-space:nowrap;
@@ -200,7 +200,7 @@ $(function() {
     console.log("Width: " + $('#scroll').width());
     if($(this).scrollLeft() > refresherCounter) {
       
-
+      $("#scroll").width($('#scroll').width() + 1500);
       refresherCounter += 500;
       refresh(currentSearch);
     }
@@ -288,7 +288,7 @@ function refresh(query) {
           
           getSpectable(current.productUrl, i);
 
-          $("#scroll").width($('#scroll').width() + 100);
+          
           
 
         }
