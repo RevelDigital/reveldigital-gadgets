@@ -8,6 +8,9 @@
 
 
 
+
+
+
 <style type="text/css">
 
 body {
@@ -192,6 +195,7 @@ currentSearch = 'television';
 
 
 $(function() {
+  console.log("Version: " + 5);
   $('#container').scroll(function () { 
     
 
@@ -201,7 +205,7 @@ $(function() {
     if($(this).scrollLeft() > refresherCounter) {
       
       $("#scroll").width($('#scroll').width() + 1500);
-      refresherCounter += 500;
+      refresherCounter += 1000;
       refresh(currentSearch);
     }
        
@@ -254,7 +258,7 @@ function clearAll() {
   $('#compare2').empty();
   $('#compare3').empty();
   $('#scroll').empty();
-  $('#scroll').width(100);
+  $('#scroll').width(10000);
 }
 
 var specTable = function(table, id) {
@@ -329,10 +333,15 @@ function createItems() {
   for(var i=0; i<items.length; i++) {
     var temp = new specTable(fillTable(i), i);
     var tempDiv = $('<div></div>').addClass('item').attr('id', i).click(function() {
-      if(currentCompare == 4) {
-        currentCompare = 1;
+      try {
+        if(currentCompare == 4) {
+          currentCompare = 1;
+        }
+        $('#compare' + currentCompare++).html('<b>' + items[this.id].name.substring(0, items[this.id].name.indexOf(" ")) + items[this.id].name.substring(items[this.id].name.indexOf('"') - 3, items[this.id].name.indexOf('"') + 1) + '</b><br><img src=' + items[this.id].preloadImage.src + '><br>' + '<b>$' + items[this.id].salePrice + '  ' + '</b><img src=' + items[this.id].preLoadRating.src + '>' + items[this.id].specTable);
       }
-      $('#compare' + currentCompare++).html('<b>' + items[this.id].name.substring(0, items[this.id].name.indexOf(" ")) + items[this.id].name.substring(items[this.id].name.indexOf('"') - 3, items[this.id].name.indexOf('"') + 1) + '</b><br><img src=' + items[this.id].preloadImage.src + '><br>' + '<b>$' + items[this.id].salePrice + '  ' + '</b><img src=' + items[this.id].preLoadRating.src + '>' + items[this.id].specTable);
+      catch(e) {
+
+      }
     });
     tempDiv.append(temp.htmlTable);
     $('#scroll').append(tempDiv);
