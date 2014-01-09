@@ -196,7 +196,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 15);
+  console.log("Version: " + 21);
   $('#container').scroll(function () { 
     
 
@@ -270,7 +270,7 @@ var specTable = function(table, id) {
 
 function refresh(query) {
 
-  if(queryCounter != 30) {
+  if(queryCounter != 33) {
     var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
     queryCounter += 10;
     
