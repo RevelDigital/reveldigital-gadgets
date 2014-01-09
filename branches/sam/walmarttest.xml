@@ -186,7 +186,6 @@ items = [];
 indexer = -1;
 queryCounter = 1;
 currentCompare = 1;
-toggle = true;
 refresherCounter = 400;
 currentSearch = 'television';
 
@@ -251,7 +250,6 @@ function clearAll() {
   indexer = -1;
   queryCounter = 1;
   currentCompare = 1;
-  toggle = true;
   $('#compare1').empty();
   $('#compare2').empty();
   $('#compare3').empty();
@@ -340,11 +338,6 @@ function createItems() {
     $('#scroll').append(tempDiv);
   }
 
-  if(toggle) {
-    //refresh('television');  
-  }
-
-  toggle = false;  
   
 }
 
