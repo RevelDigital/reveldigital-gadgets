@@ -188,6 +188,7 @@ queryCounter = 1;
 currentCompare = 1;
 toggle = true;
 refresherCounter = 400;
+currentSearch = 'television';
 
 
 
@@ -202,42 +203,47 @@ $(function() {
       
 
       refresherCounter += 500;
-      refresh('television');
+      refresh(currentSearch);
     }
        
   });
-  refresh('television');
+  refresh(currentSearch);
 });
 
 
 $('#ledbutton').click(function() {
+  currentSearch = 'led television';
   clearAll();
   spinner = new Spinner().spin(target);
-  refresh('led television');
+  refresh(currentSearch);
 });
 
 $('#lcdbutton').click(function() {
+  currentSearch = 'lcd television';
   clearAll();
   spinner = new Spinner().spin(target);
-  refresh('lcd television');
+  refresh(currentSearch);
 });
 
 $('#smartbutton').click(function() {
+  currentSearch = 'smart television';
   clearAll();
   spinner = new Spinner().spin(target);
-  refresh('smart television');
+  refresh(currentSearch);
 });
 
 $('#plasmabutton').click(function() {
+  currentSearch = 'plasma television';
   clearAll();
   spinner = new Spinner().spin(target);
-  refresh('plasma television');
+  refresh(currentSearch);
 });
 
 $('#allbutton').click(function() {
+  currentSearch = 'television';
   clearAll();
   spinner = new Spinner().spin(target);
-  refresh('television');
+  refresh(currentSearch);
 });
 
 function clearAll() {
@@ -262,8 +268,8 @@ function refresh(query) {
 
 
 
-var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
-queryCounter += 10;
+  var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
+  queryCounter += 10;
     
     $.ajax({
       url: url,
@@ -296,8 +302,6 @@ queryCounter += 10;
 
 
 function getSpectable(prodUrl, index) {
-
-
 
   var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
 
