@@ -194,7 +194,7 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 50);
+  console.log("Version: " + 55);
   $('#container').scroll(function () { 
     
 
@@ -252,6 +252,7 @@ function clearAll() {
   items = [];
   queryCounter = 1;
   currentCompare = 1;
+  refresherCounter = 400;
   $('#compare1').empty();
   $('#compare2').empty();
   $('#compare3').empty();
