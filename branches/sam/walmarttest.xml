@@ -205,7 +205,7 @@ $(function() {
     console.log("Width: " + $('#scroll').width());
     if($(this).scrollLeft() > refresherCounter) {
       if(queryCounter == 30) {
-
+        console.log("STOP");
       }
       else {
         $("#scroll").width($('#scroll').width() + 1500);
