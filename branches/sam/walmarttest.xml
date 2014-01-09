@@ -8,11 +8,6 @@
 
 
 
-
-
-
-
-
 <style type="text/css">
 
 body {
@@ -65,10 +60,10 @@ table td, table td * {
 }
 
 #container {
- overflow: auto;
+  overflow: auto;
   white-space:nowrap;  
- width: 100%;
- height: 210px; 
+  width: 100%;
+  height: 210px; 
 }
 
 #scroll {
@@ -196,13 +191,10 @@ currentSearch = 'television';
 
 
 $(function() {
-  console.log("Version: " + 75);
+  console.log("Version: " + 5);
   $('#container').scroll(function () { 
-    
-
 
     if($(this).scrollLeft() > refresherCounter && queryCounter != 21) {
-
       refresherCounter += 1000;
       refresh(currentSearch);  
     }
@@ -258,7 +250,6 @@ function clearAll() {
   $('#compare2').empty();
   $('#compare3').empty();
   $('#scroll').empty();
-  $('#scroll').width(10000);
 }
 
 var specTable = function(table, id) {
@@ -277,7 +268,6 @@ function refresh(query) {
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -328,7 +318,6 @@ function getSpectable(prodUrl, index) {
 
 function createItems(start) {
 
-
   for(var i=start; i<items.length; i++) {
     var temp = new specTable(fillTable(i), i);
     var tempDiv = $('<div></div>').addClass('item').attr('id', i).click(function() {
@@ -345,7 +334,6 @@ function createItems(start) {
     tempDiv.append(temp.htmlTable);
     $('#scroll').append(tempDiv);
   }
-
   
 }
 
@@ -355,10 +343,6 @@ function createItems(start) {
 function fillTable(index) {
 
   $('#productTable').empty();
-
-
-
-  rowCounter = 0;
 
   var table = $('<table></table>');
  
