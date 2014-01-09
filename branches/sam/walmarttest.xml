@@ -73,7 +73,7 @@ table td, table td * {
 
 #scroll {
   display:inline-block;
-  width: 5000px;
+  width: 2500px;
   height:180px;
   overflow:auto;
   white-space:nowrap;
@@ -267,7 +267,7 @@ var specTable = function(table, id) {
 }
 
 function refresh(query) {
-console.log("query: " + queryCounter);
+
   if(queryCounter != 21) {
     var url = 'https://api.walmartlabs.com/v1/search?query=' + query + '&format=json&start=' + queryCounter + '&apiKey=d6vumtb53uz7fr7e7xb4z3tm';
     queryCounter += 10;
@@ -277,7 +277,7 @@ console.log("query: " + queryCounter);
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-        console.log(data);
+
 
         for(var i=0; i < data.items.length; i++) {
           var current = data.items[i];
@@ -291,10 +291,6 @@ console.log("query: " + queryCounter);
           items.push(current);
           
           getSpectable(current.productUrl, items.length-1);
-
-          console.log(items.length-1);
-          
-
         }
 
       }
