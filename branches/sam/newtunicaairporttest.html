@@ -45,6 +45,11 @@
     background-color: __UP_row-b__;
   }
 
+  #logo {
+    margin: auto;
+    text-align: center;
+  }
+
 </style>
 
 
@@ -62,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 9);
+    console.log("Version: " + 11);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
