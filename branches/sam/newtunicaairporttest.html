@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 39);
+    console.log("Version: " + 41);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -178,7 +178,7 @@ flights = [];
         console.log(data[i].file_name);
         var currentImage = data[i];
         if(currentImage.file_name.toLowerCase() == currentAirline) {
-           $('#flight_table tr:nth-child(' + row + ') td:nth-child(3)').html('<img src=' + currentImage.file_url + '>');
+           $('#flight_table tr:nth-child(' + row + ') td:nth-child(3)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
         }
       }
 
