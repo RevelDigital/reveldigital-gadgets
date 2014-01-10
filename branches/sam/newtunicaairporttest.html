@@ -156,7 +156,7 @@ flights = [];
   }
 
   function getAiportImage() {
-    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
+    var image = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
 
       $.each(data, function (image) {
         if (image.name.toLowerCase() == "tunica_airport_logo") {
@@ -171,6 +171,7 @@ flights = [];
     var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
       $.each(data, function (image) {
+        console.log('image: ' + image);
         if (image.name.toLowerCase() == airline.replace(" ", "_").append("_logo")) {
           console.log('<img src=' + image.file_url + '>');
         }
