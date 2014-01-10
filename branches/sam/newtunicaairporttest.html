@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 17);
+    console.log("Version: " + 19);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -174,9 +174,9 @@ flights = [];
         console.log(image);
         console.log('image: ' + image.file_name);
         //console.log(airline.replace(" ", "_").append("_logo"));
-        if (image.file_name.toLowerCase() == (airline.replace(" ", "_") += ("_logo"))) {
-          console.log('<img src=' + image.file_url + '>');
-        }
+        //if (image.file_name.toLowerCase() == (airline.replace(" ", "_") += ("_logo.png"))) {
+        //  console.log('<img src=' + image.file_url + '>');
+        //}
       });
     });
 
