@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 15);
+    console.log("Version: " + 17);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -173,7 +173,7 @@ flights = [];
       $.each(data, function (image) {
         console.log(image);
         console.log('image: ' + image.file_name);
-        console.log(airline.replace(" ", "_").append("_logo"));
+        //console.log(airline.replace(" ", "_").append("_logo"));
         if (image.file_name.toLowerCase() == (airline.replace(" ", "_") += ("_logo"))) {
           console.log('<img src=' + image.file_url + '>');
         }
