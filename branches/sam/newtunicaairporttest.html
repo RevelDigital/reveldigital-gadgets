@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 31);
+    console.log("Version: " + 35);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -156,17 +156,19 @@ flights = [];
   }
 
   function getAiportImage() {
-    var image = $.getJSON("https://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
-
-      $.each(data, function (image) {
-        if (image.file_name.toLowerCase() == "tunica_airport_logo") {
-          $('#logo').html(image.file_url);
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == 'tunica_aiport_logo.png') {
+          $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
-      });
+      }
+
     });
   }
 
-  function getAirlineImage(airline) {
+  function getAirlineImage(airline, row) {
 
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
@@ -176,7 +178,7 @@ flights = [];
         console.log(data[i].file_name);
         var currentImage = data[i];
         if(currentImage.file_name.toLowerCase() == currentAirline) {
-          console.log("yippe");
+           $('#flight_table tr:nth-child(' + row + ') td:nth-child(3)').html("yippe");
         }
       }
 
@@ -212,7 +214,7 @@ flights = [];
           cells[0].innerHTML = currentFlight.time;
           cells[1].innerHTML = currentFlight.number;
           cells[2].innerHTML = currentFlight.fromTo;
-          cells[3].innerHTML = getAirlineImage(currentFlight.airline);
+          cells[3].innerHTML = getAirlineImage(currentFlight.airline, rowCounter);
           cells[4].innerHTML = currentFlight.status;
           cells[5].innerHTML = currentFlight.gate;
           
