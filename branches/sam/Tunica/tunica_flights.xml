@@ -175,7 +175,7 @@ flights = [];
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
         if(currentImage.file_name.toLowerCase() == currentAirline) {
-           $('#flight_table tr:nth-child(' + row + ') td:nth-child(4)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+           $('#flight_table tr:nth-child(' + row + ') td:nth-child(4)').html('<img width=170px height=75px src=' + currentImage.file_url + '>');
         }
       }
 

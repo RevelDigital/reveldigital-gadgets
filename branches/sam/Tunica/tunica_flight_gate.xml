@@ -2,6 +2,7 @@
 <Module> 
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
   <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
   <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
   <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
@@ -58,6 +59,10 @@
 
 <body>
 
+<div id="logo">
+
+</div>
+
 <div id="current_flight">
 <table id="current_flight_table">
   <tr><td>
@@ -99,7 +104,7 @@ var prefs = new gadgets.Prefs();
 flights = [];
 
   function load() {
-    
+    //getAirportImage();
     refresh();
     
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -179,6 +184,53 @@ gadgets.util.registerOnLoadHandler(load);
   }
 
 
+  function showLogo() {
+    $('#current_flight').fadeOut(1000);
+    $('#next_flight').fadeOut(1000);
+    $('#logo').fadeIn(1000);
+  }
+
+  function showFlights() {
+    $('#logo').fadeOut(1000);
+    $('#current_flight').fadeIn(1000);
+    $('#next_flight').fadeIn(1000);
+  }
+
+  function getAiportImage() {
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == 'tunica_aiport_logo.png') {
+          $('#logo').html('<img src=' + currentImage.file_url + '>');
+        }
+      }
+
+    });
+  }
+
+  function getAirlineImage(airline, current) {
+
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      currentAirline = airline.toLowerCase().replace(" ", "_") + '_logo.png';
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == currentAirline) {
+          if(current) {
+           $('#current_airline').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+          }
+          else {
+            $('#next_flight tr:nth-child(1) td:nth-child(4)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+          }
+        }
+      }
+
+    });
+
+
+  }
+
+
 
 
   function showCurrentFlight(flight) {
@@ -186,7 +238,7 @@ gadgets.util.registerOnLoadHandler(load);
 
     $('#current_number').text('Flight #: ' + flight.number);
     $('#current_status').text('Status: ' + flight.status);
-    $('#current_airline').text('Airline: ' + flight.airline);
+    getAirlineImage(flight.airline, true);
 
 
 
@@ -219,7 +271,7 @@ function showNextFlight(flight) {
           cells[0].innerHTML = flight.time;
           cells[1].innerHTML = flight.number;
           cells[2].innerHTML = flight.fromTo;
-          cells[3].innerHTML = flight.airline;
+          getAirlineImage(flight.airline, false);
           cells[4].innerHTML = flight.status;
 
   }
