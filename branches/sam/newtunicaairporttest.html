@@ -62,7 +62,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 3);
+    console.log("Version: " + 4);
     getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -90,14 +90,11 @@ flights = [];
   function refresh() {
     showFlights();
 
-      clearFlights();
+    clearFlights();
 
-      var toggle = prefs.getString('arrival');
+    var toggle = prefs.getString('arrival');
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
-
-    
-
 
     
     $.ajax({
@@ -169,7 +166,7 @@ flights = [];
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
       $.each(data, function (image) {
-        console.log('image: ' + image);
+        console.log('image: ' + image.name);
         if (image.name.toLowerCase() == airline.replace(" ", "_").append("_logo")) {
           console.log('<img src=' + image.file_url + '>');
         }
