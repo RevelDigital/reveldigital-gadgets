@@ -62,7 +62,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 4);
+    console.log("Version: " + 5);
     getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -154,7 +154,7 @@ flights = [];
     var image = $.getJSON("https://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
 
       $.each(data, function (image) {
-        if (image.name.toLowerCase() == "tunica_airport_logo") {
+        if (image.file_name.toLowerCase() == "tunica_airport_logo") {
           $('#logo').html(image.file_url);
         }
       });
@@ -166,8 +166,8 @@ flights = [];
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
       $.each(data, function (image) {
-        console.log('image: ' + image.name);
-        if (image.name.toLowerCase() == airline.replace(" ", "_").append("_logo")) {
+        console.log('image: ' + image.file_name);
+        if (image.file_name.toLowerCase() == airline.replace(" ", "_").append("_logo")) {
           console.log('<img src=' + image.file_url + '>');
         }
       });
