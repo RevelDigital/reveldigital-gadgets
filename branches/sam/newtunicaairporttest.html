@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 19);
+    console.log("Version: " + 21);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -170,14 +170,11 @@ flights = [];
 
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
-      $.each(data, function (image) {
-        console.log(image);
-        console.log('image: ' + image.file_name);
-        //console.log(airline.replace(" ", "_").append("_logo"));
-        //if (image.file_name.toLowerCase() == (airline.replace(" ", "_") += ("_logo.png"))) {
-        //  console.log('<img src=' + image.file_url + '>');
-        //}
-      });
+
+      for(var i=0; i< data.length; i++) {
+        console.log(data[0].file_name);
+      }
+
     });
 
 
