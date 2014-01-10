@@ -62,7 +62,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 2);
+    console.log("Version: " + 3);
     getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -110,9 +110,7 @@ flights = [];
 
         if(toggle == 'arrival') {
         	try {
-
 				      var arrivals = current.substring(current.indexOf('<h3>Arrivals</h3>') + 17, current.indexOf('</table>') + 9).trim();
-              
           		createFlights(arrivals, 'arrival');
         	}
         	catch(e) {
@@ -156,7 +154,7 @@ flights = [];
   }
 
   function getAiportImage() {
-    var image = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
+    var image = $.getJSON("https://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
 
       $.each(data, function (image) {
         if (image.name.toLowerCase() == "tunica_airport_logo") {
@@ -168,7 +166,7 @@ flights = [];
 
   function getAirlineImage(airline) {
 
-    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       console.log(data);
       $.each(data, function (image) {
         console.log('image: ' + image);
