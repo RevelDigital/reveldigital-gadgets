@@ -54,7 +54,7 @@
 
 
 <div id="logo">
-//image
+
 </div>
 <div id="table_container">
  <table id="flight_table"><tbody>
@@ -67,7 +67,7 @@
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   function load() {
-    console.log("Version: " + 41);
+    console.log("Version: " + 45);
     //getAiportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -171,14 +171,11 @@ flights = [];
   function getAirlineImage(airline, row) {
 
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
-      console.log(data);
       currentAirline = airline.toLowerCase().replace(" ", "_") + '_logo.png';
-      console.log("current: " + currentAirline);
       for(var i=0; i < data.length; i++) {
-        console.log(data[i].file_name);
         var currentImage = data[i];
         if(currentImage.file_name.toLowerCase() == currentAirline) {
-           $('#flight_table tr:nth-child(' + row + ') td:nth-child(3)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+           $('#flight_table tr:nth-child(' + row + ') td:nth-child(4)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
         }
       }
 
