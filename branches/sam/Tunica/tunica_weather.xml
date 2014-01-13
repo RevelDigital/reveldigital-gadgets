@@ -273,7 +273,7 @@ body
   
   function update(location) {
   
-    geocoder.geocode({'address': prefs.getString(location)}, function(results, status) {
+    geocoder.geocode({'address': location}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         renderWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
       }
@@ -310,7 +310,7 @@ body
   }
 
   function refresh() {
-console.log("version: 9");
+console.log("version: 11");
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
 
