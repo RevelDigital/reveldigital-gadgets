@@ -2,13 +2,12 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="background_transparent" display_name="Make Table Background Transparent" datatype="bool" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-
-
 
 
 <head>
@@ -52,8 +51,6 @@ function update() {
   getCss(googleUrl);
 }
 
-
-
 function getCss(code) {
 
   var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D'%2Fhtml%2Fhead%2Fstyle'&diagnostics=true";
@@ -65,6 +62,10 @@ function getCss(code) {
     success: function (data) {
 
       $("head").append(data.results[0].replace(/border/g, ""));
+
+      if(prefs.getString("background_transparent") == "true") {
+        $("#test td").css("background-color", "transparent");
+      }
 
       $("#test").fadeIn(1000);
 
@@ -87,24 +88,6 @@ function getTable(code) {
     }
   });
 }
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
