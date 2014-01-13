@@ -48,7 +48,7 @@
   }
 
   #next_flight {
-    padding-top:3cm;
+    padding-top:5cm;
   }
 
   #logo {
@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 5");
+    console.log("Version: 7");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -272,7 +272,7 @@ function showNextFlight(flight) {
 
           if(flight.fromTo == 'departure') {
             arrivalToggle = true;
-            $('#toFrom').text('To');
+            $('#toFrom').text('Destination');
           }   
 
           var cells = [];
