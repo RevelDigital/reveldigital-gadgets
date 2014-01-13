@@ -67,6 +67,7 @@ function getCss(code) {
       $("head").append(data.results[0].replace(/border/g, ""));
 
       if(prefs.getString("background_transparent") == "yes") {
+        console.log("Yes");
         $("#test td").css("background-color", "transparent");
       }
 
