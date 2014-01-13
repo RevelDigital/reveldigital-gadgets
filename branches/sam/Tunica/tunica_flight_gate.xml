@@ -205,7 +205,7 @@ console.log(data.results);
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
         console.log("Image: " + currentImage.file_url);
-        if(currentImage.file_name.toLowerCase() == 'tunicalogo.png') {
+        if(currentImage.file_name.toLowerCase() == 'talogo.png') {
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
       }
