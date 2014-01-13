@@ -98,7 +98,7 @@ console.log("version: ");
 
             if(i!=0) {
               var flight = new Flight(row.children, 'departure');
-//change gate info
+
               if(flight.gate == prefs.getString("gate")) {
                 console.log(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length));
                 getAiportLocation(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length))
