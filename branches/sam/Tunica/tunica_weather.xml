@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
+  <Require feature="flash" />
+  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
+    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+  </UserPref>
+  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
+    <EnumValue value="f" display_value="Farenheight" />
+    <EnumValue value="c" display_value="Celcius" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+
+
+<style type="text/css">
+  body { background-color: transparent; }
+</style>
+
+<div id="flashcontainer" style="background-color:transparent;"></div> 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  //var prefs = new gadgets.Prefs();
+
+  function loadFlash(location) {
+
+    var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
+
+    if (prefs.getString("BackColor") != "") {
+      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
+    }
+    
+    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
+      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
+      "Custom=transparent" + "&" +
+      "Location=" + encodeURI(location) + "&" +
+      "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
+      "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
+      "Opacity=" + encodeURI(prefs.getString("Opacity"));
+    
+    var embed = document.createElement("embed");
+    embed.setAttribute("width", "100%");
+    embed.setAttribute("height", "100%");
+    embed.setAttribute("wmode", "transparent");
+    embed.setAttribute("scale", "exactFit");
+    embed.setAttribute("type", "application/x-shockwave-flash");
+    embed.setAttribute("src", url);
+    embed.setAttribute("flashvars", flashvars);
+    document.getElementById("flashcontainer").appendChild(embed);
+  }
+
+  function getAiportLocation(code) {
+
+
+    var url = 'https://api.flightstats.com/flex/airports/rest/v1/jsonp/iata/' + code + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe';
+
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+        loadFlash(data.airports[0].postalCode);
+
+          
+      }
+    });
+
+
+
+
+  }
+
+  function refresh() {
+
+
+    var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
+
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+          var current = data.results[0];
+
+          var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
+
+          var $data = $(departures);
+          for (var i = 0, row; row = $data[0].rows[i]; i++) {
+            row.children[0].innerHTML;
+
+            if(i!=0) {
+              var flight = new Flight(row.children, 'departure');
+//change gate info
+              if(flight.gate == '2') {
+                console.log(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length));
+                getAiportLocation(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length))
+              }
+            }
+          }
+
+
+
+          
+      }
+  }); 
+
+
+
+
+  }
+
+  function Flight(info, type) {
+  
+  this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+  this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+
+  this.type = type;
+
+  this.print=print;
+  function print() {
+    return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
+      '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
+      '\nStatus: ' + this.status + '\nTime: ' + this.time;
+  }
+
+}
+
+
+  $(function() {
+    refresh();
+  });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
