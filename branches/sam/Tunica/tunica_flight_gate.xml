@@ -104,7 +104,7 @@ var prefs = new gadgets.Prefs();
 flights = [];
 
   function load() {
-    //getAirportImage();
+    getAirportImage();
     refresh();
     
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -204,7 +204,7 @@ console.log(data.results);
       
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
-        console.log(currentImage.file_url);
+        console.log("Image: " + currentImage.file_url);
         if(currentImage.file_name.toLowerCase() == 'tunicalogo.png') {
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
