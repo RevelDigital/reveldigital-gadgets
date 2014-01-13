@@ -42,7 +42,7 @@ body {
 var prefs = new gadgets.Prefs();
 
 function load() {
-    console.log("Version: ");
+    console.log("Version: 5");
   update();
   
   setInterval(update, 120000);
@@ -52,10 +52,12 @@ gadgets.util.registerOnLoadHandler(load);
 
 
 function update() {
+  $("#test").empty();
+  $("#test td").removeClass();
+  $("head").empty();
   var googleUrl = prefs.getString("spreadsheetUrl");
   googleUrl = googleUrl.substring(googleUrl.indexOf("key=")+4, googleUrl.indexOf("&output"));
   getTable(googleUrl);
-  getCss(googleUrl);
 }
 
 function getCss(code) {
@@ -95,6 +97,7 @@ function getTable(code) {
     success: function (data) {
 
       $('#test').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
+      getCss(code);
 
     }
   });
