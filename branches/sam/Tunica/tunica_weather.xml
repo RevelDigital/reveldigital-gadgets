@@ -9,7 +9,7 @@
     <EnumValue value="f" display_value="Farenheight" />
     <EnumValue value="c" display_value="Celcius" />
   </UserPref>
-  <UserPref name="location" display_name="Location" datatype="string" />
+  <UserPref name="gate" display_name="Aiport Gate" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
 
-  //var prefs = new gadgets.Prefs();
+  var prefs = new gadgets.Prefs();
 
   function loadFlash(location) {
 
@@ -99,7 +99,7 @@
             if(i!=0) {
               var flight = new Flight(row.children, 'departure');
 //change gate info
-              if(flight.gate == '2') {
+              if(flight.gate == prefs.getString("gate")) {
                 console.log(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length));
                 getAiportLocation(flight.fromTo.substring(flight.fromTo.indexOf("-")+1, flight.fromTo.length))
               }
