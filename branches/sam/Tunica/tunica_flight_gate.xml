@@ -204,7 +204,7 @@ console.log(data.results);
       
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
-        if(currentImage.file_name.toLowerCase() == 'tunica_aiport_logo.png') {
+        if(currentImage.file_name.toLowerCase() == 'tunicalogo.png') {
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
       }
