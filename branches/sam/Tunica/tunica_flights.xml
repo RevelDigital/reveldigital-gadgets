@@ -46,8 +46,14 @@
   }
 
   #logo {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
-    text-align: center;
   }
 
 </style>
@@ -68,7 +74,7 @@
   var prefs = new gadgets.Prefs();
   function load() {
     console.log("Version: " + 50);
-    getAiportImage();
+    getAirportImage();
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
@@ -155,12 +161,12 @@ flights = [];
     $('#table_container').fadeIn(1000);
   }
 
-  function getAiportImage() {
+  function getAirportImage() {
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
-        if(currentImage.file_name.toLowerCase() == 'tunicalogo.png') {
+        if(currentImage.file_name.toLowerCase() == 'talogo.png') {
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
       }
