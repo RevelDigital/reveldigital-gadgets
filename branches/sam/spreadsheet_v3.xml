@@ -22,6 +22,10 @@
 
 <style type="text/css">
 
+body {
+  background-color: transparent;
+}
+
 
 #test {
   display: none;
@@ -38,7 +42,7 @@
 var prefs = new gadgets.Prefs();
 
 function load() {
-    
+    console.log("Version: ");
   update();
   
   setInterval(update, 120000);
