@@ -54,7 +54,7 @@ function update() {
 
 function getCss() {
 
-  var code = pref.getString("spreadsheetUrl");
+  var code = prefs.getString("spreadsheetUrl");
 
   var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D'%2Fhtml%2Fhead%2Fstyle'&diagnostics=true";
 
@@ -79,7 +79,7 @@ function getCss() {
 
 function getTable() {
 
-  var code = pref.getString("spreadsheetUrl");
+  var code = prefs.getString("spreadsheetUrl");
 
   var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D%22%2F%2Ftable%5B%40class%3D'tblGenFixed'%5D%22%0A&diagnostics=true";
 
