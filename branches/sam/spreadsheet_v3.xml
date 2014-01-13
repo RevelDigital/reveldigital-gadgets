@@ -47,8 +47,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 function update() {
   var googleUrl = prefs.getString("spreadsheetUrl");
-  googleUrl = googleUrl.substring(googleUrl.indexOf("key="), googleUrl.indexOf("&output"));
-  console.log(googleUrl);
+  googleUrl = googleUrl.substring(googleUrl.indexOf("key=")+4, googleUrl.indexOf("&output"));
   getTable(googleUrl);
   getCss(googleUrl);
 }
