@@ -2,7 +2,10 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="background_transparent" display_name="Make Table Background Transparent" datatype="bool" />
+  <UserPref name="background_transparent" display_name="Make table background transparent?" default_value="No" datatype="enum" >
+    <EnumValue value="yes" display_value="Yes" />
+    <EnumValue value="no" display_value="No" />
+  </UserPref>
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
@@ -63,7 +66,7 @@ function getCss(code) {
 
       $("head").append(data.results[0].replace(/border/g, ""));
 
-      if(prefs.getString("background_transparent") == "true") {
+      if(prefs.getString("background_transparent") == "yes") {
         $("#test td").css("background-color", "transparent");
       }
 
