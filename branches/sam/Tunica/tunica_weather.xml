@@ -1,62 +1,294 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
-  <Require feature="flash" />
-  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
-    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+<ModulePrefs title="RevelDigital Weather Gadget" description="Local weather details with forecast" author="RevelDigital" background="transparent">
+  <UserPref name="gate" display_name="Airport Gate" datatype="string" required="true" />
+  <UserPref name="Units" display_name="Temperature Units"  datatype="enum" default_value="us">
+    <EnumValue value="us" display_value="US" />
+    <EnumValue value="si" display_value="Metric" />
   </UserPref>
-  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
-    <EnumValue value="f" display_value="Farenheight" />
-    <EnumValue value="c" display_value="Celcius" />
-  </UserPref>
-  <UserPref name="gate" display_name="Aiport Gate" datatype="string" />
+  <UserPref name="ForecastDays" display_name="Forecast Days" datatype="string" default_value="3" required="true" />
+  <UserPref name="TextStyle" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="IconColor" display_name="Icon Color" datatype="color" default_value="blue" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 
-
-
-
-
 <style type="text/css">
-  body { background-color: transparent; }
+body *
+{
+  letter-spacing:0;
+  word-spacing:normal;
+}
+
+body
+{
+  __UP_TextStyle__;
+  background:transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+.fe_container
+{
+  font-weight:300;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  margin:0 auto;
+}
+
+.fe_container .fe_forecast
+{
+  width:100%;
+}
+
+.fe_container .fe_currently
+{
+  float:left;
+  position:relative;
+  height:100%;
+  font-size:1.6em;
+  text-align:center;
+  padding-top:5px;
+}
+
+#fe_current_icon
+{
+  width:150px;
+  height:150px;
+  float:left;
+}
+
+.fe_container .fe_currently .fe_temp
+{
+  display:inline-block;
+  position:relative;
+  margin-left:5px;
+  margin-top:10px;
+  font-size:3.5em;
+  font-weight:700;
+  text-align:center;
+  line-height:.65em;
+}
+
+.fe_container .fe_currently .fe_temp .fe_dir
+{
+  position:relative;
+  left:-5px;
+  display:block;
+  font-size:.3em;
+  font-weight:400;
+}
+
+.fe_container .fe_currently .fe_summary
+{
+  font-size:1em;
+  font-weight:700;
+}
+
+.fe_container .fe_currently .fe_wind
+{
+  font-size:.7em;
+}
+
+.fe_container .fe_daily
+{
+  float:left;
+  display:table;
+  height:100%;
+  font-size:1em;
+  text-align:center;
+}
+
+.fe_container .fe_daily .fe_day
+{
+  display:table-cell;
+  text-align:center;
+}
+
+.fe_container .fe_daily .fe_day .fe_label
+{
+  font-weight:700;
+  display:inline-block;
+  width:100%;
+}
+
+.fe_container .fe_daily .fe_day .fe_temp_bar
+{
+  position:relative;
+  width:40px;
+  font-size:1.5em;
+  border-radius:200px;
+  background: __UP_IconColor__;
+  margin:40px auto 0;
+}
+
+.fe_container .fe_daily .fe_day .fe_low_temp
+{
+  position:absolute;
+  width:100%;
+  bottom:-1.2em;
+  left:0;
+}
+
+.fe_container .fe_daily .fe_day .fe_high_temp
+{
+  position:absolute;
+  width:100%;
+  top:-1.2em;
+  left:0;
+}
+
+.fe_container .fe_daily .fe_day .fe_high_temp:after,.fe_container .fe_daily .fe_day .fe_low_temp:after,.fe_temp:after
+{
+  content:"\00b0";
+}
+
+.fe_container .fe_daily .fe_day .fe_icon
+{
+  width:70px;
+  height:70px;
+}
 </style>
 
-<div id="flashcontainer" style="background-color:transparent;"></div> 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/skycons.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div id="forecast_embed" class="fe_container">
+  <div class="fe_forecast">
+     <div class="fe_currently">
+        <canvas id="fe_current_icon" width="200" height="200"></canvas>
+        <div class="fe_temp"> <span class="fe_dir"></span></div>
+        <div style="clear:left"></div>
+        <div class="fe_summary"></div>
+        <div class="fe_wind"></div>
+     </div>
+     <div class="fe_daily">
+     </div>
+     <div style="clear:left"></div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
+  var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var prefs = new gadgets.Prefs();
-
-  function loadFlash(location) {
-
-    var url = "https://uploads.reveldigital.com/" + prefs.getString("weatherformat");
-
-    if (prefs.getString("BackColor") != "") {
-      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
+  var geocoder = new google.maps.Geocoder();
+  var skycons;
+  
+  function mapIcon(icon) {
+  
+    switch (icon) {
+      case 'clear-day':
+        return Skycons.CLEAR_DAY;
+      case 'clear-night':
+        return Skycons.CLEAR_NIGHT;
+      case 'partly-cloudy-night':
+        return Skycons.PARTLY_CLOUDY_NIGHT;
+      case 'partly-cloudy-day':
+        return Skycons.PARTLY_CLOUDY_DAY;
+      case 'cloudy':
+        return Skycons.CLOUDY;
+      case 'rain':
+        return Skycons.RAIN;
+      case 'sleet':
+        return Skycons.SLEET;
+      case 'snow':
+        return Skycons.SNOW;
+      case 'wind':
+        return Skycons.WIND;
+      case 'fog':
+        return Skycons.FOG;
+      default:
+        return Skycons.CLEAR_DAY;
     }
+  }
+  
+  function load() {
     
-    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
-      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
-      "Custom=transparent" + "&" +
-      "Location=" + encodeURI(location) + "&" +
-      "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
-      "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
-      "Opacity=" + encodeURI(prefs.getString("Opacity"));
+    skycons = new Skycons({"color": prefs.getString("IconColor")});
+    skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
     
-    var embed = document.createElement("embed");
-    embed.setAttribute("width", "100%");
-    embed.setAttribute("height", "100%");
-    embed.setAttribute("wmode", "transparent");
-    embed.setAttribute("scale", "exactFit");
-    embed.setAttribute("type", "application/x-shockwave-flash");
-    embed.setAttribute("src", url);
-    embed.setAttribute("flashvars", flashvars);
-    document.getElementById("flashcontainer").appendChild(embed);
+    update();
+    
+    setInterval(update, 1800000);
   }
 
-  function getAiportLocation(code) {
+  function renderWeather(lat, lng) {
+  
+    $.getJSON('https://api.forecast.io/forecast/0b37c606ca5921a48efd415f56fd9fef/' + lat + ',' + lng + '?units=' + prefs.getString("Units") + '&callback=?', function(data) {
+      skycons.set("fe_current_icon", mapIcon(data.currently.icon));
+      $(".fe_temp").text(parseInt(data.currently.temperature));
+      $(".fe_summary").text(data.currently.summary);
+      $(".fe_wind").text("Wind: " + parseInt(data.currently.windSpeed) + " mph");
+      
+      $('.fe_daily').empty();
+      
+      var max = data.currently.temperature;
+      var min = data.currently.temperature;
+      $.each(data.daily.data, function (i, val) {
+        if (i < Math.min(8, prefs.getInt("ForecastDays"))) {
+          max = Math.max(max, val.temperatureMax);update
+          min = Math.min(min, val.temperatureMin);
+          var t = new Date(1970,0,1);
+          t.setSeconds(val.time);
+          var idx = i + 1;
+          
+          var fe_day = $("<div class='fe_day'></div>");
+          var fe_label = $("<span class='fe_label'></span>");
+          var fe_icon = $("<canvas class='fe_icon' width='70' height='70' id='fe_day_icon" + i + "'></canvas>");
+          var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
+          var fe_high_temp = $("<span class='fe_high_temp'></span>");
+          var fe_low_temp = $("<span class='fe_low_temp'></span>");
+          fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
+          fe_day.append(fe_label).append(fe_icon).append(fe_temp_bar);
+          $(".fe_daily").append(fe_day);
+          
+          skycons.add('fe_day_icon' + i, mapIcon(val.icon));
+          $(fe_high_temp).text(parseInt(val.temperatureMax));
+          $(fe_low_temp).text(parseInt(val.temperatureMin));
+          $(fe_label).text(days[t.getDay()]);
+          $(fe_temp_bar).css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
+
+          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_high_temp').text(parseInt(val.temperatureMax));
+          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_low_temp').text(parseInt(val.temperatureMin));
+          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_label').text(days[t.getDay()]);
+          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_temp_bar').css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
+        }
+      });
+      
+      $('.fe_daily .fe_day').each(function (i, j) {
+        var hi = parseInt($('.fe_high_temp', this).text());
+        $('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
+      });
+      skycons.play();
+    });
+    
+    
+  }
+  
+  function update(location) {
+  
+    geocoder.geocode({'address': prefs.getString(location)}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        renderWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+      }
+    });
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+
+
+
+
+
+
+
+ function getAiportLocation(code) {
 
 
     var url = 'https://api.flightstats.com/flex/airports/rest/v1/jsonp/iata/' + code + '?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe';
@@ -66,7 +298,7 @@
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-        loadFlash(data.airports[0].postalCode);
+        update(data.airports[0].postalCode);
 
           
       }
@@ -78,7 +310,7 @@
   }
 
   function refresh() {
-console.log("version: ");
+console.log("version: 2");
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
 
@@ -138,22 +370,29 @@ console.log("version: ");
 }
 
 
-  $(function() {
-    refresh();
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
 
 ]]>
 </Content>
