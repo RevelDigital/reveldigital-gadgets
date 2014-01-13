@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+
+<head>
+</head>
+<body>
+<table class="tblGenFixed" id="test">
+</table>
+</body>
+
+<style type="text/css">
+
+
+#test {
+  display: none;
+}
+
+
+</style>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+var prefs = new gadgets.Prefs();
+
+function load() {
+    
+  update();
+  
+  setInterval(update, 120000);
+}
+
+gadgets.util.registerOnLoadHandler(load);
+
+
+function update() {
+  var googleUrl = prefs.getString("spreadsheetUrl");
+  googleUrl = googleUrl.substring(googleUrl.indexOf("key="), googleUrl.indexOf("&output"));
+  getTable(googleUrl);
+  getCss(googleUrl);
+}
+
+
+
+function getCss(code) {
+
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D'%2Fhtml%2Fhead%2Fstyle'&diagnostics=true";
+
+  $.ajax({
+    url: url,
+    dataType: 'JSONP',
+    type: 'GET',
+    success: function (data) {
+
+      $("head").append(data.results[0].replace(/border/g, ""));
+
+      $("#test").fadeIn(1000);
+
+    }
+  });
+}
+
+function getTable(code) {
+
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D%22%2F%2Ftable%5B%40class%3D'tblGenFixed'%5D%22%0A&diagnostics=true";
+
+  $.ajax({
+    url: url,
+    dataType: 'JSONP',
+    type: 'GET',
+    success: function (data) {
+
+      $('#test').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
+
+    }
+  });
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+]]>
+</Content>
+</Module>
