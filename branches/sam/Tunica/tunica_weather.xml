@@ -298,7 +298,7 @@ body
       dataType: 'JSONP',
       type: 'GET',
       success: function (data) {
-        update(data.airports[0].postalCode);
+        update(data.airports[0].city + ', ' + data.airports[0].state);
 
           
       }
@@ -310,7 +310,7 @@ body
   }
 
   function refresh() {
-console.log("version: 7");
+console.log("version: 9");
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
 
