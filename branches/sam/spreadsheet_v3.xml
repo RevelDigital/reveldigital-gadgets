@@ -70,6 +70,9 @@ function getCss(code) {
         console.log("Yes");
         $("#test td").css("background-color", "transparent");
       }
+      else {
+        console.log("no");
+      }
 
       $("#test").fadeIn(1000);
 
