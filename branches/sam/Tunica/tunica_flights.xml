@@ -136,12 +136,9 @@ flights = [];
           }
         }
 
-        if(flights.length == 0) {
-          showLogo();
-        }
-        else {
+
           displayFlights();  
-        }
+        
         
 
       }
