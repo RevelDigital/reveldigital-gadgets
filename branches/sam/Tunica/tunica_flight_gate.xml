@@ -51,6 +51,10 @@
     padding-top:3cm;
   }
 
+  #logo {
+    margin: auto;
+  }
+
 
 
 </style>
@@ -106,7 +110,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    
+    console.log("Version: ");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
