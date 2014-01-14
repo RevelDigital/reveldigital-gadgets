@@ -131,7 +131,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 15');
+    console.log('Version: 19');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
@@ -170,7 +170,7 @@ function update() {
 function refreshFlipper() {
 
   $("#front_table").empty();
-  $("#end_table").empty();
+  $("#back_table").empty();
 
 
 
