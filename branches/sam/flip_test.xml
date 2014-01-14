@@ -59,9 +59,8 @@ body {
   float: left;
   margin-right: 10px;
   border-radius: 10px;
-  background: #fff;
   -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3)
-    background-color: __UP_side-a__;
+  background-color: __UP_side-a__;
 }
 .back{
     
