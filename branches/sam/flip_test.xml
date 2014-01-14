@@ -136,7 +136,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 25');
+    console.log('Version: 7');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
