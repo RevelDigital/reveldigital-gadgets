@@ -117,8 +117,9 @@ function changeClass(){
         document.getElementById("block").className += " rotated";
     }
     else{
+      refreshFlipper();
         document.getElementById("block").className = "block";
-        refreshFlipper();
+        
     }
 }
 
@@ -131,7 +132,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 19');
+    console.log('Version: 21');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
