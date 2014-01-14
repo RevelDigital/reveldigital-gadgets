@@ -55,7 +55,14 @@ body {
     -webkit-box-shadow: 0 2px 5px #666;
 }
 .front{
-
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  background: #fff;
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3)
     background-color: __UP_side-a__;
 }
 .back{
@@ -132,7 +139,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 21');
+    console.log('Version: 25');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
@@ -182,7 +189,6 @@ function refreshFlipper() {
     }
 
     var currentEntry = stories[storyCounter++];
-      console.log(currentEntry.title);
 
       if(i%2 == 0) {
         var table = document.getElementById("front_table");
