@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="background_transparent" display_name="Make table background transparent?" default_value="No" datatype="enum" >
+  <UserPref name="background_transparent" display_name="Make table background transparent?" default_value="no" datatype="enum" >
     <EnumValue value="yes" display_value="Yes" />
     <EnumValue value="no" display_value="No" />
   </UserPref>
@@ -16,7 +16,7 @@
 <head>
 </head>
 <body>
-<table class="tblGenFixed" id="test">
+<table class="tblGenFixed" id="googleTable">
 </table>
 </body>
 
@@ -26,8 +26,7 @@ body {
   background-color: transparent;
 }
 
-
-#test {
+#googleTable {
   display: none;
 }
 
@@ -42,9 +41,7 @@ body {
 var prefs = new gadgets.Prefs();
 
 function load() {
-    console.log("Version: 5");
   update();
-  
   setInterval(update, 120000);
 }
 
@@ -52,8 +49,8 @@ gadgets.util.registerOnLoadHandler(load);
 
 
 function update() {
-  $("#test").empty();
-  $("#test td").removeClass();
+  $("#googleTable").empty();
+  $("#googleTable td").removeClass();
   $("head").empty();
   var googleUrl = prefs.getString("spreadsheetUrl");
   googleUrl = googleUrl.substring(googleUrl.indexOf("key=")+4, googleUrl.indexOf("&output"));
@@ -73,14 +70,10 @@ function getCss(code) {
       $("head").append(data.results[0].replace(/border/g, ""));
 
       if(prefs.getString("background_transparent") == "yes") {
-        console.log("Yes");
-        $("#test td").css("background-color", "transparent");
-      }
-      else {
-        console.log("no");
+        $("#googleTable td").css("background-color", "transparent");
       }
 
-      $("#test").fadeIn(1000);
+      $("#googleTable").fadeIn(1000);
 
     }
   });
@@ -96,13 +89,12 @@ function getTable(code) {
     type: 'GET',
     success: function (data) {
 
-      $('#test').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
+      $('#googleTable').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
       getCss(code);
 
     }
   });
 }
-
 
 
 </script>
