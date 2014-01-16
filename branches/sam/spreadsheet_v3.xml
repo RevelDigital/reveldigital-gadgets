@@ -39,7 +39,7 @@ body {
 var prefs = new gadgets.Prefs();
 
 function load() {
-console.log("version: " + 11);
+console.log("version: " + 15);
   oldTableData = new Object();
   oldCssData = new Object();
   update();
@@ -67,16 +67,15 @@ function getCss(code) {
     type: 'GET',
     success: function (data) {
 
-     // if(data != oldCssData) {
+      if(data != oldCssData) {
         oldCssData = data;
-        $("#googleTable td").removeClass();
-        $("head").empty();
+        
         $("head").append(data.results[0].replace(/border/g, ""));
 
         if(prefs.getString("background_transparent") == "yes") {
           $("#googleTable td").css("background-color", "transparent");
         }
-      //}
+      }
 
       
 
