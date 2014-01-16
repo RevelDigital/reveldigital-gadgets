@@ -26,9 +26,7 @@ body {
   background-color: transparent;
 }
 
-#googleTable {
-  display: none;
-}
+
 
 
 </style>
@@ -73,7 +71,7 @@ function getCss(code) {
         $("#googleTable td").css("background-color", "transparent");
       }
 
-      $("#googleTable").fadeIn(1000);
+
 
     }
   });
