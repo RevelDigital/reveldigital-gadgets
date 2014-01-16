@@ -39,6 +39,9 @@ body {
 var prefs = new gadgets.Prefs();
 
 function load() {
+console.log("version: " + 5);
+  oldTableData = new Object();
+  oldCssData = new Object();
   update();
   setInterval(update, 120000);
 }
@@ -65,11 +68,16 @@ function getCss(code) {
     type: 'GET',
     success: function (data) {
 
-      $("head").append(data.results[0].replace(/border/g, ""));
+      if(data != oldCssData) {
+        oldCssData = data;
+        $("head").append(data.results[0].replace(/border/g, ""));
 
-      if(prefs.getString("background_transparent") == "yes") {
-        $("#googleTable td").css("background-color", "transparent");
+        if(prefs.getString("background_transparent") == "yes") {
+          $("#googleTable td").css("background-color", "transparent");
+        }
       }
+
+      
 
 
 
@@ -87,7 +95,11 @@ function getTable(code) {
     type: 'GET',
     success: function (data) {
 
-      $('#googleTable').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
+      if(data != oldData) {
+        oldTableData = data;
+        $('#googleTable').html(data.results[0].replace(/<p style="height:16px;">./g, ""));
+      }
+
       getCss(code);
 
     }
