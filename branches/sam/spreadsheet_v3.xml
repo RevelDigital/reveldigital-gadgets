@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 function load() {
 
-console.log("version: " + 5);
+console.log("version: " + 7);
   oldTableData = new Object();
   oldCssData = new Object();
   update();
@@ -77,6 +77,7 @@ function getCss(code) {
         if(prefs.getString("background_transparent") == "yes") {
           $("#googleTable td").css("background-color", "transparent");
         }
+        $("#googleTable td").css("padding", "1px");
       }
 
       
