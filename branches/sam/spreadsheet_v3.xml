@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 function load() {
 
-console.log("version: " + 21);
+console.log("version: " + 27);
   oldTableData = new Object();
   oldCssData = new Object();
   update();
@@ -72,7 +72,7 @@ function getCss(code) {
         oldCssData = data;
 
        
-        $("head").append(data.results[0].replace(/border/g, ""));
+        $("head").append(data.results[0].replace(/border/g, "").replace("<td class='hd'><p style='height:4px;''>.</p></td>"));
 
         if(prefs.getString("background_transparent") == "yes") {
           $("#googleTable td").css("background-color", "transparent");
