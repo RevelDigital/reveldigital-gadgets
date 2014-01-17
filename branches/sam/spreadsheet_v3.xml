@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 function load() {
 
-console.log("version: " + 11);
+console.log("version: " + 15);
 
   update();
   setInterval(update, 120000);
@@ -104,7 +104,7 @@ function getTable(code) {
       if(oldTable != data) {
         oldTable = data;
          $("#googleTable").empty();
-        $('#googleTable').html(data.results[0].replace(/<p style="height:/g, ""));
+        $('#googleTable').html(data.results[0].replace(/<td class="hd"><p>./g, ""));
       }
 
 
