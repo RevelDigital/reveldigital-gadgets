@@ -209,7 +209,7 @@ body
   }
   
   function load() {
-    console.log("version: " + 5);
+  console.log("version: " + 1);
     
     skycons = new Skycons({"color": prefs.getString("IconColor")});
     skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
