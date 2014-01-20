@@ -242,18 +242,18 @@ body
           var fe_day = $("<div class='fe_day'></div>");
           var fe_label = $("<span class='fe_label'></span>");
           var fe_icon = $("<canvas class='fe_icon' width='70' height='70' id='fe_day_icon" + i + "'></canvas>");
-          var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
+          //var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
           var fe_high_temp = $("<span class='fe_high_temp'></span>");
           var fe_low_temp = $("<span class='fe_low_temp'></span>");
-          fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
-          fe_day.append(fe_label).append(fe_icon).append(fe_temp_bar);
+          //fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
+          fe_day.append(fe_label).append(fe_icon);
           $(".fe_daily").append(fe_day);
           
           skycons.add('fe_day_icon' + i, mapIcon(val.icon));
           $(fe_high_temp).text(parseInt(val.temperatureMax));
           $(fe_low_temp).text(parseInt(val.temperatureMin));
           $(fe_label).text(days[t.getDay()]);
-          $(fe_temp_bar).css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
+          //$(fe_temp_bar).css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
 
           //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_high_temp').text(parseInt(val.temperatureMax));
           //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_low_temp').text(parseInt(val.temperatureMin));
@@ -264,7 +264,7 @@ body
       
       $('.fe_daily .fe_day').each(function (i, j) {
         var hi = parseInt($('.fe_high_temp', this).text());
-        $('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
+        //$('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
       });
       skycons.play();
     });
