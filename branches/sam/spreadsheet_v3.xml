@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 function load() {
 
-console.log("version: " + 25);
+console.log("version: " + 5);
 
   update();
   setInterval(update, 120000);
@@ -70,8 +70,8 @@ function getCss(code) {
     type: 'GET',
     success: function (data) {
 
-        if(oldCss != data) {
-          oldCss = data;
+        if(oldCss != data.results[0].replace(/border/g, "")) {
+          oldCss = data.results[0].replace(/border/g, "");
            $("head").append(data.results[0].replace(/border/g, ""));
 
           if(prefs.getString("background_transparent") == "yes") {
@@ -101,8 +101,8 @@ function getTable(code) {
     type: 'GET',
     success: function (data) {
 
-      if(oldTable != data) {
-        oldTable = data;
+      if(oldTable != data.results[0]) {
+        oldTable = data.results[0];
          $("#googleTable").empty();
         $('#googleTable').html(data.results[0]);
         console.log($('#googleTable td:first-child').text());
