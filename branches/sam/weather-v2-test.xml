@@ -209,7 +209,7 @@ body
   }
   
   function load() {
-  console.log("version: " + 15);
+  console.log("version: " + 19);
     
     skycons = new Skycons({"color": prefs.getString("IconColor")});
     skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
@@ -265,7 +265,7 @@ body
       
       $('.fe_daily .fe_day').each(function (i, j) {
         var hi = parseInt($('.fe_high_temp', this).text());
-        //$('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
+        $('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
       });
       skycons.play();
     });
