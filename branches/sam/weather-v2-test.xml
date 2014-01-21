@@ -209,7 +209,7 @@ body
   }
   
   function load() {
-  console.log("version: " + 1);
+  console.log("version: " + 2);
     
     skycons = new Skycons({"color": prefs.getString("IconColor")});
     skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
@@ -256,9 +256,9 @@ body
           $(fe_label).text(days[t.getDay()]);
           //$(fe_temp_bar).css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
 
-          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_high_temp').text(parseInt(val.temperatureMax));
-          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_low_temp').text(parseInt(val.temperatureMin));
-          //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_label').text(days[t.getDay()]);
+          $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_high_temp').text(parseInt(val.temperatureMax));
+          $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_low_temp').text(parseInt(val.temperatureMin));
+          $('.fe_daily .fe_day:nth-child(' + idx + ') .fe_label').text(days[t.getDay()]);
           //$('.fe_daily .fe_day:nth-child(' + idx + ') .fe_temp_bar').css('height', (val.temperatureMax - val.temperatureMin) * 3 + 'px');
         }
       });
