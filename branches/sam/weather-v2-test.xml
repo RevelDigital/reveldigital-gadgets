@@ -209,7 +209,7 @@ body
   }
   
   function load() {
-  console.log("version: " + 2);
+  console.log("version: " + 7);
     
     skycons = new Skycons({"color": prefs.getString("IconColor")});
     skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
@@ -243,10 +243,10 @@ body
           var fe_day = $("<div class='fe_day'></div>");
           var fe_label = $("<span class='fe_label'></span>");
           var fe_icon = $("<canvas class='fe_icon' width='70' height='70' id='fe_day_icon" + i + "'></canvas>");
-          //var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
+          var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
           var fe_high_temp = $("<span class='fe_high_temp'></span>");
           var fe_low_temp = $("<span class='fe_low_temp'></span>");
-          //fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
+          fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
           fe_day.append(fe_label).append(fe_icon);
           $(".fe_daily").append(fe_day);
           
