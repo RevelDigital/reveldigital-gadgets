@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 7");
+    console.log("Version: 51");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
