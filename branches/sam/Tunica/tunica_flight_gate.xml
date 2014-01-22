@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 51");
+    console.log("Version: 3");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -149,7 +149,7 @@ gadgets.util.registerOnLoadHandler(load);
 
   function refresh() {
 
-    showFlights();
+  
 
     clearFlights();
 
@@ -163,7 +163,7 @@ gadgets.util.registerOnLoadHandler(load);
 
         var current = data.results[0];
 
-console.log(data.results);
+
 
         try {
           var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
@@ -180,10 +180,12 @@ console.log(data.results);
         }
         else if(flights.length == 1) {
           showCurrentFlight(flights[0]);
+          showFlights();
         }
         else {
           showCurrentFlight(flights[0]);
           showNextFlight(flights[1]);
+          showFlights();
         }
         
         
@@ -215,7 +217,6 @@ console.log(data.results);
       
       for(var i=0; i < data.length; i++) {
         var currentImage = data[i];
-        console.log("Image: " + currentImage.file_url);
         if(currentImage.file_name.toLowerCase() == 'talogo.png') {
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
