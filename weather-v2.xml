@@ -154,9 +154,9 @@ body
 }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/skycons.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
 <div id="forecast_embed" class="fe_container">
   <div class="fe_forecast">
@@ -211,7 +211,7 @@ body
   function load() {
     
     skycons = new Skycons({"color": prefs.getString("IconColor")});
-    skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
+    //skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
     
     update();
     
@@ -221,7 +221,8 @@ body
   function renderWeather(lat, lng) {
   
     $.getJSON('https://api.forecast.io/forecast/0b37c606ca5921a48efd415f56fd9fef/' + lat + ',' + lng + '?units=' + prefs.getString("Units") + '&callback=?', function(data) {
-      skycons.set("fe_current_icon", mapIcon(data.currently.icon));
+      $(".fe_currently_icon").empty();
+      skycons.add("fe_current_icon", mapIcon(data.currently.icon));
       $(".fe_temp").text(parseInt(data.currently.temperature));
       $(".fe_summary").text(data.currently.summary);
       $(".fe_wind").text("Wind: " + parseInt(data.currently.windSpeed) + " mph");
