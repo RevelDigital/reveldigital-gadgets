@@ -263,7 +263,7 @@ body
       
       $('.fe_daily .fe_day').each(function (i, j) {
         var hi = parseInt($('.fe_high_temp', this).text());
-        $('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
+        //$('.fe_temp_bar', this).css('top', (max - hi) * 2 + 'px');
       });
       skycons.play();
     });
