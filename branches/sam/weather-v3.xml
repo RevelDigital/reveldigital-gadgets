@@ -210,10 +210,10 @@ body
   
   function load() {
     
-    console.log("version: " + 001);
-
-    skycons = new Skycons({"color": prefs.getString("IconColor")});
-    //skycons.add("fe_current_icon", Skycons.CLEAR_DAY);
+    skycons = new Skycons({
+      "color": prefs.getString("IconColor"),
+      "resizeClear": true
+    });
     
     update();
     
@@ -223,7 +223,7 @@ body
   function renderWeather(lat, lng) {
   
     $.getJSON('https://api.forecast.io/forecast/0b37c606ca5921a48efd415f56fd9fef/' + lat + ',' + lng + '?units=' + prefs.getString("Units") + '&callback=?', function(data) {
-      $(".fe_currently_icon").empty();
+      skycons.remove("fe_current_icon");
       skycons.add("fe_current_icon", mapIcon(data.currently.icon));
       $(".fe_temp").text(parseInt(data.currently.temperature));
       $(".fe_summary").text(data.currently.summary);
