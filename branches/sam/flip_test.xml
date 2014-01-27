@@ -65,7 +65,8 @@ body {
 .back{
     
     __UP_orientation__;
-    
+      margin-right: 10px;
+  border-radius: 10px;
     background-color: __UP_side-b__;
 }
 
@@ -136,7 +137,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 7');
+    console.log('Version: 9');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
