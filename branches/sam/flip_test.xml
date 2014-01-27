@@ -137,7 +137,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 17');
+    console.log('Version: 20');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
@@ -155,6 +155,8 @@ function update() {
         url: url,
         dataType: "JSONP",
         success: function (data) {
+          
+
           
           console.log(data);
 
@@ -175,12 +177,12 @@ function update() {
 
 function refreshFlipper() {
 
-  $("#front_table").fadeOut(1000);
+  $("#front_table").fadeOut(100);
   $("#front_table").empty();
-  $("#front_table").fadeIn(1000);
-  $("#back_table").fadeOut(1000);
+  $("#front_table").fadeIn(100);
+  $("#back_table").fadeOut(100);
   $("#back_table").empty();
-  $("#back_table").fadeIn(1000);
+  $("#back_table").fadeIn(100);
 
 
 
