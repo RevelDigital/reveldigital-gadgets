@@ -56,7 +56,6 @@ body {
 }
 .front{
   position: relative;
-  float: left;
   margin-right: 10px;
   border-radius: 10px;
 
@@ -137,7 +136,7 @@ function load() {
   stories = [];
   update();
   setInterval(function(){
-    console.log('Version: 9');
+    console.log('Version: 11');
       $('.block').click();
     }, prefs.getInt('time_delay')*1000);
 }
