@@ -52,14 +52,14 @@ body {
 .side{
     position: absolute;
     -webkit-backface-visibility: hidden;
-    -webkit-box-shadow: 0 2px 5px #666;
+   
 }
 .front{
   position: relative;
   float: left;
   margin-right: 10px;
   border-radius: 10px;
-  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3)
+
   background-color: __UP_side-a__;
 }
 .back{
