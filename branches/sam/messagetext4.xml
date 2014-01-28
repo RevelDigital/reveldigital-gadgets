@@ -24,44 +24,55 @@
 
     <script type="text/javascript" charset="utf-8">
     function addmsg(type, msg){
-        /* Simple helper to add a div.
-        type is the name of a CSS class (old/new/error).
-        msg is the contents of the div */
+
         $("#messages").empty();
         $("#messages").append(
             "<div class='msg "+ type +"'>"+ msg +"</div>"
         );
     }
 
+      function getMedia() {
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentPlaylist = data[i];
+        if(currentPlaylist.name.toLowerCase() == 'Movie Titles 2') {
+            console.log(currentPlaylist.name);
+          
+        }
+      }
+
+    });
+  }
+
     function waitForMsg(){
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
+
         $.ajax({
             type: "GET",
             url: "http://www.lumisnet.com/msgsrv.php",
  crossDomain: true,
 
-            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            async: true,
             cache: false,
-            timeout:50000, /* Timeout in ms */
+            timeout:50000, 
 
-            success: function(data){ /* called when request to barge.php completes */
-                addmsg("new", data); /* Add response to a .msg div (with the "new" class)*/
+            success: function(data){ 
+                addmsg("new", data); 
                 setTimeout(
-                    waitForMsg, /* Request next message */
-                    1000 /* ..after 1 seconds */
+                    waitForMsg, 
+                    1000 
                 );
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 setTimeout(
-                    waitForMsg, /* Try again after.. */
-                    5000); /* milliseconds (15seconds) */
+                    waitForMsg,
+                    5000); 
             }
         });
     };
 
     $(document).ready(function(){
-        waitForMsg(); /* Start the inital request */
+        waitForMsg(); 
     });
     </script>
 </head>
