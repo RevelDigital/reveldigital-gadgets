@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+<UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <script type="text/javascript" charset="utf-8">
+    function addmsg(type, msg){
+
+        $("#messages").empty();
+        $("#messages").append(
+            "<div class='msg "+ type +"'>"+ msg +"</div>"
+        );
+    }
+
+      function getMedia(media) {
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == 'test.mp4') {
+          $('#messages').html('<video autoplay><source src=' + currentImage.file_url + 'type="video/mp4"></video>');
+        }
+      }
+
+    });
+  }
+
+<body>
+    <div id="messages">
+        <div class="msg old">
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
