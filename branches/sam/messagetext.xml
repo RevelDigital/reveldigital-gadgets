@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>BargePoller</title>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
     <style type="text/css" media="screen">
@@ -79,5 +79,6 @@
 
 
 
+]]>
 </Content>
 </Module>
