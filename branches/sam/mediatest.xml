@@ -37,6 +37,8 @@
     });
   }
 
+  </script>
+
 <body>
     <div id="messages">
         <div class="msg old">
