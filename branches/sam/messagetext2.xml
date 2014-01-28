@@ -54,7 +54,7 @@
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 setTimeout(
                     waitForMsg, /* Try again after.. */
-                    15000); /* milliseconds (15seconds) */
+                    5000); /* milliseconds (15seconds) */
             }
         });
     };
