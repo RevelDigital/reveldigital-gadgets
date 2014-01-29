@@ -23,7 +23,7 @@
 
 
 $(function() {
-    console.log("Version: " + 1);
+    console.log("Version: " + 2);
     waitForMsg();
 });
 
@@ -32,8 +32,8 @@ function showImage(image) {
     image = image.split(' ').join('%20');
     var tempImage = new Image();
     tempImage.src = image;
-    tempImage.width = 380;
-    tempImage.height = 690;
+    tempImage.width = 570;
+    tempImage.height = 1035;
 
     $("#imageview").html(tempImage);
 }
