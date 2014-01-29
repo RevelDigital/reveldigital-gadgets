@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
@@ -22,8 +22,6 @@
 
 
 
-
-
 $(function() {
     waitForMsg(); 
 });
@@ -31,7 +29,6 @@ $(function() {
 
 function showImage(image) {
 	image = image.split(' ').join('%20')
-	//$("#imageview").empty();
 	$("#imageview").html("<img width='380' height='690' src =" + image + ">");
 }
 
@@ -50,43 +47,17 @@ function waitForMsg(){
             showImage(data)
             setTimeout(
                 waitForMsg, 
-                5000 
+                1000 
             );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             setTimeout(
                 waitForMsg,
-                5000); 
+                1000
+            ); 
         }
     });
 };
-
-
-
-
-
-function getMedia() {
-
-    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=OpcmytWN8Nc", function (data) {
-      
-      for(var i=0; i < data.length; i++) {
-        var currentPlaylist = data[i];
-        if(currentPlaylist.name.toLowerCase() == 'movie titles 2') {
-        	console.log(currentPlaylist.sources.length);
-
-        	for(var j=0; j<currentPlaylist.sources.length; j++) {
-        		var tempImage = new Image();
-        		tempImage.src = currentPlaylist.sources[j].media.file_url;
-        		items.push(tempImage);
-        		console.log(currentPlaylist.sources[j].media.file_url);	
-        	}
-
-        }
-      }
-
-    });
-}
-
 
 </script>
 
@@ -98,7 +69,6 @@ function getMedia() {
 
 <body>
     <div id="imageview">
-
     </div>
 </body>
 
