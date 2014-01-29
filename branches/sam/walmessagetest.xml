@@ -2,8 +2,6 @@
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="API Key" datatype="string" default_value="null" required="true" />
-  <UserPref name="image_width" display_name="Image Width" default_value="570" datatype="string" required="true" />
-  <UserPref name="image_height" display_name="Image Height" default_value="1035" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -13,7 +11,8 @@
 <style type="text/css">
 
 #imageview {
-
+    width: 100%;
+    height: 100%;
 }
 
 </style>
@@ -21,12 +20,12 @@
 
 <script type="text/javascript" charset="utf-8">
 
-var prefs = new gadgets.Prefs();
+
 
 
 $(function() {
 
-    console.log("Version: " + 21);
+    console.log("Version: " + 23);
     waitForMsg();
 });
 
@@ -35,8 +34,6 @@ function showImage(image) {
     image = image.split(' ').join('%20');
     var tempImage = new Image();
     tempImage.src = image;
-    tempImage.width = prefs.getInt("image_width")
-    tempImage.height = prefs.getInt("image_height")
 
     $("#imageview").html(tempImage);
 }
