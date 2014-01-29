@@ -25,7 +25,7 @@
 
 $(function() {
 
-    console.log("Version: " + 25);
+    console.log("Version: " + 23);
     waitForMsg();
 });
 
@@ -74,7 +74,7 @@ function waitForMsg(){
 
 
 <body>
-    <div id="imageview">  <source src="http://reveldigital-uploads.s3.amazonaws.com/108681!Planet of the Apes Movie Trailer.mp4.zc.mp4" type="video/mp4">
+    <div id="imageview">
     </div>
 </body>
 
