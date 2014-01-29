@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" default_value="null" required="true" />
+  <UserPref name="image_width" display_name="Image Width" default_value="570" datatype="string" required="true" />
+  <UserPref name="image_height" display_name="Image Height" default_value="1035" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -11,8 +13,7 @@
 <style type="text/css">
 
 #imageview {
-    width: 350px;
-    height: 700px;
+
 }
 
 </style>
@@ -20,10 +21,12 @@
 
 <script type="text/javascript" charset="utf-8">
 
+var prefs = new gadgets.Prefs();
 
 
 $(function() {
-    console.log("Version: " + 2);
+
+    console.log("Version: " + 3);
     waitForMsg();
 });
 
