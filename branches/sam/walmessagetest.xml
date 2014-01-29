@@ -23,13 +23,19 @@
 
 
 $(function() {
-    waitForMsg(); 
+    console.log("Version: " + 1);
+    waitForMsg();
 });
 
 
 function showImage(image) {
-	image = image.split(' ').join('%20')
-	$("#imageview").html("<img width='380' height='690' src =" + image + ">");
+    image = image.split(' ').join('%20');
+    var tempImage = new Image();
+    tempImage.src = image;
+    tempImage.width = 380;
+    tempImage.height = 690;
+
+    $("#imageview").html(tempImage);
 }
 
 
