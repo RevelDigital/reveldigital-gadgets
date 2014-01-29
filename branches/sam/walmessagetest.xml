@@ -35,8 +35,8 @@ function showImage(image) {
     image = image.split(' ').join('%20');
     var tempImage = new Image();
     tempImage.src = image;
-    tempImage.width = 570;
-    tempImage.height = 1035;
+    tempImage.width = prefs.getInt("image_width")
+    tempImage.height = prefs.getInt("image_height")
 
     $("#imageview").html(tempImage);
 }
