@@ -32,7 +32,7 @@ $(function() {
 function showImage(image) {
 	image = image.split(' ').join('%20')
 	$("#imageview").empty();
-	$("#imageview").append("<img width='380' height='720' src =" + image + ">");
+	$("#imageview").append("<img width='380' height='690' src =" + image + ">");
 }
 
 
