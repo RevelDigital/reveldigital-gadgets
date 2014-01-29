@@ -17,7 +17,7 @@
 
     <script type="text/javascript" charset="utf-8">
     function addmsg(type, msg){
-
+console.log(msg);
         $("#messages").empty();
         $("#messages").append(
             "<div class='msg "+ type +"'>"+ msg +"</div>"
