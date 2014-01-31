@@ -17,7 +17,7 @@
       $(document).ready(function () {
 
         var prefs = new gadgets.Prefs();
-console.log("version: " + 1);
+console.log("version: " + 2);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
@@ -46,13 +46,12 @@ console.log("version: " + 1);
       body {
         font-family:Arial;
         font-size:12px;
-        background:#000000;
+        background:transparent;
       }
 
 
       #carousel {
         width:960px;
-        border:1px solid #222;
         height:600px;
         position:relative;
         clear:both;
