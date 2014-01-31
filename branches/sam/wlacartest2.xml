@@ -18,6 +18,7 @@
 
 
 function getMedia() {
+  var prefs = new gadgets.Prefs();
     var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=OpcmytWN8Nc", function (data) {
       
       for(var i=0; i < data.length; i++) {
@@ -45,8 +46,8 @@ function getMedia() {
 
 
       $(document).ready(function () {
-        var prefs = new gadgets.Prefs();
-        console.log("version: " + 21);
+        
+        console.log("version: " + 23);
         getMedia();
       });
     </script>
