@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 3");
+    console.log("Version: 5");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -135,6 +135,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 
   function clearFlights() {
+    console.log("clear flights");
     flights.length = 0;
     try {
       document.getElementById("next_flight_table").deleteRow(1);  
@@ -179,10 +180,12 @@ gadgets.util.registerOnLoadHandler(load);
           console.log('No Flights');
         }
         else if(flights.length == 1) {
+          console.log("1 flight");
           showCurrentFlight(flights[0]);
           showFlights();
         }
         else {
+          console.log("2 flights");
           showCurrentFlight(flights[0]);
           showNextFlight(flights[1]);
           showFlights();
@@ -201,18 +204,21 @@ gadgets.util.registerOnLoadHandler(load);
 
 
   function showLogo() {
+    console.log("Show Logo");
     $('#current_flight').fadeOut(1000);
     $('#next_flight').fadeOut(1000);
     $('#logo').fadeIn(1000);
   }
 
   function showFlights() {
+    console.log("Show Flights");
     $('#logo').fadeOut(1000);
     $('#current_flight').fadeIn(1000);
     $('#next_flight').fadeIn(1000);
   }
 
   function getAirportImage() {
+    console.log("Get Aiport image");
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       
       for(var i=0; i < data.length; i++) {
@@ -226,7 +232,7 @@ gadgets.util.registerOnLoadHandler(load);
   }
 
   function getAirlineImage(airline, current) {
-
+console.log("get airline image");
     var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
       currentAirline = airline.toLowerCase().replace(" ", "_") + '_logo.png';
       for(var i=0; i < data.length; i++) {
@@ -250,7 +256,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 
   function showCurrentFlight(flight) {
-
+console.log("Show current flight");
 
     $('#current_number').text('Flight #: ' + flight.number);
     $('#current_status').text('Status: ' + flight.status);
@@ -268,7 +274,7 @@ gadgets.util.registerOnLoadHandler(load);
 
 
 function showNextFlight(flight) {
-
+console.log("Show next flight");
 
 
           if(flight.fromTo == 'departure') {
@@ -316,6 +322,7 @@ function showNextFlight(flight) {
 
 
 function createFlights(data, type) {
+  console.log("create flights");
   var $data = $(data);
 
     
