@@ -24,7 +24,8 @@ function getMedia() {
         var currentPlaylist = data[i];
         if(currentPlaylist.name.toLowerCase() == 'movie titles 2') {
           for(var j=0; j<currentPlaylist.sources.length; j++) {
-            $("#carousel").append('<img src="' + currentPlaylist.sources[j].media.file_url + '"/>');
+            //$("#carousel").append('<img src="' + currentPlaylist.sources[j].media.file_url + '"/>');
+            console.log('<img src="' + currentPlaylist.sources[j].media.file_url + '"/>');
           }
         }
       }
@@ -37,7 +38,7 @@ function getMedia() {
 
       $(document).ready(function () {
         var prefs = new gadgets.Prefs();
-        console.log("version: " + 9);
+        console.log("version: " + 11);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
@@ -89,15 +90,15 @@ function getMedia() {
   </head>
   <body>
     <div id="carousel">
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/1.jpg" id="item-1" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/2.jpg" id="item-2" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/3.jpg" id="item-3" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/4.jpg" id="item-4" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/5.jpg" id="item-5" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/6.jpg" id="item-6" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/7.jpg" id="item-7" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/8.jpg" id="item-8" /></a>
-      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/9.jpg" id="item-9" /></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/1.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/2.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/3.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/4.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/5.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/6.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/7.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/8.jpg"/></a>
+      <a href="#"><img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/9.jpg"/></a>
     </div>
   </body>
 </html>
