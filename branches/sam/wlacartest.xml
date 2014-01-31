@@ -17,11 +17,11 @@
       $(document).ready(function () {
 
         var prefs = new gadgets.Prefs();
-
+console.log("version: " + 1);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
-          autoPlay: prefs.getInt('time_delay')*1000),
+          autoPlay: prefs.getInt('time_delay')*1000,
           movingToCenter: function ($item) {
             $('#callback-output').prepend('movingToCenter: ' + $item.attr('id') + '<br/>');
           },
