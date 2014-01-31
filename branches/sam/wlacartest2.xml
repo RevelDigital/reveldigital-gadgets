@@ -23,7 +23,7 @@ function getMedia() {
       
       for(var i=0; i < data.length; i++) {
         var currentPlaylist = data[i];
-        if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name')) {
+        if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
           for(var j=0; j<currentPlaylist.sources.length; j++) {
             var image = currentPlaylist.sources[j].media.file_url;
             image = image.split(' ').join('%20');
@@ -47,7 +47,7 @@ function getMedia() {
 
       $(document).ready(function () {
         
-        console.log("version: " + 25);
+        console.log("version: " + 27);
         getMedia();
       });
     </script>
