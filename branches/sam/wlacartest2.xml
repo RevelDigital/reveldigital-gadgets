@@ -31,6 +31,7 @@
             }
             var carousel = $("#carousel").waterwheelCarousel({
             flankingItems: 2,
+            separation: 130,
             autoPlay: prefs.getInt('time_delay')*1000,
             forcedImageHeight: $(window).height()
           });
@@ -44,7 +45,7 @@
 
       $(document).ready(function () {
         
-        console.log("version: " + 5);
+        console.log("version: " + 9);
         getMedia();
       });
 
@@ -60,7 +61,7 @@
 
 
       #carousel {
-        width:630;
+        width:390px;
         height:349px;
         position:relative;
         clear:both;
@@ -70,7 +71,7 @@
       #carousel img {
         visibility:hidden; 
         cursor:pointer; 
-        width: 170px;
+        width: 200px;
         height: 349px;
         -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
       }
