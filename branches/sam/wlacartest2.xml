@@ -60,7 +60,7 @@
 
 
       #carousel {
-        width:390px;
+        width:700px;
         height:349px;
         position:relative;
         clear:both;
