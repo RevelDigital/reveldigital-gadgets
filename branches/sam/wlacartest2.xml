@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
-  <UserPref name="time_delay" display_name="Enter delay in moving the images (seconds)" datatype="string" />
-  <UserPref name="api_key" display_name="API Key" datatype="string" />
-    <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" />
+  <UserPref name="time_delay" display_name="Enter delay in moving the images (seconds)" datatype="string" default_value="5" required="true" />
+  <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
+    <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -19,11 +19,11 @@
 
 function getMedia() {
   var prefs = new gadgets.Prefs();
-    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=OpcmytWN8Nc", function (data) {
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
       
       for(var i=0; i < data.length; i++) {
         var currentPlaylist = data[i];
-        if(currentPlaylist.name.toLowerCase() == 'movie titles 2') {
+        if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name')) {
           for(var j=0; j<currentPlaylist.sources.length; j++) {
             var image = currentPlaylist.sources[j].media.file_url;
             image = image.split(' ').join('%20');
@@ -47,7 +47,7 @@ function getMedia() {
 
       $(document).ready(function () {
         
-        console.log("version: " + 23);
+        console.log("version: " + 25);
         getMedia();
       });
     </script>
@@ -91,15 +91,7 @@ function getMedia() {
   </head>
   <body>
     <div id="carousel">
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/1.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/2.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/3.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/4.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/5.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/6.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/7.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/8.jpg"/>
-      <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/images/9.jpg"/>
+      
     </div>
   </body>
 </html>
