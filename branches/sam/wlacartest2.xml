@@ -28,7 +28,8 @@ function getMedia() {
           }
         }
       }
-              $("#carousel").reload();
+      var carousel = $('#carousel').waterwheelCarousel();
+              carousel.reload();
     });
 }
 
@@ -36,7 +37,7 @@ function getMedia() {
 
       $(document).ready(function () {
         var prefs = new gadgets.Prefs();
-        console.log("version: " + 7);
+        console.log("version: " + 9);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
