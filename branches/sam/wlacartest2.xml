@@ -13,20 +13,37 @@
     <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.min.js"></script>
     <script type="text/javascript">
 
+function getMedia() {
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=OpcmytWN8Nc", function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentPlaylist = data[i];
+        if(currentPlaylist.name.toLowerCase() == 'movie titles 2') {
+          for(var j=0; j<currentPlaylist.sources.length; j++) {
+            var tempImage = new Image();
+            tempImage.src = currentPlaylist.sources[j].media.file_url;
+            items.push(tempImage);
+          }
+        }
+      }
+    });
+}
+
+
 
       $(document).ready(function () {
 
         var prefs = new gadgets.Prefs();
-        console.log("version: " + 3);
+        console.log("version: " + 4);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
           autoPlay: prefs.getInt('time_delay')*1000,
-          forcedImageHeight: $(document).height(),
+          forcedImageHeight: $(window).height(),
         });
 
-        $("#carousel").width($(document).width());
-        $("#carousel").height($(document).height());
+        $("#carousel").width($(window).width());
+        $("#carousel").height($(window).height());
 
       });
     </script>
