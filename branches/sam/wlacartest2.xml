@@ -44,7 +44,7 @@
 
       $(document).ready(function () {
         
-        console.log("version: " + 2);
+        console.log("version: " + 5);
         getMedia();
       });
 
@@ -60,7 +60,7 @@
 
 
       #carousel {
-        width:700px;
+        width:630;
         height:349px;
         position:relative;
         clear:both;
@@ -70,7 +70,7 @@
       #carousel img {
         visibility:hidden; 
         cursor:pointer; 
-        width: 200px;
+        width: 170px;
         height: 349px;
         -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
       }
