@@ -24,8 +24,8 @@ function getMedia() {
         var currentPlaylist = data[i];
         if(currentPlaylist.name.toLowerCase() == 'movie titles 2') {
           for(var j=0; j<currentPlaylist.sources.length; j++) {
-            //$("#carousel").append('<img src="' + currentPlaylist.sources[j].media.file_url + '"/>');
-            console.log('<img src="' + currentPlaylist.sources[j].media.file_url + '"/>');
+            $("#carousel").append('<a href="#"><img src="' + currentPlaylist.sources[j].media.file_url + '"/></a>');
+            console.log('<a href="#"><img src="' + currentPlaylist.sources[j].media.file_url + '"/></a>');
           }
         }
       }
@@ -38,7 +38,7 @@ function getMedia() {
 
       $(document).ready(function () {
         var prefs = new gadgets.Prefs();
-        console.log("version: " + 11);
+        console.log("version: " + 13);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
