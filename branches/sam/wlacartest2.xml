@@ -3,7 +3,7 @@
 <ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
   <UserPref name="time_delay" display_name="Enter delay in moving the images (seconds)" datatype="string" default_value="5" required="true" />
   <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
-    <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
+  <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -13,44 +13,43 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.min.js"></script>
+
     <script type="text/javascript">
+      function getMedia() {
+        var prefs = new gadgets.Prefs();
+          var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
+            
+            for(var i=0; i < data.length; i++) {
+              var currentPlaylist = data[i];
+              if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
+                for(var j=0; j<currentPlaylist.sources.length; j++) {
+                  var image = currentPlaylist.sources[j].media.file_url;
+                  image = image.split(' ').join('%20');
+                  $("#carousel").append('<img src="' + image + '"/>');
+                }
+              }
+            }
+            var carousel = $("#carousel").waterwheelCarousel({
+            flankingItems: 2,
+            autoPlay: prefs.getInt('time_delay')*1000,
+            forcedImageHeight: $(window).height()
+          });
 
-
-
-function getMedia() {
-  var prefs = new gadgets.Prefs();
-    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
-      
-      for(var i=0; i < data.length; i++) {
-        var currentPlaylist = data[i];
-        if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
-          for(var j=0; j<currentPlaylist.sources.length; j++) {
-            var image = currentPlaylist.sources[j].media.file_url;
-            image = image.split(' ').join('%20');
-            $("#carousel").append('<img src="' + image + '"/>');
-            console.log('<img src="' + image + '"/>');
-          }
-        }
+          $("#carousel").width($(window).width());
+          $("#carousel").height($(window).height());
+        });
       }
-      var carousel = $("#carousel").waterwheelCarousel({
-      flankingItems: 3,
-      autoPlay: prefs.getInt('time_delay')*1000,
-      forcedImageHeight: $(window).height()
-    });
-
-        $("#carousel").width($(window).width());
-        $("#carousel").height($(window).height());
-    });
-}
 
 
 
       $(document).ready(function () {
         
-        console.log("version: " + 27);
+        console.log("version: " + 1);
         getMedia();
       });
+
     </script>
+
 
     <style type="text/css">
       body {
@@ -61,7 +60,7 @@ function getMedia() {
 
 
       #carousel {
-        width:960px;
+        width:390px;
         height:349px;
         position:relative;
         clear:both;
@@ -85,17 +84,16 @@ function getMedia() {
         float:left;
         margin-left:10px;
       }
-
-
     </style>
   </head>
+
   <body>
     <div id="carousel">
-      
+        
     </div>
   </body>
-</html>
 
+</html>
 
 ]]>
 </Content>
