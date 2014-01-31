@@ -32,6 +32,7 @@
             var carousel = $("#carousel").waterwheelCarousel({
             flankingItems: 2,
             separation: 130,
+            speed: 900,
             autoPlay: prefs.getInt('time_delay')*1000,
             forcedImageHeight: $(window).height()
           });
@@ -45,7 +46,7 @@
 
       $(document).ready(function () {
         
-        console.log("version: " + 11);
+        console.log("version: " + 15);
         getMedia();
       });
 
