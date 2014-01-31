@@ -38,7 +38,7 @@ function getMedia() {
 
       $(document).ready(function () {
         var prefs = new gadgets.Prefs();
-        console.log("version: " + 13);
+        console.log("version: " + 15);
 
         var carousel = $("#carousel").waterwheelCarousel({
           flankingItems: 3,
@@ -48,7 +48,7 @@ function getMedia() {
 
         $("#carousel").width($(window).width());
         $("#carousel").height($(window).height());
-        getMedia();
+        //getMedia();
       });
     </script>
 
