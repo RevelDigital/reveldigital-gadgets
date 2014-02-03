@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+<ModulePrefs title="Playlist Carousel Gadget" description="Displays a playlist in a photo carousel." author="RevelDigital" background="transparent">
   <UserPref name="time_delay" display_name="Enter delay in moving the images (seconds)" datatype="string" default_value="5" required="true" />
   <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
   <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
@@ -30,17 +30,17 @@
               }
             }
             var carousel = $("#carousel").waterwheelCarousel({
-            flankingItems: 2,
-            separation: 130,
-            speed: 500,
-            autoPlay: prefs.getInt('time_delay')*1000,
-            forcedImageHeight: $(window).height()
-          });
+              flankingItems: 2,
+              separation: 130,
+              speed: 500,
+              autoPlay: prefs.getInt('time_delay')*1000,
+              forcedImageHeight: $(window).height()
+            });
 
-          $("#carousel").width($(window).width());
-          $("#carousel").height($(window).height());
-        });
-      }
+            $("#carousel").width($(window).width());
+            $("#carousel").height($(window).height());
+          });
+        }
 
 
 
