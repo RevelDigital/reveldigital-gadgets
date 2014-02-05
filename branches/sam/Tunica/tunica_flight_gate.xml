@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 7");
+    console.log("Version: 9");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -173,7 +173,8 @@ gadgets.util.registerOnLoadHandler(load);
         catch(e) {
           
         }
-console.log("flights: " + flights);
+console.log("flights: " + flights.length);
+
   
         if(flights.length == 0) {
           showLogo();
