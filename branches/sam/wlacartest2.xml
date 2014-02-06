@@ -24,8 +24,9 @@
               if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
                 for(var j=0; j<currentPlaylist.sources.length; j++) {
                   var image = currentPlaylist.sources[j].media.file_url;
+                  image.push(currentPlaylist.sources[j].media.name);
                   image = image.split(' ').join('%20');
-                  $("#carousel").append('<img src="' + image + '"/>');
+                  $("#carousel").append('<img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/>');
                 }
               }
             }
@@ -39,16 +40,59 @@
 
             $("#carousel").width($(window).width());
             $("#carousel").height($(window).height());
+
+            waitForMsg();
+
           });
         }
 
 
 
       $(document).ready(function () {
-        
-        console.log("version: " + 1);
+        images = [];
+        console.log("versionalpha: " + 5);
         getMedia();
       });
+
+
+      function specifyImage(image) {
+
+        $('#' + image).click();
+      }
+
+
+function waitForMsg(){
+
+    $.ajax({
+        type: "GET",
+        url: "http://www.lumisnet.com/msgsrv.php",
+        crossDomain: true,
+        async: true,
+        cache: false,
+        timeout:50000, 
+        success: function(data){ 
+          if(data != null) {
+            specifyImage(data);
+          }
+          setTimeout(
+            waitForMsg, 
+            5000 
+          );
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            setTimeout(
+                waitForMsg,
+                5000
+            ); 
+        }
+    });
+};
+
+
+
+
+
+
 
     </script>
 
