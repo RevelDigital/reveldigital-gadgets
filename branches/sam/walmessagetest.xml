@@ -22,14 +22,14 @@
 
 
 
-
+//startup waiting for message from server
 $(function() {
-
     console.log("Version: " + 23);
     waitForMsg();
 });
 
 
+//show image from source given by server
 function showImage(image) {
     image = image.split(' ').join('%20');
     var tempImage = new Image();
@@ -39,7 +39,8 @@ function showImage(image) {
 }
 
 
-
+//wait for a message from the server
+//if success or error still try pinging the server for data
 function waitForMsg(){
 
     $.ajax({
@@ -64,6 +65,7 @@ function waitForMsg(){
         }
     });
 };
+
 
 </script>
 
