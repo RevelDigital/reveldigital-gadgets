@@ -12,7 +12,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.min.js"></script>
+    <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.js"></script>
 
     <script type="text/javascript">
       function getMedia() {
@@ -49,7 +49,7 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 1);
+        console.log("versionalpha: " + 2);
         getMedia();
       });
 
