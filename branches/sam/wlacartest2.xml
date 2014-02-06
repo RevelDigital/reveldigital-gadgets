@@ -47,9 +47,9 @@
 
 
 
-      $(document).ready(function () {
+      $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 25);
+        console.log("versionalpha: " + 27);
         getMedia();
       });
 
