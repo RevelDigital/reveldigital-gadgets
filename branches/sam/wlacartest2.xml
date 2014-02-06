@@ -49,14 +49,14 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 99);
+        console.log("versionalpha: " + 101);
         getMedia();
       });
 
 
       function specifyImage(image) {
         console.log("IMPACT");
-        $("#Man of Steel").trigger("click");
+        $("[id='" + image + "']").trigger("click");
         //document.getElementById(image).click();
       }
 
