@@ -67,7 +67,7 @@ function waitForMsg(){
         crossDomain: true,
         async: true,
         cache: false,
-        timeout:50000, 
+        timeout:5000, 
         success: function(data){ 
           if(data != null && data != currentImage) {
             currentImage = data;
