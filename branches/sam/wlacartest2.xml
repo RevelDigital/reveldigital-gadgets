@@ -49,13 +49,13 @@
 
       $(document).ready(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 23);
+        console.log("versionalpha: " + 25);
         getMedia();
       });
 
 
       function specifyImage(image) {
-        document.getElementById(image).click()
+        document.getElementById(image).click();
       }
 
 
