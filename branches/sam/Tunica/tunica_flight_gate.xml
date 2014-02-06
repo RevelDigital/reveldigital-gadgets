@@ -52,8 +52,8 @@
   }
 
   #logo {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     position: absolute;
     top:0;
     bottom: 0;
@@ -117,7 +117,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 9");
+    console.log("Version: 11");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -206,16 +206,16 @@ console.log("flights: " + flights.length);
 
   function showLogo() {
     console.log("Show Logo");
-    $('#current_flight').fadeOut(1000);
-    $('#next_flight').fadeOut(1000);
-    $('#logo').fadeIn(1000);
+    $('#current_flight').fadeOut();
+    $('#next_flight').fadeOut();
+    $('#logo').fadeIn();
   }
 
   function showFlights() {
     console.log("Show Flights");
-    $('#logo').fadeOut(1000);
-    $('#current_flight').fadeIn(1000);
-    $('#next_flight').fadeIn(1000);
+    $('#logo').fadeOut();
+    $('#current_flight').fadeIn();
+    $('#next_flight').fadeIn();
   }
 
   function getAirportImage() {
