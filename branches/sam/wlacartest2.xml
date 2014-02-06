@@ -49,7 +49,7 @@
 
       $(document).ready(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 15);
+        console.log("versionalpha: " + 19);
         getMedia();
       });
 
@@ -73,7 +73,7 @@ function waitForMsg(){
         success: function(data){ 
           if(data != null && data != currentImage) {
             currentImage = data;
-            specifyImage(data);
+            specifyImage($.trim(data));
           }
           setTimeout(
             waitForMsg, 
