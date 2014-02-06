@@ -24,14 +24,14 @@
 
 //startup waiting for message from server
 $(function() {
-    console.log("Version bravo: " + 1);
+    console.log("Version bravo: " + 5);
     waitForMsg();
 });
 
 
 //show image from source given by server
 function showImage(image) {
-    $("#imageview").text(image);
+    $("#imageview").html("You have queued " + image + " for playback!");
 }
 
 
