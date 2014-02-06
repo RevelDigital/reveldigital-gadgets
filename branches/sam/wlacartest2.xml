@@ -49,15 +49,19 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 101);
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
 
       function specifyImage(image) {
-        console.log("IMPACT");
         $("[id='" + image + "']").trigger("click");
-        //document.getElementById(image).click();
+
+        window.setTimeout(function (){
+          $('#header_text').text("Tap a button to select the ad of your choice.");
+          var carousel = $('#carousel').waterwheelCarousel();
+          carousel.autoPlay(false);
+        }, 10000);
       }
 
 
