@@ -180,8 +180,10 @@ table td, table td * {
 
 target = document.getElementById('container');
 
+//spinner for loading
 spinner = new Spinner().spin(target);
 
+//initialize global variables
 items = [];
 queryCounter = 1;
 currentCompare = 1;
@@ -189,7 +191,8 @@ refresherCounter = 400;
 currentSearch = 'television';
 
 
-
+//startup and setup auto load when tvs scrolled beyond
+//half of current tvs shown
 $(function() {
   console.log("Version: " + 5);
   $('#container').scroll(function () { 
@@ -239,6 +242,7 @@ $('#allbutton').click(function() {
   refresh(currentSearch);
 });
 
+//clear everything and reset all counters
 function clearAll() {
   $('#container').scrollLeft(0);
   spinner.stop();
@@ -252,11 +256,17 @@ function clearAll() {
   $('#scroll').empty();
 }
 
+//holds spectable and item id for relation
 var specTable = function(table, id) {
   this.htmlTable = table;
   this.itemId = id;
 }
 
+
+// get products from walmart api
+//query specifies type of television, lcd, plasma, etc...
+//push products onto array and get spectable for each using the 
+//link provided by api
 function refresh(query) {
 
   if(queryCounter != 21) {
@@ -291,7 +301,8 @@ function refresh(query) {
 
 }
 
-
+//get spec table from walmart site
+//get only 10 at a time
 function getSpectable(prodUrl, index) {
 
   var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22" + prodUrl + "%22%20AND%20xpath%3D%22%2F%2Ftable%5B%40class%3D'SpecTable'%5D%22&diagnostics=true"
@@ -316,6 +327,7 @@ function getSpectable(prodUrl, index) {
 
 }
 
+//create 
 function createItems(start) {
 
   for(var i=start; i<items.length; i++) {
@@ -339,7 +351,8 @@ function createItems(start) {
 
 
 
-
+//fill in the table with specified index
+//get name, price, and image from parsing table data from walmart site
 function fillTable(index) {
 
   $('#productTable').empty();

@@ -61,6 +61,8 @@
 
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
+//startup and set interval for future updates based
+//on user preference
   function load() {
     refresh();
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
@@ -71,14 +73,14 @@
 
 
 <script type="text/javascript">
-
+//clear the flights table
   function clearFlights() {
     var length = $('#flight_table tbody tr').length;
     for(var i=length-1; i > 0; i--) {
       document.getElementById("flight_table").deleteRow(i);
     }
   }
-
+//used to check if flights are before or after each other
   function compareArrivalTimes(a,b) {
     if (a.arrivalDate.dateUtc < b.arrivalDate.dateUtc) {
       return -1;
@@ -88,7 +90,7 @@
     }
     return 0;
   }
-
+//used to check if flights are before or after each other
   function compareDepartureTimes(a,b) {
     if (a.departureDate.dateUtc < b.departureDate.dateUtc) {
       return -1;
@@ -98,7 +100,7 @@
     }
     return 0;
   }
-
+//get the cooresponding english phrase based on status code
   function getStatus(arg) {
     switch(arg) {
       case 'S':
@@ -130,7 +132,7 @@
         break;
     }
   }
-
+//convert 24 hour to 12 hour time
   function timeConvert (time) {
     
     time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
