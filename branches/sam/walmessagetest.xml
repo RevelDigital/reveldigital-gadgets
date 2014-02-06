@@ -24,14 +24,14 @@
 
 //startup waiting for message from server
 $(function() {
-    console.log("Version bravo: " + 9);
+    console.log("Version bravo: " + 11);
     waitForMsg();
 });
 
 
 //show image from source given by server
 function showImage(image) {
-    if(image == "null") {
+    if(image == null) {
         $("#imageview").html("Nothing is queued for playback.");
     }
     else {
@@ -56,13 +56,13 @@ function waitForMsg(){
             showImage(data)
             setTimeout(
                 waitForMsg, 
-                5000 
+                1000 
             );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             setTimeout(
                 waitForMsg,
-                5000
+                1000
             ); 
         }
     });
