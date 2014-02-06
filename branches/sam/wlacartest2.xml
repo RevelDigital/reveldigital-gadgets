@@ -51,7 +51,7 @@
 
       $(document).ready(function () {
         images = [];
-        console.log("versionalpha: " + 7);
+        console.log("versionalpha: " + 9);
         getMedia();
       });
 
