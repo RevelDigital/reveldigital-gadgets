@@ -26,7 +26,7 @@
                   var image = currentPlaylist.sources[j].media.file_url;
                   //image.push(currentPlaylist.sources[j].media.name);
                   image = image.split(' ').join('%20');
-                  console.log("imaename: " + currentPlaylist.sources.media.name);
+                  console.log("imaename: " + currentPlaylist.sources[j].media.name);
                   $("#carousel").append('<img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/>');
                 }
               }
@@ -50,8 +50,8 @@
 
 
       $(document).ready(function () {
-        images = [];
-        console.log("versionalpha: " + 9);
+        currentImage = "null";
+        console.log("versionalpha: " + 11);
         getMedia();
       });
 
@@ -72,7 +72,8 @@ function waitForMsg(){
         cache: false,
         timeout:50000, 
         success: function(data){ 
-          if(data != null) {
+          if(data != null && data != currentImage) {
+            currentImage = data;
             specifyImage(data);
           }
           setTimeout(
