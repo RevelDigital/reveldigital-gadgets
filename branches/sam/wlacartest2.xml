@@ -49,12 +49,13 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 27);
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
 
       function specifyImage(image) {
+        console.log("IMPACT");
         document.getElementById(image).click();
       }
 
