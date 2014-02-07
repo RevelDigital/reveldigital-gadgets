@@ -501,6 +501,7 @@
 
       // Remove autoplay
       autoPlay(true);
+      options.autoPlay = 0;
       
       
       var rotations = Math.abs(itemPosition);
