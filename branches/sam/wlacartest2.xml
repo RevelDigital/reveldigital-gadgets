@@ -17,7 +17,7 @@
 
     <script type="text/javascript">
       function getMedia() {
-        var prefs = new gadgets.Prefs();
+        
           var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
             
             for(var i=0; i < data.length; i++) {
@@ -41,7 +41,7 @@
             $("#carousel").width($(window).width());
             $("#carousel").height($(window).height());
 
-            waitForMsg();
+            waitForMsg(prefs.getString('reg_key'));
 
           });
         }
@@ -49,9 +49,10 @@
 
 
       $(function () {
+        var prefs = new gadgets.Prefs();
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 1);
+        console.log("versionalpha: " + 33);
         getMedia();
       });
 
@@ -64,11 +65,11 @@
       
 
 
-function waitForMsg(){
+function waitForMsg(device){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
+        url: "http://www.lumisnet.com/msgsrv.php?device=" + device,
         crossDomain: true,
         async: true,
         cache: false,
@@ -79,13 +80,13 @@ function waitForMsg(){
             specifyImage($.trim(data));
           }
           setTimeout(
-            waitForMsg, 
+            waitForMsg(device), 
             5000 
           );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             setTimeout(
-                waitForMsg,
+                waitForMsg(device),
                 5000
             ); 
         }
