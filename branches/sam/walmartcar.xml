@@ -33,7 +33,7 @@
                $(document).ready(function() {
                   $('ul').roundabout({
                      autoplay: true,
-                     autoplayDuration: 1000,
+                     autoplayDuration: prefs.getInt('time_delay')*1000,
                   });
                });
 
@@ -46,6 +46,7 @@
 
 
       $(function () {
+        firsttimetoggle = true;
         currentImage = "null";
         console.log("Version alpha: " + 0);
         getMedia();
@@ -53,11 +54,17 @@
 
 
       function specifyImage(image) {
-        $("[id='" + image + "']").trigger("click");
-        $('ul').roundabout('stopAutoplay');
-        setTimeout(function() {
-          $('ul').roundabout('startAutoplay');
-        }, 10000);
+        if(!firsttimetoggle) {
+          $("[id='" + image + "']").trigger("click");
+          $('ul').roundabout('stopAutoplay');
+          setTimeout(function() {
+            $('ul').roundabout('startAutoplay');
+          }, 30000);
+        }
+        else {
+          firsttimetoggle = false;
+        }
+        
       }
 
       
