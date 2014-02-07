@@ -48,7 +48,7 @@
       $(function () {
         firsttimetoggle = true;
         currentImage = "null";
-        console.log("Version alpha: " + 0);
+        console.log("Version alpha: " + 10101);
         getMedia();
       });
 
