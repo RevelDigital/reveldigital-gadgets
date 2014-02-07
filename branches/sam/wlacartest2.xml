@@ -51,7 +51,7 @@
       $(function () {
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 105);
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
@@ -59,11 +59,6 @@
       function specifyImage(image) {
         clearInterval(intervalId);
         $("[id='" + image + "']").trigger("click");
-        var carousel = $('#carousel').waterwheelCarousel();
-        carousel.stop();
-        intervalId = setInterval(function() {
-          carousel.next();
-        }, 5000);
       }
 
       
