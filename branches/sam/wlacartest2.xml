@@ -50,7 +50,7 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 99);
+        console.log("versionalpha: " + 001);
         getMedia();
       });
 
@@ -59,6 +59,9 @@
         $("[id='" + image + "']").trigger("click");
         var carousel = $('#carousel').waterwheelCarousel();
         carousel.stop();
+        setTimeout(function() {
+          carousel.start();
+        }, 10000);
       }
 
       
