@@ -50,7 +50,7 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 200);
+        console.log("versionalpha: " + 301);
         getMedia();
       });
 
@@ -60,8 +60,8 @@
         var carousel = $('#carousel').waterwheelCarousel();
         carousel.stop();
         setTimeout(function() {
-          carousel.start();
-        }, 10000);
+          carousel.next();
+        }, 5000);
       }
 
       
