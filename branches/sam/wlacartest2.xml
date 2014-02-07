@@ -41,9 +41,22 @@
             $("#carousel").width($(window).width());
             $("#carousel").height($(window).height());
 
-            waitForMsg(prefs.getString('reg_key'));
+            getDevicebyRegKey(prefs.getString('reg_key'));
 
           });
+        }
+
+        function getDevicebyRegKey(regKey) {
+            var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+              
+                for(var i=0; i < data.length; i++) {
+                    var currentDevice = data[i];
+                    if(currentDevice.registration_key == regKey) {
+                        waitForMsg(currentDevice.id);
+                    }
+                }
+
+            });
         }
 
 
@@ -52,7 +65,7 @@
         var prefs = new gadgets.Prefs();
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 33);
+        console.log("versionalpha: " + 50);
         getMedia();
       });
 

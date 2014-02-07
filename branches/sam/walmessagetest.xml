@@ -28,13 +28,13 @@
 //startup waiting for message from server
 $(function() {
     var prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 33);
+    console.log("Version bravo: " + 50);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
 
 function getDevicebyRegKey(regKey) {
-    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=OpcmytWN8Nc", function (data) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
       
         for(var i=0; i < data.length; i++) {
             var currentDevice = data[i];
