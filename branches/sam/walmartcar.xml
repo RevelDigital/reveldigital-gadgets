@@ -48,7 +48,7 @@
       $(function () {
         firsttimetoggle = true;
         currentImage = "null";
-        console.log("Version alpha: " + 2020202);
+        console.log("Version alpha: " + 10101);
         getMedia();
       });
 
@@ -138,7 +138,7 @@ function waitForMsg(){
       }
 
       img {
-        
+        -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
       }
     </style>
   </head>
