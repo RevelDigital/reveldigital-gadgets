@@ -14,7 +14,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.js"></script>
-
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.roundabout.min.js"></script>
     <script type="text/javascript">
       function getMedia() {
         var prefs = new gadgets.Prefs();
@@ -26,20 +26,17 @@
                 for(var j=0; j<currentPlaylist.sources.length; j++) {
                   var image = currentPlaylist.sources[j].media.file_url;
                   image = image.split(' ').join('%20');
-                  $("#carousel").append('<img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/>');
+                  $("#carousel").append('<li><img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/></li>');
                 }
               }
             }
-            var carousel = $("#carousel").waterwheelCarousel({
-              flankingItems: 2,
-              separation: 130,
-              speed: 500,
-              autoPlay: prefs.getInt('time_delay')*1000,
-              forcedImageHeight: $(window).height()
-            });
+               $(document).ready(function() {
+                  $('ul').roundabout({
+                     autoplay: true,
+                     autoplayDuration: 1000,
+                  });
+               });
 
-            $("#carousel").width($(window).width());
-            $("#carousel").height($(window).height());
 
             waitForMsg();
 
@@ -57,6 +54,10 @@
 
       function specifyImage(image) {
         $("[id='" + image + "']").trigger("click");
+        $('ul').roundabout('stopAutoplay');
+        setTimeout(function() {
+          $('ul').roundabout('startAutoplay');
+        }, 10000);
       }
 
       
@@ -105,37 +106,40 @@ function waitForMsg(){
         font-size:12px;
         background:transparent;
       }
-      #carousel {
-        width:630px;
-        height:349px;
-        position:relative;
-        clear:both;
-        overflow:hidden;
-        background:transparent;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        width: 42em;
+        height: 28em;
       }
-      #carousel img {
-        visibility:hidden; 
-        cursor:pointer; 
-        width: 200px;
-        height: 349px;
+      li {
+        height: 24em;
+        width: 24em;
+        text-align: center;
+        cursor: pointer;
+      }
+      li img {
+        width: 100%;
+      }
+      li.roundabout-in-focus {
+        cursor: default;
+      }
+      li span {
+        display: block;
+        padding-top: 6em;
+      }
+
+      img {
         -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
-      }
-      .split-left {
-        width:450px;
-        float:left;
-      }
-      .split-right {
-        width:400px;
-        float:left;
-        margin-left:10px;
       }
     </style>
   </head>
 
   <body>
-    <div id="carousel">
-        
-    </div>
+<ul id = "carousel">
+
+</ul
   </body>
 
 </html>
