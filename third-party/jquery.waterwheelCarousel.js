@@ -28,6 +28,7 @@
     var carousel = this;
     var options = {};
     var data = {};
+    var oldAuto = 0;
 
     function initializeCarouselData() {
       data = {
@@ -604,7 +605,15 @@
      */
 
      this.autoPlay = function(toggle) {
-        autoPlay(toggle);
+        if(toggle) {
+          oldAuto = options.autoplay;
+          autoPlay(true);  
+        }
+        else {
+          options.autoplay = oldAuto;
+          autoPlay(false);
+        }
+        
      }
 
     this.reload = function (newOptions) {
