@@ -13,6 +13,7 @@
 #imageview {
     width: 100%;
     height: 100%;
+    font-size: large;
 }
 
 </style>
@@ -24,7 +25,7 @@
 
 //startup waiting for message from server
 $(function() {
-    console.log("Version bravo: " + 3);
+    console.log("Version bravo: " + 7);
     waitForMsg();
 });
 
