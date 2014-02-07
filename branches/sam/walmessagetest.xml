@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="api_key" display_name="API Key" datatype="string" default_value="null" required="true" />
-  <UserPref name="reg_key" display_name="REG Key" datatype="string" default_value="null" required="true" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" default_value="null" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -27,24 +26,9 @@
 
 //startup waiting for message from server
 $(function() {
-    prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 51);
-    getDevicebyRegKey(prefs.getString('reg_key'));
+    console.log("Version bravo: " + 1);
+    waitForMsg();
 });
-
-
-function getDevicebyRegKey(regKey) {
-    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
-      
-        for(var i=0; i < data.length; i++) {
-            var currentDevice = data[i];
-            if(currentDevice.registration_key == regKey) {
-                waitForMsg(currentDevice.id);
-            }
-        }
-
-    });
-}
 
 
 //show image from source given by server
@@ -61,11 +45,11 @@ function showImage(image) {
 
 //wait for a message from the server
 //if success or error still try pinging the server for data
-function waitForMsg(device){
+function waitForMsg(){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php?device=" + device,
+        url: "http://www.lumisnet.com/msgsrv.php?device=" + "cOQ4dajD3Qc",
         crossDomain: true,
         async: true,
         cache: false,
@@ -73,13 +57,13 @@ function waitForMsg(device){
         success: function(data){ 
             showImage($.trim(data))
             setTimeout(
-                waitForMsg(device), 
+                waitForMsg, 
                 5000 
             );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             setTimeout(
-                waitForMsg(device),
+                waitForMsg,
                 5000
             ); 
         }

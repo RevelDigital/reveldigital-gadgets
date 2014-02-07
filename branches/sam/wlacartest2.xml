@@ -17,7 +17,7 @@
 
     <script type="text/javascript">
       function getMedia() {
-        
+        var prefs = new gadgets.Prefs();
           var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
             
             for(var i=0; i < data.length; i++) {
@@ -41,49 +41,32 @@
             $("#carousel").width($(window).width());
             $("#carousel").height($(window).height());
 
-            getDevicebyRegKey(prefs.getString('reg_key'));
+            waitForMsg();
 
           });
-        }
-
-        function getDevicebyRegKey(regKey) {
-            var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
-              
-                for(var i=0; i < data.length; i++) {
-                    var currentDevice = data[i];
-                    if(currentDevice.registration_key == regKey) {
-                        waitForMsg(currentDevice.id);
-                    }
-                }
-
-            });
         }
 
 
 
       $(function () {
-        prefs = new gadgets.Prefs();
-        intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 55);
-        console.log("HELLO: " + prefs.getString('reg_key'));
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
 
       function specifyImage(image) {
-        clearInterval(intervalId);
         $("[id='" + image + "']").trigger("click");
       }
 
       
 
 
-function waitForMsg(device){
+function waitForMsg(){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php?device=" + device,
+        url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
         crossDomain: true,
         async: true,
         cache: false,
@@ -94,13 +77,13 @@ function waitForMsg(device){
             specifyImage($.trim(data));
           }
           setTimeout(
-            waitForMsg(device), 
+            waitForMsg, 
             5000 
           );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             setTimeout(
-                waitForMsg(device),
+                waitForMsg,
                 5000
             ); 
         }
