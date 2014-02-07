@@ -606,7 +606,12 @@
      */
 
      this.stop = function() {
+      oldAuto = options.autoPlay;
       options.autoPlay = 0;
+     }
+
+     this.start = function() {
+      options.autoPlay = oldAuto;
      }
     
     this.reload = function (newOptions) {
