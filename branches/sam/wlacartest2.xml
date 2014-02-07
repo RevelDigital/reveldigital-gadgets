@@ -51,13 +51,13 @@
       $(function () {
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 501);
+        console.log("versionalpha: " + 105);
         getMedia();
       });
 
 
       function specifyImage(image) {
-        clearInterval(refreshIntervalId);
+        clearInterval(intervalId);
         $("[id='" + image + "']").trigger("click");
         var carousel = $('#carousel').waterwheelCarousel();
         carousel.stop();
