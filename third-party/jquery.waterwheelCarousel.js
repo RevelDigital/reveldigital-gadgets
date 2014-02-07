@@ -605,6 +605,9 @@
      * Public API methods
      */
 
+     this.stop() {
+      options.autoPlay = 0;
+     }
     
     this.reload = function (newOptions) {
       if (typeof newOptions === "object") {
