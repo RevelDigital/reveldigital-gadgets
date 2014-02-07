@@ -50,7 +50,7 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 1);
+        console.log("versionalpha: " + 3);
         getMedia();
       });
 
@@ -70,7 +70,7 @@ function waitForMsg(){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php",
+        url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
         crossDomain: true,
         async: true,
         cache: false,
