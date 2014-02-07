@@ -604,19 +604,7 @@
      * Public API methods
      */
 
-     this.autoPlay = function(toggle) {
-        if(toggle) {
-          oldAuto = options.autoplay;
-          options.autoPlay = 0;
-          autoPlay(true);  
-        }
-        else {
-          options.autoPlay = oldAuto;
-          autoPlay(false);
-        }
-        
-     }
-
+    
     this.reload = function (newOptions) {
       if (typeof newOptions === "object") {
         var combineDefaultWith = newOptions;
