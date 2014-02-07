@@ -50,16 +50,16 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 7);
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
 
       function specifyImage(image) {
         $("[id='" + image + "']").trigger("click");
-
+var carousel = $('#carousel').waterwheelCarousel();
+          carousel.autoPlay(true);
         setTimeout(function (){
-          $('#header_text').text("Tap a button to select the ad of your choice.");
           var carousel = $('#carousel').waterwheelCarousel();
           carousel.autoPlay(false);
         }, 30000);
