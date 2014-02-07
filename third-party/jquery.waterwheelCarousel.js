@@ -607,10 +607,11 @@
      this.autoPlay = function(toggle) {
         if(toggle) {
           oldAuto = options.autoplay;
+          options.autoPlay = 0;
           autoPlay(true);  
         }
         else {
-          options.autoplay = oldAuto;
+          options.autoPlay = oldAuto;
           autoPlay(false);
         }
         
