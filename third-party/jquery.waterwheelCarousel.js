@@ -605,7 +605,7 @@
      * Public API methods
      */
 
-     this.stop() {
+     this.stop = function() {
       options.autoPlay = 0;
      }
     
