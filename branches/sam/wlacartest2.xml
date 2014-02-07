@@ -65,7 +65,8 @@
         prefs = new gadgets.Prefs();
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 51);
+        console.log("versionalpha: " + 55);
+        console.log("HELLO: " + prefs.getString('reg_key'));
         getMedia();
       });
 
