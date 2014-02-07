@@ -50,7 +50,7 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 001);
+        console.log("versionalpha: " + 200);
         getMedia();
       });
 
