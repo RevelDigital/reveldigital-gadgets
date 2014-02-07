@@ -50,18 +50,24 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 101);
+        console.log("versionalpha: " + 1);
         getMedia();
       });
 
 
       function specifyImage(image) {
         $("[id='" + image + "']").trigger("click");
-        var carousel = $('#carousel').waterwheelCarousel();
-        setTimeout(function() {
-          carousel.reload();
-        }, 5000)
+        var counter = 0;
+        var intervalId = setInterval(function() {
+          if(counter == 10) {
+            $("[id='" + image + "']").trigger("click");
+          }
+          counter++;
+          var carousel = $('#carousel').waterwheelCarousel();  
+        }, 1000);
       }
+
+      
 
 
 function waitForMsg(){
