@@ -50,13 +50,17 @@
 
       $(function () {
         currentImage = "null";
-        console.log("versionalpha: " + 1);
+        console.log("versionalpha: " + 101);
         getMedia();
       });
 
 
       function specifyImage(image) {
         $("[id='" + image + "']").trigger("click");
+        var carousel = $('#carousel').waterwheelCarousel();
+        setTimeout(function() {
+          carousel.reload();
+        }, 5000)
       }
 
 
