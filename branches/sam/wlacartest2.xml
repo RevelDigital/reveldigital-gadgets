@@ -62,10 +62,10 @@
 
 
       $(function () {
-        var prefs = new gadgets.Prefs();
+        prefs = new gadgets.Prefs();
         intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 50);
+        console.log("versionalpha: " + 51);
         getMedia();
       });
 
