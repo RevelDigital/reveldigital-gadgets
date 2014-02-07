@@ -49,17 +49,19 @@
 
 
       $(function () {
+        intervalId = 0;
         currentImage = "null";
-        console.log("versionalpha: " + 301);
+        console.log("versionalpha: " + 501);
         getMedia();
       });
 
 
       function specifyImage(image) {
+        clearInterval(refreshIntervalId);
         $("[id='" + image + "']").trigger("click");
         var carousel = $('#carousel').waterwheelCarousel();
         carousel.stop();
-        setTimeout(function() {
+        intervalId = setInterval(function() {
           carousel.next();
         }, 5000);
       }
