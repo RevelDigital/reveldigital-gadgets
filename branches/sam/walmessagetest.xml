@@ -24,7 +24,7 @@
 
 //startup waiting for message from server
 $(function() {
-    console.log("Version bravo: " + 17);
+    console.log("Version bravo: " + 1);
     waitForMsg();
 });
 
@@ -47,7 +47,7 @@ function waitForMsg(){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php",
+        url: "http://www.lumisnet.com/msgsrv.php?device=" + "cOQ4dajD3Qc",,
         crossDomain: true,
         async: true,
         cache: false,
