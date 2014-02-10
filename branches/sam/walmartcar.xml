@@ -49,8 +49,6 @@ function getMedia() {
 
       $('ul').roundabout({
         autoplay: true,
-        minScale: 1.0,
-        maxScale: 2.0,
         autoplayDuration: prefs.getInt('time_delay')*1000,
       });
       getDevicebyRegKey(prefs.getString('reg_key'));
@@ -63,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 456);
+  console.log("Version alpha: " + 123);
   getMedia();
 });
 
@@ -123,16 +121,25 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  width: 42em;
+  width: 75%;
   height: 28em;
 }
 li {
   height: 24em;
-  width: 24em;
+  width: 100%;
   text-align: center;
   cursor: pointer;
 }
-
+li img {
+  width: 100%;
+}
+li.roundabout-in-focus {
+  cursor: default;
+}
+li span {
+  display: block;
+  padding-top: 6em;
+}
 
 img {
   -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
