@@ -3,8 +3,6 @@
 <ModulePrefs title="Playlist Carousel Gadget" description="Displays a playlist in a photo carousel." author="RevelDigital" background="transparent">
   <UserPref name="time_delay" display_name="Delay between images moving (seconds)" datatype="string" default_value="5" required="true" />
   <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
-  <UserPref name="height" display_name="Height" datatype="string" required="true" />
-  <UserPref name="width" display_name="Width" datatype="string" required="true" />
   <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
   <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
 </ModulePrefs>
@@ -49,8 +47,7 @@ function getMedia() {
       }
     }
 
-      $('li').width(prefs.getInt('width'));
-      $('li').height(prefs.getInt('height'));
+
 
       $('ul').roundabout({
         autoplay: true,
@@ -66,7 +63,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 61);
+  console.log("Version alpha: " + 221);
   getMedia();
 });
 
@@ -126,8 +123,8 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  width: 42em;
-  height: 28em;
+  width: 100%;
+  height: 100%;
 }
 li {
   height: 24em;
