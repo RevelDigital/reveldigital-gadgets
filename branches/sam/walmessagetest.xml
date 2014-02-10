@@ -2,6 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="API Key" datatype="string" default_value="null" required="true" />
+  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -21,11 +22,29 @@
 <script type="text/javascript" charset="utf-8">
 
 
+function getDevicebyRegKey(regKey) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+      
+        for(var i=0; i < data.length; i++) {
+            var currentDevice = data[i];
+            if(currentDevice.registration_key == regKey) {
+                deviceId = currentDevice.id;
+            }
+        }
+
+        waitForMsg();
+
+    });
+}
+
+
 
 //startup waiting for message from server
 $(function() {
+    deviceId = null;
+    prefs = new gadgets.Prefs();
     console.log("Version bravo: " + 0);
-    waitForMsg();
+    getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
 
@@ -47,7 +66,7 @@ function waitForMsg(){
 
     $.ajax({
         type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php?device=" + "cOQ4dajD3Qc",
+        url: "http://www.lumisnet.com/msgsrv.php?device=" + deviceId,
         crossDomain: true,
         async: true,
         cache: false,

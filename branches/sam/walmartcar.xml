@@ -17,9 +17,23 @@
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.roundabout.min.js"></script>
 <script type="text/javascript">
 
+function getDevicebyRegKey(regKey) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString("api_key"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+          var currentDevice = data[i];
+          if(currentDevice.registration_key == regKey) {
+            deviceId = currentDevice.id;
+          }
+      }
+
+      waitForMsg();
+
+    });
+}
+
 
 function getMedia() {
-  var prefs = new gadgets.Prefs();
     var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
       
     for(var i=0; i < data.length; i++) {
@@ -32,20 +46,22 @@ function getMedia() {
         }
       }
     }
-    $(document).ready(function() {
+
       $('ul').roundabout({
         autoplay: true,
         autoplayDuration: prefs.getInt('time_delay')*1000,
       });
-    });
-      waitForMsg();
+      getDevicebyRegKey(prefs.getString('reg_key'));
+      
     });
   }
 
 $(function () {
+  deviceId = null;
+  prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 10101);
+  console.log("Version alpha: " + 0);
   getMedia();
 });
 
@@ -67,7 +83,7 @@ function specifyImage(image) {
 function waitForMsg(){
   $.ajax({
     type: "GET",
-    url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
+    url: "http://www.lumisnet.com/msgsrv.php?device=" + deviceId,
     crossDomain: true,
     async: true,
     cache: false,
