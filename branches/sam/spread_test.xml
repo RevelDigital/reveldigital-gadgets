@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-	console.log("Version: " + 21);
+	console.log("Version: " + 1);
 	rowHeights = [];
   	update();
   	setInterval(update, 120000);
@@ -88,8 +88,7 @@ function getCss(code) {
         }
 
         $('#googleTable tr').each(function(index) {
-
-        	$(this).find('td:eq(0)').css('height', rowHeights[index]);
+        	$(this).css('height', rowHeights[index]);
 
 		});
 
