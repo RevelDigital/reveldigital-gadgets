@@ -9,10 +9,15 @@
 
 <style type="text/css">
 
+body {
+    background: transparent;
+}
+
 #textview {
     width: 100%;
     height: 100%;
     font-size: 200%;
+    background: transparent;
     text-align:center;
 }
 
@@ -43,7 +48,7 @@ function getDevicebyRegKey(regKey) {
 $(function() {
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 0);
+    console.log("Version bravo: " + 54);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
