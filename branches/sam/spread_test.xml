@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-	console.log("Version: " + 5);
+	console.log("Version: " + 11);
 	rowHeights = [];
   	update();
   	setInterval(update, 120000);
@@ -116,9 +116,8 @@ function getTable(code) {
         $('#googleTable').html(data.results[0]);
 
         $('#googleTable td:first-child').each(function(index) {
-			rowHeights.push($(this).height());
+			rowHeights.push($(this).find('p').css('height'));
 			console.log("Row: " + index + "Height: " + rowHeights[index]);
-			console.log($(this).find('p').css('height'));
 		});
 
         $('#googleTable td:first-child').remove();
