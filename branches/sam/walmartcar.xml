@@ -50,7 +50,7 @@ function getMedia() {
     }
 
       $('li').width(prefs.getInt('width'));
-      $('li').height(prefs.getInt('width'));
+      $('li').height(prefs.getInt('height'));
 
       $('ul').roundabout({
         autoplay: true,
@@ -66,7 +66,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 58);
+  console.log("Version alpha: " + 61);
   getMedia();
 });
 
