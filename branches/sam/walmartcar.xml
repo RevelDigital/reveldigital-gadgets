@@ -59,24 +59,21 @@ function getMedia() {
 $(function () {
   deviceId = null;
   prefs = new gadgets.Prefs();
-  firsttimetoggle = true;
+ 
   currentImage = "null";
-  console.log("Version alpha: " + 101);
+  console.log("Version alpha: " + 202);
   getMedia();
 });
 
 
 function specifyImage(image) {
-  if(!firsttimetoggle) {
+
     $("[id='" + image + "']").trigger("click");
     $('ul').roundabout('stopAutoplay');
     setTimeout(function() {
       $('ul').roundabout('startAutoplay');
     }, 20000);
-  }
-  else {
-    firsttimetoggle = false;
-  }
+
 }
 
 
@@ -89,7 +86,7 @@ function waitForMsg(){
     cache: false,
     timeout:5000, 
     success: function(data){ 
-      if(data != null && data != currentImage) {
+      if(data != null && data != currentImage && $.trim(data).length != 0) {
         currentImage = data;
         specifyImage($.trim(data));
       }
