@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="apikey" display_name="API Key" datatype="string" default_value="null" required="true" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
   <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
+  <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -14,10 +15,7 @@ body {
 }
 
 #textview {
-    width: 100%;
-    height: 100%;
-    font-size: 200%;
-    background: transparent;
+    __UP_text-style__;
     text-align:center;
 }
 
@@ -48,7 +46,7 @@ function getDevicebyRegKey(regKey) {
 $(function() {
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 54);
+    console.log("Version bravo: " + 1);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
