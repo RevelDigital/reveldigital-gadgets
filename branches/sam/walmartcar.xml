@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 1);
+  console.log("Version alpha: " + 78);
   getMedia();
 });
 
@@ -123,11 +123,11 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  width: 100%
+  width: 42em;
   height: 28em;
 }
 li {
-  height: 50%;
+  height: 100%;
   width: 50%;
   text-align: center;
   cursor: pointer;
