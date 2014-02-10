@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 21);
+  console.log("Version alpha: " + 32);
   getMedia();
 });
 
@@ -113,8 +113,6 @@ function waitForMsg(){
 
 <style type="text/css">
 body {
-  height: 100%;
-  width: 100%;
   font-family:Arial;
   font-size:12px;
   background:transparent;
@@ -124,16 +122,17 @@ ul {
   padding: 0;
   margin: 0 auto;
   width: 42em;
-  height: 100%
+  height: 28em;
 }
 li {
-  height: 100%;
-  width: 50%;
+  height: 24em;
+  width: 24em;
   text-align: center;
   cursor: pointer;
 }
 li img {
   width: 100%;
+  height: 100%;
 }
 li.roundabout-in-focus {
   cursor: default;
