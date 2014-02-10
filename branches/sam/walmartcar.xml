@@ -15,137 +15,124 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.js"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.roundabout.min.js"></script>
-    <script type="text/javascript">
-      function getMedia() {
-        var prefs = new gadgets.Prefs();
-          var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
-            
-            for(var i=0; i < data.length; i++) {
-              var currentPlaylist = data[i];
-              if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
-                for(var j=0; j<currentPlaylist.sources.length; j++) {
-                  var image = currentPlaylist.sources[j].media.file_url;
-                  image = image.split(' ').join('%20');
-                  $("#carousel").append('<li><img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/></li>');
-                }
-              }
-            }
-               $(document).ready(function() {
-                  $('ul').roundabout({
-                     autoplay: true,
-                     autoplayDuration: prefs.getInt('time_delay')*1000,
-                  });
-               });
+<script type="text/javascript">
 
 
-            waitForMsg();
-
-          });
-        }
-
-
-
-      $(function () {
-        firsttimetoggle = true;
-        currentImage = "null";
-        console.log("Version alpha: " + 10101);
-        getMedia();
-      });
-
-
-      function specifyImage(image) {
-        if(!firsttimetoggle) {
-          $("[id='" + image + "']").trigger("click");
-          $('ul').roundabout('stopAutoplay');
-          setTimeout(function() {
-            $('ul').roundabout('startAutoplay');
-          }, 30000);
-        }
-        else {
-          firsttimetoggle = false;
-        }
-        
-      }
-
+function getMedia() {
+  var prefs = new gadgets.Prefs();
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
       
-
-
-function waitForMsg(){
-
-    $.ajax({
-      type: "GET",
-      url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
-      crossDomain: true,
-      async: true,
-      cache: false,
-      timeout:5000, 
-      success: function(data){ 
-        if(data != null && data != currentImage) {
-          currentImage = data;
-          specifyImage($.trim(data));
+    for(var i=0; i < data.length; i++) {
+      var currentPlaylist = data[i];
+      if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
+        for(var j=0; j<currentPlaylist.sources.length; j++) {
+          var image = currentPlaylist.sources[j].media.file_url;
+          image = image.split(' ').join('%20');
+          $("#carousel").append('<li><img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/></li>');
         }
-        setTimeout(
-          waitForMsg, 
-          5000 
-        );
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-        setTimeout(
-          waitForMsg,
-          5000
-        ); 
       }
+    }
+    $(document).ready(function() {
+      $('ul').roundabout({
+        autoplay: true,
+        autoplayDuration: prefs.getInt('time_delay')*1000,
+      });
     });
+      waitForMsg();
+    });
+  }
+
+$(function () {
+  firsttimetoggle = true;
+  currentImage = "null";
+  console.log("Version alpha: " + 10101);
+  getMedia();
+});
+
+
+function specifyImage(image) {
+  if(!firsttimetoggle) {
+    $("[id='" + image + "']").trigger("click");
+    $('ul').roundabout('stopAutoplay');
+    setTimeout(function() {
+      $('ul').roundabout('startAutoplay');
+    }, 30000);
+  }
+  else {
+    firsttimetoggle = false;
+  }
 }
 
 
-
-
-
-
-
-    </script>
-
-
-    <style type="text/css">
-      body {
-        font-family:Arial;
-        font-size:12px;
-        background:transparent;
+function waitForMsg(){
+  $.ajax({
+    type: "GET",
+    url: "http://www.lumisnet.com/msgsrv.php?device=cOQ4dajD3Qc",
+    crossDomain: true,
+    async: true,
+    cache: false,
+    timeout:5000, 
+    success: function(data){ 
+      if(data != null && data != currentImage) {
+        currentImage = data;
+        specifyImage($.trim(data));
       }
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 auto;
-        width: 42em;
-        height: 28em;
-      }
-      li {
-        height: 24em;
-        width: 24em;
-        text-align: center;
-        cursor: pointer;
-      }
-      li img {
-        width: 100%;
-      }
-      li.roundabout-in-focus {
-        cursor: default;
-      }
-      li span {
-        display: block;
-        padding-top: 6em;
-      }
+      setTimeout(
+        waitForMsg, 
+        5000 
+      );
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown){
+      setTimeout(
+        waitForMsg,
+        5000
+      ); 
+    }
+  });
+}
 
-      img {
-        -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
-      }
-    </style>
-  </head>
 
-  <body>
+</script>
+
+
+<style type="text/css">
+body {
+  font-family:Arial;
+  font-size:12px;
+  background:transparent;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 42em;
+  height: 28em;
+}
+li {
+  height: 24em;
+  width: 24em;
+  text-align: center;
+  cursor: pointer;
+}
+li img {
+  width: 100%;
+}
+li.roundabout-in-focus {
+  cursor: default;
+}
+li span {
+  display: block;
+  padding-top: 6em;
+}
+
+img {
+  -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
+}
+</style>
+</head>
+
+<body>
 <ul id = "carousel">
-
 </ul
   </body>
 
