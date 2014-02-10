@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 97);
+  console.log("Version alpha: " + 101);
   getMedia();
 });
 
@@ -72,7 +72,7 @@ function specifyImage(image) {
     $('ul').roundabout('stopAutoplay');
     setTimeout(function() {
       $('ul').roundabout('startAutoplay');
-    }, 30000);
+    }, 20000);
   }
   else {
     firsttimetoggle = false;
