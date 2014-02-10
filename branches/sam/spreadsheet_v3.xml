@@ -40,11 +40,10 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-
-console.log("version: " + 5);
-
-  update();
-  setInterval(update, 120000);
+  console.log("Version: " + 5);
+  rowHeights = [];
+    update();
+    setInterval(update, 120000);
 }
 
 gadgets.util.registerOnLoadHandler(load);
@@ -57,7 +56,6 @@ var oldTable = null;
 
 //make spreadsheet url usable and then get the html table from google docs
 function update() {
-  
   var googleUrl = prefs.getString("spreadsheetUrl");
   googleUrl = googleUrl.substring(googleUrl.indexOf("key=")+4, googleUrl.indexOf("&output"));
   getTable(googleUrl);
@@ -90,6 +88,11 @@ function getCss(code) {
         }
 
 
+        $('#googleTable tr').each(function(index) {
+          $(this).css('height', rowHeights[index]);
+
+    });
+$('#googleTable p').contents().unwrap();
     }
   });
 }
@@ -108,11 +111,18 @@ function getTable(code) {
     success: function (data) {
 
       if(oldTable != data.results[0]) {
+        rowHeights.length = 0;
         oldTable = data.results[0];
-         $("#googleTable").empty();
+        $("#googleTable").empty();
         $('#googleTable').html(data.results[0]);
-        console.log($('#googleTable td:first-child').text());
+
+        $('#googleTable td:first-child').each(function(index) {
+      rowHeights.push($(this).find('p').css('height'));
+      console.log("Row: " + index + "Height: " + rowHeights[index]);
+    });
+
         $('#googleTable td:first-child').remove();
+        
       }
 
 
