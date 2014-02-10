@@ -87,11 +87,11 @@ function getCss(code) {
       
         }
 
- 
-        	
-        	$('#googleTable td:first-child').css('height', rowHeights[index]);
-		  
-	
+        $('#googleTable tr').each(function(index) {
+
+        	$(this).find('td:eq(0)').css('height', rowHeights[index]);
+
+		});
 
     }
   });
