@@ -47,10 +47,10 @@ function getMedia() {
       }
     }
 
-
-
       $('ul').roundabout({
         autoplay: true,
+        minScale: 1.0,
+        maxScale: 2.0,
         autoplayDuration: prefs.getInt('time_delay')*1000,
       });
       getDevicebyRegKey(prefs.getString('reg_key'));
@@ -63,7 +63,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 1);
+  console.log("Version alpha: " + 789);
   getMedia();
 });
 
@@ -123,18 +123,16 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  width: 100%;
-  height: 100%;
+  width: 42em;
+  height: 28em;
 }
 li {
-  margin: auto;
   height: 24em;
   width: 24em;
   text-align: center;
   cursor: pointer;
 }
 li img {
-  height: 100%;
   width: 100%;
 }
 li.roundabout-in-focus {
