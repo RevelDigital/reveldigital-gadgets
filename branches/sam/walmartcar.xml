@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
   firsttimetoggle = true;
   currentImage = "null";
-  console.log("Version alpha: " + 99);
+  console.log("Version alpha: " + 1012);
   getMedia();
 });
 
@@ -113,6 +113,8 @@ function waitForMsg(){
 
 <style type="text/css">
 body {
+  height: 100%;
+  width: 100%;
   font-family:Arial;
   font-size:12px;
   background:transparent;
