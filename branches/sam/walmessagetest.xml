@@ -4,6 +4,7 @@
   <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
   <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
   <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
+  <UserPref name="name-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -14,8 +15,13 @@ body {
     background: transparent;
 }
 
-#textview {
+.textview {
     __UP_text-style__;
+    text-align:center;
+}
+
+#name_of_queue {
+    __UP_name-style__;
     text-align:center;
 }
 
@@ -46,7 +52,7 @@ function getDevicebyRegKey(regKey) {
 $(function() {
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 0);
+    console.log("Version bravo: " + 1);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
@@ -54,10 +60,14 @@ $(function() {
 //show text from source given by server
 function showText(text) {
     if(text.length == 0) {
-        $("#textview").html("");
+        $("#youhave").html("");
+        $("#name_of_queue").html("");
+        $("#forplayback").html("");
     }
     else {
-        $("#textview").html("You have queued " + text + " for playback!");    
+        $("#youhave").html("You have queued");
+        $("#name_of_queue").html(text);
+        $("#forplayback").html("for playback!");
     }
 }
 
@@ -94,7 +104,13 @@ function waitForMsg(){
 </script>
 
 <body>
-    <div id="textview">
+    <div id="youhave" class="textview">
+    </div>
+
+    <div id="name_of_queue">
+    </div>
+
+    <div id="forplayback" class="textview">
     </div>
 </body>
 
