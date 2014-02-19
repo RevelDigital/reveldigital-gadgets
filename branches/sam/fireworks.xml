@@ -6,6 +6,9 @@
     <EnumValue value="false" display_value="No" />
   </UserPref>
   <UserPref name="rate" display_name="Rate of number of fireworks (0-fast, 100-slow)" datatype="string" default_value="50" required="true" />
+  <UserPref name="trail" display_name="Prominence of firework trails" datatype="string" default_value="3" required="true" />
+  <UserPref name="speed" display_name="Speed of firework" datatype="string" default_value="2" required="true" />
+  <UserPref name="count" display_name="Number of particles from firework (more may cause performance issues" datatype="string" default_value="30" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -36,6 +39,7 @@ body {
 <script type="text/javascript">
 
 window.requestAnimFrame = ( function() {
+    console.log("Version: " + 1);
         prefs = new gadgets.Prefs();
     return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -95,17 +99,16 @@ function Firework( sx, sy, tx, ty ) {
     this.distanceTraveled = 0;
     // track the past coordinates of each firework to create a trail effect, increase the coordinate count to create more prominent trails
     this.coordinates = [];
-    this.coordinateCount = 3;
+    this.coordinateCount = prefs.getInt('trail');
     // populate initial coordinate collection with the current coordinates
     while( this.coordinateCount-- ) {
         this.coordinates.push( [ this.x, this.y ] );
     }
     this.angle = Math.atan2( ty - sy, tx - sx );
-    this.speed = 2;
+    this.speed = prefs.getInt('speed');
     this.acceleration = 1.05;
     this.brightness = random( 50, 70 );
-    // circle target indicator radius
-    this.targetRadius = 1;
+
 }
 
 // update firework
@@ -208,7 +211,7 @@ Particle.prototype.draw = function() {
 // create particle group/explosion
 function createParticles( x, y ) {
     // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
-    var particleCount = 30;
+    var particleCount = prefs.getInt('count');
     while( particleCount-- ) {
         particles.push( new Particle( x, y ) );
     }
