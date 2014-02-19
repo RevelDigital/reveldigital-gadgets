@@ -62,8 +62,6 @@
     margin: auto;
   }
 
-
-
 </style>
 
 
@@ -105,10 +103,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
-
-
 <script type="text/javascript">
-
 
 var prefs = new gadgets.Prefs();
 
@@ -150,8 +145,6 @@ gadgets.util.registerOnLoadHandler(load);
 
   function refresh() {
 
-  
-
     clearFlights();
 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fwww.tunicaairport.com%2Fflight-information%2Fflight-schedule'%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
@@ -164,8 +157,6 @@ gadgets.util.registerOnLoadHandler(load);
 
         var current = data.results[0];
 
-
-
         try {
           var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
           createFlights(departures, 'departure');
@@ -175,7 +166,6 @@ gadgets.util.registerOnLoadHandler(load);
         }
 console.log("flights: " + flights.length);
 
-  
         if(flights.length == 0) {
           showLogo();
           console.log('No Flights');
@@ -190,17 +180,9 @@ console.log("flights: " + flights.length);
           showCurrentFlight(flights[0]);
           showNextFlight(flights[1]);
           showFlights();
-        }
-        
-        
-
-          
+        }        
       }
-  }); 
-
-
-
-
+    }); 
   }
 
 
@@ -228,7 +210,6 @@ console.log("flights: " + flights.length);
           $('#logo').html('<img src=' + currentImage.file_url + '>');
         }
       }
-
     });
   }
 
@@ -240,17 +221,14 @@ console.log("get airline image");
         var currentImage = data[i];
         if(currentImage.file_name.toLowerCase() == currentAirline) {
           if(current) {
-           $('#current_airline').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+            $('#current_airline').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
           }
           else {
             $('#next_flight tr:nth-child(1) td:nth-child(4)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
           }
         }
       }
-
     });
-
-
   }
 
 
@@ -263,62 +241,53 @@ console.log("Show current flight");
     $('#current_status').text('Status: ' + flight.status);
     getAirlineImage(flight.airline, true);
 
-
-
     $('#current_location').text('To: ' + flight.fromTo);
     $('#current_time').text('Departure: ' + flight.time);
-    
-
-}
+  }
   
 
 
 
-function showNextFlight(flight) {
+  function showNextFlight(flight) {
 console.log("Show next flight");
+    if(flight.fromTo == 'departure') {
+      arrivalToggle = true;
+      $('#toFrom').text('Destination');
+    }   
 
+    var cells = [];
+    var table = document.getElementById("next_flight_table");
+    var row = table.insertRow(1);
 
-          if(flight.fromTo == 'departure') {
-            arrivalToggle = true;
-            $('#toFrom').text('Destination');
-          }   
+    for(var j = 0; j < 6; j++) {
+      cells[j] = row.insertCell(j);
+    }
 
-          var cells = [];
-          var table = document.getElementById("next_flight_table");
-          var row = table.insertRow(1);
-
-          for(var j = 0; j < 6; j++) {
-            cells[j] = row.insertCell(j);
-          }
-
-          cells[0].innerHTML = flight.time;
-          cells[1].innerHTML = flight.number;
-          cells[2].innerHTML = flight.fromTo;
-          getAirlineImage(flight.airline, false);
-          cells[4].innerHTML = flight.status;
-
+    cells[0].innerHTML = flight.time;
+    cells[1].innerHTML = flight.number;
+    cells[2].innerHTML = flight.fromTo;
+    getAirlineImage(flight.airline, false);
+    cells[4].innerHTML = flight.status;
   }
 
 
   function Flight(info, type) {
-  
-  this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
-  this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
-  this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
-  this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
-  this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
-  this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
 
-  this.type = type;
+    this.type = type;
 
-  this.print=print;
-  function print() {
-    return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
-      '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
-      '\nStatus: ' + this.status + '\nTime: ' + this.time;
+    this.print=print;
+    function print() {
+      return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
+        '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
+        '\nStatus: ' + this.status + '\nTime: ' + this.time;
+    }
   }
-
-}
 
 
 
@@ -326,10 +295,8 @@ function createFlights(data, type) {
   console.log("create flights");
   var $data = $(data);
 
-    
   for (var i = 0, row; row = $data[0].rows[i]; i++) {
     row.children[0].innerHTML;
-
     if(i!=0) {
       var flight = new Flight(row.children, type);
       if(flight.gate == prefs.getString('airport_gate')) {
@@ -337,8 +304,6 @@ function createFlights(data, type) {
       }
     }
   }
-
-
 }
 
 
