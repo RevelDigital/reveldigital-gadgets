@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="Snowfall Gadget" description="Displays snowflakes over the screen" author="RevelDigital" background="transparent">
-  <UserPref name="date" display_name="Show snowflakes on a specific date" default_value="true" datatype="enum" >
-    <EnumValue value="true" display_value="Yes" />
-    <EnumValue value="false" display_value="No" />
-  </UserPref>
-  <UserPref name="size" display_name="Size of the snowflakes" datatype="string" default_value="2" required="true" />
-  <UserPref name="amount" display_name="Number of active snowflakes on screen" datatype="string" default_value="25" required="true" />
+<UserPref name="date" display_name="Show snowflakes on a specific date" default_value="true" datatype="enum" >
+<EnumValue value="true" display_value="Yes" />
+<EnumValue value="false" display_value="No" />
+</UserPref>
+<UserPref name="size" display_name="Size of the snowflakes" datatype="string" default_value="2" required="true" />
+<UserPref name="amount" display_name="Number of active snowflakes on screen" datatype="string" default_value="25" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
