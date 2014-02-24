@@ -46,10 +46,30 @@ function getDevicebyRegKey(regKey) {
     });
 }
 
+function init() {
+    var host = "ws://lumisnet.com:12345/sockets"; 
+    try {
+        socket = new WebSocket(host);
+        console.log('WebSocket - status '+socket.readyState);
+        socket.onopen    = function(msg) { 
+                               console.log("Welcome - status "+this.readyState); 
+                           };
+        socket.onmessage = function(msg) { 
+                               console.log("Received: "+msg.data); 
+                           };
+        socket.onclose   = function(msg) { 
+                               console.log("Disconnected - status "+this.readyState); 
+                           };
+    }
+    catch(ex){ 
+        log(ex); 
+    }
+}
 
 
 //startup waiting for message from server
 $(function() {
+    init();
     deviceId = null;
     prefs = new gadgets.Prefs();
     console.log("Version bravo: " + 1);
