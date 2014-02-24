@@ -42,7 +42,7 @@ function getDevicebyRegKey(regKey) {
             }
         }
 
-
+            init();
     });
 }
 
@@ -74,7 +74,7 @@ function init() {
 
 function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
-  var channel = pusher.subscribe('test');
+  var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
     showText(data.message);
   });
@@ -84,9 +84,8 @@ function init() {
 $(function() {
     deviceId = 'test';
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 3014);
+    console.log("Version bravo: " + 4014);
     getDevicebyRegKey(prefs.getString('reg_key'));
-    init();
 });
 
 
