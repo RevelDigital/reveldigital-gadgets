@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 103);
+  console.log("Version alpha: " + 105);
   getMedia();
 });
 
@@ -80,7 +80,7 @@ function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
-    if(data != null && data != currentImage && $.trim(data).length != 0) {
+    if(data.message != null && data.message != currentImage && $.trim(data.message).length != 0) {
         currentImage = data.message;
         specifyImage($.trim(data.message));
       }
