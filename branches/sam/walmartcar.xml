@@ -81,10 +81,10 @@ function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
-    if(data.message != null && data.message != currentImage && $.trim(data.message).length != 0) {
-        currentImage = data.message;
+    //if(data.message != null && data.message != currentImage && $.trim(data.message).length != 0) {
+       // currentImage = data.message;
         specifyImage($.trim(data.message));
-      }
+     // }
   });
 }
 
