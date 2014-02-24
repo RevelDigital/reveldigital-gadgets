@@ -28,6 +28,7 @@ body {
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://js.pusher.com/2.1/pusher.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
 
@@ -45,6 +46,7 @@ function getDevicebyRegKey(regKey) {
     });
 }
 
+/*
 function init() {
     var host = "ws://lumisnet.com:12345/sockets"; 
     try {
@@ -67,14 +69,24 @@ function init() {
     }
 }
 
+*/
+
+
+function init() {
+  var pusher = new Pusher('d18c609664168ec14d65');
+  var channel = pusher.subscribe('deviceId');
+  channel.bind('my-event', function(data) {
+    showText(data.message);
+  });
+}
 
 //startup waiting for message from server
 $(function() {
-    init();
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 99);
+    console.log("Version bravo: " + 100);
     getDevicebyRegKey(prefs.getString('reg_key'));
+    init();
 });
 
 
