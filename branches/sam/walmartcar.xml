@@ -27,7 +27,7 @@ function getDevicebyRegKey(regKey) {
           }
       }
 
-      waitForMsg();
+      init();
 
     });
 }
@@ -61,7 +61,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 202);
+  console.log("Version alpha: " + 103);
   getMedia();
 });
 
@@ -76,33 +76,18 @@ function specifyImage(image) {
 
 }
 
-
-function waitForMsg(){
-  $.ajax({
-    type: "GET",
-    url: "http://www.lumisnet.com/msgsrv.php?device=" + deviceId,
-    crossDomain: true,
-    async: true,
-    cache: false,
-    timeout:5000, 
-    success: function(data){ 
-      if(data != null && data != currentImage && $.trim(data).length != 0) {
-        currentImage = data;
-        specifyImage($.trim(data));
+function init() {
+  var pusher = new Pusher('d18c609664168ec14d65');
+  var channel = pusher.subscribe(deviceId);
+  channel.bind('notification', function(data) {
+    if(data != null && data != currentImage && $.trim(data).length != 0) {
+        currentImage = data.message;
+        specifyImage($.trim(data.message));
       }
-      setTimeout(
-        waitForMsg, 
-        5000 
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown){
-      setTimeout(
-        waitForMsg,
-        5000
-      ); 
-    }
   });
 }
+
+
 
 
 </script>
