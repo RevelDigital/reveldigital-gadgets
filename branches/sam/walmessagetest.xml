@@ -74,7 +74,7 @@ function init() {
 
 function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
-  var channel = pusher.subscribe('deviceId');
+  var channel = pusher.subscribe(deviceId);
   channel.bind('my-event', function(data) {
     showText(data.message);
   });
@@ -84,7 +84,7 @@ function init() {
 $(function() {
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 205);
+    console.log("Version bravo: " + 2013);
     getDevicebyRegKey(prefs.getString('reg_key'));
     init();
 });
