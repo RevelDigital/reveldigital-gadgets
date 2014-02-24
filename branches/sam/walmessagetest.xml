@@ -41,7 +41,6 @@ function getDevicebyRegKey(regKey) {
             }
         }
 
-        waitForMsg();
 
     });
 }
@@ -50,19 +49,21 @@ function init() {
     var host = "ws://lumisnet.com:12345/sockets"; 
     try {
         socket = new WebSocket(host);
-        console.log('WebSocket - status '+socket.readyState);
+        console.log('WebSocket - status '+ socket.readyState);
         socket.onopen    = function(msg) { 
-                               console.log("Welcome - status "+this.readyState); 
+                               console.log("Welcome - status " + this.readyState);
+                               socket.send(deviceId);
                            };
         socket.onmessage = function(msg) { 
-                               console.log("Received: "+msg.data); 
+                               console.log("Received: " + msg.data);
+                               showText($.trim(msg.data));
                            };
         socket.onclose   = function(msg) { 
-                               console.log("Disconnected - status "+this.readyState); 
+                               console.log("Disconnected - status " + this.readyState); 
                            };
     }
     catch(ex){ 
-        log(ex); 
+        console.log(ex); 
     }
 }
 
@@ -72,7 +73,7 @@ $(function() {
     init();
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 1);
+    console.log("Version bravo: " + 99);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
@@ -92,33 +93,6 @@ function showText(text) {
 }
 
 
-//wait for a message from the server
-//if success call showText to show text
-//if success or error still try pinging the server for data
-function waitForMsg(){
-
-    $.ajax({
-        type: "GET",
-        url: "http://www.lumisnet.com/msgsrv.php?device=" + deviceId,
-        crossDomain: true,
-        async: true,
-        cache: false,
-        timeout:5000, 
-        success: function(data){ 
-            showText($.trim(data))
-            setTimeout(
-                waitForMsg, 
-                5000 
-            );
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown){
-            setTimeout(
-                waitForMsg,
-                5000
-            );
-        }
-    });
-};
 
 
 </script>
