@@ -75,7 +75,7 @@ function init() {
 function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
-  channel.bind('my-event', function(data) {
+  channel.bind('notification', function(data) {
     showText(data.message);
   });
 }
