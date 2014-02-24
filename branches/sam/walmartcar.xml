@@ -13,6 +13,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/pusher.min.js"></script>
     <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.js"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.roundabout.min.js"></script>
 <script type="text/javascript">
@@ -61,7 +62,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 105);
+  console.log("Version alpha: " + 110);
   getMedia();
 });
 
