@@ -28,7 +28,7 @@ body {
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://js.pusher.com/2.1/pusher.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/pusher.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
 
@@ -84,7 +84,7 @@ function init() {
 $(function() {
     deviceId = null;
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 203);
+    console.log("Version bravo: " + 205);
     getDevicebyRegKey(prefs.getString('reg_key'));
     init();
 });
