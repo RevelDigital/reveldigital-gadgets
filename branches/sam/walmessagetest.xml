@@ -52,7 +52,6 @@ function init() {
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
     if(Client != undefined) {
-      console.log(typeof data.message);
       Client.callback(data.message);
       console.log("Data messsage: " + data.message);
     }
@@ -65,7 +64,7 @@ function init() {
 }
 
 $(function() {
-  console.log("Version bravo: " + 301);
+  console.log("Version bravo: " + 201);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
