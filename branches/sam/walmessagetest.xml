@@ -60,9 +60,10 @@ function init() {
 }
 
 $(function() {
+  Client.callback('test');
     deviceId = 'test';
     prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 43);
+    console.log("Version bravo: " + 79);
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
