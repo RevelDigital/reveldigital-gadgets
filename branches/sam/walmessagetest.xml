@@ -46,36 +46,12 @@ function getDevicebyRegKey(regKey) {
     });
 }
 
-/*
-function init() {
-    var host = "ws://lumisnet.com:12345/sockets"; 
-    try {
-        socket = new WebSocket(host);
-        console.log('WebSocket - status '+ socket.readyState);
-        socket.onopen    = function(msg) { 
-                               console.log("Welcome - status " + this.readyState);
-                               socket.send(deviceId);
-                           };
-        socket.onmessage = function(msg) { 
-                               console.log("Received: " + msg.data);
-                               showText($.trim(msg.data));
-                           };
-        socket.onclose   = function(msg) { 
-                               console.log("Disconnected - status " + this.readyState); 
-                           };
-    }
-    catch(ex){ 
-        console.log(ex); 
-    }
-}
-
-*/
-
-
+//startup waiting for message from server
 function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
+    Client.callback(data.message);
     showText(data.message);
     setTimeout(function() {
       showText("");
@@ -83,7 +59,6 @@ function init() {
   });
 }
 
-//startup waiting for message from server
 $(function() {
     deviceId = 'test';
     prefs = new gadgets.Prefs();
@@ -91,35 +66,31 @@ $(function() {
     getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
-
 //show text from source given by server
 function showText(text) {
-    if(text.length == 0) {
-        $("#youhave").html("");
-        $("#name_of_queue").html("");
-        $("#forplayback").html("");
-    }
-    else {
-        $("#youhave").html("You have queued");
-        $("#name_of_queue").html(text);
-        $("#forplayback").html("for playback!");
-    }
+  if(text.length == 0) {
+      $("#youhave").html("");
+      $("#name_of_queue").html("");
+      $("#forplayback").html("");
+  }
+  else {
+      $("#youhave").html("You have queued");
+      $("#name_of_queue").html(text);
+      $("#forplayback").html("for playback!");
+  }
 }
-
-
-
 
 </script>
 
 <body>
-    <div id="youhave" class="textview">
-    </div>
+  <div id="youhave" class="textview">
+  </div>
 
-    <div id="name_of_queue">
-    </div>
+  <div id="name_of_queue">
+  </div>
 
-    <div id="forplayback" class="textview">
-    </div>
+  <div id="forplayback" class="textview">
+  </div>
 </body>
 
 ]]>
