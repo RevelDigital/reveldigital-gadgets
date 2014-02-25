@@ -51,7 +51,11 @@ function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
-    Client.callback(data.message);
+    if(Client != undefined) {
+      Client.callback(data.message);
+      console.log("Data messsage: " + data.message);
+    }
+    
     showText(data.message);
     setTimeout(function() {
       showText("");
@@ -60,7 +64,7 @@ function init() {
 }
 
 $(function() {
-  console.log("Version bravo: " + 700);
+  console.log("Version bravo: " + 201);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
