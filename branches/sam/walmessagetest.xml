@@ -28,7 +28,7 @@ body {
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/pusher.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/pusher.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 
 
@@ -42,7 +42,7 @@ function getDevicebyRegKey(regKey) {
             }
         }
 
-            init();
+        init();
     });
 }
 
@@ -51,7 +51,7 @@ function init() {
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
-    client.callback(data.message);
+    Client.callback(data.message);
     showText(data.message);
     setTimeout(function() {
       showText("");
@@ -60,24 +60,23 @@ function init() {
 }
 
 $(function() {
-  client.callback('test');
-    deviceId = 'test';
-    prefs = new gadgets.Prefs();
-    console.log("Version bravo: " + 500);
-    getDevicebyRegKey(prefs.getString('reg_key'));
+  console.log("Version bravo: " + 700);
+  deviceId = 'test';
+  prefs = new gadgets.Prefs();
+  getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
 //show text from source given by server
 function showText(text) {
   if(text.length == 0) {
-      $("#youhave").html("");
-      $("#name_of_queue").html("");
-      $("#forplayback").html("");
+    $("#youhave").html("");
+    $("#name_of_queue").html("");
+    $("#forplayback").html("");
   }
   else {
-      $("#youhave").html("You have queued");
-      $("#name_of_queue").html(text);
-      $("#forplayback").html("for playback!");
+    $("#youhave").html("You have queued");
+    $("#name_of_queue").html(text);
+    $("#forplayback").html("for playback!");
   }
 }
 
