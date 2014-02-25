@@ -48,12 +48,14 @@ function getDevicebyRegKey(regKey) {
 
 //startup waiting for message from server
 function init() {
+  console.log("init");
   var pusher = new Pusher('d18c609664168ec14d65');
   var channel = pusher.subscribe(deviceId);
   channel.bind('notification', function(data) {
+    console.log("before check");
     if(Client != undefined) {
+      console.log("Data message: " + data.message);
       Client.callback(data.message);
-      console.log("Data messsage: " + data.message);
     }
     
     showText(data.message);
