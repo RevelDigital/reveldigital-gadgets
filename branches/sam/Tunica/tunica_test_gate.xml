@@ -112,7 +112,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 15");
+    console.log("Version: 17");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -136,7 +136,7 @@ gadgets.util.registerOnLoadHandler(load);
       document.getElementById("next_flight_table").deleteRow(1);  
     }
     catch(e) {
-
+console.log("clear error");
     }
   }
 
