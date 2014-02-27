@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Flight Status Gadget" description="Flight status gadget" author="RevelDigital" background="transparent">
+  <UserPref name="airport_gate" display_name="Airport Gate" required="true" datatype="string" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
+  <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="15" />
+  <UserPref name="current-flight-style" display_name="Current Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-style" display_name="Next Flight Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="next-flight-header-style" display_name="Next Flight Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+<style type="text/css">
+
+  body {
+    background: transparent;
+  }
+
+  #current_flight {
+    margin: auto;
+  }
+
+  #current_flight_table {
+    text-align:center;
+    height:100%;
+    width:100%;
+    border-collapse:collapse;
+    __UP_current-flight-style__;
+    
+  }
+
+  #next_flight_table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    height:100%;
+    __UP_next-flight-style__;
+    
+  }
+
+  #header {
+    __UP_next-flight-header-style__;
+  }
+
+  #next_flight {
+    padding-top:5cm;
+  }
+
+  #logo {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+</style>
+
+
+
+<body>
+
+<div id="logo">
+
+</div>
+
+<div id="current_flight">
+<table id="current_flight_table">
+  <tr><td>
+    <div id="current_number"></div>
+  </td></tr>
+  <tr><td>
+    <div id="current_airline"></div>
+  </td></tr>
+  <tr><td>
+    <div id="current_location">Location: </div>
+  </td></tr>
+  <tr><td>
+    <div id="current_time">Time: </div>
+  </td></tr>
+  <tr><td>
+    <div id="current_status">Status: </div>
+  </td></tr>
+</table>
+</div>
+
+<div id="next_flight">
+ <table id="next_flight_table"><tbody>
+    <tr id="header"><th>Time</th><th>Flight #</th><th><div id='tofrom'>From</div></th><th>Airline</th><th>Status</th></tr>
+  </tbody></table>
+</div>
+
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+var prefs = new gadgets.Prefs();
+
+flights = [];
+
+  function load() {
+    getAirportImage();
+    refresh();
+    console.log("Version: 11");
+    setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+  }
+  
+gadgets.util.registerOnLoadHandler(load);
+
+</script>
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+  function clearFlights() {
+    console.log("clear flights");
+    flights.length = 0;
+    try {
+      document.getElementById("next_flight_table").deleteRow(1);  
+    }
+    catch(e) {
+
+    }
+  }
+
+
+
+
+  function refresh() {
+
+    clearFlights();
+
+    var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20http%3A%2F%2Flumisnet.com%2Ftunica.html%20AND%20xpath%3D%22%2F%2Fdiv%5B%40id%3D'content'%5D%22&diagnostics=false";
+
+    $.ajax({
+      url: url,
+      dataType: 'JSONP',
+      type: 'GET',
+      success: function (data) {
+
+        var current = data.results[0];
+
+        try {
+          var departures = current.substring(current.indexOf('<h3>Departures</h3>') + 20, current.lastIndexOf('</table>') + 9).trim();
+          createFlights(departures, 'departure');
+        }
+        catch(e) {
+          
+        }
+console.log("flights: " + flights.length);
+
+        if(flights.length == 0) {
+          showLogo();
+          console.log('No Flights');
+        }
+        else if(flights.length == 1) {
+          console.log("1 flight");
+          showCurrentFlight(flights[0]);
+          showFlights();
+        }
+        else {
+          console.log("2 flights");
+          showCurrentFlight(flights[0]);
+          showNextFlight(flights[1]);
+          showFlights();
+        }        
+      }
+    }); 
+  }
+
+
+  function showLogo() {
+    console.log("Show Logo");
+    $('#current_flight').fadeOut();
+    $('#next_flight').fadeOut();
+    $('#logo').fadeIn();
+  }
+
+  function showFlights() {
+    console.log("Show Flights");
+    $('#logo').fadeOut();
+    $('#current_flight').fadeIn();
+    $('#next_flight').fadeIn();
+  }
+
+  function getAirportImage() {
+    console.log("Get Aiport image");
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == 'talogo.png') {
+          $('#logo').html('<img src=' + currentImage.file_url + '>');
+        }
+      }
+    });
+  }
+
+  function getAirlineImage(airline, current) {
+console.log("get airline image");
+    var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+      currentAirline = airline.toLowerCase().replace(" ", "_") + '_logo.png';
+      for(var i=0; i < data.length; i++) {
+        var currentImage = data[i];
+        if(currentImage.file_name.toLowerCase() == currentAirline) {
+          if(current) {
+            $('#current_airline').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+          }
+          else {
+            $('#next_flight tr:nth-child(1) td:nth-child(4)').html('<img width=170px height=100px src=' + currentImage.file_url + '>');
+          }
+        }
+      }
+    });
+  }
+
+
+
+
+  function showCurrentFlight(flight) {
+console.log("Show current flight");
+
+    $('#current_number').text('Flight #: ' + flight.number);
+    $('#current_status').text('Status: ' + flight.status);
+    getAirlineImage(flight.airline, true);
+
+    $('#current_location').text('To: ' + flight.fromTo);
+    $('#current_time').text('Departure: ' + flight.time);
+  }
+  
+
+
+
+  function showNextFlight(flight) {
+console.log("Show next flight");
+    if(flight.fromTo == 'departure') {
+      arrivalToggle = true;
+      $('#toFrom').text('Destination');
+    }   
+
+    var cells = [];
+    var table = document.getElementById("next_flight_table");
+    var row = table.insertRow(1);
+
+    for(var j = 0; j < 6; j++) {
+      cells[j] = row.insertCell(j);
+    }
+
+    cells[0].innerHTML = flight.time;
+    cells[1].innerHTML = flight.number;
+    cells[2].innerHTML = flight.fromTo;
+    getAirlineImage(flight.airline, false);
+    cells[4].innerHTML = flight.status;
+  }
+
+
+  function Flight(info, type) {
+    this.airline = info[0].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.number = info[1].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.fromTo = info[2].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.gate = info[3].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.status = info[4].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+    this.time = info[5].innerHTML.replace(/(<([^>]+)>)/ig,"").trim();
+
+    this.type = type;
+
+    this.print=print;
+    function print() {
+      return 'Type: ' + this.type + '\nAirline: ' + this.airline + '\nFlight Number: ' + this.number +
+        '\nfromTo: ' + this.fromTo + '\nGate: ' + this.gate +
+        '\nStatus: ' + this.status + '\nTime: ' + this.time;
+    }
+  }
+
+
+
+function createFlights(data, type) {
+  console.log("create flights");
+  var $data = $(data);
+
+  for (var i = 0, row; row = $data[0].rows[i]; i++) {
+    row.children[0].innerHTML;
+    if(i!=0) {
+      var flight = new Flight(row.children, type);
+      if(flight.gate == prefs.getString('airport_gate')) {
+        flights.push(flight);
+      }
+    }
+  }
+}
+
+
+
+</script>
+
+]]>
+</Content>
+</Module>
