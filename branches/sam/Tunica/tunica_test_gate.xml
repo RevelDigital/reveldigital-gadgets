@@ -112,7 +112,7 @@ flights = [];
   function load() {
     getAirportImage();
     refresh();
-    console.log("Version: 11");
+    console.log("Version: 15");
     setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
   }
   
@@ -162,7 +162,7 @@ gadgets.util.registerOnLoadHandler(load);
           createFlights(departures, 'departure');
         }
         catch(e) {
-          
+          console.log("error");
         }
 console.log("flights: " + flights.length);
 
