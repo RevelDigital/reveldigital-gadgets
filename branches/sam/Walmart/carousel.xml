@@ -62,7 +62,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 9);
+  console.log("Version alpha: " + 11);
   getMedia();
 });
 
@@ -90,12 +90,14 @@ function init() {
       socketConnect();
   });
   socket.on('connect', function() {
+    console.log('Got connected');
       connected = true;
   });
   socket.emit('join room', deviceId);
 }
 
 function socketConnect() {
+  console.log('Trying to connect');
     socket = io.connect('http://65.183.249.120:3000/room');
     socket.emit('join room', deviceId);
     if(!connected) {
