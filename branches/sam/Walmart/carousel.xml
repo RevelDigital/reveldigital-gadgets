@@ -62,7 +62,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 5);
+  console.log("Version alpha: " + 7);
   getMedia();
 });
 
@@ -80,13 +80,14 @@ function specifyImage(image) {
 function init() {
 
 
-  var socket = io.connect('http://65.183.249.120:3000/room');
+  socket = io.connect('http://65.183.249.120:3000/room');
   socket.on('message', function(data) {
     specifyImage($.trim(data));
   });
   socket.on('disconnect', function() {
       console.log('Got disconnected');
-      socket.reconnect();
+      socket = io.connect('http://65.183.249.120:3000/room');
+      socket.emit('join room', deviceId);
   });
   socket.emit('join room', deviceId);
 }
