@@ -65,7 +65,7 @@ function init() {
 
 
 $(function() {
-  console.log("Version bravo: " + 1);
+  console.log("Version bravo: " + 2);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
