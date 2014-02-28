@@ -63,14 +63,15 @@ function init() {
   });
   socket.on('disconnect', function() {
       console.log('Got disconnected');
-      socket.reconnect();
+      socket = io.connect('http://65.183.249.120:3000/room');
+      socket.emit('join room', deviceId);
   });
   socket.emit('join room', deviceId);
 }
 
 
 $(function() {  
-  console.log("Version bravo: " + 5);
+  console.log("Version bravo: " + 7);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
