@@ -81,14 +81,14 @@ function socketConnect() {
     if(!connected) {
     setTimeout(function() {
       socketConnect();
-    }, 5000);
+    }, 10000);
     }
     
 }
 
 
 $(function() {  
-  console.log("Version bravo: " + 13);
+  console.log("Version bravo: " + 15);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
