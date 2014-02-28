@@ -62,7 +62,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 7);
+  console.log("Version alpha: " + 9);
   getMedia();
 });
 
@@ -78,18 +78,32 @@ function specifyImage(image) {
 }
 
 function init() {
-
+  connected = false;
 
   socket = io.connect('http://65.183.249.120:3000/room');
   socket.on('message', function(data) {
     specifyImage($.trim(data));
   });
   socket.on('disconnect', function() {
+      connected = false;
       console.log('Got disconnected');
-      socket = io.connect('http://65.183.249.120:3000/room');
-      socket.emit('join room', deviceId);
+      socketConnect();
+  });
+  socket.on('connect', function() {
+      connected = true;
   });
   socket.emit('join room', deviceId);
+}
+
+function socketConnect() {
+    socket = io.connect('http://65.183.249.120:3000/room');
+    socket.emit('join room', deviceId);
+    if(!connected) {
+    setTimeout(function() {
+      socketConnect();
+    }, 5000);
+    }
+    
 }
 
 

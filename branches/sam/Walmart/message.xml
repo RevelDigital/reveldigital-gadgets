@@ -62,16 +62,30 @@ function init() {
     }, 20000);
   });
   socket.on('disconnect', function() {
+      connected = false;
       console.log('Got disconnected');
-      socket = io.connect('http://65.183.249.120:3000/room');
-      socket.emit('join room', deviceId);
+      socketConnect();
+  });
+  socket.on('connect', function() {
+      connected = true;
   });
   socket.emit('join room', deviceId);
 }
 
+function socketConnect() {
+    socket = io.connect('http://65.183.249.120:3000/room');
+    socket.emit('join room', deviceId);
+    if(!connected) {
+    setTimeout(function() {
+      socketConnect();
+    }, 5000);
+    }
+    
+}
+
 
 $(function() {  
-  console.log("Version bravo: " + 7);
+  console.log("Version bravo: " + 9);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
