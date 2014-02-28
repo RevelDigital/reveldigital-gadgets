@@ -61,12 +61,16 @@ function init() {
       showText("");
     }, 20000);
   });
+  socket.on('disconnect', function() {
+      console.log('Got disconnected');
+      socket.reconnect();
+  });
   socket.emit('join room', deviceId);
 }
 
 
 $(function() {  
-  console.log("Version bravo: " + 3);
+  console.log("Version bravo: " + 5);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
