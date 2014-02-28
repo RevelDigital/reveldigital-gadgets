@@ -48,8 +48,9 @@ function getDevicebyRegKey(regKey) {
 
 //startup waiting for message from server
 function init() {
-  console.log("init");
-  var socket = io.connect('http://65.183.249.120:3000/room');
+  connected = false;
+  
+  socketConnect();
   
   socket.on('message', function(data) {
     if(Client != undefined) {
@@ -67,12 +68,14 @@ function init() {
       socketConnect();
   });
   socket.on('connect', function() {
+    console.log('Got Connected');
       connected = true;
   });
   socket.emit('join room', deviceId);
 }
 
 function socketConnect() {
+  console.log('Trying to connect');
     socket = io.connect('http://65.183.249.120:3000/room');
     socket.emit('join room', deviceId);
     if(!connected) {
@@ -85,7 +88,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version bravo: " + 9);
+  console.log("Version bravo: " + 13);
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
