@@ -62,7 +62,7 @@ $(function () {
   prefs = new gadgets.Prefs();
  
   currentImage = "null";
-  console.log("Version alpha: " + 11);
+  console.log("Version alpha: " + 13);
   getMedia();
 });
 
@@ -80,7 +80,7 @@ function specifyImage(image) {
 function init() {
   connected = false;
 
-  socket = io.connect('http://65.183.249.120:3000/room');
+  socketConnect();
   socket.on('message', function(data) {
     specifyImage($.trim(data));
   });
