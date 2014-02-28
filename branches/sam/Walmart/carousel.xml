@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Playlist Carousel Gadget" description="Displays a playlist in a photo carousel." author="RevelDigital" background="transparent">
+  <UserPref name="time_delay" display_name="Delay between images moving (seconds)" datatype="string" default_value="5" required="true" />
+  <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
+  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
+  <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
+    <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.waterwheelCarousel.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.roundabout.min.js"></script>
+<script type="text/javascript">
+
+function getDevicebyRegKey(regKey) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString("api_key"), function (data) {
+      
+      for(var i=0; i < data.length; i++) {
+          var currentDevice = data[i];
+          if(currentDevice.registration_key == regKey) {
+            deviceId = currentDevice.id;
+          }
+      }
+
+      init();
+
+    });
+}
+
+
+function getMedia() {
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
+      
+    for(var i=0; i < data.length; i++) {
+      var currentPlaylist = data[i];
+      if(currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
+        for(var j=0; j<currentPlaylist.sources.length; j++) {
+          var image = currentPlaylist.sources[j].media.file_url;
+          image = image.split(' ').join('%20');
+          $("#carousel").append('<li><img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name +'"/></li>');
+        }
+      }
+    }
+
+      $('ul').roundabout({
+        autoplay: true,
+        autoplayDuration: prefs.getInt('time_delay')*1000,
+      });
+      getDevicebyRegKey(prefs.getString('reg_key'));
+      
+    });
+  }
+
+$(function () {
+  deviceId = null;
+  prefs = new gadgets.Prefs();
+ 
+  currentImage = "null";
+  console.log("Version alpha: " + 1);
+  getMedia();
+});
+
+
+function specifyImage(image) {
+
+    $("[id='" + image + "']").trigger("click");
+    $('ul').roundabout('stopAutoplay');
+    setTimeout(function() {
+      $('ul').roundabout('startAutoplay');
+    }, 20000);
+
+}
+
+function init() {
+
+
+  var socket = io.connect('http://65.183.249.120:3000/room');
+  socket.emit('join room', deviceId);
+  socket.on('message', function(data) {
+    specifyImage($.trim(data.message));
+  });
+}
+
+
+
+
+</script>
+
+
+<style type="text/css">
+html{
+  height: 100%;
+}
+
+body {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  font-family:Arial;
+  font-size:12px;
+  background:transparent;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 75%;
+  height: 28em;
+}
+li {
+  height: 24em;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+li img {
+  width: 100%;
+}
+li.roundabout-in-focus {
+  cursor: default;
+}
+li span {
+  display: block;
+  padding-top: 6em;
+}
+
+img {
+  -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
+}
+</style>
+</head>
+
+<body>
+<ul id = "carousel">
+</ul
+  </body>
+
+</html>
+
+]]>
+</Content>
+</Module>
