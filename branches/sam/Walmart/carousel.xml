@@ -103,7 +103,7 @@ function socketConnect() {
     if(!connected) {
     setTimeout(function() {
       socketConnect();
-    }, 5000);
+    }, 10000);
     }
     
 }
