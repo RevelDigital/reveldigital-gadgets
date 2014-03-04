@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Playlist Carousel Gadget" description="Displays a playlist in a photo carousel." author="RevelDigital" background="transparent">
+
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<style type="text/css">
+
+body {
+	text-align: center;
+	padding-bottom: 25px;
+	margin: 0px;
+	min-height: 100%;
+   	width: 100%;
+}
+
+.button_holder {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.button_box {
+	text-align: center;
+	padding-left: 25px;
+}
+
+#header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: #1A75CF;
+	height: 100px;
+	width: 100%;
+	margin: 0 auto; 
+}
+
+#header_text {
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+.walmart_blue {
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+	background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+	background-color:#3d94f6;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0;
+	border:1px solid #337fed;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:65px;
+	line-height:65px;
+	width:140px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #1570cd;
+}
+
+.walmart_blue:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+	background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+	background-color:#1e62d0;
+}
+
+.walmart_blue:active {
+	position:relative;
+	top:1px;
+}
+
+#loading_text {
+	margin: auto;
+	vertical-align: middle;
+	padding-top: 100px;
+	display:none;
+}
+
+</style>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/spin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
+<script type="text/javascript">
+
+
+function getMedia() {
+
+    var image = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + api_key, function (data) {
+
+	    for(var i=0; i < data.length; i++) {
+	        var currentPlaylist = data[i];
+	        if(currentPlaylist.name.toLowerCase() == playlist_name.toLowerCase()) {
+	        	for(var j=0; j<currentPlaylist.sources.length; j++) {
+	        		items.push(currentPlaylist.sources[j].media);
+	        	}
+	        }
+	    }
+		makeButtons();
+    });
+}
+
+
+function getDevicebyRegKey(regKey, index) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + api_key, function (data) {
+      
+	    for(var i=0; i < data.length; i++) {
+	        var currentDevice = data[i];
+	        if(currentDevice.registration_key == regKey) {
+	        	console.log("deviceID: " + currentDevice.id);
+	        	socket.emit('join room', currentDevice.id);
+	        	sendCommand(currentDevice.id, index);
+	        	
+	        }
+	    }
+
+    });
+}
+
+
+function sendCommand(deviceId, image) {
+  	
+  	socket.emit('fromclient', items[image].name);
+  	
+}
+
+
+
+function makeButtons() {
+	for(var k=0; k<items.length; k++) {
+		var url = items[k].file_url;
+        var button = $('<div class="button_holder"><input type="button" id="' + k + '" class="walmart_blue" value="' + items[k].name + '"/></div>');
+        $('#loading_text').css('display', 'none');
+        $("#button_space").append(button);
+    }
+}
+
+function countDown(){
+	$("#countdown").show();
+	
+    if (t--) {
+       setTimeout(countDown, 1000);
+    } 
+    else {
+    	$(".button_holder").show();
+	    $("#header_text").text("Tap a button to select the video of your choice.");
+    }
+}
+
+
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+
+$(function() {
+	reg_key = getUrlVars()["reg_key"];
+	playlist_name = getUrlVars()["playlist_name"];
+	api_key = getUrlVars()["api_key"];
+	playlist_name = playlist_name.replace('%20', ' ');
+	socket = io.connect('http://65.183.249.120:3000/room');
+	$("#countdown").hide();
+	target = document.getElementById('loading_text');
+	spinner = new Spinner().spin(target);
+ 	console.log("RegKey: " + reg_key);
+
+ 	$("#loading_text").css('display','inline-block');
+
+  	$("body").on('click', '.walmart_blue', function(button) {
+		getDevicebyRegKey(reg_key, button.toElement.id);
+		$(".button_holder").hide();
+		$("#loading_text").css('display','inline-block');
+		$("#header_text").text("Please wait while your video is added to the queue.");
+		window.setTimeout(function (){
+			t = 30;
+			$('#header_text').html("<div style='font-size:20px; font-weight:bold;'>" + items[button.toElement.id].name + "</div><br>will play on the display shortly.");
+			$('#loading_text').css('display', 'none');
+			countDown();
+		}, 1000);
+    });
+
+  	items = [];
+
+  	getMedia();
+
+
+});
+
+
+
+</script>
+
+
+<html>
+	<body>
+		<div id='header_text'>
+			Tap a button to select the video of your choice.
+		</div>
+		<div id="button_space">
+		</div>
+		<div id='loading_text'>
+		</div>
+	</body>
+<html>
+
+]]>
+</Content>
+</Module>
