@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
+  <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
   <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
   <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
   <UserPref name="name-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
