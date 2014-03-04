@@ -33,6 +33,7 @@ body {
 
 
 function getDevicebyRegKey(regKey) {
+  console.log("getdevice");
     var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
       
         for(var i=0; i < data.length; i++) {
@@ -48,6 +49,7 @@ function getDevicebyRegKey(regKey) {
 
 //startup waiting for message from server
 function init() {
+  console.log("init");
   connected = false;
   
   socketConnect();
@@ -88,6 +90,7 @@ function socketConnect() {
 
 
 $(function() {  
+  console.log("start");
   deviceId = 'test';
   prefs = new gadgets.Prefs();
   getDevicebyRegKey(prefs.getString('reg_key'));
