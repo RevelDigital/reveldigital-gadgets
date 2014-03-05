@@ -69,9 +69,10 @@ function init() {
   });
   socket.on('connect', function() {
     console.log('Got Connected');
-      connected = true;
+    connected = true;
   });
-  socket.emit('join room', deviceId);
+ 
+   socket.emit('join room', deviceId);
 }
 
 function socketConnect() {
@@ -79,9 +80,9 @@ function socketConnect() {
     socket = io.connect('http://65.183.249.120:3000/room');
     socket.emit('join room', deviceId);
     if(!connected) {
-    setTimeout(function() {
-      socketConnect();
-    }, 10000);
+      setTimeout(function() {
+        socketConnect();
+      }, 10000);
     }
     
 }

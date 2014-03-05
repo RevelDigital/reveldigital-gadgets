@@ -291,6 +291,7 @@ console.log("Show next flight");
 
 
 
+
 function createFlights(data, type) {
   console.log("create flights");
   var $data = $(data);

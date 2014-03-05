@@ -81,18 +81,20 @@ function init() {
   connected = false;
 
   socketConnect();
+
   socket.on('message', function(data) {
     specifyImage($.trim(data));
   });
   socket.on('disconnect', function() {
-      connected = false;
-      console.log('Got disconnected');
-      socketConnect();
+    connected = false;
+    console.log('Got disconnected');
+    socketConnect();
   });
   socket.on('connect', function() {
     console.log('Got connected');
-      connected = true;
+    connected = true;
   });
+  
   socket.emit('join room', deviceId);
 }
 
@@ -101,11 +103,10 @@ function socketConnect() {
     socket = io.connect('http://65.183.249.120:3000/room');
     socket.emit('join room', deviceId);
     if(!connected) {
-    setTimeout(function() {
-      socketConnect();
-    }, 10000);
-    }
-    
+      setTimeout(function() {
+        socketConnect();
+      }, 10000);
+    } 
 }
 
 
