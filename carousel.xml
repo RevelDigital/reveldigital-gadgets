@@ -3,7 +3,7 @@
 <ModulePrefs title="Playlist Carousel Gadget" description="Displays a playlist in a photo carousel." author="RevelDigital" background="transparent">
   <UserPref name="time_delay" display_name="Delay between images moving (seconds)" datatype="string" default_value="5" required="true" />
   <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
-  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
+  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" default_value="*|DEVICE.REGISTRATIONKEY|*" />
   <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
