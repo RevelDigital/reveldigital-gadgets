@@ -166,7 +166,7 @@
           socket.emit('join room', currentDevice.id);
           sendCommand(currentDevice.id, index);
         }
-      }
+      });
     });
   }
 
