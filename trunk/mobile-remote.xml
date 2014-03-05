@@ -128,10 +128,10 @@
     target = document.getElementById('loading_text');
     spinner = new Spinner().spin(target);
 
-    $("#loading_text").css('display', 'inline-block');
+    $('#loading_text').css('display', 'inline-block');
 
-    $("body").on('click', '.walmart_blue', function (button) {
-      getDevicebyRegKey(reg_key, button.toElement.id);
+    $('body').on('click', '.walmart_blue', function (button) {
+      getDevicebyRegKey(button.toElement.id);
       $(".button_holder").hide();
       $("#loading_text").css('display', 'inline-block');
       $("#header_text").text("Please wait while your video is added to the queue.");
@@ -158,13 +158,13 @@
     });
   }
   
-  function getDevicebyRegKey(regKey, index) {
+  function getDevicebyRegKey(index) {
     var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + api_key, function (data) {
       $.each(data, function (idx, device) {
-        if (device.registration_key == prefs.getString("regkey")) {
-          console.log("deviceID: " + currentDevice.id);
-          socket.emit('join room', currentDevice.id);
-          sendCommand(currentDevice.id, index);
+        if (device.registration_key == prefs.getString('regkey')) {
+          console.log('deviceID: ' + device.id);
+          socket.emit('join room', device.id);
+          sendCommand(device.id, index);
         }
       });
     });
