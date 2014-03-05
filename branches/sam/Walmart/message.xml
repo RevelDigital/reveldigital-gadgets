@@ -33,7 +33,7 @@ body {
 
 
 function getDevicebyRegKey(regKey) {
-    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+    var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
       
         for(var i=0; i < data.length; i++) {
             var currentDevice = data[i];
