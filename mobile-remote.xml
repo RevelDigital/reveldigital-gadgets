@@ -146,7 +146,7 @@
   }
   
   function getMedia() {
-    var playlist = $.getJSON("http://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
+    var playlist = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString("apikey"), function (data) {
       $.each(data, function (idx, playlist) {
         if (playlist.name.toLowerCase() == prefs.getString("playlist").toLowerCase()) {
           $.each(playlist.sources, function (sourceIdx, source) {
@@ -159,7 +159,7 @@
   }
   
   function getDevicebyRegKey(index) {
-    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + api_key, function (data) {
+    var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + api_key, function (data) {
       $.each(data, function (idx, device) {
         if (device.registration_key == prefs.getString('regkey')) {
           console.log('deviceID: ' + device.id);
