@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Slideshow Gadget" description="Transitions between images from the specified playlist" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" />
-  <UserPref name="regkey" display_name="Device Registration Key" datatype="string" />
+  <UserPref name="regkey" display_name="Device Registration Key" datatype="string" default_value="*|DEVICE.REGISTRATIONKEY|*" />
   <UserPref name="playlist" display_name="Playlist" datatype="string" />
 </ModulePrefs>
 <Content type="html">
@@ -124,7 +124,7 @@
   
   function load() {
 
-    socket = io.connect('http://shindig.reveldigital.com:3000/room');
+    socket = io.connect('http://shindig.reveldigital.com:3000/room', {secure: true});
     target = document.getElementById('loading_text');
     spinner = new Spinner().spin(target);
 
