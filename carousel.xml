@@ -63,87 +63,84 @@ img {
 
 <script type="text/javascript">
 
-function getDevicebyRegKey(regKey) {
-  var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("api_key"), function (data) {
-    $.each(data, function (idx, device) {
-      if (device.registration_key == regKey) {
-        deviceId = device.id;
-      }
+  var prefs = new gadgets.Prefs();
+  var deviceId;
+  
+  function getDevicebyRegKey(regKey) {
+    var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("api_key"), function (data) {
+      $.each(data, function (idx, device) {
+        if (device.registration_key == regKey) {
+          deviceId = device.id;
+        }
+      });
+      init();
     });
-    init();
-  });
-}
-
-function getMedia() {
-  var image = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
-    $.each(data, function (idx, playlist) {
-      if (playlist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
-        $.each(playlist.sources, function (sourceIdx, source) {
-          $("#carousel").append('<li><img src="' + source.media.file_url + '" class="car_image" id="' + source.media.name + '"/></li>');
-        });
-      }
-    });
-
-    $('ul').roundabout({
-      autoplay: true,
-      autoplayDuration: prefs.getInt('time_delay') * 1000,
-    });
-    getDevicebyRegKey(prefs.getString('reg_key'));
-  });
-}
-
-function load() {
-  deviceId = null;
-  prefs = new gadgets.Prefs();
-
-  currentImage = "null";
-  console.log("Version alpha: " + 13);
-  getMedia();
-}
-
-function specifyImage(image) {
-
-  $("[id='" + image + "']").trigger("click");
-  $('ul').roundabout('stopAutoplay');
-  setTimeout(function () {
-    $('ul').roundabout('startAutoplay');
-  }, 20000);
-
-}
-
-function init() {
-  connected = false;
-
-  socketConnect();
-
-  socket.on('message', function (data) {
-    specifyImage($.trim(data));
-  });
-  socket.on('disconnect', function () {
-    connected = false;
-    console.log('Got disconnected');
-    socketConnect();
-  });
-  socket.on('connect', function () {
-    console.log('Got connected');
-    connected = true;
-  });
-
-  socket.emit('join room', deviceId);
-}
-
-function socketConnect() {
-  console.log('Trying to connect');
-  socket = io.connect('http://65.183.249.120:3000/room');
-  socket.emit('join room', deviceId);
-  if (!connected) {
-    setTimeout(function () {
-      socketConnect();
-    }, 10000);
   }
-}
 
-gadgets.util.registerOnLoadHandler(load);
+  function getMedia() {
+    var image = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
+      $.each(data, function (idx, playlist) {
+        if (playlist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
+          $.each(playlist.sources, function (sourceIdx, source) {
+            $("#carousel").append('<li><img src="' + source.media.file_url + '" class="car_image" id="' + source.media.name + '"/></li>');
+          });
+        }
+      });
+
+      $('ul').roundabout({
+        autoplay: true,
+        autoplayDuration: prefs.getInt('time_delay') * 1000,
+      });
+      getDevicebyRegKey(prefs.getString('reg_key'));
+    });
+  }
+
+  function load() {
+    currentImage = "null";
+    console.log("Version alpha: " + 13);
+    getMedia();
+  }
+
+  function specifyImage(image) {
+    $("[id='" + image + "']").trigger("click");
+    $('ul').roundabout('stopAutoplay');
+    setTimeout(function () {
+      $('ul').roundabout('startAutoplay');
+    }, 20000);
+  }
+
+  function init() {
+    connected = false;
+
+    socketConnect();
+
+    socket.on('message', function (data) {
+      specifyImage($.trim(data));
+    });
+    socket.on('disconnect', function () {
+      connected = false;
+      console.log('Carousel: Got disconnected');
+      setTimeout(function () {
+        socketConnect();
+      }, 10000);
+    });
+    socket.on('connect', function () {
+      console.log('Carousel: Got connected');
+      connected = true;
+      socket.emit('join room', deviceId);
+    });
+
+    //socket.emit('join room', deviceId);
+  }
+
+  function socketConnect() {
+    console.log('Carousel: Trying to connect');
+    socket = io.connect('http://65.183.249.120:3000/room');
+    if (!connected) {
+    }
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
 
 </script>
 ]]>
