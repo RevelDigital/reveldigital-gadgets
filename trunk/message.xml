@@ -38,10 +38,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
-  function getDevicebyRegKey(regKey) {
-    var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+  var prefs = new gadgets.Prefs();
+  var deviceId;
+  
+  function getDevicebyRegKey() {
+    $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
       $.each(data, function (idx, device) {
-        if (device.registration_key == regKey) {
+        if (device.registration_key == prefs.getString('reg_key')) {
           deviceId = currentDevice.id;
         }
       });
@@ -68,33 +71,30 @@
     socket.on('disconnect', function () {
       connected = false;
       console.log('Got disconnected');
-      socketConnect();
+      setTimeout(function () {
+        socketConnect();
+      }, 10000);
     });
     socket.on('connect', function () {
       console.log('Got Connected');
       connected = true;
+      socket.emit('join room', deviceId);
     });
 
-    socket.emit('join room', deviceId);
+    //socket.emit('join room', deviceId);
   }
 
   function socketConnect() {
     console.log('Trying to connect');
     socket = io.connect('http://65.183.249.120:3000/room');
-    socket.emit('join room', deviceId);
+    
     if (!connected) {
-      setTimeout(function () {
-        socketConnect();
-      }, 10000);
     }
-
   }
 
   function load() {
     console.log("Version bravo: " + 15);
-    deviceId = 'test';
-    prefs = new gadgets.Prefs();
-    getDevicebyRegKey(prefs.getString('reg_key'));
+    getDevicebyRegKey();
   }
 
   //show text from source given by server
