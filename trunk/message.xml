@@ -64,19 +64,20 @@
         Client.callback(data);
       }
       showText(data);
+      
       setTimeout(function () {
         showText("");
       }, 20000);
     });
     socket.on('disconnect', function () {
       connected = false;
-      console.log('Got disconnected');
+      console.log('Message: Got disconnected');
       setTimeout(function () {
         socketConnect();
       }, 10000);
     });
     socket.on('connect', function () {
-      console.log('Got Connected');
+      console.log('Message: Got Connected');
       connected = true;
       socket.emit('join room', deviceId);
     });
@@ -85,7 +86,7 @@
   }
 
   function socketConnect() {
-    console.log('Trying to connect');
+    console.log('Message: Trying to connect');
     socket = io.connect('http://65.183.249.120:3000/room');
     
     if (!connected) {
