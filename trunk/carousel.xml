@@ -115,6 +115,7 @@ img {
     socketConnect();
 
     socket.on('message', function (data) {
+      console.log('Carousel: message:' + data);
       specifyImage($.trim(data));
     });
     socket.on('disconnect', function () {
@@ -127,6 +128,7 @@ img {
     socket.on('connect', function () {
       console.log('Carousel: Got connected');
       connected = true;
+      console.log('Carousel: Joining' + deviceId);
       socket.emit('join room', deviceId);
     });
 
