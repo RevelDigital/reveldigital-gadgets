@@ -80,9 +80,9 @@ function getMedia() {
       if (playlist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
         $.each(playlist.sources, function (sourceIdx, source) {
           $("#carousel").append('<li><img src="' + source.media.file_url + '" class="car_image" id="' + source.media.name + '"/></li>');
-        }
+        });
       }
-    }
+    });
 
     $('ul').roundabout({
       autoplay: true,
