@@ -59,8 +59,9 @@
     socketConnect();
 
     socket.on('message', function (data) {
-      if (Client != undefined) {
-        console.log("Data message: " + data);
+      console.log("Message: Msg: " + data);
+      
+      if (typeof Client != 'undefined') {
         Client.callback(data);
       }
       showText(data);
@@ -79,6 +80,7 @@
     socket.on('connect', function () {
       console.log('Message: Got Connected');
       connected = true;
+      console.log('Message: Joining: ' + deviceId);
       socket.emit('join room', deviceId);
     });
 
