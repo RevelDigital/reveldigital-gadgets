@@ -37,16 +37,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
 <script type="text/javascript" charset="utf-8">
+
   function getDevicebyRegKey(regKey) {
     var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
-
-      for (var i = 0; i < data.length; i++) {
-        var currentDevice = data[i];
-        if (currentDevice.registration_key == regKey) {
+      $.each(data, function (idx, device) {
+        if (device.registration_key == regKey) {
           deviceId = currentDevice.id;
         }
-      }
-
+      });
       init();
     });
   }
