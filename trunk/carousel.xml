@@ -65,27 +65,21 @@ img {
 
 function getDevicebyRegKey(regKey) {
   var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("api_key"), function (data) {
-
-    for (var i = 0; i < data.length; i++) {
-      var currentDevice = data[i];
-      if (currentDevice.registration_key == regKey) {
-        deviceId = currentDevice.id;
+    $.each(data, function (idx, device) {
+      if (device.registration_key == regKey) {
+        deviceId = device.id;
       }
-    }
+    });
     init();
   });
 }
 
 function getMedia() {
   var image = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + prefs.getString('api_key'), function (data) {
-
-    for (var i = 0; i < data.length; i++) {
-      var currentPlaylist = data[i];
-      if (currentPlaylist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
-        for (var j = 0; j < currentPlaylist.sources.length; j++) {
-          var image = currentPlaylist.sources[j].media.file_url;
-          image = image.split(' ').join('%20');
-          $("#carousel").append('<li><img src="' + image + '" class="car_image" id="' + currentPlaylist.sources[j].media.name + '"/></li>');
+    $.each(data, function (idx, playlist) {
+      if (playlist.name.toLowerCase() == prefs.getString('playlist_name').toLowerCase()) {
+        $.each(playlist.sources, function (sourceIdx, source) {
+          $("#carousel").append('<li><img src="' + source.media.file_url + '" class="car_image" id="' + source.media.name + '"/></li>');
         }
       }
     }
