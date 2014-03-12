@@ -23,6 +23,29 @@ body {
     text-align:center;
 }
 
+#container {width:820px;height:100px;overflow:hidden;}
+#container.rotate90,#container.rotate270 {width:100px;height:820px}
+#image {
+    transform-origin: top left; /* IE 10+, Firefox, etc. */
+    -webkit-transform-origin: top left; /* Chrome */
+    -ms-transform-origin: top left; /* IE 9 */
+}
+#container.rotate90 #image {
+    transform: rotate(90deg) translateY(-100%);
+    -webkit-transform: rotate(90deg) translateY(-100%);
+    -ms-transform: rotate(90deg) translateY(-100%);
+}
+#container.rotate180 #image {
+    transform: rotate(180deg) translate(-100%,-100%);
+    -webkit-transform: rotate(180deg) translate(-100%,-100%);
+    -ms-transform: rotate(180deg) translateX(-100%,-100%);
+}
+#container.rotate270 #image {
+    transform: rotate(270deg) translateX(-100%);
+    -webkit-transform: rotate(270deg) translateX(-100%);
+    -ms-transform: rotate(270deg) translateX(-100%);
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -41,9 +64,11 @@ function init() {
   socket.on('message', function(data) {
 
     showText(data);
-    setTimeout(function() {
-      showText("");
-    }, 20000);
+var angle = data, img = document.getElementById('container');
+angle = (angle+90)%360;
+    img.className = "rotate"+angle;
+
+    
   });
   socket.on('disconnect', function() {
       connected = false;
@@ -72,7 +97,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 12);
+  console.log("Version omega: " + 15);
   deviceId = 'test';
   init();
 });
@@ -99,7 +124,8 @@ function showText(text) {
   <div id="name_of_queue">
   </div>
 
-  <div id="forplayback" class="textview">
+  <div id="container" class="textview">
+  <img src="http://www.lumisnet.com/arrow.jpg">
   </div>
 </body>
 
