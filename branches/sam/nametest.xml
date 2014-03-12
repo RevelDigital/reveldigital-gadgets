@@ -97,7 +97,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 15);
+  console.log("Version omega: " + 17);
   deviceId = 'test';
   init();
 });
@@ -124,7 +124,7 @@ function showText(text) {
   <div id="name_of_queue">
   </div>
 
-  <div id="container" class="textview">
+  <div id="container">
   <img src="http://www.lumisnet.com/arrow.jpg">
   </div>
 </body>
