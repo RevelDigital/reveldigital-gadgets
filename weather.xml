@@ -162,7 +162,7 @@
           <div class="day-container">
             <span>Current Conditions</span>
           </div>
-          <img class="icon invisible" src="" />
+          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/18d.png" />
           <div class="temp-container">
             <div class="temp invisible"><span></span>&#176;</div>
           </div>
@@ -175,15 +175,15 @@
           <div class="day-container">
             <span>Today</span>
           </div>
-          <img class="icon" src="" />
+          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/30d.png" />
           <div class="temp-container">
-            <div class="temp-title">High:</div>
-            <div class="high"><span></span>&#176;</div>
-            <div class="temp-title">Low:</div>
-            <div class="low"><span></span>&#176;</div>
+            <div class="temp-title invisible">High:</div>
+            <div class="high invisible"><span></span>&#176;</div>
+            <div class="temp-title invisible">Low:</div>
+            <div class="low invisible"><span></span>&#176;</div>
           </div>
           <div class="condition-container">
-            <div class="condition"></div>
+            <div class="condition invisible"></div>
           </div>
         </div>
       </div>
@@ -194,15 +194,15 @@
           <div class="day-container">
             <span>Tomorrow</span>
           </div>
-          <img class="icon" src="" />
+          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/15d.png" />
           <div class="temp-container">
-            <div class="temp-title">High:</div>
-            <div class="high"><span></span>&#176;</div>
-            <div class="temp-title">Low:</div>
-            <div class="low"><span></span>&#176;</div>
+            <div class="temp-title invisible">High:</div>
+            <div class="high invisible"><span></span>&#176;</div>
+            <div class="temp-title invisible">Low:</div>
+            <div class="low invisible"><span></span>&#176;</div>
           </div>
           <div class="condition-container">
-            <div class="condition"></div>
+            <div class="condition invisible"></div>
           </div>
         </div>
       </div>
