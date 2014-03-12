@@ -136,9 +136,9 @@
   
   .icon {
     position: absolute;
-    top: 10;
+    top: 6vh;
     left: 10;
-    height: 45vh;
+    height: 35vh;
     width: 70vh;
   }
   
