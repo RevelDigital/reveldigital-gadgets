@@ -58,7 +58,7 @@
     width: 100%;
     background-image: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/images/weather-cap.png');
     background-repeat: no-repeat;
-    background-size: 100% 15vh;
+    background-size: 100% 45%;
   }
   
   #current .temp-container {
