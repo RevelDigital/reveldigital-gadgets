@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
-  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
   <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
   <UserPref name="name-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
 </ModulePrefs>
@@ -32,19 +30,7 @@ body {
 <script type="text/javascript" charset="utf-8">
 
 
-function getDevicebyRegKey(regKey) {
-    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
-      
-        for(var i=0; i < data.length; i++) {
-            var currentDevice = data[i];
-            if(currentDevice.registration_key == regKey) {
-                deviceId = currentDevice.id;
-            }
-        }
 
-        init();
-    });
-}
 
 //startup waiting for message from server
 function init() {
@@ -61,11 +47,11 @@ function init() {
   });
   socket.on('disconnect', function() {
       connected = false;
-      console.log('Got disconnected');
+      console.log('mesage Got disconnected');
       socketConnect();
   });
   socket.on('connect', function() {
-    console.log('Got Connected');
+    console.log('mesage Got Connected');
     connected = true;
   });
  
@@ -86,10 +72,9 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version bravo: " + 15);
+  console.log("Version omega: " + 12);
   deviceId = 'test';
-  prefs = new gadgets.Prefs();
-  getDevicebyRegKey(prefs.getString('reg_key'));
+  init();
 });
 
 //show text from source given by server
