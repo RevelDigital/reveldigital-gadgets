@@ -31,14 +31,14 @@
   }
 
   table {
-    height: 100%;
-    width: 100%;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
   }
   
   #container {
     position: relative;
-    height: 100%;
-    width: 100%;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
   }
   
   td, .box {
