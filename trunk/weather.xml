@@ -56,7 +56,7 @@
     position: relative;
     height: 100%;
     width: 100%;
-    background-image: url('weather-cap.png');
+    background-image: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/images/weather-cap.png');
     background-repeat: no-repeat;
     background-size: 100% 15vh;
   }
@@ -227,6 +227,11 @@
     if (prefs.getString("TileColor") == "") {
       $(".box").css("box-shadow", "none");
     }
+    jQuery("#current .temp-container .temp").fitText(1, { vh: 15 });
+    jQuery(".temp-title").fitText(1, { vh: 3 });
+    jQuery(".low, .high").fitText(1, { vh: 7.5 });
+    jQuery(".condition-container").fitText(1, { vh: 4 });
+    jQuery(".day-container").fitText(1, { vh: 4 });
   }
   
   var search = prefs.getString("Location");
