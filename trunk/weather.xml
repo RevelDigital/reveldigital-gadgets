@@ -221,10 +221,14 @@
 
   function load() {
     getWOEID(search);
+    
+    if (prefs.getString("TileColor") == "") {
+      $(".box").css("box-shadow", "none");
+    }
   }
   
-  var search = "Ft Myers, FL";
-  var unit = "f";
+  var search = prefs.getString("Location");
+  var unit = prefs.getString("Units");
   
   function getWeather(woeid) {
   
