@@ -87,10 +87,11 @@ var angle = blah, img = document.getElementById('container');
       img.className = "rotate90";
     }
     else if(blah < -1) {
-      img.className = "image";
+     img.className = "rotate180";
     }
     else if(blah > 1) {
-      img.className = "rotate180";
+      img.className = "image";
+      
     }
     
 
@@ -123,7 +124,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 11);
+  console.log("Version omega: " + 15);
   deviceId = 'test';
   init();
 });
