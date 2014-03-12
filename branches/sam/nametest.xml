@@ -31,9 +31,9 @@ img {
 #container {width:820px;height:100px;overflow:hidden;}
 #container.rotate90,#container.rotate270 {width:100px;height:820px}
 #image {
-    transform-origin: top left; /* IE 10+, Firefox, etc. */
-    -webkit-transform-origin: top left; /* Chrome */
-    -ms-transform-origin: top left; /* IE 9 */
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
 }
 #container.rotate90 #image {
     transform: rotate(90deg) translateY(-100%);
@@ -80,19 +80,23 @@ function init() {
 
     showText(data);
     var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
+    var blah2 = data.substring((data.indexOf('Y') +2), data.indexOf('Z') -1);
     console.log(blah);
 var angle = blah, img = document.getElementById('container');
     
-    if(blah < 1 & blah > -1) {
+    if(blah < 1 & blah > -1 & blah2 > 0) {
       img.className = "rotate90";
+    }
+    else if(blah < 1 & blah > -1 & blah2 < 0) {
+      img.className = "rotate270";
     }
     else if(blah < -1) {
      img.className = "rotate180";
     }
     else if(blah > 1) {
       img.className = "image";
-      
     }
+
     
 
     
@@ -124,7 +128,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 15);
+  console.log("Version omega: " + 21);
   deviceId = 'test';
   init();
 });
