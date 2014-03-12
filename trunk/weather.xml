@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information for your location" author="RevelDigital" background="transparent">
-  <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="us">
+  <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
