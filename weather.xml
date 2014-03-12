@@ -227,7 +227,7 @@
   
     // Create Yahoo Weather feed API address
     var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var api = 'http://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
+    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
 
     // Send request
     $.ajax({
