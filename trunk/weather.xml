@@ -5,7 +5,7 @@
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
-  <UserPref name="Location" display_name="Location" datatype="string" />
+  <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
   <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="white" required="true" />
   <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
   <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="#283a78" required="false" />
@@ -278,6 +278,9 @@
     // Cache results for an hour to prevent overuse
     now = new Date();
 
+    if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      search = "Fargo, ND";
+    }
     // Create Yahoo Weather feed API address
     var query = 'select * from geo.places where text="'+ search +'"';
     var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
