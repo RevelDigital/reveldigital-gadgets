@@ -17,7 +17,9 @@
     var compressor = kompressor || 1,
         settings = $.extend({
           'minFontSize' : Number.NEGATIVE_INFINITY,
-          'maxFontSize' : Number.POSITIVE_INFINITY
+          'maxFontSize' : Number.POSITIVE_INFINITY,
+          'vh' : undefined,
+          'vw' : undefined
         }, options);
 
     return this.each(function(){
@@ -27,7 +29,24 @@
 
       // Resizer() resizes items based on the object width divided by the compressor * 10
       var resizer = function () {
-        $this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+
+        var vw = $(window).width();
+        var vh = $(window).height();
+        
+        if (settings.vw != undefined) {
+          vw = $(window).width() * (settings.vw / 100);
+          $this.css('font-size', Math.max(Math.min(vw, parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+        } else if (settings.vh != undefined) {
+          vh = $(window).height() * (settings.vh / 100);
+          $this.css('font-size', Math.max(Math.min(vh, parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+        } else {
+          $this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+        }
+        //console.log("vw: " + vw);
+        //console.log("vh: " + vh);
+        
+        //$this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+        
       };
 
       // Call once to set.
