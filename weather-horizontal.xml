@@ -165,7 +165,7 @@
           <div class="day-container">
             <span>Current Conditions</span>
           </div>
-          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/18d.png" />
+          <img class="icon invisible" src="" />
           <div class="temp-container">
             <div class="temp invisible"><span></span>&#176;</div>
           </div>
@@ -176,7 +176,7 @@
           <div class="day-container">
             <span>Today</span>
           </div>
-          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/30d.png" />
+          <img class="icon invisible" src="" />
           <div class="temp-container">
             <div class="temp-title invisible">High:</div>
             <div class="high invisible"><span></span>&#176;</div>
@@ -193,7 +193,7 @@
           <div class="day-container">
             <span>Tomorrow</span>
           </div>
-          <img class="icon invisible" src="https://l.yimg.com/a/i/us/nws/weather/gr/15d.png" />
+          <img class="icon invisible" src="" />
           <div class="temp-container">
             <div class="temp-title invisible">High:</div>
             <div class="high invisible"><span></span>&#176;</div>
