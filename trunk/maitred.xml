@@ -119,7 +119,7 @@ td.price
           var division = $(this).children("Division");
           var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
-          if (desc.text().length > 0 && prefs.getString("mode").length == 0 && division.text() == div[0].id) {
+          if (prefs.getString("mode").length == 0 && desc.text().length > 0 && division.text() == div[0].id) {
           
             var price = revenueCenter.find("Price1");
             
