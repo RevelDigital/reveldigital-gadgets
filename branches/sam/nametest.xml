@@ -40,6 +40,11 @@ img {
     -webkit-transform: rotate(90deg) translateY(-100%);
     -ms-transform: rotate(90deg) translateY(-100%);
 }
+#container.rotate45 #image {
+    transform: rotate(45deg) translateY(-100%);
+    -webkit-transform: rotate(45deg) translateY(-100%);
+    -ms-transform: rotate(45deg) translateY(-100%);
+}
 #container.rotate180 #image {
     transform: rotate(180deg) translate(-100%,-100%);
     -webkit-transform: rotate(180deg) translate(-100%,-100%);
@@ -77,10 +82,14 @@ function init() {
     var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
     console.log(blah);
 var angle = blah, img = document.getElementById('container');
-    if(blah < 0) {
-      img.className = "rotate270";
+    
+    if(blah < 1 & blah > -1) {
+      img.className = "rotate90";
     }
-    else {
+    else if(blah < -1) {
+      img.className = "image";
+    }
+    else if(blah > 1) {
       img.className = "rotate180";
     }
     
@@ -114,7 +123,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 9);
+  console.log("Version omega: " + 11);
   deviceId = 'test';
   init();
 });
