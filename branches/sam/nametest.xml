@@ -23,6 +23,11 @@ body {
     text-align:center;
 }
 
+img {
+  width: 100px;
+  height: 100px;
+}
+
 #container {width:820px;height:100px;overflow:hidden;}
 #container.rotate90,#container.rotate270 {width:100px;height:820px}
 #image {
@@ -64,7 +69,9 @@ function init() {
   socket.on('message', function(data) {
 
     showText(data);
-var angle = data, img = document.getElementById('container');
+    var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
+    console.log(blah);
+var angle = blah, img = document.getElementById('container');
 angle = (angle+90)%360;
     img.className = "rotate"+angle;
 
@@ -97,7 +104,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 17);
+  console.log("Version omega: " + 21);
   deviceId = 'test';
   init();
 });
