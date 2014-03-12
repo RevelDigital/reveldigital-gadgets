@@ -6,6 +6,8 @@
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
   <UserPref name="Location" display_name="Location" datatype="string" />
+  <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="white" required="true" />
+  <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -49,7 +51,7 @@
     width: 100%;
     padding: 0;
     margin-bottom: 10px;
-    box-shadow: 0 5px 5px #444;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.5);
   }
   
   .box-container {
@@ -70,7 +72,7 @@
     margin: 0;
     padding: 2vh 4vw;
     background-color:rgba(0,0,0,0.5);
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.5);
   }
   
   #today .temp-container, #tomorrow .temp-container {
@@ -85,8 +87,8 @@
     background-color:rgba(0,0,0,0.5);
     font-size: 20px;
     font-size: 6vh;
-    color: #fff;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    color: __UP_BodyColor__;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.5);
   }
   
   .temp-title {
@@ -99,7 +101,7 @@
   .temp {
     font-size: 30px;
     font-size: 13vh;
-    color: #fff;
+    color: __UP_BodyColor__;
     float: right;
   }
     
@@ -111,7 +113,7 @@
     font-size: 4vh;
     text-align: center;
     margin-bottom: 10px;
-    color: #fff;
+    color: __UP_BodyColor__;
   }
   
   .day-container {
@@ -127,8 +129,8 @@
   
   .day-container span {
     font-weight: bold;
-    color: yellow;
-    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    color: __UP_TitleColor__;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
   }
   
   .icon {
