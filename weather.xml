@@ -8,6 +8,7 @@
   <UserPref name="Location" display_name="Location" datatype="string" />
   <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="white" required="true" />
   <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
+  <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="#283a78" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -47,7 +48,7 @@
     position: relative;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    background-color: #283a78;
+    background-color: __UP_TileColor__;
     width: 100%;
     padding: 0;
     margin-bottom: 10px;
