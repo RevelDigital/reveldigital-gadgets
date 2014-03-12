@@ -216,8 +216,12 @@
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
-
+ 
+  var search = prefs.getString("Location");
+  var unit = prefs.getString("Units");
+   
   function load() {
+  
     getWOEID(search);
     
     if (prefs.getString("TileColor") != "") {
@@ -228,10 +232,11 @@
     jQuery(".low, .high").fitText(1, { vh: 15 });
     jQuery(".condition-container").fitText(1, { vh: 8 });
     jQuery(".day-container").fitText(1, { vh: 7 });
+    
+    setInterval(function() {
+      getWOEID(search);
+    }, 1000 * 60 * 30);
   }
-  
-  var search = prefs.getString("Location");
-  var unit = prefs.getString("Units");
   
   function getWeather(woeid) {
   
