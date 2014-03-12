@@ -66,7 +66,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    top: 30%;
+    top: 40%;
     margin: 0;
     padding: 0 5%;
     background-color:rgba(0,0,0,0.5);
@@ -226,9 +226,9 @@
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
     }
-    jQuery("#current .temp-container .temp").fitText(1, { vh: 15 });
+    jQuery("#current .temp-container .temp").fitText(1, { vh: 12 });
     jQuery(".temp-title").fitText(1, { vh: 3 });
-    jQuery(".low, .high").fitText(1, { vh: 7.5 });
+    jQuery(".low, .high").fitText(1, { vh: 6 });
     jQuery(".condition-container").fitText(1, { vh: 4 });
     jQuery(".day-container").fitText(1, { vh: 4 });
   }
