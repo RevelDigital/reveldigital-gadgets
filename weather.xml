@@ -1,59 +1,297 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information in various formats" author="RevelDigital" background="transparent">
-  <Require feature="flash" />
-  <UserPref name="weatherformat" display_name="Weather Format" default_value="11829!weatherV.swf" datatype="enum" >
-    <EnumValue value="11829!weatherV.swf" display_value="Vertical" />
+<ModulePrefs title="RevelDigital Weather Gadget" description="Displays current weather information for your location" author="RevelDigital" background="transparent">
+  <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="us">
+    <EnumValue value="f" display_value="US" />
+    <EnumValue value="c" display_value="Metric" />
   </UserPref>
-  <UserPref name="uom" display_name="Unit of Measure" default_value="f" datatype="enum" >
-    <EnumValue value="f" display_value="Farenheight" />
-    <EnumValue value="c" display_value="Celcius" />
-  </UserPref>
-  <UserPref name="location" display_name="Location" datatype="string" />
+  <UserPref name="Location" display_name="Location" datatype="string" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 
 <style type="text/css">
-  body { background-color: transparent; }
+
+  body * {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+
+  body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+  }
+
+  table {
+    height: 100%;
+    width: 100%;
+  }
+  
+  #container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  td, .box {
+    position: relative;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #283a78;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px #444;
+  }
+  
+  .box-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url('weather-cap.png');
+    background-repeat: no-repeat;
+    background-size: 100% 15vh;
+  }
+  
+  #current .temp-container {
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 2vh 4vw;
+    background-color:rgba(0,0,0,0.5);
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  #today .temp-container, #tomorrow .temp-container {
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 4vh 4vw;
+    background-color:rgba(0,0,0,0.5);
+    font-size: 20px;
+    font-size: 6vh;
+    color: #fff;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .temp-title {
+    font-weight: normal;
+    font-size: 16px;
+    font-size: 3vh;
+    margin-top: 5px;
+  }
+  
+  .temp {
+    font-size: 30px;
+    font-size: 13vh;
+    color: #fff;
+    float: right;
+  }
+    
+  .condition-container {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    line-height: 4vh;
+    font-size: 4vh;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .day-container {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    line-height: 5vh;
+    font-size: 5vh;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .day-container span {
+    font-weight: bold;
+    color: yellow;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .icon {
+    position: absolute;
+    top: 10;
+    left: 10;
+    height: 45vh;
+    width: 70vh;
+  }
+  
+  .invisible {
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-in;
+       -moz-transition: opacity 1s ease-in;
+        -ms-transition: opacity 1s ease-in;
+         -o-transition: opacity 1s ease-in;
+            transition: opacity 1s ease-in;
+  }
+
+  .visible {
+      opacity: 1;
+  }
+  
 </style>
 
-<div id="flashcontainer" style="background-color:transparent;"></div> 
+<div id="container">
+  <div style="display:table; width:100%; height:100%; border-spacing:10px;">
+    <div style="display:table-row;">
+      <div id="current" class="box" style="display:table-cell;">
+        <div class="box-container">
+          <div class="day-container">
+            <span>Current Conditions</span>
+          </div>
+          <img class="icon invisible" src="" />
+          <div class="temp-container">
+            <div class="temp invisible"><span></span>&#176;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:table-row;">
+      <div id="today" class="box" style="display:table-cell;">
+        <div class="box-container">
+          <div class="day-container">
+            <span>Today</span>
+          </div>
+          <img class="icon" src="" />
+          <div class="temp-container">
+            <div class="temp-title">High:</div>
+            <div class="high"><span></span>&#176;</div>
+            <div class="temp-title">Low:</div>
+            <div class="low"><span></span>&#176;</div>
+          </div>
+          <div class="condition-container">
+            <div class="condition"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:table-row;">
+      <div id="tomorrow" class="box" style="display:table-cell;">
+        <div class="box-container">
+          <div class="day-container">
+            <span>Tomorrow</span>
+          </div>
+          <img class="icon" src="" />
+          <div class="temp-container">
+            <div class="temp-title">High:</div>
+            <div class="high"><span></span>&#176;</div>
+            <div class="temp-title">Low:</div>
+            <div class="low"><span></span>&#176;</div>
+          </div>
+          <div class="condition-container">
+            <div class="condition"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
 
-  function loadFlash() {
-
-    var url = "http://uploads.reveldigital.com/" + prefs.getString("weatherformat");
-
-    if (prefs.getString("BackColor") != "") {
-      document.body.style.backgroundColor = "#" + prefs.getString("BackColor");
-    }
-    
-    var flashvars = "CustomCode=" + prefs.getString("uom") + "&" +
-      //"Custom=" + ((prefs.getString("BackColor") == "") ? "transparent" : "") + "&" +
-      "Custom=transparent" + "&" +
-      "Location=" + encodeURI(prefs.getString("location")) + "&" +
-      "BackColor=" + encodeURI(prefs.getString("BackColor")) + "&" + 
-      "ForeColor=" + encodeURI(prefs.getString("ForeColor")) + "&" +
-      "Opacity=" + encodeURI(prefs.getString("Opacity"));
-    
-    var embed = document.createElement("embed");
-    embed.setAttribute("width", "100%");
-    embed.setAttribute("height", "100%");
-    embed.setAttribute("wmode", "transparent");
-    embed.setAttribute("scale", "exactFit");
-    embed.setAttribute("type", "application/x-shockwave-flash");
-    embed.setAttribute("src", url);
-    embed.setAttribute("flashvars", flashvars);
-    document.getElementById("flashcontainer").appendChild(embed);
+  function load() {
+    getWOEID(search);
   }
+  
+  var search = "Ft Myers, FL";
+  var unit = "f";
+  
+  function getWeather(woeid) {
+  
+    // Create Yahoo Weather feed API address
+    var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
+    var api = 'http://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
 
-  // When gadget first loads, display still photo.
-  gadgets.util.registerOnLoadHandler(loadFlash);
+    // Send request
+    $.ajax({
+      type: 'GET',
+      url: api,
+      dataType: 'json',
+      success: function(data) {
+        if (data.query) {
+          var item = null;
+          if (data.query.results.channel.length > 1) {
+            var item = data.query.results.channel[0].item;
+          } else {
+            var item = data.query.results.channel.item;
+          }
+          $("#current div.temp span").text(item.condition.temp);
+          $("#current img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
+          $("#current .invisible").addClass("visible");
+          
+          var fc = item.forecast;
+          for (var i=0; i<fc.length; i++) {
+            if (i == 0) {
+              $("#today div.high span").text(fc[i].high);
+              $("#today div.low span").text(fc[i].low);
+              $("#today div.condition").text(fc[i].text);
+              $("#today img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
+              $("#today .invisible").addClass("visible");
+            } else if (i == 1) {
+              $("#tomorrow div.high span").text(fc[i].high);
+              $("#tomorrow div.low span").text(fc[i].low);
+              $("#tomorrow div.condition").text(fc[i].text);
+              $("#tomorrow img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
+              $("#tomorrow .invisible").addClass("visible");
+            }
+          }
+        }
+      }
+    });
+  }
+  
+  function getWOEID(search) {
+    // Cache results for an hour to prevent overuse
+    now = new Date();
+
+    // Create Yahoo Weather feed API address
+    var query = 'select * from geo.places where text="'+ search +'"';
+    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
+
+    $.ajax({
+      type: 'GET',
+      url: api,
+      dataType: 'json',
+      success: function(data) {
+        if (data.query.count > 1) {
+          getWeather(data.query.results.place[0].woeid);
+        } else {
+          getWeather(data.query.results.place.woeid);
+        }
+      }
+    });
+  }
+			
+  gadgets.util.registerOnLoadHandler(load);
 </script>
+
 ]]>
 </Content>
 </Module>
