@@ -109,7 +109,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 25);
+  console.log("Version omega: " + 1);
   deviceId = 'test';
   init();
 });
@@ -137,7 +137,7 @@ function showText(text) {
   </div>
 
   <div id="container">
-  <img src="http://www.lumisnet.com/arrow.jpg">
+  <img id="image" src="http://www.lumisnet.com/arrow.jpg">
   </div>
 </body>
 
