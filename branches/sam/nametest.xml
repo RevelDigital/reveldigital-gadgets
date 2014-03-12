@@ -72,8 +72,13 @@ function init() {
     var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
     console.log(blah);
 var angle = blah, img = document.getElementById('container');
-angle = (angle+90)%360;
-    img.className = "rotate"+angle;
+    if(blah < 0) {
+      img.className = "rotate90";
+    }
+    else {
+      img.className = "rotate180";
+    }
+    
 
     
   });
@@ -104,7 +109,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 21);
+  console.log("Version omega: " + 25);
   deviceId = 'test';
   init();
 });
