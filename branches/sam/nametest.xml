@@ -99,8 +99,8 @@ var angle = blah, img = document.getElementById('container');
     }
 
 
-    $('#container').animate({
-        'marginLeft' : "=" + level + "%"
+    $('#image2').animate({
+        'marginLeft' : "+=" + level + "%"
     });
 
     
@@ -134,7 +134,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 7);
+  console.log("Version omega: " + 9);
   deviceId = 'test';
   init();
 });
@@ -159,6 +159,7 @@ function showText(text) {
   <div id="container">
     <img id="image" src="http://www.lumisnet.com/arrow.jpg">
   </div>
+  <img id="image2" src="http://www.lumisnet.com/arrow.jpg">
 </body>
 
 ]]>
