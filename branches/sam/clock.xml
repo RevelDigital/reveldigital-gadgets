@@ -8,6 +8,7 @@
 <![CDATA[
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
 
 
 <style type="text/css">
@@ -460,7 +461,6 @@ var Base=function(){};Base.extend=function(a,b){"use strict";var c=Base.prototyp
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
 
 
 
@@ -468,7 +468,7 @@ var Base=function(){};Base.extend=function(a,b){"use strict";var c=Base.prototyp
 <script type="text/javascript" charset="utf-8">
 
 $(function() {
-	console.log("Version: " + 9);
+	console.log("Version: " + 11);
 	var clock = $('.clock').FlipClock({
 
 	});
