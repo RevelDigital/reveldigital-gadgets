@@ -81,7 +81,7 @@ function init() {
     showText(data);
     var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
     var blah2 = data.substring((data.indexOf('Y') +2), data.indexOf('Z') -1);
-    var level = data.substring((data.indexOf('S') + 2), data.length));
+    var level = data.substring((data.indexOf('S') + 2), data.length);
     console.log(level);
 var angle = blah, img = document.getElementById('container');
     
@@ -134,7 +134,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 4);
+  console.log("Version omega: " + 5);
   deviceId = 'test';
   init();
 });
