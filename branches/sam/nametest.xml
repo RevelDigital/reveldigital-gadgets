@@ -84,10 +84,10 @@ function init() {
     console.log(blah);
 var angle = blah, img = document.getElementById('container');
     
-    if(blah < 3 & blah > -3 & blah2 > 0) {
+    if(blah < 5 & blah > -5 & blah2 > 0) {
       img.className = "rotate90";
     }
-    else if(blah < 3 & blah > -3 & blah2 < 0) {
+    else if(blah < 5 & blah > -5 & blah2 < 0) {
       img.className = "rotate270";
     }
     else if(blah < -1) {
@@ -128,7 +128,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 25);
+  console.log("Version omega: " + 1);
   deviceId = 'test';
   init();
 });
@@ -136,12 +136,9 @@ $(function() {
 //show text from source given by server
 function showText(text) {
   if(text.length == 0) {
-    $("#youhave").html("");
     $("#name_of_queue").html("");
-    $("#forplayback").html("");
   }
   else {
-    
     $("#name_of_queue").html(text);
   }
 }
@@ -149,14 +146,12 @@ function showText(text) {
 </script>
 
 <body>
-  <div id="youhave" class="textview">
-  </div>
 
   <div id="name_of_queue">
   </div>
 
   <div id="container">
-  <img id="image" src="http://www.lumisnet.com/arrow.jpg">
+    <img id="image" src="http://www.lumisnet.com/arrow.jpg">
   </div>
 </body>
 
