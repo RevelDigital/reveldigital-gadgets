@@ -17,8 +17,9 @@
 <script type="text/javascript" charset="utf-8">
 
 $(function() {
+console.log("Version: " + 12;
 	var clock = $('.clock').FlipClock({
-console.log("Version: " + 1);
+
 	});
 });
 
