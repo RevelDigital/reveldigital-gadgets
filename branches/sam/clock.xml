@@ -468,8 +468,9 @@ var Base=function(){};Base.extend=function(a,b){"use strict";var c=Base.prototyp
 <script type="text/javascript" charset="utf-8">
 
 $(function() {
-	console.log("Version: " + 11);
+	console.log("Version: " + 15);
 	var clock = $('.clock').FlipClock({
+		clockFace: 'TwelveHourClock'
 
 	});
 });
