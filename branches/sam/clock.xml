@@ -11,15 +11,15 @@
 
 			<link rel="stylesheet" href="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/css/flipclock.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/js/flipclock.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" type="text/javascript" charset="utf-8"></script>
+		<script src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/js/flipclock.js" type="text/javascript" charset="utf-8"></script>
 
 
 
 <script type="text/javascript" charset="utf-8">
 
 $(function() {
-console.log("Version: " + 3);
+console.log("Version: " + 5);
 	var clock = $('.clock').FlipClock({
 
 	});
