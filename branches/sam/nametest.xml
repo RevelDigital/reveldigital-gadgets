@@ -65,6 +65,8 @@ img {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
 
@@ -81,7 +83,8 @@ function init() {
     showText(data);
     var blah = data.substring((data.indexOf(':') +1), data.indexOf('Y') -1);
     var blah2 = data.substring((data.indexOf('Y') +2), data.indexOf('Z') -1);
-    console.log(blah);
+    var level = data.substring((data.indexOf('S') + 2), data.length));
+    console.log(level);
 var angle = blah, img = document.getElementById('container');
     
     if(blah < 5 & blah > -5 & blah2 > 0) {
@@ -96,6 +99,10 @@ var angle = blah, img = document.getElementById('container');
     else if(blah > 1) {
       img.className = "image";
     }
+
+    $('#image').animate({
+        'marginLeft' : "=" + level + "%";
+    });
 
     
 
@@ -128,7 +135,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 1);
+  console.log("Version omega: " + 5);
   deviceId = 'test';
   init();
 });
