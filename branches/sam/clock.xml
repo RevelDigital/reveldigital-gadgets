@@ -7,8 +7,10 @@
 <Content type="html">
 <![CDATA[
 
-			<link rel="stylesheet" href="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/css/flipclock.css">
+<head>
 
+			<link rel="stylesheet" href="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/css/flipclock.css">
+</head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/js/flipclock.js"></script>
 
