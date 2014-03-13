@@ -99,7 +99,7 @@ var angle = blah, img = document.getElementById('container');
     }
 
 
-    $('#image').animate({
+    $('#container').animate({
         'marginLeft' : "=" + level + "%"
     });
 
@@ -134,7 +134,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 5);
+  console.log("Version omega: " + 7);
   deviceId = 'test';
   init();
 });
