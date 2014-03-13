@@ -98,11 +98,11 @@ var angle = blah, img = document.getElementById('container');
       img.className = "image";
     }
 
-/*
+
     $('#image').animate({
-        'marginLeft' : "+=" + level + "%";
+        'marginLeft' : "=" + level + "%";
     });
-*/
+
     
 
     
@@ -134,7 +134,7 @@ function socketConnect() {
 
 
 $(function() {  
-  console.log("Version omega: " + 5);
+  console.log("Version omega: " + 7);
   deviceId = 'test';
   init();
 });
