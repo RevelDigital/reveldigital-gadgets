@@ -48,7 +48,7 @@
     <Content type="html"><![CDATA[
 <style type="text/css">
   body {
-    background-color: transparent;
+    background-color: rgba(0,0,0,0);
   }
 	    
   #container {		
