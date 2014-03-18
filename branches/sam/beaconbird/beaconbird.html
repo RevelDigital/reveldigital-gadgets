@@ -53,13 +53,13 @@ function init() {
     connected = true;
   });
 
-  socket.emit('join room', deviceId);
+  socket.emit('join room', "IUEmcOl7yPU");
 }
 
 function socketConnect() {
   console.log('Trying to connect');
   socket = io.connect('http://65.183.249.120:3000/room');
-  socket.emit('join room', deviceId);
+  socket.emit('join room', "IUEmcOl7yPU");
   if(!connected) {
     setTimeout(function() {
       socketConnect();
