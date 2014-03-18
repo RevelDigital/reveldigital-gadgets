@@ -1,17 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital QR Control Test" description="Control digital signage with QR code." author="RevelDigital" background="transparent">
-  <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
-  <UserPref name="name-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:25px;" required="false" />
+  <UserPref name="apikey" display_name="API Key" datatype="string" required="true" />
+  <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 <html><head data-gwd-animation-mode="quickMode"><meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJlf771146772b3ec6b6eb7aeac5b14349b"/>
-    <meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJl3f0757854b168fc804cbc6c909ef814e">
-    <title>b</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="generator" content="Google Web Designer 1.0.4.0305">
-    <style type="text/css">html, body {
+<meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJl3f0757854b168fc804cbc6c909ef814e">
+<title>b</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="Google Web Designer 1.0.4.0305">
+<style type="text/css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+function getDevicebyRegKey(regKey) {
+  var image = $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+
+    for(var i=0; i < data.length; i++) {
+      var currentDevice = data[i];
+      if(currentDevice.registration_key == regKey) {
+        deviceId = currentDevice.id;
+      }
+    }
+
+    init();
+  });
+}
+
+
+function init() {
+  connected = false;
+  
+  socketConnect();
+  
+  socket.on('message', function(data) {
+    if(Client != undefined) {
+      Client.callback(data);
+    }
+  });
+  socket.on('disconnect', function() {
+    connected = false;
+    console.log('Got disconnected');
+    socketConnect();
+  });
+  socket.on('connect', function() {
+    console.log('Got Connected');
+    connected = true;
+  });
+
+  socket.emit('join room', deviceId);
+}
+
+function socketConnect() {
+  console.log('Trying to connect');
+  socket = io.connect('http://65.183.249.120:3000/room');
+  socket.emit('join room', deviceId);
+  if(!connected) {
+    setTimeout(function() {
+      socketConnect();
+    }, 10000);
+  }
+}
+
+$(function() {  
+  console.log("Version bravo: " + 1);
+  deviceId = 'test';
+  prefs = new gadgets.Prefs();
+  getDevicebyRegKey(prefs.getString('reg_key'));
+});
+</script>
+
+
+html, body {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -397,16 +462,16 @@ body {
 }
 
 </style>
-  </head>
-  
-  <body>
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/0-222_3.png" class="gwd-img-oc4e gwd-gen-srfxgwdanimation gwd-gen-qm7kgwdanimation gwd-gen-vwz1gwdanimation gwd-gen-vznegwdanimation gwd-gen-0zi3gwdanimation gwd-gen-0zi3gwdanimation-gen-animation0keyframe">
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/1-221_4.png" class="gwd-img-imkm gwd-gen-nvd3gwdanimation gwd-gen-uhg2gwdanimation gwd-gen-0ghdgwdanimation gwd-gen-1k5ogwdanimation gwd-gen-fb7sgwdanimation gwd-gen-fb7sgwdanimation-gen-animation0keyframe">
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/2-birdlegs_4.png" class="gwd-img-m91m gwd-gen-p5scgwdanimation gwd-gen-m56vgwdanimation gwd-gen-tvekgwdanimation gwd-gen-ocb7gwdanimation gwd-gen-ylb2gwdanimation gwd-gen-ylb2gwdanimation-gen-animation0keyframe">
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-qks9 gwd-gen-ol7wgwdanimation gwd-gen-hiq2gwdanimation gwd-gen-k3e2gwdanimation gwd-gen-k3e2gwdanimation-gen-animation0keyframe">
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-ty4u gwd-img-pefp gwd-gen-xb60gwdanimation gwd-gen-k3vlgwdanimation gwd-gen-igb4gwdanimation gwd-gen-igb4gwdanimation-gen-animation0keyframe">
-    <img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-ty4u gwd-img-vepj gwd-gen-ecfegwdanimation gwd-gen-n7j8gwdanimation gwd-gen-w0v9gwdanimation gwd-gen-w0v9gwdanimation-gen-animation0keyframe">
-  
+</head>
+
+<body>
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/0-222_3.png" class="gwd-img-oc4e gwd-gen-srfxgwdanimation gwd-gen-qm7kgwdanimation gwd-gen-vwz1gwdanimation gwd-gen-vznegwdanimation gwd-gen-0zi3gwdanimation gwd-gen-0zi3gwdanimation-gen-animation0keyframe">
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/1-221_4.png" class="gwd-img-imkm gwd-gen-nvd3gwdanimation gwd-gen-uhg2gwdanimation gwd-gen-0ghdgwdanimation gwd-gen-1k5ogwdanimation gwd-gen-fb7sgwdanimation gwd-gen-fb7sgwdanimation-gen-animation0keyframe">
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/2-birdlegs_4.png" class="gwd-img-m91m gwd-gen-p5scgwdanimation gwd-gen-m56vgwdanimation gwd-gen-tvekgwdanimation gwd-gen-ocb7gwdanimation gwd-gen-ylb2gwdanimation gwd-gen-ylb2gwdanimation-gen-animation0keyframe">
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-qks9 gwd-gen-ol7wgwdanimation gwd-gen-hiq2gwdanimation gwd-gen-k3e2gwdanimation gwd-gen-k3e2gwdanimation-gen-animation0keyframe">
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-ty4u gwd-img-pefp gwd-gen-xb60gwdanimation gwd-gen-k3vlgwdanimation gwd-gen-igb4gwdanimation gwd-gen-igb4gwdanimation-gen-animation0keyframe">
+<img src="https://reveldigital-gadgets.googlecode.com/svn/branches/sam/beaconbird/3-radio_4.png" class="gwd-img-kbfo gwd-img-ty4u gwd-img-vepj gwd-gen-ecfegwdanimation gwd-gen-n7j8gwdanimation gwd-gen-w0v9gwdanimation gwd-gen-w0v9gwdanimation-gen-animation0keyframe">
+
 
 </body></html>
 
