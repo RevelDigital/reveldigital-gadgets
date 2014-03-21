@@ -40,7 +40,7 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-  console.log("Version: " + 9);
+  console.log("Version: " + 5);
   rowHeights = [];
     update();
     setInterval(update, 120000);
@@ -80,10 +80,13 @@ function getCss(code) {
         if(oldCss != data.results[0].replace(/border/g, "")) {
           oldCss = data.results[0].replace(/border/g, "");
            $("head").append(data.results[0].replace(/border/g, ""));
+
+          if(prefs.getString("background_transparent") == "yes") {
+            $("#googleTable td").css("background-color", "transparent");
+          }
+      
         }
-        if(prefs.getString("background_transparent") == "yes") {
-          $("#googleTable td").css("background-color", "transparent");
-        }
+
 
         $('#googleTable tr').each(function(index) {
           $(this).css('height', rowHeights[index]);
