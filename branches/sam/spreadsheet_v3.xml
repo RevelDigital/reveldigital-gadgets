@@ -44,8 +44,7 @@ function load() {
   console.log("Version: " + 51);
   rowHeights = [];
     update();
-    setInterval(update, 10000);
-    //setInterval(update, prefs.getString('update_interval')*1000);
+    setInterval(update, prefs.getString('update_interval')*1000);
 }
 
 gadgets.util.registerOnLoadHandler(load);
