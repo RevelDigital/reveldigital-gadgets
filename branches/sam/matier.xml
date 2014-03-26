@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="MaitreD Menu Gadget" description="MaitreD integration gadget for displaying menu items by division" author="RevelDigital" background="transparent">
+  <UserPref name="host" display_name="Database Host" datatype="string" />
+  <UserPref name="updateInterval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
+  <UserPref name="division" display_name="Division" datatype="string" />
+  <UserPref name="mode" display_name="Mode" datatype="string" />
+  <UserPref name="revenueCenter" display_name="Revenue Center" datatype="string" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+}
+
+table
+{
+  width: __UP_rdW__px;
+}
+
+#container
+{
+  position: relative;
+  clear: both;
+  width: __UP_rdW__px;
+  height: 100%;
+}
+
+th
+{
+  text-align:left;        
+}
+
+table td
+{
+  __UP_body-style__;
+}
+
+table th
+{
+}
+
+td.price
+{
+  text-align: right;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<div id="container">
+  <div id="headerContainer"></div>
+  <div id="tableContainer"></div>
+</div>
+
+<script type="text/javascript">
+
+  var divisions = [];
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    loadDivisions();
+    
+    setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
+  var loadDivisions = function() {
+    
+    $.get('http://www.lumisnet.com/division.php', null, function (data, textStatus) {
+    
+      $(data).find('ConfigExport Divisions Division').each(function() {
+      
+        var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
+        
+        divisions.push(div);
+      });
+            
+      loadItems();
+    }, 'xml');
+  }
+
+  var loadItems = function() {
+
+    var div = findDivision(prefs.getString('division'));
+    if (div.length == 0) {
+      return;
+    }
+    
+    $.get('http://www.lumisnet.com/config.php', null, function (data, textStatus) {
+    
+      var row = 0;
+      var gen = '';
+      gen += '<table id="dataTable">';
+      $(data).find('ConfigExport SaleItems SaleItem').each(function() {
+      
+        var available = $(this).children("Available:contains(1)");
+        var desc = $(this).children("Description2");
+        var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
+        if (revenueCenter.length > 0) {
+        
+          var division = $(this).children("Division");
+          var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
+          
+          if (desc.text().length > 0 && prefs.getString("mode").length == 0 && division.text() == div[0].id) {
+          
+            var price = revenueCenter.find("Price1");
+            
+            gen += '<tr id="r_' + row++ + '">';
+            gen += '<td>' + desc.text() + '</td>';
+            gen += '<td>$' + price.text() + '</td>';
+            gen += '</tr>';
+          } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
+          
+            //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
+            var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
+            
+            gen += '<tr id="r_' + row++ + '">';
+            gen += '<td>' + desc.text() + '</td>';
+            gen += '<td>$' + price.text() + '</td>';
+            gen += '</tr>';
+          }
+        }
+      });
+      
+      gen += '</table>';
+      $('#tableContainer').html(gen);
+      
+    }, 'xml');
+  }
+
+  var findDivision = function(name) {
+  
+    return $.grep(divisions, function(n, i) {
+      return n.name == name;
+    });
+  }
+  
+</script>
+]]>
+</Content>
+</Module>
