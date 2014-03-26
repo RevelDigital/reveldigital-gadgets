@@ -85,7 +85,7 @@ console.log("Version: 1");
   var loadDivisions = function() {
     
     $.get('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fcatalystllc.biz%2Fpos%2Fmaitred%2FDivisionExport.xml%22', null, function (data, textStatus) {
-    console.log(data[1]);
+    console.log(data[0]);
       $(data).find('ConfigExport Divisions Division').each(function() {
       
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
