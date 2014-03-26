@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: 3");
+console.log("Version: 5");
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -85,7 +85,6 @@ console.log("Version: 3");
   var loadDivisions = function() {
     
     $.get('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fcatalystllc.biz%2Fpos%2Fmaitred%2FDivisionExport.xml%22', null, function (data, textStatus) {
-    console.log(data.results);
       $(data).find('ConfigExport Divisions Division').each(function() {
       
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
