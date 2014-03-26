@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: 5");
+console.log("Version: 7");
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -90,6 +90,7 @@ console.log("Version: 5");
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
         
         divisions.push(div);
+        console.log(div);
       });
             
       loadItems();
