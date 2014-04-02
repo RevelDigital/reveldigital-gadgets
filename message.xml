@@ -42,6 +42,9 @@
   var deviceId;
   
   function getDevicebyRegKey() {
+  
+    console.log("Reg key: " +  prefs.getString("reg_key"));
+    
     $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
       $.each(data, function (idx, device) {
         if (device.registration_key == prefs.getString('reg_key')) {
