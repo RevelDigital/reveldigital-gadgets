@@ -12,6 +12,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="RegistrationKey" required="false" default_value="68f45389-0213-441b-b69d-4e35ef94bb20" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -124,8 +125,10 @@ span.when
   
   var update = function () {
   
+    var key = prefs.getString("rdKey");
+    
     //var url="https://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
-    var url = "https://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=";
+    var url = "https://svc1.reveldigital.com/Twitter/Search/" + rdKey + "?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
