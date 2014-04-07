@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: " + 21);
+console.log("Version: " + 22);
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -110,22 +110,25 @@ console.log("Version: " + 21);
       var gen = '';
       gen += '<table id="dataTable">';
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
-
+      
         var available = $(this).children("Available:contains(1)");
-        var desc = $(this).children("Description");
+        var desc = $(this).children("Description2");
         var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
         if (revenueCenter.length > 0) {
+        
           var division = $(this).children("Division");
           var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
-          if (prefs.getString("mode").length == 0 && division.text() == div[0].id) {
+          if (prefs.getString("mode").length == 0 && desc.text().length > 0 && division.text() == div[0].id) {
+          
             var price = revenueCenter.find("Price1");
             
             gen += '<tr id="r_' + row++ + '">';
             gen += '<td>' + desc.text() + '</td>';
             gen += '<td>$' + price.text() + '</td>';
             gen += '</tr>';
-          } else if (division.text() == div[0].id) {
+          } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
+          
             //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
             var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
             
@@ -133,8 +136,6 @@ console.log("Version: " + 21);
             gen += '<td>' + desc.text() + '</td>';
             gen += '<td>$' + price.text() + '</td>';
             gen += '</tr>';
-            console.log(desc.text());
-            console.log(price.text());
           }
         }
       });
