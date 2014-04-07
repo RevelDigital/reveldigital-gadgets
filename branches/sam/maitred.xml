@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: " + 2);
+console.log("Version: " + 3);
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -110,17 +110,18 @@ console.log("Version: " + 2);
       var gen = '';
       gen += '<table id="dataTable">';
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
-      
+            console.log("item"); 
+
         var available = $(this).children("Available:contains(1)");
         var desc = $(this).children("Description2");
         var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
         if (revenueCenter.length > 0) {
-        
+        console.log("greater1"); 
           var division = $(this).children("Division");
           var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
           if (prefs.getString("mode").length == 0 && desc.text().length > 0 && division.text() == div[0].id) {
-          
+          console.log("ifmode"); 
             var price = revenueCenter.find("Price1");
             
             gen += '<tr id="r_' + row++ + '">';
@@ -128,7 +129,7 @@ console.log("Version: " + 2);
             gen += '<td>$' + price.text() + '</td>';
             gen += '</tr>';
           } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
-          
+          console.log("elseif"); 
             //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
             var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
             
@@ -142,7 +143,6 @@ console.log("Version: " + 2);
       
       gen += '</table>';
       $('#tableContainer').html(gen);
-      console.log(gen); 
     }, 'xml');
   }
 
