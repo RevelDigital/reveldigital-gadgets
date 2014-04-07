@@ -89,7 +89,7 @@ console.log("Verision: " + 1);
       $(data).find('ConfigExport Divisions Division').each(function() {
       
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
-      console.log(div);  
+
         divisions.push(div);
       });
             
@@ -103,7 +103,7 @@ console.log("Verision: " + 1);
     if (div.length == 0) {
       return;
     }
-    
+          console.log("here");  
     $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
     
       var row = 0;
