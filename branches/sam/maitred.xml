@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: " + 5);
+console.log("Version: " + 6);
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -120,7 +120,7 @@ console.log("Version: " + 5);
           var division = $(this).children("Division");
           var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
-          if (prefs.getString("mode").length == 0 && division.text() == div[0].name) {
+          if (prefs.getString("mode").length == 0 && division.text() == div[0].id) {
           console.log("ifmode"); 
             var price = revenueCenter.find("Price1");
             
@@ -128,7 +128,7 @@ console.log("Version: " + 5);
             gen += '<td>' + desc.text() + '</td>';
             gen += '<td>$' + price.text() + '</td>';
             gen += '</tr>';
-          } else if (desc.text().length > 0  && division.text() == div[0].name) {
+          } else if (desc.text().length > 0) {
           console.log("elseif"); 
             //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
             var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
