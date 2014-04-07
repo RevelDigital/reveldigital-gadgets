@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: " + 12);
+console.log("Version: " + 13);
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -112,7 +112,7 @@ console.log("Version: " + 12);
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
 
         var available = $(this).children("Available:contains(1)");
-        var desc = $(this).children("Description2");
+        var desc = $(this).children("Description");
         var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
         if (revenueCenter.length > 0) {
           var division = $(this).children("Division");
