@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: " + 16);
+console.log("Version: " + 21);
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -128,7 +128,7 @@ console.log("Version: " + 16);
           } else if (division.text() == div[0].id) {
             //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
             var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
-            console.log("price: " + price);
+            
             gen += '<tr id="r_' + row++ + '">';
             gen += '<td>' + desc.text() + '</td>';
             gen += '<td>$' + price.text() + '</td>';
