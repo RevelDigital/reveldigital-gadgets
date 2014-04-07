@@ -72,7 +72,7 @@ td.price
   var prefs = new gadgets.Prefs();
 
   function load() {
-console.log("Version: 7");
+
     loadDivisions();
     
     setInterval(loadDivisions, parseInt(prefs.getString("updateInterval")) * 1000);
@@ -84,17 +84,896 @@ console.log("Version: 7");
 
   var loadDivisions = function() {
     
-    $.get('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fcatalystllc.biz%2Fpos%2Fmaitred%2FDivisionExport.xml%22', null, function (data, textStatus) {
+        $(data) = "<ConfigExport>
+    <Divisions>
+        <Division Id="1">
+            <Description>APPETIZER</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>5</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="2">
+            <Description>GRILL</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>true</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="3">
+            <Description>PASTA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>8</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="4">
+            <Description>T/H APETIZER</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>5</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="5">
+            <Description>T/H MAIN COURSE</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="6">
+            <Description>T/H DESSERT</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="7">
+            <Description>SM PIZZA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="8">
+            <Description>CHICKEN</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="9">
+            <Description>SANDWICH</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="10">
+            <Description>SEA FOOD</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>true</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="11">
+            <Description>BURGER/HOT DOG</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="12">
+            <Description>LUNCH SPECIAL</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="13">
+            <Description>BREAKFAST</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="14">
+            <Description>EX.BREAKFAST</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="15">
+            <Description>DESSERT</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="16">
+            <Description>SOFT DRINK</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="17">
+            <Description>EXTRAS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="18">
+            <Description>BUFFET</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="19">
+            <Description>MD PIZZA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="20">
+            <Description>LG PIZZA</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="21">
+            <Description>APERITIF</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="22">
+            <Description>COCKTAIL</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="23">
+            <Description>LIQUOR</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="24">
+            <Description>BEER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="25">
+            <Description>WINE</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="26">
+            <Description>SHOOTER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="27">
+            <Description>ALCOHOL</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="28">
+            <Description>SNACK</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="29">
+            <Description>XL PIZZA</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="30">
+            <Description>MODIFIERS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="31">
+            <Description>BEVERAGE</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="32">
+            <Description>KID</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="33">
+            <Description>SANGRIA</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="34">
+            <Description>WEIGHT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="35">
+            <Description>MISCELLANEOUS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="36">
+            <Description>SLICE PIZZA</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="37">
+            <Description>PASTRY</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="38">
+            <Description>PASTRY  NO  TAX</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>4</FirstTax>
+                <SecondTax>11</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="39">
+            <Description>Internet access</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>3</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>false</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="40">
+            <Description>Pool Table</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>3</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>false</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="41">
+            <Description>MDIV-APPETIZER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="42">
+            <Description>MDIV-MAIN</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="43">
+            <Description>MDIV-DESSERT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="44">
+            <Description>SALES UNIT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="50">
+            <Description>Reserved</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+    </Divisions>
+    <DivisionCategories>
+        <DivisionCategory Id="1">
+            <Description>FOOD</Description>
+            <SalePercentage>300</SalePercentage>
+            <PrintOnCheck>true</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+        <DivisionCategory Id="2">
+            <Description>LIQUOR</Description>
+            <SalePercentage>300</SalePercentage>
+            <PrintOnCheck>true</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+        <DivisionCategory Id="3">
+            <Description>Rent</Description>
+            <SalePercentage>0</SalePercentage>
+            <PrintOnCheck>false</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+    </DivisionCategories>
+</ConfigExport>
+"
+    
       $(data).find('ConfigExport Divisions Division').each(function() {
       
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
         
         divisions.push(div);
-        console.log(div);
       });
             
       loadItems();
-    }, 'xml');
+   
   }
 
   var loadItems = function() {
@@ -104,7 +983,886 @@ console.log("Version: 7");
       return;
     }
     
-    $.get('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fcatalystllc.biz%2Fpos%2Fmaitred%2FDivisionExport.xml%22', null, function (data, textStatus) {
+    $(data) = "<ConfigExport>
+    <Divisions>
+        <Division Id="1">
+            <Description>APPETIZER</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>5</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="2">
+            <Description>GRILL</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>true</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="3">
+            <Description>PASTA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>8</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="4">
+            <Description>T/H APETIZER</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>5</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="5">
+            <Description>T/H MAIN COURSE</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="6">
+            <Description>T/H DESSERT</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="7">
+            <Description>SM PIZZA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="8">
+            <Description>CHICKEN</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="9">
+            <Description>SANDWICH</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="10">
+            <Description>SEA FOOD</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>true</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="11">
+            <Description>BURGER/HOT DOG</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="12">
+            <Description>LUNCH SPECIAL</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="13">
+            <Description>BREAKFAST</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="14">
+            <Description>EX.BREAKFAST</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="15">
+            <Description>DESSERT</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="16">
+            <Description>SOFT DRINK</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="17">
+            <Description>EXTRAS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="18">
+            <Description>BUFFET</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="19">
+            <Description>MD PIZZA</Description>
+            <DivisionType>2</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="20">
+            <Description>LG PIZZA</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>10</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="21">
+            <Description>APERITIF</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="22">
+            <Description>COCKTAIL</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="23">
+            <Description>LIQUOR</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="24">
+            <Description>BEER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="25">
+            <Description>WINE</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="26">
+            <Description>SHOOTER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="27">
+            <Description>ALCOHOL</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>2</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="28">
+            <Description>SNACK</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="29">
+            <Description>XL PIZZA</Description>
+            <DivisionType>1</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="30">
+            <Description>MODIFIERS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="31">
+            <Description>BEVERAGE</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="32">
+            <Description>KID</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="33">
+            <Description>SANGRIA</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="34">
+            <Description>WEIGHT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="35">
+            <Description>MISCELLANEOUS</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="36">
+            <Description>SLICE PIZZA</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="37">
+            <Description>PASTRY</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="38">
+            <Description>PASTRY  NO  TAX</Description>
+            <DivisionType>3</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>4</FirstTax>
+                <SecondTax>11</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="39">
+            <Description>Internet access</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>3</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>false</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="40">
+            <Description>Pool Table</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>3</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>false</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="41">
+            <Description>MDIV-APPETIZER</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="42">
+            <Description>MDIV-MAIN</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="43">
+            <Description>MDIV-DESSERT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="44">
+            <Description>SALES UNIT</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>false</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>false</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+        <Division Id="50">
+            <Description>Reserved</Description>
+            <DivisionType>0</DivisionType>
+            <DivisionCategory>1</DivisionCategory>
+            <Options>
+                <EvaluationSheet>false</EvaluationSheet>
+                <WithService>true</WithService>
+                <IncludedInLastRound>true</IncludedInLastRound>
+                <GratuityDistribution>false</GratuityDistribution>
+                <AutoHold>0</AutoHold>
+            </Options>
+            <Report>
+                <SubscribedSales>true</SubscribedSales>
+            </Report>
+            <Taxes>
+                <FirstTax>10</FirstTax>
+                <SecondTax>1</SecondTax>
+            </Taxes>
+        </Division>
+    </Divisions>
+    <DivisionCategories>
+        <DivisionCategory Id="1">
+            <Description>FOOD</Description>
+            <SalePercentage>300</SalePercentage>
+            <PrintOnCheck>true</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+        <DivisionCategory Id="2">
+            <Description>LIQUOR</Description>
+            <SalePercentage>300</SalePercentage>
+            <PrintOnCheck>true</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+        <DivisionCategory Id="3">
+            <Description>Rent</Description>
+            <SalePercentage>0</SalePercentage>
+            <PrintOnCheck>false</PrintOnCheck>
+            <PopAndSnack>false</PopAndSnack>
+        </DivisionCategory>
+    </DivisionCategories>
+</ConfigExport>
+"
     
       var row = 0;
       var gen = '';
@@ -119,7 +1877,7 @@ console.log("Version: 7");
           var division = $(this).children("Division");
           var mode = $(revenueCenter[0]).find("ItemAvailabilityByMode Mode[Name='" + prefs.getString("mode") + "']");
           
-          if (desc.text().length > 0 && prefs.getString("mode").length == 0 && division.text() == div[0].id) {
+          if (prefs.getString("mode").length == 0 && desc.text().length > 0 && division.text() == div[0].id) {
           
             var price = revenueCenter.find("Price1");
             
@@ -143,7 +1901,7 @@ console.log("Version: 7");
       gen += '</table>';
       $('#tableContainer').html(gen);
       
-    }, 'xml');
+  
   }
 
   var findDivision = function(name) {
