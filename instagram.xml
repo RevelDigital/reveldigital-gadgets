@@ -134,6 +134,7 @@ ul {
   var update = function () {
   
     var key = prefs.getString("rdKey");
+    var mySequence = undefined;
     
     var options = {
       autoPlay: true,
@@ -146,6 +147,10 @@ ul {
       '<li><div><img src="{{image}}" /><p>{{caption}}</p></div></li>' :
       '<li><div><img src="{{image}}" /></div></li>';
     
+    if (mySequence != undefined) {
+      mySequence.destroy();
+      mySequence = undefined;
+    }
     $("#container").empty();
     
     var feed = new Instafeed({
@@ -161,7 +166,7 @@ ul {
         limit: parseInt(prefs.getString("limit")),
         template: template,
         after: function() {
-          $("#sequence").sequence(options).data("sequence");
+          mySeqence = $("#sequence").sequence(options).data("sequence");
         }
     });
     feed.run();
