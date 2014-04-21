@@ -107,7 +107,7 @@
         reverse = sortSettings[0] === 'least' ? true : false;
         switch (sortSettings[1]) {
           case 'random':
-            response.Data.Sort(function() {
+            response.Data.sort(function() {
               return 0.5 - Math.random();
             });
             break;
