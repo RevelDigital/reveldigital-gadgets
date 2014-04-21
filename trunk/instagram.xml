@@ -137,7 +137,6 @@ ul {
   
     var key = prefs.getString("rdKey");
     
-    
     var options = {
       autoPlay: true,
       autoPlayDelay: parseInt(prefs.getString("pause")) * 1000,
@@ -159,8 +158,8 @@ ul {
         useHttp: true, //remove for deployment
         target: 'container',
         get: prefs.getString("get"),
-        locationId: prefs.getString("getQuery"),
-        userId: prefs.getString("getQuery"),
+        locationId: parseInt(prefs.getString("getQuery")),
+        userId: parseInt(prefs.getString("getQuery")),
         sortBy: prefs.getString("sort"),
         tagName: prefs.getString("getQuery"),
         registrationKey: key,
