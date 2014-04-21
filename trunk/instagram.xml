@@ -21,9 +21,9 @@
     <EnumValue value="least-commented" display_value="Lowest # of comments to highest" />
   </UserPref>
   <UserPref name="showCaption" display_name="Show Caption" datatype="bool" default_value="true" />
+  <UserPref name="captionStyle" display_name="Caption Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="pause" display_name="Delay in seconds between images" datatype="string" default_value="5" />
   <UserPref name="limit" display_name="Maximum number of images" datatype="string" default_value="60" />
-  <UserPref name="body-style" display_name="Caption Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -93,7 +93,7 @@ ul {
   right: 0;
   padding: 10px;
   margin: 0;
-  __UP_body-style__;
+  __UP_captionStyle__;
 }
 
 #sequence div {
