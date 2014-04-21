@@ -131,10 +131,12 @@ ul {
 
 <script type="text/javascript">
   
+  var mySequence = undefined;
+  
   var update = function () {
   
     var key = prefs.getString("rdKey");
-    var mySequence = undefined;
+    
     
     var options = {
       autoPlay: true,
