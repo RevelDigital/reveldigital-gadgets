@@ -3,21 +3,22 @@
 <ModulePrefs title="RevelDigital Instagram Gadget"
   description="Slideshow of Instagram images with optional captions"
   author="RevelDigital" background="transparent">
-  <UserPref name="get" display_name="Get Images By" datatype="enum" default_value="recent">
-    <EnumValue value="popular" display_value="Most Popular" />
-    <EnumValue value="tagged" display_value="Tag" />
-    <EnumValue value="location" display_value="Location" />
-    <EnumValue value="user" display_value="User" />
+  <UserPref name="get" display_name="Get Images By" datatype="enum" default_value="popular">
+    <EnumValue value="popular" display_value="Images from the popular page" />
+    <EnumValue value="tagged" display_value="Images with a specific tag. Must specify the tag" />
+    <EnumValue value="location" display_value="Images from a location. Must specify the location Id" />
+    <EnumValue value="user" display_value="Images with a user. Must specify the user Id" />
   </UserPref>
   <UserPref name="getQuery" display_name="Tag / Location Id / User Id" datatype="string" />
   <UserPref name="sort" display_name="Sort Images By" datatype="enum" default_value="recent">
+    <EnumValue value="none" display_value="As they come from Instagram" />
     <EnumValue value="random" display_value="Random" />
-    <EnumValue value="recent" display_value="Recent" />
-    <EnumValue value="least-recent" display_value="Least Recent" />
-    <EnumValue value="liked" display_value="Liked" />
-    <EnumValue value="least-liked" display_value="Least Liked" />
-    <EnumValue value="commented" display_value="Commented" />
-    <EnumValue value="least-commented" display_value="Least Commented" />
+    <EnumValue value="most-recent" display_value="Newest to oldest" />
+    <EnumValue value="least-recent" display_value="Oldest to newest" />
+    <EnumValue value="most-liked" display_value="Highest # of likes to lowest" />
+    <EnumValue value="least-liked" display_value="Lowest # likes to highest" />
+    <EnumValue value="most-commented" display_value="Highest # of comments to lowest" />
+    <EnumValue value="least-commented" display_value="Lowest # of comments to highest" />
   </UserPref>
   <UserPref name="pause" display_name="Delay in seconds between images" datatype="string" default_value="5" />
   <UserPref name="body-style" display_name="Caption Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
