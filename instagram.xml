@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+<ModulePrefs title="RevelDigital Instagram Gadget"
+  description="Slideshow of Instagram images with optional captions"
+  author="RevelDigital" background="transparent">
+  <UserPref name="get" display_name="Get Images By" datatype="enum" default_value="recent">
+    <EnumValue value="popular" display_value="Most Popular" />
+    <EnumValue value="tagged" display_value="Tag" />
+    <EnumValue value="location" display_value="Location" />
+    <EnumValue value="user" display_value="User" />
+  </UserPref>
+  <UserPref name="getQuery" display_name="Tag / Location Id / User Id" datatype="string" />
+  <UserPref name="sort" display_name="Sort Images By" datatype="enum" default_value="recent">
+    <EnumValue value="random" display_value="Random" />
+    <EnumValue value="recent" display_value="Recent" />
+    <EnumValue value="least-recent" display_value="Least Recent" />
+    <EnumValue value="liked" display_value="Liked" />
+    <EnumValue value="least-liked" display_value="Least Liked" />
+    <EnumValue value="commented" display_value="Commented" />
+    <EnumValue value="least-commented" display_value="Least Commented" />
+  </UserPref>
+  <UserPref name="pause" display_name="Delay in seconds between images" datatype="string" default_value="5" />
+  <UserPref name="body-style" display_name="Caption Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="RegistrationKey" required="false" default_value="68f45389-0213-441b-b69d-4e35ef94bb20" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+  
+#sequence {
+  height: 100%;
+  position: relative; /* required */
+  width: 100%;
+}
+
+#sequence > .sequence-canvas li > * {  /* required */
+  position: absolute;
+}
+
+#sequence > .sequence-canvas { /* required */
+  height: 100%; 
+  width: 100%;
+}
+
+#sequence > .sequence-canvas > li { /* required */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#sequence ul li img {
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+#sequence ul li p {
+  width: 100%;
+  background: rgba(255,255,255,.8);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  margin: 0;
+  __UP_body-style__;
+}
+
+#sequence div {
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+
+#sequence .animate-in div {
+  opacity: 1; /* or some other property as long as it changes */
+}
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/instafeed.custom.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.sequence-min.js"></script>
+
+<div id="sequence">
+  <ul id="container" class="sequence-canvas">
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+  
+    update();
+      
+    setInterval(update, 1000 * 60 * 1); // 60 min update
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+  
+  var update = function () {
+  
+    var key = prefs.getString("rdKey");
+    
+    var options = {
+      autoPlay: true,
+      autoPlayDelay: parseInt(prefs.getString("pause")) * 1000,
+      preloader: true,
+      preloadTheseFrames: [1,10]
+    }
+    
+    var feed = new Instafeed({
+        useHttp: true, //remove for deployment
+        target: 'container',
+        get: prefs.getString("get"),
+        locationId: prefs.getString("getQuery"),
+        userId: prefs.getString("getQuery"),
+        sortBy: prefs.getString("sort"),
+        tagName: prefs.getString("getQuery"),
+        registrationKey: key,
+        //apiKey: '0MpGbRn9gFs',
+        template: '<li><div><img src="{{image}}" /><p>{{caption}}</p></div></li>',
+        after: function() {
+          $("#sequence").sequence(options).data("sequence");
+        }
+    });
+    feed.run();
+  }
+  
+</script>
+]]>
+</Content>
+</Module>
