@@ -166,7 +166,7 @@ ul {
         limit: parseInt(prefs.getString("limit")),
         template: template,
         after: function() {
-          mySeqence = $("#sequence").sequence(options).data("sequence");
+          mySequence = $("#sequence").sequence(options).data("sequence");
         }
     });
     feed.run();
