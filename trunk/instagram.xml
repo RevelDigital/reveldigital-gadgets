@@ -123,7 +123,7 @@ ul {
   
     update();
       
-    setInterval(update, 1000 * 60 * 1); // 60 min update
+    setInterval(update, 1000 * 60 * 60); // 60 min update
   }
 
   gadgets.util.registerOnLoadHandler(load);
@@ -164,7 +164,6 @@ ul {
         sortBy: prefs.getString("sort"),
         tagName: prefs.getString("getQuery"),
         registrationKey: key,
-        //apiKey: '0MpGbRn9gFs',
         limit: parseInt(prefs.getString("limit")),
         template: template,
         after: function() {
