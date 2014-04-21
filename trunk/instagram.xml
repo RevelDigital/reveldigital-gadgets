@@ -10,7 +10,7 @@
     <EnumValue value="user" display_value="From a user. Must specify the user Id" />
   </UserPref>
   <UserPref name="getQuery" display_name="Tag / Location Id / User Id" datatype="string" />
-  <UserPref name="sort" display_name="Sort Images By" datatype="enum" default_value="recent">
+  <UserPref name="sort" display_name="Sort Images By" datatype="enum" default_value="most-recent">
     <EnumValue value="none" display_value="As they come from Instagram" />
     <EnumValue value="random" display_value="Random" />
     <EnumValue value="most-recent" display_value="Newest to oldest" />
