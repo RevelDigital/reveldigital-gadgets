@@ -42,11 +42,9 @@ function getDevicebyRegKey(regKey) {
       if (typeof Client != 'undefined') {
         Client.callback(data);
       }
-      showText(data);
+      console.log(data);
       
-      setTimeout(function () {
-        showText("");
-      }, 20000);
+ 
     });
     socket.on('disconnect', function () {
       connected = false;
@@ -74,7 +72,7 @@ function getDevicebyRegKey(regKey) {
   }
 
   function load() {
-    console.log("Version bravo: " + 50);
+    console.log("Version bravo: " + 23);
     init();
   }
 
