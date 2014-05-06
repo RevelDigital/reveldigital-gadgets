@@ -28,12 +28,12 @@ function getDevicebyRegKey(regKey) {
 }
 
   var prefs = new gadgets.Prefs();
-getDevicebyRegKey(prefs.getString("reg_key"));
 
   //startup waiting for message from server
   function init() {
     deviceId = null;
     connected = false;
+getDevicebyRegKey(prefs.getString("reg_key"));
 
     socketConnect();
 
@@ -75,7 +75,7 @@ getDevicebyRegKey(prefs.getString("reg_key"));
   }
 
   function load() {
-    console.log("Version bravo: " + 32);
+    console.log("Version bravo: " + 78);
     init();
   }
 
