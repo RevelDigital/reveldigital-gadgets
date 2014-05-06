@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Tracker" description="RevelDigital Tracker" author="RevelDigital" background="transparent">
-  
+    <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -13,8 +13,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.6/socket.io.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
-  var prefs = new gadgets.Prefs();
+function getDevicebyRegKey(regKey) {
+    var image = $.getJSON("http://api.reveldigital.com/devices.json?api_key=" + prefs.getString('api_key'), function (data) {
+      
+        for(var i=0; i < data.length; i++) {
+            var currentDevice = data[i];
+            if(currentDevice.registration_key == regKey) {
+                deviceId = currentDevice.id;
+            }
+        }
 
+        init();
+    });
+}
+
+  var prefs = new gadgets.Prefs();
+getDevicebyRegKey(prefs.getString("reg_key"));
 
   //startup waiting for message from server
   function init() {
@@ -53,14 +67,14 @@
 
   function socketConnect() {
     console.log('Message: Trying to connect');
-    socket = io.connect('http://shindig.reveldigital.com:3000/room');
+    socket = io.connect('http://65.183.249.120:3000/room');
     
     if (!connected) {
     }
   }
 
   function load() {
-    console.log("Version bravo: " + 15);
+    console.log("Version bravo: " + 21);
     init();
   }
 
