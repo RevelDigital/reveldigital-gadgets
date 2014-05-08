@@ -19,7 +19,7 @@ p {
   height: 550px;
   position: absolute;
   left:100px;
-  top:150px;   
+  top:100px;   
 }
 #textboxarea {
   position: absolute;
@@ -71,7 +71,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   lastpubdate = null;
   updateRss();
   setInterval(updateRss(), 3600000);
