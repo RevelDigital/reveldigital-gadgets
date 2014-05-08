@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="cityfusion Rss Feed" description="Displays data from cityfusion rss feed" author="RevelDigital" background="transparent">
-
+  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:50px;" required="false" />
+  <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:30px;" required="false" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -11,8 +12,7 @@
 <style type="text/css">
 
 p {
-  font-weight: bold;
-  font-size: 30px;
+  __UP_details-style__;
 }
 #rssimage {
   width: 650px;
@@ -27,8 +27,8 @@ p {
   top: 60px;
 }
 #eventname {
+  __UP_title-style__;
   text-align: center;
-  font-size: 50px;
 }
 
 body { 
@@ -63,15 +63,15 @@ body {
 </div>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.zrssfeed.min.js"></script>
-<script src="http://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.zrssfeed.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.qrcode.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 
 
 $(document).ready(function () {
-  console.log("Version: " + 7);
+  console.log("Version: " + 9);
   lastpubdate = null;
   updateRss();
   setInterval(updateRss(), 3600000);
@@ -83,7 +83,7 @@ function retrieveElement(xml, element) {
 }
 
 function updateRss() {
-  $.getJSON('http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=1&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
+  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=1&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
