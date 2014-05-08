@@ -28,7 +28,7 @@ p {
 }
 #eventname {
   text-align: center;
-  font-size: 70px;
+  font-size: 50px;
 }
 
 body { 
@@ -71,7 +71,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 3);
   lastpubdate = null;
   updateRss();
   setInterval(updateRss(), 3600000);
@@ -94,11 +94,11 @@ function updateRss() {
         var item = xml.substring(xml.indexOf('<item>'), xml.length)
 
         $('#rssimage').attr('src', 'http://' + retrieveElement(item, 'image'));
-        $('#address').text(retrieveElement(item, 'address'));
-        $('#cost').text(retrieveElement(item, 'cost'));
-        $('#eventname').text(retrieveElement(item, 'title'));
-        $('#venue').text(retrieveElement(item, 'venue'));
-        $('#description').text(retrieveElement(item, 'description'));
+        $('#address').html(retrieveElement(item, 'address'));
+        $('#cost').html(retrieveElement(item, 'cost'));
+        $('#eventname').html(retrieveElement(item, 'title'));
+        $('#venue').html(retrieveElement(item, 'venue'));
+        $('#description').html(retrieveElement(item, 'description'));
 
         $('#qr').qrcode({
           width: 100,
