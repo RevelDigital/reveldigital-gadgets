@@ -12,7 +12,7 @@
 
 p {
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
 }
 #rssimage {
   width: 650px;
