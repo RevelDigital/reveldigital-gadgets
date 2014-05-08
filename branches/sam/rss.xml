@@ -89,7 +89,7 @@ function retrieveElement(xml, element) {
 }
 
 function updateRss() {
-  $.getJSON('http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=1&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
+  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=1&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
