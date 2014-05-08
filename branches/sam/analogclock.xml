@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Analog Clock" description="Displays an analog clock" author="RevelDigital" background="transparent">
+ 
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+
+<html>
+    <title>Analog Clock</title>
+    <body>
+       <canvas id="ca" width="100%" height="100%"></canvas>
+    </body>
+</html>
+
+<style type="text/css">
+
+
+    body { 
+      background-color: transparent;
+      margin:auto;
+      width:100%; 
+      height:100%; 
+    } 
+
+
+
+
+</style>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+
+
+var rad = window.innerWidth/2;
+
+var cv = document.getElementById("ca");
+var cx;
+
+if(cv.getContext('2d')){
+    cx = cv.getContext('2d');
+
+}
+
+cv.width = cv.height = rad;
+
+
+cx.fillStyle = "rgba(55,133,144,0.5)";
+cx.fillRect(0,0,rad,rad);
+
+var _clock_face = new (function(ctx, rad){
+  
+  this.radius = rad/2 - 5;
+  this.center = rad/2;
+  this.canvas = ctx;
+    
+  this.draw = function(){
+    this.canvas.clearRect(0,0,this.center*2,this.center*2);
+    
+    this.canvas.lineWidth = 4.0;
+    this.canvas.strokeStyle = "#567";
+    this.canvas.beginPath();
+    this.canvas.arc(this.center,this.center,this.radius,0,Math.PI * 2,true);
+    this.canvas.closePath();
+    this.canvas.stroke();
+    
+    this.drawDotes();
+    this.drawHourDotes();
+  }
+    
+  this.drawDotes = function(){
+    var theta = 0;
+    var distance = this.radius * 0.9; // 90% from the center
+    
+    this.canvas.lineWidth = 0.5;
+    this.canvas.strokeStyle = "#137";
+    
+    for(var i=0; i<60; i++){
+      // calculate Theta
+      theta = theta + (6 * Math.PI / 180);
+      // calculate x,y
+      x = this.center + distance * Math.cos(theta);
+      y = this.center + distance * Math.sin(theta);
+      
+      this.canvas.beginPath();
+      this.canvas.arc(x,y,1,0,Math.PI * 2,true);
+      this.canvas.closePath();
+      this.canvas.stroke();
+    }
+  }
+    
+  this.drawHourDotes = function(){
+    var theta = 0;
+    var distance = this.radius * 0.9;
+    
+    this.canvas.lineWidth = 5.0;
+    this.canvas.strokeStyle = "#137";
+    
+    for(var i=0; i<12; i++){
+      // calculate Theta
+      theta = theta + (30 * Math.PI / 180);
+      // calculate x,y
+      x = this.center + distance * Math.cos(theta);
+      y = this.center + distance * Math.sin(theta);
+      
+      this.canvas.beginPath();
+      this.canvas.arc(x,y,1,0,Math.PI * 2,true);
+      this.canvas.closePath();
+      this.canvas.stroke();
+    }
+  }
+})(cx,rad);
+
+
+var _second_needle = new (function(ctx,rad,sec){ 
+  this.sec = sec;
+  this.canvas = ctx;
+  this.center = rad / 2;
+  this.size = this.center * 0.80;
+  
+  this.update = function(s){
+    this.sec = s;
+  }
+  
+  this.draw = function(){
+    theta = (6 * Math.PI / 180);
+     x = this.center + this.size * Math.cos(this.sec * theta - Math.PI/2);
+     y = this.center + this.size * Math.sin(this.sec * theta - Math.PI/2);
+    
+     this.canvas.lineWidth = 2.0;
+     this.canvas.strokeStyle = "#423";
+    this.canvas.lineCap = "round";
+    
+     this.canvas.beginPath();
+     this.canvas.moveTo(x,y);
+     this.canvas.lineTo(this.center,this.center);
+     this.canvas.closePath();
+     this.canvas.stroke();
+    
+     this.next();
+     
+  }
+    
+  this.next = function(){
+    this.sec++;
+    if(this.sec==60) this.sec=0;
+  }
+})(cx,rad,0);
+
+var _minute_needle = new (function(ctx,rad,min,sec){
+  this.sec = sec;
+  this.min = min;
+  this.canvas = ctx;
+  this.center = rad / 2;
+  this.size = this.center * 0.65;
+  
+  this.update = function(m,s){
+    this.sec = s;
+    this.min = m;
+  }
+  
+  this.draw = function(){
+    theta = (6 * Math.PI / 180);
+     x = this.center + this.size * Math.cos(((this.min + this.sec/60) * theta) - Math.PI/2);
+     y = this.center + this.size * Math.sin(((this.min + this.sec/60) * theta) - Math.PI/2);
+    
+     this.canvas.lineWidth = 3.0;
+     this.canvas.strokeStyle = "#423";
+     this.canvas.lineCap = "round";
+    
+     this.canvas.beginPath();
+     this.canvas.moveTo(x,y);
+     this.canvas.lineTo(this.center,this.center);
+     this.canvas.closePath();
+     this.canvas.stroke();
+    
+     this.next();
+     
+  }
+    
+  this.next = function(){
+    this.sec++;
+    if(this.sec==60){
+      this.min++;
+      this.sec = 0;
+      if(this.min == 60){
+        this.min = 0;
+      }
+    }
+  }
+})(cx,rad,0,0);
+
+var _hour_needle = new (function(ctx,rad,hour,min,sec){
+  this.sec = sec;
+  this.min = min;
+  this.hour = hour;
+  this.canvas = ctx;
+  this.center = rad / 2;
+  this.size = this.center * 0.40;
+  
+  this.update = function(h,m,s){
+    this.sec = s;
+    this.min = m;
+    this.hour = h;
+  }
+  
+  this.draw = function(){
+     theta = (30 * Math.PI / 180);
+     x = this.center + this.size * Math.cos(((this.hour + this.min/60 + this.sec/3600) * theta) - Math.PI/2);
+     y = this.center + this.size * Math.sin(((this.hour + this.min/60 + this.sec/3600) * theta) - Math.PI/2);
+    
+     this.canvas.lineWidth = 5.0;
+     this.canvas.strokeStyle = "#423";
+     this.canvas.lineCap = "round";
+    
+     this.canvas.beginPath();
+     this.canvas.moveTo(x,y);
+     this.canvas.lineTo(this.center,this.center);
+     this.canvas.closePath();
+
+     this.canvas.stroke();
+    
+     this.next();
+     
+  }
+    
+  this.next = function(){
+    this.sec++;
+    if(this.sec==60){
+      this.sec = 0;
+      this.min++;
+      if(this.min == 60){
+        this.min = 0;
+        this.hour++; 
+        if(this.hour == 12){
+          this.hour = 0;
+        }
+      }
+    }
+  }
+})(cx,rad,1,0,0);
+
+var _dateObject = new (function(){
+  this.dateObject = new Date();
+  
+  this.hours = this.dateObject.getHours();
+  this.minutes = this.dateObject.getMinutes();
+  this.seconds = this.dateObject.getSeconds();
+  
+  this.refresh = function(){
+    this.hours = this.dateObject.getHours();
+    this.minutes = this.dateObject.getMinutes();
+    this.seconds = this.dateObject.getSeconds();
+  }
+})();
+
+var _init = function(){
+  _dateObject.refresh();
+  _second_needle.update(_dateObject.seconds);
+  _minute_needle.update(_dateObject.minutes,_dateObject.seconds);
+  _hour_needle.update(_dateObject.hours,_dateObject.minutes,_dateObject.seconds);
+}
+    
+var _clock = function(){
+  
+  _clock_face.draw();
+  
+  _second_needle.draw();
+  _minute_needle.draw();
+  _hour_needle.draw();
+  
+  setTimeout(_clock,1000/1);
+}
+    
+_init();
+    
+_clock();
+
+
+</script>
+]]>
+</Content>
+</Module>
