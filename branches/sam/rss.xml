@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="cityfusion Rss Feed" description="Displays data from cityfusion rss feed" author="RevelDigital" background="transparent">
-  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:50px;" required="false" />
-  <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Verdana;color:rgb(000, 000, 000);font-size:30px;" required="false" />
+  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:50px;font-weight:bold;" required="false" />
+  <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-
-
 
 <style type="text/css">
 
@@ -30,7 +28,6 @@ p {
   __UP_title-style__;
   text-align: center;
 }
-
 body { 
   margin:auto;
   background-color: transparent;
@@ -38,29 +35,25 @@ body {
   height:100%; 
 } 
 
-
-
-
 </style>
 
 <body>
 
-<img id="rssimage" src="http://placehold.it/650x550">
+  <img id="rssimage" src="http://placehold.it/650x550">
 
-<div id="textboxarea">
-<p id="eventname">Event Name</p>
+  <div id="textboxarea">
+    <p id="eventname">Event Name</p>
 
-<p id="venue">Venue(name of event venue)</p>
+    <p id="venue">Venue(name of event venue)</p>
 
-<p id="address">Address</p>
+    <p id="address">Address</p>
 
-<p id="cost">Cost</p>
+    <p id="cost">Cost</p>
 
-<p id="description">Description</p>
+    <p id="description">Description</p>
+  </div>
 
-
-</div>
-
+</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.zrssfeed.min.js"></script>
@@ -86,7 +79,6 @@ function updateRss() {
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
       var pubdate = retrieveElement(xml, 'lastBuildDate');
-      console.log(pubdate);
       if(pubdate != lastpubdate) {
         lastpubdate = pubdate;
         var item = xml.substring(xml.indexOf('<item>'), xml.length)
@@ -98,19 +90,12 @@ function updateRss() {
         $('#venue').html(retrieveElement(item, 'venue'));
         $('#description').html(retrieveElement(item, 'description'));
 
-
       }
-
-
     }
   });
 }
 
-
-
 </script>
-
-</body>
 
 ]]>
 </Content>
