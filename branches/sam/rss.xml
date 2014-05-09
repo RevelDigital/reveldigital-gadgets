@@ -45,15 +45,15 @@ body {
   <img id="rssimage" src="http://placehold.it/650x550">
 
   <div id="textboxarea">
-    <p id="eventname">Event Name</p>
+    <p id="eventname"></p>
 
-    <p id="venue">Venue(name of event venue)</p>
+    <p id="venue"></p>
 
-    <p id="address">Address</p>
+    <p id="address"></p>
 
-    <p id="cost">Cost</p>
+    <p id="cost"></p>
 
-    <p id="description">Description</p>
+    <p id="description"></p>
   </div>
 </div>
 </body>
@@ -66,7 +66,7 @@ body {
 
 $(document).ready(function () {
   prefs = new gadgets.Prefs();
-  console.log("Version: " + 1);
+  console.log("Version: " + 3);
   items = [];
   preloadImage = [];
   counter = 0;
