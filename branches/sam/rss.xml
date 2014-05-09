@@ -3,6 +3,9 @@
 <ModulePrefs title="cityfusion Rss Feed" description="Displays data from cityfusion rss feed" author="RevelDigital" background="transparent">
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:50px;font-weight:bold;" required="false" />
   <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="update_interval" display_name="Number of minutes between data updates" default_value="60" datatype="string" />
+  <UserPref name="refresh_interval" display_name="Number of seconds between item changes" datatype="string" default_value="15" />
+  <UserPref name="num_items" display_name="Number items to download and show every update" datatype="string" default_value="100" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -38,7 +41,7 @@ body {
 </style>
 
 <body>
-
+<div id="container">
   <img id="rssimage" src="http://placehold.it/650x550">
 
   <div id="textboxarea">
@@ -52,7 +55,7 @@ body {
 
     <p id="description">Description</p>
   </div>
-
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -62,10 +65,15 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 7);
+  var prefs = new gadgets.Prefs();
+  console.log("Version: " + 9);
+  items = [];
+  preloadImage = [];
+  counter = 0;
   lastpubdate = null;
   updateRss();
-  setInterval(updateRss(), 3600000);
+  setInterval(updateRss(), prefs.getInt("update_interval") * 60 * 1000);
+  setInterval(cycleRss, prefs.getInt("refresh_interval") * 1000);
 });
 
 
@@ -73,23 +81,49 @@ function retrieveElement(xml, element) {
   return xml.substring(xml.indexOf('<' + element + '>') + element.length + 2, xml.indexOf('</' + element + '>'));
 }
 
+
+function cycleRss() {
+  $('#container').fadeOut('fast', function() {
+    if(counter == items.length-1) {
+    counter = 0;
+    }
+
+    item = items[counter]
+
+    $('#rssimage').attr('src', preloadImage[counter]);
+    $('#address').html(retrieveElement(item, 'address'));
+    $('#cost').html(retrieveElement(item, 'cost'));
+    $('#eventname').html(retrieveElement(item, 'title'));
+    $('#venue').html(retrieveElement(item, 'venue'));
+    $('#description').html(retrieveElement(item, 'description'));
+  });
+  
+
+  $('#container').fadeIn('fast', function() {
+    
+  });
+  
+  counter++;
+}
+
 function updateRss() {
-  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=1&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
+  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
       var pubdate = retrieveElement(xml, 'lastBuildDate');
       if(pubdate != lastpubdate) {
+        items = [];
+        preloadImage = [];
         lastpubdate = pubdate;
-        var item = xml.substring(xml.indexOf('<item>'), xml.length)
+        items = xml.split('</item>');
+        items[0].replace(items[0].substring(0, items[0].indexOf('<item>')), "");
 
-        $('#rssimage').attr('src', 'http://' + retrieveElement(item, 'image'));
-        $('#address').html(retrieveElement(item, 'address'));
-        $('#cost').html(retrieveElement(item, 'cost'));
-        $('#eventname').html(retrieveElement(item, 'title'));
-        $('#venue').html(retrieveElement(item, 'venue'));
-        $('#description').html(retrieveElement(item, 'description'));
-
+        for(var i=0; i<items.length-1; i++) {
+          var loadedImage = new Image();
+          loadedImage.src = "http://" + retrieveElement(items[i], 'image');
+          preloadImage[i] = loadedImage.src;
+        }
       }
     }
   });
