@@ -65,8 +65,8 @@ body {
 
 
 $(document).ready(function () {
-  var prefs = new gadgets.Prefs();
-  console.log("Version: " + 9);
+  prefs = new gadgets.Prefs();
+  console.log("Version: " + 11);
   items = [];
   preloadImage = [];
   counter = 0;
