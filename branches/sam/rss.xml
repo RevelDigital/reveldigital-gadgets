@@ -66,7 +66,7 @@ body {
 
 $(document).ready(function () {
   prefs = new gadgets.Prefs();
-  console.log("Version: " + 3);
+  console.log("Version: " + 1);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -81,6 +81,13 @@ function retrieveElement(xml, element) {
   return xml.substring(xml.indexOf('<' + element + '>') + element.length + 2, xml.indexOf('</' + element + '>'));
 }
 
+function htmlDecode(value) {
+    if (value) {
+        return $('<div />').html(value).text();
+    } else {
+        return '';
+    }
+}
 
 function cycleRss() {
   $('#container').fadeOut('slow', function() {
@@ -91,11 +98,12 @@ function cycleRss() {
     item = items[counter]
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#address').html(retrieveElement(item, 'address'));
-    $('#cost').html(retrieveElement(item, 'cost'));
-    $('#eventname').html(retrieveElement(item, 'title'));
-    $('#venue').html(retrieveElement(item, 'venue'));
-    $('#description').html(retrieveElement(item, 'description'));
+    $('#address').html(htmlDecode(retrieveElement(item, 'address')));
+    $('#cost').html(htmlDecode(retrieveElement(item, 'cost')));
+    $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
+    $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
+    $('#description').html(htmlDecode(retrieveElement(item, 'description')));
+
   });
   
 
@@ -109,7 +117,7 @@ function cycleRss() {
 function updateRss() {
   $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
 
-   if (json && json.responseStatus == 200) {
+    if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
 
       var pubdate = retrieveElement(xml, 'lastBuildDate');
@@ -118,7 +126,7 @@ function updateRss() {
         preloadImage = [];
         lastpubdate = pubdate;
         items = xml.split('</item>');
-        items[0].replace(items[0].substring(0, items[0].indexOf('<item>')), "");
+        items[0] = items[0].replace(items[0].substring(0, items[0].indexOf('<item>')), "");
 
         for(var i=0; i<items.length-1; i++) {
           var loadedImage = new Image();
