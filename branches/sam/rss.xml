@@ -6,6 +6,7 @@
   <UserPref name="update_interval" display_name="Number of minutes between data updates" default_value="60" datatype="string" />
   <UserPref name="refresh_interval" display_name="Number of seconds between item changes" datatype="string" default_value="15" />
   <UserPref name="num_items" display_name="Number items to download and show every update" datatype="string" default_value="100" />
+  <UserPref name="feed_url" display_name="Url for RSS feed" datatype="string" default_value=" http://www.cityfusion.ca/events/feed/" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -66,7 +67,7 @@ body {
 
 $(document).ready(function () {
   prefs = new gadgets.Prefs();
-  console.log("Version: " + 1);
+  console.log("Version: " + 0);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -115,7 +116,7 @@ function cycleRss() {
 }
 
 function updateRss() {
-  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=http://www.cityfusion.ca/events/feed/', function(json) {
+  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=' + prefs.getString("feed_url"), function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
