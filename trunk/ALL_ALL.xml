@@ -1,0 +1,5 @@
+<messagebundle>
+  <msg name="Today">Today</msg> 
+  <msg name="Currently">Currently</msg> 
+  <msg name="Tomorrow">Tomorrow</msg> 
+</messagebundle>
