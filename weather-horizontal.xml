@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Weather Gadget" description="Two day weather panel in a horizontal orientation" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ru_ALL.xml"/>
   <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
@@ -164,7 +166,7 @@
       <div id="current" class="box" style="display:table-cell;">
         <div class="box-container">
           <div class="day-container">
-            <span>Currently</span>
+            <span>__MSG_Currently__</span>
           </div>
           <img class="icon invisible" src="" />
           <div class="temp-container">
@@ -175,7 +177,7 @@
       <div id="today" class="box" style="display:table-cell;">
         <div class="box-container">
           <div class="day-container">
-            <span>Today</span>
+            <span>__MSG_Today__</span>
           </div>
           <img class="icon invisible" src="" />
           <div class="temp-container">
@@ -192,7 +194,7 @@
       <div id="tomorrow" class="box" style="display:table-cell;">
         <div class="box-container">
           <div class="day-container">
-            <span>Tomorrow</span>
+            <span>__MSG_Tomorrow__</span>
           </div>
           <img class="icon invisible" src="" />
           <div class="temp-container">
