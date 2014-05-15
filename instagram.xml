@@ -55,36 +55,16 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-  
-#sequence {
-  height: 100%;
-  position: relative; /* required */
-  width: 100%;
-}
-
-#sequence > .sequence-canvas li > * {  /* required */
-  position: absolute;
-}
-
-#sequence > .sequence-canvas { /* required */
-  height: 100%; 
-  width: 100%;
-}
-
-#sequence > .sequence-canvas > li { /* required */
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-#sequence ul li img {
   width: __UP_rdW__px;
   height: __UP_rdH__px;
 }
 
-#sequence ul li p {
+ul li img {
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+ul li p {
   width: 100%;
   background: rgba(255,255,255,.8);
   position: absolute;
@@ -96,22 +76,15 @@ ul {
   __UP_captionStyle__;
 }
 
-#sequence div {
-  transition: all 0.5s linear;
-  opacity: 0;
-}
-
-#sequence .animate-in div {
-  opacity: 1; /* or some other property as long as it changes */
-}
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/instafeed.custom.js"></script>
-<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.sequence-min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/bxslider-4.1.2/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="https://reveldigital-gadgets.googlecode.com/svn/third-party/bxslider-4.1.2/jquery.bxslider.css" type="text/css" />
 
 <div id="sequence">
-  <ul id="container" class="sequence-canvas">
+  <ul id="container" class="bxslider">
   </ul>
 </div>
 
@@ -131,8 +104,6 @@ ul {
 
 <script type="text/javascript">
   
-  var mySequence = undefined;
-  
   var update = function () {
   
     var key = prefs.getString("rdKey");
@@ -148,10 +119,6 @@ ul {
       '<li><div><img src="{{image}}" /><p>{{caption}}</p></div></li>' :
       '<li><div><img src="{{image}}" /></div></li>';
     
-    if (mySequence != undefined) {
-      mySequence.destroy();
-      mySequence = undefined;
-    }
     $("#container").empty();
     
     var feed = new Instafeed({
@@ -166,7 +133,15 @@ ul {
         limit: parseInt(prefs.getString("limit")),
         template: template,
         after: function() {
-          mySequence = $("#sequence").sequence(options).data("sequence");
+          $("#container").bxSlider({
+              mode: 'fade',
+              captions: 'true',
+              responsive: false,
+              pager: false,
+              controls: false,
+              auto: true,
+              autoStart: true
+            });
         }
     });
     feed.run();
