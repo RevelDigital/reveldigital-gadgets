@@ -1,0 +1,5 @@
+<messagebundle>
+  <msg name="Today">сегодня</msg> 
+  <msg name="Currently">теперь</msg> 
+  <msg name="Tomorrow">завтра</msg> 
+</messagebundle>
