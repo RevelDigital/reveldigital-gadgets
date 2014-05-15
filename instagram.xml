@@ -107,14 +107,7 @@ ul li p {
   var update = function () {
   
     var key = prefs.getString("rdKey");
-    
-    var options = {
-      autoPlay: true,
-      autoPlayDelay: parseInt(prefs.getString("pause")) * 1000,
-      preloader: true,
-      preloadTheseFrames: [1,10]
-    }
-    
+        
     var template = prefs.getBool("showCaption") ?
       '<li><div><img src="{{image}}" /><p>{{caption}}</p></div></li>' :
       '<li><div><img src="{{image}}" /></div></li>';
@@ -140,7 +133,8 @@ ul li p {
               pager: false,
               controls: false,
               auto: true,
-              autoStart: true
+              autoStart: true,
+              pause: parseInt(prefs.getString("pause")) * 1000
             });
         }
     });
