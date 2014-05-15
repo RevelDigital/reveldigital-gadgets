@@ -181,9 +181,9 @@
           </div>
           <img class="icon invisible" src="" />
           <div class="temp-container">
-            <div class="temp-title invisible">High:</div>
+            <div class="temp-title invisible">__MSG_High__:</div>
             <div class="high invisible"><span></span>&#176;</div>
-            <div class="temp-title invisible">Low:</div>
+            <div class="temp-title invisible">__MSG_Low__:</div>
             <div class="low invisible"><span></span>&#176;</div>
           </div>
           <div class="condition-container">
@@ -198,9 +198,9 @@
           </div>
           <img class="icon invisible" src="" />
           <div class="temp-container">
-            <div class="temp-title invisible">High:</div>
+            <div class="temp-title invisible">__MSG_High__:</div>
             <div class="high invisible"><span></span>&#176;</div>
-            <div class="temp-title invisible">Low:</div>
+            <div class="temp-title invisible">__MSG_Low__:</div>
             <div class="low invisible"><span></span>&#176;</div>
           </div>
           <div class="condition-container">
