@@ -39,8 +39,8 @@
   }
 
   .flip-container, .front, .back {
-    width: 100%;
-    height: 180px;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
   }
 
   /* flip speed goes here */
@@ -87,7 +87,7 @@
     100% {z-index:0;}
   }
   .vertical.flip-container .flipper {
-    -webkit-transform-origin: 100% 90px; /* half of height */
+    -webkit-transform-origin: 100% calc(__UP_rdH__px / 2); /* half of height */
   }
 
   .vertical.flip-container.hover .flipper {
@@ -96,11 +96,11 @@
   
   .location-container {
     float: left;
-    height: 180px;
+    height: __UP_rdH__px;
   }
   
   .conditions {
-    height: 180px;
+    height: __UP_rdH__px;
   }
   
   .temp-container {
@@ -109,7 +109,7 @@
   }
   
   .temp {
-    height: 180px;
+    height: __UP_rdH__px;
   }
   
   .condition {
@@ -124,11 +124,11 @@
     box-sizing: border-box;
     position: relative;
     float: left;
-    height: 180px;
+    height: __UP_rdH__px;
   }
   
   .icon-container img {
-    height: 180px;
+    height: __UP_rdH__px;
   }
     
 </style>
