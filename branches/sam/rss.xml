@@ -68,7 +68,7 @@ body {
 
 $(document).ready(function () {
   prefs = new gadgets.Prefs();
-  console.log("Version: " + 0);
+  console.log("Version: " + 1);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -94,10 +94,14 @@ function htmlDecode(value) {
     }
 }
 
+function cachePictures() {
+  
+}
+
 function cycleRss() {
   $('#container').fadeOut('slow', function() {
     if(counter == items.length-1) {
-    counter = 0;
+      counter = 0;
     }
 
     item = items[counter]
@@ -121,7 +125,7 @@ function cycleRss() {
 
 function updateRss() {
 
-  for(var j=0; j<tags.length; j++) {
+  for(var j=0; j<tagsArray.length; j++) {
 
   }
 
@@ -148,6 +152,8 @@ function updateRss() {
     }
   });
 }
+
+
 
 </script>
 
