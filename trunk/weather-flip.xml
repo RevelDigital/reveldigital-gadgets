@@ -37,6 +37,11 @@
     font-family: Arial;
   }
 
+  section, figure {
+    padding: 0;
+    margin: 0;
+  }
+
   /* entire container, keeps perspective */
   .flip-container {
     -webkit-perspective: 1000px;
