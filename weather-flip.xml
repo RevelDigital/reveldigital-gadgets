@@ -189,20 +189,20 @@
   function load() {
     
     search = [];
-    if (prefs.getString("Location 1") != "") {
-      search.push(prefs.getString("Location 1"));
+    if (prefs.getString("Location1") != "") {
+      search.push(prefs.getString("Location1"));
     }
-    if (prefs.getString("Location 2") != "") {
-      search.push(prefs.getString("Location 2"));
+    if (prefs.getString("Location2") != "") {
+      search.push(prefs.getString("Location2"));
     }
-    if (prefs.getString("Location 3") != "") {
-      search.push(prefs.getString("Location 3"));
+    if (prefs.getString("Location3") != "") {
+      search.push(prefs.getString("Location3"));
     }
-    if (prefs.getString("Location 4") != "") {
-      search.push(prefs.getString("Location 4"));
+    if (prefs.getString("Location4") != "") {
+      search.push(prefs.getString("Location4"));
     }
-    if (prefs.getString("Location 5") != "") {
-      search.push(prefs.getString("Location 5"));
+    if (prefs.getString("Location5") != "") {
+      search.push(prefs.getString("Location5"));
     }
     
     clearInterval(flipTimer);
