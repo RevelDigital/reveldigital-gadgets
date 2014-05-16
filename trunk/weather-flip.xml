@@ -42,6 +42,9 @@
   .flip-container, .front, .back {
     width: __UP_rdW__px;
     height: __UP_rdH__px;
+  }
+  
+  div.front, div.back {
     __UP_body-style__;
   }
 
