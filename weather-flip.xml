@@ -83,7 +83,7 @@
   .vertical.flip-container.hover .back {
     -webkit-animation-delay: 0.3s;
     animation-delay: 0.3s;
-    -webkit-animation: toBack 0.3s linear normal  forwards;
+    -webkit-animation: toBack 0.3s linear normal forwards;
     animation: toBack 0.3s linear normal  forwards;
   }
   @keyframes toBack {  
@@ -145,38 +145,97 @@
     __UP_body-style__;
   }
 
+
+
+
+
+  .container {
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    -webkit-perspective: 1000px;
+       -moz-perspective: 1000px;
+         -o-perspective: 1000px;
+            perspective: 1000px;
+  }
+
+  #card {
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    position: absolute;
+    -webkit-transition: -webkit-transform 1s;
+       -moz-transition: -moz-transform 1s;
+         -o-transition: -o-transform 1s;
+            transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transform-origin: 100% calc(__UP_rdH__px / 2);
+       -moz-transform-origin: 100% calc(__UP_rdH__px / 2);
+         -o-transform-origin: 100% calc(__UP_rdH__px / 2);
+            transform-origin: 100% calc(__UP_rdH__px / 2);
+  }
+
+  #card.flipped {
+    -webkit-transform: rotateX( -180deg );
+       -moz-transform: rotateX( -180deg );
+         -o-transform: rotateX( -180deg );
+            transform: rotateX( -180deg );
+  }
+
+  #card figure {
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+         -o-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+
+  #card .front {
+  }
+
+  #card .back {
+    -webkit-transform: rotateX( -180deg );
+       -moz-transform: rotateX( -180deg );
+         -o-transform: rotateX( -180deg );
+            transform: rotateX( -180deg );
+  }
+
 </style>
 
-<div class="vertical flip-container" onclick="flip();">
-    <div class="flipper">
-        <div class="front">
-          <div class="icon-container">
-            <img class="icon"/>
-            <div class="condition"></div>
-          </div>
-          <div class="location-container">
-            <div class="location"></div>
-            <div class="high-low"><span></span></div>
-          </div>
-          <div class="temp-container">
-            <div class="temp"></div>
-          </div>
-        </div>
-        <div class="back">
-          <div class="icon-container">
-            <img class="icon"/>
-            <div class="condition"></div>
-          </div>
-          <div class="location-container">
-            <div class="location"></div>
-            <div class="high-low"><span></span></div>
-          </div>
-          <div class="temp-container">
-            <div class="temp"></div>
-          </div>
-        </div>
-    </div>
-</div>
+<section class="container" onclick="flip();">
+  <div id="card">
+    <figure class="front">
+      <div class="icon-container">
+        <img class="icon"/>
+        <div class="condition"></div>
+      </div>
+      <div class="location-container">
+        <div class="location"></div>
+        <div class="high-low"><span></span></div>
+      </div>
+      <div class="temp-container">
+        <div class="temp"></div>
+      </div>
+    </figure>
+    <figure class="back">
+      <div class="icon-container">
+        <img class="icon"/>
+        <div class="condition"></div>
+      </div>
+      <div class="location-container">
+        <div class="location"></div>
+        <div class="high-low"><span></span></div>
+      </div>
+      <div class="temp-container">
+        <div class="temp"></div>
+      </div>
+    </figure>
+  </div>
+</section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.fittext.js"></script>
@@ -228,7 +287,7 @@
   
   function flip() {
 
-    var panel = $('.flip-container').hasClass('hover') ? $('div.front') : $('div.back');
+    var panel = $('#card').hasClass('flipped') ? $('figure.front') : $('figure.back');
     
     if (items.length == 0) {
       return;
@@ -247,7 +306,7 @@
     $('div.temp', panel).fitText(1, { vh: 80 });
     $('div.high-low', panel).fitText(1, { vh: 25 });
     
-    $('.flip-container').toggleClass('hover');
+    $('#card').toggleClass('flipped');
   }
   
   function getWeather(woeid) {
