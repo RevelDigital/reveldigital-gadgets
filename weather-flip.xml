@@ -199,7 +199,7 @@
 
     var panel = $('.flip-container').hasClass('hover') ? $('div.front') : $('div.back');
     
-    if (items.length = 0) {
+    if (items.length == 0) {
       return;
     }
     var i = idx++ % items.length;
