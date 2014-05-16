@@ -37,12 +37,12 @@
   /* entire container, keeps perspective */
   .flip-container {
     -webkit-perspective: 1000px;
-    __UP_body-style__;
   }
 
   .flip-container, .front, .back {
     width: __UP_rdW__px;
     height: __UP_rdH__px;
+    __UP_body-style__;
   }
 
   /* flip speed goes here */
