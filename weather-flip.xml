@@ -41,6 +41,7 @@
   /* entire container, keeps perspective */
   .flip-container {
     -webkit-perspective: 1000px;
+    perspective: 1000px;
   }
 
   .flip-container, .front, .back {
@@ -52,6 +53,7 @@
   .flipper {
     transition: 0.6s;
     -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     position: relative;
   }
 
@@ -72,14 +74,18 @@
   /* back, initially hidden pane */
   .back {
     -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
     -webkit-animation: toFront 0.3s linear normal forwards;
+    animation: toFront 0.3s linear normal forwards;
   }
   .vertical.flip-container {
     position: relative;
   }
   .vertical.flip-container.hover .back {
     -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
     -webkit-animation: toBack 0.3s linear normal  forwards;
+    animation: toBack 0.3s linear normal  forwards;
   }
   @keyframes toBack {  
     0% {z-index:0;}
@@ -91,10 +97,12 @@
   }
   .vertical.flip-container .flipper {
     -webkit-transform-origin: 100% calc(__UP_rdH__px / 2); /* half of height */
+    transform-origin: 100% calc(__UP_rdH__px / 2); /* half of height */
   }
 
   .vertical.flip-container.hover .flipper {
     -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
   }
   
   .location-container {
