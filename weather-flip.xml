@@ -7,7 +7,11 @@
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
-  <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="Location1" display_name="Location 1" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="Location2" display_name="Location 2" datatype="string" default_value="" />
+  <UserPref name="Location3" display_name="Location 3" datatype="string" default_value="" />
+  <UserPref name="Location4" display_name="Location 4" datatype="string" default_value="" />
+  <UserPref name="Location5" display_name="Location 5" datatype="string" default_value="" />
   <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -176,13 +180,30 @@
  
   //var search = prefs.getString("Location");
   var unit = prefs.getString("Units");
-  var search = ["Ft Myers, FL", "Fargo, ND", "Seattle, WA", "Fairbanks, AK"];
+  var search = [];
   var items = [];
   var idx = 0;
   var titles = {};
   var flipTimer;
   
   function load() {
+    
+    search = [];
+    if (prefs.getString("Location 1") != "") {
+      search.push(prefs.getString("Location 1"));
+    }
+    if (prefs.getString("Location 2") != "") {
+      search.push(prefs.getString("Location 2"));
+    }
+    if (prefs.getString("Location 3") != "") {
+      search.push(prefs.getString("Location 3"));
+    }
+    if (prefs.getString("Location 4") != "") {
+      search.push(prefs.getString("Location 4"));
+    }
+    if (prefs.getString("Location 5") != "") {
+      search.push(prefs.getString("Location 5"));
+    }
     
     clearInterval(flipTimer);
     items = [];
@@ -243,6 +264,10 @@
           }
           item.woeid = woeid;
           items.push(item);
+          
+          if (items.length == 1) {
+            flip();
+          }
         }
       }
     });
