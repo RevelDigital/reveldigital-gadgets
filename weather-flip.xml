@@ -44,10 +44,6 @@
     height: __UP_rdH__px;
   }
   
-  div.front, div.back {
-    __UP_body-style__;
-  }
-
   /* flip speed goes here */
   .flipper {
     transition: 0.6s;
@@ -133,7 +129,11 @@
   .icon-container img {
     height: __UP_rdH__px;
   }
-    
+      
+  div.condition, div.temp, div.high-low, div.location {
+    __UP_body-style__;
+  }
+
 </style>
 
 <div class="vertical flip-container" onclick="flip();">
