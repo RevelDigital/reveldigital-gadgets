@@ -1,7 +1,7 @@
 <messagebundle>
-  <msg name="Today">сегодня</msg> 
-  <msg name="Currently">теперь</msg> 
-  <msg name="Tomorrow">завтра</msg>
-  <msg name="High">хигх</msg>
-  <msg name="Low">низкий</msg>
+  <msg name="Today">Сегодня</msg> 
+  <msg name="Currently">Сейчас</msg> 
+  <msg name="Tomorrow">Завтра</msg>
+  <msg name="High">Выс:</msg>
+  <msg name="Low">Низ:</msg>
 </messagebundle>
