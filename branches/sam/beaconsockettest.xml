@@ -48,7 +48,7 @@ function getDevicebyRegKey(regKey) {
 
 //startup waiting for message from server
 function init() {
-console.log("version: " + 3);
+console.log("version: " + 5);
   connected = false;
   
   socketConnect();
@@ -60,8 +60,7 @@ console.log("version: " + 3);
     showText(data);
     setTimeout(function() {
       if(Client != undefined) {
-        var data = [""];
-        Client.callback(data);
+        Client.callback("");
         showText("");
       }
     }, 20000);
