@@ -6,5 +6,5 @@
   <msg name="High">Выс</msg>
   <msg name="Low">Низ</msg>
   <msg name="Calendar_TimeFormat">HH:MM</msg>
-  <msg name="Calendar_DateFormat">dddd, d mmmm</msg>
+  <msg name="Calendar_DateFormat">dddd, d MMM</msg>
 </messagebundle>
