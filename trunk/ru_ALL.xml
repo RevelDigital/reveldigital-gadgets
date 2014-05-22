@@ -2,6 +2,8 @@
   <msg name="Today">Сегодня</msg> 
   <msg name="Currently">Сейчас</msg> 
   <msg name="Tomorrow">Завтра</msg>
-  <msg name="High">Выс:</msg>
-  <msg name="Low">Низ:</msg>
+  <msg name="High">Выс</msg>
+  <msg name="Low">Низ</msg>
+  <msg name="Calendar_TimeFormat">HH:MM</msg>
+  <msg name="Calendar_DateFormat">dddd, d mmmm</msg>
 </messagebundle>

@@ -4,4 +4,6 @@
   <msg name="Tomorrow">Tomorrow</msg>
   <msg name="High">High</msg>
   <msg name="Low">Low</msg>
+  <msg name="Calendar_TimeFormat">h:MM TT</msg>
+  <msg name="Calendar_DateFormat">dddd, mmmm dS</msg>
 </messagebundle>

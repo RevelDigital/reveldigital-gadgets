@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
   <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
@@ -236,10 +238,10 @@ function formatTable(json) {
       var start = GCalTime(entry['gd$when'][0].startTime);
       var end = GCalTime(entry['gd$when'][0].endTime);
       
-      var startDate = start.format("dddd, mmmm dS");
-      var endDate = end.format("dddd, mmmm dS");
-      var startTime = start.format("h:MM TT");
-      var endTime = end.format("h:MM TT");
+      var startDate = start.format("__MSG_Calendar_DateFormat__");
+      var endDate = end.format("__MSG_Calendar_DateFormat__");
+      var startTime = start.format("__MSG_Calendar_TimeFormat__");
+      var endTime = end.format("__MSG_Calendar_TimeFormat__");
       
       var tr = $('<tr/>');
       
