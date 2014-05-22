@@ -1,4 +1,5 @@
 <messagebundle>
+  <msg name="Lang">ru</msg>
   <msg name="Today">Сегодня</msg> 
   <msg name="Currently">Сейчас</msg> 
   <msg name="Tomorrow">Завтра</msg>
