@@ -48,7 +48,7 @@ function getDevicebyRegKey(regKey) {
 
 //startup waiting for message from server
 function init() {
-console.log("version: " + 5);
+console.log("version: " + 0);
   connected = false;
   
   socketConnect();
@@ -57,11 +57,10 @@ console.log("version: " + 5);
     if(Client != undefined) {
       Client.callback(data);
     }
-    showText(data);
     setTimeout(function() {
       if(Client != undefined) {
         Client.callback("");
-        showText("");
+        
       }
     }, 20000);
   });
@@ -97,32 +96,12 @@ $(function() {
   getDevicebyRegKey(prefs.getString('reg_key'));
 });
 
-//show text from source given by server
-function showText(text) {
-  if(text.length == 0) {
-    $("#youhave").html("");
-    $("#name_of_queue").html("");
-    $("#forplayback").html("");
-  }
-  else {
-    $("#name_of_queue").html(text);
-  }
-}
 
 
 
 </script>
 
-<body>
-  <div id="youhave" class="textview">
-  </div>
 
-  <div id="name_of_queue">
-  </div>
-
-  <div id="forplayback" class="textview">
-  </div>
-</body>
 
 ]]>
 </Content>
