@@ -132,7 +132,7 @@ h3
   var prefs = new gadgets.Prefs();
 
   function load() {
-      console.log("version: " + 0);
+      console.log("version: " + 1);
     if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
     } else {
@@ -236,16 +236,13 @@ function formatTable(json) {
       var start = GCalTime(entry['gd$when'][0].startTime);
       var end = GCalTime(entry['gd$when'][0].endTime);
 
-      console.log("Start: " + start);
-      console.log("End: " + end);
       
       var startDate = start.format("dddd, mmmm dS");
       var endDate = end.format("dddd, mmmm dS");
       var startTime = start.format("h:MM TT");
       var endTime = end.format("h:MM TT");
 
-      console.log("Start Format: " + start);
-      console.log("End Format: " + end);
+
       
       var tr = $('<tr/>');
       
