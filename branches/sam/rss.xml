@@ -36,7 +36,7 @@
 #textboxarea {
   position: absolute;
   left: 800px;
-  top: 60px;
+  top: 70px;
 }
 #eventname {
   __UP_title-style__;
@@ -92,7 +92,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 2);
   items = [];
   preloadImage = [];
   counter = 0;
