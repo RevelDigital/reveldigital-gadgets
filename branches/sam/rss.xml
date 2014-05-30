@@ -36,11 +36,13 @@
 #textboxarea {
   position: absolute;
   left: 800px;
-  top: 70px;
+  top: 100px;
 }
 #eventname {
   __UP_title-style__;
   text-align: center;
+  overflow: hidden;
+  width: 975;
 }
 #location {
   __UP_location-style__;
@@ -92,7 +94,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 2);
+  console.log("Version: " + 3);
   items = [];
   preloadImage = [];
   counter = 0;
