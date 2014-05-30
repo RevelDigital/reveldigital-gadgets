@@ -5,8 +5,7 @@
   <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="date-style" display_name="Date Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="location-style" display_name="Location Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
-  <UserPref name="venue-style" display_name="Location Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
-  <UserPref name="price-style" display_name="Price Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="venue-style" display_name="Venue Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="update_interval" display_name="Number of minutes between data updates" default_value="60" datatype="string" />
   <UserPref name="refresh_interval" display_name="Number of seconds between item changes" datatype="string" default_value="15" />
   <UserPref name="num_items" display_name="Number items to download and show every update" datatype="string" default_value="100" />
@@ -50,9 +49,6 @@
 #venue {
   __UP_venue-style__;
 }
-#price {
-  __UP_price-style__;
-}
 #description {
   __UP_details-style__;
   height: 2.5em;
@@ -78,7 +74,6 @@ body {
 
     <p id="address"></p>
 
-    <p id="cost"></p>
 
     <p id="description"></p>
 
@@ -94,7 +89,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -127,7 +122,6 @@ function cycleRss() {
 
     $('#rssimage').attr('src', preloadImage[counter].src);
     $('#address').html(htmlDecode(retrieveElement(item, 'address')));
-    $('#cost').html(htmlDecode(retrieveElement(item, 'cost')));
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'description')));
