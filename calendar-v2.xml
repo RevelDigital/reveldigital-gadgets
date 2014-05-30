@@ -132,7 +132,6 @@ h3
   var prefs = new gadgets.Prefs();
 
   function load() {
-      console.log("version: " + 1);
     if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
     } else {
@@ -235,7 +234,6 @@ function formatTable(json) {
       var where = entry['gd$where'][0].valueString;
       var start = GCalTime(entry['gd$when'][0].startTime);
       var end = GCalTime(entry['gd$when'][0].endTime);
-
       
       var startDate = start.format("dddd, mmmm dS");
       var endDate = end.format("dddd, mmmm dS");
