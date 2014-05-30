@@ -3,6 +3,10 @@
 <ModulePrefs title="cityfusion Rss Feed" description="Displays data from cityfusion rss feed" author="RevelDigital" background="transparent">
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:50px;font-weight:bold;" required="false" />
   <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="date-style" display_name="Date Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="location-style" display_name="Location Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="venue-style" display_name="Location Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
+  <UserPref name="price-style" display_name="Price Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="update_interval" display_name="Number of minutes between data updates" default_value="60" datatype="string" />
   <UserPref name="refresh_interval" display_name="Number of seconds between item changes" datatype="string" default_value="15" />
   <UserPref name="num_items" display_name="Number items to download and show every update" datatype="string" default_value="100" />
@@ -14,15 +18,20 @@
 
 <style type="text/css">
 
-p {
-  __UP_details-style__;
-}
+
+
 #rssimage {
   width: 650px;
   height: 550px;
   position: absolute;
-  left:100px;
-  top:100px;   
+  left: 100px;
+  top: 100px;   
+}
+#date {
+  __UP_date-style__;
+  position: absolute;
+  left: 330px;
+  top: 655px;
 }
 #textboxarea {
   position: absolute;
@@ -32,6 +41,20 @@ p {
 #eventname {
   __UP_title-style__;
   text-align: center;
+}
+#location {
+  __UP_location-style__;
+}
+#venue {
+  __UP_venue-style__;
+}
+#price {
+  __UP_price-style__;
+}
+#description {
+  __UP_details-style__;
+  height: 2.5em;
+  overflow: hidden;
 }
 body { 
   margin:auto;
@@ -45,10 +68,10 @@ body {
 <body>
 <div id="container">
   <img id="rssimage" src="http://placehold.it/650x550">
-
+  <p id="date"></p>
+  <p id="eventname"></p>
   <div id="textboxarea">
-    <p id="eventname"></p>
-
+    
     <p id="venue"></p>
 
     <p id="address"></p>
@@ -56,6 +79,8 @@ body {
     <p id="cost"></p>
 
     <p id="description"></p>
+
+    
   </div>
 </div>
 </body>
@@ -67,18 +92,14 @@ body {
 
 
 $(document).ready(function () {
-  prefs = new gadgets.Prefs();
   console.log("Version: " + 1);
   items = [];
   preloadImage = [];
   counter = 0;
   lastpubdate = null;
-  var tags = prefs.getString("tags");
-  tagsArray = tags.split(',');
-  console.log(tagsArray);
   updateRss();
-  setInterval(updateRss(), prefs.getInt("update_interval") * 60 * 1000);
-  setInterval(cycleRss, prefs.getInt("refresh_interval") * 1000);
+  setInterval(updateRss(), 5 * 60 * 1000);
+  setInterval(cycleRss, 5 * 1000);
 });
 
 
@@ -94,17 +115,13 @@ function htmlDecode(value) {
     }
 }
 
-function cachePictures() {
-  
-}
-
 function cycleRss() {
   $('#container').fadeOut('slow', function() {
     if(counter == items.length-1) {
-      counter = 0;
+    counter = 0;
     }
 
-    item = items[counter]
+    item = items[counter];
 
     $('#rssimage').attr('src', preloadImage[counter].src);
     $('#address').html(htmlDecode(retrieveElement(item, 'address')));
@@ -112,6 +129,7 @@ function cycleRss() {
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'description')));
+    $('#date').html(htmlDecode(retrieveElement(item, 'dc:date')));
 
   });
   
@@ -125,12 +143,13 @@ function cycleRss() {
 
 function updateRss() {
 
-  for(var j=0; j<tagsArray.length; j++) {
+  tags = [];
+  tags[0] = "http://www.cityfusion.ca/events/feed/?tag=Downtown"
+  tags[1] = "http://www.cityfusion.ca/events/feed/?tag=food"
 
-  }
 
 
-  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=' + prefs.getString("feed_url"), function(json) {
+  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + 10 + '&callback=?&q=' +  "http://www.cityfusion.ca/events/feed/?tag=Downtown", function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
@@ -152,8 +171,6 @@ function updateRss() {
     }
   });
 }
-
-
 
 </script>
 
