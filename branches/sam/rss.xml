@@ -43,6 +43,7 @@
   overflow: hidden;
   width: 975px;
   height: 2.5em;
+  top: 90px;
 }
 #location {
   __UP_location-style__;
@@ -90,7 +91,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 9);
+  console.log("Version: " + 11);
   items = [];
   preloadImage = [];
   counter = 0;
