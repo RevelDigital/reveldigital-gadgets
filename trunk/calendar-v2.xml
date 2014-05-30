@@ -244,6 +244,7 @@ function formatTable(json) {
       var endDate = moment(end).format("__MSG_Calendar_DateFormat__");
       var startTime = moment(start).format("__MSG_Calendar_TimeFormat__");
       var endTime = moment(end).format("__MSG_Calendar_TimeFormat__");
+    
       
       var tr = $('<tr/>');
       
