@@ -134,7 +134,7 @@ h3
   var prefs = new gadgets.Prefs();
 
   function load() {
-    
+    console.log("version: " + 0);
     moment.lang("__MSG_Lang__");
     
     if (prefs.getString("displayFormat") == "table") {
