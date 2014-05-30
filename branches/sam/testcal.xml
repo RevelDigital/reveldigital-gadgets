@@ -132,7 +132,7 @@ h3
   var prefs = new gadgets.Prefs();
 
   function load() {
-    console.log("Version: " + 9);
+    console.log("Version: " + 15);
     if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
     } else {
@@ -251,11 +251,11 @@ console.log("test2: " + startDate.toLocaleString());
       if ((start.getDate() + 1 == end.getDate()) &&
         (start.getHours() == 0 && end.getHours() == 0) &&
         (start.getMinutes() == 0 && end.getMinutes() == 0)) {
-        td.text(startDate);
+        td.text(startDate.toLocaleString());
       } else if (start.getDate() == start.getDate()) {
-        td.text(startDate + ", " + startTime + " - " + endTime);
+        td.text(startDate.toLocaleString() + ", " + startTime.toLocaleString() + " - " + endTime.toLocaleString());
       } else {
-        td.text(startDate + ", " + startTime + " - " + endDate + ", " + endTime);
+        td.text(startDate.toLocaleString() + ", " + startTime.toLocaleString() + " - " + endDate.toLocaleString() + ", " + endTime.toLocaleString());
       }
       $(tr).append(td);
       
