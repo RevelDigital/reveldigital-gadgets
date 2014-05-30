@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
-  <Locale messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ALL_ALL.xml"/>
-  <Locale lang="ru" messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
   <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
@@ -113,7 +111,7 @@ h3
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/moment-with-langs.min.js" type="text/javascript"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/date.format.js" type="text/javascript"></script>
 
 <div id="data">
   <table id="output">
@@ -134,9 +132,7 @@ h3
   var prefs = new gadgets.Prefs();
 
   function load() {
-    console.log("version: " + 0);
-    moment.lang("__MSG_Lang__");
-    
+      console.log("version: " + 1);
     if (prefs.getString("displayFormat") == "table") {
       $("#output").show();
     } else {
@@ -199,10 +195,10 @@ function formatDiv(json) {
       h3.text(where);
       $(div).append(h3);
     }
-    var startDate = moment(start).format("__MSG_Calendar_DateFormat__");
-    var endDate = moment(end).format("__MSG_Calendar_DateFormat__");
-    var startTime = moment(start).format("__MSG_Calendar_TimeFormat__");
-    var endTime = moment(end).format("__MSG_Calendar_TimeFormat__");
+    var startDate = start.format("dddd, mmmm dS");
+    var endDate = end.format("dddd, mmmm dS");
+    var startTime = start.format("h:MM TT");
+    var endTime = end.format("h:MM TT");
     
     var span = $("<span class=\"when\"></span>");
     
@@ -239,12 +235,14 @@ function formatTable(json) {
       var where = entry['gd$where'][0].valueString;
       var start = GCalTime(entry['gd$when'][0].startTime);
       var end = GCalTime(entry['gd$when'][0].endTime);
+
       
-      var startDate = moment(start).format("__MSG_Calendar_DateFormat__");
-      var endDate = moment(end).format("__MSG_Calendar_DateFormat__");
-      var startTime = moment(start).format("__MSG_Calendar_TimeFormat__");
-      var endTime = moment(end).format("__MSG_Calendar_TimeFormat__");
-    
+      var startDate = start.format("dddd, mmmm dS");
+      var endDate = end.format("dddd, mmmm dS");
+      var startTime = start.format("h:MM TT");
+      var endTime = end.format("h:MM TT");
+
+
       
       var tr = $('<tr/>');
       
