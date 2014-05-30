@@ -41,7 +41,8 @@
   __UP_title-style__;
   text-align: center;
   overflow: hidden;
-  width: 975;
+  width: 975px;
+  top: 90px;
 }
 #location {
   __UP_location-style__;
@@ -89,7 +90,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 5);
+  console.log("Version: " + 7);
   items = [];
   preloadImage = [];
   counter = 0;
