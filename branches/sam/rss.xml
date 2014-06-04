@@ -24,24 +24,25 @@
   height: 550px;
   position: absolute;
   left: 100px;
-  top: 100px;   
+  top: 150px;   
 }
 #date {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
   left: 280px;
-  top: 655px;
+  top: 705px;
 }
 #textboxarea {
   position: absolute;
   left: 800px;
   width: 25%;
-  top: 100px;
+  top: 130px;
 }
 #eventname {
  __UP_title-style__;
   text-align: center;
+  width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -96,7 +97,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 2);
+  console.log("Version: " + 3);
   items = [];
   preloadImage = [];
   counter = 0;
