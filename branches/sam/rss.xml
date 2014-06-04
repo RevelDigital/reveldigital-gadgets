@@ -21,7 +21,7 @@
 
 #rssimage {
   width: 650px;
-  height: 550px;
+  height: 500px;
   position: absolute;
   left: 100px;
   top: 150px;   
@@ -31,7 +31,7 @@
   font-size: 20px;
   position: absolute;
   left: 280px;
-  top: 705px;
+  top: 650px;
 }
 #textboxarea {
   position: absolute;
@@ -97,7 +97,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 5);
+  console.log("Version: " + 7);
   items = [];
   preloadImage = [];
   counter = 0;
