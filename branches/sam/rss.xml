@@ -27,8 +27,7 @@
   top: 120px;   
 }
 #date {
-  font-weight: bold;
-  font-size: 20px;
+ __UP_date-style__;
   position: absolute;
   left: 280px;
   top: 620px;
@@ -97,7 +96,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 3);
   items = [];
   preloadImage = [];
   counter = 0;
