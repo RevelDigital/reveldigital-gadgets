@@ -24,20 +24,20 @@
   height: 500px;
   position: absolute;
   left: 100px;
-  top: 150px;   
+  top: 120px;   
 }
 #date {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
   left: 280px;
-  top: 650px;
+  top: 620px;
 }
 #textboxarea {
   position: absolute;
   left: 800px;
-  width: 25%;
-  top: 130px;
+  width: 30%;
+  top: 100px;
 }
 #eventname {
  __UP_title-style__;
@@ -97,7 +97,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 7);
+  console.log("Version: " + 1);
   items = [];
   preloadImage = [];
   counter = 0;
