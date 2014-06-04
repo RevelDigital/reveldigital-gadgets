@@ -41,7 +41,7 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   rowHeights = [];
     update();
     setInterval(update, prefs.getString('update_interval')*1000);
@@ -54,13 +54,11 @@ gadgets.util.registerOnLoadHandler(load);
 var oldCss = null;
 var oldTable = null;
 
-https://docs.google.com/spreadsheets/d/1tIs5qtCzWrdrQVIGU_GaL9k28yBNfAPzbrg9QeYS2CQ/edit?usp=sharing
+
 //make spreadsheet url usable and then get the html table from google docs
 function update() {
   var googleUrl = prefs.getString("spreadsheetUrl");
-
   googleUrl = googleUrl.substring(googleUrl.indexOf("/d/")+3, googleUrl.indexOf("/edit"));
-  console.log(googleUrl);
   getTable(googleUrl);
 }
 
@@ -72,7 +70,7 @@ function update() {
 //and give the user their wish
 function getCss(code) {
 
-  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheet%2Fpub%3Fkey%3D" + code + "%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Boutput%3Dhtml%22%20and%20xpath%3D'%2Fhtml%2Fhead%2Fstyle'&diagnostics=true";
+  var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F" + code + "%2Fedit%3Fusp%3Dsharing%22%20and%20xpath%3D'%2Fhtml%2Fhead%2Fstyle'&diagnostics=true";
 
   $.ajax({
     url: url,
