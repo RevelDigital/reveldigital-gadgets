@@ -76,7 +76,7 @@ body {
 
     <p id="venue"></p>
 
-    <p id="address"></p>
+    <p id="location"></p>
 
 
     <br>
@@ -97,7 +97,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -129,7 +129,7 @@ function cycleRss() {
     item = items[counter];
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#address').html(htmlDecode(retrieveElement(item, 'address')));
+    $('#location').html(htmlDecode(retrieveElement(item, 'address')));
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'description')));
