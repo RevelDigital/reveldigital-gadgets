@@ -41,7 +41,7 @@ var prefs = new gadgets.Prefs();
 
 //initialize and setup interval for updates
 function load() {
-  console.log("Version: " + 21);
+  console.log("Version: " + 3);
   rowHeights = [];
     update();
     setInterval(update, prefs.getString('update_interval')*1000);
@@ -81,7 +81,7 @@ function getCss(code) {
         try {
           if(oldCss != data.results[0].replace(/border/g, "")) {
             oldCss = data.results[0].replace(/border/g, "");
-            $("head").append(data.results[0]);
+            $("head").append(oldCss.replace(/.ritz/g, ""));
           }
         }catch(e) {
           console.log(e);
@@ -126,7 +126,7 @@ function getTable(code) {
         });
 
         $('#googleTable td:first-child').remove();
-        $('#row-header-wrapper').hide();
+        $('.row-header-wrapper').hide();
         
       }
 
