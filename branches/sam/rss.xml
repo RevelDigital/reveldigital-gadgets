@@ -30,7 +30,7 @@
   font-weight: bold;
   font-size: 20px;
   position: absolute;
-  left: 330px;
+  left: 280px;
   top: 655px;
 }
 #textboxarea {
@@ -42,6 +42,8 @@
 #eventname {
  __UP_title-style__;
   text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 #location {
   __UP_location-style__;
@@ -94,7 +96,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 2);
   items = [];
   preloadImage = [];
   counter = 0;
