@@ -76,7 +76,7 @@ table.google-visualization-table-table,
     container = document.getElementById("table");
     table = new google.visualization.Table(container);
     
-    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
+    var query = new google.visualization.Query(prefs.getString("spreadsheetUrl"));
     query.setRefreshInterval(300);
     query.send(draw);
   }
