@@ -273,7 +273,7 @@ var _clock = function(){
   _minute_needle.draw();
   _hour_needle.draw();
   
-  setTimeout(_clock,1000/1);
+  setTimeout(_clock,1000/1);;
 }
     
 _init();
