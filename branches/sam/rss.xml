@@ -97,7 +97,7 @@ var prefs = new gadgets.Prefs();
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 1);
   itemCounter = 0;
   items = [];
   preloadImage = [];
@@ -161,9 +161,9 @@ function updateRss() {
   tags = prefs.getString("tags").replace(" ", "").split(",");
 
 
-  for(int k=0; k<tags.length; k++) {
+  for(var k=0; k<tags.length; k++) {
 
-    $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + 10 + '&callback=?&q=' +  "http://www.cityfusion.ca/events/feed/?tag=" + tags[k], function(json) {
+    $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + prefs.getInt("num_items") + '&callback=?&q=' +  prefs.getString("feed_url") + tags[k], function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
