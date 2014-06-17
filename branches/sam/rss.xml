@@ -97,7 +97,7 @@ var prefs = new gadgets.Prefs();
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 3);
   itemCounter = 0;
   items = [];
   preloadImage = [];
@@ -141,7 +141,7 @@ function cycleRss() {
 
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#location').html(htmlDecode(address + "\n" + city + ", " + state);
+    $('#location').html(htmlDecode(address + "\n" + city + ", " + state));
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'dc:date')));
