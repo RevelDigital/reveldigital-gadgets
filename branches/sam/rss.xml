@@ -2,7 +2,6 @@
 <Module> 
 <ModulePrefs title="cityfusion Rss Feed" description="Displays data from cityfusion rss feed" author="RevelDigital" background="transparent">
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:50px;font-weight:bold;" required="false" />
-  <UserPref name="details-style" display_name="Details Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="date-style" display_name="Date Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="location-style" display_name="Location Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
   <UserPref name="venue-style" display_name="Venue Style" datatype="style" default_value="font-family:Tahoma;color:rgb(000, 000, 000);font-size:18px;font-weight:bold;" required="false" />
@@ -51,11 +50,6 @@
 #venue {
   __UP_venue-style__;
 }
-#description {
-  __UP_details-style__;
-  height: 2.5em;
-  overflow: hidden;
-}
 body { 
   margin:auto;
   background-color: transparent;
@@ -68,7 +62,6 @@ body {
 <body>
 <div id="container">
   <img id="rssimage" src="http://placehold.it/650x550">
-  <p id="date"></p>
   <p id="eventname"></p>
   <div id="textboxarea">
     
@@ -81,7 +74,7 @@ body {
     <br>
     <br>
 
-    <p id="description"></p>
+    <p id="date"></p>
 
     
   </div>
@@ -97,7 +90,7 @@ var prefs = new gadgets.Prefs();
 
 
 $(document).ready(function () {
-  console.log("Version: " + 1);
+  console.log("Version: " + 3);
   itemCounter = 0;
   items = [];
   preloadImage = [];
@@ -141,7 +134,7 @@ function cycleRss() {
 
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#location').html(htmlDecode(address + "\n" + city + ", " + state));
+    $('#location').html(address + '\n' + city + ", " + state);
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'dc:date')));
