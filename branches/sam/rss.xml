@@ -93,17 +93,19 @@ body {
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.zrssfeed.min.js"></script>
 <script type="text/javascript">
 
+var prefs = new gadgets.Prefs();
 
 
 $(document).ready(function () {
-  console.log("Version: " + 5);
+  console.log("Version: " + 1);
+  itemCounter = 0;
   items = [];
   preloadImage = [];
   counter = 0;
   lastpubdate = null;
   updateRss();
-  setInterval(updateRss(), 5 * 60 * 1000);
-  setInterval(cycleRss, 5 * 1000);
+  setInterval(updateRss(), prefs.getInt("update_interval") * 60 * 1000);
+  setInterval(cycleRss, prefs.getInt("refresh_interval") * 1000);
 });
 
 
@@ -128,13 +130,18 @@ function cycleRss() {
     item = items[counter];
 
 
-    //var address = htmlDecode(retrieveElement(item, 'address'));
+    var tempAddress = htmlDecode(retrieveElement(item, 'address'));
 
+    var state = tempAddress.substring(tempAddress.lastIndexOf(" "), tempAddress.length);
+
+    var cityHolder = tempAddress.substring(tempAddress.indexOf(" "), tempAddress.length-3);
+    var city = cityHolder.substring(cityHolder.lastIndexOf(" "), cityHolder.lastIndexOf(","));
+    var address = tempAddress.substring(0, tempAddress.lastIndexOf(city));
 
 
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#location').html(htmlDecode(retrieveElement(item, 'address')));
+    $('#location').html(htmlDecode(address + "\n" + city + ", " + state);
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'dc:date')));
@@ -151,13 +158,12 @@ function cycleRss() {
 
 function updateRss() {
 
-  tags = [];
-  tags[0] = "http://www.cityfusion.ca/events/feed/?tag=Downtown"
-  tags[1] = "http://www.cityfusion.ca/events/feed/?tag=food"
+  tags = prefs.getString("tags").replace(" ", "").split(",");
 
 
+  for(int k=0; k<tags.length; k++) {
 
-  $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + 10 + '&callback=?&q=' +  "http://www.cityfusion.ca/events/feed/?tag=Downtown", function(json) {
+    $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=' + 10 + '&callback=?&q=' +  "http://www.cityfusion.ca/events/feed/?tag=" + tags[k], function(json) {
 
     if (json && json.responseStatus == 200) {
       var xml = json.responseData.xmlString;
@@ -173,11 +179,15 @@ function updateRss() {
         for(var i=0; i<items.length-1; i++) {
           var loadedImage = new Image();
           loadedImage.src = "http://" + retrieveElement(items[i], 'image');
-          preloadImage[i] = loadedImage;
+          preloadImage[itemCounter++] = loadedImage;
         }
       }
     }
   });
+
+  }
+
+  
 }
 
 </script>
