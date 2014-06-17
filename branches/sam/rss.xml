@@ -47,6 +47,9 @@
 #location {
   __UP_location-style__;
 }
+#location2 {
+  __UP_location-style__;
+}
 #venue {
   __UP_venue-style__;
 }
@@ -69,6 +72,7 @@ body {
     <p id="venue"></p>
 
     <p id="location"></p>
+    <p id="location2"></p>
 
 
     <br>
@@ -90,7 +94,7 @@ var prefs = new gadgets.Prefs();
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   itemCounter = 0;
   items = [];
   preloadImage = [];
@@ -134,7 +138,8 @@ function cycleRss() {
 
 
     $('#rssimage').attr('src', preloadImage[counter].src);
-    $('#location').html(address + '\n' + city + ", " + state);
+    $('#location').html(address);
+    $('#location2').html(city + ", " + state);
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
     $('#description').html(htmlDecode(retrieveElement(item, 'dc:date')));
@@ -164,6 +169,8 @@ function updateRss() {
       var pubdate = retrieveElement(xml, 'lastBuildDate');
       if(pubdate != lastpubdate) {
         items = [];
+        counter = 0;
+        itemCounter = 0;
         preloadImage = [];
         lastpubdate = pubdate;
         items = xml.split('</item>');
