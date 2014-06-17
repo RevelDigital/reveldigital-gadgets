@@ -96,7 +96,7 @@ body {
 
 
 $(document).ready(function () {
-  console.log("Version: " + 3);
+  console.log("Version: " + 5);
   items = [];
   preloadImage = [];
   counter = 0;
@@ -127,12 +127,17 @@ function cycleRss() {
 
     item = items[counter];
 
+
+    //var address = htmlDecode(retrieveElement(item, 'address'));
+
+
+
+
     $('#rssimage').attr('src', preloadImage[counter].src);
     $('#location').html(htmlDecode(retrieveElement(item, 'address')));
     $('#eventname').html(htmlDecode(retrieveElement(item, 'title')));
     $('#venue').html(htmlDecode(retrieveElement(item, 'venue')));
-    $('#description').html(htmlDecode(retrieveElement(item, 'description')));
-    $('#date').html(htmlDecode(retrieveElement(item, 'dc:date')));
+    $('#description').html(htmlDecode(retrieveElement(item, 'dc:date')));
 
   });
   
