@@ -172,7 +172,7 @@ img
         });
         display += '<tr><td class="when" colspan="5">Last updated: ' + when + '</td></tr>';
         
-        $(display).hide().prependTo("div.quotescontainer > table > tbody").fadeIn();
+        $(display).prependTo("div.quotescontainer > table > tbody");
       }
     });
   }
