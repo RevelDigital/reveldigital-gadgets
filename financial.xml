@@ -43,7 +43,6 @@ body
 div.quotescontainer
 {
   text-align: left;
-  overflow: hidden;
   background-color: #__UP_BackColor__;
 }
 
