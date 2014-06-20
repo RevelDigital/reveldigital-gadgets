@@ -138,12 +138,13 @@ img
   
   var update = function () {
 
-    var url="https://www.google.com/finance/info?infotype=infoquoteall&callback=?&q=";
-    var query = escape( query=prefs.getString("symbols") );
+    var query = 'select * from yahoo.finance.quotes where symbol in ("' + prefs.getString("symbols") + '")';
+    var env = "store://datatables.org/alltableswithkeys";
+    var url = "https://query.yahooapis.com/v1/public/yql?q=" + escape(query) + "&env=" + escape(env) + "&format=json&callback=?";
   
-    $.getJSON(url+query, function(json){
+    $.getJSON(url, function(json) {
 
-      if(json) {
+      if (json && json.query.count > 0) {
       
         $("div.quotescontainer > table > tbody").empty();
         
@@ -151,17 +152,17 @@ img
         var when = '';
         $.each(json,function(i, quote) {
           display += '<tr class="item">';
-          display += '<td class="symbol">' + quote.t + '</td>';
-          display += '<td class="value">' + quote.l + '</td>';
-          if (parseFloat(quote.c) >= 0) {
+          display += '<td class="symbol">' + quote.symbol + '</td>';
+          display += '<td class="value">' + quote.LastTradePriceOnly + '</td>';
+          if (parseFloat(quote.ChangeRealtime) >= 0) {
             display += '<td class="icon"><img src="https://reveldigital-gadgets.googlecode.com/svn/trunk/images/up_arrow_48.png" alt=""/></td>';
           } else {
             display += '<td class="icon"><img src="https://reveldigital-gadgets.googlecode.com/svn/trunk/images/down_arrow_48.png" alt=""/></td>';
           }
-          display += '<td class="value">' + quote.c + '</td>';
-          display += '<td class="value">' + quote.cp + '%</td>';
+          display += '<td class="value">' + quote.ChangeRealtime + '</td>';
+          display += '<td class="value">' + quote.PercentChange + '%</td>';
           display += '</tr>';
-          when = quote.lt;
+          when = quote.LastTradeTime;
         });
         display += '<tr><td class="when" colspan="5">Last updated: ' + when + '</td></tr>';
         
