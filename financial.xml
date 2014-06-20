@@ -150,7 +150,7 @@ img
         
         var display = '';
         var when = '';
-        $.each(json,function(i, quote) {
+        $.each(json.query.results.quote, function(i, quote) {
           display += '<tr class="item">';
           display += '<td class="symbol">' + quote.symbol + '</td>';
           display += '<td class="value">' + quote.LastTradePriceOnly + '</td>';
