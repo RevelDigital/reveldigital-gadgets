@@ -150,6 +150,12 @@ img
         
         var display = '';
         var when = '';
+        
+        if (json.query.count == 1) {
+          var array = new Array();
+          array.push(json.query.results.quote);
+          json.query.results.quote = array;
+        }
         $.each(json.query.results.quote, function(i, quote) {
           display += '<tr class="item">';
           display += '<td class="symbol">' + quote.symbol + '</td>';
