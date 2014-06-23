@@ -246,7 +246,7 @@
     var now = new Date();
     // Create Yahoo Weather feed API address
     //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(search) + " and itemPath='search.loc') and u='"+ unit +"'";
+    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(search) + "' and itemPath='search.loc') and u='"+ unit +"'";
     var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
     
     // Send request
