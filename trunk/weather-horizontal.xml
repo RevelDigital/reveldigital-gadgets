@@ -225,7 +225,7 @@
   function load() {
   
     //getWOEID(search);
-    getWeather('');
+    getWeather();
     
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
@@ -237,15 +237,15 @@
     jQuery(".day-container").fitText(1, { vh: 7 });
     
     setInterval(function() {
-      getWOEID(search);
+      getWeather();
     }, 1000 * 60 * 30);
   }
   
-  function getWeather(woeid) {
+  function getWeather() {
   
     // Create Yahoo Weather feed API address
     //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(prefs.getString("Location")) + " and itemPath='search.loc') and u='"+ unit +"'";
+    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(search) + " and itemPath='search.loc') and u='"+ unit +"'";
     var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
     
     // Send request
