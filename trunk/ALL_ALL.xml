@@ -6,5 +6,5 @@
   <msg name="High">High</msg>
   <msg name="Low">Low</msg>
   <msg name="Calendar_TimeFormat">h:mm a</msg>
-  <msg name="Calendar_DateFormat">ll</msg>
+  <msg name="Calendar_DateFormat">ddd MMMM Do</msg>
 </messagebundle>
