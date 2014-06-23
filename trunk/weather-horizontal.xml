@@ -7,7 +7,7 @@
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
-  <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|* *|DEVICE.LOCATION.STATE|*" />
   <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="white" required="true" />
   <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
   <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="" required="false" />
@@ -288,6 +288,8 @@
     // Cache results for an hour to prevent overuse
     now = new Date();
 
+    search = search.replace(',', ''); // YQL doesn't care for commas
+    
     // Use a default when editing in template designer
     if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       search = "Fargo, ND";
