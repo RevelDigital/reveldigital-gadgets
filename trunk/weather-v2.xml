@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Weather Gadget" description="Local weather details with forecast" author="RevelDigital" background="transparent">
-  <UserPref name="Location" display_name="City, State for Weather" datatype="string" required="true" default_value="*|DEVICE.LOCATION.CITY|* *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="Location" display_name="City, State for Weather" datatype="string" required="true" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
   <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="us">
     <EnumValue value="us" display_value="US" />
     <EnumValue value="si" display_value="Metric" />
