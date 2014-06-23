@@ -173,20 +173,20 @@ h3
     query.setMaxResults(10);
     
     service.getEventsFeed(query,
-        function(result) {   
-          $("#event-container").empty();
-          $("#data table tbody").remove();
-          var entries = result.feed.entry;
-          for (var i = 0; i < entries.length; i++) {
-            var eventEntry = entries[i];
-            if (prefs.getString("displayFormat") == "table") {
-              formatTable(eventEntry);
-            } else {
-              formatDiv(eventEntry);
-            }
+      function(result) {   
+        $("#event-container").empty();
+        $("#data table tbody").remove();
+        var entries = result.feed.entry;
+        for (var i = 0; i < entries.length; i++) {
+          var eventEntry = entries[i];
+          if (prefs.getString("displayFormat") == "table") {
+            formatTable(eventEntry);
+          } else {
+            formatDiv(eventEntry);
           }
         }
-      );
+      }
+    );
   }
 
   function formatDiv(eventEntry) {
