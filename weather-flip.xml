@@ -7,7 +7,7 @@
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
-  <UserPref name="Location1" display_name="Location 1" datatype="string" default_value="*|DEVICE.LOCATION.CITY|* *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="Location1" display_name="Location 1" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
   <UserPref name="Location2" display_name="Location 2" datatype="string" default_value="" />
   <UserPref name="Location3" display_name="Location 3" datatype="string" default_value="" />
   <UserPref name="Location4" display_name="Location 4" datatype="string" default_value="" />
@@ -249,7 +249,6 @@
 
   var prefs = new gadgets.Prefs();
  
-  //var search = prefs.getString("Location");
   var unit = prefs.getString("Units");
   var search = [];
   var items = [];
@@ -280,7 +279,7 @@
     items = [];
     
     for (var i=0; i<search.length; i++) {
-      getWOEID(search[i]);
+      getWeather(search[i]);
     }
     
     setTimeout(function() {
@@ -314,10 +313,12 @@
     $('#card').toggleClass('flipped');
   }
   
-  function getWeather(woeid) {
+  function getWeather(location) {
 
+    var now = new Date();
     // Create Yahoo Weather feed API address
-    var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
+    //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
+    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(location) + "' and itemPath='search.loc') and u='"+ unit +"'";
     var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
 
     // Send request
@@ -333,7 +334,7 @@
           } else {
             var item = data.query.results.channel.item;
           }
-          item.woeid = woeid;
+          //item.woeid = woeid;
           items.push(item);
           
           if (items.length == 1) {
@@ -348,7 +349,7 @@
     // Cache results for an hour to prevent overuse
     now = new Date();
 
-    search = search.replace(',', ''); // YQL doesn't care for commas
+    //search = search.replace(',', ''); // YQL doesn't care for commas
     
     // Use a default when editing in template designer
     if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
