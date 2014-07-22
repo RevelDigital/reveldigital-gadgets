@@ -82,7 +82,31 @@ td.price
 
 <script type="text/javascript">
 
+  var generateTable = function(items) {
+  
+    $('#tableContainer').empty();
+
+    if (items == null)
+      return;
+
+    var row = 0;
+    var gen = '';
+    gen += '<table id="dataTable">';
+    
+    $.each(items, function(idx, item) {
+      gen += '<tr id="r_' + row++ + '">';
+      gen += '<td>' + item.desc + '</td>';
+      gen += '<td>$' + item.price + '</td>';
+      gen += '</tr>';
+    });    
+    gen += '</table>';
+    
+    $('#tableContainer').html(gen);
+  }
+  
   var loadDivisions = function() {
+    
+    divisions = [];
     
     $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
     
@@ -92,9 +116,13 @@ td.price
         
         divisions.push(div);
       });
-            
+      
       loadItems();
-    }, 'xml');
+    }, 'xml').fail(function() {
+      items = JSON.parse(localStorage['maitred.items']);
+      
+      generateTable(items);
+    });
   }
 
   var loadItems = function() {
@@ -106,9 +134,8 @@ td.price
     
     $.get('http://' + prefs.getString('host') + '/ConfigExport.xml', null, function (data, textStatus) {
     
-      var row = 0;
-      var gen = '';
-      gen += '<table id="dataTable">';
+      var items = [];
+      
       $(data).find('ConfigExport SaleItems SaleItem').each(function() {
       
         var available = $(this).children("Available:contains(1)");
@@ -122,26 +149,25 @@ td.price
           if (prefs.getString("mode").length == 0 && desc.text().length > 0 && division.text() == div[0].id) {
           
             var price = revenueCenter.find("Price1");
-            
-            gen += '<tr id="r_' + row++ + '">';
-            gen += '<td>' + desc.text() + '</td>';
-            gen += '<td>$' + price.text() + '</td>';
-            gen += '</tr>';
+            items.push({
+              price: price.text(),
+              desc: desc.text()
+            });
           } else if (desc.text().length > 0 && mode.length > 0 && available.length > 0 && division.text() == div[0].id) {
           
             //var price = revenueCenter.find("Price[Mode='" + $(mode[0]).attr("Id") + "']");
             var price = revenueCenter.find("Price" + $(mode[0]).attr("Id"));
-            
-            gen += '<tr id="r_' + row++ + '">';
-            gen += '<td>' + desc.text() + '</td>';
-            gen += '<td>$' + price.text() + '</td>';
-            gen += '</tr>';
+            items.push({
+              price: price.text(),
+              desc: desc.text()
+            });
           }
         }
       });
       
-      gen += '</table>';
-      $('#tableContainer').html(gen);
+      localStorage['maitred.items'] = JSON.stringify(items);
+      
+      generateTable(items);
       
     }, 'xml');
   }
