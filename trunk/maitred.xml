@@ -140,6 +140,9 @@ td.price
       
         var available = $(this).children("Available:contains(1)");
         var desc = $(this).children("Description2");
+        if (desc.text().length == 0) {
+          desc = $(this).children("Description");
+        }
         var revenueCenter = $(this).children("RevenueCenter[Name='" + prefs.getString("revenueCenter") + "']");
         if (revenueCenter.length > 0) {
         
