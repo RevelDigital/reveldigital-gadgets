@@ -124,7 +124,7 @@
   
   function load() {
 
-    socket = io.connect('https://shindig.reveldigital.com:3000/room', {secure: false});
+    socket = io.connect('https://shindig.reveldigital.com:3000/room');
     target = document.getElementById('loading_text');
     spinner = new Spinner().spin(target);
 
