@@ -89,7 +89,7 @@
 
   function socketConnect() {
     console.log('Message: Trying to connect');
-    socket = io.connect('http://shindig.reveldigital.com:3000/room');
+    socket = io.connect('https://shindig.reveldigital.com:3000/room');
     
     if (!connected) {
     }
