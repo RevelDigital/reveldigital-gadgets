@@ -28,6 +28,7 @@ body
   background: transparent;
 }
 </style>
+<link rel="stylesheet" href="https://reveldigital-gadgets.googlecode.com/svn/third-party/flipclock/flipclock.css">
 
 <div class="your-clock"></div>
 
