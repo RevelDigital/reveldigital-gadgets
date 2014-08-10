@@ -207,8 +207,6 @@ body
 .flip-clock-wrapper ul.play li.flip-clock-before {
   z-index: 3; }
 
-.flip-clock-wrapper .flip {   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); }
-
 .flip-clock-wrapper ul.play li.flip-clock-active {
   -webkit-animation: asd 0.5s 0.5s linear both;
   -moz-animation: asd 0.5s 0.5s linear both;
@@ -232,7 +230,6 @@ body
   height: 10px;
   position: absolute;
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   left: 5px; }
 
 .flip-clock-divider .flip-clock-label {
