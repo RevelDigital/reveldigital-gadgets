@@ -483,10 +483,11 @@ body
   
   function load() {    
     var clock = $('#clock').FlipClock({
-      countdown: prefs.getBool("isCountdown")
+      countdown: prefs.getBool('isCountdown'),
+      clockFace: prefs.getString('clockFace')
     });
-    clock.setTime(3600);
-    clock.start();
+    //clock.setTime(3600);
+    //clock.start();
     
     fit($('#clock')[0], $('#container')[0], {
       cover: true,
