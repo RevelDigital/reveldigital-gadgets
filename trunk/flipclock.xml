@@ -487,7 +487,7 @@ body
     //clock.start();
     
     fit($('#clock')[0], $('#container')[0], {
-      cover: true,
+      //cover: true,
       apply: true,
       hAlign: fit.LEFT,
       vAlign: fit.TOP
