@@ -56,7 +56,7 @@ body
   color: #ccc; }
 
 .flip-clock-wrapper a:hover {
-  color: #fff; }
+  color: #__UP_ForeColor__; }
 
 .flip-clock-wrapper ul {
   list-style: none; }
