@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="FlipClock Gadget" description="Flip clock with current time or countdown options" author="RevelDigital" background="transparent">
+  <UserPref name="isCountdown" display_name="Use as countdown timer"  datatype="bool" default_value="false" />
+  <UserPref name="clockFace" display_name="Clock format" datatype="enum" default_value="DailyCounter">
+    <EnumValue value="DailyCounter" display_value="Daily Counter" />
+    <EnumValue value="CounterFace" display_value="Hourly Counter" />
+    <EnumValue value="MinuteCounter" display_value="Minute Counter" />
+    <EnumValue value="TwentyFourHourClock" display_value="24 Hour Clock" />
+    <EnumValue value="TwelveHourClock" display_value="12 Hour Clock" />
+  </UserPref>
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+}
+</style>
+
+<div class="your-clock"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/flipclock/flipclock.min.js"></script>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+  
+  function load() {    
+    var clock = $('.your-clock').FlipClock({
+      countdown: prefs.getBool("isCountdown")
+    });
+    clock.setTime(3600);
+    clock.start();    
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+]]>
+</Content>
+</Module>
