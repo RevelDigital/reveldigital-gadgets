@@ -170,7 +170,7 @@ h3
     query.setSortOrder('ascending');
     query.setFutureEvents(true);
     query.setSingleEvents(true);
-    query.setMaxResults(10);
+    query.setMaxResults(prefs.getInt("maxResults"));
     
     service.getEventsFeed(query,
       function(result) {   
