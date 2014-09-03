@@ -230,16 +230,16 @@ h3
         var ed = moment.utc(endTime.getDate()).tz(tz).format("__MSG_Calendar_DateFormat__");
       }
       
-      var time = '';
-      if (sd == ed) {
-        time += sd;
-      } else {
-        time += sd + " - " + ed;
-      }
+      //var time = '';
+      //if (sd == ed) {
+      //  time += sd;
+      //} else {
+      //  time += sd + " - " + ed;
+      //}
       if (isAllDay) {
-        span.text(time);
+        span.text("All Day");
       } else {
-        span.text(time + ", " + st + " - " + et);
+        span.text(st + " - " + et);
       }
       
       $(h3).append(span);
@@ -278,16 +278,16 @@ h3
       
       var td = $("<td class=\"date\"/>");
         
-      var time = '';
-      if (sd == ed) {
-        time += sd;
-      } else {
-        time += sd + " - " + ed;
-      }
+      //var time = '';
+      //if (sd == ed) {
+      //  time += sd;
+      //} else {
+      //  time += sd + " - " + ed;
+      //}
       if (isAllDay) {
-        td.text(time);
+        td.text("All Day");
       } else {
-        td.text(time + ", " + st + " - " + et);
+        td.text(st + " - " + et);
       }
       $(tr).append(td);
         
