@@ -171,7 +171,7 @@ h3
     query = new google.gdata.calendar.CalendarEventQuery("https://www.google.com/calendar/feeds/" + googleUrl(prefs.getString("calendarUrl")) + "/public/full"); 
     query.setOrderBy('starttime');
     query.setSortOrder('ascending');
-    query.setFutureEvents(true);
+    query.setFutureEvents(false);
     query.setSingleEvents(true);
     query.setMaxResults(prefs.getInt("maxResults"));
     
