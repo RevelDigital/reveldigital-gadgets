@@ -76,7 +76,7 @@ function init() {
 
 function socketConnect() {
   console.log('Trying to connect');
-    socket = io.connect('http://65.183.249.120:3000/room');
+    socket = io.connect('https://shindig.reveldigital.com:3000/room');
     socket.emit('join room', deviceId);
     if(!connected) {
       setTimeout(function() {
