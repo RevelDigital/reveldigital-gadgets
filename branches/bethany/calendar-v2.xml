@@ -8,6 +8,7 @@
     <EnumValue value="div" display_value="Consolidated" />
     <EnumValue value="table" display_value="Tabular" />
   </UserPref>
+  <UserPref name="startTimeOnly" display_name="Start Time Only" datatype="bool" default_value="true" />
   <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
@@ -251,6 +252,8 @@ h3
       //}
       if (isAllDay) {
         span.text("All Day");
+      } else if (prefs.getString("startTimeOnly")) {
+        span.text(st);
       } else {
         span.text(st + " - " + et);
       }
@@ -299,6 +302,8 @@ h3
       //}
       if (isAllDay) {
         td.text("All Day");
+      } else if (prefs.getString("startTimeOnly")) {
+        td.text(st);
       } else {
         td.text(st + " - " + et);
       }
