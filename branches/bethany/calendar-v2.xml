@@ -177,12 +177,13 @@ h3
     query.setSingleEvents(true);
     query.setMaxResults(prefs.getInt("maxResults"));
     
-    var dfGoogle = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
-  
+    var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
+    var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000'Z'");
+      
     var tomorrow = new Date();
-    tomorrow.setTime(tomorrow.getTime() + (1000*3600*23));
-    var min = dfGoogle.format(new Date());
-    var max = dfGoogle.format(tomorrow);
+    tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
+    var min = dfMin.format(new Date());
+    var max = dfMax.format(tomorrow);
     var startMin = google.gdata.DateTime.fromIso8601(min); //'2014-10-01T00:00:00.000-08:00');
     var startMax = google.gdata.DateTime.fromIso8601(max); //'2014-10-02T00:00:00.000-08:00');
     query.setMinimumStartTime(startMin);
