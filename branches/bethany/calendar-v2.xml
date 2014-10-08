@@ -177,7 +177,7 @@ h3
     query.setSingleEvents(true);
     query.setMaxResults(prefs.getInt("maxResults"));
     
-    var dfGoogle = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
+    var dfGoogle = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000'Z'");
   
     var tomorrow = new Date();
     tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
