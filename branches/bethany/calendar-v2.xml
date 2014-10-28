@@ -178,9 +178,10 @@ h3
     query.setSingleEvents(true);
     query.setMaxResults(prefs.getInt("maxResults"));
     
-    var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
+    //var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
+    var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
     var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000'Z'");
-      
+    
     var tomorrow = new Date();
     tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
     var min = dfMin.format(new Date());
@@ -189,7 +190,7 @@ h3
     var startMax = google.gdata.DateTime.fromIso8601(max); //'2014-10-02T00:00:00.000-08:00');
     query.setMinimumStartTime(startMin);
     query.setMaximumStartTime(startMax);
-
+    
     service.getEventsFeed(query,
       function(result) {   
         $("#event-container").empty();
