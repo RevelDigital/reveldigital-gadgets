@@ -110,6 +110,7 @@ h3
   font-weight: normal;
   __UP_body-style__
   font-size: 80% !important;
+  white-space: nowrap;
 }
 </style>
 
