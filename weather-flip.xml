@@ -315,6 +315,10 @@
   
   function getWeather(location) {
 
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
+    }
+    
     var now = new Date();
     // Create Yahoo Weather feed API address
     //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
@@ -329,6 +333,9 @@
       success: function(data) {
         if (data.query) {
           var item = null;
+          if (data.query.count == 0) {
+            return;
+          }
           if (data.query.results.channel.length > 1) {
             var item = data.query.results.channel[0].item;
           } else {
