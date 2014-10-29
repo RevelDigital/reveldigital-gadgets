@@ -299,7 +299,7 @@
     var i = idx++ % items.length;
     var item = items[i];
     
-    $('div.location', panel).text(titles[item.woeid]);
+    $('div.location', panel).text(search[i]);
     $('div.condition', panel).text(item.condition.text);
     $('img.icon', panel).attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
     $('div.temp', panel).text(item.condition.temp + "\u00B0");
