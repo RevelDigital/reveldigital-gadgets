@@ -299,7 +299,7 @@
     var i = idx++ % items.length;
     var item = items[i];
     
-    $('div.location', panel).text(search[i]);
+    $('div.location', panel).text(item.location);
     $('div.condition', panel).text(item.condition.text);
     $('img.icon', panel).attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
     $('div.temp', panel).text(item.condition.temp + "\u00B0");
@@ -342,6 +342,7 @@
             var item = data.query.results.channel.item;
           }
           //item.woeid = woeid;
+          item.location = loation;
           items.push(item);
           
           if (items.length == 1) {
