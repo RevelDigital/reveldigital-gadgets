@@ -342,7 +342,7 @@
             var item = data.query.results.channel.item;
           }
           //item.woeid = woeid;
-          item.location = loation;
+          item.location = location;
           items.push(item);
           
           if (items.length == 1) {
