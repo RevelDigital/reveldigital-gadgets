@@ -305,11 +305,11 @@ h3
     $(tr).append(td);
       
     td = $("<td class=\"title\"/>");
-    td.text(eventTitle);
+    td.text(event.summary);
     $(tr).append(td);
     
     td = $("<td class=\"where\"/>");
-    $(td).text(location);
+    $(td).text(event.location);
     $(tr).append(td);
     
     $(tbody).append(tr);
