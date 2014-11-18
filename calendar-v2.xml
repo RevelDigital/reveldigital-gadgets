@@ -141,11 +141,6 @@ h3
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
-
-  function init() {
-    google.load("gdata", "1");
-    google.setOnLoadCallback(load);
-  }
   
   function load() {
     
@@ -168,9 +163,6 @@ h3
 </script>
 
 <script type="text/javascript">
-
-  //var max_id = 0;
-  //var tz = "";
   
   function update() {
   
@@ -181,23 +173,12 @@ h3
     var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000Z");
 
     var tomorrow = new Date();
-    //tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24 * prefs.getInt("futureEvents")));
     tomorrow.setDate(new Date().getDate() + prefs.getInt("futureEvents"));
     var min = dfMin.format(new Date());
     var max = dfMax.format(tomorrow);
-    //var startMin = google.gdata.DateTime.fromIso8601(min); //'2014-10-01T00:00:00.000-08:00');
-    //var startMax = google.gdata.DateTime.fromIso8601(max); //'2014-10-02T00:00:00.000-08:00');
     
     queryParams += '&timeMin=' + min;
     queryParams += '&timeMax=' + max;
-  
-    //service = new google.gdata.calendar.CalendarService("");
-    //query = new google.gdata.calendar.CalendarEventQuery("https://www.google.com/calendar/feeds/" + googleUrl(prefs.getString("calendarUrl")) + "/public/full"); 
-    //query.setOrderBy('starttime');
-    //query.setSortOrder('ascending');
-    //query.setFutureEvents(true);
-    //query.setSingleEvents(true);
-    //query.setMaxResults(prefs.getInt("maxResults"));
     
     jQuery.ajax({
       type: 'GET',
