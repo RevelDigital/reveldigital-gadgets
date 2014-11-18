@@ -10,6 +10,12 @@
   </UserPref>
   <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
+  <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
+    <EnumValue value="365" display_value="No Limit" />
+    <EnumValue value="1" display_value="Today" />
+    <EnumValue value="7" display_value="This Week" />
+    <EnumValue value="30" display_value="This Month" />
+  </UserPref>
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -175,14 +181,15 @@ h3
     var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000Z");
 
     var tomorrow = new Date();
-    tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
+    //tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24 * prefs.getInt("futureEvents")));
+    tomorrow.setDate(new Date().getDate() + prefs.getInt("futureEvents"));
     var min = dfMin.format(new Date());
     var max = dfMax.format(tomorrow);
     //var startMin = google.gdata.DateTime.fromIso8601(min); //'2014-10-01T00:00:00.000-08:00');
     //var startMax = google.gdata.DateTime.fromIso8601(max); //'2014-10-02T00:00:00.000-08:00');
     
     queryParams += '&timeMin=' + min;
-    //queryParams += '&timeMax=' + max;
+    queryParams += '&timeMax=' + max;
   
     //service = new google.gdata.calendar.CalendarService("");
     //query = new google.gdata.calendar.CalendarEventQuery("https://www.google.com/calendar/feeds/" + googleUrl(prefs.getString("calendarUrl")) + "/public/full"); 
