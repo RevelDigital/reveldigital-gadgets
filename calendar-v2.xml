@@ -215,7 +215,7 @@ h3
     });
   }
 
-  function formatDiv(eventEntry) {
+  function formatDiv(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime;
@@ -265,7 +265,7 @@ h3
     $("#event-container").append(div);
   }
 
-  function formatTable(eventEntry) {
+  function formatTable(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime;
