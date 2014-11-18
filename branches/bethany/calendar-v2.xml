@@ -144,11 +144,6 @@ td.date
 
   var prefs = new gadgets.Prefs();
 
-  function init() {
-    google.load("gdata", "1");
-    google.setOnLoadCallback(load);
-  }
-  
   function load() {
     
     moment.lang("__MSG_Lang__");
@@ -166,24 +161,16 @@ td.date
     setInterval(update, 120000);
   }
 
-  gadgets.util.registerOnLoadHandler(init);
+  gadgets.util.registerOnLoadHandler(load);
 </script>
 
 <script type="text/javascript">
-
-  var max_id = 0;
-  var tz = "";
   
   function update() {
-    service = new google.gdata.calendar.CalendarService("");
-    query = new google.gdata.calendar.CalendarEventQuery("https://www.google.com/calendar/feeds/" + googleUrl(prefs.getString("calendarUrl")) + "/public/full"); 
-    query.setOrderBy('starttime');
-    query.setSortOrder('ascending');
-    query.setFutureEvents(false);
-    query.setSingleEvents(true);
-    query.setMaxResults(prefs.getInt("maxResults"));
-    
-    //var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'01:00:00.000'Z'");
+
+    var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
+    var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
+  
     var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000Z");
     var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'00:00:00.000Z");
     
@@ -191,142 +178,123 @@ td.date
     tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));
     var min = dfMin.format(new Date());
     var max = dfMax.format(tomorrow);
-    var startMin = google.gdata.DateTime.fromIso8601(min); //'2014-10-01T00:00:00.000-08:00');
-    var startMax = google.gdata.DateTime.fromIso8601(max); //'2014-10-02T00:00:00.000-08:00');
-    query.setMinimumStartTime(startMin);
-    query.setMaximumStartTime(startMax);
     
-    service.getEventsFeed(query,
-      function(result) {   
+    queryParams += '&timeMin=' + min;
+    queryParams += '&timeMax=' + max;
+    
+    jQuery.ajax({
+      type: 'GET',
+      url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
+      dataType: 'json',
+      success: function (response) {
         $("#event-container").empty();
         $("#data table tbody").remove();
-        
-        tz = result.feed.getTimeZone().getValue();
-        
-        var entries = result.feed.entry;
-        for (var i = 0; i < entries.length; i++) {
-          var eventEntry = entries[i];
+        for (var i = 0; i < response.items.length; i++) {
           if (prefs.getString("displayFormat") == "table") {
-            formatTable(eventEntry);
+            formatTable(response.items[i]);
           } else {
-            formatDiv(eventEntry);
+            formatDiv(response.items[i]);
           }
         }
+      },
+      error: function (response) {
+        $("#event-container").empty();
+        $("#data table tbody").remove();
+        console.log(response);
       }
-    );
+    });
   }
 
-  function formatDiv(eventEntry) {
-
-    var eventTitle = eventEntry.getTitle().getText();
-    var locations = eventEntry.getLocations();
-    var location = locations.length > 0 ? locations[0].valueString : '';
-    var times = eventEntry.getTimes();
-    
-    for (var j = 0; j < times.length; j++) {
-      var startTime = times[j].getStartTime();
-      var endTime = times[j].getEndTime();
-      var isAllDay = false;
-
-      if (startTime.isDateOnly()) {       //All Day event
-          isAllDay = true;
+  function formatDiv(event) {
+  
+    var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
+    var endDateTime = event.end.dateTime;
+        
+    var isAllDay = false;
+    if (startDateTime) {
+      if (event.start.date) {
+        isAllDay = true;
       }
-      var div = $("<div class=\"entry\"></div>");
-      
-      var h2 = $("<h2></h2>");
-      h2.text(eventTitle);
-      $(div).append(h2);
-
-      var h3 = $("<h3></h3>");
-      h3.text(location);
-      $(div).append(h3);
-
-      var span = $("<span class=\"when\"></span>");
-      
-      var sd = moment.utc(startTime.getDate()).tz(tz).format("__MSG_Calendar_DateFormat__");
-      var st = moment.utc(startTime.getDate()).tz(tz).format("__MSG_Calendar_TimeFormat__");
-      var et = moment.utc(endTime.getDate()).tz(tz).format("__MSG_Calendar_TimeFormat__");
-      if (isAllDay) {
-        var ed = moment.utc(endTime.getDate()).tz(tz).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
-      } else {
-        var ed = moment.utc(endTime.getDate()).tz(tz).format("__MSG_Calendar_DateFormat__");
-      }
-      
-      //var time = '';
-      //if (sd == ed) {
-      //  time += sd;
-      //} else {
-      //  time += sd + " - " + ed;
-      //}
-      if (isAllDay) {
-        span.text("All Day");
-      } else if (prefs.getString("startTimeOnly")) {
-        span.text(st);
-      } else {
-        span.text(st + " - " + et);
-      }
-      
-      $(h3).append(span);
-      
-      $("#event-container").append(div);
     }
+    
+    var div = $("<div class=\"entry\"></div>");
+    
+    var h2 = $("<h2></h2>");
+    h2.text(event.summary);
+    $(div).append(h2);
+
+    var h3 = $("<h3></h3>");
+    h3.text(event.location);
+    $(div).append(h3);
+
+    var span = $("<span class=\"when\"></span>");
+    
+    var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+    var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+    var et = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+    if (isAllDay) {
+      var ed = moment(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+    } else {
+      var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+    }
+    
+    if (isAllDay) {
+      span.text("All Day");
+    } else if (prefs.getString("startTimeOnly")) {
+      span.text(st);
+    } else {
+      span.text(st + " - " + et);
+    }
+    
+    $(h3).append(span);
+    
+    $("#event-container").append(div);
   }
 
-  function formatTable(eventEntry) {
+  function formatTable(event) {
 
-    var eventTitle = eventEntry.getTitle().getText();
-    var locations = eventEntry.getLocations();
-    var location = locations.length > 0 ? locations[0].valueString : '';
-    var times = eventEntry.getTimes();
+    var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
+    var endDateTime = event.end.dateTime;
+        
+    var isAllDay = false;
+    if (startDateTime) {
+      if (event.start.date) {
+        isAllDay = true;
+      }
+    }
     
     var tbody = $("<tbody></tbody>");
-    
-    for (var j = 0; j < times.length; j++) {
-      var startTime = times[j].getStartTime();
-      var endTime = times[j].getEndTime();
-      var isAllDay = false;
-
-      if (startTime.isDateOnly()) {       //All Day event
-          isAllDay = true;
-      }
-      var tr = $('<tr/>');
+    var tr = $('<tr/>');
             
-      var sd = moment.utc(startTime.getDate()).tz(tz).format("__MSG_Calendar_DateFormat__");
-      var st = moment.utc(startTime.getDate()).tz(tz).format("__MSG_Calendar_TimeFormat__");
-      var et = moment.utc(endTime.getDate()).tz(tz).format("__MSG_Calendar_TimeFormat__");
-      if (isAllDay) {
-        var ed = moment.utc(endTime.getDate()).tz(tz).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
-      } else {
-        var ed = moment.utc(endTime.getDate()).tz(tz).format("__MSG_Calendar_DateFormat__");
-      }
-      
-      var td = $("<td class=\"date\"/>");
-        
-      //var time = '';
-      //if (sd == ed) {
-      //  time += sd;
-      //} else {
-      //  time += sd + " - " + ed;
-      //}
-      if (isAllDay) {
-        td.text("All Day");
-      } else if (prefs.getString("startTimeOnly")) {
-        td.text(st);
-      } else {
-        td.text(st + " - " + et);
-      }
-      $(tr).append(td);
-        
-      td = $("<td class=\"title\"/>");
-      td.text(eventTitle);
-      $(tr).append(td);
-      
-      td = $("<td class=\"where\"/>");
-      $(td).text(location);
-      $(tr).append(td);
-      
-      $(tbody).append(tr);
+    var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+    var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+    var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+    if (isAllDay) {
+      var ed = moment.utc(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+    } else {
+      var ed = moment.utc(endDateTime).format("__MSG_Calendar_DateFormat__");
     }
+    
+    var td = $("<td class=\"date\"/>");
+    
+    if (isAllDay) {
+      td.text("All Day");
+    } else if (prefs.getString("startTimeOnly")) {
+      td.text(st);
+    } else {
+      td.text(st + " - " + et);
+    }
+    $(tr).append(td);
+      
+    td = $("<td class=\"title\"/>");
+    td.text(eventTitle);
+    $(tr).append(td);
+    
+    td = $("<td class=\"where\"/>");
+    $(td).text(location);
+    $(tr).append(td);
+    
+    $(tbody).append(tr);
     
     $(tbody).hide().appendTo("#data > table").fadeIn();
   }
