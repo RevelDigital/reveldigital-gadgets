@@ -13,8 +13,8 @@
   <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
     <EnumValue value="365" display_value="No Limit" />
     <EnumValue value="1" display_value="Today" />
-    <EnumValue value="7" display_value="This Week" />
-    <EnumValue value="30" display_value="This Month" />
+    <EnumValue value="7" display_value="Next 7 Days" />
+    <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
