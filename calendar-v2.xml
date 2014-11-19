@@ -210,7 +210,7 @@ h3
   function formatDiv(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
-    var endDateTime = event.end.dateTime;
+    var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
         
     var isAllDay = false;
     if (startDateTime) {
@@ -260,7 +260,7 @@ h3
   function formatTable(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
-    var endDateTime = event.end.dateTime;
+    var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
         
     var isAllDay = false;
     if (startDateTime) {
