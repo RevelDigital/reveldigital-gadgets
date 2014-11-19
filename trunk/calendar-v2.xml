@@ -180,6 +180,10 @@ h3
     queryParams += '&timeMin=' + min;
     queryParams += '&timeMax=' + max;
     
+    if (prefs.getString("searchQuery") != '') {
+      queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
+    }
+    
     jQuery.ajax({
       type: 'GET',
       url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
