@@ -182,6 +182,10 @@ td.date
     queryParams += '&timeMin=' + min;
     queryParams += '&timeMax=' + max;
     
+    if (prefs.getString("searchQuery") != '') {
+      queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
+    }
+    
     jQuery.ajax({
       type: 'GET',
       url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
@@ -208,7 +212,7 @@ td.date
   function formatDiv(event) {
   
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
-    var endDateTime = event.end.dateTime;
+    var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
         
     var isAllDay = false;
     if (startDateTime) {
@@ -254,7 +258,7 @@ td.date
   function formatTable(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
-    var endDateTime = event.end.dateTime;
+    var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
         
     var isAllDay = false;
     if (startDateTime) {
