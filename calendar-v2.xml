@@ -186,7 +186,7 @@ h3
     
     $.ajax({
       type: 'GET',
-      url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
+      url: 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(googleUrl(prefs.getString("calendarUrl"))) + '/events?key=' + key + queryParams,
       dataType: 'json'
     })
     .done(function(response) {
