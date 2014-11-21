@@ -201,7 +201,7 @@ h3
       }
     })
     .fail(function(xhr, err) {
-      console.log('get calendar failed: ' + err);
+      console.log('get calendar failed: ' + xhr.responseText);
       $("#event-container").empty();
       $("#data table tbody").remove();
     });
