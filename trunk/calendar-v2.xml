@@ -184,26 +184,26 @@ h3
       queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
     }
     
-    jQuery.ajax({
+    $.ajax({
       type: 'GET',
       url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
-      dataType: 'json',
-      success: function (response) {
-        $("#event-container").empty();
-        $("#data table tbody").remove();
-        for (var i = 0; i < response.items.length; i++) {
-          if (prefs.getString("displayFormat") == "table") {
-            formatTable(response.items[i]);
-          } else {
-            formatDiv(response.items[i]);
-          }
+      dataType: 'json'
+    )
+    .done(function(response) {
+      $("#event-container").empty();
+      $("#data table tbody").remove();
+      for (var i = 0; i < response.items.length; i++) {
+        if (prefs.getString("displayFormat") == "table") {
+          formatTable(response.items[i]);
+        } else {
+          formatDiv(response.items[i]);
         }
-      },
-      error: function (response) {
-        $("#event-container").empty();
-        $("#data table tbody").remove();
-        console.log(response);
       }
+    })
+    .fail(function() {
+      console.log('get calendar failed');
+      $("#event-container").empty();
+      $("#data table tbody").remove();
     });
   }
 
