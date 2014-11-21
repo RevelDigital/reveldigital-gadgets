@@ -188,7 +188,7 @@ h3
       type: 'GET',
       url: 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams,
       dataType: 'json'
-    )
+    })
     .done(function(response) {
       $("#event-container").empty();
       $("#data table tbody").remove();
