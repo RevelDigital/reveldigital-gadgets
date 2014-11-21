@@ -184,9 +184,11 @@ h3
       queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
     }
     
+    var url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(googleUrl(prefs.getString("calendarUrl"))) + '/events?key=' + key + queryParams;
+    
     $.ajax({
       type: 'GET',
-      url: 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(googleUrl(prefs.getString("calendarUrl"))) + '/events?key=' + key + queryParams,
+      url: url,
       dataType: 'json'
     })
     .done(function(response) {
@@ -201,6 +203,7 @@ h3
       }
     })
     .fail(function(xhr, err) {
+      console.log(url);
       console.log('get calendar failed: ' + xhr.responseText);
       $("#event-container").empty();
       $("#data table tbody").remove();
