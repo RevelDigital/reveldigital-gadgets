@@ -177,8 +177,8 @@ h3
     var min = dfMin.format(new Date());
     var max = dfMax.format(tomorrow);
     
-    queryParams += '&timeMin=' + min;
-    queryParams += '&timeMax=' + max;
+    queryParams += '&timeMin=' + encodeURIComponent(min);
+    queryParams += '&timeMax=' + encodeURIComponent(max);
     
     if (prefs.getString("searchQuery") != '') {
       queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
