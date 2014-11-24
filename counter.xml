@@ -45,6 +45,8 @@ body
 
 <SCRIPT type="text/javascript">
 
+var prefs = new gadgets.Prefs();
+
 var boldme = '<b>'
 var unboldme = '</b>'
 
