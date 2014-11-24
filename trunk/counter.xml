@@ -70,7 +70,7 @@ function countup2() {
 
   var diff = moment.duration(moment().diff(startDate));
   
-  var txt = boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S. ";
+  var txt = "<span>" + boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S.</span>";
   
   $('#counter').empty().append($(txt));
     
