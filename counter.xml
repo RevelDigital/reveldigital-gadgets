@@ -59,9 +59,9 @@ var crosscount = ''
 function init() {
 
   startDate = moment(prefs.getString("startDate"));
-  yr = dt.year();
-  mo = dt.month();
-  da = dt.day();
+  yr = startDate.year();
+  mo = startDate.month();
+  da = startDate.day();
   
   countup2();
 }
