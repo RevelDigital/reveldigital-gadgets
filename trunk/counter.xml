@@ -74,7 +74,7 @@ function countup2() {
   
   $('#counter').empty().append($(txt));
     
-  setTimeout("countup()", 1000)
+  setTimeout("countup2()", 1000)
 }
 
 function countup() {
