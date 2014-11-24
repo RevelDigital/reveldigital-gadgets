@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-	<ModulePrefs title="Count Up" 
-		height="20" width="220" scaling="false"
-		author="Salman Esmaili" 
-    author_email="webdev@esmaili.ws"
-		screenshot="http://salman.esmaili.ws/countdown/counter.png"
-		thumbnail="http://salman.esmaili.ws/countdown/countert.png"
-		description="Count up from a specified day">
-		<Require feature="dynamic-height"/>
-    <Require feature="setprefs" />
+	<ModulePrefs title="Count Up" author="RevelDigital" description="Count up from a specified day" background="transparent">
     <UserPref name="startDate" display_name="Start Date" datatype="string" />
     <UserPref name="body-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
     <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -51,60 +43,26 @@ var startDate = moment();
 var boldme = '<b>'
 var unboldme = '</b>'
 
-//////////DO NOT EDIT PASS THIS LINE//////////////////
-
-var montharray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-var crosscount = ''
-
 function init() {
 
   startDate = moment(prefs.getString("startDate"));
-  yr = startDate.year();
-  mo = startDate.month();
-  da = startDate.day();
   
-  countup2();
+  countup();
 }
 
-function countup2() {
+function countup() {
 
   var diff = moment.duration(moment().diff(startDate));
   
-  var txt = "<span>" + boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S.</span>";
+  var txt = "<span>" + boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S</span>";
   
   $('#counter').empty().append($(txt));
     
   setTimeout("countup2()", 1000)
 }
 
-function countup() {
-    var today = new Date()
-    var todayy = today.getYear()
-    if (todayy < 1000)
-        todayy += 1900
-    var todaym = today.getMonth()
-    var todayd = today.getDate()
-    var todayh = today.getHours()
-    var todaymin = today.getMinutes()
-    var todaysec = today.getSeconds()
-    var todaystring = montharray[todaym] + " " + todayd + ", " + todayy + " " + todayh + ":" + todaymin + ":" + todaysec
-    paststring = montharray[mo - 1] + " " + da + ", " + yr
-    dd = Date.parse(todaystring) - Date.parse(paststring)
-    dday = Math.floor(dd / (60 * 60 * 1000 * 24) * 1)
-    dhour = Math.floor((dd % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1)
-    dmin = Math.floor(((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000) * 1)
-    dsec = Math.floor((((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000 * 1)
-
-    var txt = boldme + dday + unboldme + " D, " + boldme + dhour + unboldme + " H, " + boldme + dmin + unboldme + " M, " + boldme + dsec + unboldme + " S. ";
-
-    $('#counter').empty().append($(txt));
-    
-    setTimeout("countup()", 1000)
-}
-
 gadgets.util.registerOnLoadHandler(init);
 </SCRIPT>
      	]]>
   </Content>
-
 </Module>
