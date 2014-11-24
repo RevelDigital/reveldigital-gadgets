@@ -68,9 +68,9 @@ function init() {
 
 function countup2() {
 
-  var diff = moment().diff(startDate);
+  var diff = moment.duration(moment().diff(startDate));
   
-  var txt = boldme + diff.day() + unboldme + " D, " + boldme + diff.hour() + unboldme + " H, " + boldme + diff.minute() + unboldme + " M, " + boldme + diff.second() + unboldme + " S. ";
+  var txt = boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S. ";
   
   $('#counter').empty().append($(txt));
     
