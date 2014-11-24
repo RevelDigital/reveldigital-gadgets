@@ -58,7 +58,7 @@ function countup() {
   
   $('#counter').empty().append($(txt));
     
-  setTimeout("countup2()", 1000)
+  setTimeout("countup()", 1000)
 }
 
 gadgets.util.registerOnLoadHandler(init);
