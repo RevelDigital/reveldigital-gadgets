@@ -47,6 +47,7 @@ body
 
 var prefs = new gadgets.Prefs();
 
+var startDate = moment();
 var boldme = '<b>'
 var unboldme = '</b>'
 
@@ -57,12 +58,23 @@ var crosscount = ''
 
 function init() {
 
-  var dt = moment(prefs.getString("startDate"));
+  startDate = moment(prefs.getString("startDate"));
   yr = dt.year();
   mo = dt.month();
   da = dt.day();
   
-  countup();
+  countup2();
+}
+
+function countup2() {
+
+  var diff = moment().diff(startDate);
+  
+  var txt = boldme + diff.day() + unboldme + " D, " + boldme + diff.hour() + unboldme + " H, " + boldme + diff.minute() + unboldme + " M, " + boldme + diff.second() + unboldme + " S. ";
+  
+  $('#counter').empty().append($(txt));
+    
+  setTimeout("countup()", 1000)
 }
 
 function countup() {
