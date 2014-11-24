@@ -184,7 +184,7 @@ h3
       queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
     }
     
-    var url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(googleUrl(prefs.getString("calendarUrl"))) + '/events?key=' + key + queryParams;
+    var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
     
     $.ajax({
       type: 'GET',
@@ -320,7 +320,7 @@ h3
         return sourceIdentifier.match(/feeds\/(.*?)\/private-(.*?)\//)[1];
       }
     } else {
-      return sourceIdentifier;
+      encodeURIComponent(return sourceIdentifier);
     }
   }
 
