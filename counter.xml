@@ -9,6 +9,7 @@
 		description="Count up from a specified day">
 		<Require feature="dynamic-height"/>
     <Require feature="setprefs" />
+    <UserPref name="startDate" display_name="Start Date" datatype="string" />
     <UserPref name="body-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
     <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
     <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -36,36 +37,31 @@ body
 }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/moment-with-langs.min.js" type="text/javascript"></script>
 
 <div id="counter" class="body-style">
 </div>
 
 <SCRIPT type="text/javascript">
-function setcountup(theyear, themonth, theday) {
-    yr = theyear;
-    mo = themonth;
-    da = theday
-}
 
-setcountup(2006, 09, 15)
-
-//STEP 2: Configure text to be attached to count up
-var displaymessage = ""
-
-//STEP 3: Configure the below 5 variables to set the width, height, background color, and text style of the countup area
-var countupwidth = '350px'
-var countupheight = '35px'
-var countupbgcolor = 'white'
-var opentags = '<font color="black">'
-var closetags = '</font>'
-var boldme = '<B>'
-var unboldme = '</B>'
+var boldme = '<b>'
+var unboldme = '</b>'
 
 //////////DO NOT EDIT PASS THIS LINE//////////////////
 
 var montharray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 var crosscount = ''
+
+function init() {
+
+  var dt = moment(prefs.getString("startDate"));
+  yr = dt.year();
+  mo = dt.month();
+  da = dt.day();
+  
+  countup();
+}
 
 function countup() {
     var today = new Date()
@@ -85,14 +81,14 @@ function countup() {
     dmin = Math.floor(((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000) * 1)
     dsec = Math.floor((((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000 * 1)
 
-    var txt = boldme + dday + unboldme + " D, " + boldme + dhour + unboldme + " H, " + boldme + dmin + unboldme + " M, " + boldme + dsec + unboldme + " S. " + displaymessage ;
+    var txt = boldme + dday + unboldme + " D, " + boldme + dhour + unboldme + " H, " + boldme + dmin + unboldme + " M, " + boldme + dsec + unboldme + " S. ";
 
     $('#counter').empty().append($(txt));
     
     setTimeout("countup()", 1000)
 }
 
-gadgets.util.registerOnLoadHandler(countup);
+gadgets.util.registerOnLoadHandler(init);
 </SCRIPT>
      	]]>
   </Content>
