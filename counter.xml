@@ -87,7 +87,7 @@ function countup() {
 
     var txt = boldme + dday + unboldme + " D, " + boldme + dhour + unboldme + " H, " + boldme + dmin + unboldme + " M, " + boldme + dsec + unboldme + " S. " + displaymessage ;
 
-    $('#counter').text(txt);
+    $('#counter').empty().append($(txt));
     
     setTimeout("countup()", 1000)
 }
