@@ -320,7 +320,7 @@ h3
         return sourceIdentifier.match(/feeds\/(.*?)\/private-(.*?)\//)[1];
       }
     } else {
-      encodeURIComponent(return sourceIdentifier);
+      return encodeURIComponent(sourceIdentifier);
     }
   }
 
