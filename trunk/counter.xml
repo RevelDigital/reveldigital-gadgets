@@ -2,6 +2,11 @@
 <Module>
 	<ModulePrefs title="Count Up" author="RevelDigital" description="Count up from a specified day" background="transparent">
     <UserPref name="startDate" display_name="Start Date" datatype="string" />
+    <UserPref name="direction" display_name="Count Direction" datatype="enum" default_value="up">
+      <EnumValue value="up" display_value="Count up from the specified date" />
+      <EnumValue value="down" display_value="Count down to the specified date" />
+    </UserPref>
+    <UserPref name="message" display_name="Completion Message" datatype="string" />
     <UserPref name="body-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
     <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
     <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -37,31 +42,53 @@ body
 
 <SCRIPT type="text/javascript">
 
-var prefs = new gadgets.Prefs();
+  var prefs = new gadgets.Prefs();
 
-var startDate = moment();
-var boldme = '<b>'
-var unboldme = '</b>'
+  var date = moment();
+  var boldme = '<b>'
+  var unboldme = '</b>'
+  var message = '';
+  var up = true;
 
-function init() {
+  function init() {
 
-  startDate = moment(prefs.getString("startDate"));
-  
-  countup();
-}
-
-function countup() {
-
-  var diff = moment.duration(moment().diff(startDate));
-  
-  var txt = "<span>" + boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S</span>";
-  
-  $('#counter').empty().append($(txt));
+    date = moment(prefs.getString("startDate"));
+    message = prefs.getString("message");
+    up = prefs.getString("direction") == "up";
     
-  setTimeout("countup()", 1000)
-}
+    count();
+  }
 
-gadgets.util.registerOnLoadHandler(init);
+  function count() {
+
+    var diff;
+    if (up) {
+      if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
+        diff = moment.duration(moment(Client.getDeviceTime()).diff(date));
+      } else {
+        diff = moment.duration(moment().diff(date));
+      }
+    } else {
+      if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
+        diff = moment.duration(date.diff(moment(Client.getDeviceTime())));
+      } else {
+        diff = moment.duration(date.diff(moment()));
+      }
+    }
+    
+    var txt;
+    if (diff < 0 && message != "") {
+      txt = "<span>" + message + "</span>";
+    } else {
+      txt = "<span>" + boldme + diff.days() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S</span>";
+    }
+
+    $('#counter').empty().append($(txt));
+      
+    setTimeout("count()", 1000)
+  }
+
+  gadgets.util.registerOnLoadHandler(init);
 </SCRIPT>
      	]]>
   </Content>
