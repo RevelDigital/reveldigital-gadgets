@@ -80,7 +80,7 @@ body
     if (diff < 0 && message != "") {
       txt = "<span>" + message + "</span>";
     } else {
-      txt = "<span>" + boldme + diff.asDays() + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S</span>";
+      txt = "<span>" + boldme + Math.floor(diff.asDays()) + unboldme + " D, " + boldme + diff.hours() + unboldme + " H, " + boldme + diff.minutes() + unboldme + " M, " + boldme + diff.seconds() + unboldme + " S</span>";
     }
 
     $('#counter').empty().append($(txt));
