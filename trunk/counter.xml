@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 	<ModulePrefs title="Counter" author="RevelDigital" description="Count up/down from a specified date" background="transparent">
     <UserPref name="startDate" display_name="Start Date" datatype="string" />
