@@ -62,7 +62,7 @@
 		  var len = dummy.length;
 		  for (var i = 0; i < len; i++) {
 			  var table = document.getElementById('arrivalsTable');
-			  var image = getAirlineImage(dummy[i][1]);
+			  
 			  table.innerHTML = table.innerHTML + "<tr>"+
 											  "<td>" + dummy[i][0] + "</td>" +
 											  "<td><img src='http://dmko.tk/"+ dummy[i][1] + "' height='40' width='100'></td>" +
@@ -73,6 +73,7 @@
 		  }
 		  $("tr:odd").css("background-color", "#808080");
 		  $("tr:even").css("background-color", "#C6C6C6");
+		  getAirlineImage("placeholder");
 	  }
 	  
 	  function getAirlineImage(airline) {
