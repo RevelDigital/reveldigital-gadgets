@@ -78,10 +78,10 @@
 	  
 	  function getAirlineImage(airline) {
 		var test = document.getElementById('testarea');
-		$.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"),function (data) {
+		$.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
 			for(var i=0; i < data.length; i++) {
 				var image = data[i];
-				test.innerHTML = test.innerHTML + "<br>" + image.file_name;
+				table.innerHTML = table.innerHTML + "<br>" + image.file_name;
 			}
 		});
 	  }
