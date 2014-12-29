@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs 
+    title="Tunica Airport Flight Information Demo"
+    author="RevelDigital"
+    author_email="D.Mudrechenko@gmail.com">
+    <Require feature="dynamic-height"/>
+	<UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" required="true" />
+    <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="10" /> 
+	<Require feature="dynamic-height"/>	
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+	<style type="text/css">
+                  #header{
+                        background-color: grey;
+                        width: 100%;
+                  }
+                  #indexpage{
+                        background: #2F7DC2;
+                  }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+	
+	  function init() {
+		var prefs = new gadgets.Prefs();
+		setDate();
+		loadData();
+		gadgets.window.adjustHeight();
+	  }
+	
+	  function setDate() {
+		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var currentDate = new Date();
+		var day = currentDate.getDate();
+		var month = currentDate.getMonth();
+		var year = currentDate.getFullYear();
+		var dow = currentDate.getDay();
+		document.getElementById("header").innerHTML = "<b>" + days[dow] + ", " + months[month] + " " + day + ", " + year + "</b>";
+	  }
+	
+	  function loadData() {
+		  var dummy = [["Boston","republic.jpg", 8583, "11:10AM", "A14", "On Time"],
+					  ["Charlotte","allegiant.gif", 1644, "11:55AM", "F87", "On Time"],
+					  ["Charlotte","allegiant.gif", 3211, "11:55AM", "F87", "On Time"],
+					  ["Charlotte","allegiant.gif", 1014, "1:30PM", "F87", "On Time"],
+					  ["Charlotte","allegiant.gif", 5275, "1:30PM", "F87", "On Time"],
+					  ["Charlotte","republic.jpg", 2332, "1:30PM", "F87", "On Time"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"],
+					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"]];
+	  
+		  var len = dummy.length;
+		  for (var i = 0; i < len; i++) {
+			  var table = document.getElementById('arrivalsTable');
+			  var image = getAirlineImage(dummy[i][1]);
+			  table.innerHTML = table.innerHTML + "<tr>"+
+											  "<td>" + dummy[i][0] + "</td>" +
+											  "<td><img src='http://dmko.tk/"+ dummy[i][1] + "' height='40' width='100'></td>" +
+											  "<td>" + dummy[i][2] + "</td>" +
+											  "<td>" + dummy[i][3] + "</td>" +
+											  "<td>" + dummy[i][4] + "</td>" +
+											  "<td>" + dummy[i][5] + "</td>" + "</tr>";
+		  }
+		  $("tr:odd").css("background-color", "#808080");
+		  $("tr:even").css("background-color", "#C6C6C6");
+	  }
+	  
+	  function getAirlineImage(airline) {
+		var image = $.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"),
+							  function (data) {
+		var test = document.getElementById('testarea');
+		for(var i=0; i < data.length; i++) {
+		  test.innerHTML = test.innerHTML + "<br>" + data[i];
+        }
+		});
+	  }
+
+
+  
+	  gadgets.util.registerOnLoadHandler(init);
+    </script>
+	
+      <div id="header"></div>
+      <div data-role="page" id="indexpage" data-theme="b">
+	    <table id='arrivalsTable' width="100%">
+		  <tr>
+			<th>City</th>
+			<th>Airline</th>
+			<th>Flight</th>
+			<th>Scheduled</th>
+			<th>Gate</th>
+			<th>Remarks</th>
+		  </tr>
+	    </table>
+		<div id='testarea'>
+		</div>
+      </div>
+    ]]>
+  </Content> 
+</Module>
