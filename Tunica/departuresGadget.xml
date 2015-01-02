@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs 
+    title="Tunica Airport Flight Information Demo"
+    author="RevelDigital"
+    author_email="D.Mudrechenko@gmail.com">
+    <Require feature="dynamic-height"/>
+	<UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" required="true" />
+    <UserPref name="update_interval" display_name="Interval between data checks (minutes)" datatype="string" default_value="10" /> 
+	<Require feature="dynamic-height"/>	
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+	<style type="text/css">
+                  #header{
+                        background-color: grey;
+                        width: 100%;
+                  }
+                  #indexpage{
+                        background: #2F7DC2;
+                  }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+	  /*
+	   * This function is an entry point for the gadget. Called by onLoad handler.
+	   */
+	  function init() {
+		var prefs = new gadgets.Prefs();
+		refresh();
+		setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
+		gadgets.window.adjustHeight();
+	  }
+	  /*
+	   * Being called with specified interval to update gadget's contents
+ 	   */
+	  function refresh() {
+		getAirlineImage();
+	  }
+	  /*
+	   * Function sets the date to the current
+	   */
+	  function setDate() {
+		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var currentDate = new Date();
+		var day = currentDate.getDate();
+		var month = currentDate.getMonth();
+		var year = currentDate.getFullYear();
+		var dow = currentDate.getDay();
+		document.getElementById("header").innerHTML = "<b>" + days[dow] + ", " + months[month] + " " + day + ", " + year + "</b>";
+	  }
+	  /*
+	   * Function sets the time to the current
+	   */
+	  function setTime() {
+		var currentTime = new Date();
+		var h = currentTime.getHours();
+		var m = currentTime.getMinutes();
+		var s = currentTime.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		document.getElementById("current_time").innerHTML = h + ":" +m + ":" + s;
+		var t = setTimeout(function(){setTime()},500);
+	  }
+	  /*
+	   * Function for correct time output format
+	   */
+	  function checkTime(i) {
+		if (i < 10) {
+		  i = "0" + i};  // add a zero infront of a number that is < 10
+		return i;
+	  }	
+	  /*
+	   * Function to load airline logo
+	   */
+	  function getAirlineImage() {
+		var logo = document.getElementById('airline_logo');
+		$.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
+			for(var i=0; i < data.length; i++) {
+				var image = data[i];
+				if (image.file_name.toLowerCase() == republic_airways_logo) {
+				  logo.innerHTML = "<img src='" + image.file_url + "'>"
+				}
+			}
+		});
+	  } 
+	  gadgets.util.registerOnLoadHandler(init);
+    </script>
+	
+      
+      <div data-role="page" id="indexpage" style="width:100%;">
+		<div style="float:left; width:60%;" id="airline_logo">
+		  
+		</div>
+		<div style="float:right; width:80%; ">
+		  Flight info
+		</div>
+      </div>
+    ]]>
+  </Content> 
+</Module>
