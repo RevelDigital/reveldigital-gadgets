@@ -22,14 +22,26 @@
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-	
+	  /*
+	   * This function is an entry point for the gadget. Called by onLoad handler.
+	   */
 	  function init() {
 		var prefs = new gadgets.Prefs();
-		setDate();
-		loadData();
+		refresh();
+		setInterval(refresh, prefs.getInt("update_interval") * 60 * 1000);
 		gadgets.window.adjustHeight();
 	  }
-	
+	  /*
+	   * Being called with specified interval to update gadget's contents
+ 	   */
+	  function refresh() {
+		setDate();
+		setTime();
+		loadData();
+	  }
+	  /*
+	   * Function sets the date to the current
+	   */
 	  function setDate() {
 		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -40,7 +52,30 @@
 		var dow = currentDate.getDay();
 		document.getElementById("header").innerHTML = "<b>" + days[dow] + ", " + months[month] + " " + day + ", " + year + "</b>";
 	  }
-	
+	  /*
+	   * Function sets the time to the current
+	   */
+	  function setTime() {
+		var currentTime = new Date();
+		var h = currentTime.getHours();
+		var m = currentTime.getMinutes();
+		var s = currentTime.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		document.getElementById("current_time").innerHTML = h + ":" +m + ":" + s;
+		var t = setTimeout(function(){startTime()},500);
+	  }
+	  /*
+	   * Function for correct time output format
+	   */
+	  function checkTime(i) {
+		if (i < 10) {
+		  i = "0" + i};  // add a zero infront of a number that is < 10
+		return i;
+	  }	
+	  /*
+	   * Function to populate gadget with flights
+	   */
 	  function loadData() {
 		  var dummy = [["Boston","republic.jpg", 8583, "11:10AM", "A14", "On Time"],
 					  ["Charlotte","allegiant.gif", 1644, "11:55AM", "F87", "On Time"],
@@ -60,9 +95,9 @@
 					  ["Chicago","republic.jpg", 668, "11:25AM", "C31", "Delayed 55 mins"]];
 	  
 		  var len = dummy.length;
-		  for (var i = 0; i < len; i++) {
-			  var table = document.getElementById('arrivalsTable');
-			  
+		  var table = document.getElementById('arrivalsTable');
+		  table.innerHTML = "";
+		  for (var i = 0; i < len; i++) {  
 			  table.innerHTML = table.innerHTML + "<tr>"+
 											  "<td>" + dummy[i][0] + "</td>" +
 											  "<td><img src='http://dmko.tk/"+ dummy[i][1] + "' height='40' width='100'></td>" +
@@ -76,6 +111,14 @@
 		  getAirlineImage("placeholder");
 	  }
 	  
+	  function checkFlights() {
+		//get flight data
+		var data = [];
+		if (data.length != 0) {
+		  
+		}
+	  }
+	  
 	  function getAirlineImage(airline) {
 		var test = document.getElementById('testarea');
 		$.getJSON("http://api.reveldigital.com/media.json?api_key=" + prefs.getString("apikey"), function (data) {
@@ -85,14 +128,18 @@
 			}
 		});
 	  }
-
-
+	  
+	  function loadDoms() {
+		document.getElementById("indexpage").innerHTML
+	  }
   
 	  gadgets.util.registerOnLoadHandler(init);
     </script>
 	
-      <div id="header"></div>
-      <div data-role="page" id="indexpage" data-theme="b">
+      <div id="header">
+	  <p id="current_time"></p>
+	  </div>
+      <div data-role="page" id="indexpage">
 	    <table id='arrivalsTable' width="100%">
 		  <tr>
 			<th>City</th>
