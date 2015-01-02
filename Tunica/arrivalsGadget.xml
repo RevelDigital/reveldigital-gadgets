@@ -96,7 +96,15 @@
 	  
 		  var len = dummy.length;
 		  var table = document.getElementById('arrivalsTable');
-		  table.innerHTML = "";
+		  table.innerHTML = "<tr>" +
+							  "<th>City</th>" +
+							  "<th>Airline</th>" +
+							  "<th>Flight</th>" +
+							  "<th>Scheduled</th>" +
+							  "<th>Gate</th>" +
+							  "<th>Remarks</th>" +
+							"</tr>"
+		  
 		  for (var i = 0; i < len; i++) {  
 			  table.innerHTML = table.innerHTML + "<tr>"+
 											  "<td>" + dummy[i][0] + "</td>" +
@@ -137,7 +145,8 @@
     </script>
 	
       <div id="header">
-	  <p id="current_time"></p>
+	  </div>
+	  <div id="current_time">
 	  </div>
       <div data-role="page" id="indexpage">
 	    <table id='arrivalsTable' width="100%">
