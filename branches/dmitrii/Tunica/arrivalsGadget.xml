@@ -63,7 +63,7 @@
 		m = checkTime(m);
 		s = checkTime(s);
 		document.getElementById("current_time").innerHTML = h + ":" +m + ":" + s;
-		var t = setTimeout(function(){startTime()},500);
+		var t = setTimeout(function(){setTime()},500);
 	  }
 	  /*
 	   * Function for correct time output format
