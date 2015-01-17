@@ -117,8 +117,8 @@ td.price
     
     $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
     
-      //$(data).find('ConfigExport Divisions Division').each(function() {
-      $(data).find('*').filterNode('Division').each(function() {
+      $(data).find('ConfigExport Divisions Division').each(function() {
+      //$(data).find('*').filterNode('Division').each(function() {
       
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
         
@@ -144,8 +144,8 @@ td.price
     
       var items = [];
       
-      //$(data).find('ConfigExport SaleItems SaleItem').each(function() {
-      $(data).find('*').filterNode('SaleItem').each(function() {
+      $(data).find('ConfigExport SaleItems SaleItem').each(function() {
+      //$(data).find('*').filterNode('SaleItem').each(function() {
       
         var available = $(this).children("Available:contains(1)");
         var desc = $(this).children("Description2");
