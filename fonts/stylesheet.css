@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: 'dirtydarrenregular';
-    src: url('dirtydarren-webfont.eot');
-    src: url('dirtydarren-webfont.eot?#iefix') format('embedded-opentype'),
-         url('dirtydarren-webfont.woff2') format('woff2'),
-         url('dirtydarren-webfont.woff') format('woff'),
-         url('dirtydarren-webfont.ttf') format('truetype'),
-         url('dirtydarren-webfont.svg#dirtydarrenregular') format('svg');
+    src: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.eot');
+    src: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.woff2') format('woff2'),
+         url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.woff') format('woff'),
+         url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.ttf') format('truetype'),
+         url('https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/dirtydarren-webfont.svg#dirtydarrenregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
