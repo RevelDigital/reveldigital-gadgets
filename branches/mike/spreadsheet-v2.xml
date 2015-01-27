@@ -21,7 +21,7 @@ body *
 
 body
 {
-  background: transparent;
+  background: rgba(0,0,0,0);
 }
 
 table
