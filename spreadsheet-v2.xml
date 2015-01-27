@@ -27,10 +27,6 @@ body
 table
 {
   width: __UP_rdW__px;
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none;
 }
 
 table.google-visualization-table-table,
@@ -54,6 +50,8 @@ table.google-visualization-table-table,
   __UP_header-style__
 }
 </style>
+
+<link rel="stylesheet" type="text/css" href="https://reveldigital-gadgets.googlecode.com/svn/trunk/fonts/stylesheet.css">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
