@@ -33,11 +33,11 @@ body *
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal;
-  overflow: hidden;
 }
 
 body
 {
+  overflow: hidden;
   background: transparent;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
