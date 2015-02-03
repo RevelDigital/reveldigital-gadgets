@@ -23,6 +23,7 @@ body *
 body
 {
   background: transparent;
+  overflow: hidden;
 }
 
 
