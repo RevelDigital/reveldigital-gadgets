@@ -41,6 +41,7 @@ body *
 body
 {
   background: transparent;
+  overflow: hidden;
 }
 
 body, td, div, span, p

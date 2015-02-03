@@ -30,6 +30,7 @@ body
   background:transparent;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
+  overflow: hidden;
 }
 
 .fe_container
