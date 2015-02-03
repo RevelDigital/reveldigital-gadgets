@@ -33,6 +33,7 @@ body *
   line-height: 1.2em; 
   letter-spacing: 0; 
   word-spacing: normal;
+  overflow: hidden;
 }
 
 body
