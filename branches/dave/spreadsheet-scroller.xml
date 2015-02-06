@@ -90,6 +90,33 @@ th {
       tableHeader.append(thead);
       $('#headerContainer').append(tableHeader);
     }
+    
+    var dataTable = $("<table id='dataTable'/>");
+    numRows = 0;
+    
+    var arr = model.toArray();
+    for (var row = 0; row < arr.length; row++) {
+      var tr = $("<tr id='r_" + row + "'/>");
+      for (var col = 0; col < arr[i].length; col++) {
+        if (arr[row][col] == "") {
+          arr[row][col] = " ";
+        }
+        tr.append($("<td>" + arr[row][col] + "</td>"));
+      }
+      dataTable.append(tr);
+      numRows++;
+    }
+    
+    $('#tableContainer').append(dataTable);
+
+    $("#dataTable tr").each(function (i) {
+      $(this).height($("#r_1").height());
+    });
+    if (parseFloat(prefs.getString("scrollSpeed")) > 0) {
+      if ($('#dataTable').height() > $('#tableContainer').height()) {
+        setTimeout(scrollTable, 1000);
+      }
+    }
   }
   
   function initialize() {
