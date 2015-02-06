@@ -141,32 +141,11 @@ th {
 			setTimeout(scrollTable, parseFloat(prefs.getString("scrollSpeed")) * 1000);
 		}
 	}
-
+	
   function googleUrl(sourceIdentifier) {
     var url, key;
     if (sourceIdentifier.match(/http(s)*:/)) {
-      url = sourceIdentifier;
-      try {
-        key = url.replace(/.*key=/,'').replace(/&.*/,'');
-      } catch (error) {
-        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
-      }
-    } else {
-      key = sourceIdentifier;
-    }    
-    var ret = "https://spreadsheets.google.com/pub?key=" + key + "&hl=en&output=csv";
-    return ret;
-  }
-  
-  function googleUrl(sourceIdentifier) {
-    var url, key;
-    if (sourceIdentifier.match(/http(s)*:/)) {
-      url = sourceIdentifier;
-      try {
-        key = url.replace(/.*key=/,'').replace(/&.*/,'');
-      } catch (error) {
-        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
-      }
+      key = url.match(/[-\w]{25,}/);
     } else {
       key = sourceIdentifier;
     }
