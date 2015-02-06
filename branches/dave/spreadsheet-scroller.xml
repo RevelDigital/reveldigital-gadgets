@@ -97,7 +97,7 @@ th {
     var arr = model.toArray();
     for (var row = 0; row < arr.length; row++) {
       var tr = $("<tr id='r_" + row + "'/>");
-      for (var col = 0; col < arr[i].length; col++) {
+      for (var col = 0; col < arr[row].length; col++) {
         if (arr[row][col] == "") {
           arr[row][col] = " ";
         }
