@@ -76,7 +76,7 @@ th {
   
   gadgets.util.registerOnLoadHandler(initialize);
   
-  function populateTable(data) {
+  function populateTable(data, tabletop) {
     if (prefs.getBool("hasTitle")) {  // Static header
       var tableHeader = $("<table id='tableHeader'/>");
       var thead = $("<thead class='fixedHeader'/>");
@@ -92,7 +92,7 @@ th {
   function initialize() {
     Tabletop.init({
       key: prefs.getString("spreadsheetUrl"),
-      callback: function(data, tabletop) { populateTable(data); },
+      callback: function(data, tabletop) { populateTable(data, tabletop); },
       simpleSheet: true
     });
     
