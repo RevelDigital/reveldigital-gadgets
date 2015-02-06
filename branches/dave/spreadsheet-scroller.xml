@@ -78,7 +78,7 @@ th {
   
   function populateTable(data, tabletop) {
   
-    var model = tabletop.sheets();
+    var model = tabletop.sheets(tabletop.foundSheetNames[0]);
     
     if (prefs.getBool("hasTitle")) {  // Static header
       var tableHeader = $("<table id='tableHeader'/>");
