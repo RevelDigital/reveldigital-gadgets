@@ -154,7 +154,23 @@ th {
     } else {
       key = sourceIdentifier;
     }    
-    var ret = "https://spreadsheets.google.com/pub?key=" + key+"&hl=en&output=csv";
+    var ret = "https://spreadsheets.google.com/pub?key=" + key + "&hl=en&output=csv";
+    return ret;
+  }
+  
+  function googleUrl(sourceIdentifier) {
+    var url, key;
+    if (sourceIdentifier.match(/http(s)*:/)) {
+      url = sourceIdentifier;
+      try {
+        key = url.replace(/.*key=/,'').replace(/&.*/,'');
+      } catch (error) {
+        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
+      }
+    } else {
+      key = sourceIdentifier;
+    }
+    var ret = https://docs.google.com/spreadsheets/d/" + key + "/export?gid=0&format=csv";
     return ret;
   }
 </script>
