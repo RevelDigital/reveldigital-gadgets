@@ -143,14 +143,9 @@ th {
 	}
 	
   function googleUrl(sourceIdentifier) {
-    var url, key;
+    var key;
     if (sourceIdentifier.match(/http(s)*:/)) {
-      url = sourceIdentifier;
-      try {
-        key = url.replace(/.*key=/,'').replace(/&.*/,'');
-      } catch (error) {
-        key = url.match(/[-\w]{25,}/);
-      }
+      key = sourceIdentifier.match(/[-\w]{25,}/);
     } else {
       key = sourceIdentifier;
     }
