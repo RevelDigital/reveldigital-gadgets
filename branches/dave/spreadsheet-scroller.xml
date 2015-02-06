@@ -170,7 +170,7 @@ th {
     } else {
       key = sourceIdentifier;
     }
-    var ret = https://docs.google.com/spreadsheets/d/" + key + "/export?gid=0&format=csv";
+    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/export?gid=0&format=csv";
     return ret;
   }
 </script>
