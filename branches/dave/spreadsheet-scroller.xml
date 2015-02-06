@@ -76,11 +76,27 @@ th {
   
   gadgets.util.registerOnLoadHandler(initialize);
   
+  function populateTable(data) {
+    if (prefs.getBool("hasTitle")) {  // Static header
+      var tableHeader = $("<table id='tableHeader'/>");
+      var thead = $("<thead class='fixedHeader'/>");
+      
+      for (var col in data.columns_names) {
+        thead.append($("<th>" + col + "</th>"));
+      }
+      tableHeader.append(thead);
+      $('#headerContainer').append(tableHeader);
+    }
+  }
+  
   function initialize() {
-    Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
-                   callback: function(data, tabletop) { console.log(data) },
-                   simpleSheet: true } );
-                   
+    Tabletop.init({
+      key: prefs.getString("spreadsheetUrl"),
+      callback: function(data, tabletop) { populateTable(data); },
+      simpleSheet: true
+    });
+    
+    return;               
                    
     $.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
       var arr = $.csv.toArrays(data);
