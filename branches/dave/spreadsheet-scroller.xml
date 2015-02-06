@@ -81,7 +81,7 @@ th {
       var tableHeader = $("<table id='tableHeader'/>");
       var thead = $("<thead class='fixedHeader'/>");
       
-      for (var col in data.columns_names) {
+      for (var col in tabletop.columns_names) {
         thead.append($("<th>" + col + "</th>"));
       }
       tableHeader.append(thead);
