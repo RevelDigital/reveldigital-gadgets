@@ -84,7 +84,7 @@ th {
       var tableHeader = $("<table id='tableHeader'/>");
       var thead = $("<thead class='fixedHeader'/>");
       
-      for (var col in model.columns_names) {
+      for (var col in model.column_names) {
         thead.append($("<th>" + col + "</th>"));
       }
       tableHeader.append(thead);
