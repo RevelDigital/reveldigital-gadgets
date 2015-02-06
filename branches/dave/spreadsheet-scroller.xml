@@ -77,11 +77,14 @@ th {
   gadgets.util.registerOnLoadHandler(initialize);
   
   function populateTable(data, tabletop) {
+  
+    var model = tabletop.sheets()[0];
+    
     if (prefs.getBool("hasTitle")) {  // Static header
       var tableHeader = $("<table id='tableHeader'/>");
       var thead = $("<thead class='fixedHeader'/>");
       
-      for (var col in tabletop.columns_names) {
+      for (var col in model.columns_names) {
         thead.append($("<th>" + col + "</th>"));
       }
       tableHeader.append(thead);
