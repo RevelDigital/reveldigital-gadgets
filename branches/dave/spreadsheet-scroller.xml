@@ -57,6 +57,7 @@ th {
 </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/branches/dave/jquery.csv-0.71.js"></script>
+<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/tabletop.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <div id="container">
@@ -76,6 +77,11 @@ th {
   gadgets.util.registerOnLoadHandler(initialize);
   
   function initialize() {
+    Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
+                   callback: function(data, tabletop) { console.log(data) },
+                   simpleSheet: true } );
+                   
+                   
     $.get(googleUrl(prefs.getString("spreadsheetUrl")), function(data) {
       var arr = $.csv.toArrays(data);
       if (prefs.getBool("hasTitle")) {  // Static header
