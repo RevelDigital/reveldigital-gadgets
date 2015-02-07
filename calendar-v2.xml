@@ -59,27 +59,17 @@ body
   background-color: #__UP_BackColor__;
 }
 
-#data table
+#events table
 {
   color: #__UP_ForeColor__;
   width: __UP_rdW__px;
 }
 
-#event-container
+#events
 {
   display: none;
   color: #__UP_ForeColor__;
   width: __UP_rdW__px;
-}
-
-table
-{
-  display: none;
-}
-
-thead
-{
-  display: none;
 }
 
 td, th
