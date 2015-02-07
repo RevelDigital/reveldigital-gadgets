@@ -19,6 +19,17 @@
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
+    <EnumValue value="fastest" display_value="Fastest" />
+    <EnumValue value="fast" display_value="Fast" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="slow" display_value="Slow" />
+    <EnumValue value="none" display_value="None" />
+  </UserPref>
+  <UserPref name="scrollBy" display_name="Scroll By"  datatype="enum" default_value="continuous">
+    <EnumValue value="continuous" display_value="Continuous" />
+    <EnumValue value="page" display_value="Page" />
+  </UserPref>
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -123,19 +134,26 @@ h3
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/moment-with-langs.min.js" type="text/javascript"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/moment-timezone-with-data.js" type="text/javascript"></script>
 <script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/simpledateformat.js" type="text/javascript"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/utils/Draggable.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
+<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/autoscroll.js" type="text/javascript"></script>
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 
 <div id="data">
-  <table id="output">
-    <thead>
-      <tr>
-        <th>When</th>
-        <th>Event</th>
-        <th>Location</th>
-      </tr>
-    </thead>
-  </table>
-  <div id="event-container">
+  <div id="events" class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Event</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -187,14 +205,20 @@ h3
     
     var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
     
+    if (prefs.getString("displayFormat") != "table") {
+      $("#events").clear();
+    } else {
+      $("#events > table > tbody").clear();
+    }
+    
     $.ajax({
       type: 'GET',
       url: url,
       dataType: 'json'
     })
     .done(function(response) {
-      $("#event-container").empty();
-      $("#data table tbody").remove();
+      //$("#event-container").empty();
+      //$("#data table tbody").remove();
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("displayFormat") == "table") {
           formatTable(response.items[i]);
@@ -202,12 +226,22 @@ h3
           formatDiv(response.items[i]);
         }
       }
+      
+      if (prefs.getString("scrollSpeed") != "none") {
+        $("#data").autoScroll({
+          speed: prefs.getString("scrollSpeed"),
+          by: prefs.getString("scrollBy")
+        }).on("done", function() {
+          $("#data").data("plugin_autoScroll").play();
+        });
+        $("#data").data("plugin_autoScroll").play();
+      }
     })
     .fail(function(xhr, err) {
       console.log(url);
       console.log('get calendar failed: ' + xhr.responseText);
-      $("#event-container").empty();
-      $("#data table tbody").remove();
+      //$("#event-container").empty();
+      //$("#data table tbody").remove();
     });
   }
 
@@ -215,24 +249,24 @@ h3
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
-        
+    
     var isAllDay = false;
     if (startDateTime) {
       if (event.start.date) {
         isAllDay = true;
       }
     }
-
+    
     var div = $("<div class=\"entry\"></div>");
-      
+    
     var h2 = $("<h2></h2>");
     h2.text(event.summary);
     $(div).append(h2);
-
+    
     var h3 = $("<h3></h3>");
     h3.text(event.location);
     $(div).append(h3);
-
+    
     var span = $("<span class=\"when\"></span>");
     
     var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
@@ -258,22 +292,23 @@ h3
     
     $(h3).append(span);
     
-    $("#event-container").append(div);
+    $("#events").append(div);
   }
 
   function formatTable(event) {
 
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
-        
+    
     var isAllDay = false;
     if (startDateTime) {
       if (event.start.date) {
         isAllDay = true;
       }
     }
-
-    var tbody = $("<tbody></tbody>");
+    
+    //var tbody = $("<tbody></tbody>");
+    var tbody = $("#events > table > tbody");
     var tr = $('<tr/>');
     
     var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
@@ -286,7 +321,7 @@ h3
     }
     
     var td = $("<td class=\"date\"/>");
-      
+    
     var time = '';
     if (sd == ed) {
       time += sd;
@@ -309,7 +344,7 @@ h3
     $(tr).append(td);
     
     $(tbody).append(tr);
-    $(tbody).hide().appendTo("#data > table").fadeIn();
+    //$(tbody).hide().appendTo("#data > table").fadeIn();
   }
   
   var googleUrl = function (sourceIdentifier) {
