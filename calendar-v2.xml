@@ -67,7 +67,6 @@ body
 
 #events
 {
-  display: none;
   color: #__UP_ForeColor__;
   width: __UP_rdW__px;
 }
