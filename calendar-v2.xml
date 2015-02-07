@@ -196,9 +196,9 @@ h3
     var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
     
     if (prefs.getString("displayFormat") != "table") {
-      $("#events").clear();
+      $("#events").empty();
     } else {
-      $("#events > table > tbody").clear();
+      $("#events > table > tbody").empty();
     }
     
     $.ajax({
