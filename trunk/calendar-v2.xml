@@ -57,6 +57,7 @@ body
 #data
 {
   background-color: #__UP_BackColor__;
+  height: __UP_rdH__px;
 }
 
 #events table
