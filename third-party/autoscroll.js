@@ -56,7 +56,7 @@
 				}
 				else {	// Continuous or by row
 					if (this.options.speed === "fastest") {
-						speed = 160;
+						speed = 60;
 					}
 					else if (this.options.speed === "fast") {
 						speed = 50;
