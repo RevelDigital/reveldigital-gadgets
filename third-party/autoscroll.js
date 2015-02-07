@@ -1,3 +1,7 @@
+/*
+ *  Author: @donnapep
+ *  License: MIT
+ */
 ;(function ($, window, document, undefined) {
 	"use strict";
 
