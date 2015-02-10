@@ -207,8 +207,6 @@ h3
       dataType: 'json'
     })
     .done(function(response) {
-      //$("#event-container").empty();
-      //$("#data table tbody").remove();
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("displayFormat") == "table") {
           formatTable(response.items[i]);
@@ -230,8 +228,6 @@ h3
     .fail(function(xhr, err) {
       console.log(url);
       console.log('get calendar failed: ' + xhr.responseText);
-      //$("#event-container").empty();
-      //$("#data table tbody").remove();
     });
   }
 
