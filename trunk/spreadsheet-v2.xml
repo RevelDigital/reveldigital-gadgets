@@ -173,6 +173,22 @@ table.google-visualization-table-table,
     }
     return ret;
   }
+  
+  $(document).on('click', 'table tr', function (e) {
+    var json = [];
+    
+    $('td', this).each(function() {
+      var th = $(this).closest('table').find('th').eq($(this).index());
+      var o = new Object();
+      o.name = $(th).html();
+      o.value = $(this).html();
+      json.push(o);
+    });
+    
+    if (typeof Client != 'undefined') {
+      Client.callback(JSON.stringify(json));
+    }
+  });
 </script>
 ]]>
 </Content>
