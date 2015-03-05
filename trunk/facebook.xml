@@ -87,18 +87,35 @@ div.post
   height: 80px;
 }
 
+.avatar-small img
+{
+  width: 80px;
+  height: 80px;
+}
+
 .avatar-large
 {
   float: left;
   overflow: hidden;
   display: block;
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
 }
 
-.text
+.avatar-large
+{
+  width: 130px;
+  height: 130px;
+}
+
+.text-small
 {
   margin-left: 90px;
+}
+
+.text-large
+{
+  margin-left: 140px;
 }
 
 span.when
@@ -145,8 +162,11 @@ span.when
     var display = '<div class="error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
     var imgClass = 'avatar-small';
+    var txtClass = 'text-small';
+    
     if (prefs.getString("imageSize") == "large") {
       imgClass = 'avatar-large';
+      txtClass = 'text-large';
     }
     
     $.getJSON(url, function(json){
@@ -162,7 +182,7 @@ span.when
           display += '<div class="' + imgClass + ' post' + i + '">' +
             '<img src="' + post.picture + '"  />' + 
             '</div>' +
-            '<div class="text post' + i + '">' +
+            '<div class="' + txtClass + ' post' + i + '">' +
             '<a href="' + post.link +
             '" title="post by ' + post.from.name + 
             '">' + post.name + '</a>' + 
