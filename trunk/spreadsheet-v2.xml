@@ -72,6 +72,11 @@ table.google-visualization-table-table,
 {
   __UP_header-style__
 }
+
+.top-level
+{
+  overflow: hidden;
+}
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
