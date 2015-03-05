@@ -102,7 +102,7 @@ div.post
   height: 130px;
 }
 
-.avatar-large
+.avatar-large img
 {
   width: 130px;
   height: 130px;
