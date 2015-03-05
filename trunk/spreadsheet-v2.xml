@@ -75,7 +75,7 @@ table.google-visualization-table-table,
 
 .top-level
 {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 </style>
 
