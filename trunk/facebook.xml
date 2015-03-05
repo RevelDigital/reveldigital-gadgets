@@ -4,6 +4,10 @@
   <UserPref name="numItems" display_name="Number of posts visible at the same time"  datatype="string" default_value="3" />
   <UserPref name="pause" display_name="Delay in seconds between post scrolling" datatype="string" default_value="5" />
   <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
+  <UserPref name="imageSize" display_name="Image Size" datatype="enum" default_value="small">
+    <EnumValue value="small" display_value="Small" />
+    <EnumValue value="large" display_value="Large" />
+  </UserPref>
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -74,13 +78,22 @@ div.post
   border-bottom: solid 1px #ccc;
 }
 
-.avatar
+.avatar-small
 {
   float: left;
   overflow: hidden;
   display: block;
   width: 80px;
   height: 80px;
+}
+
+.avatar-large
+{
+  float: left;
+  overflow: hidden;
+  display: block;
+  width: 160px;
+  height: 160px;
 }
 
 .text
@@ -131,7 +144,11 @@ span.when
     var url = 'https://svc1.reveldigital.com/facebook/me/posts/' + key + '?format=json&callback=?';
     var display = '<div class="error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
-  
+    var imgClass = 'avatar-small';
+    if (prefs.getString("imageSize") == "large") {
+      imgClass = 'avatar-large';
+    }
+    
     $.getJSON(url, function(json){
 
       if(json) {
@@ -142,7 +159,7 @@ span.when
             desc = "";
           }
           display += '<li><div class="item">';
-          display += '<div class="avatar post' + i + '">' +
+          display += '<div class="' + imgClass + ' post' + i + '">' +
             '<img src="' + post.picture + '"  />' + 
             '</div>' +
             '<div class="text post' + i + '">' +
