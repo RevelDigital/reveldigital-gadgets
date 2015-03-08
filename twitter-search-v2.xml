@@ -61,6 +61,10 @@ ul, p
 
 div.tweetscontainer
 {
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
   text-align: left;
   overflow: hidden;
   __UP_body-style__;
