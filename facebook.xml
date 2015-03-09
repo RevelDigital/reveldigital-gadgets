@@ -186,8 +186,9 @@ span.when
               '<img src="' + post.picture + '"  />' + 
               '</div>';
           }
+          display += '<div class="' + txtClass + ' post' + i + '">';
           if (post.name != null) {
-            display += '<div class="text post' + i + '">' +
+            display +=
               '<a href="' + post.link +
               '" title="post by ' + post.from.name + 
               '">' + post.name + '</a>';
