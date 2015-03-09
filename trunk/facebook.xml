@@ -182,7 +182,7 @@ span.when
           }
           display += '<li><div class="item">';
           if (post.picture != null) {
-            display += '<div class="avatar-large post' + i + '">' +
+            display += '<div class="' + imgClass + ' post' + i + '">' +
               '<img src="' + post.picture + '"  />' + 
               '</div>';
           }
