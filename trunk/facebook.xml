@@ -181,14 +181,20 @@ span.when
             desc = "";
           }
           display += '<li><div class="item">';
-          display += '<div class="' + imgClass + ' post' + i + '">' +
-            '<img src="' + post.picture + '"  />' + 
-            '</div>' +
-            '<div class="' + txtClass + ' post' + i + '">' +
-            '<a href="' + post.link +
-            '" title="post by ' + post.from.name + 
-            '">' + post.name + '</a>' + 
-            '<p>' + desc + '</p>' + '<span class="when" data-timestamp="' + post.created_time + '">' + timeAgo(post.created_time) + '</span>' +
+          if (post.picture != null) {
+            display += '<div class="avatar-large post' + i + '">' +
+              '<img src="' + post.picture + '"  />' + 
+              '</div>';
+          }
+          if (post.name != null) {
+            display += '<div class="text post' + i + '">' +
+              '<a href="' + post.link +
+              '" title="post by ' + post.from.name + 
+              '">' + post.name + '</a>';
+          } 
+          display += '<p>' + post.message + '</p>' +
+            '<p>' + desc + '</p>' +
+            '<span class="when" data-timestamp="' + post.created_time + '">' + timeAgo(post.created_time) + '</span>' +
             '</div><div style="clear:both;height:25px;"></div></div></li>';
         });
         $("div.postscontainer ul").html(display);
