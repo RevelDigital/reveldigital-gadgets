@@ -3,6 +3,7 @@
 <ModulePrefs title="RevelDigital Facebook Gadget" description="Displays Facebook posts from your linked account." author="RevelDigital" background="transparent">
   <UserPref name="numItems" display_name="Number of posts visible at the same time"  datatype="string" default_value="3" />
   <UserPref name="maxItems" display_name="Maximum number of posts to retrieve from Facebook"  datatype="string" default_value="10" />
+  <UserPref name="userId" display_name="Facebook User (use 'me' for your own posts)"  datatype="string" default_value="me" />
   <UserPref name="pause" display_name="Delay in seconds between post scrolling" datatype="string" default_value="5" />
   <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
   <UserPref name="imageSize" display_name="Image Size" datatype="enum" default_value="small">
@@ -159,7 +160,7 @@ span.when
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
     }
-    var url = 'https://svc1.reveldigital.com/facebook/me/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
+    var url = 'https://svc1.reveldigital.com/facebook/' + prefs.getString('userId') + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
     var display = '<div class="error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
     var imgClass = 'avatar-small';
