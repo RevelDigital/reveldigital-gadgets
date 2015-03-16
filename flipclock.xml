@@ -472,8 +472,8 @@ body
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/flipclock/flipclock.min.js"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/fit.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/flipclock/flipclock.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/fit.min.js"></script>
 
 <script type="text/javascript">
 

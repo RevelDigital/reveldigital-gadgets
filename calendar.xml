@@ -119,7 +119,7 @@ h3
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/date.format.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/date.format.js"></script>
 
 <div id="data">
   <table id="output">

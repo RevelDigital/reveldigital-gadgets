@@ -84,7 +84,7 @@ table.google-visualization-table-table,
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/utils/Draggable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/autoscroll.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <div id="container">

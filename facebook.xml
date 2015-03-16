@@ -130,7 +130,7 @@ span.when
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.vticker.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
 
 <div class="postscontainer">
   <ul></ul>

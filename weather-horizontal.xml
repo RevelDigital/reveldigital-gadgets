@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Weather Gadget" description="Two day weather panel in a horizontal orientation" author="RevelDigital" background="transparent">
-  <Locale messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ALL_ALL.xml"/>
-  <Locale lang="ru" messages="https://reveldigital-gadgets.googlecode.com/svn/trunk/ru_ALL.xml"/>
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
     <EnumValue value="f" display_value="US" />
     <EnumValue value="c" display_value="Metric" />
@@ -57,7 +57,7 @@
     position: relative;
     height: 100%;
     width: 100%;
-    background-image: url('https://reveldigital-gadgets.googlecode.com/svn/trunk/images/weather-cap.png');
+    background-image: url('https://reveldigital.github.io/reveldigital-gadgets/images/weather-cap.png');
     background-repeat: no-repeat;
     background-size: 100% 35%;
   }
@@ -213,7 +213,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/jquery.fittext.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
 
 <script type="text/javascript">
 
