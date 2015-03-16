@@ -116,22 +116,20 @@ td.price
     
     divisions = [];
     
-    $.get('http://' + prefs.getString('host') + '/DivisionExport.xml', null, function (data, textStatus) {
-    
-      $(data).find('ConfigExport Divisions Division').each(function() {
-      //$(data).find('*').filterNode('Division').each(function() {
-      
+    $.ajax({
+      url: "http://192.168.1.182/posera/data/DivisionExport.xml",
+      dataType: "xml",
+      success: function(data) {
         var div = { id: $(this).attr('Id'), name: $(this).find("Description").text() };
-        
         divisions.push(div);
-      });
-      
-      loadItems();
-    }, 'xml').fail(function() {
-      items = JSON.parse(localStorage['maitred.items']);
-      
-      generateTable(items);
+      },
+      error: function(data) {
+        items = JSON.parse(localStorage['maitred.items']);
+        generateTable(items);
+      }
     });
+    
+
   }
 
   var loadItems = function() {
