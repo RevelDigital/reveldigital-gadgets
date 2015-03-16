@@ -69,12 +69,7 @@ td.price
 
 <script type="text/javascript">
 
-  var jQ164 = jQuery.noConflict();
-  jQ164.fn.filterNode = function(name) {
-    return this.filter(function() {
-      return this.nodeName === name;
-    });
-  };
+
   
   var divisions = [];
   var prefs = new gadgets.Prefs();
