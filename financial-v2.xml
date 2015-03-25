@@ -76,25 +76,19 @@ td
   text-align: right;
 }
 
-img
-{
-  height: 32px;
-  width: 32px;
-}
-
 i
 {
-  font-size: 40px;
+  __UP_body-style__
 }
 
 .green
 {
-  color: green;
+  color: green !important;
 }
 
 .red
 {
-  color: red;
+  color: red !important;
 }
 
 .name, .symbol, .exchange
@@ -168,7 +162,10 @@ i
     thead += '</tr>';
     $("div.quotescontainer > table > thead").empty();
     $(thead).prependTo("div.quotescontainer > table > thead");
-  
+
+    var size = $('td').css('font-size');
+    $('i').css('font-size', size);
+    
     update();
     
     setInterval(update, 120000);
