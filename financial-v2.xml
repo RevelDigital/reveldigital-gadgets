@@ -95,10 +95,9 @@ i
 {
   text-align: left !important;
 }
-
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/gadget-common/third-party/foundation-icons/foundation-icons.css"/>
 
 <div class="quotescontainer">
@@ -251,56 +250,6 @@ i
         $(display).prependTo("div.quotescontainer > table > tbody");
       }
     });
-  }
-
-  var timeAgo = function (dateString) {
-    var rightNow = new Date(),
-    then = new Date(dateString),
-    diff = rightNow - then,
-    second = 1000,
-    minute = second * 60,
-    hour = minute * 60,
-    day = hour * 24,
-    week = day * 7;
-  
-    if (isNaN(diff) || diff < 0) {
-      return "";	//Return blank string if unknown
-    }
-  
-    if (diff < second * 2) {
-      return "right now";
-    }
-  
-    if (diff < minute) {
-      return Math.floor(diff / second) + " seconds ago";
-    }
-  
-    if (diff < minute * 2) {
-      return "about 1 minute ago";
-    }
-  
-    if (diff < hour) {
-      return Math.floor(diff / minute) + " minutes ago";
-    }
-  
-    if (diff < hour * 2) {
-      return "about 1 hour ago";
-    }
-  
-    if (diff < day) {
-      return  Math.floor(diff / hour) + " hours ago";
-    }
-  
-    if (diff > day && diff < day * 2) {
-      return "yesterday";
-    }
-  
-    if (diff < day * 365) {
-      return Math.floor(diff / day) + " days ago";
-    }
-    else {
-      return "over a year ago";
-    }
   }
 </script>
 ]]>
