@@ -54,13 +54,6 @@ div.quotescontainer table
   color: #__UP_ForeColor__;
 }
 
-.symbol
-{
-  font-size: 150%;
-  text-align: left;
-  font-weight: bold;
-}
-
 table
 {
   width: 100%;
@@ -69,17 +62,18 @@ table
 td, th
 {
   padding: 10px;
-  text-align: right;
 }
 
 th
 {
   __UP_header-style__
+  text-align: right;
 }
 
 td
 {
   __UP_body-style__
+  text-align: right;
 }
 
 img
@@ -101,6 +95,11 @@ i
 .red
 {
   color: red;
+}
+
+.name, .symbol, .exchange
+{
+  text-align: right !important;
 }
 
 </style>
@@ -125,19 +124,19 @@ i
 
     var thead = '<tr>';
     thead += '<th></th>';
-    thead += '<th>Name</th>';
-    thead += '<th>Symbol</th>';
-    thead += '<th>Last Trade</th>';
-    thead += '<th>Change</th>';
-    thead += '<th>Days Range</th>';
-    thead += '<th>Days Low</th>';
-    thead += '<th>Days High</th>';
-    thead += '<th>Volume</th>';
-    thead += '<th>Year Low</th>';
-    thead += '<th>Year High</th>';
-    thead += '<th>Market Cap</th>';
-    thead += '<th>Average Daily Volume</th>';
-    thead += '<th>Exchange</th>';
+    thead += '<th class="name">Name</th>';
+    thead += '<th class="symbol">Symbol</th>';
+    thead += '<th class="last-trade">Last Trade</th>';
+    thead += '<th class="change">Change</th>';
+    thead += '<th class="days-range">Days Range</th>';
+    thead += '<th class="days-low">Days Low</th>';
+    thead += '<th class="days-high">Days High</th>';
+    thead += '<th class="volume">Volume</th>';
+    thead += '<th class="year-low">Year Low</th>';
+    thead += '<th class="year-high">Year High</th>';
+    thead += '<th class="market-cap">Market Cap</th>';
+    thead += '<th class="avg-daily-volume">Average Daily Volume</th>';
+    thead += '<th class="exchange">Exchange</th>';
     thead += '</tr>';
     $("div.quotescontainer > table > thead").empty();
     $(thead).prependTo("div.quotescontainer > table > thead");
