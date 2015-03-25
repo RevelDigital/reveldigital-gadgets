@@ -4,8 +4,8 @@ function Events() {
     defaultStyle = "";
   this.visualOption = prefs.getString("visualOption");
   this.isTabbed = this.visualOption == "tab" ? true : false;
-  defaultLayout = this.isTabbed ? "http://reveldigital-gadgets.googlecode.com/svn/trunk/layouts/events-tabs.xml" : "http://reveldigital-gadgets.googlecode.com/svn/trunk/layouts/events-list.xml";
-  defaultStyle = this.isTabbed ? "http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-tabs.css" : "http://reveldigital-gadgets.googlecode.com/svn/trunk/styles/events-list.css";
+  defaultLayout = this.isTabbed ? "https://reveldigital.github.io/reveldigital-gadgets/layouts/events-tabs.xml" : "https://reveldigital.github.io/reveldigital-gadgets/layouts/events-list.xml";
+  defaultStyle = this.isTabbed ? "https://reveldigital.github.io/reveldigital-gadgets/styles/events-tabs.css" : "https://reveldigital.github.io/reveldigital-gadgets/styles/events-list.css";
   this.daysCount = prefs.getInt("daysCount");
   this.autoScroll = prefs.getBool("autoScroll");
   this.scrollBy = prefs.getString("scrollBy");
@@ -59,7 +59,7 @@ Events.prototype.initialize = function () {
     //Save the Event layout.
     self.layout = data.getElementsByTagName("Content")[0].childNodes[1].nodeValue;
     if (self.isTabbed) {
-      loadJS("http://reveldigital-gadgets.googlecode.com/svn/trunk/scripts/events-tabs.js", function () {
+      loadJS("https://reveldigital.github.io/reveldigital-gadgets/scripts/events-tabs.js", function () {
         $("#container").append(self.navigation);
         self.tabs = new Tabs();
         self.tabs.initTabs(self.daysCount);

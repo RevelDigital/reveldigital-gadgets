@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
+  <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="include-graphic" display_name="Include Graphic" datatype="bool" default_value="true" />
+  <UserPref name="include-name" display_name="Include Name" datatype="bool" default_value="true" />
+  <UserPref name="include-symbol" display_name="Include Symbol" datatype="bool" default_value="true" />
+  <UserPref name="include-last-trade" display_name="Include Last Trade" datatype="bool" default_value="true" />
+  <UserPref name="include-change" display_name="Include % Change" datatype="bool" default_value="true" />
+  <UserPref name="include-days-range" display_name="Include Days Range" datatype="bool" default_value="false" />
+  <UserPref name="include-days-low" display_name="Include Days Low" datatype="bool" default_value="false" />
+  <UserPref name="include-days-high" display_name="Include Days High" datatype="bool" default_value="false" />
+  <UserPref name="include-volume" display_name="Include Volume" datatype="bool" default_value="false" />
+  <UserPref name="include-year-low" display_name="Include Year Low" datatype="bool" default_value="false" />
+  <UserPref name="include-year-high" display_name="Include Year High" datatype="bool" default_value="false" />
+  <UserPref name="include-market-cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
+  <UserPref name="include-avg-daily-volume" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
+  <UserPref name="include-exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  overflow: hidden;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+div.quotescontainer
+{
+  text-align: left;
+  background-color: #__UP_BackColor__;
+  width: __UP_rdW__px;
+}
+
+div.quotescontainer table
+{
+  color: #__UP_ForeColor__;
+}
+
+.symbol
+{
+  font-size: 150%;
+  text-align: left;
+  font-weight: bold;
+}
+
+table
+{
+  width: 100%;
+}
+
+td, th
+{
+  padding: 10px;
+  text-align: right;
+}
+
+th
+{
+  __UP_header-style__
+}
+
+td
+{
+  __UP_body-style__
+}
+
+img
+{
+  height: 32px;
+  width: 32px;
+}
+
+i
+{
+  font-size: 40px;
+}
+
+.green
+{
+  color: green;
+}
+
+.red
+{
+  color: red;
+}
+
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/gadget-common/third-party/foundation-icons/foundation-icons.css"/>
+
+<div class="quotescontainer">
+  <table>
+    <thead>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    var thead = '<tr>';
+    thead += '<th></th>';
+    thead += '<th>Name</th>';
+    thead += '<th>Symbol</th>';
+    thead += '<th>Last Trade</th>';
+    thead += '<th>Change</th>';
+    thead += '<th>Days Range</th>';
+    thead += '<th>Days Low</th>';
+    thead += '<th>Days High</th>';
+    thead += '<th>Volume</th>';
+    thead += '<th>Year Low</th>';
+    thead += '<th>Year High</th>';
+    thead += '<th>Market Cap</th>';
+    thead += '<th>Average Daily Volume</th>';
+    thead += '<th>Exchange</th>';
+    thead += '</tr>';
+    $("div.quotescontainer > table > thead").empty();
+    $(thead).prependTo("div.quotescontainer > table > thead");
+  
+    update();
+    
+    setInterval(update, 120000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
+  var max_id = 0;
+  
+  var update = function () {
+
+    var query = 'select * from yahoo.finance.quote where symbol in ("' + prefs.getString("symbols") + '")';
+    var env = "store://datatables.org/alltableswithkeys";
+    var url = "https://query.yahooapis.com/v1/public/yql?q=" + escape(query) + "&env=" + escape(env) + "&format=json&callback=?";
+  
+    $.getJSON(url, function(json) {
+
+      if (json && json.query.count > 0) {
+      
+        $("div.quotescontainer > table > tbody").empty();
+        
+        var display = '';
+        
+        if (json.query.count == 1) {
+          var array = new Array();
+          array.push(json.query.results.quote);
+          json.query.results.quote = array;
+        }
+        $.each(json.query.results.quote, function(i, quote) {
+          display += '<tr class="item">';
+          if (parseFloat(quote.Change) >= 0) {
+            display += '<td class="icon"><i class="fi-arrow-up green"></i></td>';
+          } else {
+            display += '<td class="icon"><i class="fi-arrow-down red"></i></td>';
+          }
+          display += '<td class="value name">' + quote.Name + '</td>';
+          display += '<td class="value symbol">' + quote.Symbol + '</td>';
+          display += '<td class="value last-trade">' + quote.LastTradePriceOnly + '</td>';
+          display += '<td class="value change">' + quote.Change + '</td>';
+          display += '<td class="value days-range">' + quote.DaysRange + '</td>';
+          display += '<td class="value days-low">' + quote.DaysLow + '</td>';
+          display += '<td class="value days-high">' + quote.DaysHigh + '</td>';
+          display += '<td class="value volume">' + quote.Volume + '</td>';
+          display += '<td class="value year-low">' + quote.YearLow + '</td>';
+          display += '<td class="value year-high">' + quote.YearHigh + '</td>';
+          display += '<td class="value market-cap">' + quote.MarketCapitalization + '</td>';
+          display += '<td class="value avg-daily-volume">' + quote.AverageDailyVolume + '</td>';
+          display += '<td class="value exchange">' + quote.StockExchange + '</td>';
+          display += '</tr>';
+        });
+        display += '<tr><td class="when" colspan="5">Last updated: ' + when + '</td></tr>';
+        
+        $(display).prependTo("div.quotescontainer > table > tbody");
+      }
+    });
+  }
+
+  var timeAgo = function (dateString) {
+    var rightNow = new Date(),
+    then = new Date(dateString),
+    diff = rightNow - then,
+    second = 1000,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24,
+    week = day * 7;
+  
+    if (isNaN(diff) || diff < 0) {
+      return "";	//Return blank string if unknown
+    }
+  
+    if (diff < second * 2) {
+      return "right now";
+    }
+  
+    if (diff < minute) {
+      return Math.floor(diff / second) + " seconds ago";
+    }
+  
+    if (diff < minute * 2) {
+      return "about 1 minute ago";
+    }
+  
+    if (diff < hour) {
+      return Math.floor(diff / minute) + " minutes ago";
+    }
+  
+    if (diff < hour * 2) {
+      return "about 1 hour ago";
+    }
+  
+    if (diff < day) {
+      return  Math.floor(diff / hour) + " hours ago";
+    }
+  
+    if (diff > day && diff < day * 2) {
+      return "yesterday";
+    }
+  
+    if (diff < day * 365) {
+      return Math.floor(diff / day) + " days ago";
+    }
+    else {
+      return "over a year ago";
+    }
+  }
+</script>
+]]>
+</Content>
+</Module>

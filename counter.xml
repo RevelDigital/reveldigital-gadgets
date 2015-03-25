@@ -36,7 +36,7 @@ body
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-<script src="https://reveldigital-gadgets.googlecode.com/svn/third-party/moment-with-langs.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-langs.min.js" type="text/javascript"></script>
 
 <div id="counter" class="body-style">
 </div>
