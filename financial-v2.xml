@@ -74,15 +74,6 @@ td
 {
   __UP_body-style__
   text-align: right;
-<<<<<<< HEAD
-=======
-}
-
-img
-{
-  height: 32px;
-  width: 32px;
->>>>>>> origin/gh-pages
 }
 
 i
@@ -98,11 +89,6 @@ i
 .red
 {
   color: red !important;
-}
-
-.name, .symbol, .exchange
-{
-  text-align: left !important;
 }
 
 .name, .symbol, .exchange
