@@ -2,7 +2,9 @@
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
+  <UserPref name="hasTitle" display_name="Use first row as header" datatype="bool" default_value="true" />
+  <UserPref name="range" display_name="Cell Range" datatype="string" />
+  <UserPref name="sheet" display_name="Sheet Name" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
@@ -112,7 +114,7 @@ table.google-visualization-table-table,
     container = document.getElementById("table");
     table = new google.visualization.Table(container);
     
-    var query = new google.visualization.Query(prefs.getString("spreadsheetUrl"));
+    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
     query.setRefreshInterval(300);
     query.send(draw);
   }
@@ -164,18 +166,20 @@ table.google-visualization-table-table,
     if (sourceIdentifier.match(/http(s)*:/)) {
       url = sourceIdentifier;
       try {
-        key = url.replace(/.*key=/,'').replace(/&.*/,'');
+        key = url.match(/spreadsheets\/d\/(.*?)\//)[1];
       } catch (error) {
-        key = url.match(/(cells|list|values)\/(.*?)\//)[2];
       }
     } else {
       key = sourceIdentifier;
-    }    
-    var ret = "https://spreadsheets.google.com/pub?key=" + key;
+    }
+    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?gid=0";
     
     if (prefs.getBool("hasTitle")) {
       ret = ret + "&headers=1";
     }
+    ret = ret + "&range=" + encodeURIComponent(prefs.getString("range"));
+    ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
+    
     return ret;
   }
   
