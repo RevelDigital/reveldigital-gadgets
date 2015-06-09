@@ -2,10 +2,10 @@
 <Module> 
 <ModulePrefs title="RevelDigital Menu Gadget" description="Basic Gadget to display a menu. Gets data from a Google Spreadsheet" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="dishname-style" display_name="Dish Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="dishprice-style" display_name="Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="subentry-style" display_name="Description Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:15px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
+  <UserPref name="dishname-style" display_name="Dish Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="dishprice-style" display_name="Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
+  <UserPref name="subentry-style" display_name="Description Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:15px;" required="true" />
   <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="540" datatype="hidden" />
   <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="800" datatype="hidden" />
 </ModulePrefs>
@@ -78,7 +78,6 @@
 	}
 
 	div.menuPrice div {
-	
 		width: 100% !important;
 	}
 
@@ -93,16 +92,15 @@
 		margin-bottom: 0;
 	}
 	
-	.dishName {
+	.menuItem {
 		<!-- __UP_dishname-style__ -->
 	}
 	
-	.dishPrice {
+	.menuPrice {
 		<!-- __UP_dishprice-style__ -->
 	}
 	
 	.subEntry {
-	color: black;
 		<!-- __UP_subentry-style__ -->
 	}
 	
