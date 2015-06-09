@@ -93,20 +93,20 @@
 	}
 	
 	.menuItem {
-		<!-- __UP_dishname-style__ -->
+		__UP_dishname-style__
 	}
 	
 	.menuPrice {
-		<!-- __UP_dishprice-style__ -->
+		__UP_dishprice-style__
 	}
 	
 	.subEntry {
-		<!-- __UP_subentry-style__ -->
+		__UP_subentry-style__
 	}
 	
 	.menuHeader {
 		float: left;width:50%;
-		<!-- __UP_header-style__ -->
+		__UP_header-style__
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
