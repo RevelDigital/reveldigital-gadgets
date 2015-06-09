@@ -6,16 +6,17 @@
   <UserPref name="dishname-style" display_name="Dish Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="dishprice-style" display_name="Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:18px;" required="true" />
   <UserPref name="subentry-style" display_name="Description Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:15px;" required="true" />
-  <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="540" datatype="hidden" />
-  <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="800" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
 <style type="text/css">
 
-
+	body {
+		background: transparent;
+		overflow: hidden;
+	}
+  
 	.dotted {
-		width: __UP_gadgetWidth__px;
 		max-width: 100%;
 	}
 	ul.dotted li, ul.dotted div {
@@ -133,8 +134,8 @@
 			for (i = 0; i < data.length; i++) { 
 				console.log(data[i]);
 				var menu = $('#menuContainer');
-				menu.append("<li><div class='menuItem'><span>" + data[i].dish + "</span></div>" + "<div class='menuPrice'><div><span>" 
-				+ data[i].price + "</span></div></div>" + "<p class='subEntry'>" + data[i].desc1 + "<br/>" + data[i].desc2 + "</p></li>");
+				menu.append("<li><div class='menuItem'><span>" + data[i].column1 + "</span></div>" + "<div class='menuPrice'><div><span>" 
+				+ data[i].column2 + "</span></div></div>" + "<p class='subEntry'>" + data[i].column3 + "<br/>" + data[i].column4 + "</p></li>");
 			}
 		}
 </script>]]>
