@@ -14,10 +14,11 @@
     <EnumValue value="slow" display_value="Slow" />
     <EnumValue value="none" display_value="None" />
   </UserPref>
-  <UserPref name="scrollBy" display_name="Scroll By"  datatype="enum" default_value="continuous">
+  <UserPref name="scrollBy" display_name="Scroll By" datatype="enum" default_value="continuous">
     <EnumValue value="continuous" display_value="Continuous" />
     <EnumValue value="page" display_value="Page" />
   </UserPref>
+  <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -67,7 +68,8 @@ table.google-visualization-table-table,
 
 .body-style
 {
-  __UP_body-style__
+  __UP_body-style__;
+  padding-bottom: __UP_rowPadding__px !important;
 }
 
 .header-style
