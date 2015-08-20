@@ -49,6 +49,7 @@ table
 }
 
 table.google-visualization-table-table,
+.google-visualization-table,
 .google-visualization-table-tr-head,
 .google-visualization-table-tr-over,
 .google-visualization-table-tr,
@@ -57,6 +58,16 @@ table.google-visualization-table-table,
 .google-visualization-table-tr td
 {
     background-color: transparent;
+}
+
+.google-visualization-table
+{
+    border: 0 !important;
+}
+
+.google-visualization-table div
+{
+    overflow: hidden !important;
 }
 
 #container
@@ -70,11 +81,13 @@ table.google-visualization-table-table,
 {
   __UP_body-style__;
   padding-bottom: __UP_rowPadding__px !important;
+  border: 0 !important;
 }
 
 .header-style
 {
-  __UP_header-style__
+  __UP_header-style__;
+  border: 0 !important;
 }
 
 .top-level
