@@ -48,8 +48,8 @@
 			var price = "N/A";
 			var root = 'http://jsonplaceholder.typicode.com';
 			$.getJSON(root + '/posts/1', function (data) {
-				$.each(data, function (p) {
-					price = p.id;
+				$.each(data, function (key, value) {
+					price = value;
 			  });
 			}).done(function() {
 			  setPrice(price);
