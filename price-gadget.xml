@@ -39,6 +39,7 @@
 			  });
 			}).done(function() {
 			  requestPrice(groupName);
+			  setPrice("20");
 			});
 		}
 		  
