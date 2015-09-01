@@ -57,17 +57,22 @@ table.google-visualization-table-table,
 .google-visualization-table-tr-over td,
 .google-visualization-table-tr td
 {
-    background-color: transparent;
+  background-color: transparent;
+}
+
+.google-visualization-table-table th,.google-visualization-table-table td
+{
+  padding: 0 !important;
 }
 
 .google-visualization-table
 {
-    border: 0 !important;
+  border: 0 !important;
 }
 
 .google-visualization-table div
 {
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
 
 #container
