@@ -31,6 +31,9 @@
 		var prefs = new gadgets.Prefs();
 		
 		function init() {
+			console.log('Resolved Api Key ' + prefs.getString("apiKey"));
+			console.log('Resolved Device Name ' + prefs.getString("storeId"));
+			console.log('Resolved Gadget Key ' + prefs.getString("gadgetKey"));
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
 				if (item.name.toLowerCase() == prefs.getString("storeId").toLowerCase()) {
@@ -45,6 +48,7 @@
 		gadgets.util.registerOnLoadHandler(init);
 		
 		function requestPrice(store) {
+			console.log('Resolved Device Group Name ' + store);
 			var price = "N/A";
 			var root = 'http://msg.reveldigital.com/Api/RequestPrice';
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey"), function (data) {
