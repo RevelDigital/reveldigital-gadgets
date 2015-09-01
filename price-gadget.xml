@@ -31,11 +31,12 @@
 		var prefs = new gadgets.Prefs();
 		
 		function init() {
-			console.log('Resolved Api Key ' + prefs.getString("apiKey"));
+			console.log('Resolved Api Key ' + prefs.getString("apikey"));
 			console.log('Resolved Device Name ' + prefs.getString("storeId"));
 			console.log('Resolved Gadget Key ' + prefs.getString("gadgetKey"));
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
+				console.log('Item  ' + item.name);
 				if (item.name.toLowerCase() == prefs.getString("storeId").toLowerCase()) {
 					groupName = item.group_name;
 				}
@@ -50,9 +51,15 @@
 		function requestPrice(store) {
 			console.log('Resolved Device Group Name ' + store);
 			var price = "N/A";
+			var proxy = 'https://as1.reveldigital.com/Proxy?url='
 			var root = 'http://msg.reveldigital.com/Api/RequestPrice';
-			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey"), function (data) {
+			var full = root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey");
+			console.log('Before encoding ' + full);
+			var encoded = encodeURIComponent(full);
+			console.log('AFter encoding ' + encoded);
+			$.getJSON(encoded , function (data) {
 				$.each(data, function (value) {
+					console.log('Value returned by API ' + value);
 					price = value;
 			  });
 			}).done(function() {
