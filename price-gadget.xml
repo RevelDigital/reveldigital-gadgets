@@ -44,11 +44,11 @@
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
-		function requestPrice(groupName) {
+		function requestPrice(store) {
 			var price = "N/A";
-			var root = 'http://jsonplaceholder.typicode.com';
-			$.getJSON(root + '/posts/1', function (data) {
-				$.each(data, function (key, value) {
+			var root = 'http://msg.reveldigital.com/Api/RequestPrice';
+			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey"), function (data) {
+				$.each(data, function (value) {
 					price = value;
 			  });
 			}).done(function() {
