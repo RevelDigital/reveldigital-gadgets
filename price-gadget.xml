@@ -36,7 +36,7 @@
 			console.log('Resolved Gadget Key ' + prefs.getString("gadgetKey"));
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
-				console.log('Item  ' + item.name);
+				console.log('Item  ' + item.name + ' in group ' + item.group_name);
 				if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 					groupName = item.group_name;
 				}
