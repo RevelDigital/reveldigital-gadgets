@@ -45,7 +45,7 @@
 		gadgets.util.registerOnLoadHandler(init);
 		
 		function requestPrice(groupName) {
-			var price = "N/A"
+			var price = "N/A";
 			var root = 'http://jsonplaceholder.typicode.com';
 			$.getJSON(root + '/posts/1', function (data) {
 				$.each(data, function (p) {
