@@ -49,6 +49,7 @@
 		gadgets.util.registerOnLoadHandler(init);
 		
 		function requestPrice(store) {
+			var price = "N/A"
 			console.log('Resolved Device Group Name ' + store);
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") , function (data) {
