@@ -60,11 +60,6 @@ table.google-visualization-table-table,
   background-color: transparent;
 }
 
-.google-visualization-table-table th,.google-visualization-table-table td
-{
-  padding: 0 !important;
-}
-
 .google-visualization-table
 {
   border: 0 !important;
