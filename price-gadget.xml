@@ -63,6 +63,7 @@
 		}
 		  
 		function setPrice(data) {
+			console.log('Setting Price to ' + data);
 			var container = $('#priceContainer');
 			container.text(data);
 		}
