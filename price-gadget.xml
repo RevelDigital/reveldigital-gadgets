@@ -57,7 +57,7 @@
 			console.log('Before encoding ' + full);
 			var encoded = encodeURIComponent(full);
 			console.log('AFter encoding ' + encoded);
-			$.getJSON(encoded , function (data) {
+			$.getJSON(proxy + encoded , function (data) {
 				$.each(data, function (value) {
 					console.log('Value returned by API ' + value);
 					price = value;
