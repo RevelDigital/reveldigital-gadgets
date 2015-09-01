@@ -23,7 +23,7 @@
 </style>
 
 <body>
-	<p> id="priceContainer"></p>
+	<p id="priceContainer"></p>
 </body>
 
 <script type="text/javascript">
