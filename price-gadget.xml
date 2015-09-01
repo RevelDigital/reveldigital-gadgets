@@ -53,10 +53,8 @@
 			console.log('Resolved Device Group Name ' + store);
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") , function (data) {
-				$.each(data, function (value) {
-					console.log('Value returned by API ' + value);
-					price = value;
-			  });
+				console.log('Value returned by API ' + data);
+				price = data;
 			}).done(function() {
 			  setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
