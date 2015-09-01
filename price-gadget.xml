@@ -53,7 +53,7 @@
 			var price = "N/A";
 			var proxy = 'https://as1.reveldigital.com/Proxy?url='
 			var root = 'http://msg.reveldigital.com/Api/RequestPrice';
-			var full = root + '?deviceId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey");
+			var full = root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey");
 			console.log('Before encoding ' + full);
 			var encoded = encodeURIComponent(full);
 			console.log('AFter encoding ' + encoded);
