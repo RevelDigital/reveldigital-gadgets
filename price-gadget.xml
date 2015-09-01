@@ -59,6 +59,9 @@
 			  });
 			}).done(function() {
 			  setPrice(price);
+			}).fail(function(e) {
+				console.log( "Error occured " + e);
+				setPrice("N/A");
 			});
 		}
 		  
