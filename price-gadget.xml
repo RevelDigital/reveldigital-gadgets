@@ -46,9 +46,10 @@
 		
 		function requestPrice(groupName) {
 			var price = "N/A"
-			$.getJSON("Api/Request?storeId=" + groupName + "&gadgetKey=" + prefs.getString("gadgetKey"), function (data) {
+			var root = 'http://jsonplaceholder.typicode.com';
+			$.getJSON(root + '/posts/1', function (data) {
 				$.each(data, function (p) {
-					price = p;
+					price = p.id;
 			  });
 			}).done(function() {
 			  setPrice(price);
