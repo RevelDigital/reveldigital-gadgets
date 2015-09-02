@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Playlist slideshow designed for mobile browsers"
+  <ModulePrefs title="Playlist slideshow"
     scrolling="false"
-    description="Simple way to provide mobile access to your RevelDigital playlists"
+    description="Scrolling list of playlist images"
     author="RevelDigital"
     author_email="info@reveldigital.com">
   </ModulePrefs>
@@ -13,82 +13,108 @@
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
   
   <Content type="html"><![CDATA[
-<div id="MainContent">
-  <div class="page-content">
-    <h1></h1>
-  </div>
-  <ul id="Gallery" class="gallery">
+<style type="text/css">
+.scroll-text {
+  border: 1px solid red;
+  width: 400px;
+  height: 4.5em;
+  overflow: hidden;
+}
+.scroll-text ul {
+  width: width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+  margin: 0;
+}
+.scroll-text ul li {
+  height: 1.5em;
+}
+.scroll-img {
+  border: 1px solid red;
+  width: width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+  font-size: 0;
+}
+.scroll-img ul {
+  width: width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  margin: 0;
+}
+.scroll-img ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.scroll-img ul li img {
+  height: __UP_rdH__px;
+}
+#demo5.scroll-img ul {
+  width: 1500px;
+}
+#demo5-btn {
+  width: width: __UP_rdW__px;
+  padding-top: 10px;
+}
+</style>
+
+
+<div id="demo5" class="scroll-img">
+  <ul>
   </ul>
 </div>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/photoswipe-3.0.4/lib/klass.min.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/photoswipe-3.0.4/code.photoswipe.jquery-3.0.4.min.js"></script>
+<div id="demo5-btn" class="text-center">
+  <button class="btn" id="demo5-backward"><i class="icon-chevron-left"></i> Backward</button>
+  <button class="btn" id="demo5-forward">Forward <i class="icon-chevron-right"></i></button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.scrollbox.min.js"></script>
 
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
 
   function load() {
-    loadResources([
-      'https://reveldigital.github.io/reveldigital-gadgets/styles/mobile-slideshow-1.0.css',
-      'https://reveldigital.github.io/reveldigital-gadgets/third-party/photoswipe-3.0.4/photoswipe.css'
-    ],[]);
+    loadPlaylist();
   }
-    
+  
   var apikey = prefs.getString("apikey");
   var playlistId = prefs.getString("playlistId");
   
   function loadPlaylist() {
     var playlist = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + apikey + "&id=" + playlistId, function (data) {
       $.each(data, function (idx, playlist) {
-        $("div.page-content h1").text(playlist.name);
+        //$("div.page-content h1").text(playlist.name);
         $.each(playlist.sources, function (sourceIdx, source) {
           if (source.type == "Image" && source.media != null) {
             var li = $("<li></li>");
-            var a = $("<a></a>");
-            a.attr("href", source.media.file_url);
             var img = $("<img></img>");
             img.attr("src", source.media.thumbnail_url);
             img.attr("alt", source.media.name);
-            a.append(img);
-            li.append(a);
-            $("ul#Gallery").append(li);
+            img.data("id", "asdf");
+            img.click(function() {
+              alert(source.media.name);
+              if (typeof Client != 'undefined') {
+                Client.callback(source.media.name);
+              }
+            });
+            li.append(img);
+            $("ul").append(li);
           }
         });
       });
-      var options = {};
-      $("#Gallery a").photoSwipe(options);
+      $('#demo5').scrollbox({
+        direction: 'h',
+        distance: 140
+      });
+      $('#demo5-backward').click(function () {
+        $('#demo5').trigger('backward');
+      });
+      $('#demo5-forward').click(function () {
+        $('#demo5').trigger('forward');
+      });
     });
-  }
-    
-  function loadResources(css, js) {
-
-    var head = document.getElementsByTagName("head")[0];
-    var cssNode = null;
-    var script = null;
-    var i;
-
-    //Load CSS.
-    for (i = 0; i < css.length; i++) {
-      cssNode = document.createElement("link");
-      cssNode.type = "text/css";
-      cssNode.rel = "stylesheet";
-      cssNode.href = css[i];
-      head.appendChild(cssNode);
-    }
-
-    //Load JavaScript.
-    for (i = 0; i < js.length; i++) {
-      script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = js[i];
-      if (i == js.length - 1) {
-        script.onload = loadPlaylist();
-      }
-      head.appendChild(script);
-    }
-    loadPlaylist();
   }
   
   gadgets.util.registerOnLoadHandler(load);
