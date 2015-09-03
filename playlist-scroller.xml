@@ -38,7 +38,6 @@ body {
   height: 1.5em;
 }
 .scroll-img {
-  border: 1px solid red;
   width: width: __UP_rdW__px;
   height: __UP_rdH__px;
   overflow: hidden;
@@ -69,11 +68,6 @@ body {
 <div id="demo5" class="scroll-img">
   <ul>
   </ul>
-</div>
-
-<div id="demo5-btn" class="text-center">
-  <button class="btn" id="demo5-backward"><i class="icon-chevron-left"></i> Backward</button>
-  <button class="btn" id="demo5-forward">Forward <i class="icon-chevron-right"></i></button>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
