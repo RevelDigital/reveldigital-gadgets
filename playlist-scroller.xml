@@ -24,7 +24,6 @@ body {
   overflow: hidden;
 }
 .scroll-text {
-  border: 1px solid red;
   width: 400px;
   height: 4.5em;
   overflow: hidden;
@@ -103,9 +102,9 @@ body {
             img.attr("alt", source.media.name);
             img.data("id", "asdf");
             img.click(function() {
-              alert(source.media.name);
               if (typeof Client != 'undefined') {
-                Client.callback(source.media.name);
+                Client.callback("" + sourceIdx);
+                //Client.callback(source.media.name);
               }
             });
             li.append(img);
