@@ -108,7 +108,8 @@ body {
       });
       $('#demo5').scrollbox({
         direction: 'h',
-        distance: 140
+        distance: 140,
+        autoPlay: false
       });
       $('#demo5-backward').click(function () {
         $('#demo5').trigger('backward');
