@@ -14,6 +14,15 @@
   
   <Content type="html"><![CDATA[
 <style type="text/css">
+body * {
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+body {
+  background: transparent;
+  overflow: hidden;
+}
 .scroll-text {
   border: 1px solid red;
   width: 400px;
@@ -115,6 +124,15 @@
         $('#demo5').trigger('forward');
       });
     });
+  }
+  
+    
+  function forward() {
+    $('#demo5').trigger('forward');
+  }
+  
+  function backward() {
+    $('#demo5').trigger('backward');
   }
   
   gadgets.util.registerOnLoadHandler(load);
