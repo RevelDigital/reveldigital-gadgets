@@ -31,12 +31,8 @@
 		var prefs = new gadgets.Prefs();
 		
 		function init() {
-			console.log('Resolved Api Key ' + prefs.getString("apikey"));
-			console.log('Resolved Device Name ' + prefs.getString("deviceId"));
-			console.log('Resolved Gadget Key ' + prefs.getString("gadgetKey"));
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
-				console.log('Item  ' + item.name + ' in group ' + item.group_name);
 				if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 					groupName = item.group_name;
 				}
@@ -50,22 +46,18 @@
 		
 		function requestPrice(store) {
 			var price = "N/A"
-			console.log('Resolved Device Group Name ' + store);
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") , function (data) {
-				console.log('Value returned by API ' + data);
-				price = data;
+					price = data;
 			}).done(function() {
 			  setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
-				console.log( "Request Failed: " + err );
 				setPrice("N/A");
 			});
 		}
 		  
 		function setPrice(data) {
-			console.log('Setting Price to ' + data);
 			var container = $('#priceContainer');
 			container.text(data);
 		}
