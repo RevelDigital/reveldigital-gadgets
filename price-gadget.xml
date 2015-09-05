@@ -47,7 +47,7 @@
 		function requestPrice(store) {
 			var price = "N/A"
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
-			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") , function (data) {
+			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey"), function (data) {
 					price = data;
 			}).done(function() {
 			  setPrice(price);
