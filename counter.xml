@@ -52,16 +52,18 @@ body
   var up = true;
 
   function init() {
+    init(prefs.getString("startDate"));
+  }
 
-    date = moment(prefs.getString("startDate"));
+  function init(startDate) {
+    date = moment(startDate);
     message = prefs.getString("message");
     up = prefs.getString("direction") == "up";
     
     count();
   }
-
+  
   function count() {
-
     var diff;
     if (up) {
       if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
