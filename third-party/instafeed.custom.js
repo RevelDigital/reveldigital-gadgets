@@ -75,12 +75,12 @@
           throw new Error('Invalid JSON response');
         }
       }
-      if (response.Meta.Code !== 200) {
+      if (response.Meta.Code !== "OK") {
         if ((this.options.error != null) && typeof this.options.error === 'function') {
-          this.options.error.call(this, response.meta.error_message);
+          this.options.error.call(this, response.Meta.error_message);
           return false;
         } else {
-          throw new Error("Error from Instagram: " + response.meta.error_message);
+          throw new Error("Error from Instagram: " + response.Meta.error_message);
         }
       }
       if (response.Data.length === 0) {
