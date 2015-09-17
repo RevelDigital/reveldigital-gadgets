@@ -12,9 +12,9 @@
 <![CDATA[
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <style type="text/css">
-
 	body {
 		background: transparent;
+		overflow: hidden; 
 	}
 	
 	#priceContainer {
