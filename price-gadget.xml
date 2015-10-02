@@ -57,9 +57,9 @@
 				});
 			}).done(function() {
 					console.log('Requesting price for ' + groupName);
-					if (groupName.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
+					if (groupName.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
 						requestPrice(groupName);
-					}d
+					}
 					});
 		}
 		
