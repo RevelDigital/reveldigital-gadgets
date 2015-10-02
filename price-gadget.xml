@@ -38,15 +38,18 @@
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
+						console.log('Got device ID! ' + item.id);
 						devId = item.id;
 					}
 				});
 			}).done(function() {
 				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey") + "&id=" + devId, function (data) {
 					$.each(data, function (index, item) {
+							console.log('Searching for group ' + item.group_name);
 							groupName = item.group_name;
 					});
 				}).done(function() {
+					console.log('Requesting price for ' + groupName);
 					requestPrice(groupName);
 				});
 			});
@@ -57,6 +60,7 @@
 		function requestPrice(store) {
 			var price = "N/A"
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			console.log('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupId"));
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupId"), function (data) {
 					price = data;
 			}).done(function() {
