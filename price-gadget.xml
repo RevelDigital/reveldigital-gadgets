@@ -31,17 +31,26 @@
 
 <script type="text/javascript">
 		var groupName = "default";
+		var devId = "";
 		var prefs = new gadgets.Prefs();
 		
 		function init() {
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
 				if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
-					groupName = item.group_name;
+					devId = item.id;
 				}
 			  });
 			}).done(function() {
-			  requestPrice(groupName);
+				  $.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey") + "&id=" + devId, function (data) {
+					$.each(data, function (index, item) {
+					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
+						groupName = item.group_name;
+					}
+				  });
+				}).done(function() {
+				  requestPrice(groupName);
+				});
 			});
 		}
 		  
