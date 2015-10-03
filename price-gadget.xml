@@ -37,7 +37,6 @@
 
 <script type="text/javascript">
 		var logEnabled = 1;
-		var groupName = "default";
 		var devId = "";
 		var prefs = new gadgets.Prefs();
 		
@@ -60,17 +59,6 @@
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
-		function getGroupName(devId) {
-			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey") + "&id=" + devId, function (data) {
-				$.each(data, function (index, item) {
-					console.log('Searching for group ' + item.group_name);
-					groupName = item.group_name;
-				});
-			}).done(function() {
-					console.log('Requesting price for ' + groupName);
-					
-					});
-		}
 		
 	
 		function requestPrice(store) {
