@@ -23,6 +23,11 @@
 	#priceContainer {
 		__UP_price-style__
 	}
+	
+	#infoContainer {
+		font-size: 50%;
+		color: red;
+	}
 </style>
 
 <body>
