@@ -41,7 +41,9 @@
 					console.log('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 						console.log('Got device ID! ' + item.id);
+						setPrice('Got device ID! ' + item.id);
 						requestPrice(item.group_name);
+						
 					}
 				});
 			});
@@ -57,6 +59,7 @@
 				});
 			}).done(function() {
 					console.log('Requesting price for ' + groupName);
+					setPrice('requesting price for ' + groupName);
 					requestPrice(groupName);
 					
 					});
@@ -73,7 +76,7 @@
 			  setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
-				setPrice(price);
+				setPrice(err);
 			});
 		}
 		  
