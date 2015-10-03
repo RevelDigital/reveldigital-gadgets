@@ -83,10 +83,10 @@
 		}
 		
 		function setInfo(data) {
-			if (Boolean(logEnabled)) {
-				var container = $('#infoContainer');
-				container.append(data + '<br>');
-			}	
+			
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+			
 		}
 </script>]]>
 </Content>
