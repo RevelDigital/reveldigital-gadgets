@@ -47,8 +47,8 @@
 					console.log('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 						console.log('Got device ID! ' + item.id);
-						setInfo("Got group " + item.group_name);
-						if (groupName.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
+						setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupId"));
+						if (item.group_name.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
 							requestPrice(groupName);
 						}	
 						
