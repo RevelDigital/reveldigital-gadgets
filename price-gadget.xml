@@ -43,7 +43,9 @@
 		function init() {
 			$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 				$.each(data, function (index, item) {
+					setInfo(Iterating over ' + item.group_name + ' name: ' + item.name);
 					console.log('Iterating over ' + item.group_name + ' name: ' + item.name);
+					setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					console.log('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 						console.log('Got device ID! ' + item.id);
