@@ -47,10 +47,10 @@
 					console.log('Iterating over ' + item.group_name + ' name: ' + item.name);
 					setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					console.log('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
-					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
+					if (item.name.toLowerCase().trim() == prefs.getString("deviceId").toLowerCase().trim()) {
 						console.log('Got device ID! ' + item.id);
 						setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupId"));
-						if (item.group_name.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
+						if (item.group_name.toLowerCase().trim() == prefs.getString("groupId").toLowerCase().trim()) {
 							requestPrice(item.group_name);
 						}	
 						
@@ -83,10 +83,10 @@
 		}
 		
 		function setInfo(data) {
-			
-			var container = $('#infoContainer');
-			container.append(data + '<br>');
-			
+			if (true) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
 		}
 </script>]]>
 </Content>
