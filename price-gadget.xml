@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="RevelDigital Price Gadget" description="Gets and displays a price" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="Api Key" datatype="string" />
-  <UserPref name="deviceId" display_name="Device Name Tag" datatype="string" />
+  <UserPref name="deviceId" display_name="Default Device Group" datatype="string" />
   <UserPref name="gadgetKey" display_name="Gadget Key" datatype="string" />
   <UserPref name="groupId" display_name="Group Name" datatype="string" />
   <UserPref name="price-style" display_name="Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
@@ -65,7 +65,7 @@
 		
 	
 		function requestPrice(store) {
-			var price = "N/A"
+			var price = ""
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			console.log('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupId"));
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupId"), function (data) {
