@@ -25,8 +25,8 @@
 	}
 	
 	#infoContainer {
-		font-size: 50%;
-		color: red;
+		font-size: 75%;
+		color: white;
 	}
 </style>
 
@@ -65,8 +65,9 @@
 				});
 			}).done(function() {
 					console.log('Requesting price for ' + groupName);
-					requestPrice(groupName);
-					
+					if (groupName.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
+						requestPrice(groupName);
+					}
 					});
 		}
 		
