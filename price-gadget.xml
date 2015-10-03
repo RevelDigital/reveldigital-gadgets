@@ -48,7 +48,9 @@
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 						console.log('Got device ID! ' + item.id);
 						setInfo("Got group " + item.group_name);
-						requestPrice(item.group_name);
+						if (groupName.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
+							requestPrice(groupName);
+						}	
 						
 					}
 				});
@@ -65,9 +67,7 @@
 				});
 			}).done(function() {
 					console.log('Requesting price for ' + groupName);
-					if (groupName.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
-						requestPrice(groupName);
-					}
+					
 					});
 		}
 		
