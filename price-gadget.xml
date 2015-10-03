@@ -36,6 +36,7 @@
 </body>
 
 <script type="text/javascript">
+		var logEnabled = 1;
 		var groupName = "default";
 		var devId = "";
 		var prefs = new gadgets.Prefs();
@@ -49,7 +50,7 @@
 						console.log('Got device ID! ' + item.id);
 						setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupId"));
 						if (item.group_name.toLowerCase() == prefs.getString("groupId").toLowerCase()) {
-							requestPrice(groupName);
+							requestPrice(item.group_name);
 						}	
 						
 					}
@@ -92,8 +93,10 @@
 		}
 		
 		function setInfo(data) {
-			var container = $('#infoContainer');
-			container.append(data + '<br>');
+			if (Boolean(logEnabled)) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
 		}
 </script>]]>
 </Content>
