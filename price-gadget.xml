@@ -41,7 +41,7 @@
 					console.log('Comparing ' + item.name + ' with ' + prefs.getString("deviceId"));
 					if (item.name.toLowerCase() == prefs.getString("deviceId").toLowerCase()) {
 						console.log('Got device ID! ' + item.id);
-						getGroupName(item.id);
+						requestPrice(item.group_name);
 					}
 				});
 			});
