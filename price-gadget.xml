@@ -98,8 +98,8 @@
 			if (false) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
-				console.log(data);
 			}	
+			console.log(data);
 		}
 </script>]]>
 </Content>
