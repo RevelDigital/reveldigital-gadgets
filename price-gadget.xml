@@ -40,8 +40,8 @@
 		
 		function init() {
 			var g = prefs.getString("deviceId");
-			setInfo('String being compared is 0' + g.toLowerCase().trim() + '0');
-			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase() && g.toLowerCase().trim() != "") {
+			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
+			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
 				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 					$.each(data, function (index, item) {
 						setInfo('Iterating over ' + item.group_name + ' name: ' + item.name);
