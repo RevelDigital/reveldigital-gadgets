@@ -39,7 +39,7 @@
 		var prefs = new gadgets.Prefs();
 		
 		function init() {
-			var g = prefs.getString("groupId");
+			var g = prefs.getString("deviceId");
 			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*" && g.toLowerCase().trim() != "") {
 				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 					$.each(data, function (index, item) {
