@@ -98,6 +98,62 @@
     }
     
 </style>
+<body>
+    <div class="table">
+        <div class="left">
+            <h1 id="location"></h1>
+            <p id="location_name"><b></b></p>
+            <p id="overview"><b></b></p>
+        </div>
+        <div class="right">   
+            <table>
+                <tr>
+                    <td>
+                        <img id="weather_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="tide_value">TIDE: 1.38 ft</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="swell_icon" src="http://cdnimages.magicseaweed.com/30x30/20.png" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="wind_value">Wind 0.9 mph</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="wind_icon" src="http://cdnimages.magicseaweed.com/30x30/30.png" align="right" alt="" />
+                    </td>
+                </tr>
+               <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="air_value">Air 72o</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="water_value">Wind 0.9 mph</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>        
+    </div>
+</body>
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
         var timer = prefs.getString("timer")
@@ -158,63 +214,6 @@
 				console.log(data);
 			}
 		}
-</script>
-
-<body>
-    <div class="table">
-        <div class="left">
-            <h1 id="location">CARDIFF-BY-THE-SEA, CA</h1>
-            <p id="location_name"><b>CARDIFF REEF</b></p>
-            <p id="overview"><b>4-6 ft/GOOD</b></p>
-        </div>
-        <div class="right">   
-            <table>
-                <tr>
-                    <td>
-                        <img id="weather_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" align="right" alt="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="tide_value">TIDE: 1.38 ft</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img id="swell_icon" src="http://cdnimages.magicseaweed.com/30x30/20.png" align="right" alt="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="wind_value">Wind 0.9 mph</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img id="wind_icon" src="http://cdnimages.magicseaweed.com/30x30/30.png" align="right" alt="" />
-                    </td>
-                </tr>
-               <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="air_value">Air 72o</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="water_value">Wind 0.9 mph</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>        
-    </div>
-</body>]]>
+</script>]]>
 </Content>
 </Module>
