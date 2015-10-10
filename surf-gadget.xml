@@ -106,10 +106,10 @@
 		function init() {
             window.setInterval(function(){
                 resolveNext(index);
-            }, parseInt(timer));
+            }, parseInt(timer)*1000);
 			$.getJSON("http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId"), function (data) {
 				$.each(data, function (index, item) {
-					setInfo('Iterating over ' + item		
+					setInfo('Iterating over ' + item);		
 					}
 				});
 			});
