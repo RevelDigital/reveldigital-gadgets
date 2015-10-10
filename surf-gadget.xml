@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Surf Info Gadget" description="Surf Gadget" author="RevelDigital" background="transparent">
+  <UserPref name="apikey" display_name="Api Key" datatype="string" />
+  <UserPref name="timer" display_name="Cycling Time (sec)" datatype="string" />
+  <UserPref name="spotId0" display_name="Location 1. Use 'location*name*id' format" datatype="string" />
+  <UserPref name="spotId1" display_name="Location 2. Example: Town, CA*Beach Name*100" datatype="string" />
+  <UserPref name="spotId2" display_name="Location 3. For Id, Visit magicseaweed.com and find location" datatype="string" />
+  <UserPref name="spotId3" display_name="Location 4. Id can be found in corresponding URL" datatype="string" />
+  <UserPref name="spotId4" display_name="Location 5. Example: http://magicseaweed.com/Location/100/" datatype="string" />
+  <UserPref name="spotId5" display_name="Location 6. In this case Id will be 100" datatype="string" />
+  <UserPref name="spotId6" display_name="Location 7." datatype="string" />
+  <UserPref name="spotId7" display_name="Location 8." datatype="string" />
+  <UserPref name="spotId8" display_name="Location 9." datatype="string" />
+  <UserPref name="spotId9" display_name="Location 10." datatype="string" />
+  <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="100" datatype="hidden" />
+  <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="100" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style type="text/css">
+
+	body {
+		background: transparent;
+        background-image: url("http://s15.postimg.org/ek4st1k3v/background.png");
+        background-repeat: no-repeat;
+	}
+    
+    .inline {
+        display:  inline;
+        width: 100%;
+    }
+    
+    .table { 
+        overflow:hidden; 
+        width:  639px;
+    }
+    
+    .left { 
+        float:left; width:400px; 
+    }
+    
+    .right { 
+        float:right; width:239px;  
+    }
+    
+    #location {
+        color: #000;
+        text-align: left;
+        font-size: medium;
+        margin-top: 60px;
+        margin-left: 90px;
+    }
+	
+    #location_name {
+        color: #000;
+        text-align: left;
+        font-size: 45px;
+        font-family: Calibri;
+        margin-top: 5px;
+        margin-left: 90px;
+        height: 60px;
+        width: 20px;
+    }
+    
+    #overview {
+        color: #000;
+        text-align: left;
+        font-size: 30px;
+        font-family: Calibri;
+        margin-top: 5px;
+        margin-left: 90px;
+    }
+    
+    #weather_icon {
+        margin-right: 20px;
+        height: 100px;
+        width: 100px;
+    }
+    
+    #swell_icon {
+        margin-right: 20px;
+        height: 60px;
+        width: 60px;
+    }
+    
+    #wind_icon {
+        margin-right: 20px;
+        height: 60px;
+        width: 60px;
+    }
+       
+    table {
+        border: none;
+        border-collapse: collapse;
+        width:  100px;
+    }
+    
+</style>
+<script type="text/javascript">
+		var prefs = new gadgets.Prefs();
+        var timer = prefs.getString("timer")
+		var index = 0;
+
+		function init() {
+            window.setInterval(function(){
+                resolveNext(index);
+            }, parseInt(timer));
+			$.getJSON("http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId"), function (data) {
+				$.each(data, function (index, item) {
+					setInfo('Iterating over ' + item		
+					}
+				});
+			});
+		}
+		  
+		gadgets.util.registerOnLoadHandler(init);
+		
+		function resolveNext(i) {
+			if (i < 10 && i >= 0) {
+                var param = prefs.getString("spotId" + i.toString());
+                var values = param.split("*");
+                if (values.length == 3) {
+                    var location = values[0];
+                    setLocation(location);
+                    var name = values[1];
+                    setName(location);
+                    var spotId = values[2];
+                    index++;
+                } else {
+                    index++;
+                }
+            
+            } else {
+                index = 0;
+                resolveNext(index);
+            }
+
+		}
+
+        function setLocation(data) {
+			var container = $('#location');
+			container.val(data);
+		}
+
+        function setName(data) {
+			var container = $('#location_name');
+			container.val(data);
+		}
+		
+		function setInfo(data) {
+			if (true) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
+			if (true) {
+				console.log(data);
+			}
+		}
+</script>
+
+<body>
+    <div class="table">
+        <div class="left">
+            <h1 id="location">CARDIFF-BY-THE-SEA, CA</h1>
+            <p id="location_name"><b>CARDIFF REEF</b></p>
+            <p id="overview"><b>4-6 ft/GOOD</b></p>
+        </div>
+        <div class="right">   
+            <table>
+                <tr>
+                    <td>
+                        <img id="weather_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="tide_value">TIDE: 1.38 ft</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="swell_icon" src="http://cdnimages.magicseaweed.com/30x30/20.png" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="wind_value">Wind 0.9 mph</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="wind_icon" src="http://cdnimages.magicseaweed.com/30x30/30.png" align="right" alt="" />
+                    </td>
+                </tr>
+               <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="air_value">Air 72o</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="water_value">Wind 0.9 mph</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>        
+    </div>
+</body>]]>
+</Content>
+</Module>
