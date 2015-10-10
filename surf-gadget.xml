@@ -161,8 +161,10 @@
 
 		function init() {
             window.setInterval(function(){
+                setInfo("Running");
                 resolveNext(index);
             }, parseInt(timer)*1000);
+            
 		}
 		  
 		gadgets.util.registerOnLoadHandler(init);
@@ -205,7 +207,7 @@
 		}
 		
 		function setInfo(data) {
-			if (true) {
+			if (false) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
