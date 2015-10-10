@@ -163,24 +163,23 @@
             window.setInterval(function(){
                 resolveNext(index);
             }, parseInt(timer)*1000);
-			$.getJSON("http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId"), function (data) {
-				$.each(data, function (index, item) {
-					setInfo('Iterating over ' + item);		
-					}
-				});
-			});
 		}
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
 		function resolveNext(i) {
+            setInfo('Got index ' + i);
 			if (i < 10 && i >= 0) {
                 var param = prefs.getString("spotId" + i.toString());
+                setInfo('Param string is ' + param);
                 var values = param.split("*");
+                setInfo('After split ' + values);
                 if (values.length == 3) {
                     var location = values[0];
+                    setInfo('Location is ' + location);
                     setLocation(location);
                     var name = values[1];
+                    setInfo('Name is ' + name);
                     setName(location);
                     var spotId = values[2];
                     index++;
