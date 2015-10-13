@@ -121,9 +121,9 @@
             setInfo('Encoded uri ' + res);
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
+                    setInfo('Iterating over ' + item.toString());
                     setLocation(prefs.getString("spotLoc" + idx));
                     setName(prefs.getString("spotName" + idx));
-					setInfo('Iterating over ' + item.wind.direction);
                     setOverview(item.swell.minBreakingHeight, item.swell.maxBreakingHeight, item.swell.unit);
                     setWeatherImage(item.condition.weather);
                     setTide(item.swell.components.combined.height, item.swell.unit);
@@ -139,53 +139,62 @@
       
 		
         function setLocation(data) {
+            setInfo('Setting location ' + data);
 			var container = $('#location');
 			container.val(data);
 		}
 
         function setName(data) {
+            setInfo('Setting location name ' + data);
 			var container = $('#location_name');
 			container.val(data);
 		}
 
         function setOverview(val1, val2, unit) {
+            setInfo('Setting overview ' + val1 + "-" + val2 + " " + unit + " / GOOD");
 			var container = $('#overview');
             var t = val1 + "-" + val2 + " " + unit + " / GOOD";
 			container.val(t);
 		}
 
         function setWeatherImage(data) {
+            setInfo('Setting overview ' + val1 + "-" + val2 + " " + unit + " / GOOD");
 			var container = $('#weather_icon');
 			container.attr("src", "http://cdnimages.magicseaweed.com/30x30/" + data + ".png");
 		}
 
         function setTide(val, unit) {
+            setInfo('Setting tide ' + val + " " + unit);
             var container = $('#tide_value');
 			container.val(val + " " + unit);
 		}
 
         function setSwellImage(data) {
+            setInfo('Setting Swell Image ' + "http://cdnimages.magicseaweed.com/swellArrows/" + data + ".png");
 			var container = $('#swell_icon');
 			container.attr("src", "http://cdnimages.magicseaweed.com/swellArrows/" + data + ".png");
 		}
     
         function setWind(val, unit) {
+            setInfo('Setting wind ' + val + " " + unit);
             var container = $('#wind_value');
 			container.val(val + " " + unit);
 		}
 
         function setWindImage(data) {
+            setInfo('Setting wind Image ' + "http://cdnimages.magicseaweed.com/newWindArrows/" + data + ".png");
 			var container = $('#wind_icon');
 			container.attr("src", "http://cdnimages.magicseaweed.com/newWindArrows/" + data + ".png");
 		}
 
         function setAir(val ,unit) {
+            setInfo('Setting air ' + val + " " + unit);
             var container = $('#air_value');
 			container.val(val + " &deg " + unit);
 		}
 		
 		function setInfo(data) {
-			if (true) {
+			if (false) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
