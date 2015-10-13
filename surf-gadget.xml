@@ -117,11 +117,7 @@
             var res = encodeURI(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
-            <!--$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
-				$.each(data, function (index, item) {
-					setInfo('Iterating over ' + item);		
-				});
-			});-->
+           
             $.ajax({
                 url: "https://as1.reveldigital.com/proxy?url=" + res,
                 jsonp: "callback",
