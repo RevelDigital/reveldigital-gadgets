@@ -120,8 +120,10 @@
             setInfo('Full url ' + "https://as1.reveldigital.com/proxy?url=" + res);
             
             $.ajax({
-                url: "https://as1.reveldigital.com/proxy?url=" + res,
+                url: "https://as1.reveldigital.com/proxy",
                 type: "GET",
+                data: {"url" : res},
+                dataType: 'jsonp',
                 crossDomain: true, 
                 success: function( response ) {
                     setInfo(response);
