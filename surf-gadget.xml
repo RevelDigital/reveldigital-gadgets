@@ -119,14 +119,18 @@
             setInfo('Encoded uri ' + res);
            
             $.ajax({
-                url: "https://as1.reveldigital.com/proxy?url=" + res,
-                jsonp: "callback",
+                url: uri,
+                type: "GET",
+                crossDomain: true,
                 dataType: "jsonp",
  
  
                 // Work with the response
                 success: function( response ) {
                     console.log( response ); // server response
+                },
+                error: function (xhr, status) {
+                    console.log("error" + status);
                 }
             });
         }
