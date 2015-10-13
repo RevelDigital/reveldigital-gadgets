@@ -94,12 +94,13 @@
     }
 	
 	.label {
-	text-align: left;
+	    text-align: left;
 		font-size:24px; 
 		font-family:Lucida Sans Unicode;
 	}
 	
-	.value {
+	.val {
+        color: black;
 		font-size:22px; 
 		font-family:Lucida Sans Unicode;
 	}
@@ -141,20 +142,20 @@
         function setLocation(data) {
             setInfo('Setting location ' + data);
 			var container = $('#location');
-			container.val(data);
+			container.append(data);
 		}
 
         function setName(data) {
             setInfo('Setting location name ' + data);
 			var container = $('#location_name');
-			container.val(data);
+			container.text(data);
 		}
 
         function setOverview(val1, val2, unit) {
             setInfo('Setting overview ' + val1 + "-" + val2 + " " + unit + " / GOOD");
 			var container = $('#overview');
             var t = val1 + "-" + val2 + " " + unit + " / GOOD";
-			container.val(t);
+			container.text(t);
 		}
 
         function setWeatherImage(data) {
@@ -166,7 +167,7 @@
         function setTide(val, unit) {
             setInfo('Setting tide ' + val + " " + unit);
             var container = $('#tide_value');
-			container.val(val + " " + unit);
+			container.html(val + " " + unit);
 		}
 
         function setSwellImage(data) {
@@ -178,7 +179,7 @@
         function setWind(val, unit) {
             setInfo('Setting wind ' + val + " " + unit);
             var container = $('#wind_value');
-			container.val(val + " " + unit);
+			container.html(val + " " + unit);
 		}
 
         function setWindImage(data) {
@@ -190,7 +191,7 @@
         function setAir(val ,unit) {
             setInfo('Setting air ' + val + " " + unit);
             var container = $('#air_value');
-			container.val(val + " &deg " + unit);
+			container.html(val + " &deg " + unit);
 		}
 		
 		function setInfo(data) {
@@ -223,19 +224,19 @@
 					<img id="weather_icon" src="" alt="" />
 				</td>
 			</tr>
-			<tr><th scope="row" class="label">TIDE</th><td id="tide_value" class="value"></td></tr>
+			<tr><th scope="row" class="label">TIDE</th><td id="tide_value" class="val"></td></tr>
 			<tr>
 				<td colspan= "2" style="text-align: right;">
 					<img id="swell_icon" src="" alt="" />
 				</td>
 			</tr>
-			<tr><th scope="row" class="label">WIND</th><td id="wind_value" class="value"></td></tr>
+			<tr><th scope="row" class="label">WIND</th><td id="wind_value" class="val"></td></tr>
 			<tr>
 				<td colspan= "2" style="text-align: right;">
 					<img id="wind_icon" src="" alt="" />
 				</td>
 			</tr>
-			<tr><th scope="row" class="label">AIR</th><td id="air_value" class="value"></td></tr>
+			<tr><th scope="row" class="label">AIR</th><td id="air_value" class="val"></td></tr>
         </div>        
     </div>
 </body>]]>
