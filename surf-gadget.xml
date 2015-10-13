@@ -115,8 +115,13 @@
         function resolveFirst() {
             var uri = "http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId0") + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather";
             var res = encodeURIComponent(uri);
-            createCORSRequest("Get", "https://as1.reveldigital.com/proxy?url=" + res)
-           
+            var request = createCORSRequest("get", "https://as1.reveldigital.com/proxy?url=" + res);
+            if (request){
+                request.onload = function(){
+                    setInfo(request.responseText);
+                };
+                request.send();
+            }
         }
 
         function createCORSRequest(method, url){
@@ -132,13 +137,7 @@
             return xhr;
         }
 
-        var request = createCORSRequest("get", "http://www.nczonline.net/");
-        if (request){
-            request.onload = function(){
-                setInfo(request.responseText);
-            };
-            request.send();
-        }
+        
 		
         function setLocation(data) {
 			var container = $('#location');
