@@ -119,7 +119,7 @@
             setInfo('Encoded uri ' + res);
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
-					setInfo('Iterating over ' + item);		
+					setInfo('Iterating over ' + item.wind.direction);		
 				});
 			});
         }
