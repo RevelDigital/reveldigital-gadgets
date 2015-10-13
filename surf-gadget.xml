@@ -117,9 +117,9 @@
             var res = encodeURI(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
-           
+            
             $.ajax({
-                url: uri,
+                url: "https://as1.reveldigital.com/proxy?url=" + res,
                 type: "GET",
                 crossDomain: true,
                 dataType: "jsonp",
