@@ -131,6 +131,7 @@
                     setWind(item.wind.speed, item.wind.unit);
                     setWindImage(round5(item.wind.direction));
                     setAir(item.condition.temperature, item.condition.unit);
+                    return false;
 				});
 			});
         }
