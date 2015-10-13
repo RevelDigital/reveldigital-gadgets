@@ -216,45 +216,26 @@
             <p id="location_name"></p>
             <p id="overview"></p>
         </div>
-        <div class="right">   
-            <table>
-                <tr>
-                    <td>
-                        <img id="weather_icon" src="" align="right" alt="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="tide_value"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img id="swell_icon" src="" align="right" alt="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="wind_value"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img id="wind_icon" src="" align="right" alt="" />
-                    </td>
-                </tr>
-               <tr>
-                    <td>
-                        <div class="inline">
-                            <div id="air_value"></div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <div class="right">  
+		<table>
+			<tr>
+				<td colspan= "2" style="text-align: right;">
+					<img id="weather_icon" src="" alt="" />
+				</td>
+			</tr>
+			<tr><th scope="row" class="label">TIDE</th><td id="tide_value" class="value"></td></tr>
+			<tr>
+				<td colspan= "2" style="text-align: right;">
+					<img id="swell_icon" src="" alt="" />
+				</td>
+			</tr>
+			<tr><th scope="row" class="label">WIND</th><td id="wind_value" class="value"></td></tr>
+			<tr>
+				<td colspan= "2" style="text-align: right;">
+					<img id="wind_icon" src="" alt="" />
+				</td>
+			</tr>
+			<tr><th scope="row" class="label">AIR</th><td id="air_value" class="value"></td></tr>
         </div>        
     </div>
 </body>]]>
