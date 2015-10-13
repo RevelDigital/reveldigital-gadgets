@@ -113,26 +113,29 @@
 		gadgets.util.registerOnLoadHandler(init);
 		
         function resolveFirst() {
-            var uri = "http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId0") + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather";
-            var res = encodeURI(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
             setInfo('Full url ' + "https://as1.reveldigital.com/proxy?url=" + res);
-            
+
+
             $.ajax({
+                type : "GET",
                 url: "https://as1.reveldigital.com/proxy",
-                type: "GET",
-                data: {"url" : res},
-                dataType: 'json',
-                crossDomain: true, 
-                success: function( response ) {
-                    setInfo(response);
-                },
-                error: function (xhr, status) {
-                    setInfo("error " + status + " and " + xhr);
+                data :"url=" + res,
+                dataType :"jsonp",
+                jsonp: false,
+                jsonpCallback: "handleResult",
+                success : function(data){
+                   setInfo(response);},
+                error : function(httpReq,status,exception){
+                    setInfo("error " + status + " and ex " + exception);
                 }
             });
         }
+
+        function handleResult(result) {
+			setInfo(result);
+		}
 		
         function setLocation(data) {
 			var container = $('#location');
