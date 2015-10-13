@@ -117,20 +117,17 @@
             var res = encodeURI(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
+            setInfo('Full url ' + "https://as1.reveldigital.com/proxy?url=" + res);
             
             $.ajax({
                 url: "https://as1.reveldigital.com/proxy?url=" + res,
                 type: "GET",
-                crossDomain: true,
-                dataType: "jsonp",
- 
- 
-                // Work with the response
+                crossDomain: true, 
                 success: function( response ) {
-                    console.log( response ); // server response
+                    setInfo(response);
                 },
                 error: function (xhr, status) {
-                    console.log("error" + status);
+                    setInfo("error " + status + " and " + xhr);
                 }
             });
         }
