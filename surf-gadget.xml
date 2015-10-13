@@ -115,29 +115,16 @@
         function resolveFirst() {
             var uri = "http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId0") + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather";
             var res = encodeURIComponent(uri);
-            var request = createCORSRequest("get", "https://as1.reveldigital.com/proxy?url=" + res);
-            if (request){
-                request.onload = function(){
-                    setInfo(request.responseText);
-                };
-                request.send();
-            }
+            setInfo('Initial uri ' + uri);
+            setInfo('Encoded uri ' + res);
+            $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+				$.each(data, function (index, item) {
+					setInfo('Iterating over ' + item);		
+				});
+			});
         }
 
-        function createCORSRequest(method, url){
-            var xhr = new XMLHttpRequest();
-            if ("withCredentials" in xhr){
-                xhr.open(method, url, true);
-            } else if (typeof XDomainRequest != "undefined"){
-                xhr = new XDomainRequest();
-                xhr.open(method, url);
-            } else {
-                xhr = null;
-            }
-            return xhr;
-        }
-
-        
+      
 		
         function setLocation(data) {
 			var container = $('#location');
