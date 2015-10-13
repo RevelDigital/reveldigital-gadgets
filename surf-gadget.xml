@@ -2,9 +2,13 @@
 <Module> 
 <ModulePrefs title="RevelDigital Surf Info Gadget" description="Surf Gadget" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="Api Key" datatype="string" />
-  <UserPref name="timer" display_name="Cycling Time (sec)" datatype="string" />
-  <UserPref name="spotId0" display_name="Location 1." datatype="string" />
-  <UserPref name="spotId1" display_name="Location 2." datatype="string" />
+  <UserPref name="timer" display_name="Cycle Time (sec)" datatype="string" />
+  <UserPref name="spotId0" display_name="Spot 1 ID." datatype="string" />
+  <UserPref name="spotLoc0" display_name="Spot 1 Location." datatype="string" />
+  <UserPref name="spotName0" display_name="Spot 1 Name." datatype="string" />
+  <UserPref name="spotId1" display_name="Spot 2 ID." datatype="string" />
+  <UserPref name="spotLoc1" display_name="Spot 2 Location." datatype="string" />
+  <UserPref name="spotName1" display_name="Spot 2 Name." datatype="string" />
   <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="100" datatype="hidden" />
   <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="100" datatype="hidden" />
 </ModulePrefs>
@@ -103,23 +107,30 @@
 </style>
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
-        var timer = prefs.getString("timer")
-		var index = 0;
-
+        var G_INDEX = 0;
 		function init() {
-            resolveFirst();
+            resolveNext(G_INDEX);
 		}
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
-        function resolveFirst() {
-            var uri = "http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId0") + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather";
+        function resolveNext(idx) {
+            var uri = "http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId" + idx) + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather,condition.unit";
             var res = encodeURIComponent(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
-					setInfo('Iterating over ' + item.wind.direction);		
+                    setLocation(prefs.getString("spotLoc" + idx));
+                    setName(prefs.getString("spotName" + idx));
+					setInfo('Iterating over ' + item.wind.direction);
+                    setOverview(item.swell.minBreakingHeight, item.swell.maxBreakingHeight, item.swell.unit);
+                    setWeatherImage(item.condition.weather);
+                    setTide(item.swell.components.combined.height, item.swell.unit);
+                    setSwellImage(round5(item.swell.components.combined.direction));
+                    setWind(item.wind.speed, item.wind.unit);
+                    setWindImage(round5(item.wind.direction));
+                    setAir(item.condition.temperature, item.condition.unit);
 				});
 			});
         }
@@ -135,6 +146,42 @@
 			var container = $('#location_name');
 			container.val(data);
 		}
+
+        function setOverview(val1, val2, unit) {
+			var container = $('#overview');
+            var t = val1 + "-" + val2 + " " + unit + " / GOOD";
+			container.val(t);
+		}
+
+        function setWeatherImage(data) {
+			var container = $('#weather_icon');
+			container.attr("src", "http://cdnimages.magicseaweed.com/30x30/" + data + ".png");
+		}
+
+        function setTide(val, unit) {
+            var container = $('#tide_value');
+			container.val(val + " " + unit);
+		}
+
+        function setSwellImage(data) {
+			var container = $('#swell_icon');
+			container.attr("src", "http://cdnimages.magicseaweed.com/swellArrows/" + data + ".png");
+		}
+    
+        function setWind(val, unit) {
+            var container = $('#wind_value');
+			container.val(val + " " + unit);
+		}
+
+        function setWindImage(data) {
+			var container = $('#wind_icon');
+			container.attr("src", "http://cdnimages.magicseaweed.com/newWindArrows/" + data + ".png");
+		}
+
+        function setAir(val ,unit) {
+            var container = $('#air_value');
+			container.val(val + " &deg " + unit);
+		}
 		
 		function setInfo(data) {
 			if (true) {
@@ -145,35 +192,59 @@
 				console.log(data);
 			}
 		}
+
+        function round5(x)
+        {
+            return Math.ceil(x/5)*5;
+        }
 </script>
 
 <body>
     <div class="table">
         <div class="left">
-            <h1 id="location">CARDIFF-BY-THE-SEA, CA</h1>
-            <p id="location_name"><b>CARDIFF REEF</b></p>
-            <p id="overview"><b>4-6 ft/GOOD</b></p>
+            <h1 id="location"></h1>
+            <p id="location_name"></p>
+            <p id="overview"></p>
         </div>
-        <div class="right">  
-		<table>
-			<tr>
-				<td colspan= "2" style="text-align: right;">
-					<img id="weather_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" alt="" />
-				</td>
-			</tr>
-			<tr><th scope="row" class="label">TIDE</th><td id="tide_value" class="value"></td></tr>
-			<tr>
-				<td colspan= "2" style="text-align: right;">
-					<img id="swell_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" alt="" />
-				</td>
-			</tr>
-			<tr><th scope="row" class="label">WIND</th><td id="wind_value" class="value"></td></tr>
-			<tr>
-				<td colspan= "2" style="text-align: right;">
-					<img id="wind_icon" src="http://cdnimages.magicseaweed.com/30x30/12.png" alt="" />
-				</td>
-			</tr>
-			<tr><th scope="row" class="label">AIR</th><td id="wind_value" class="value"></td></tr>
+        <div class="right">   
+            <table>
+                <tr>
+                    <td>
+                        <img id="weather_icon" src="" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="tide_value"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="swell_icon" src="" align="right" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="wind_value"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="wind_icon" src="" align="right" alt="" />
+                    </td>
+                </tr>
+               <tr>
+                    <td>
+                        <div class="inline">
+                            <div id="air_value"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>        
     </div>
 </body>]]>
