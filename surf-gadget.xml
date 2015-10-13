@@ -158,7 +158,7 @@
 		}
 
         function setWeatherImage(data) {
-            setInfo('Setting overview ' + val1 + "-" + val2 + " " + unit + " / GOOD");
+            setInfo('Setting Weather Image ' + "http://cdnimages.magicseaweed.com/30x30/" + data + ".png");
 			var container = $('#weather_icon');
 			container.attr("src", "http://cdnimages.magicseaweed.com/30x30/" + data + ".png");
 		}
