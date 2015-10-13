@@ -117,11 +117,22 @@
             var res = encodeURI(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
-            $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+            <!--$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
 					setInfo('Iterating over ' + item);		
 				});
-			});
+			});-->
+            $.ajax({
+                url: "https://as1.reveldigital.com/proxy?url=" + res,
+                jsonp: "callback",
+                dataType: "jsonp",
+ 
+ 
+                // Work with the response
+                success: function( response ) {
+                    console.log( response ); // server response
+                }
+            });
         }
 		
         function setLocation(data) {
