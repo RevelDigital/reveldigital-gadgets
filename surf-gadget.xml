@@ -105,7 +105,6 @@
             $.getJSON("http://magicseaweed.com/api/" + prefs.getString("apikey") + "/forecast/?spot_id=" + prefs.getString("spotId0") + "&fields=timestamp,swell.*,wind.*,condition.temperature,condition.weather", function (data) {
 				$.each(data, function (index, item) {
 					setInfo('Iterating over ' + item);		
-					}
 				});
 			});
         }
