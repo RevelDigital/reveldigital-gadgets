@@ -79,6 +79,8 @@ body
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <div class="container">
+  <a id="red" class="redbtn">Red</a>
+  <a id="blue" class="bluebtn">Blue</a>
 </div>
 
 <script type="text/javascript">
