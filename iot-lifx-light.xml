@@ -75,6 +75,28 @@ body
   text-decoration: none;
 }
 
+.greenbtn {
+background: #ff0000;
+background-image: -webkit-linear-gradient(top, #ff0000, #b32e2e);
+background-image: -moz-linear-gradient(top, #ff0000, #b32e2e);
+background-image: -ms-linear-gradient(top, #ff0000, #b32e2e);
+background-image: -o-linear-gradient(top, #ff0000, #b32e2e);
+background-image: linear-gradient(to bottom, #ff0000, #b32e2e);
+-webkit-border-radius: 28;
+-moz-border-radius: 28;
+border-radius: 28px;
+font-family: Arial;
+color: #ffffff;
+font-size: 20px;
+padding: 10px 20px 10px 20px;
+text-decoration: none;
+}
+
+.greenbtn:hover {
+background: #ff0000;
+text-decoration: none;
+}
+
 .circle {
   height: 200px;
   width: 200px;
@@ -103,7 +125,11 @@ figcaption {
 .sunset {
   background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
 }
-  
+
+.relaxing {
+  background-image: url('https://pixabay.com/static/uploads/photo/2013/07/18/15/03/leaves-164404_640.jpg');
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -112,39 +138,39 @@ figcaption {
 <div class="container">
   <figure id="ocean">
       <div class="circle ocean"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Energizing</figcaption>
   </figure>
   <figure id="sunset">
       <div class="circle sunset"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Powerful</figcaption>
+  </figure>
+  <figure id="relaxing">
+      <div class="circle relaxing"></div>
+      <figcaption>Relaxing</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Peaceful</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Soothing</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Tranquil</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Exciting</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Cheerful</figcaption>
   </figure>
   <figure>
       <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
+      <figcaption>Focusing</figcaption>
   </figure>
 </div>
 
@@ -210,6 +236,10 @@ figcaption {
     
     $("#ocean").click(function() {
       changeColor("blue");
+    });
+    
+    $("#relaxing").click(function() {
+    changeColor("green");
     });
   });
 </script>
