@@ -198,10 +198,10 @@ figcaption {
     });
   }
   
-  function changeColor(h, b, k) {
+  function changeColor(h, b) {
     makeRequest("https://api.lifx.com/v1/lights/all/state", {
       power: "on",
-      color: "hue:" + h + " saturation:1.0 brightness:" + b + " kelvin:" + k,
+      color: "hue:" + h + " saturation:1.0 brightness:" + b,
       duration: 1
     });
   }
@@ -212,19 +212,19 @@ figcaption {
   
   $(document).ready(function() {
     $("#peaceful").click(function() {
-      changeColor("198", "0.05", "3500");
+      changeColor("198", "0.05");
     });
   
     $("#relaxing").click(function() {
-      changeColor("123", "0.28", "3500");
+      changeColor("123", "0.28");
     });
     
     $("#energizing").click(function() {
-      changeColor("242", "0.21", "3500");
+      changeColor("242", "0.21");
     });
     
     $("#powerful").click(function() {
-      changeColor("11", "0.41", "3500");
+      changeColor("11", "0.41");
     });
   });
 </script>
