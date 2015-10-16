@@ -109,11 +109,23 @@ figcaption {
 }
 
 .soothing {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f2/Peach_flowers.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c5/Various_flowers.jpg');
 }
 
 .tranquil {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Taklamakan_desert.jpg');
+  background-image: url('http://www.public-domain-image.com/nature-landscape/desert/slides/monument-valley-towers.jpg');
+}
+
+.exciting {
+  background-image: url('https://c2.staticflickr.com/6/5226/5885470355_3b1bbb5eb4.jpg');
+}
+
+.cheerful {
+  background-image: url('https://c1.staticflickr.com/1/1/856143_3d16d05f21_z.jpg?zz=1');
+}
+
+.focusing {
+  background-image: url('http://res.freestockphotos.biz/pictures/17/17893-white-rose-pv.jpg');
 }
 
 .powerful {
@@ -146,16 +158,16 @@ figcaption {
       <div class="circle tranquil"></div>
       <figcaption>Tranquil</figcaption>
   </figure>
-  <figure>
-      <div class="circle"></div>
+  <figure id="exciting">
+      <div class="circle exciting"></div>
       <figcaption>Exciting</figcaption>
   </figure>
-  <figure>
-      <div class="circle"></div>
+  <figure id="cheerful">
+      <div class="circle cheerful"></div>
       <figcaption>Cheerful</figcaption>
   </figure>
-  <figure>
-      <div class="circle"></div>
+  <figure id="focusing">
+      <div class="circle focusing"></div>
       <figcaption>Focusing</figcaption>
   </figure>
   <figure id="powerful">
@@ -239,6 +251,17 @@ figcaption {
     changeColor("43", "0.33");
     });
     
+    $("#exciting").click(function() {
+    changeColor("239", "0.50");
+    });
+    
+    $("#cheerful").click(function() {
+    changeColor("266", "0.41");
+    });
+    
+    $("#focusing").click(function() {
+    changeColor("52", "0.76");
+    });
     $("#powerful").click(function() {
       changeColor("11", "0.41");
     });
