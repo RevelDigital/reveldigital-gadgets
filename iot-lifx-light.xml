@@ -197,7 +197,7 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunli
   function changeColor(h, b, k) {
     makeRequest("https://api.lifx.com/v1/lights/all/state", {
       power: "on",
-      color: "hue:" + h + " saturation:" + 1.0 + " brightness:" + b + " kelvin:" + k,
+      color: "hue:" + h + " saturation:1.0 brightness:" + b + " kelvin:" + k,
       duration: 1
     });
   }
