@@ -81,7 +81,7 @@ body
   border-radius: 50%;
   display: inline-block;
   margin-right: 20px;
-  background: green;
+  background: white;
   box-shadow: 2px 2px 5px #888888;
 }
 
@@ -344,7 +344,7 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
     });
     
     $("#on").click(function() {
-    changeColor("on", "1.0", "3500");
+    changeTemp("on", "1.0", "3500");
     });
   });
 </script>
