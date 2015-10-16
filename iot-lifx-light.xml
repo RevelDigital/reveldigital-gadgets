@@ -108,6 +108,14 @@ figcaption {
   background-image: url('http://www.personal.psu.edu/afr3/blogs/siowfa13/BlueOcean.jpg');
 }
 
+.soothing {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f2/Peach_flowers.jpg');
+}
+
+.tranquil {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Taklamakan_desert.jpg');
+}
+
 .powerful {
   background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
 }
@@ -130,12 +138,12 @@ figcaption {
       <div class="circle energizing"></div>
       <figcaption>Energizing</figcaption>
   </figure>
-  <figure>
-      <div class="circle"></div>
+  <figure id="soothing">
+      <div class="circle soothing"></div>
       <figcaption>Soothing</figcaption>
   </figure>
-  <figure>
-      <div class="circle"></div>
+  <figure id="tranquil">
+      <div class="circle tranquil"></div>
       <figcaption>Tranquil</figcaption>
   </figure>
   <figure>
@@ -221,6 +229,14 @@ figcaption {
     
     $("#energizing").click(function() {
       changeColor("242", "0.21");
+    });
+    
+    $("#soothing").click(function() {
+    changeColor("330", "0.26");
+    });
+    
+    $("#tranquil").click(function() {
+    changeColor("43", "0.33");
     });
     
     $("#powerful").click(function() {
