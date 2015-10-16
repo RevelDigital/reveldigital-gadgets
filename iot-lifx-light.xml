@@ -137,15 +137,15 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
 }
 
 .warming {
-  background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Yellow_leaves_in_autumn.jpg/640px-Yellow_leaves_in_autumn.jpg');
 }
 
 .dream {
-background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Northern_Lights,_Greenland.jpg/640px-Northern_Lights,_Greenland.jpg');
 }
 
 .serene {
-background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg/1024px-K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg');
 }
 
 </style>
@@ -304,7 +304,7 @@ background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-oran
     });
     
     $("#warming").click(function() {
-    changeColor("355", "0.45");
+    changeColor("42", "0.20");
     });
     
     $("#dream").click(function() {
