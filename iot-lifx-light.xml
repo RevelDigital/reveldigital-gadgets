@@ -23,6 +23,7 @@ body
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   overflow: hidden;
+  font-family: 'Droid Sans', sans-serif;
 }
 
 .bluebtn {
@@ -74,14 +75,92 @@ body
   text-decoration: none;
 }
 
+.circle {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20px;
+  background: green;
+  box-shadow: 2px 2px 5px #888888;
+}
+
+figure {
+  display: inline-block;
+  width: 200px;
+}
+
+figcaption {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.ocean {
+  background-image: url('http://www.personal.psu.edu/afr3/blogs/siowfa13/BlueOcean.jpg');
+}
+
+.sunset {
+  background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+}
+  
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <div class="container">
-  <a id="red" class="redbtn">Red</a>
-  <a id="blue" class="bluebtn">Blue</a>
+  <figure id="ocean">
+      <div class="circle ocean"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure id="sunset">
+      <div class="circle sunset"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
+  <figure>
+      <div class="circle"></div>
+      <figcaption>Caption goes here</figcaption>
+  </figure>
 </div>
+
+<script>
+   WebFontConfig = {
+      google: {
+        families: ['Droid Sans']
+      }
+   };
+
+   (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+   })(document);
+</script>
 
 <script type="text/javascript">
 
@@ -94,9 +173,9 @@ body
 </script>
 
 <script type="text/javascript">
-  function makeRequest(req) {
+  function makeRequest(url, req) {
     $.ajax({
-      url: "https://api.lifx.com/v1/lights/all/state",
+      url: url,
       method: "PUT",
       contentType:"application/json; charset=utf-8",
       dataType:"json",
@@ -110,22 +189,26 @@ body
       }
     });
   }
-
+  
   function changeColor(color) {
-    makeRequest({
+    makeRequest("https://api.lifx.com/v1/lights/all/state", {
       power: "on",
       color: color + " saturation:1.0",
       brightness: 1,
       duration: 2
     });
   }
-
+  
+  function changeScene(scene) {
+    makeRequest("https://api.lifx.com/v1/scenes/scene_id:" + scene + "/activate", {});
+  }
+  
   $(document).ready(function() {
-    $("#red").click(function() {
+    $("#sunset").click(function() {
       changeColor("red");
     });
-
-    $("#blue").click(function() {
+    
+    $("#ocean").click(function() {
       changeColor("blue");
     });
   });
