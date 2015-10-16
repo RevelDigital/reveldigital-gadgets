@@ -148,6 +148,14 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
   background-image: url('https://c2.staticflickr.com/4/3227/3019443300_0244f29e28.jpg');
 }
 
+.off {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/System-shutdown.svg/200px-System-shutdown.svg.png');
+}
+
+.on {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Light_bulb_(yellow)_icon.svg/200px-Light_bulb_(yellow)_icon.svg.png');
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -206,6 +214,14 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
       <div class="circle serene"></div>
       <figcaption>Serene</figcaption>
   </figure>
+  <figure id="off">
+      <div class="circle off"></div>
+      <figcaption>Off</figcaption>
+  </figure>
+  <figure id="on">
+      <div class="circle on"></div>
+      <figcaption>Neutral White</figcaption>
+  </figure>
 </div>
 
 <script>
@@ -258,6 +274,14 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
     });
   }
   
+  function changeTemp(p, b, k) {
+    makeRequest("https://api.lifx.com/v1/lights/all/state", {
+      color: "brightness:" + b + " kelvin:" + k,
+      power: p,
+      duration: 1
+    });
+  }
+  
   function changeScene(scene) {
     makeRequest("https://api.lifx.com/v1/scenes/scene_id:" + scene + "/activate", {});
   }
@@ -276,27 +300,27 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
     });
     
     $("#soothing").click(function() {
-    changeColor("330", "0.26");
+      changeColor("330", "0.26");
     });
     
     $("#tranquil").click(function() {
-    changeColor("43", "0.33");
+      changeColor("43", "0.33");
     });
     
     $("#exciting").click(function() {
-    changeColor("239", "0.50");
+      changeColor("239", "0.50");
     });
     
     $("#cheerful").click(function() {
-    changeColor("266", "0.41");
+      changeColor("266", "0.41");
     });
     
     $("#focusing").click(function() {
-    changeColor("52", "0.76");
+      changeColor("52", "0.76");
     });
     
     $("#blissful").click(function() {
-    changeColor("256", "0.24");
+      changeColor("256", "0.24");
     });
     
     $("#powerful").click(function() {
@@ -304,15 +328,23 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
     });
     
     $("#warming").click(function() {
-    changeColor("42", "0.20");
+      changeColor("42", "0.20");
     });
     
     $("#dream").click(function() {
-    changeColor("167", "0.34");
+      changeColor("167", "0.34");
     });
     
     $("#serene").click(function() {
-    changeColor("205", "0.16");
+      changeColor("205", "0.16");
+    });
+    
+    $("#off").click(function() {
+    changeTemp("off", "1.0", "3500");
+    });
+    
+    $("#on").click(function() {
+    changeColor("on", "1.0", "3500");
     });
   });
 </script>
