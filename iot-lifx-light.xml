@@ -96,8 +96,12 @@ figcaption {
   font-weight: 700;
 }
 
+.peaceful {
+  background-image: url('http://img11.deviantart.net/6f6d/i/2009/178/d/f/clouds_before_the_storm_by_joe_butler.jpg');
+}
+
 .relaxing {
-background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunlight_through_the_leaves_of_a_Catalpa_bignonioides_-_geograph.org.uk_-_1357850.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunlight_through_the_leaves_of_a_Catalpa_bignonioides_-_geograph.org.uk_-_1357850.jpg');
 }
 
 .energizing {
@@ -114,8 +118,8 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunli
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <div class="container">
-  <figure>
-      <div class="circle"></div>
+  <figure id="peaceful">
+      <div class="circle peaceful"></div>
       <figcaption>Peaceful</figcaption>
   </figure>
   <figure id="relaxing">
@@ -207,6 +211,10 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunli
   }
   
   $(document).ready(function() {
+    $("#peaceful").click(function() {
+      changeColor("198", "0.05", "3500");
+    });
+  
     $("#relaxing").click(function() {
       changeColor("123", "0.28", "3500");
     });
