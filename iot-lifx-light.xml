@@ -80,7 +80,7 @@ body
   width: 200px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 15px;
   background: white;
   box-shadow: 2px 2px 5px #888888;
 }
@@ -153,9 +153,20 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
 }
 
 .on {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Light_bulb_(yellow)_icon.svg/200px-Light_bulb_(yellow)_icon.svg.png');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Light_bulb_font_awesome.svg/200px-Light_bulb_font_awesome.svg.png');
 }
 
+.incandescent {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Human-dialog-info.svg/200px-Human-dialog-info.svg.png');
+}
+
+.daylight {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sun.svg/200px-Sun.svg.png');
+}
+
+.cool {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ktip.svg/200px-Ktip.svg.png');
+}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
