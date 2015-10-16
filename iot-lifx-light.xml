@@ -125,7 +125,7 @@ figcaption {
 }
 
 .focusing {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/623px-Leucanthemum_vulgare_qtl1.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Beautiful-white-flower_ForestWander.JPG/640px-Beautiful-white-flower_ForestWander.JPG');
 }
 
 .blissful {
@@ -145,7 +145,7 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
 }
 
 .serene {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg/1024px-K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg');
+  background-image: url('https://c2.staticflickr.com/4/3227/3019443300_0244f29e28.jpg');
 }
 
 </style>
