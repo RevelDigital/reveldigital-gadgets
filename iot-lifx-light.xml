@@ -80,7 +80,7 @@ body
   width: 200px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 10px;
   background: white;
   box-shadow: 2px 2px 5px #888888;
 }
