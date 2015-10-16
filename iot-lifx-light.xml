@@ -113,7 +113,7 @@ figcaption {
 }
 
 .tranquil {
-  background-image: url('http://www.public-domain-image.com/nature-landscape/desert/slides/monument-valley-towers.jpg');
+  background-image: url('https://c1.staticflickr.com/3/2265/2499943626_785052dffd.jpg');
 }
 
 .exciting {
@@ -125,11 +125,27 @@ figcaption {
 }
 
 .focusing {
-  background-image: url('http://res.freestockphotos.biz/pictures/17/17893-white-rose-pv.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/623px-Leucanthemum_vulgare_qtl1.jpg');
+}
+
+.blissful {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunset_at_Cardiff-by-the-sea,_San_Diego.jpg');
 }
 
 .powerful {
   background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+}
+
+.warming {
+  background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+}
+
+.dream {
+background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+}
+
+.serene {
+background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
 }
 
 </style>
@@ -170,9 +186,25 @@ figcaption {
       <div class="circle focusing"></div>
       <figcaption>Focusing</figcaption>
   </figure>
+  <figure id="blissful">
+      <div class="circle blissful"></div>
+      <figcaption>Blissful</figcaption>
+  </figure>
   <figure id="powerful">
       <div class="circle powerful"></div>
       <figcaption>Powerful</figcaption>
+  </figure>
+  <figure id="warming">
+      <div class="circle warming"></div>
+      <figcaption>Warming</figcaption>
+  </figure>
+  <figure id="dream">
+      <div class="circle dream"></div>
+      <figcaption>Dream</figcaption>
+  </figure>
+  <figure id="serene">
+      <div class="circle serene"></div>
+      <figcaption>Serene</figcaption>
   </figure>
 </div>
 
@@ -262,8 +294,25 @@ figcaption {
     $("#focusing").click(function() {
     changeColor("52", "0.76");
     });
+    
+    $("#blissful").click(function() {
+    changeColor("256", "0.24");
+    });
+    
     $("#powerful").click(function() {
       changeColor("11", "0.41");
+    });
+    
+    $("#warming").click(function() {
+    changeColor("355", "0.45");
+    });
+    
+    $("#dream").click(function() {
+    changeColor("167", "0.34");
+    });
+    
+    $("#serene").click(function() {
+    changeColor("205", "0.16");
     });
   });
 </script>
