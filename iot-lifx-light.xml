@@ -88,6 +88,8 @@ body
 figure {
   display: inline-block;
   width: 200px;
+  padding: 0;
+  margin: 0;
 }
 
 figcaption {
