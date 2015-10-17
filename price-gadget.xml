@@ -23,7 +23,9 @@
 	}
 	
 	#priceContainer {
-		__UP_price-style__
+		__UP_price-style__;
+		font-family: __UP_font-name__, sans-serif !important;
+		
 	}
 	
 	#infoContainer {
