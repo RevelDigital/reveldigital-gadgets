@@ -110,81 +110,73 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
 .off {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/System-shutdown.svg/200px-System-shutdown.svg.png');
 }
-
+  
 .on {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Light_bulb_font_awesome.svg/200px-Light_bulb_font_awesome.svg.png');
+  background-color: #fde5c9;
 }
-
-.incandescent {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Human-dialog-info.svg/200px-Human-dialog-info.svg.png');
-}
-
-.daylight {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sun.svg/200px-Sun.svg.png');
-}
-
+  
 .ultrawarm {
-background-color: #ffdeb8;
+  background-color: #ffdeb8;
 }
 
 .incandescent {
-background-color: #fee1b7;
+  background-color: #fee1b7;
 }
 
 .warm {
-background-color: #fee4c3;
+  background-color: #fee4c3;
 }
 
 .neutralwarm {
-background-color: #fee5c6;
+  background-color: #fee5c6;
 }
 
 .neutral {
-background-color: #fde5c9;
+  background-color: #fde5c9;
 }
 
 .cool {
-background-color: #ffebd2;
+  background-color: #ffebd2;
 }
 
 .cooldaylight {
-background-color: #ffefd8;
+  background-color: #ffefd8;
 }
 
 .softdaylight {
-background-color: #fff0dd;
+  background-color: #fff0dd;
 }
 
 .daylight {
-background-color: #fdf0e0;
+  background-color: #fdf0e0;
 }
 
 .noondaylight {
-background-color: #f9f1e6;
+  background-color: #f9f1e6;
 }
 
 .brightdaylight {
-background-color: #f6f1eb;
+  background-color: #f6f1eb;
 }
 
 .bluedaylight {
-background-color: #f1f0ec;
+  background-color: #f1f0ec;
 }
 
 .blueovercast {
-background-color: #ecedef;
+  background-color: #ecedef;
 }
 
 .bluewater {
-background-color: #edf0f5;
+  background-color: #edf0f5;
 }
 
 .blueice85 {
-background-color: #ebf2fa;
+  background-color: #ebf2fa;
 }
 
 .blueice90 {
-background-color: #ebf4fd;
+  background-color: #ebf4fd;
 }
 
 </style>
@@ -247,80 +239,80 @@ background-color: #ebf4fd;
   </figure>
 </div>
 <div class="container">
-<figure id="ultrawarm">
-<div class="circle ultrawarm"></div>
-<figcaption>2500 K Ultra Warm</figcaption>
-</figure>
-<figure id="incandescent">
-<div class="circle incandescent"></div>
-<figcaption>2750 K Incandescent</figcaption>
-</figure>
-<figure id="warm">
-<div class="circle warm"></div>
-<figcaption>3000 K Warm</figcaption>
-</figure>
-<figure id="neutralwarm">
-<div class="circle neutralwarm"></div>
-<figcaption>3200 K Neutral Warm</figcaption>
-</figure>
-<figure id="neutral">
-<div class="circle neutral"></div>
-<figcaption>3500 K Neutral</figcaption>
-</figure>
-<figure id="cool">
-<div class="circle cool"></div>
-<figcaption>4000 K Cool</figcaption>
-</figure>
-<figure id="cooldaylight">
-<div class="circle cooldaylight"></div>
-<figcaption>4500 K Cool Daylight</figcaption>
-</figure>
-<figure id="softdaylight">
-<div class="circle softdaylight"></div>
-<figcaption>5000 K Soft Daylight</figcaption>
-</figure>
-<figure id="daylight">
-<div class="circle daylight"></div>
-<figcaption>5500 K Daylight</figcaption>
-</figure>
-<figure id="noondaylight">
-<div class="circle noondaylight"></div>
-<figcaption>6000 K Noon Daylight</figcaption>
-</figure>
-<figure id="brightdaylight">
-<div class="circle brightdaylight"></div>
-<figcaption>6500 K Bright Daylight</figcaption>
-</figure>
-<figure id="bluedaylight">
-<div class="circle bluedaylight"></div>
-<figcaption>7000 K Blue Daylight</figcaption>
-</figure>
-<figure id="blueovercast">
-<div class="circle blueovercast"></div>
-<figcaption>7500 K Blue Overcast</figcaption>
-</figure>
-<figure id="bluewater">
-<div class="circle bluewater"></div>
-<figcaption>8000 K Blue Water</figcaption>
-</figure>
-<figure id="blueice85">
-<div class="circle blueice85"></div>
-<figcaption>8500 K Blue Ice</figcaption>
-</figure>
-<figure id="blueice90">
-<div class="circle blueice90"></div>
-<figcaption>9000 K Blue Ice</figcaption>
-</figure>
+  <figure id="ultrawarm">
+    <div class="circle ultrawarm"></div>
+    <figcaption>2500 K Ultra Warm</figcaption>
+  </figure>
+  <figure id="incandescent">
+    <div class="circle incandescent"></div>
+    <figcaption>2750 K Incandescent</figcaption>
+  </figure>
+  <figure id="warm">
+    <div class="circle warm"></div>
+    <figcaption>3000 K Warm</figcaption>
+  </figure>
+  <figure id="neutralwarm">
+    <div class="circle neutralwarm"></div>
+    <figcaption>3200 K Neutral Warm</figcaption>
+  </figure>
+  <figure id="neutral">
+    <div class="circle neutral"></div>
+    <figcaption>3500 K Neutral</figcaption>
+  </figure>
+  <figure id="cool">
+    <div class="circle cool"></div>
+    <figcaption>4000 K Cool</figcaption>
+  </figure>
+  <figure id="cooldaylight">
+    <div class="circle cooldaylight"></div>
+    <figcaption>4500 K Cool Daylight</figcaption>
+  </figure>
+  <figure id="softdaylight">
+    <div class="circle softdaylight"></div>
+    <figcaption>5000 K Soft Daylight</figcaption>
+  </figure>
+  <figure id="daylight">
+    <div class="circle daylight"></div>
+    <figcaption>5500 K Daylight</figcaption>
+  </figure>
+  <figure id="noondaylight">
+    <div class="circle noondaylight"></div>
+    <figcaption>6000 K Noon Daylight</figcaption>
+  </figure>
+  <figure id="brightdaylight">
+    <div class="circle brightdaylight"></div>
+    <figcaption>6500 K Bright Daylight</figcaption>
+  </figure>
+  <figure id="bluedaylight">
+    <div class="circle bluedaylight"></div>
+    <figcaption>7000 K Blue Daylight</figcaption>
+  </figure>
+  <figure id="blueovercast">
+    <div class="circle blueovercast"></div>
+    <figcaption>7500 K Blue Overcast</figcaption>
+  </figure>
+  <figure id="bluewater">
+    <div class="circle bluewater"></div>
+    <figcaption>8000 K Blue Water</figcaption>
+  </figure>
+  <figure id="blueice85">
+    <div class="circle blueice85"></div>
+    <figcaption>8500 K Blue Ice</figcaption>
+  </figure>
+  <figure id="blueice90">
+    <div class="circle blueice90"></div>
+    <figcaption>9000 K Blue Ice</figcaption>
+  </figure>
 </div>
 <div class="container">
-<figure id="off">
-<div class="circle off"></div>
-<figcaption>Off</figcaption>
-</figure>
-<figure id="on">
-<div class="circle on"></div>
-<figcaption>Neutral White</figcaption>
-</figure>
+  <figure id="off">
+    <div class="circle off"></div>
+    <figcaption>Off</figcaption>
+  </figure>
+  <figure id="on">
+    <div class="circle on"></div>
+    <figcaption>Neutral White</figcaption>
+  </figure>
 </div>
 
 
@@ -440,11 +432,75 @@ background-color: #ebf4fd;
     });
     
     $("#off").click(function() {
-    changeTemp("off", "1.0", "3500");
+      changeTemp("off", "1.0", "3500");
     });
     
     $("#on").click(function() {
-    changeTemp("on", "1.0", "3500");
+      changeTemp("on", "1.0", "3500");
+    });
+    
+    $("#ultrawarm").click(function() {
+      changeTemp("on", "1.0", "2500");
+    });
+    
+    $("#incandescent").click(function() {
+      changeTemp("on", "1.0", "2750");
+    });
+    
+    $("#warm").click(function() {
+      changeTemp("on", "1.0", "3000");
+    });
+    
+    $("#neutralwarm").click(function() {
+      changeTemp("on", "1.0", "3200");
+    });
+    
+    $("#neutral").click(function() {
+      changeTemp("on", "1.0", "3500");
+    });
+    
+    $("#cool").click(function() {
+      changeTemp("on", "1.0", "4000");
+    });
+    
+    $("#cooldaylight").click(function() {
+      changeTemp("on", "1.0", "4500");
+    });
+    
+    $("#softdaylight").click(function() {
+      changeTemp("on", "1.0", "5000");
+    });
+    
+    $("#daylight").click(function() {
+      changeTemp("on", "1.0", "5500");
+    });
+    
+    $("#noondaylight").click(function() {
+      changeTemp("on", "1.0", "6000");
+    });
+    
+    $("#brightdaylight").click(function() {
+      changeTemp("on", "1.0", "6500");
+    });
+    
+    $("#bluedaylight").click(function() {
+      changeTemp("on", "1.0", "7000");
+    });
+    
+    $("#blueovercast").click(function() {
+      changeTemp("on", "1.0", "7500");
+    });
+    
+    $("#bluewater").click(function() {
+      changeTemp("on", "1.0", "8000");
+    });
+    
+    $("#blueice85").click(function() {
+      changeTemp("on", "1.0", "8500");
+    });
+    
+    $("#blueice90").click(function() {
+      changeTemp("on", "1.0", "9000");
     });
   });
 </script>
