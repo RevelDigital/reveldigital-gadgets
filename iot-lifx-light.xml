@@ -534,10 +534,10 @@ duration: 1
 });
 }
 
-function changeTemp(p, b, k) {
+function changeTemp(k) {
 makeRequest("https://api.lifx.com/v1/lights/all/state", {
-color: "brightness:" + b + " kelvin:" + k,
-power: p,
+color: "brightness:1.0 kelvin:" + k,
+power: "on",
 duration: 1
 });
 }
@@ -546,11 +546,10 @@ function changeColor(c) {
 makeRequest("https://api.lifx.com/v1/lights/all/state", {
 power: "on",
 color: c,
-brightness:0.5,
+brightness:0.90,
 duration: 1
 });
 }
-
 function changeBrightness(b) {
 makeRequest("https://api.lifx.com/v1/lights/all/state", {
 power: "on",
@@ -618,67 +617,67 @@ duration: 1
   });
   
   $("#ultrawarm").click(function() {
-  changeTemp("on", "1.0", "2500");
+  changeTemp("2500");
   });
   
   $("#incandescent").click(function() {
-  changeTemp("on", "1.0", "2750");
+  changeTemp("2750");
   });
   
   $("#warm").click(function() {
-  changeTemp("on", "1.0", "3000");
+  changeTemp("3000");
   });
   
   $("#neutralwarm").click(function() {
-  changeTemp("on", "1.0", "3200");
+  changeTemp("3200");
   });
   
   $("#neutral").click(function() {
-  changeTemp("on", "1.0", "3500");
+  changeTemp("3500");
   });
   
   $("#cool").click(function() {
-  changeTemp("on", "1.0", "4000");
+  changeTemp("4000");
   });
   
   $("#cooldaylight").click(function() {
-  changeTemp("on", "1.0", "4500");
+  changeTemp("4500");
   });
   
   $("#softdaylight").click(function() {
-  changeTemp("on", "1.0", "5000");
+  changeTemp("5000");
   });
   
   $("#daylight").click(function() {
-  changeTemp("on", "1.0", "5500");
+  changeTemp("5500");
   });
   
   $("#noondaylight").click(function() {
-  changeTemp("on", "1.0", "6000");
+  changeTemp("6000");
   });
   
   $("#brightdaylight").click(function() {
-  changeTemp("on", "1.0", "6500");
+  changeTemp("6500");
   });
   
   $("#bluedaylight").click(function() {
-  changeTemp("on", "1.0", "7000");
+  changeTemp("7000");
   });
   
   $("#blueovercast").click(function() {
-  changeTemp("on", "1.0", "7500");
+  changeTemp("7500");
   });
   
   $("#bluewater").click(function() {
-  changeTemp("on", "1.0", "8000");
+  changeTemp("8000");
   });
   
   $("#blueice85").click(function() {
-  changeTemp("on", "1.0", "8500");
+  changeTemp("8500");
   });
   
   $("#blueice90").click(function() {
-  changeTemp("on", "1.0", "9000");
+  changeTemp("9000");
   });
   $("#white").click(function() {
   changeColor("white");
