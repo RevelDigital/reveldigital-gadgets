@@ -179,6 +179,86 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
   background-color: #ebf4fd;
 }
 
+.white {
+background-color: white;
+}
+
+.red {
+background-color: red;
+}
+
+.orange {
+background-color: orange;
+}
+
+.yellow {
+background-color: yellow;
+}
+
+.cyan {
+background-color: cyan;
+}
+
+.green {
+background-color: green;
+}
+
+.blue {
+background-color: blue;
+}
+
+.purple {
+background-color: purple;
+}
+
+.pink {
+background-color: pink;
+}
+
+.brightness1 {
+background-color: #030303;
+}
+
+.brightness10 {
+background-color: #171717;
+}
+
+.brightness20 {
+background-color: #333333;
+}
+
+.brightness30 {
+background-color: #4d4d4d;
+}
+
+.brightness40 {
+background-color: #666666;
+}
+
+.brightness50 {
+background-color: #808080;
+}
+
+.brightness60 {
+background-color: #999999;
+}
+
+.brightness70 {
+background-color: #b3b3b3;
+}
+
+.brightness80 {
+background-color: #cccccc;
+}
+
+.brightness90 {
+background-color: #e6e6e6;
+}
+
+.brightness100 {
+background-color: #ffffff;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -314,7 +394,90 @@ background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunse
     <figcaption>Neutral White</figcaption>
   </figure>
 </div>
-
+<div class="container">
+<figure id="white">
+<div class="circle white"></div>
+<figcaption>White</figcaption>
+</figure>
+<figure id="red">
+<div class="circle red"></div>
+<figcaption>Red</figcaption>
+</figure>
+<figure id="orange">
+<div class="circle orange"></div>
+<figcaption>Orange</figcaption>
+</figure>
+<figure id="yellow">
+<div class="circle yellow"></div>
+<figcaption>Yellow</figcaption>
+</figure>
+<figure id="cyan">
+<div class="circle cyan"></div>
+<figcaption>Cyan</figcaption>
+</figure>
+<figure id="green">
+<div class="circle green"></div>
+<figcaption>Green</figcaption>
+</figure>
+<figure id="blue">
+<div class="circle blue"></div>
+<figcaption>Blue</figcaption>
+</figure>
+<figure id="purple">
+<div class="circle purple"></div>
+<figcaption>Purple</figcaption>
+</figure>
+<figure id="pink">
+<div class="circle pink"></div>
+<figcaption>Pink</figcaption>
+</figure>
+</div>
+<div class="container">
+<figure id="brightness1">
+<div class="circle brightness1"></div>
+<figcaption>Brightness 1%</figcaption>
+</figure>
+<figure id="brightness10">
+<div class="circle brightness10"></div>
+<figcaption>Brightness 10%</figcaption>
+</figure>
+<figure id="brightness20">
+<div class="circle brightness20"></div>
+<figcaption>Brightness 20%</figcaption>
+</figure>
+<figure id="brightness30">
+<div class="circle brightness30"></div>
+<figcaption>Brightness 30%</figcaption>
+</figure>
+<figure id="brightness40">
+<div class="circle brightness40"></div>
+<figcaption>Brightness 40%</figcaption>
+</figure>
+<figure id="brightness50">
+<div class="circle brightness50"></div>
+<figcaption>Brightness 50%</figcaption>
+</figure>
+<figure id="brightness60">
+<div class="circle brightness60"></div>
+<figcaption>Brightness 60%</figcaption>
+</figure>
+<figure id="brightness70">
+<div class="circle brightness70"></div>
+<figcaption>Brightness 70%</figcaption>
+</figure>
+<figure id="brightness80">
+<div class="circle brightness80"></div>
+<figcaption>Brightness 80%</figcaption>
+</figure>
+<figure id="brightness90">
+<div class="circle brightness90"></div>
+<figcaption>Brightness 90%</figcaption>
+</figure>
+<figure id="brightness100">
+<div class="circle brightness100"></div>
+<figcaption>Brightness 100%</figcaption>
+</figure>
+</div>
 
 <script>
    WebFontConfig = {
