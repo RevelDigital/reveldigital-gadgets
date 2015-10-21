@@ -593,7 +593,7 @@ duration: 1
   });
   
   $("#focusing").click(function() {
-  changeTemp("on", "0.5", "6500");
+  changeTemp("6500");
   });
   
   $("#blissful").click(function() {
