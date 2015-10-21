@@ -255,6 +255,10 @@ background-color: #e6e6e6;
 background-color: #ffffff;
 }
 
+.rainbow {
+background-color: #ffffff;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -465,6 +469,12 @@ background-color: #ffffff;
 <figcaption>Brightness 100%</figcaption>
 </figure>
 </div>
+<div class="container">>
+<figure id="rainbow">
+<div class="circle rainbow"></div>
+<figcaption>Rainbow</figcaption>
+</figure>
+</div>
 
 <script>
    WebFontConfig = {
@@ -527,7 +537,7 @@ console.log( "Sample of data:", data );
 
 
 function changeScene(h, b) {
-makeRequest("https://api.lifx.com/v1/lights/all/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 color: "hue:" + h + " saturation:0.90 brightness:" + b,
 duration: 1
@@ -535,7 +545,7 @@ duration: 1
 }
 
 function changeTemp(k) {
-makeRequest("https://api.lifx.com/v1/lights/all/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 color: "brightness:1.0 kelvin:" + k,
 power: "on",
 duration: 1
@@ -543,7 +553,7 @@ duration: 1
 }
 
 function changeColor(c) {
-makeRequest("https://api.lifx.com/v1/lights/all/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 color: c,
 brightness:0.90,
@@ -551,7 +561,7 @@ duration: 1
 });
 }
 function changeBrightness(b) {
-makeRequest("https://api.lifx.com/v1/lights/all/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 brightness: b,
 duration: 1
@@ -559,8 +569,19 @@ duration: 1
 }
 
 function togglePower(){
-makePostRequest("https://api.lifx.com/v1/lights/all/toggle", {
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/toggle", {
 duration: 1
+});
+}
+
+function breatheEffect(){
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+color: "random",
+period: 5.0,
+cycles: 0.5,
+persist: true,
+power_on: true,
+peak: "0.5"
 });
 }
   $(document).ready(function() {
@@ -738,6 +759,9 @@ duration: 1
   });
   $("#brightness100").click(function() {
   changeBrightness("1.0");
+  });
+  $("#rainbow").click(function() {
+  breatheEffect();
   });
 
   });
