@@ -546,9 +546,9 @@ duration: 1
 
 function changeTemp(k) {
 makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
-color: "brightness:1.0 kelvin:" + k,
+color: "brightness:0.4 kelvin:" + k,
 power: "on",
-duration: 1
+duration: 0
 });
 }
 
@@ -556,15 +556,43 @@ function changeColor(c) {
 makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 color: c,
-brightness:0.90,
-duration: 1
+brightness:0.50,
+duration: 0
 });
 }
+
 function changeBrightness(b) {
 makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 brightness: b,
 duration: 1
+});
+}
+
+function breatheEffect(){
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+color: "random brightness:1.0",
+period: 5.0,
+cycles: 0.5,
+persist: true,
+power_on: true,
+peak: "0.5",
+});
+}
+
+function matchDownLight(k) {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "on",
+color: "kelvin:" + k,
+brightness:0.4,
+duration: 0
+});
+}
+
+function powerOff(){
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "off",
+duration: 0.0
 });
 }
 
@@ -574,16 +602,6 @@ duration: 1
 });
 }
 
-function breatheEffect(){
-makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
-color: "random",
-period: 5.0,
-cycles: 0.5,
-persist: true,
-power_on: true,
-peak: "0.5"
-});
-}
   $(document).ready(function() {
   $("#peaceful").click(function() {
   changeScene("203", "0.25");
