@@ -255,10 +255,6 @@ background-color: #e6e6e6;
 background-color: #ffffff;
 }
 
-.rainbow {
-background-color: #ffffff;
-}
-
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -467,12 +463,6 @@ background-color: #ffffff;
 <figure id="brightness100">
 <div class="circle brightness100"></div>
 <figcaption>Brightness 100%</figcaption>
-</figure>
-</div>
-<div class="container">
-<figure id="rainbow">
-<div class="circle rainbow"></div>
-<figcaption>Rainbow</figcaption>
 </figure>
 </div>
 
@@ -781,9 +771,6 @@ duration: 1
   });
   $("#brightness100").click(function() {
   changeBrightness("1.0");
-  });
-  $("#rainbow").click(function() {
-  breatheEffect();
   });
 
   });
