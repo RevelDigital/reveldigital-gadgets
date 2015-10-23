@@ -255,6 +255,10 @@ background-color: #e6e6e6;
 background-color: #ffffff;
 }
 
+.test {
+background-color: #ffffff;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -465,6 +469,13 @@ background-color: #ffffff;
 <figcaption>Brightness 100%</figcaption>
 </figure>
 </div>
+<div class="container">
+<figure id="test">
+<div class="circle test"></div>
+<figcaption>Test</figcaption>
+</figure>
+</div>
+
 
 <script>
    WebFontConfig = {
