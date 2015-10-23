@@ -546,7 +546,7 @@ function changeColor(c) {
 makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
 power: "on",
 color: c,
-brightness:0.50,
+brightness:0.4,
 duration: 0
 });
 }
@@ -561,7 +561,7 @@ duration: 1
 
 function breatheEffect(){
 makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
-color: "random brightness:1.0",
+color: "random brightness:0.4",
 period: 5.0,
 cycles: 0.5,
 persist: true,
@@ -573,7 +573,7 @@ peak: "0.5",
 function matchDownLightPulse(k) {
 makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
 color: "kelvin:" + k + " brightness:0.4",
-from_color: "kelvin:" + k + " brightness:0.2",
+from_color: "kelvin:" + k + " brightness:0.1",
 period:1.6,
 cycles:1000000,
 persist:false,
