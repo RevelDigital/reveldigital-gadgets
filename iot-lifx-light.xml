@@ -580,11 +580,15 @@ peak: "0.5",
 });
 }
 
-function matchDownLight(k) {
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+function matchDownLightPulse(k) {
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+color: "kelvin:" + k + " brightness:0.4",
+from_color: "kelvin:" + k + " brightness:0.2",
+period:1.6,
+cycles:1000000,
+persist:false,
 power: "on",
-color: "kelvin:" + k,
-brightness:0.4,
+peak:0.5,
 duration: 0
 });
 }
