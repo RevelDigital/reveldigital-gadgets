@@ -155,13 +155,13 @@ h3
     
     moment.lang("__MSG_Lang__");
     
-    if (prefs.getString("displayFormat") == "table") {
-      $("#output").show();
-    } else {
-      $("#event-container").show();
-    }
+    //if (prefs.getString("displayFormat") == "table") {
+    //  $("#output").show();
+    //} else {
+    //  $("#event-container").show();
+    //}
     if (prefs.getBool("showHeader") == true) {
-      $("#output thead").show();
+      $("#events > table > thead").show();
     }
     update();
     
