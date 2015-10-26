@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
+<?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
 <ModulePrefs title="Lifx Light Control" description="" author="RevelDigital" background="transparent">
   <UserPref name="ForeColor" datatype="hidden" />
@@ -26,68 +26,27 @@ body
   font-family: 'Droid Sans', sans-serif;
 }
 
-.bluebtn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-}
-
-.bluebtn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
-  
-.redbtn {
-  background: #ff0000;
-  background-image: -webkit-linear-gradient(top, #ff0000, #b32e2e);
-  background-image: -moz-linear-gradient(top, #ff0000, #b32e2e);
-  background-image: -ms-linear-gradient(top, #ff0000, #b32e2e);
-  background-image: -o-linear-gradient(top, #ff0000, #b32e2e);
-  background-image: linear-gradient(to bottom, #ff0000, #b32e2e);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-}
-
-.redbtn:hover {
-  background: #ff0000;
-  text-decoration: none;
-}
-
 .circle {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 20px;
-  background: green;
+  margin-right: 0px;
+  background: white;
   box-shadow: 2px 2px 5px #888888;
 }
 
 figure {
   display: inline-block;
   width: 200px;
+  padding: 0;
+  margin: 5;
+}
+
+.container{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space:nowrap
 }
 
 figcaption {
@@ -96,57 +55,427 @@ figcaption {
   font-weight: 700;
 }
 
-.ocean {
-  background-image: url('http://www.personal.psu.edu/afr3/blogs/siowfa13/BlueOcean.jpg');
+.peaceful {
+background-image: url('http://img11.deviantart.net/6f6d/i/2009/178/d/f/clouds_before_the_storm_by_joe_butler.jpg');
 }
 
-.sunset {
-  background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+.relaxing {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Sunlight_through_the_leaves_of_a_Catalpa_bignonioides_-_geograph.org.uk_-_1357850.jpg');
 }
-  
+
+.energizing {
+background-image: url('http://www.personal.psu.edu/afr3/blogs/siowfa13/BlueOcean.jpg');
+}
+
+.soothing {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c5/Various_flowers.jpg');
+}
+
+.tranquil {
+background-image: url('https://c1.staticflickr.com/3/2265/2499943626_785052dffd.jpg');
+}
+
+.exciting {
+background-image: url('https://c2.staticflickr.com/6/5226/5885470355_3b1bbb5eb4.jpg');
+}
+
+.cheerful {
+background-image: url('https://c1.staticflickr.com/1/1/856143_3d16d05f21_z.jpg?zz=1');
+}
+
+.focusing {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Beautiful-white-flower_ForestWander.JPG/640px-Beautiful-white-flower_ForestWander.JPG');
+}
+
+.blissful {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Sunset_at_Cardiff-by-the-sea,_San_Diego.jpg');
+}
+
+.powerful {
+background-image: url('http://cache2.asset-cache.net/gc/867206-003-dramatic-orange-sunset-and-clouds-over-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=yqCmo0qJo5Uc%2BG%2FSKa7uqeaYsLs9Z2diQERLkvjrv9A%3D');
+}
+
+.warming {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Yellow_leaves_in_autumn.jpg/640px-Yellow_leaves_in_autumn.jpg');
+}
+
+.dream {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Northern_Lights,_Greenland.jpg/640px-Northern_Lights,_Greenland.jpg');
+}
+
+.serene {
+background-image: url('https://c2.staticflickr.com/4/3227/3019443300_0244f29e28.jpg');
+}
+
+.power {
+background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/System-shutdown.svg/200px-System-shutdown.svg.png');
+}
+
+.ultrawarm {
+background-color: #ffdeb8;
+}
+
+.incandescent {
+background-color: #fee1b7;
+}
+
+.warm {
+background-color: #fee4c3;
+}
+
+.neutralwarm {
+background-color: #fee5c6;
+}
+
+.neutral {
+background-color: #fde5c9;
+}
+
+.cool {
+background-color: #ffebd2;
+}
+
+.cooldaylight {
+background-color: #ffefd8;
+}
+
+.softdaylight {
+background-color: #fff0dd;
+}
+
+.daylight {
+background-color: #fdf0e0;
+}
+
+.noondaylight {
+background-color: #f9f1e6;
+}
+
+.brightdaylight {
+background-color: #f6f1eb;
+}
+
+.bluedaylight {
+background-color: #f1f0ec;
+}
+
+.blueovercast {
+background-color: #ecedef;
+}
+
+.bluewater {
+background-color: #edf0f5;
+}
+
+.blueice85 {
+background-color: #ebf2fa;
+}
+
+.blueice90 {
+background-color: #ebf4fd;
+}
+
+.white {
+background-color: white;
+}
+
+.red {
+background-color: red;
+}
+
+.orange {
+background-color: orange;
+}
+
+.yellow {
+background-color: yellow;
+}
+
+.cyan {
+background-color: cyan;
+}
+
+.green {
+background-color: green;
+}
+
+.blue {
+background-color: blue;
+}
+
+.purple {
+background-color: purple;
+}
+
+.pink {
+background-color: pink;
+}
+
+.brightness1 {
+background-color: #030303;
+}
+
+.brightness10 {
+background-color: #171717;
+}
+
+.brightness20 {
+background-color: #333333;
+}
+
+.brightness30 {
+background-color: #4d4d4d;
+}
+
+.brightness40 {
+background-color: #666666;
+}
+
+.brightness50 {
+background-color: #808080;
+}
+
+.brightness60 {
+background-color: #999999;
+}
+
+.brightness70 {
+background-color: #b3b3b3;
+}
+
+.brightness80 {
+background-color: #cccccc;
+}
+
+.brightness90 {
+background-color: #e6e6e6;
+}
+
+.brightness100 {
+background-color: #ffffff;
+}
+
+.test {
+background-color: #ffffff;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <div class="container">
-  <figure id="ocean">
-      <div class="circle ocean"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure id="sunset">
-      <div class="circle sunset"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
-  <figure>
-      <div class="circle"></div>
-      <figcaption>Caption goes here</figcaption>
-  </figure>
+<figure id="peaceful">
+<div class="circle peaceful"></div>
+<figcaption>Peaceful</figcaption>
+</figure>
+<figure id="relaxing">
+<div class="circle relaxing"></div>
+<figcaption>Relaxing</figcaption>
+</figure>
+<figure id="energizing">
+<div class="circle energizing"></div>
+<figcaption>Energizing</figcaption>
+</figure>
+<figure id="soothing">
+<div class="circle soothing"></div>
+<figcaption>Soothing</figcaption>
+</figure>
+<figure id="tranquil">
+<div class="circle tranquil"></div>
+<figcaption>Tranquil</figcaption>
+</figure>
+<figure id="exciting">
+<div class="circle exciting"></div>
+<figcaption>Exciting</figcaption>
+</figure>
+<figure id="cheerful">
+<div class="circle cheerful"></div>
+<figcaption>Cheerful</figcaption>
+</figure>
+<figure id="focusing">
+<div class="circle focusing"></div>
+<figcaption>Focusing</figcaption>
+</figure>
+<figure id="blissful">
+<div class="circle blissful"></div>
+<figcaption>Blissful</figcaption>
+</figure>
+<figure id="powerful">
+<div class="circle powerful"></div>
+<figcaption>Powerful</figcaption>
+</figure>
+<figure id="warming">
+<div class="circle warming"></div>
+<figcaption>Warming</figcaption>
+</figure>
+<figure id="dream">
+<div class="circle dream"></div>
+<figcaption>Dream</figcaption>
+</figure>
+<figure id="serene">
+<div class="circle serene"></div>
+<figcaption>Serene</figcaption>
+</figure>
 </div>
+
+<div class="container">
+<figure id="ultrawarm">
+<div class="circle ultrawarm"></div>
+<figcaption>2500 K Ultra Warm</figcaption>
+</figure>
+<figure id="incandescent">
+<div class="circle incandescent"></div>
+<figcaption>2750 K Incandescent</figcaption>
+</figure>
+<figure id="warm">
+<div class="circle warm"></div>
+<figcaption>3000 K Warm</figcaption>
+</figure>
+<figure id="neutralwarm">
+<div class="circle neutralwarm"></div>
+<figcaption>3200 K Neutral Warm</figcaption>
+</figure>
+<figure id="neutral">
+<div class="circle neutral"></div>
+<figcaption>3500 K Neutral</figcaption>
+</figure>
+<figure id="cool">
+<div class="circle cool"></div>
+<figcaption>4000 K Cool</figcaption>
+</figure>
+<figure id="cooldaylight">
+<div class="circle cooldaylight"></div>
+<figcaption>4500 K Cool Daylight</figcaption>
+</figure>
+<figure id="softdaylight">
+<div class="circle softdaylight"></div>
+<figcaption>5000 K Soft Daylight</figcaption>
+</figure>
+<figure id="daylight">
+<div class="circle daylight"></div>
+<figcaption>5500 K Daylight</figcaption>
+</figure>
+<figure id="noondaylight">
+<div class="circle noondaylight"></div>
+<figcaption>6000 K Noon Daylight</figcaption>
+</figure>
+<figure id="brightdaylight">
+<div class="circle brightdaylight"></div>
+<figcaption>6500 K Bright Daylight</figcaption>
+</figure>
+<figure id="bluedaylight">
+<div class="circle bluedaylight"></div>
+<figcaption>7000 K Blue Daylight</figcaption>
+</figure>
+<figure id="blueovercast">
+<div class="circle blueovercast"></div>
+<figcaption>7500 K Blue Overcast</figcaption>
+</figure>
+<figure id="bluewater">
+<div class="circle bluewater"></div>
+<figcaption>8000 K Blue Water</figcaption>
+</figure>
+<figure id="blueice85">
+<div class="circle blueice85"></div>
+<figcaption>8500 K Blue Ice</figcaption>
+</figure>
+<figure id="blueice90">
+<div class="circle blueice90"></div>
+<figcaption>9000 K Blue Ice</figcaption>
+</figure>
+</div>
+<div class="container">
+<figure id="white">
+<div class="circle white"></div>
+<figcaption>White</figcaption>
+</figure>
+<figure id="red">
+<div class="circle red"></div>
+<figcaption>Red</figcaption>
+</figure>
+<figure id="orange">
+<div class="circle orange"></div>
+<figcaption>Orange</figcaption>
+</figure>
+<figure id="yellow">
+<div class="circle yellow"></div>
+<figcaption>Yellow</figcaption>
+</figure>
+<figure id="cyan">
+<div class="circle cyan"></div>
+<figcaption>Cyan</figcaption>
+</figure>
+<figure id="green">
+<div class="circle green"></div>
+<figcaption>Green</figcaption>
+</figure>
+<figure id="blue">
+<div class="circle blue"></div>
+<figcaption>Blue</figcaption>
+</figure>
+<figure id="purple">
+<div class="circle purple"></div>
+<figcaption>Purple</figcaption>
+</figure>
+<figure id="pink">
+<div class="circle pink"></div>
+<figcaption>Pink</figcaption>
+</figure>
+</div>
+<div class="container">
+<figure id="brightness1">
+<div class="circle brightness1"></div>
+<figcaption>Brightness 1%</figcaption>
+</figure>
+<figure id="brightness10">
+<div class="circle brightness10"></div>
+<figcaption>Brightness 10%</figcaption>
+</figure>
+<figure id="brightness20">
+<div class="circle brightness20"></div>
+<figcaption>Brightness 20%</figcaption>
+</figure>
+<figure id="brightness30">
+<div class="circle brightness30"></div>
+<figcaption>Brightness 30%</figcaption>
+</figure>
+<figure id="brightness40">
+<div class="circle brightness40"></div>
+<figcaption>Brightness 40%</figcaption>
+</figure>
+<figure id="brightness50">
+<div class="circle brightness50"></div>
+<figcaption>Brightness 50%</figcaption>
+</figure>
+<figure id="brightness60">
+<div class="circle brightness60"></div>
+<figcaption>Brightness 60%</figcaption>
+</figure>
+<figure id="brightness70">
+<div class="circle brightness70"></div>
+<figcaption>Brightness 70%</figcaption>
+</figure>
+<figure id="brightness80">
+<div class="circle brightness80"></div>
+<figcaption>Brightness 80%</figcaption>
+</figure>
+<figure id="brightness90">
+<div class="circle brightness90"></div>
+<figcaption>Brightness 90%</figcaption>
+</figure>
+<figure id="brightness100">
+<div class="circle brightness100"></div>
+<figcaption>Brightness 100%</figcaption>
+</figure>
+</div>
+<div class="container">
+<figure id="test">
+<div class="circle test"></div>
+<figcaption>Test</figcaption>
+</figure>
+</div>
+
 
 <script>
    WebFontConfig = {
@@ -173,44 +502,288 @@ figcaption {
 </script>
 
 <script type="text/javascript">
-  function makeRequest(url, req) {
-    $.ajax({
-      url: url,
-      method: "PUT",
-      contentType:"application/json; charset=utf-8",
-      dataType:"json",
-      data: JSON.stringify(req),
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer c3f6eba228a3863bcefb6b4394a756e1f56d4d9e88a5886636b5e74f552452b1");
-      }
-    }).done(function( data ) {
-      if ( console && console.log ) {
-        console.log( "Sample of data:", data );
-      }
-    });
-  }
-  
-  function changeColor(color) {
-    makeRequest("https://api.lifx.com/v1/lights/all/state", {
-      power: "on",
-      color: color + " saturation:1.0",
-      brightness: 1,
-      duration: 2
-    });
-  }
-  
-  function changeScene(scene) {
-    makeRequest("https://api.lifx.com/v1/scenes/scene_id:" + scene + "/activate", {});
-  }
-  
+function makeRequest(url, req) {
+$.ajax({
+url: url,
+method: "PUT",
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+data: JSON.stringify(req),
+beforeSend: function( xhr ) {
+xhr.setRequestHeader("Authorization", "Bearer c3f6eba228a3863bcefb6b4394a756e1f56d4d9e88a5886636b5e74f552452b1");
+}
+}).done(function( data ) {
+if ( console && console.log ) {
+console.log( "Sample of data:", data );
+}
+});
+}
+
+function makePostRequest(url, req) {
+$.ajax({
+url: url,
+method: "POST",
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+data: JSON.stringify(req),
+beforeSend: function( xhr ) {
+xhr.setRequestHeader("Authorization", "Bearer c3f6eba228a3863bcefb6b4394a756e1f56d4d9e88a5886636b5e74f552452b1");
+}
+}).done(function( data ) {
+if ( console && console.log ) {
+console.log( "Sample of data:", data );
+}
+});
+}
+
+
+function changeScene(h, b) {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "on",
+color: "hue:" + h + " saturation:0.90 brightness:" + b,
+duration: 1
+});
+}
+
+function changeTemp(k) {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+color: "brightness:0.4 kelvin:" + k,
+power: "on",
+duration: 0
+});
+}
+
+function changeColor(c) {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "on",
+color: c,
+brightness:0.4,
+duration: 0
+});
+}
+
+function changeBrightness(b) {
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "on",
+brightness: b,
+duration: 1
+});
+}
+
+function breatheEffect(){
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+color: "random brightness:0.4",
+period: 5.0,
+cycles: 0.5,
+persist: true,
+power_on: true,
+peak: "0.5",
+});
+}
+
+function matchDownLightPulse(k) {
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+color: "kelvin:" + k + " brightness:0.4",
+from_color: "kelvin:" + k + " brightness:0.1",
+period:1.6,
+cycles:1000000,
+persist:false,
+power: "on",
+peak:0.5,
+duration: 0
+});
+}
+
+function powerOff(){
+makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+power: "off",
+duration: 0.0
+});
+}
+
+function togglePower(){
+makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/toggle", {
+duration: 1
+});
+}
+
   $(document).ready(function() {
-    $("#sunset").click(function() {
-      changeColor("red");
-    });
-    
-    $("#ocean").click(function() {
-      changeColor("blue");
-    });
+  $("#peaceful").click(function() {
+  changeScene("203", "0.25");
+  });
+  
+  $("#relaxing").click(function() {
+  changeScene("123", "0.28");
+  });
+  
+  $("#energizing").click(function() {
+  changeScene("244", "0.45");
+  });
+  
+  $("#soothing").click(function() {
+  changeScene("300", "0.15");
+  });
+  
+  $("#tranquil").click(function() {
+  changeScene("44", "0.28");
+  });
+  
+  $("#exciting").click(function() {
+  changeScene("128", "0.48");
+  });
+  
+  $("#cheerful").click(function() {
+  changeScene("358", "0.48");
+  });
+  
+  $("#focusing").click(function() {
+  changeTemp("6500");
+  });
+  
+  $("#blissful").click(function() {
+  changeScene("267", "0.50");
+  });
+  
+  $("#powerful").click(function() {
+  changeScene("25", "0.50");
+  });
+  
+  $("#warming").click(function() {
+  changeScene("53", "1.0");
+  });
+  
+  $("#dream").click(function() {
+  changeScene("88", "0.48");
+  });
+  
+  $("#serene").click(function() {
+  changeScene("187", "0.37");
+  });
+  
+  $("#ultrawarm").click(function() {
+  changeTemp("2500");
+  });
+  
+  $("#incandescent").click(function() {
+  changeTemp("2750");
+  });
+  
+  $("#warm").click(function() {
+  changeTemp("3000");
+  });
+  
+  $("#neutralwarm").click(function() {
+  changeTemp("3200");
+  });
+  
+  $("#neutral").click(function() {
+  changeTemp("3500");
+  });
+  
+  $("#cool").click(function() {
+  changeTemp("4000");
+  });
+  
+  $("#cooldaylight").click(function() {
+  changeTemp("4500");
+  });
+  
+  $("#softdaylight").click(function() {
+  changeTemp("5000");
+  });
+  
+  $("#daylight").click(function() {
+  changeTemp("5500");
+  });
+  
+  $("#noondaylight").click(function() {
+  changeTemp("6000");
+  });
+  
+  $("#brightdaylight").click(function() {
+  changeTemp("6500");
+  });
+  
+  $("#bluedaylight").click(function() {
+  changeTemp("7000");
+  });
+  
+  $("#blueovercast").click(function() {
+  changeTemp("7500");
+  });
+  
+  $("#bluewater").click(function() {
+  changeTemp("8000");
+  });
+  
+  $("#blueice85").click(function() {
+  changeTemp("8500");
+  });
+  
+  $("#blueice90").click(function() {
+  changeTemp("9000");
+  });
+  $("#white").click(function() {
+  changeColor("white");
+  });
+  $("#red").click(function() {
+  changeColor("red");
+  });
+  $("#orange").click(function() {
+  changeColor("orange");
+  });
+  $("#yellow").click(function() {
+  changeColor("yellow");
+  });
+  $("#cyan").click(function() {
+  changeColor("cyan");
+  });
+  $("#green").click(function() {
+  changeColor("green");
+  });
+  $("#blue").click(function() {
+  changeColor("blue");
+  });
+  $("#purple").click(function() {
+  changeColor("purple");
+  });
+  $("#pink").click(function() {
+  changeColor("pink");
+  });
+  $("#brightness1").click(function() {
+  changeBrightness("0.05");
+  });
+  $("#brightness10").click(function() {
+  changeBrightness("0.1");
+  });
+  $("#brightness20").click(function() {
+  changeBrightness("0.2");
+  });
+  $("#brightness30").click(function() {
+  changeBrightness("0.3");
+  });
+  $("#brightness40").click(function() {
+  changeBrightness("0.4");
+  });
+  $("#brightness50").click(function() {
+  changeBrightness("0.5");
+  });
+  $("#brightness60").click(function() {
+  changeBrightness("0.6");
+  });
+  $("#brightness70").click(function() {
+  changeBrightness("0.7");
+  });
+  $("#brightness80").click(function() {
+  changeBrightness("0.8");
+  });
+  $("#brightness90").click(function() {
+  changeBrightness("0.9");
+  });
+  $("#brightness100").click(function() {
+  changeBrightness("1.0");
+  });
+
   });
 </script>
 ]]>
