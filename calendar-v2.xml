@@ -160,8 +160,8 @@ h3
     //} else {
     //  $("#event-container").show();
     //}
-    if (prefs.getBool("showHeader") == true) {
-      $("#events > table > thead").show();
+    if (prefs.getBool("showHeader") == false) {
+      $("#events > table > thead").hide();
     }
     update();
     
