@@ -65,9 +65,9 @@ h1, h2, h3, h4, h5
   padding: 0;
 }
 
-.rssBody p+div a
+.rssRow
 {
-  display: none;
+  margin-bottom: 20px;
 }
 
 .rssRow h4, .rssRow p, .rssRow div
@@ -94,6 +94,11 @@ h1, h2, h3, h4, h5
   text-decoration: none;
   __UP_body-style__;
   font-family: __UP_body-font-name__;
+}
+
+.rssRow p a
+{
+  display: none;
 }
 
 #ticker1 .odd { background-color: #fff; }
