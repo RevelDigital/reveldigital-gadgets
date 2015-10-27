@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="MaitreD Menu Gadget" description="MaitreD integration gadget for displaying menu items by division" author="RevelDigital" background="transparent">
+<ModulePrefs title="Ideal POS Menu Gadget" description="Ideal POS integration gadget for displaying menu items" author="RevelDigital" background="transparent">
   <UserPref name="host" display_name="Database Host" datatype="string" />
   <UserPref name="updateInterval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
   <UserPref name="department" display_name="Department" datatype="string" />
