@@ -232,6 +232,12 @@
    
   function load() {
   
+    WebFont.load({
+      google: {
+        families: [ prefs.getString("CustomFont") ]
+      }
+    });
+    
     //getWOEID(search);
     getWeather(search);
     
