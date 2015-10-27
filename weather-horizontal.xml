@@ -35,13 +35,18 @@
     padding: 0;
   }
 
+  span, div.condition {
+    font-family: arial,sans-serif;
+    font-family: __UP_CustomFont__;
+  }
+  
   #container {
     position: relative;
     width: __UP_rdW__px;
     height: __UP_rdH__px;
     margin: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: arial,sans-serif;
     font-family: __UP_CustomFont__;
   }
   
