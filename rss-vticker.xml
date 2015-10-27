@@ -47,15 +47,11 @@ h1, h2, h3, h4, h5
 	overflow: hidden;
 }
 
-.rssHeader
-{
-  __UP_header-style__;
-  font-family: __UP_header-font-name__;
-}
-
-.rssHeader a
+.rssHeader, .rssHeader a
 {
   text-decoration: none;
+  __UP_header-style__;
+  font-family: __UP_header-font-name__;
 }
 
 .rssBody
@@ -87,24 +83,17 @@ h1, h2, h3, h4, h5
 	width: __UP_rdW__px;
 }
 
-.rssRow h4, .rssRow h4 a
+.rssRow h4, .rssRow p, .rssRow a, .rssRow h4 a
 {
+  text-decoration: none;
   __UP_header-style__;
   font-family: __UP_header-font-name__;
-  text-decoration: none;
 }
 
 .rssRow div
 {
   __UP_date-style__;
   font-family: __UP_date-font-name__;
-}
-
-.rssRow p, .rssRow a
-{
-  text-decoration: none;
-  __UP_body-style__;
-  font-family: __UP_body-font-name__;
 }
 
 .rssRow p a
