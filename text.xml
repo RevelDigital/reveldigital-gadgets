@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Lifx Light Control" description="" author="RevelDigital" background="transparent">
+<ModulePrefs title="Text Gadget" description="Basic gadget for displaying text" author="RevelDigital" background="transparent">
   <UserPref name="text" display_name="Text to Display" datatype="string" default_value="" />
   <UserPref name="header-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="font-name" display_name="Google Font Name" datatype="string" default_value="Droid Sans" />
