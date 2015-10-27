@@ -49,10 +49,25 @@ h1, h2, h3, h4, h5
 
 .rssBody
 {
+  position: relative;
+  overflow: hidden;
   border: 0px solid #fff;
   height: __UP_rdH__px;
   __UP_body-style__;
   font-family: __UP_body-font-name__;
+}
+
+.rssBody ul
+{
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rssBody p+div a
+{
+  display: none;
 }
 
 .rssRow h4, .rssRow p, .rssRow div
@@ -89,8 +104,10 @@ h1, h2, h3, h4, h5
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.zrssfeed.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
 <div id="ticker">
@@ -125,10 +142,14 @@ h1, h2, h3, h4, h5
       header: prefs.getBool("showHeader"),
       ssl: true
     }, function (e) {
-      $('#ticker div.rssBody').vTicker({
-        showItems: prefs.getString("numItems"),
-        pause: parseInt(prefs.getString("pause")) * 1000,
-        delay: 1000
+      $('div.rssBody').jcarousel({
+        vertical: true,
+        wrap: 'both',
+        transitions: true
+      }).jcarouselAutoscroll({
+        interval: parseInt(prefs.getString("pause")) * 1000,
+        target: '+=1',
+        autostart: true
       });
     });
   }
