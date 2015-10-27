@@ -13,6 +13,7 @@
   <UserPref name="Location4" display_name="Location 4" datatype="string" default_value="" />
   <UserPref name="Location5" display_name="Location 5" datatype="string" default_value="" />
   <UserPref name="body-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
+  <UserPref name="body-font" display_name="Google Font Name" datatype="string" default_value="" required="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -34,7 +35,8 @@
     overflow: hidden;
     margin: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: arial,sans-serif;
+    font-family: __UP_body-font__;
   }
 
   section, figure {
@@ -145,13 +147,11 @@
   .icon-container img {
     height: __UP_rdH__px;
   }
-      
+  
   div.condition, div.temp, div.high-low, div.location {
     __UP_body-style__;
+    font-family: __UP_body-font__;
   }
-
-
-
 
 
   .container {
@@ -244,6 +244,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
 <script type="text/javascript">
 
@@ -257,6 +258,12 @@
   var flipTimer;
   
   function load() {
+    
+    WebFont.load({
+      google: {
+        families: [ prefs.getString("body-font") ]
+      }
+    });
     
     search = [];
     if (prefs.getString("Location1") != "") {
