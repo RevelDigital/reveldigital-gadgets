@@ -11,6 +11,8 @@
   <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="header-font-name" display_name="Google Font Name for Header" datatype="string" default_value="" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="date-font-name" display_name="Google Font Name for Dateline" datatype="string" default_value="" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="body-font-name" display_name="Google Font Name for Body" datatype="string" default_value="" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -45,26 +47,6 @@ h1, h2, h3, h4, h5
 	overflow: hidden;
 }
 
-.rssFeed a
-{
-	__UP_body-style__;
-	font-family: __UP_body-font-name__;
-	text-decoration: none;
-}
-
-.rssFeed a:hover
-{
-	__UP_body-style__;
-  font-family: __UP_body-font-name__;
-	text-decoration: none;
-}
-
-.rssHeader, .rssHeader a, .rssHeader a:hover
-{
-  __UP_header-style__;
-  font-family: __UP_header-font-name__;
-}
-
 .rssBody
 {
   border: 0px solid #fff;
@@ -79,10 +61,23 @@ h1, h2, h3, h4, h5
 	width: __UP_rdW__px;
 }
 
-.rssRow h4, .rssRow a, .rssRow a:hover
+.rssRow h4
 {
   __UP_header-style__;
   font-family: __UP_header-font-name__;
+}
+
+.rssRow div
+{
+  __UP_date-style__;
+  font-family: __UP_date-font-name__;
+}
+
+.rssRow p, .rssRow a
+{
+  text-decoration: none;
+  __UP_body-style__;
+  font-family: __UP_body-font-name__;
 }
 
 #ticker1 .odd { background-color: #fff; }
@@ -92,7 +87,7 @@ h1, h2, h3, h4, h5
 #ticker2 .even { background-color: #fff; }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.zrssfeed.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
