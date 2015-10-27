@@ -161,9 +161,17 @@ h3
   
   function load() {
     
+    var families = [];
+    if (prefs.getString("header-font-name") != "") {
+      families.push(prefs.getString("header-font-name"));
+    }
+    if (prefs.getString("body-font-name") != "") {
+      families.push(prefs.getString("body-font-name"));
+    }
+    
     WebFont.load({
       google: {
-        families: [ prefs.getString("header-font-name"), prefs.getString("body-font-name") ]
+        families: families
       }
     });
     
