@@ -308,7 +308,7 @@
     
     $('div.location', panel).text(item.location);
     $('div.condition', panel).text(item.condition.text);
-    $('img.icon', panel).attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
+    $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
     $('div.temp', panel).text(item.condition.temp + "\u00B0");
     $('div.high-low', panel).text(item.forecast[0].high + "\u00B0" + " / " + item.forecast[0].low + "\u00B0");
     
