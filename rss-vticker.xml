@@ -61,10 +61,11 @@ h1, h2, h3, h4, h5
 	width: __UP_rdW__px;
 }
 
-.rssRow h4
+.rssRow h4, .rssRow h4 a
 {
   __UP_header-style__;
   font-family: __UP_header-font-name__;
+  text-decoration: none;
 }
 
 .rssRow div
