@@ -47,6 +47,17 @@ h1, h2, h3, h4, h5
 	overflow: hidden;
 }
 
+.rssHeader
+{
+  __UP_header-style__;
+  font-family: __UP_header-font-name__;
+}
+
+.rssHeader a
+{
+  text-decoration: none;
+}
+
 .rssBody
 {
   position: relative;
