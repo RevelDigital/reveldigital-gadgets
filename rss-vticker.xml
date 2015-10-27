@@ -107,6 +107,9 @@ h1, h2, h3, h4, h5
     if (prefs.getString("body-font-name") != "") {
       families.push(prefs.getString("body-font-name"));
     }
+    if (prefs.getString("date-font-name") != "") {
+      families.push(prefs.getString("date-font-name"));
+    }
     
     WebFont.load({
       google: {
