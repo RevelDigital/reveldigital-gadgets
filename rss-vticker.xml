@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.zrssfeed.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js"></script>
@@ -122,23 +123,27 @@ h1, h2, h3, h4, h5
   var prefs = new gadgets.Prefs();
 
   function load() {
-    var families = [];
-    if (prefs.getString("header-font-name") != "") {
-      families.push(prefs.getString("header-font-name"));
-    }
-    if (prefs.getString("body-font-name") != "") {
-      families.push(prefs.getString("body-font-name"));
-    }
-    if (prefs.getString("date-font-name") != "") {
-      families.push(prefs.getString("date-font-name"));
-    }
-    if (families.length > 0) {
+    //var families = [];
+    //if (prefs.getString("header-font-name") != "") {
+    //  families.push(prefs.getString("header-font-name"));
+    //}
+    //if (prefs.getString("body-font-name") != "") {
+    //  families.push(prefs.getString("body-font-name"));
+    //}
+    //if (prefs.getString("date-font-name") != "") {
+    //  families.push(prefs.getString("date-font-name"));
+    //}
+    //if (families.length > 0) {
       WebFont.load({
         google: {
-          families: families
+          families: [
+            getFamilyName(prefs.getString("header-font-name")),
+            getFamilyName(prefs.getString("body-font-name")),
+            getFamilyName(prefs.getString("date-font-name"))
+          ]
         }
       });
-    }
+    //}
     
     $("#ticker").rssfeed(prefs.getString("feedUrl"), {
       limit: prefs.getString("maxItems"),
