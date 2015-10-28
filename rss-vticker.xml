@@ -51,7 +51,6 @@ h1, h2, h3, h4, h5
 {
   text-decoration: none;
   __UP_header-style__;
-  font-family: __UP_header-font-name__;
 }
 
 .rssBody
@@ -61,7 +60,6 @@ h1, h2, h3, h4, h5
   border: 0px solid #fff;
   height: __UP_rdH__px;
   __UP_body-style__;
-  font-family: __UP_body-font-name__;
 }
 
 .rssBody ul
@@ -87,19 +85,16 @@ h1, h2, h3, h4, h5
 {
   text-decoration: none;
   __UP_header-style__;
-  font-family: __UP_header-font-name__;
 }
 
 .rssRow div
 {
   __UP_date-style__;
-  font-family: __UP_date-font-name__;
 }
 
 .rssRow p
 {
   __UP_body-style__;
-  font-family: __UP_body-font-name__;
 }
 
 .rssRow p a
@@ -130,22 +125,22 @@ h1, h2, h3, h4, h5
 
   function load() {
     //var families = [];
-    //if (prefs.getString("header-font-name") != "") {
+    //if (prefs.getString("header-style") != "") {
     //  families.push(prefs.getString("header-font-name"));
     //}
-    //if (prefs.getString("body-font-name") != "") {
+    //if (prefs.getString("body-style") != "") {
     //  families.push(prefs.getString("body-font-name"));
     //}
-    //if (prefs.getString("date-font-name") != "") {
+    //if (prefs.getString("date-style") != "") {
     //  families.push(prefs.getString("date-font-name"));
     //}
     //if (families.length > 0) {
       WebFont.load({
         google: {
           families: [
-            getFamilyName(prefs.getString("header-font-name")),
-            getFamilyName(prefs.getString("body-font-name")),
-            getFamilyName(prefs.getString("date-font-name"))
+            getFamilyName(prefs.getString("header-style")),
+            getFamilyName(prefs.getString("body-style")),
+            getFamilyName(prefs.getString("date-style"))
           ]
         }
       });
