@@ -132,12 +132,13 @@ h1, h2, h3, h4, h5
     if (prefs.getString("date-font-name") != "") {
       families.push(prefs.getString("date-font-name"));
     }
-    
-    WebFont.load({
-      google: {
-        families: families
-      }
-    });
+    if (families.length > 0) {
+      WebFont.load({
+        google: {
+          families: families
+        }
+      });
+    }
     
     $("#ticker").rssfeed(prefs.getString("feedUrl"), {
       limit: prefs.getString("maxItems"),
