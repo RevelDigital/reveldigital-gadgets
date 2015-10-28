@@ -128,12 +128,13 @@ table.google-visualization-table-table,
     if (prefs.getString("body-font-name") != "") {
       families.push(prefs.getString("body-font-name"));
     }
-    
-    WebFont.load({
-      google: {
-        families: families
-      }
-    });
+    if (families.length > 0) {
+      WebFont.load({
+        google: {
+          families: families
+        }
+      });
+    }
     
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
