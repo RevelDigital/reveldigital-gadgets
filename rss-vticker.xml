@@ -124,27 +124,28 @@ h1, h2, h3, h4, h5
   var prefs = new gadgets.Prefs();
 
   function load() {
-    //var families = [];
-    //if (prefs.getString("header-style") != "") {
-    //  families.push(prefs.getString("header-font-name"));
-    //}
-    //if (prefs.getString("body-style") != "") {
-    //  families.push(prefs.getString("body-font-name"));
-    //}
-    //if (prefs.getString("date-style") != "") {
-    //  families.push(prefs.getString("date-font-name"));
-    //}
-    //if (families.length > 0) {
-      WebFont.load({
-        google: {
-          families: [
-            getFamilyName(prefs.getString("header-style")),
-            getFamilyName(prefs.getString("body-style")),
-            getFamilyName(prefs.getString("date-style"))
-          ]
-        }
-      });
-    //}
+
+    WebFont.load({
+      google: {
+        families: [
+          getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          getFamilyName(prefs.getString("date-style"))
+        ]
+      }
+    });
     
     $("#ticker").rssfeed(prefs.getString("feedUrl"), {
       limit: prefs.getString("maxItems"),
