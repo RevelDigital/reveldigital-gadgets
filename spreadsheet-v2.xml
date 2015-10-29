@@ -6,9 +6,7 @@
   <UserPref name="range" display_name="Cell Range" datatype="string" />
   <UserPref name="sheet" display_name="Sheet Name" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="header-font-name" display_name="Google Font Name for Header" datatype="string" default_value="" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="body-font-name" display_name="Google Font Name for Body" datatype="string" default_value="" />
   <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
     <EnumValue value="fastest" display_value="Fastest" />
     <EnumValue value="fast" display_value="Fast" />
@@ -82,7 +80,6 @@ table.google-visualization-table-table,
 .body-style
 {
   __UP_body-style__;
-  font-family: __UP_body-font-name__;
   padding-bottom: __UP_rowPadding__px !important;
   border: 0 !important;
 }
@@ -91,7 +88,6 @@ table.google-visualization-table-table,
 {
   text-align: left;
   __UP_header-style__;
-  font-family: __UP_header-font-name__;
   border: 0 !important;
 }
 
@@ -102,12 +98,13 @@ table.google-visualization-table-table,
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/utils/Draggable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
-<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/utils/Draggable.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <div id="container">
@@ -120,21 +117,21 @@ table.google-visualization-table-table,
   var prefs = new gadgets.Prefs();
 
   function load() {
-  
-    var families = [];
-    if (prefs.getString("header-font-name") != "") {
-      families.push(prefs.getString("header-font-name"));
-    }
-    if (prefs.getString("body-font-name") != "") {
-      families.push(prefs.getString("body-font-name"));
-    }
-    if (families.length > 0) {
-      WebFont.load({
-        google: {
-          families: families
-        }
-      });
-    }
+      
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
     
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
