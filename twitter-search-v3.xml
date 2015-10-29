@@ -222,7 +222,7 @@ span.when
         //});
         
         if (prefs.getBool("showSeparator") == false) {
-          $("div.tweetscontainer .item").css("border", "none");
+          $("div.item").css("border", "none");
         }
         //$("span.when").each(function (idx) {
         //  $(this).text(timeAgo($(this).data("timestamp")));
