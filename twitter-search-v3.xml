@@ -39,10 +39,10 @@ a
   text-decoration:none;
 }
 
-a:hover,a:visited,a:active,a:link
+a, a:hover, a:visited, a:active, a:link
 {
-  __UP_link-style__;
   text-decoration:none;
+  __UP_link-style__;
 }
 
 img
@@ -79,6 +79,11 @@ div.tweetscontainer
   overflow: hidden;
   __UP_body-style__;
   background-color: #__UP_BackColor__;
+}
+
+p, span
+{
+  __UP_body-style__;
 }
 
 div.tweet
