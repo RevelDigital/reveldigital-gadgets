@@ -73,6 +73,13 @@ body
         ]
       }
     });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("message-style"))
+        ]
+      }
+    });
     
     init(prefs.getString("startDate"));
   }
