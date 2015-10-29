@@ -6,6 +6,7 @@
   <UserPref name="maxItems" display_name="Maximum number of tweets" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between tweets" datatype="string" default_value="5" />
   <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
+  <UserPref name="showProfileImage" display_name="Show Profile Image" datatype="bool" default_value="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -50,6 +51,16 @@ img
   border-radius: 5px;
 }
 
+ul
+{
+  position: relative;
+
+  /* Optional, required in this case since it's a <ul> element */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 ul, p
 {
   padding: 0;
@@ -58,6 +69,8 @@ ul, p
 
 div.tweetscontainer
 {
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   -webkit-user-select: none; 
   -moz-user-select: none; 
   -ms-user-select: none; 
@@ -90,7 +103,6 @@ div.tweet
 
 .text
 {
-  margin-left: 90px;
 }
 
 span.when
@@ -103,9 +115,14 @@ span.when
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/third-party/jquery.profanityfilter.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
-<div class="tweetscontainer">
+<div class="tweetscontainer jcarousel">
   <ul></ul>
 </div>
 
@@ -140,40 +157,66 @@ span.when
     $.getJSON(url+query, function(json){
 
       if(json) {
-        var display = '';
-        $.each(json.Statuses,function(i,tweet) {
-          display += '<li><div class="item">';
+        //var display = '';
+        //$.each(json.Statuses,function(i,tweet) {
+        //  display += '<li><div class="item">';
+        //  ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
+        //  ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
+        //  display += '<div class="avatar tweet' + i + '">' +
+        //    '<img src="' + tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.') + '"  />' + 
+        //    '</div>' +
+        //    '<div class="text tweet' + i + '">' +
+        //    '<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + 
+        //    '" title="tweets by ' + tweet.User.Identifier.ScreenName + 
+        //    '">@' +tweet.User.Identifier.ScreenName + '</a>' + 
+        //    '<p>' + ttext + '</p>' + '<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + timeAgo(tweet.CreatedAt) + '</span>' +
+        //    '</div><div style="clear:both;height:25px;"></div></div></li>';
+        //});
+        //$("div.tweetscontainer ul").html(display);
+        
+        $('div.tweetscontainer ul').empty();
+        
+        $.each(json.Statuses, function(i, tweet) {
+          var li = $('<li/>');
+          var item = $('<div class="item"/>');
           ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
           ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
-          display += '<div class="avatar tweet' + i + '">' +
-            '<img src="' + tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.') + '"  />' + 
-            '</div>' +
-            '<div class="text tweet' + i + '">' +
-            '<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + 
-            '" title="tweets by ' + tweet.User.Identifier.ScreenName + 
-            '">@' +tweet.User.Identifier.ScreenName + '</a>' + 
-            '<p>' + ttext + '</p>' + '<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + timeAgo(tweet.CreatedAt) + '</span>' +
-            '</div><div style="clear:both;height:25px;"></div></div></li>';
+          if (prefs.getBool("showProfileImage")) {
+            var icon = $('<div class="avatar tweet' + i + '">');
+            icon.append($('<img/>').attr('src', tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.').replace(/http:\/\//, 'https://')));
+            item.append(icon);
+          }
+          var body = $('<div class="text tweet' + i + '"/>');
+          body.append($('<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + '" title="tweets by ' + tweet.User.Identifier.ScreenName + '</a>'));
+          body.append($('<p/>').append(ttext));
+          body.append($('<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + '@' + tweet.User.Identifier.ScreenName + ' ' + timeAgo(tweet.CreatedAt) + '</span>'));
+          item.append(body);
+          item.append($('<div style="clear.both;height:25px;"></div>'));
+          li.append(item);
+          $("div.tweetscontainer ul").append(li);
         });
-        $("div.tweetscontainer ul").html(display);
         
-        try {
-          $('div.tweetscontainer').vTicker.destroy();
-        } catch (e) {
-        }
+        $('div.text').profanityFilter();
         
-        $('div.tweetscontainer').vTicker({
-          showItems: prefs.getString("numItems"),
-          pause: parseInt(prefs.getString("pause")) * 1000,
-          delay: 1000
-        });
+        $('.jcarousel').jcarousel('reload');
+        
+        //try {
+        //  $('div.tweetscontainer').vTicker.destroy();
+        //} catch (e) {
+        //}
+        
+        //$('div.tweetscontainer').vTicker({
+        //  showItems: prefs.getString("numItems"),
+        //  pause: parseInt(prefs.getString("pause")) * 1000,
+        //  delay: 1000
+        //});
         
         if (prefs.getBool("showSeparator") == false) {
           $("div.tweetscontainer .item").css("border", "none");
         }
-        $("span.when").each(function (idx) {
-          $(this).text(timeAgo($(this).data("timestamp")));
-        });
+        //$("span.when").each(function (idx) {
+        //  $(this).text(timeAgo($(this).data("timestamp")));
+        //});
       }
     });
   }
