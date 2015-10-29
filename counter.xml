@@ -54,7 +54,7 @@ body
 <div id="counter">
 </div>
 
-<SCRIPT type="text/javascript">
+<script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
 
@@ -64,7 +64,7 @@ body
   var message = '';
   var up = true;
 
-  function init() {
+  function load() {
   
     WebFont.load({
       google: {
@@ -113,8 +113,8 @@ body
     setTimeout("count()", 1000)
   }
 
-  gadgets.util.registerOnLoadHandler(init);
-</SCRIPT>
+  gadgets.util.registerOnLoadHandler(load);
+</script>
      	]]>
   </Content>
 </Module>
