@@ -131,7 +131,17 @@ span.when
   var prefs = new gadgets.Prefs();
 
   function load() {
-      
+  
+    $('.jcarousel').jcarousel({
+      vertical: true,
+      wrap: 'both',
+      transitions: true
+    }).jcarouselAutoscroll({
+        interval: 1000,
+        target: '+=1',
+        autostart: true
+    });
+    
     update();
     
     setInterval(update, 1000 * 60 * 10); // 10 min update
