@@ -125,21 +125,21 @@ h1, h2, h3, h4, h5
     WebFont.load({
       google: {
         families: [
-          getFamilyName(prefs.getString("header-style"))
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          getFamilyName(prefs.getString("body-style"))
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          getFamilyName(prefs.getString("date-style"))
+          RevelDigital.getFamilyName(prefs.getString("date-style"))
         ]
       }
     });
