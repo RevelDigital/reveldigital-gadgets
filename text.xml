@@ -29,7 +29,7 @@ body
 
 span
 {
-  __UP_header-style__;
+  __UP_font-style__;
 }
 </style>
 
