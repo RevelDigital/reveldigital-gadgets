@@ -137,7 +137,7 @@ span.when
       wrap: 'both',
       transitions: true
     }).jcarouselAutoscroll({
-        interval: 1000,
+        interval: parseInt(prefs.getString("pause")) * 1000,
         target: '+=1',
         autostart: true
     });
