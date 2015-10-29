@@ -99,6 +99,7 @@ div.tweet
   display: block;
   width: 80px;
   height: 80px;
+  margin-right: 10px;
 }
 
 .text
