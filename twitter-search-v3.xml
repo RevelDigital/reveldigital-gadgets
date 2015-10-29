@@ -99,6 +99,7 @@ div.tweet
   display: block;
   width: 80px;
   height: 80px;
+  margin-right: 10px;
 }
 
 .text
@@ -132,6 +133,21 @@ span.when
 
   function load() {
   
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("link-style"))
+        ]
+      }
+    });
+    
     $('.jcarousel').jcarousel({
       vertical: true,
       wrap: 'both',
