@@ -84,6 +84,11 @@ div.postscontainer
   background-color: #__UP_BackColor__;
 }
 
+p, span
+{
+  __UP_body-style__;
+}
+
 div.post
 {
   display: block;
