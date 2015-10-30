@@ -39,20 +39,28 @@ body
 
 a
 {
-  __UP_link-style__;
   text-decoration:none;
+  __UP_link-style__;
 }
 
 a:hover,a:visited,a:active,a:link
 {
-  __UP_link-style__;
   text-decoration:none;
+  __UP_link-style__;
 }
 
 img
 {
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+
+ul
+{
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 ul, p
@@ -63,6 +71,11 @@ ul, p
 
 div.postscontainer
 {
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+  text-align: left;
   text-align: left;
   overflow: hidden;
   __UP_body-style__;
@@ -87,6 +100,7 @@ div.post
   display: block;
   width: 80px;
   height: 80px;
+  margin-right: 10px;
 }
 
 .avatar-small img
@@ -102,6 +116,7 @@ div.post
   display: block;
   width: 130px;
   height: 130px;
+  margin-right: 10px;
 }
 
 .avatar-large img
@@ -112,12 +127,12 @@ div.post
 
 .text-small
 {
-  margin-left: 90px;
+
 }
 
 .text-large
 {
-  margin-left: 140px;
+
 }
 
 span.when
@@ -129,10 +144,16 @@ span.when
 }
 </style>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/third-party/jquery.profanityfilter.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-langs.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
-<div class="postscontainer">
+<div class="postscontainer jcarousel">
   <ul></ul>
 </div>
 
@@ -142,6 +163,31 @@ span.when
 
   function load() {
   
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("link-style"))
+        ]
+      }
+    });
+    
+    $('.jcarousel').jcarousel({
+      vertical: true,
+      wrap: 'both',
+      transitions: true
+    }).jcarouselAutoscroll({
+        interval: 2000,
+        target: '+=1',
+        autostart: true
+    });
+    
     update();
     
     setInterval(update, 1000 * 60 * 10); // 10 min update
@@ -174,101 +220,56 @@ span.when
     $.getJSON(url, function(json){
 
       if(json) {
-        var display = '';
         $.each(json.data, function(i, post) {
+          var li = $('<li/>');
+          var item = $('<div class="item"/>');
+        
           var desc = post.description;
           if (desc == null) {
             desc = "";
           }
-          display += '<li><div class="item">';
           if (post.picture != null) {
-            display += '<div class="' + imgClass + ' post' + i + '">' +
-              '<img src="' + post.picture + '"  />' + 
-              '</div>';
+            var icon = $('<div class="' + imgClass + ' post' + i + '">');
+            icon.append($('<img/>').attr('src', post.picture));
+            item.append(icon);
           }
-          display += '<div class="' + txtClass + ' post' + i + '">';
+          var body = $('<div/>').attr('class', txtClass + ' post' + i);
           if (post.name != null) {
-            display +=
-              '<a href="' + post.link +
-              '" title="post by ' + post.from.name + 
-              '">' + post.name + '</a>';
-          } 
-          display += '<p>' + post.message + '</p>' +
-            '<p>' + desc + '</p>' +
-            '<span class="when" data-timestamp="' + post.created_time + '">' + timeAgo(post.created_time) + '</span>' +
-            '</div><div style="clear:both;height:25px;"></div></div></li>';
+            body.append($('<a/>').attr('href', post.link).attr('title', 'post by ' + post.from.name).text(post.name));
+          }
+          body.append($('<p/>').text(post.message));
+          body.append($('<p/>').text(desc));
+          body.append($('<span/>')
+            .attr('class', 'when')
+            .attr('data-timestamp', post.created_time)
+            .text(post.from.name + ", " + timeAgo(post.created_time)));
+
+          item.append(body);
+          item.append($('<div style="clear:both;height:25px;"></div>'));
+          
+          li.append(item);
+
+          $("div.postscontainer ul").append(li);
         });
-        $("div.postscontainer ul").html(display);
+        
+        $('div.item').profanityFilter();
+        
+        $('.jcarousel').jcarousel('reload');
         
         try {
           $('div.postscontainer').vTicker.destroy();
         } catch (e) {
         }
         
-        $('div.postscontainer').vTicker({
-          showItems: prefs.getString("numItems"),
-          pause: prefs.getInt("pause") * 1000,
-          delay: 1000
-        });
-        
         if (prefs.getBool("showSeparator") == false) {
           $("div.postscontainer .item").css("border", "none");
         }
-        $("span.when").each(function (idx) {
-          $(this).text(timeAgo($(this).data("timestamp")));
-        });
       }
     });
   }
 
   var timeAgo = function (dateString) {
-    var rightNow = new Date(),
-    then = Date.parse(dateString),
-    diff = rightNow - then,
-    second = 1000,
-    minute = second * 60,
-    hour = minute * 60,
-    day = hour * 24,
-    week = day * 7;
-  
-    if (isNaN(diff) || diff < 0) {
-      return "";	//Return blank string if unknown
-    }
-  
-    if (diff < second * 2) {
-      return "right now";
-    }
-  
-    if (diff < minute) {
-      return Math.floor(diff / second) + " seconds ago";
-    }
-  
-    if (diff < minute * 2) {
-      return "about 1 minute ago";
-    }
-  
-    if (diff < hour) {
-      return Math.floor(diff / minute) + " minutes ago";
-    }
-  
-    if (diff < hour * 2) {
-      return "about 1 hour ago";
-    }
-  
-    if (diff < day) {
-      return  Math.floor(diff / hour) + " hours ago";
-    }
-  
-    if (diff > day && diff < day * 2) {
-      return "yesterday";
-    }
-  
-    if (diff < day * 365) {
-      return Math.floor(diff / day) + " days ago";
-    }
-    else {
-      return "over a year ago";
-    }
+    return moment.duration(moment(dateString) - moment()).humanize(true);
   }
 </script>
 ]]>
