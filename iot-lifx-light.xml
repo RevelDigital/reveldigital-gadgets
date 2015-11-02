@@ -583,7 +583,7 @@ peak: "0.5",
 
 function assistance(){
 makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/pulse", {
-color: "red brightness:1.0",
+color: "red brightness:0.4",
 from_color: "brightness:0",
 period: 1,
 cycles:1000000,
