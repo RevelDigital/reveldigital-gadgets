@@ -74,7 +74,9 @@ body {
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/tabletop.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+	var apiKey = "kOFGVRFEgdmDAZiZhsSG8FfIR22VG1CI";
 	var prefs = new gadgets.Prefs();
+	var d;
 	gadgets.util.registerOnLoadHandler(initialize);
  
 	function initialize() {		
@@ -84,10 +86,26 @@ body {
 	 }
   
 	function processData(data, tabletop) {
-			for (i = 0; i < data.length; i++) { 
-				setInfo(data[i]);
+		d = data;
+		resolveNext(0);
+	}
+	
+	function resolveNext(idx) {
+		setTimeout(function () {
+			var uri = "http://stage-api.target.com/products/v3/" + d[idx].product_code + "?id_type=dpci&store_id=530&mode=online&fields=ids,locations,images,brand,descriptions,pricing,in_store_locations&key=" + apiKey;
+            var res = encodeURIComponent(uri);
+            setInfo('Initial uri ' + uri);
+            setInfo('Encoded uri ' + res);
+            $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+				$.each(data, function (index, item) {
+                    setInfo('Iterating over ' + item.toString());
+				});
+			});
+			if (++idx < d.length) {
+				resolveNext(idx);
 			}
-		}
+		}, 5000)
+     }
 	
 	function setInfo(data) {
 			if (false) {
