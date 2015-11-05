@@ -76,7 +76,7 @@ body {
 <script type="text/javascript">
 	var apiKey = "kOFGVRFEgdmDAZiZhsSG8FfIR22VG1CI";
 	var prefs = new gadgets.Prefs();
-	var d;
+	var d = [];
 	gadgets.util.registerOnLoadHandler(initialize);
  
 	function initialize() {		
