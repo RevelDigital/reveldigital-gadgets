@@ -78,7 +78,7 @@ body {
 	gadgets.util.registerOnLoadHandler(initialize);
  
 	function initialize() {		
-		Tabletop.init( { key: public_spreadsheet_url,
+		Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
 							 callback: processData,
 							 simpleSheet: true } )
 	 }
