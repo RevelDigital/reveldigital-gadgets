@@ -99,6 +99,11 @@ body {
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
                     setInfo('Iterating over ' + item.toString());
+					setPrice(item.product_composite_response.items.store_price.original_price);
+					setLocation(item.product_composite_response.items.store_product.location_data.location_id);
+					setImage(item.product_composite_response.items.image.internal_primary_image_url);
+					setTitle(item.product_composite_response.items.reference_data.brand.brand_name);
+					setDescription(item.product_composite_response.items.general_description);
 				});
 			});
 			if (++idx < d.length) {
@@ -106,19 +111,50 @@ body {
 			}
 		}, 5000)
      }
+	 
+	function setPrice(data) {
+		setInfo('Setting price ' + data);
+		var container = $('#price');
+		container.append("$" + data);
+	}
+
+	function setLocation(data) {
+		setInfo('Setting location' + data);
+		var container = $('#location');
+		var container2 = $('#rect_location');
+		container.append(data);
+	}
+
+	function setImage(data) {
+		setInfo('Setting Image ' + data);
+		var container = $('#product_image');
+		container.attr("src", data);
+	}
+
+	function setTitle(data) {
+		setInfo('Setting Title ' + data);
+		var container = $('#product_name');
+		container.append(data);
+	}
+
+	function setDescription(val, unit) {
+		setInfo('Setting Desc ' + data);
+		var container = $('#product_desc');
+		container.append(data);
+	}
 	
 	function setInfo(data) {
-			if (false) {
-				var container = $('#infoContainer');
-				container.append(data + '<br>');
-			}	
-			if (true) {
-				console.log(data);
-			}
-			if (false) {
-				alert(data);
-			}
+		if (false) {
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (true) {
+			console.log(data);
 		}
+		if (false) {
+			alert(data);
+		}
+	}
   
   
    
@@ -126,9 +162,9 @@ body {
 <body>
 	<div id="parent">  
 		<div id="container">
-			<img id="product_image" src="http://scene7.targetimg1.com/is/image/Target/14161776?wid=410&hei=410"></img>
+			<img id="product_image" src=""></img>
 			<div class="blank"></div>
-			<div id="product_description">
+			<div>
 				<table width="100%">
 					<tr>
 						<td style="text-align: left;">
