@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Target India Custom Gadget" description="Cycle through product list fetched from Google Spreadshit" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="delay" display_name="Change product every X seconds" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+    font-family: Montserrat;
+}
+
+#parent {
+    width: 100%;
+    margin: 0px auto;
+}
+
+#container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#product_image {
+	width: 100%;
+}
+
+.blank {
+	height: 25px;
+}
+
+#price {
+	color: #B50000;
+	font-size: 500%;
+}
+
+#location {
+	color: #000000;
+	font-size: 500%;
+}
+
+#product_name {
+	color: #000000;
+	font-size: 300%;
+}
+
+#product_desc {
+	color: #000000;
+	font-size: 250%;
+}
+
+.rectangle{
+	padding-top: 10px;
+	padding-bottom: 10px;
+    width:100%;
+    background:#B50000;
+	text-align: center;
+}
+
+#rect_location {
+	color: #FFFFFF;
+	font-size: 300%;
+}
+
+#rect_discount {
+	color: #FFFFFF;
+	font-size: 300%;
+}
+  
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+	var prefs = new gadgets.Prefs();
+	gadgets.util.registerOnLoadHandler(initialize);
+ 
+	function initialize() {		
+		var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
+		query.send(handle);
+	 }
+  
+	function handle(response) {
+		setInfo(response);
+	}
+	
+	function setInfo(data) {
+			if (false) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
+			if (true) {
+				console.log(data);
+			}
+		}
+  
+  
+   
+</script>
+<body>
+	<div id="parent">  
+		<div id="container">
+			<img id="product_image" src="http://scene7.targetimg1.com/is/image/Target/14161776?wid=410&hei=410"></img>
+			<div class="blank"></div>
+			<div id="product_description">
+				<table width="100%">
+					<tr>
+						<td style="text-align: left;">
+							<p id="price">$3.24</p>
+						</td>
+						<td style="text-align: right;">
+							<p id="location">A20 F</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan= "2" style="text-align: left;">
+							<p id="product_name">Simply Balanced</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan= "2" style="text-align: left;">
+							<p id="product_desc">Organic Tomato Basil Pasta Sauce</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="blank"></div>
+			<div class="rectangle">
+				<p id="rect_location">Organic Tomato Basil Pasta Sauce</p>
+			</div>
+			<div class="blank"></div>
+			<div class="rectangle">
+				<p id="rect_discount">20% OFF</p>
+			</div>
+		</div>
+	</div>
+</body>]]>
+</Content>
+</Module>
