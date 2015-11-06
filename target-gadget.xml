@@ -86,7 +86,7 @@ body {
 		$('#product_image').hide();
 		$('#product_name').hide();
 		$('#product_desc').hide();
-		$(')
+		$('#rect_discount').hide();
 		Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
 							 callback: processData,
 							 simpleSheet: true } )
