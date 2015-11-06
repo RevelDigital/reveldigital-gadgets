@@ -130,7 +130,7 @@ body {
 	function setPrice(data) {
 		setInfo('Setting price ' + data);
 		var container = $('#price');
-		container.fadeOut();
+		container.fadeOut("fast");
 		container.text("$" + data);
 		container.fadeIn();
 	}
@@ -138,13 +138,13 @@ body {
 	function setLocation(data) {
 		setInfo('Setting location' + data);
 		var container = $('#location');
-		container.fadeOut();
+		container.fadeOut("fast");
 		
 		var container2 = $('#rect_location');
-		container2.fadeOut();
+		container2.fadeOut("fast");
 		
 		var container3 = $('#rect_discount');
-		container3.fadeOut();
+		container3.fadeOut("fast");
 		
 		container.text(data);
 		container.fadeIn();
@@ -159,7 +159,7 @@ body {
 	function setImage(data) {
 		setInfo('Setting Image ' + data);
 		var container = $('#product_image');
-		container.fadeOut();
+		container.fadeOut("fast");
 		container.attr("src", data);
 		container.fadeIn();
 	}
@@ -167,7 +167,7 @@ body {
 	function setTitle(data) {
 		setInfo('Setting Title ' + data);
 		var container = $('#product_name');
-		container.fadeOut();
+		container.fadeOut("fast");
 		container.text(data);
 		container.fadeIn();
 	}
@@ -175,7 +175,7 @@ body {
 	function setDescription(data) {
 		setInfo('Setting Desc ' + data);
 		var container = $('#product_desc');
-		container.fadeOut();
+		container.fadeOut("fast");
 		container.text(data);
 		container.fadeIn();
 	}
