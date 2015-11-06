@@ -98,7 +98,7 @@ body {
 		setTimeout(function () {
 			setInfo('Data has '  + d);
 			setInfo('Current Item '  + d[idx]);
-			var uri = "http://stage-api.target.com/products/v3/" + d[idx] + "?id_type=dpci&store_id=530&mode=online&fields=ids,locations,images,brand,descriptions,pricing,in_store_locations&key=" + apiKey;
+			var uri = "http://api.target.com/products/v3/" + d[idx] + "?id_type=dpci&store_id=530&mode=online&fields=ids,locations,images,brand,descriptions,pricing,in_store_locations&key=" + apiKey;
             var res = encodeURIComponent(uri);
             setInfo('Initial uri ' + uri);
             setInfo('Encoded uri ' + res);
