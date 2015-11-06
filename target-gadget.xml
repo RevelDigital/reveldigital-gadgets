@@ -86,6 +86,7 @@ body {
 		$('#product_image').hide();
 		$('#product_name').hide();
 		$('#product_desc').hide();
+		$(')
 		Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
 							 callback: processData,
 							 simpleSheet: true } )
@@ -115,7 +116,7 @@ body {
 					setLocation(item.items[0].location_id);
 					setImage(item.items[0].image.external_primary_image_url[0]);
 					setTitle(item.items[0].reference_data.manufacturer_brand);
-					setDescription(decodeURIComponent(item.items[0].online_description.value));
+					setDescription(decodeURI(item.items[0].online_description.value));
 				});
 			});
 			if (++idx < d.length) {
@@ -129,6 +130,7 @@ body {
 	function setPrice(data) {
 		setInfo('Setting price ' + data);
 		var container = $('#price');
+		container.fadeOut();
 		container.text("$" + data);
 		container.fadeIn();
 	}
@@ -136,16 +138,28 @@ body {
 	function setLocation(data) {
 		setInfo('Setting location' + data);
 		var container = $('#location');
+		container.fadeOut();
+		
 		var container2 = $('#rect_location');
+		container2.fadeOut();
+		
+		var container3 = $('#rect_discount');
+		container3.fadeOut();
+		
 		container.text(data);
 		container.fadeIn();
+		
 		container2.text('Location - ' + data);
 		container2.fadeIn();
+		
+		container3.fadeIn();
+		
 	}
 
 	function setImage(data) {
 		setInfo('Setting Image ' + data);
 		var container = $('#product_image');
+		container.fadeOut();
 		container.attr("src", data);
 		container.fadeIn();
 	}
@@ -153,6 +167,7 @@ body {
 	function setTitle(data) {
 		setInfo('Setting Title ' + data);
 		var container = $('#product_name');
+		container.fadeOut();
 		container.text(data);
 		container.fadeIn();
 	}
@@ -160,6 +175,7 @@ body {
 	function setDescription(data) {
 		setInfo('Setting Desc ' + data);
 		var container = $('#product_desc');
+		container.fadeOut();
 		container.text(data);
 		container.fadeIn();
 	}
