@@ -96,7 +96,7 @@ body {
 	
 	function resolveNext(idx) {
 		setTimeout(function () {
-			setInfo('Data has'  + d);
+			setInfo('Data has '  + d);
 			setInfo('Current Item '  + d[idx]);
 			var uri = "http://stage-api.target.com/products/v3/" + d[idx] + "?id_type=dpci&store_id=530&mode=online&fields=ids,locations,images,brand,descriptions,pricing,in_store_locations&key=" + apiKey;
             var res = encodeURIComponent(uri);
@@ -105,11 +105,11 @@ body {
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
                     setInfo(item);
-					setPrice(item.product_composite_response.items.store_price.original_price);
-					setLocation(item.product_composite_response.items.store_product.location_data.location_id);
-					setImage(item.product_composite_response.items.image.internal_primary_image_url);
-					setTitle(item.product_composite_response.items.reference_data.brand.brand_name);
-					setDescription(item.product_composite_response.items.general_description);
+					setPrice(item.items.store_price.original_price);
+					setLocation(item.items.store_product.location_data.location_id);
+					setImage(item.items.image.internal_primary_image_url);
+					setTitle(item.items.reference_data.brand.brand_name);
+					setDescription(item.items.general_description);
 				});
 			});
 			if (++idx < d.length) {
