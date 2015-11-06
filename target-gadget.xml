@@ -121,14 +121,14 @@ body {
 	function setPrice(data) {
 		setInfo('Setting price ' + data);
 		var container = $('#price');
-		container.append("$" + data);
+		container.text("$" + data);
 	}
 
 	function setLocation(data) {
 		setInfo('Setting location' + data);
 		var container = $('#location');
 		var container2 = $('#rect_location');
-		container.append(data);
+		container.text(data);
 	}
 
 	function setImage(data) {
@@ -140,13 +140,13 @@ body {
 	function setTitle(data) {
 		setInfo('Setting Title ' + data);
 		var container = $('#product_name');
-		container.append(data);
+		container.text(data);
 	}
 
-	function setDescription(val, unit) {
+	function setDescription(data) {
 		setInfo('Setting Desc ' + data);
 		var container = $('#product_desc');
-		container.append(data);
+		container.text(data);
 	}
 	
 	function setInfo(data) {
