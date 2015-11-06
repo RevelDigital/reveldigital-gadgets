@@ -104,7 +104,7 @@ body {
             setInfo('Encoded uri ' + res);
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
-                    setInfo('Iterating over ' + item.toString());
+                    setInfo(item);
 					setPrice(item.product_composite_response.items.store_price.original_price);
 					setLocation(item.product_composite_response.items.store_product.location_data.location_id);
 					setImage(item.product_composite_response.items.image.internal_primary_image_url);
@@ -115,7 +115,7 @@ body {
 			if (++idx < d.length) {
 				resolveNext(idx);
 			}
-		}, 5000)
+		}, 1000 * parseInt(prefs.getString("delay")))
      }
 	 
 	function setPrice(data) {
