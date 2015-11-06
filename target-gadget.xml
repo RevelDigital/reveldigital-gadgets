@@ -114,6 +114,8 @@ body {
 			});
 			if (++idx < d.length) {
 				resolveNext(idx);
+			} else {
+				resolveNext(0);
 			}
 		}, 1000 * parseInt(prefs.getString("delay")))
      }
