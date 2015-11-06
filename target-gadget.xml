@@ -33,12 +33,12 @@ body {
 
 #price {
 	color: #B50000;
-	font-size: 500%;
+	font-size: 400%;
 }
 
 #location {
 	color: #000000;
-	font-size: 500%;
+	font-size: 400%;
 }
 
 #product_name {
@@ -129,6 +129,7 @@ body {
 		var container = $('#location');
 		var container2 = $('#rect_location');
 		container.text(data);
+		container2.text(data);
 	}
 
 	function setImage(data) {
