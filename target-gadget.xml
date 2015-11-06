@@ -105,11 +105,11 @@ body {
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
                     setInfo(item);
-					setPrice(item.items.online_price.current_price);
-					setLocation(item.items.store_product.location_data.location_id);
-					setImage(item.items.image.internal_primary_image_url);
-					setTitle(item.items.reference_data.brand.brand_name);
-					setDescription(item.items.general_description);
+					setPrice(item.items[0].online_price.current_price);
+					setLocation(item.items[0].store_product.location_data.location_id);
+					setImage(item.items[0].image.internal_primary_image_url);
+					setTitle(item.items[0].reference_data.brand.brand_name);
+					setDescription(item[0].items.general_description);
 				});
 			});
 			if (++idx < d.length) {
