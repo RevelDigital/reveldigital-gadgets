@@ -131,7 +131,7 @@ body {
 		var container = $('#location');
 		var container2 = $('#rect_location');
 		container.text(data);
-		container2.text('Store Location ' + data);
+		container2.text('Location - ' + data);
 	}
 
 	function setImage(data) {
