@@ -130,54 +130,78 @@ body {
 	function setPrice(data) {
 		setInfo('Setting price ' + data);
 		var container = $('#price');
-		container.fadeOut("fast");
-		container.text("$" + data);
-		container.fadeIn();
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.text("$" + data);
+				container.fadeIn();
+			}
+		});
 	}
 
 	function setLocation(data) {
 		setInfo('Setting location' + data);
 		var container = $('#location');
-		container.fadeOut("fast");
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.text(data);
+				container.fadeIn();
+			}
+		});
 		
 		var container2 = $('#rect_location');
-		container2.fadeOut("fast");
+		container2.fadeOut({
+			duration: 1000,
+			done: function () {
+				container2.text('Location - ' + data);
+				container2.fadeIn();
+			}
+		});
 		
 		var container3 = $('#rect_discount');
-		container3.fadeOut("fast");
-		
-		container.text(data);
-		container.fadeIn();
-		
-		container2.text('Location - ' + data);
-		container2.fadeIn();
-		
-		container3.fadeIn();
-		
+		container3.fadeOut({
+			duration: 1000,
+			done: function () {
+				container3.fadeIn();
+			}
+		});
 	}
 
 	function setImage(data) {
 		setInfo('Setting Image ' + data);
 		var container = $('#product_image');
-		container.fadeOut("fast");
-		container.attr("src", data);
-		container.fadeIn();
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.attr("src", data);
+				container.fadeIn();
+			}
+		});
 	}
 
 	function setTitle(data) {
 		setInfo('Setting Title ' + data);
 		var container = $('#product_name');
-		container.fadeOut("fast");
-		container.text(data);
-		container.fadeIn();
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.text(data);
+				container.fadeIn();
+			}
+		});
 	}
 
 	function setDescription(data) {
 		setInfo('Setting Desc ' + data);
 		var container = $('#product_desc');
-		container.fadeOut("fast");
-		container.text(data);
-		container.fadeIn();
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.text(data);
+				container.fadeIn();
+			}
+		});
 	}
 	
 	function setInfo(data) {
