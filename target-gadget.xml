@@ -231,14 +231,14 @@ body {
         $.ajax({
             url: 'https://svc1.reveldigital.com/v2/device/affidavit/create/' + regKey,
             type: 'post',
-            dataType: 'json',
+            contentType: 'application/json',
             success: function (data) {
                 setInfo("Success: " + data);
             },
 			error: function (request, status, error) {
 				setInfo("Error: " + error + " Status: " + status + " Request: " + JSON.stringify(request));
 			},
-            data: af
+            data: JSON.stringify(af)
         });
     }
 </script>
