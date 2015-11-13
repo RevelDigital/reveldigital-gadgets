@@ -118,7 +118,7 @@ body {
             setInfo('Encoded uri ' + res);
             $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
 				$.each(data, function (index, item) {
-                    setInfo(item);
+                    setInfo("Item is " + JSON.stringify(item));
 					setPrice(item.items[0].online_price.current_price);
 					setLocation(item.items[0].location_id);
 					setImage(item.items[0].image.external_primary_image_url[0]);
