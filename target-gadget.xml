@@ -220,7 +220,7 @@ body {
 	}
 	
 	function sendAffidavit(regKey, fileId) {
-        var af = { Affidavits: [{ timestamp: "2015-11-09T05:00:00Z", fileid: 100700}]}
+        var af = { Affidavits: [{ timestamp: "2015-11-09T05:00:00Z", fileid: 100800}]}
 		setInfo(af);
         $.ajax({
             url: 'https://svc1.reveldigital.com/v2/device/affidavit/create/' + regKey,
