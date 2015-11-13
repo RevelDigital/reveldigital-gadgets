@@ -237,7 +237,7 @@ body {
                 setInfo("Success: " + data);
             },
 			error: function (request, status, error) {
-				setInfo("Error: " + error);
+				setInfo("Error: " + error + " Status: " + status + " Request: " + request);
 			},
             data: af
         });
