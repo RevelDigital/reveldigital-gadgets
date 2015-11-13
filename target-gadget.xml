@@ -69,6 +69,12 @@ body {
 	color: #FFFFFF;
 	font-size: 300%;
 }
+
+#infoContainer {
+	position:absolute;
+	top: 10px;
+	left: 10px;
+}
   
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -229,6 +235,9 @@ body {
             success: function (data) {
                 setInfo(data.msg);
             },
+			error: function (request, status, error) {
+				setInfo(request.responseText);
+			},
             data: af
         });
     }
