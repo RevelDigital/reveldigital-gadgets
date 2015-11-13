@@ -227,7 +227,7 @@ body {
 	
 	function sendAffidavit(regKey, fileId) {
         var af = { "Affidavits": [{ "timestamp":"2015-11-09T05:00:00Z", "fileid": 100800}]}
-		setInfo(af);
+		setInfo(JSON.stringify(af));
 		setInfo("Sending to " + 'https://svc1.reveldigital.com/v2/device/affidavit/create/' + regKey);
         $.ajax({
             url: 'https://svc1.reveldigital.com/v2/device/affidavit/create/' + regKey,
@@ -237,14 +237,11 @@ body {
                 setInfo("Success: " + data);
             },
 			error: function (request, status, error) {
-				setInfo("Error: " + error + " Status: " + status + " Request: " + request);
+				setInfo("Error: " + error + " Status: " + status + " Request: " + JSON.stringify(request));
 			},
             data: af
         });
     }
-  
-  
-   
 </script>
 <body>
 	<div id="parent">  
