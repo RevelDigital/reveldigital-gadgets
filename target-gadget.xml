@@ -120,7 +120,7 @@ body {
 					setDescription(decodeURI(item.items[0].online_description.value));
 				});
 			});
-			$.post( "https://svc1.reveldigital.com/v2/device/affidavit/create/" + prefs.getString("regKey"), { Timestamp: new Date(), FileId: d[idx] } );
+			sendAffidavit(prefs.getString("regKey"), d[idx])
 			if (++idx < d.length) {
 				resolveNext(idx);
 			} else {
@@ -207,7 +207,7 @@ body {
 	}
 	
 	function setInfo(data) {
-		if (false) {
+		if (true) {
 			var container = $('#infoContainer');
 			container.append(data + '<br>');
 		}	
@@ -218,6 +218,20 @@ body {
 			alert(data);
 		}
 	}
+	
+	function sendAffidavit(regKey, fileId) {
+        var af = { Affidavits: [{ timestamp: "2015-11-09T05:00:00Z", fileid: 100700}]}
+		setInfo(af);
+        $.ajax({
+            url: 'https://svc1.reveldigital.com/v2/device/affidavit/create/' + regKey,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                setInfo(data.msg);
+            },
+            data: af
+        });
+    }
   
   
    
@@ -258,6 +272,7 @@ body {
 				<p id="rect_discount">20% OFF</p>
 			</div>
 		</div>
+		<p id="infoContainer"></p>
 	</div>
 </body>]]>
 </Content>
