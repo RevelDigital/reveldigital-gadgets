@@ -213,11 +213,11 @@ body {
 	}
 	
 	function setInfo(data) {
-		if (true) {
+		if (false) {
 			var container = $('#infoContainer');
 			container.append(data + '<br>');
 		}	
-		if (true) {
+		if (false) {
 			console.log(data);
 		}
 		if (false) {
