@@ -57,7 +57,11 @@ span
   }
 
   gadgets.util.registerOnLoadHandler(load);
-   
+  
+  function setText(text) {
+    $("#container").text(text);
+  }
+  
 </script>
 ]]>
 </Content>
