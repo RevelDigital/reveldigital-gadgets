@@ -39,6 +39,10 @@ span
 
 <span id="container"></span>
 
+<span>
+    "-----------HERE-----------"
+</span>
+
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
