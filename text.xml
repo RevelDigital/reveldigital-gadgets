@@ -27,9 +27,11 @@ body
   overflow: hidden;
 }
 
-span
+div#container
 {
-  __UP_font-style__;
+__UP_font-style__;
+width: __UP_rdW__px;
+height: __UP_rdH__px;
 }
 </style>
 
@@ -37,7 +39,7 @@ span
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
 
-<span id="container"></span>
+<div id="container"></div>
 
 <span>
     "-----------HERE-----------"
