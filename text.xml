@@ -59,6 +59,7 @@ span
   gadgets.util.registerOnLoadHandler(load);
   
   function setText(text) {
+    console.log("here" + text);
     $("#container").text(text);
   }
   
