@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5
 #ticker2 .even { background-color: #fff; }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.zrssfeed.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js"></script>
