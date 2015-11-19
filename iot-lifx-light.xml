@@ -620,6 +620,9 @@ duration: 1
 });
 }
 
+function setBulbIdentifier(id){
+    bulbIdentifier = id;
+}
   $(document).ready(function() {
   $("#peaceful").click(function() {
   changeScene("203", "0.25");
