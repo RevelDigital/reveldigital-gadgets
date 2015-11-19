@@ -476,7 +476,6 @@ background-color: #ffffff;
 </figure>
 </div>
 
-
 <script>
    WebFontConfig = {
       google: {
@@ -494,6 +493,8 @@ background-color: #ffffff;
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
+  
+  var bulbIdentifier = "";
 
   function load() {
   }
