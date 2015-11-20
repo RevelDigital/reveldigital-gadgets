@@ -233,13 +233,14 @@ body {
             url: 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey,
             type: 'post',
             contentType: 'application/json',
+			dataType: 'json',
             success: function (data) {
                 setInfo("Success: " + data);
             },
 			error: function (request, status, error) {
 				setInfo("Error: " + error + " Status: " + status + " Request: " + JSON.stringify(request));
 			},
-            data: tmp
+            data: JSON.stringify(tmp),
         });
     }
 </script>
