@@ -229,7 +229,7 @@ body {
 		var d = new Date().toISOString();
 		var tmp = [{ "timestamp": d, "file_id":fileId, "user_id":999999}];
 		setInfo("Sending " + JSON.stringify(tmp) + " to " + 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey);
-		setInfo("Sending " + {tmp});
+		setInfo("Sending " + tmp);
         $.ajax({
             url: 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey,
             type: 'post',
@@ -254,27 +254,27 @@ body {
 				<table width="100%">
 					<tr>
 						<td style="text-align: left;">
-							<p id="price">$3.24</p>
+							<p id="price"></p>
 						</td>
 						<td style="text-align: right;">
-							<p id="location">A20 F</p>
+							<p id="location"></p>
 						</td>
 					</tr>
 					<tr>
 						<td colspan= "2" style="text-align: left;">
-							<p id="product_name">Simply Balanced</p>
+							<p id="product_name"></p>
 						</td>
 					</tr>
 					<tr>
 						<td colspan= "2" style="text-align: left;">
-							<p id="product_desc">Organic Tomato Basil Pasta Sauce</p>
+							<p id="product_desc"></p>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="blank"></div>
 			<div class="rectangle">
-				<p id="rect_location">Organic Tomato Basil Pasta Sauce</p>
+				<p id="rect_location"></p>
 			</div>
 			<div class="blank"></div>
 			<div class="rectangle">
