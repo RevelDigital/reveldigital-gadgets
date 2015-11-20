@@ -227,7 +227,7 @@ body {
 	
 	function sendAffidavit(regKey, fileId) {
 		var d = new Date().toISOString();
-		var tmp = [{ "timestamp": d, "file_id":fileId, "user_id":999999}];
+		var tmp = [{ "timestamp": d, "file_id": fileId.hashCode(), "user_id":999999}];
 		setInfo("Sending " + JSON.stringify(tmp) + " to " + 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey);
 		setInfo("Sending " + tmp);
         $.ajax({
@@ -244,6 +244,17 @@ body {
             data: JSON.stringify(tmp),
         });
     }
+	
+	String.prototype.hashCode = function() {
+		var hash = 0, i, chr, len;
+		if (this.length == 0) return hash;
+		for (i = 0, len = this.length; i < len; i++) {
+			chr   = this.charCodeAt(i);
+			hash  = ((hash << 5) - hash) + chr;
+			hash |= 0;
+		}
+		return hash;
+	};
 </script>
 <body>
 	<div id="parent">  
