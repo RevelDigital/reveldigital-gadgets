@@ -226,9 +226,10 @@ body {
 	}
 	
 	function sendAffidavit(regKey, fileId) {
-		var tmp = [{ "timestamp":"2015-11-09T05:00:00Z", "file_id":999999, "user_id":100800}];
-		setInfo("Sending " + JSON.stringify({'Affidavits': tmp}) + " to " + 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey);
-		setInfo("Sending " + {'Affidavits': tmp});
+		var d = new Date().toISOString();
+		var tmp = [{ "timestamp": d, "file_id":fileId, "user_id":999999}];
+		setInfo("Sending " + JSON.stringify(tmp) + " to " + 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey);
+		setInfo("Sending " + {tmp});
         $.ajax({
             url: 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey,
             type: 'post',
