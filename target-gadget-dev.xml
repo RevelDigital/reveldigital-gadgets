@@ -227,7 +227,7 @@ body {
 	
 	function sendAffidavit(regKey, fileId) {
 		var d = new Date().toLocaleString();
-		setinfo(d);
+		setInfo(d);
 		var tmp = [{ "timestamp": d, "file_id": fileId.hashCode(), "user_id":999999}];
 		setInfo("Sending " + JSON.stringify(tmp) + " to " + 'https://svc1.reveldigital.com/v3/device/affidavit/' + regKey);
 		setInfo("Sending " + tmp);
