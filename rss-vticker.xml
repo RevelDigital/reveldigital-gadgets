@@ -108,13 +108,14 @@ h1, h2, h3, h4, h5
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.zrssfeed.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/third-party/jquery.rss.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
-<div id="ticker">
+<div id="ticker" class="rssFeed jcarousel">
 </div>
 
 <script type="text/javascript">
@@ -144,6 +145,43 @@ h1, h2, h3, h4, h5
       }
     });
     
+    var date = prefs.getBool("showDate") ? "<div>{date}</div>" : "";
+    var header = prefs.getBool("showHeader") ? "<h4>{title}</h4>" : "";
+    var content = "";
+    if (prefs.getBool("showContent")) {
+      if (prefs.getBool("snippet")) {
+        content = "<p>{shortBody}</p>";
+      } else {
+        content = "<p>{body}</p>";
+      }
+    }
+    
+    $('#ticker').rss('http://feeds.reuters.com/Reuters/PoliticsNews', {
+      limit: prefs.getString("maxItems"),
+      
+      // outer template for the html transformation
+      // default: "<ul>{entries}</ul>"
+      // valid values: any string
+      layoutTemplate: "<div class='rssBody'><ul>{entries}</ul></div>",
+
+      // inner template for each entry
+      // default: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>'
+      // valid values: any string
+      entryTemplate: "<li class='rssRow'>" + header + date + content + "</li>",
+      
+      success: function() {
+        $('div.rssBody').jcarousel({
+          vertical: true,
+          wrap: 'both',
+          transitions: true
+        }).jcarouselAutoscroll({
+            interval: parseInt(prefs.getString("pause")) * 1000,
+            target: '+=1',
+            autostart: true
+        });
+      }
+    });
+      
     $("#ticker").rssfeed(prefs.getString("feedUrl"), {
       limit: prefs.getString("maxItems"),
       content: prefs.getBool("showContent"),
