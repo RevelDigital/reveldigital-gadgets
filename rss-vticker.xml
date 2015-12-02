@@ -6,9 +6,10 @@
   <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
-  <UserPref name="showContent" display_name="Display feed description" datatype="bool" default_value="true" />
-  <UserPref name="snippet" display_name="Display a short description" datatype="bool" default_value="true" />
+  <UserPref name="showContent" display_name="Display feed content" datatype="bool" default_value="true" />
+  <UserPref name="snippet" display_name="Display a shortened version of content" datatype="bool" default_value="true" />
   <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
+  <UserPref name="includeHTML" display_name="Include HTML in the content" datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -150,9 +151,17 @@ h1, h2, h3, h4, h5
     var content = "";
     if (prefs.getBool("showContent")) {
       if (prefs.getBool("snippet")) {
-        content = "<p>{shortBody}</p>";
+        if (prefs.getBool("includeHTML")) {
+          content = "<p>{shortBody}</p>";
+        } else {
+          content = "<p>{shortBodyPlain}</p>";
+        }
       } else {
-        content = "<p>{body}</p>";
+        if (prefs.getBool("showHTML")) {
+          content = "<p>{body}</p>";
+        } else {
+          content = "<p>{bodyPlain}</p>";
+        }
       }
     }
     
