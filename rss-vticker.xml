@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5
       }
     }
     
-    $('#ticker').rss('http://feeds.reuters.com/Reuters/PoliticsNews', {
+    $('#ticker').rss(prefs.getString("feedUrl"), {
       limit: prefs.getString("maxItems"),
       
       // outer template for the html transformation
@@ -180,25 +180,6 @@ h1, h2, h3, h4, h5
             autostart: true
         });
       }
-    });
-      
-    $("#ticker").rssfeed(prefs.getString("feedUrl"), {
-      limit: prefs.getString("maxItems"),
-      content: prefs.getBool("showContent"),
-      date: prefs.getBool("showDate"),
-      snippet: prefs.getBool("snippet"),
-      header: prefs.getBool("showHeader"),
-      ssl: true
-    }, function (e) {
-      $('div.rssBody').jcarousel({
-        vertical: true,
-        wrap: 'both',
-        transitions: true
-      }).jcarouselAutoscroll({
-        interval: parseInt(prefs.getString("pause")) * 1000,
-        target: '+=1',
-        autostart: true
-      });
     });
   }
 
