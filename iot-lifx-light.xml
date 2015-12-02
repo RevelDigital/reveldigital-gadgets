@@ -5,6 +5,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="bulbID" display_name="Bulb ID" datatype="String" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -476,7 +477,6 @@ background-color: #ffffff;
 </figure>
 </div>
 
-
 <script>
    WebFontConfig = {
       google: {
@@ -494,6 +494,8 @@ background-color: #ffffff;
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
+  
+  var bulbIdentifier = prefs.getString("bulbID");
 
   function load() {
   }
@@ -538,7 +540,7 @@ console.log( "Sample of data:", data );
 
 
 function changeScene(h, b) {
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/state", {
 power: "on",
 color: "hue:" + h + " saturation:0.90 brightness:" + b,
 duration: 1
@@ -546,7 +548,7 @@ duration: 1
 }
 
 function changeTemp(k) {
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/state", {
 color: "brightness:0.4 kelvin:" + k,
 power: "on",
 duration: 0
@@ -554,7 +556,7 @@ duration: 0
 }
 
 function changeColor(c) {
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/state", {
 power: "on",
 color: c,
 brightness:0.4,
@@ -563,7 +565,7 @@ duration: 0
 }
 
 function changeBrightness(b) {
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/state", {
 power: "on",
 brightness: b,
 duration: 1
@@ -571,7 +573,7 @@ duration: 1
 }
 
 function breatheEffect(){
-makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+makePostRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/effects/breathe", {
 color: "random brightness:0.4",
 period: 5.0,
 cycles: 0.5,
@@ -582,7 +584,7 @@ peak: "0.5",
 }
 
 function assistance(){
-makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/pulse", {
+makePostRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/effects/pulse", {
 color: "red brightness:0.4",
 from_color: "brightness:0",
 period: 1,
@@ -594,7 +596,7 @@ peak:0.5,
 }
 
 function matchDownLightPulse(k) {
-makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/effects/breathe", {
+makePostRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/effects/breathe", {
 color: "kelvin:" + k + " brightness:0.3",
 from_color: "kelvin:" + k + " brightness:0.1",
 period:1.6,
@@ -607,14 +609,14 @@ duration: 0
 }
 
 function powerOff(){
-makeRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/state", {
+makeRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/state", {
 power: "off",
 duration: 0.0
 });
 }
 
 function togglePower(){
-makePostRequest("https://api.lifx.com/v1/lights/id:d073d50291d1/toggle", {
+makePostRequest("https://api.lifx.com/v1/lights/id:" + bulbIdentifier + "/toggle", {
 duration: 1
 });
 }
