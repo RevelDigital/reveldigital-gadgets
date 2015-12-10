@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Price Gadget" description="Gets and displays a price" author="RevelDigital" background="transparent">
+  <UserPref name="apikey" display_name="Account Api Key" datatype="string" />
+  <UserPref name="deviceNameTag" display_name="Default Device Group" datatype="string"  />
+  <UserPref name="gadgetKey" display_name="MSG Gadget Key" datatype="string" />
+  <UserPref name="groupName" display_name="MSG Group Name" datatype="string" />
+  <UserPref name="price-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
+  <UserPref name="font-name" display_name="Google Font Name. More at https://www.google.com/fonts" datatype="string" default_value="Droid Sans"/>
+  <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="100" datatype="hidden" />
+  <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="100" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<style type="text/css">
+	body {
+		background: transparent;
+		overflow: hidden; 
+		height: 100%;
+		width: 100%;
+	}
+	
+	#priceContainer {
+		__UP_price-style__;
+		font-family: __UP_font-name__, sans-serif !important;
+		
+	}
+	
+	#infoContainer {
+		font-size: 75%;
+		color: white;
+	}
+</style>
+
+<body>
+	<p id="priceContainer"></p>
+	<p id="infoContainer"></p>
+</body>
+
+<script type="text/javascript">
+		var prefs = new gadgets.Prefs();
+		
+		function init() {
+			var g = prefs.getString("deviceNameTag");
+			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
+			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
+				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
+					$.each(data, function (index, item) {
+						setInfo('Iterating over ' + item.group_name + ' name: ' + item.name);
+						setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceNameTag"));
+						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
+							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
+							if (item.group_name.toLowerCase().trim() == prefs.getString("groupName").toLowerCase().trim()) {
+								requestPrice(item.group_name);
+							}	
+							
+						}
+					});
+				});
+			} else {
+				requestDefault();
+			}
+		}
+		  
+		gadgets.util.registerOnLoadHandler(init);
+		
+		function requestPrice(store) {
+			var price = ""
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
+					price = data;
+			}).done(function() {
+			  setPrice(price);
+			}).fail(function(jqxhr, textStatus, error) {
+				var err = textStatus + ", " + error;
+				setInfo(err);
+			});
+		}
+		
+		function requestDefault() {
+			var price = ""
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			$.getJSON(root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
+					price = data;
+			}).done(function() {
+			  setPrice(price);
+			}).fail(function(jqxhr, textStatus, error) {
+				var err = textStatus + ", " + error;
+				setInfo(err);
+			});
+		}
+		  
+		function setPrice(data) {
+			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
+			var container = $('#priceContainer');
+			container.text(data);
+		}
+		
+		function setInfo(data) {
+			if (true) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
+			if (true) {
+				console.log(data);
+			}
+		}
+</script>]]>
+</Content>
+</Module>
