@@ -52,10 +52,7 @@
 						setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceNameTag"));
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
-							if (item.group_name.toLowerCase().trim() == prefs.getString("groupName").toLowerCase().trim()) {
-								requestPrice(item.group_name);
-							}	
-							
+							requestPrice(item.group_name);
 						}
 					});
 				});
