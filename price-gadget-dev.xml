@@ -66,10 +66,16 @@
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
-		function RevelDigital.Controller.onCommand(cmd, arg) {
+		var RevelDigital = {
+			var Controller = {
+				onCommand: function(name, arg) {
 				setInfo("NEW METHOD");
 				requestPrice("default");
-		}
+				}
+			}
+		};
+		
+		
 		
 		function requestPrice(store) {
 			var price = ""
