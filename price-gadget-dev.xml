@@ -67,10 +67,10 @@
 		gadgets.util.registerOnLoadHandler(init);
 		
 		var RevelDigital = {
-			var Controller = {
+			 Controller: {
 				onCommand: function(name, arg) {
-				setInfo("NEW METHOD");
-				requestPrice("default");
+					setInfo("NEW METHOD");
+					requestPrice("default");
 				}
 			}
 		};
