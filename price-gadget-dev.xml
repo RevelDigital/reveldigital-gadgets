@@ -66,6 +66,10 @@
 		  
 		gadgets.util.registerOnLoadHandler(init);
 		
+		function RevelDigital.Controller.onCommand(cmd, arg) {
+				requestPrice("default");
+		}
+		
 		function requestPrice(store) {
 			var price = ""
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
