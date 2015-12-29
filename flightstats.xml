@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
-  <UserPref name="hasTitle" display_name="Use first row as header" datatype="bool" default_value="true" />
+  <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
   <UserPref name="appId" display_name="FlightStats App ID" datatype="string" required="true" />
   <UserPref name="appKey" display_name="FlightStats App Key" datatype="string" required="true" />
   <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
@@ -106,6 +106,15 @@ table.google-visualization-table-table,
 {
   overflow: hidden !important;
 }
+
+.lastUpdate
+{
+  __UP_body-style__;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  opacity: 0.8;
+}
 </style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -121,6 +130,9 @@ table.google-visualization-table-table,
 
 <div id="container">
   <div id="table" class="scroll">
+  </div>
+    <div class="lastUpdate">
+    Last Updated: <span></span>
   </div>
 </div>
 
@@ -161,8 +173,18 @@ table.google-visualization-table-table,
     container = document.getElementById("table");
     table = new google.visualization.Table(container);
 
+    update();
+
+    setInterval(update, 1000 * 60 * 1); // 10 min update
+  }
+  
+  function update() {
+    var now = moment();
+    
+    $('.lastUpdate span').text(now.format("LT"));
+    
     $.ajax({
-      url: "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/" + prefs.getString("airportCode") + "/" + (dep ? "dep" : "arr") + "/2015/12/29/14?appId=" + prefs.getString("appId") + "&appKey=" + prefs.getString("appKey") + "&utc=false&numHours=" + prefs.getInt("numHours") + "&maxFlights=" + prefs.getInt("maxFlights") + "&extendedOptions=useInlinedReferences&callback=?",
+      url: "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/FAR/" + (dep ? "dep" : "arr") + "/" + now.year() + "/" + (now.month()+1) + "/" + now.date() + "/" + now.hour() + "?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=6&maxFlights=20&extendedOptions=useInlinedReferences&callback=?",
       type: "GET",
       dataType: "jsonp",
       success: function (data) {
@@ -216,7 +238,6 @@ table.google-visualization-table-table,
     dt.addColumn('string', (dep ? 'To' : 'From'));
     dt.addColumn('string', 'Gate');
     dt.addColumn('datetime', 'Scheduled');
-    //dt.addColumn('datetime', 'Arrives');
     dt.addColumn('string', 'Status');
 
     $.each(response.flightStatuses, function (i, el) {
@@ -230,15 +251,24 @@ table.google-visualization-table-table,
       var time = moment(dep ? el.departureDate.dateLocal : el.arrivalDate.dateLocal);
       
       if (dep) {
-        if (el.operationalTimes.estimatedGateDeparture) {
+        if (el.airportResources) {
+          if (el.airportResources.departureGate) {
+            gate = el.airportResources.departureGate;
+          }
+        }
+        if (el.status != "C" && el.status != "L" && el.operationalTimes.estimatedGateDeparture) {
           var est = moment(el.operationalTimes.estimatedGateDeparture.dateLocal);
           if (Math.abs(time.diff(est, 'minutes')) > 5) {
             status = "ETA " + est.format("LT");
-
           }
         }
       } else {
-        if (el.operationalTimes.estimatedGateArrival) {
+        if (el.airportResources) {
+          if (el.airportResources.arrivalGate) {
+            gate = el.airportResources.arrivalGate;
+          }
+        }
+        if (el.status != "C" && el.status != "L" && el.operationalTimes.estimatedGateArrival) {
           var est = moment(el.operationalTimes.estimatedGateArrival.dateLocal);
           if (Math.abs(time.diff(est, 'minutes')) > 5) {
             status = "ETA " + est.format("LT");
@@ -260,19 +290,16 @@ table.google-visualization-table-table,
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
-        if (!prefs.getBool("hasTitle")) {
-          $(".header-style").remove();
-        }
-        
-        if (prefs.getString("scrollSpeed") != "none") {
-          $("#container").autoScroll({
-            speed: prefs.getString("scrollSpeed"),
-            by: prefs.getString("scrollBy")
-          }).on("done", function() {
-            $("#container").data("plugin_autoScroll").play();
-          });
+        //if (!prefs.getBool("hasTitle")) {
+          //$(".header-style").remove();
+        //}
+        $("#container").autoScroll({
+          speed: 'fast', //prefs.getString("scrollSpeed"),
+          by: 'continuous' //prefs.getString("scrollBy")
+        }).on("done", function() {
           $("#container").data("plugin_autoScroll").play();
-        }
+        });
+        $("#container").data("plugin_autoScroll").play();
       }
     );
     
