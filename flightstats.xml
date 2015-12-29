@@ -175,11 +175,17 @@ table.google-visualization-table-table,
 
     update();
 
-    setInterval(update, 1000 * 60 * 1); // 10 min update
+    setInterval(update, 1000 * 60 * 10); // 10 min update
   }
   
   function update() {
-    var now = moment();
+  
+    var now;
+    if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
+      now = moment(Client.getDeviceTime());
+    } else {
+      now = moment();
+    }
     
     $('.lastUpdate span').text(now.format("LT"));
     
@@ -242,11 +248,7 @@ table.google-visualization-table-table,
 
     $.each(response.flightStatuses, function (i, el) {
       var gate = " - ";
-      if (el.airportResources) {
-        if (el.airportResources.departureGate) {
-          gate = el.airportResources.departureGate;
-        }
-      }
+
       var status = getStatusByCode(el.status);
       var time = moment(dep ? el.departureDate.dateLocal : el.arrivalDate.dateLocal);
       
