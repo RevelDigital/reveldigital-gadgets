@@ -71,6 +71,11 @@ table.google-visualization-table-table,
   border: 0 !important;
 }
 
+.google-visualization-table-td-center
+{
+  text-align: left !important;
+}
+
 .google-visualization-table div
 {
   overflow: hidden !important;
