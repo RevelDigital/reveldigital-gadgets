@@ -2,8 +2,8 @@
 <Module> 
 <ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
   <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
-  <UserPref name="appId" display_name="FlightStats App ID" datatype="string" required="true" />
-  <UserPref name="appKey" display_name="FlightStats App Key" datatype="string" required="true" />
+  <UserPref name="fsAppId" display_name="FlightStats App ID" datatype="string" required="true" />
+  <UserPref name="fsAppKey" display_name="FlightStats App Key" datatype="string" required="true" />
   <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
   <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
     <EnumValue value="dep" display_value="Departures" />
@@ -204,7 +204,7 @@ table.google-visualization-table-table,
     $('.lastUpdate span').text(now.format("LT"));
     
     $.ajax({
-      url: "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/FAR/" + (dep ? "dep" : "arr") + "/" + now.year() + "/" + (now.month()+1) + "/" + now.date() + "/" + now.hour() + "?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=6&maxFlights=20&extendedOptions=useInlinedReferences&callback=?",
+      url: "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/" + prefs.getString("airportCode") + /" + (dep ? "dep" : "arr") + "/" + now.year() + "/" + (now.month()+1) + "/" + now.date() + "/" + now.hour() + "?appId=" + prefs.getString("fsAppId") + "&appKey=" + prefs.getString("fsAppKey") + "&utc=false&numHours=" + prefs.getInt("numHours") + "&maxFlights=" + prefs.getInt("maxFlights") + "&extendedOptions=useInlinedReferences&callback=?",
       type: "GET",
       dataType: "jsonp",
       success: function (data) {
