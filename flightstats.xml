@@ -13,6 +13,7 @@
   <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="body-style-odd" display_name="Alternating Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
     <EnumValue value="fastest" display_value="Fastest" />
     <EnumValue value="fast" display_value="Fast" />
@@ -91,7 +92,14 @@ table.google-visualization-table-table,
 .body-style
 {
   __UP_body-style__;
-  padding-bottom: __UP_rowPadding__px !important;
+  padding: __UP_rowPadding__px 0 !important;
+  border: 0 !important;
+}
+
+.body-style-odd
+{
+  __UP_body-style-odd__;
+  padding: __UP_rowPadding__px 0 !important;
   border: 0 !important;
 }
 
@@ -316,9 +324,10 @@ table.google-visualization-table-table,
       tableRow: 'body-style',
       tableCell: 'body-style',
       selectedTableRow: 'body-style',
-      oddTableRow: 'body-style',
+      oddTableRow: 'body-style-odd',
       hoverTableRow: 'body-style',
-      rowNumberCell: 'body-style'
+      rowNumberCell: 'body-style',
+      alternatingRowStyle: true
     } });
   }
   
