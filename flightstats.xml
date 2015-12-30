@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
+  <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
+  <UserPref name="appId" display_name="FlightStats App ID" datatype="string" required="true" />
+  <UserPref name="appKey" display_name="FlightStats App Key" datatype="string" required="true" />
+  <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
+  <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
+    <EnumValue value="dep" display_value="Departures" />
+    <EnumValue value="arr" display_value="Arrivals" />
+  </UserPref>
+  <UserPref name="numHours" display_name="Number of hours worth of arrivals to include (6 max)" datatype="string" default_value="2" />
+  <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
+    <EnumValue value="fastest" display_value="Fastest" />
+    <EnumValue value="fast" display_value="Fast" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="slow" display_value="Slow" />
+    <EnumValue value="none" display_value="None" />
+  </UserPref>
+  <UserPref name="scrollBy" display_name="Scroll By" datatype="enum" default_value="continuous">
+    <EnumValue value="continuous" display_value="Continuous" />
+    <EnumValue value="page" display_value="Page" />
+  </UserPref>
+  <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+  overflow: hidden;
+}
+
+table
+{
+  width: __UP_rdW__px;
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+}
+
+table.google-visualization-table-table,
+.google-visualization-table,
+.google-visualization-table-tr-head,
+.google-visualization-table-tr-over,
+.google-visualization-table-tr,
+.google-visualization-table-tr-head td,
+.google-visualization-table-tr-over td,
+.google-visualization-table-tr td
+{
+  background-color: transparent;
+}
+
+.google-visualization-table
+{
+  border: 0 !important;
+}
+
+.google-visualization-table-td-center
+{
+  text-align: left !important;
+}
+
+.google-visualization-table div
+{
+  overflow: hidden !important;
+}
+
+#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+.body-style
+{
+  __UP_body-style__;
+  padding-bottom: __UP_rowPadding__px !important;
+  border: 0 !important;
+}
+
+.header-style
+{
+  text-align: left;
+  __UP_header-style__;
+  border: 0 !important;
+}
+
+.top-level
+{
+  overflow: hidden !important;
+}
+
+.lastUpdate
+{
+  __UP_body-style__;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  opacity: 0.8;
+}
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/utils/Draggable.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-langs.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<div id="container">
+  <div id="table" class="scroll">
+  </div>
+    <div class="lastUpdate">
+    Last Updated: <span></span>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+      
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    
+    google.load('visualization', '1', {'packages': ['table']});
+    google.setOnLoadCallback(initialize);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+  var container;
+  var table;
+  var dep = (prefs.getString("boardType") == "dep");
+  
+  function initialize() {
+    container = document.getElementById("table");
+    table = new google.visualization.Table(container);
+
+    update();
+
+    setInterval(update, 1000 * 60 * 10); // 10 min update
+  }
+  
+  function update() {
+  
+    var now;
+    if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
+      now = moment(Client.getDeviceTime());
+    } else {
+      now = moment();
+    }
+    
+    $('.lastUpdate span').text(now.format("LT"));
+    
+    $.ajax({
+      url: "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/FAR/" + (dep ? "dep" : "arr") + "/" + now.year() + "/" + (now.month()+1) + "/" + now.date() + "/" + now.hour() + "?appId=27a8b478&appKey=b725f70889570f69748fa69f783be1fe&utc=false&numHours=6&maxFlights=20&extendedOptions=useInlinedReferences&callback=?",
+      type: "GET",
+      dataType: "jsonp",
+      success: function (data) {
+        draw(data);
+      }
+    });
+  }
+  
+  function getAirlineByCode(name, flightNumber, codeshares) {
+
+    if (codeshares == null) {
+      return name;
+    }
+    $.each(codeshares, function (i, el) {
+      if (el.relationship == "S" && flightNumber == el.flightNumber) {
+        name = el.carrier.name;
+      }
+    });
+    
+    return name;
+  }
+  
+  function getStatusByCode(code) {
+    switch (code) {
+      case 'A':
+        return 'Active';
+      case 'C':
+        return 'Cancelled';
+      case 'D':
+        return 'Diverted';
+      case 'DN':
+        return 'Data source needed';
+      case 'L':
+        return 'Landed';
+      case 'NO':
+        return 'Not Operational';
+      case 'R':
+        return 'Redirected';
+      case 'S':
+        return 'Scheduled';
+      default:
+        return 'Unknown';
+    }
+  }
+  
+  function draw(response) {
+    
+    var dt = new google.visualization.DataTable();
+    dt.addColumn('string', 'Airline');
+    dt.addColumn('string', 'Flight Number');
+    dt.addColumn('string', (dep ? 'To' : 'From'));
+    dt.addColumn('string', 'Gate');
+    dt.addColumn('datetime', 'Scheduled');
+    dt.addColumn('string', 'Status');
+
+    $.each(response.flightStatuses, function (i, el) {
+      var gate = " - ";
+
+      var status = getStatusByCode(el.status);
+      var time = moment(dep ? el.departureDate.dateLocal : el.arrivalDate.dateLocal);
+      
+      if (dep) {
+        if (el.airportResources) {
+          if (el.airportResources.departureGate) {
+            gate = el.airportResources.departureGate;
+          }
+        }
+        if (el.status != "C" && el.status != "L" && el.operationalTimes.estimatedGateDeparture) {
+          var est = moment(el.operationalTimes.estimatedGateDeparture.dateLocal);
+          if (Math.abs(time.diff(est, 'minutes')) > 5) {
+            status = "ETA " + est.format("LT");
+          }
+        }
+      } else {
+        if (el.airportResources) {
+          if (el.airportResources.arrivalGate) {
+            gate = el.airportResources.arrivalGate;
+          }
+        }
+        if (el.status != "C" && el.status != "L" && el.operationalTimes.estimatedGateArrival) {
+          var est = moment(el.operationalTimes.estimatedGateArrival.dateLocal);
+          if (Math.abs(time.diff(est, 'minutes')) > 5) {
+            status = "ETA " + est.format("LT");
+          }
+        }
+      }
+
+      dt.addRow([
+        getAirlineByCode(el.carrier.name, el.flightNumber, el.codeshares),
+        el.flightNumber,
+        (dep ? el.arrivalAirport.name : el.departureAirport.name),
+        gate,
+        {v: time.toDate(), f: time.format("LT") },
+        status
+      ]);
+    });
+    
+    dt.sort([{column:4}]);
+    
+    google.visualization.events.addListener(table, "ready",
+      function (event) {
+        //if (!prefs.getBool("hasTitle")) {
+          //$(".header-style").remove();
+        //}
+        $("#container").autoScroll({
+          speed: 'fast', //prefs.getString("scrollSpeed"),
+          by: 'continuous' //prefs.getString("scrollBy")
+        }).on("done", function() {
+          $("#container").data("plugin_autoScroll").play();
+        });
+        $("#container").data("plugin_autoScroll").play();
+      }
+    );
+    
+    google.visualization.events.addListener(table, "sort",
+      function (event) {
+      }
+    );
+        
+    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style'
+    } });
+  }
+  
+  $(document).on('click', 'table tr', function (e) {
+    var json = [];
+    
+    $('td', this).each(function() {
+      var th = $(this).closest('table').find('th').eq($(this).index());
+      var o = new Object();
+      o.name = $(th).html();
+      o.value = $(this).html();
+      json.push(o);
+    });
+    
+    if (typeof Client != 'undefined') {
+      Client.callback(JSON.stringify(json));
+    }
+  });
+</script>
+]]>
+</Content>
+</Module>
