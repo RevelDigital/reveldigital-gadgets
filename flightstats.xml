@@ -275,7 +275,7 @@ table.google-visualization-table-table,
         if (el.status != "C" && el.status != "L" && el.operationalTimes.estimatedGateDeparture) {
           var est = moment(el.operationalTimes.estimatedGateDeparture.dateLocal);
           if (Math.abs(time.diff(est, 'minutes')) > 5) {
-            status = "ETA " + est.format("LT");
+            status = "ETD " + est.format("LT");
           }
         }
       } else {
