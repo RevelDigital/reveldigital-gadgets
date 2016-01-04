@@ -354,9 +354,9 @@ h3
 
     if (sourceIdentifier.match(/http(s)*:/)) {
       try {
-        return sourceIdentifier.match(/feeds\/(.*?)\/public\//)[1];
+        return sourceIdentifier.match(/[ical|feeds]\/(.*?)\/public\//)[1];
       } catch (error) {
-        return sourceIdentifier.match(/feeds\/(.*?)\/private-(.*?)\//)[1];
+        return sourceIdentifier.match(/[ical|feeds]\/(.*?)\/private-(.*?)\//)[1];
       }
     } else {
       return encodeURIComponent(sourceIdentifier);
