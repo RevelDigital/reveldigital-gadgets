@@ -275,7 +275,7 @@ h3
     var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
     var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
     if (isAllDay) {
-      var ed = moment(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+      var ed = moment(endDateTime).subtract(1, 'days').format("__MSG_Calendar_DateFormat__");
     } else {
       var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
     }
