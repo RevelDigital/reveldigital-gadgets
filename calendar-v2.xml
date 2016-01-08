@@ -172,11 +172,10 @@ h3
     
     moment.lang("__MSG_Lang__");
     
-    //if (prefs.getString("displayFormat") == "table") {
-    //  $("#output").show();
-    //} else {
-    //  $("#event-container").show();
-    //}
+    if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+      moment.tz.setDefault(Client.getDeviceTimeZoneName());
+    }
+    
     if (prefs.getBool("showHeader") == false) {
       $("#events > table > thead").hide();
     }
