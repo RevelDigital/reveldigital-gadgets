@@ -206,7 +206,7 @@ table.google-visualization-table-table,
     } else {
       key = sourceIdentifier;
     }
-    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?gid=0";
+    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?ph=0"; // ph = placeholder
     
     if (prefs.getBool("hasTitle")) {
       ret = ret + "&headers=1";
