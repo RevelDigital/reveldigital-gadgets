@@ -90,7 +90,7 @@
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
-				requestPriceError();
+				requestPriceError(store);
 			});
 		}
 		
