@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Module> 
+<Module>
 <ModulePrefs title="Lifx Light Control" description="" author="RevelDigital" background="transparent">
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
@@ -315,7 +315,6 @@ figcaption {
     <figcaption>Serene</figcaption>
   </figure>
 </div>
-
 <div class="container">
   <figure id="ultrawarm">
     <div class="circle ultrawarm"></div>
