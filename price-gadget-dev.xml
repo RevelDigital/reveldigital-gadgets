@@ -40,7 +40,9 @@
 </body>
 
 <script type="text/javascript">
-		var prefs = new gadgets.Prefs();
+		var prefs = new gadgets.Prefs();\
+		
+		var DELAY = 5000;
 		
 		function init() {
 			var g = prefs.getString("deviceNameTag");
@@ -52,7 +54,7 @@
 						setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceNameTag"));
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
-							if (item.group_name.toLowerCase().trim() == prefs.getString("groupName").toLowerCase().trim()) {
+							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 								requestPrice(item.group_name);
 							}	
 							
@@ -88,7 +90,12 @@
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
+				requestPriceError();
 			});
+		}
+		
+		function requestPriceError(store){
+			setTimeout(function(){requestPrice(store);}, DELAY);
 		}
 		
 		function requestDefault() {
@@ -102,7 +109,12 @@
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
+				requestDefaultError();
 			});
+		}
+		
+		function requestDefaultError(){
+			setTimeout(function(){requestDefault();}, DELAY);
 		}
 		  
 		function setPrice(data) {

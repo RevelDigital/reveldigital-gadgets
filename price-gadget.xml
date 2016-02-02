@@ -42,6 +42,8 @@
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
 		
+		var DELAY = 5000;
+		
 		function init() {
 			var g = prefs.getString("deviceNameTag");
 			setInfo('Checking if tag is not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
@@ -73,7 +75,12 @@
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
+				requestPriceError();
 			});
+		}
+		
+		function requestPriceError(store){
+			setTimeout(function(){requestPrice(store);}, DELAY);
 		}
 		
 		function requestDefault() {
@@ -87,7 +94,12 @@
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
+				requestDefaultError();
 			});
+		}
+		
+		function requestDefaultError(){
+			setTimeout(function(){requestDefault();}, DELAY);
 		}
 		  
 		function setPrice(data) {
