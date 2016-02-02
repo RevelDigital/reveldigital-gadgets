@@ -42,7 +42,7 @@
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
 		
-		var DELAY = 5000;
+		var DELAY = 500;
 		
 		function init() {
 			var g = prefs.getString("deviceNameTag");
