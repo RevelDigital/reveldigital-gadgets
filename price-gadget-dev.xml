@@ -42,7 +42,7 @@
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();\
 		
-		var DELAY = 500;
+		var DELAY = 900000;
 		
 		function init() {
 			var g = prefs.getString("deviceNameTag");
@@ -55,14 +55,14 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								requestPrice(item.group_name);
+								setInterval( function() { requestPrice(item.group_name); }, DELAY );	
 							}	
 							
 						}
 					});
 				});
 			} else {
-				requestDefault();
+				setInterval( function() { requestDefault(); }, DELAY );	
 			}
 		}
 		  
@@ -85,21 +85,20 @@
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
-						requestPriceError(store);
+						price = JSON.parse(localStorage['cached_value']);
+						setPrice(price);
 						return; 
 					}
 					price = data;
 			}).done(function() {
-			  setPrice(price);
+				localStorage['cached_value'] = JSON.stringify(price);
+				setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
-				requestPriceError(store);
+				price = JSON.parse(localStorage['cached_value']);
+				setPrice(price);
 			});
-		}
-		
-		function requestPriceError(store){
-			setTimeout(function(){requestPrice(store);}, DELAY);
 		}
 		
 		function requestDefault() {
@@ -108,21 +107,20 @@
 			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
-						requestDefaultError();
+						price = JSON.parse(localStorage['cached_default']);
+						setPrice(price);
 						return; 
 					}
 					price = data;
 			}).done(function() {
-			  setPrice(price);
+				localStorage['cached_default'] = JSON.stringify(price);
+				setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
-				requestDefaultError();
+				price = JSON.parse(localStorage['cached_default']);
+				setPrice(price);
 			});
-		}
-		
-		function requestDefaultError(){
-			setTimeout(function(){requestDefault();}, DELAY);
 		}
 		  
 		function setPrice(data) {
