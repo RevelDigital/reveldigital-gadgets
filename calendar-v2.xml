@@ -72,6 +72,15 @@ body
   width: __UP_rdW__px;
 }
 
+table, div#events
+{
+  width: __UP_rdW__px;
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+}
+
 td, th
 {
   padding: 8px;
@@ -103,10 +112,18 @@ h3
   __UP_body-style__;
 }
 
+img
+{
+  float: left;
+  width: 200px;
+  margin-right: 10px;
+}
+
 .entry
 {
   padding: 20px 5px;
   border-bottom: solid 1px #ccc;
+  clear:both;
 }
 
 .when
@@ -261,6 +278,12 @@ h3
     
     var div = $("<div class=\"entry\"></div>");
     
+    if (event.attachments != null) {
+      var img = $("<img/>");
+      img.attr('src', 'https://www.googledrive.com/host/' + docIdFromUrl(event.attachments[0].fileUrl));
+      $(div).append(img);
+    }
+    
     var h2 = $("<h2></h2>");
     h2.text(event.summary);
     $(div).append(h2);
@@ -293,6 +316,8 @@ h3
     }
     
     $(h3).append(span);
+    
+    $(div).append("<div style=\"clear:both;\"></div>");
     
     $("#events").append(div);
   }
@@ -348,6 +373,8 @@ h3
     $(tbody).append(tr);
     //$(tbody).hide().appendTo("#data > table").fadeIn();
   }
+  
+  var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
   
   var googleUrl = function (sourceIdentifier) {
 
