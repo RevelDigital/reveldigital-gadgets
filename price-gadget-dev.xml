@@ -12,8 +12,8 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style type="text/css">
 	body {
 		background: transparent;
@@ -42,9 +42,11 @@
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
 		
-		var DELAY = 10000;
+		var DELAY = 1000;
 		
 		function init() {
+			price = JSON.parse(localStorage['cached_value']);
+			setPrice(price);
 			var g = prefs.getString("deviceNameTag");
 			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
 			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
