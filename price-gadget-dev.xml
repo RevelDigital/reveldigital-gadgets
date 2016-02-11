@@ -58,23 +58,13 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								requestPrice(item.group_name);
 								setInterval( function() { requestPrice(item.group_name); }, DELAY );	
 							}	
 							
 						}
 					});
 				});
-				).done(function() {
-					
-				}).fail(function(jqxhr, textStatus, error) {
-					var err = textStatus + ", " + error;
-					setInfo(err);
-					requestDefault();
-				}); 
-			}
-			else {
-				requestDefault();
+			} else {
 				setInterval( function() { requestDefault(); }, DELAY );	
 			}
 		}
