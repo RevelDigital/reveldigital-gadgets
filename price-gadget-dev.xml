@@ -65,7 +65,15 @@
 						}
 					});
 				});
-			} else {
+				).done(function() {
+					
+				}).fail(function(jqxhr, textStatus, error) {
+					var err = textStatus + ", " + error;
+					setInfo(err);
+					requestDefault();
+				}); 
+			}
+			else {
 				requestDefault();
 				setInterval( function() { requestDefault(); }, DELAY );	
 			}
