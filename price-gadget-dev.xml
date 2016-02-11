@@ -46,6 +46,7 @@
 		
 		function init() {
 			price = JSON.parse(localStorage['cached_value']);
+			setInfo('Stored value: ' + price);
 			setPrice(price);
 			var g = prefs.getString("deviceNameTag");
 			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
@@ -94,6 +95,7 @@
 					price = data;
 			}).done(function() {
 				localStorage['cached_value'] = JSON.stringify(price);
+				setInfo('Saved: ' + price);
 				setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
