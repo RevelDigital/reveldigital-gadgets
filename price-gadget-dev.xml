@@ -40,7 +40,7 @@
 </body>
 
 <script type="text/javascript">
-		var prefs = new gadgets.Prefs();\
+		var prefs = new gadgets.Prefs();
 		
 		var DELAY = 900000;
 		
