@@ -42,7 +42,7 @@
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
 		
-		var DELAY = 1000;
+		var DELAY = 300000;
 		
 		function init() {
 			price = JSON.parse(localStorage['cached_value']);
