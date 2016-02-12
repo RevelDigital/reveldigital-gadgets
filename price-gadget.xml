@@ -38,24 +38,20 @@
 	<p id="infoContainer"></p>
 </body>
 <script type="text/javascript">
-		var prefs = new gadgets.Prefs();\
+		var prefs = new gadgets.Prefs();
 		
-		var DELAY = 5000;
+		var DELAY = 500;
 		
 		function init() {
 			var g = prefs.getString("deviceNameTag");
-			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
+			setInfo('Checking if tag is not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
 			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
 				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
 					$.each(data, function (index, item) {
 						setInfo('Iterating over ' + item.group_name + ' name: ' + item.name);
 						setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceNameTag"));
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
-							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								requestPrice(item.group_name);
-							}	
-							
+							requestPrice(item.group_name);
 						}
 					});
 				});
@@ -65,17 +61,6 @@
 		}
 		  
 		gadgets.util.registerOnLoadHandler(init);
-		
-		var RevelDigital = {
-			 Controller: {
-				onCommand: function(name, arg) {
-					setInfo("NEW METHOD");
-					requestPrice("default");
-				}
-			}
-		};
-		
-		
 		
 		function requestPrice(store) {
 			var price = ""
@@ -130,11 +115,11 @@
 		}
 		
 		function setInfo(data) {
-			if (true) {
+			if (false) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
-			if (true) {
+			if (false) {
 				console.log(data);
 			}
 		}
