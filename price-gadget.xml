@@ -33,21 +33,16 @@
 		color: white;
 	}
 </style>
-
 <body>
 	<p id="priceContainer"></p>
 	<p id="infoContainer"></p>
 </body>
-
 <script type="text/javascript">
-		var prefs = new gadgets.Prefs();
+		var prefs = new gadgets.Prefs();\
 		
-		var DELAY = 300000;
+		var DELAY = 5000;
 		
 		function init() {
-			price = JSON.parse(localStorage['cached_value']);
-			setInfo('Stored value: ' + price);
-			setPrice(price);
 			var g = prefs.getString("deviceNameTag");
 			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
 			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
@@ -59,7 +54,6 @@
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 								requestPrice(item.group_name);
-								setInterval( function() { requestPrice(item.group_name); }, DELAY );	
 							}	
 							
 						}
@@ -67,7 +61,6 @@
 				});
 			} else {
 				requestDefault();
-				setInterval( function() { requestDefault(); }, DELAY );	
 			}
 		}
 		  
@@ -82,27 +75,29 @@
 			}
 		};
 		
+		
+		
 		function requestPrice(store) {
 			var price = ""
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
-						price = JSON.parse(localStorage['cached_value']);
-						setPrice(price);
+						requestPriceError(store);
 						return; 
 					}
 					price = data;
 			}).done(function() {
-				localStorage['cached_value'] = JSON.stringify(price);
-				setInfo('Saved: ' + price);
-				setPrice(price);
+			  setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
-				price = JSON.parse(localStorage['cached_value']);
-				setPrice(price);
+				requestPriceError(store);
 			});
+		}
+		
+		function requestPriceError(store){
+			setTimeout(function(){requestPrice(store);}, DELAY);
 		}
 		
 		function requestDefault() {
@@ -111,20 +106,21 @@
 			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
-						price = JSON.parse(localStorage['cached_default']);
-						setPrice(price);
+						requestDefaultError();
 						return; 
 					}
 					price = data;
 			}).done(function() {
-				localStorage['cached_default'] = JSON.stringify(price);
-				setPrice(price);
+			  setPrice(price);
 			}).fail(function(jqxhr, textStatus, error) {
 				var err = textStatus + ", " + error;
 				setInfo(err);
-				price = JSON.parse(localStorage['cached_default']);
-				setPrice(price);
+				requestDefaultError();
 			});
+		}
+		
+		function requestDefaultError(){
+			setTimeout(function(){requestDefault();}, DELAY);
 		}
 		  
 		function setPrice(data) {
@@ -134,11 +130,11 @@
 		}
 		
 		function setInfo(data) {
-			if (false) {
+			if (true) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
-			if (false) {
+			if (true) {
 				console.log(data);
 			}
 		}
