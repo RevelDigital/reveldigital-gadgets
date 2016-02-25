@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5
           content = "<p>{shortBodyPlain}</p>";
         }
       } else {
-        if (prefs.getBool("showHTML")) {
+        if (prefs.getBool("includeHTML")) {
           content = "<p>{body}</p>";
         } else {
           content = "<p>{bodyPlain}</p>";
