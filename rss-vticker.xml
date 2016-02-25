@@ -68,6 +68,12 @@ h1, h2, h3, h4, h5
   padding: 0;
 }
 
+.rssBody ul li
+{
+  float: left;
+  width: __UP_rdW__px;
+}
+
 .rssRow
 {
   margin-bottom: 20px;
@@ -166,6 +172,7 @@ h1, h2, h3, h4, h5
     }
     
     $('#ticker').rss(prefs.getString("feedUrl"), {
+      ssl: true,
       limit: prefs.getString("maxItems"),
       
       // outer template for the html transformation
