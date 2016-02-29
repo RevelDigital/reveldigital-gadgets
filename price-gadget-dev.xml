@@ -76,7 +76,7 @@
 		var RevelDigital = {
 			 Controller: {
 				onCommand: function(name, arg) {
-					setInfo("NEW METHOD");
+					setInfo("NEW METHOD name: " + name + " arg: " + arg);
 					requestPrice("default");
 				}
 			}
