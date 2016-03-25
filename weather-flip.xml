@@ -255,6 +255,47 @@
   var titles = {};
   var flipTimer;
   
+  var conditionMap = {
+    "chanceflurries": "42d",
+    "chancerain": "40d",
+    "chancesleet": "18d",
+    "chancesnow": "42d",
+    "chancetstorms": "38d",
+    "clear": "32d",
+    "cloudy": "26d",
+    "flurries": "13d",
+    "fog": "20d",
+    "hazy": "21d",
+    "mostlycloudy": "28d",
+    "mostlysunny": "29d",
+    "partlycloudy": "30d",
+    "partlysunny": "28d",
+    "sleet": "18d",
+    "rain": "11d",
+    "snow": "16d",
+    "sunny": "32d",
+    "tstorms": "4d",
+    "nt_chanceflurries": "42n",
+    "nt_chancerain": "40n",
+    "nt_chancesleet": "18n",
+    "nt_chancesnow": "42n",
+    "nt_chancetstorms": "38n",
+    "nt_clear": "32n",
+    "nt_cloudy": "26n",
+    "nt_flurries": "13n",
+    "nt_fog": "20n",
+    "nt_hazy": "21n",
+    "nt_mostlycloudy": "28n",
+    "nt_mostlysunny": "29n",
+    "nt_partlycloudy": "30n",
+    "nt_partlysunny": "28n",
+    "nt_sleet": "18n",
+    "nt_rain": "11n",
+    "nt_snow": "16n",
+    "nt_sunny": "32n",
+    "nt_tstorms": "4n"
+  };
+  
   function load() {
     
     WebFont.load({
@@ -296,6 +337,32 @@
     flipTimer = setInterval(flip, 5000);
   }
   
+  function getWeather(location) {
+  
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
+    }
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/' + encodeURIComponent(location) + '.json';
+    $.ajax({
+      type: 'GET',
+      url: api,
+      dataType: 'json',
+      success: function(data) {
+        if (data.response.error) {
+          return;
+        }
+        var item = data.current_observation;
+
+        item.location = location;
+        items.push(item);
+        
+        if (items.length == 1) {
+          flip();
+        }
+      }
+    });
+  }
+  
   function flip() {
 
     var panel = $('#card').hasClass('flipped') ? $('figure.front') : $('figure.back');
@@ -307,89 +374,19 @@
     var item = items[i];
     
     $('div.location', panel).text(item.location);
-    $('div.condition', panel).text(item.condition.text);
-    $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
-    $('div.temp', panel).text(item.condition.temp + "\u00B0");
-    $('div.high-low', panel).text(item.forecast[0].high + "\u00B0" + " / " + item.forecast[0].low + "\u00B0");
+    $('div.condition', panel).text(item.weather);
+    $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[item.icon] + ".png");
+    $('div.temp', panel).text(item.temp_f + "\u00B0");
+    //$('div.high-low', panel).text(item.forecast[0].high + "\u00B0" + " / " + item.forecast[0].low + "\u00B0");
     
     $('div.location', panel).fitText(1, { vh: 40 });
     $('div.condition', panel).fitText(1, { vh: 15 });
     $('div.temp', panel).fitText(1, { vh: 80 });
-    $('div.high-low', panel).fitText(1, { vh: 25 });
+    //$('div.high-low', panel).fitText(1, { vh: 25 });
     
     $('#card').toggleClass('flipped');
   }
-  
-  function getWeather(location) {
-
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    
-    var now = new Date();
-    // Create Yahoo Weather feed API address
-    //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(location) + "' and itemPath='search.loc') and u='"+ unit +"'";
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
-    // Send request
-    $.ajax({
-      type: 'GET',
-      url: api,
-      dataType: 'json',
-      success: function(data) {
-        if (data.query) {
-          var item = null;
-          if (data.query.count == 0) {
-            return;
-          }
-          if (data.query.results.channel.length > 1) {
-            var item = data.query.results.channel[0].item;
-          } else {
-            var item = data.query.results.channel.item;
-          }
-          //item.woeid = woeid;
-          item.location = location;
-          items.push(item);
-          
-          if (items.length == 1) {
-            flip();
-          }
-        }
-      }
-    });
-  }
-      
-  function getWOEID(search) {
-    // Cache results for an hour to prevent overuse
-    now = new Date();
-
-    //search = search.replace(',', ''); // YQL doesn't care for commas
-    
-    // Use a default when editing in template designer
-    if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      search = "Fargo, ND";
-    }
-    // Create Yahoo Weather feed API address
-    var query = 'select * from geo.places where text="'+ search +'"';
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
-    $.ajax({
-      type: 'GET',
-      url: api,
-      dataType: 'json',
-      success: function(data) {
-        if (data.query.count > 1) {
-          titles[data.query.results.place[0].woeid] = search;
-          getWeather(data.query.results.place[0].woeid);
-        } else {
-          titles[data.query.results.place.woeid] = search;
-          getWeather(data.query.results.place.woeid);
-        }
-      }
-    });
-  }
-			
+  			
   gadgets.util.registerOnLoadHandler(load);
 </script>
 
