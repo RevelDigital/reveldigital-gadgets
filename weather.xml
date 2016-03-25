@@ -263,7 +263,7 @@
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'http://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/Fargo,ND.json';
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/Fargo,ND.json';
     $.ajax({
       type: 'GET',
       url: api,
@@ -285,7 +285,7 @@
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'http://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/Fargo,ND.json';
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/Fargo,ND.json';
     $.ajax({
       type: 'GET',
       url: api,
