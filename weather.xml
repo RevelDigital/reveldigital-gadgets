@@ -241,7 +241,8 @@
       }
     });
     
-    getWeather(search);
+    getConditions(search);
+    getForecast(search);
     
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
@@ -253,84 +254,59 @@
     jQuery(".day-container").fitText(1, { vh: 4 });
     
     setInterval(function() {
-      getWeather(search);
+      getConditions(search);
+      getForecast(search);
     }, 1000 * 60 * 30);
   }
   
-  function getWeather(location) {
-  
-    var now = new Date();
-    // Create Yahoo Weather feed API address
-    // Use a default when editing in template designer
+  function getConditions(location) {
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(location) + "' and itemPath='search.loc') and u='"+ unit +"'";
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
-    // Send request
+    var api = 'http://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/Fargo,ND.json';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.query) {
-          var item = null;
-          if (data.query.results.channel.length > 1) {
-            var item = data.query.results.channel[0].item;
-          } else {
-            var item = data.query.results.channel.item;
-          }
-          $("#current div.temp span").text(item.condition.temp);
-          $("#current img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
-          $("#current .invisible").addClass("visible");
-          
-          var fc = item.forecast;
-          for (var i=0; i<fc.length; i++) {
-            if (i == 0) {
-              $("#today div.high span").text(fc[i].high);
-              $("#today div.low span").text(fc[i].low);
-              $("#today div.condition").text(fc[i].text);
-              $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
-              $("#today .invisible").addClass("visible");
-            } else if (i == 1) {
-              $("#tomorrow div.high span").text(fc[i].high);
-              $("#tomorrow div.low span").text(fc[i].low);
-              $("#tomorrow div.condition").text(fc[i].text);
-              $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
-              $("#tomorrow .invisible").addClass("visible");
-            }
-          }
+        if (data.response.error) {
+          return;
         }
+        var co = data.current_observation;
+
+        $("#current div.temp span").text(co.temp_f);
+        $("#current img.icon").attr("src",  "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[co.icon] + ".png");
+        $("#current .invisible").addClass("visible");
       }
     });
   }
-  
-  function getWOEID(search) {
-    // Cache results for an hour to prevent overuse
-    now = new Date();
 
-    search = search.replace(',', ''); // YQL doesn't care for commas
-    
-    // Use a default when editing in template designer
-    if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      search = "Fargo, ND";
+  function getForecast(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
     }
-    // Create Yahoo Weather feed API address
-    var query = 'select * from geo.places where text="'+ search +'"';
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
+    var api = 'http://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/Fargo,ND.json';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.query.count > 1) {
-          getWeather(data.query.results.place[0].woeid);
-        } else {
-          getWeather(data.query.results.place.woeid);
+        if (data.response.error) {
+          return;
         }
+        var fc = data.forecast.simpleforecast;
+
+        $("#today div.high span").text(fc.forecastday[0].high.fahrenheit);
+        $("#today div.low span").text(fc.forecastday[0].low.fahrenheit);
+        $("#today div.condition").text(fc.forecastday[0].conditions);
+        $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[0].icon] + ".png");
+        $("#today .invisible").addClass("visible");
+
+        $("#tomorrow div.high span").text(fc.forecastday[1].high.fahrenheit);
+        $("#tomorrow div.low span").text(fc.forecastday[1].low.fahrenheit);
+        $("#tomorrow div.condition").text(fc.forecastday[1].conditions);
+        $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[1].icon] + ".png");
+        $("#tomorrow .invisible").addClass("visible");
       }
     });
   }
