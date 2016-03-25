@@ -233,6 +233,47 @@
   var search = prefs.getString("Location");
   var unit = prefs.getString("Units");
   
+  var conditionMap = {
+    "chanceflurries": "42d",
+    "chancerain": "40d",
+    "chancesleet": "18d",
+    "chancesnow": "42d",
+    "chancetstorms": "38d",
+    "clear": "32d",
+    "cloudy": "26d",
+    "flurries": "13d",
+    "fog": "20d",
+    "hazy": "21d",
+    "mostlycloudy": "28d",
+    "mostlysunny": "29d",
+    "partlycloudy": "30d",
+    "partlysunny": "28d",
+    "sleet": "18d",
+    "rain": "11d",
+    "snow": "16d",
+    "sunny": "32d",
+    "tstorms": "4d",
+    "nt_chanceflurries": "42n",
+    "nt_chancerain": "40n",
+    "nt_chancesleet": "18n",
+    "nt_chancesnow": "42n",
+    "nt_chancetstorms": "38n",
+    "nt_clear": "32n",
+    "nt_cloudy": "26n",
+    "nt_flurries": "13n",
+    "nt_fog": "20n",
+    "nt_hazy": "21n",
+    "nt_mostlycloudy": "28n",
+    "nt_mostlysunny": "29n",
+    "nt_partlycloudy": "30n",
+    "nt_partlysunny": "28n",
+    "nt_sleet": "18n",
+    "nt_rain": "11n",
+    "nt_snow": "16n",
+    "nt_sunny": "32n",
+    "nt_tstorms": "4n"
+  };
+
   function load() {
   
     WebFont.load({
