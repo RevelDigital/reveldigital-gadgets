@@ -315,7 +315,7 @@
         }
         var co = data.current_observation;
 
-        $("#current div.temp span").text(co.temp_f);
+        $("#current div.temp span").text(parseInt(co.temp_f));
         $("#current img.icon").attr("src",  "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[co.icon] + ".png");
         $("#current .invisible").addClass("visible");
       }
@@ -337,14 +337,14 @@
         }
         var fc = data.forecast.simpleforecast;
 
-        $("#today div.high span").text(fc.forecastday[0].high.fahrenheit);
-        $("#today div.low span").text(fc.forecastday[0].low.fahrenheit);
+        $("#today div.high span").text(parseInt(fc.forecastday[0].high.fahrenheit));
+        $("#today div.low span").text(parseInt(fc.forecastday[0].low.fahrenheit));
         $("#today div.condition").text(fc.forecastday[0].conditions);
         $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[0].icon] + ".png");
         $("#today .invisible").addClass("visible");
 
-        $("#tomorrow div.high span").text(fc.forecastday[1].high.fahrenheit);
-        $("#tomorrow div.low span").text(fc.forecastday[1].low.fahrenheit);
+        $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.fahrenheit));
+        $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.fahrenheit));
         $("#tomorrow div.condition").text(fc.forecastday[1].conditions);
         $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[1].icon] + ".png");
         $("#tomorrow .invisible").addClass("visible");
