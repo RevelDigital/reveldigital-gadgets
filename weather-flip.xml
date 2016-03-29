@@ -376,7 +376,12 @@
     $('div.location', panel).text(item.location);
     $('div.condition', panel).text(item.weather);
     $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[item.icon] + ".png");
-    $('div.temp', panel).text(parseInt(item.temp_f) + "\u00B0");
+    
+    if (prefs.getString("Units") == "f") {
+      $('div.temp', panel).text(parseInt(item.temp_f) + "\u00B0");
+    } else {
+      $('div.temp', panel).text(parseInt(item.temp_c) + "\u00B0");
+    }
     //$('div.high-low', panel).text(parseInt(item.forecast[0].high) + "\u00B0" + " / " + parseInt(item.forecast[0].low) + "\u00B0");
     
     $('div.location', panel).fitText(1, { vh: 40 });
