@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Revel Digital</title>
+	<style type="text/css">
+		body {
+			font-family: Montserrat;
+		}
+
+		#parent {
+			position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+		}
+
+		#image_container {
+			width: 100%;
+			height: 100%;
+		}
+
+		#info_container {
+			position:absolute;
+			top: 10px;
+			left: 10px;
+		}
+	</style>
+<script type="text/javascript">
+	var authCode = "IJkL7B5rPlUAAAAAAAF2Vs5gT2LthSybCWDT8oul9kY";
+	var authKey = "t384uevzat8juat";
+	var authSecret = "e9bmaburwtkysk1";
+	var token = "IJkL7B5rPlUAAAAAAAF2WM9670ZydC91-vbH6HZIFYqOmHm82Z3FjdT4MJHd1rNh";
+	//var prefs = new gadgets.Prefs();
+	var d = [];
+	//gadgets.util.registerOnLoadHandler(initialize);
+	
+	window.onload = function() {
+	  initialize();
+	};
+ 
+	function initialize() {		
+		setInfo("Hey");
+	 }
+  
+	function resolveNext(idx) {
+
+     }
+	 
+	
+	function setImage(data) {
+		setInfo('Setting Image ' + data);
+		var container = $('#product_image');
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.attr("src", data);
+				container.fadeIn();
+			}
+		});
+	}
+
+	function setInfo(data) {
+		if (true) {
+			var container = $('#info_container');
+			container.append(data + '<br>');
+		}	
+		if (true) {
+			console.log(data);
+		}
+		if (true) {
+			alert(data);
+		}
+	}
+	
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  </head>
+<body>
+	<div id="parent">  
+			<img id="image_container" src=""></img>
+		<p id="info_container"></p>
+	</div>
+</body>
+</html>

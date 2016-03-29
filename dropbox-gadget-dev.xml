@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Target India Custom Gadget" description="Cycle through product list fetched from Google Spreadshit" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="delay" display_name="Change product every X seconds" datatype="string" />
+  <UserPref name="regKey" display_name="Registration Key Tag" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+    font-family: Montserrat;
+}
+
+#parent {
+    width: 100%;
+    margin: 0px auto;
+}
+
+#container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#image_container {
+	width: 100%;
+}
+
+#info_container {
+	position:absolute;
+	top: 10px;
+	left: 10px;
+}
+  https://api.dropboxapi.com/1/oauth2/token?code=IJkL7B5rPlUAAAAAAAF2VzKkf2QSnNUuGRCWEX6PI3U&grant_type=authorization_code&client_id=t384uevzat8juat&client_secret=e9bmaburwtkysk1
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+	var authCode = "IJkL7B5rPlUAAAAAAAF2Vs5gT2LthSybCWDT8oul9kY";
+	var authKey = "t384uevzat8juat";
+	var authSecret = "e9bmaburwtkysk1";
+	var token = "IJkL7B5rPlUAAAAAAAF2WM9670ZydC91-vbH6HZIFYqOmHm82Z3FjdT4MJHd1rNh";
+	var prefs = new gadgets.Prefs();
+	var d = [];
+	gadgets.util.registerOnLoadHandler(initialize);
+ 
+	function initialize() {		
+	
+	 }
+  
+	function resolveNext(idx) {
+
+     }
+	 
+	
+	function setImage(data) {
+		setInfo('Setting Image ' + data);
+		var container = $('#product_image');
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.attr("src", data);
+				container.fadeIn();
+			}
+		});
+	}
+
+	function setInfo(data) {
+		if (true) {
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (true) {
+			console.log(data);
+		}
+		if (false) {
+			alert(data);
+		}
+	}
+	
+</script>
+<body>
+	<div id="parent">  
+		<div id="container">
+			<img id="image_container" src=""></img>
+		</div>
+		<p id="info_container"></p>
+	</div>
+</body>]]>
+</Content>
+</Module>
