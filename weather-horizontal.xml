@@ -312,7 +312,11 @@
         }
         var co = data.current_observation;
 
-        $("#current div.temp span").text(parseInt(co.temp_f));
+        if (prefs.getString("Units") == "f") {
+          $("#current div.temp span").text(parseInt(co.temp_f));
+        } else {
+          $("#current div.temp span").text(parseInt(co.temp_c));
+        }
         $("#current img.icon").attr("src",  "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[co.icon] + ".png");
         $("#current .invisible").addClass("visible");
       }
@@ -334,14 +338,24 @@
         }
         var fc = data.forecast.simpleforecast;
 
-        $("#today div.high span").text(parseInt(fc.forecastday[0].high.fahrenheit));
-        $("#today div.low span").text(parseInt(fc.forecastday[0].low.fahrenheit));
+        if (prefs.getString("Units") == "f") {
+          $("#today div.high span").text(parseInt(fc.forecastday[0].high.fahrenheit));
+          $("#today div.low span").text(parseInt(fc.forecastday[0].low.fahrenheit));
+        } else {
+          $("#today div.high span").text(parseInt(fc.forecastday[0].high.celcius));
+          $("#today div.low span").text(parseInt(fc.forecastday[0].low.celcius));
+        }
         $("#today div.condition").text(fc.forecastday[0].conditions);
         $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[0].icon] + ".png");
         $("#today .invisible").addClass("visible");
 
-        $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.fahrenheit));
-        $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.fahrenheit));
+        if (prefs.getString("Units") == "f") {
+          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.fahrenheit));
+          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.fahrenheit));
+        } else {
+          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.celcius));
+          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.celcius));
+        }
         $("#tomorrow div.condition").text(fc.forecastday[1].conditions);
         $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[1].icon] + ".png");
         $("#tomorrow .invisible").addClass("visible");
