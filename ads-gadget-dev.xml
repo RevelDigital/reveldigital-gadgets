@@ -88,7 +88,7 @@ body {
 		});
 		
 		setInfo('Issuing simple get request');
-		$.get( "ajax/test.html", function( data ) {
+		$.get( url, function( data ) {
 			setInfo('Response is ' + JSON.stringify(data));
 			setContent(data);
 		});
