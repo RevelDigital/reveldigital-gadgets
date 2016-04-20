@@ -50,13 +50,14 @@ body {
 	
 	function makeRequest(url) {
 		setInfo('Making request');
-		$.getJSON("https://as1.reveldigital.com/proxy?url=" + url, function (data) {
-			setInfo('Response is ' + JSON.stringify(data));
-			$.each(data, function (index, item) {
-
-				setInfo("Item is " + JSON.stringify(item));
-				setContent(item);
-			});
+		$.ajax({
+			url: "https://as1.reveldigital.com/proxy?url=" + url,
+			type: 'GET',
+			dataType: 'text',
+			success: function(res) {
+				setInfo('Response is ' + res);
+				setContent(res);
+			},
 		});
      }
 	 
