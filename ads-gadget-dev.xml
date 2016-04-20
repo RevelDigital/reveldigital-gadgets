@@ -74,7 +74,7 @@ body {
 		scrpt += "/script>";
 
 		container.append(scrpt);
-		eval(scrpt);
+		eval(data);
 	}
 	
 	function setInfo(data) {
