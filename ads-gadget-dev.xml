@@ -75,7 +75,7 @@ body {
 			}
 		});
 		
-		setInfo('Making jsonpencoded request');
+		setInfo('Making jsonp request');
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -83,7 +83,7 @@ body {
 				setContent(res);
 			},
 			error: function(data) {
-				setInfo('Error is ' + data);
+				setInfo('Error is ' + JSON.stringify(data));
 			}
 		});
 	}
@@ -94,7 +94,6 @@ body {
 		script.type = 'text/javascript';
 		script.src = data;
 		container.append(script);
-		eval(data);
 	}
 	
 	function setInfo(data) {
