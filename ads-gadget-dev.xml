@@ -90,10 +90,13 @@ body {
 	 
 	function setContent(data) {
 		var container = $('#container');
-		var script = document.createElement( 'script' );
-		script.type = 'text/javascript';
-		script.src = data;
-		container.append(script);
+	
+		var scrpt = "<script>";
+		scrpt += data;
+		scrpt += "<";
+		scrpt += "/script>";
+
+		container.append(scrpt);
 	}
 	
 	function setInfo(data) {
