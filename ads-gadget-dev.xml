@@ -55,7 +55,8 @@ body {
 			type: 'GET',
 			dataType: 'text',
 			success: function(res) {
-				setInfo('Response is ' + res);
+				//setInfo('Response is ' + res);
+				setContent(res);
 			},
 			error: function(data) {
 				setInfo('Error is ' + data);
@@ -64,9 +65,10 @@ body {
      }
 	 
 	function setContent(data) {
-		setInfo('Setting Desc ' + data);
-		var container = $('#container');
-		container.html(data);
+		//setInfo('Setting Desc ' + data);
+		eval(data);
+		//var container = $('#container');
+		//container.html(data);
 	}
 	
 	function setInfo(data) {
