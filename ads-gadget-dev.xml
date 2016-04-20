@@ -41,16 +41,16 @@ body {
 	function initialize() {		
 		setInfo('Initialising');
 		var link = "http://scontent.lrcdn.net/outbound-cdn-static/js/LiveRail.AdManager-1.0.js?LR_PUBLISHER_ID=144578&LR_WATERFALL=1&LR_WRAPPER_LIMIT=5&LR_URL=%24%24REFERER_ESC%24%24&LR_SUBSEQUENT_VAST2_VPAID_CALL";
+		setInfo('Initial url ' + link);
+		// var res = encodeURIComponent(url);
+		setInfo('Encoded url ' + link);
 		makeRequest(link);
 	 }
   
 	
 	function makeRequest(url) {
 		setInfo('Making request');
-		setInfo('Initial url ' + url);
-		var res = encodeURIComponent(url);
-		setInfo('Encoded url ' + res);
-		$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+		$.getJSON("https://as1.reveldigital.com/proxy?url=" + url, function (data) {
 			$.each(data, function (index, item) {
 				setInfo("Item is " + JSON.stringify(item));
 				setContent(item);
