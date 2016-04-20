@@ -62,7 +62,7 @@ body {
 			}
 		});
 		
-		setInfo('Making encoded request');
+		setInfo('Making proxied request');
 		$.ajax({
 			url: "https://as1.reveldigital.com/proxy?url=" + url,
 			type: 'GET',
@@ -74,7 +74,19 @@ body {
 				setInfo('Error is ' + data);
 			}
 		});
-     }
+		
+		setInfo('Making jsonpencoded request');
+		$.ajax({
+			url: url,
+			dataType: "jsonp",
+			success: function(res) {
+				setContent(res);
+			},
+			error: function(data) {
+				setInfo('Error is ' + data);
+			}
+		});
+	}
 	 
 	function setContent(data) {
 		var container = $('#container');
