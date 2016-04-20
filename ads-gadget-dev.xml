@@ -49,19 +49,6 @@ body {
   
 	
 	function makeRequest(url) {
-		setInfo('Making simple request');
-		$.ajax({
-			url: url,
-			type: 'GET',
-			dataType: 'text',
-			success: function(res) {
-				setContent(res);
-			},
-			error: function(data) {
-				setInfo('Error is ' + data);
-			}
-		});
-		
 		setInfo('Making proxied request');
 		$.ajax({
 			url: "https://as1.reveldigital.com/proxy?url=" + url,
@@ -73,24 +60,6 @@ body {
 			error: function(data) {
 				setInfo('Error is ' + data);
 			}
-		});
-		
-		setInfo('Making jsonp request');
-		$.ajax({
-			url: url,
-			dataType: "jsonp",
-			success: function(res) {
-				setContent(res);
-			},
-			error: function(data) {
-				setInfo('Error is ' + JSON.stringify(data));
-			}
-		});
-		
-		setInfo('Issuing simple get request');
-		$.get( url, function( data ) {
-			setInfo('Response is ' + JSON.stringify(data));
-			setContent(data);
 		});
 	}
 	
