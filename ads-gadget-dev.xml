@@ -61,14 +61,6 @@ body {
 				setInfo('Error is ' + data);
 			}
 		});
-		
-		setInfo('Adding inline script statement');
-		var container = $('#container');
-		var scrpt = "<script src='";
-		scrpt += "https://as1.reveldigital.com/proxy?url=" + url + "'>";
-		scrpt += "<";
-		scrpt += "/script>";
-		container.append(scrpt);
 	}
 	
 	
