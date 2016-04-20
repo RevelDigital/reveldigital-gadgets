@@ -86,7 +86,15 @@ body {
 				setInfo('Error is ' + JSON.stringify(data));
 			}
 		});
+		
+		setInfo('Issuing simple get request');
+		$.get( "ajax/test.html", function( data ) {
+			setInfo('Response is ' + JSON.stringify(data));
+			setContent(data);
+		});
 	}
+	
+	
 	 
 	function setContent(data) {
 		var container = $('#container');
@@ -97,6 +105,7 @@ body {
 		scrpt += "/script>";
 
 		container.append(scrpt);
+		eval(scrpt);
 	}
 	
 	function setInfo(data) {
