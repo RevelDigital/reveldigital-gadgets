@@ -56,7 +56,6 @@ body {
 			dataType: 'text',
 			success: function(res) {
 				setInfo('Response is ' + res);
-				setContent('<script type="text/javascript"> ' + res + '</script>');
 			},
 			error: function(data) {
 				setInfo('Error is ' + data);
