@@ -39,23 +39,14 @@ body {
 	gadgets.util.registerOnLoadHandler(initialize);
  
 	function initialize() {		
-		<!-- Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
-							 callback: processData,
-							 simpleSheet: true } ) -->
+		setInfo('Initialising');
 		var link = 'http://scontent.lrcdn.net/outbound-cdn-static/js/LiveRail.AdManager-1.0.js?LR_PUBLISHER_ID=144578&LR_WATERFALL=1&LR_WRAPPER_LIMIT=5&LR_URL=%24%24REFERER_ESC%24%24&LR_SUBSEQUENT_VAST2_VPAID_CALL';
 		makeRequest(link);
 	 }
   
-	function processData(data, tabletop) {
-		for (i = 0; i < data.length; i++) { 
-				setInfo(data[i]);
-				setInfo("Product code " + data[i].product_code);
-				d[i] = data[i].product_code;
-		}
-		resolveNext(0);
-	}
 	
 	function makeRequest(url) {
+		setInfo('Making request');
 		setInfo('Initial url ' + url);
 		var res = encodeURIComponent(url);
 		setInfo('Encoded url ' + res);
@@ -70,13 +61,7 @@ body {
 	function setContent(data) {
 		setInfo('Setting Desc ' + data);
 		var container = $('#container');
-		container.fadeOut({
-			duration: 1000,
-			done: function () {
-				container.text(data);
-				container.fadeIn();
-			}
-		});
+		container.html(data);
 	}
 	
 	function setInfo(data) {
