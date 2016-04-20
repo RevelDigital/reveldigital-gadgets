@@ -49,7 +49,20 @@ body {
   
 	
 	function makeRequest(url) {
-		setInfo('Making request');
+		setInfo('Making simple request');
+		$.ajax({
+			url: url,
+			type: 'GET',
+			dataType: 'text',
+			success: function(res) {
+				setContent(res);
+			},
+			error: function(data) {
+				setInfo('Error is ' + data);
+			}
+		});
+		
+		setInfo('Making encoded request');
 		$.ajax({
 			url: "https://as1.reveldigital.com/proxy?url=" + url,
 			type: 'GET',
