@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Ads Gadget" description="Reads XML" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+    font-family: Montserrat;
+}
+
+#parent {
+    width: 100%;
+    margin: 0px auto;
+}
+
+#container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#infoContainer {
+	position:absolute;
+	top: 10px;
+	left: 10px;
+}
+  
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/tabletop.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	var prefs = new gadgets.Prefs();
+	gadgets.util.registerOnLoadHandler(initialize);
+ 
+	function initialize() {		
+		<!-- Tabletop.init( { key: prefs.getString("spreadsheetUrl"),
+							 callback: processData,
+							 simpleSheet: true } ) -->
+		var link = 'http://scontent.lrcdn.net/outbound-cdn-static/js/LiveRail.AdManager-1.0.js?LR_PUBLISHER_ID=144578&LR_WATERFALL=1&LR_WRAPPER_LIMIT=5&LR_URL=%24%24REFERER_ESC%24%24&LR_SUBSEQUENT_VAST2_VPAID_CALL';
+		makeRequest(link);
+	 }
+  
+	function processData(data, tabletop) {
+		for (i = 0; i < data.length; i++) { 
+				setInfo(data[i]);
+				setInfo("Product code " + data[i].product_code);
+				d[i] = data[i].product_code;
+		}
+		resolveNext(0);
+	}
+	
+	function makeRequest(url) {
+		setInfo('Initial url ' + url);
+		var res = encodeURIComponent(url);
+		setInfo('Encoded url ' + res);
+		$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+			$.each(data, function (index, item) {
+				setInfo("Item is " + JSON.stringify(item));
+				setContent(item);
+			});
+		});
+     }
+	 
+	function setContent(data) {
+		setInfo('Setting Desc ' + data);
+		var container = $('#container');
+		container.fadeOut({
+			duration: 1000,
+			done: function () {
+				container.text(data);
+				container.fadeIn();
+			}
+		});
+	}
+	
+	function setInfo(data) {
+		if (true) {
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (true) {
+			console.log(data);
+		}
+		if (false) {
+			alert(data);
+		}
+	}
+	
+</script>
+<body>
+	<div id="parent">  
+		<div id="container">
+		</div>
+		<p id="infoContainer"></p>
+	</div>
+</body>]]>
+</Content>
+</Module>
