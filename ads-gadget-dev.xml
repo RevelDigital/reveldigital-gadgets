@@ -20,12 +20,14 @@ body {
 #container {
     width: 75%;
     margin: 0 auto;
+	color: black;
 }
 
 #infoContainer {
 	position:absolute;
 	top: 10px;
 	left: 10px;
+	color: black;
 }
   
 </style>
