@@ -228,6 +228,8 @@
 
 <script type="text/javascript">
 
+  var re = /[^\/]+$/;
+  
   var prefs = new gadgets.Prefs();
 
   var search = prefs.getString("Location");
@@ -313,6 +315,10 @@
         if (data.response.error) {
           return;
         }
+        if (data.response.results) {
+          getConditions(re.exec(data.response.results[0].l)[0]);
+          return;
+        }
         var co = data.current_observation;
 
         if (prefs.getString("Units") == "f") {
@@ -337,6 +343,10 @@
       dataType: 'json',
       success: function(data) {
         if (data.response.error) {
+          return;
+        }
+        if (data.response.results) {
+          getForecast(re.exec(data.response.results[0].l)[0]);
           return;
         }
         var fc = data.forecast.simpleforecast;
