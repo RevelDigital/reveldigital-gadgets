@@ -95,6 +95,15 @@ body {
 	
 </script>
 <body>
+<script type="text/javascript">
+	supp_key = "b1393c59699a45ed51732194ae0d225a";
+	supp_time = new Date().getTime();
+	supp_channel = "";
+	supp_code_format = "ads-sync.js";
+	supp_click = "";
+	supp_custom_params = {};
+</script>
+<script type='text/javascript' src='http://www.advertsby.com/js/show_ads_supp.js?pubId=80114'></script>
 	<div id="parent">  
 		<div id="container">
 			IFRAMES
