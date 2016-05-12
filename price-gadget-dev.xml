@@ -22,7 +22,7 @@
 		width: 100%;
 	}
 	
-	#priceContainer {
+	#dataContainer {
 		__UP_price-style__;
 		font-family: __UP_font-name__, sans-serif !important;
 		
@@ -35,19 +35,34 @@
 </style>
 
 <body>
-	<p id="priceContainer"></p>
+	<p id="dataContainer"></p>
 	<p id="infoContainer"></p>
 </body>
 
 <script type="text/javascript">
+		var RevelDigital = {
+			 Controller: {
+				onCommand: function(name, arg) {
+					setInfo("Command recieved name: " + name + " arg: " + arg);
+					requestPrice("default");
+				}
+			}
+		};
 		var prefs = new gadgets.Prefs();
-		
+		gadgets.util.registerOnLoadHandler(init);
 		var DELAY = 300000;
 		
 		function init() {
-			price = JSON.parse(localStorage['cached_value']);
-			setInfo('Stored value: ' + price);
-			setPrice(price);
+			var data = JSON.parse(localStorage['cached_value']);
+			setInfo('Stored value: ' + data);
+			if (data) {
+				setData(data);
+			} else {
+				getData();
+			}
+		}
+		
+		function getData() {
 			var g = prefs.getString("deviceNameTag");
 			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
 			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
@@ -58,8 +73,7 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								requestPrice(item.group_name);
-								setInterval( function() { requestPrice(item.group_name); }, DELAY );	
+								requestData(item.group_name);	
 							}	
 							
 						}
@@ -67,78 +81,72 @@
 				});
 			} else {
 				requestDefault();
-				setInterval( function() { requestDefault(); }, DELAY );	
 			}
+			
+			
+			
 		}
 		  
-		gadgets.util.registerOnLoadHandler(init);
 		
-		var RevelDigital = {
-			 Controller: {
-				onCommand: function(name, arg) {
-					setInfo("NEW METHOD name: " + name + " arg: " + arg);
-					requestPrice("default");
-				}
-			}
-		};
-		
-		function requestPrice(store) {
-			var price = ""
+		function requestData(store) {
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
-			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
-					if(!data){ 
-						price = JSON.parse(localStorage['cached_value']);
-						setPrice(price);
-						return; 
+			var request = $.ajax({
+				url: root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
 					}
-					price = data;
-			}).done(function() {
-				localStorage['cached_value'] = JSON.stringify(price);
-				setInfo('Saved: ' + price);
-				setPrice(price);
-			}).fail(function(jqxhr, textStatus, error) {
-				var err = textStatus + ", " + error;
-				setInfo(err);
-				price = JSON.parse(localStorage['cached_value']);
-				setPrice(price);
+					setData(data);
+				},
+				timeout: 5000
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestPrice(store);
+				}
 			});
+		
 		}
 		
 		function requestDefault() {
-			var price = ""
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
-			$.getJSON(root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
-					if(!data){ 
-						price = JSON.parse(localStorage['cached_default']);
-						setPrice(price);
-						return; 
+			var request = $.ajax({
+				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
 					}
-					price = data;
-			}).done(function() {
-				localStorage['cached_default'] = JSON.stringify(price);
-				setPrice(price);
-			}).fail(function(jqxhr, textStatus, error) {
-				var err = textStatus + ", " + error;
-				setInfo(err);
-				price = JSON.parse(localStorage['cached_default']);
-				setPrice(price);
+					setData(data);
+				},
+				timeout: 5000
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestDefault();
+				}
 			});
+			
 		}
 		  
-		function setPrice(data) {
+		function setData(data) {
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
-			var container = $('#priceContainer');
+			var container = $('#dataContainer');
 			container.text(data);
 		}
 		
 		function setInfo(data) {
-			if (true) {
+			var debug = true;
+			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
-			if (true) {
+			if (debug) {
 				console.log(data);
 			}
 		}
