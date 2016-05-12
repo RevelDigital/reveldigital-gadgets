@@ -42,17 +42,8 @@
 </body>
 
 <script type="text/javascript">
-		var RevelDigital = {
-			 Controller: {
-				onCommand: function(name, arg) {
-					setInfo("Command recieved name: " + name + " arg: " + arg);
-					requestData("default");
-				}
-			}
-		};
 		var prefs = new gadgets.Prefs();
-		gadgets.util.registerOnLoadHandler(init);
-		var DELAY = 300000;
+		var TIMEOUT = 5000;
 		
 		function init() {
 			setInfo('Initializing...');
@@ -61,9 +52,23 @@
 				setInfo('Stored value: ' + data);
 				setData(data);
 			} else {
+				setInfo('No stored data, requesting from api');
 				getData();
 			}
 		}
+		
+		gadgets.util.registerOnLoadHandler(init);
+		
+		var RevelDigital = {
+			 Controller: {
+				onCommand: function(name, arg) {
+					setInfo("Command recieved name: " + name + " arg: " + arg);
+					requestData("default");
+				}
+			}
+		};
+		
+		
 		
 		function getData() {
 			var g = prefs.getString("deviceNameTag");
@@ -101,7 +106,7 @@
 					}
 					setData(data);
 				},
-				timeout: 5000
+				timeout: TIMEOUT
 			}).fail( function( xhr, status ) {
 				if( status == "timeout" ) {
 					requestData(store);
@@ -124,7 +129,7 @@
 					}
 					setData(data);
 				},
-				timeout: 5000
+				timeout: TIMEOUT
 			}).fail( function( xhr, status ) {
 				if( status == "timeout" ) {
 					requestDefault();
