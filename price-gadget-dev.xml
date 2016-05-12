@@ -68,7 +68,7 @@
 			 Controller: {
 				onCommand: function(name, arg) {
 					setInfo("Command recieved name: " + name + " arg: " + arg);
-					requestData("default");
+					init();
 				}
 			}
 		};
