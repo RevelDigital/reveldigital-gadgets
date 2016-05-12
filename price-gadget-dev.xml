@@ -55,6 +55,7 @@
 		var DELAY = 300000;
 		
 		function init() {
+			setInfo('Initializing...');
 			var data = JSON.parse(localStorage['cached_value']);
 			if (data) {
 				setInfo('Stored value: ' + data);
