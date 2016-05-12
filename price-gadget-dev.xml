@@ -47,7 +47,12 @@
 		
 		function init() {
 			setInfo('Initializing...');
-			var data = JSON.parse(localStorage['cached_value']);
+			var stored = localStorage['cached_value'];
+			var data = "";
+			if (stored) {
+				setInfo('Stored data: ' + stored);
+				data = JSON.parse(stored);
+			}
 			if (data) {
 				setInfo('Stored value: ' + data);
 				setData(data);
