@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Price Gadget" description="Gets and displays a price" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital EMC Gadget" description="Gadget to use with EMC web application" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="Account Api Key" datatype="string" />
   <UserPref name="deviceNameTag" display_name="Default Device Group" datatype="string"  />
   <UserPref name="gadgetKey" display_name="MSG Gadget Key" datatype="string" />
@@ -46,7 +46,7 @@
 			 Controller: {
 				onCommand: function(name, arg) {
 					setInfo("Command recieved name: " + name + " arg: " + arg);
-					requestPrice("default");
+					requestData("default");
 				}
 			}
 		};
@@ -56,8 +56,8 @@
 		
 		function init() {
 			var data = JSON.parse(localStorage['cached_value']);
-			setInfo('Stored value: ' + data);
 			if (data) {
+				setInfo('Stored value: ' + data);
 				setData(data);
 			} else {
 				getData();
@@ -103,7 +103,7 @@
 				timeout: 5000
 			}).fail( function( xhr, status ) {
 				if( status == "timeout" ) {
-					requestPrice(store);
+					requestData(store);
 				}
 			});
 		
