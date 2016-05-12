@@ -35,9 +35,7 @@
 </style>
 
 <body>
-	Data
 	<p id="dataContainer"></p>
-	Info
 	<p id="infoContainer"></p>
 </body>
 
