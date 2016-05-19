@@ -126,9 +126,7 @@ body {
 </script>
 <p>Simple IFrame</p><br/>
 <iframe src="http://www.advertisation.com/ads?key=b1393c59699a45ed51732194ae0d225a&ch=" width="300" height="600" frameborder="0" scrolling="no"></iframe>
-<div id="overlay">
-    
-</div>
+
 <script type="text/javascript">
 	supp_key = "b1393c59699a45ed51732194ae0d225a";
 	supp_time = new Date().getTime();
