@@ -30,14 +30,6 @@ body {
 	color: black;
 }
 
-#overlay {
-    background-color: rgba(1, 1, 1, 0.7);
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-}
 </style>
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/tabletop.js" type="text/javascript"></script>
