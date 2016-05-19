@@ -104,6 +104,26 @@ body {
 	
 </script>
 <body>
+<div id="jwplayer">JW Player</div>
+<a href="http://www.advertisation.com/video/epom.mp4" style="display:block;width:640px;height:360px" id="flowplayer">
+    <img src="http://www.advertisation.com/video/epom.jpg"/>
+</a>
+<script type="text/javascript" src="//flowplayer.org/6/flowplayer.js"></script>
+<script type="text/javascript">
+    flowplayer("flowplayer", "http://player.longtailvideo.com/flowplayer/flowplayer-3.2.7.swf",
+            {
+                plugins:{
+                    ova:{
+						"ads":{"filterOnLinearAdMimeTypes":false,"pauseOnClickThrough":true,"replayNonLinearAds":false,"controls":{"skipAd":{"image":"http://www.advertisation.com/img/skip-ad.png",
+						"minimumAdDuration":10,"width":60,"showAfterSeconds":5,"showForSeconds":5,"enabled":false,"height":15},"visible":false},
+						"notice":{"type":"countdown"},"servers":[{"apiAddress":"http://adsnet4all.com/vast.xml?key=7f7e0098076fe4e8686108f500b31b7d",
+						"type":"direct"}],"schedule":[{"zone":"PRE_ROLL","position":"pre-roll","playOnce":true}]},"debug":{"debugger":"firebug","levels":"fatal, config, vast_template, vpaid, http_calls"},
+						"overlays":{"closeButton":{"image":"http://www.advertisation.com/img/close-ad.png","width":15,"type":"custom","height":15}},
+						"url":"http://player.longtailvideo.com/flowplayer/ova-trial.swf","delayAdRequestUntilPlay":true}
+                }
+            }
+    );
+</script>
 <p>Simple IFrame</p><br/>
 <iframe src="http://www.advertisation.com/ads?key=b1393c59699a45ed51732194ae0d225a&ch=" width="300" height="600" frameborder="0" scrolling="no"></iframe>
 <div id="overlay">
