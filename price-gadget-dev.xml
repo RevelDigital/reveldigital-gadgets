@@ -98,7 +98,7 @@
 		  
 		
 		function requestData(store) {
-			var root = 'https://beta.msg.reveldigital.com/Api/RequestPrice';
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
 				url: root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
@@ -121,7 +121,7 @@
 		}
 		
 		function requestDefault() {
-			var root = 'https://beta.msg.reveldigital.com/Api/RequestPrice';
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
 				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
@@ -150,7 +150,7 @@
 		}
 		
 		function setInfo(data) {
-			var debug = false;
+			var debug = true;
 			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
