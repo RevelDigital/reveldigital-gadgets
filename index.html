@@ -1,81 +1,47 @@
 <!doctype html>
-<html>
-  <head>
-    <title>Revel Digital</title>
-	<style type="text/css">
-		body {
-			font-family: Montserrat;
-		}
 
-		#parent {
-			position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-		}
-
-		#image_container {
-			width: 100%;
-			height: 100%;
-		}
-
-		#info_container {
-			position:absolute;
-			top: 10px;
-			left: 10px;
-		}
-	</style>
-<script type="text/javascript">
-	var authCode = "IJkL7B5rPlUAAAAAAAF2Vs5gT2LthSybCWDT8oul9kY";
-	var authKey = "t384uevzat8juat";
-	var authSecret = "e9bmaburwtkysk1";
-	var token = "IJkL7B5rPlUAAAAAAAF2WM9670ZydC91-vbH6HZIFYqOmHm82Z3FjdT4MJHd1rNh";
-	//var prefs = new gadgets.Prefs();
-	var d = [];
-	//gadgets.util.registerOnLoadHandler(initialize);
-	
-	window.onload = function() {
-	  initialize();
-	};
- 
-	function initialize() {		
-		setInfo("Hey");
-	 }
-  
-	function resolveNext(idx) {
-
-     }
-	 
-	
-	function setImage(data) {
-		setInfo('Setting Image ' + data);
-		var container = $('#product_image');
-		container.fadeOut({
-			duration: 1000,
-			done: function () {
-				container.attr("src", data);
-				container.fadeIn();
-			}
-		});
-	}
-
-	function setInfo(data) {
-		if (true) {
-			var container = $('#info_container');
-			container.append(data + '<br>');
-		}	
-		if (true) {
-			console.log(data);
-		}
-		if (true) {
-			alert(data);
-		}
-	}
-	
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
 <body>
-	<div id="parent">  
-			<img id="image_container" src=""></img>
-		<p id="info_container"></p>
+	<h3>flowplayer</h3>
+	<a href="http://adsnet4all.com/video/epom.mp4"
+	style="display:block;width:640px;height:360px" id="flowplayer">
+		 <img src="http://adsnet4all.com/video/epom.jpg"/>
+	</a>
+	<script type="text/javascript"
+	src="http://www.flowplayer.org/6/flowplayer.js"></script>
+	<script type="text/javascript">
+     flowplayer("flowplayer",
+		"http://player.longtailvideo.com/flowplayer/flowplayer-3.2.7.swf",
+             {
+                 plugins:{
+
+					ova:{
+						"ads":{
+							"filterOnLinearAdMimeTypes":false,"pauseOnClickThrough":true,"replayNonLinearAds":false,"controls":{"skipAd":{"image":"http://adsnet4all.com/img/skip-ad.png","minimumAdDuration":10,"width":60,"showAfterSeconds":5,"showForSeconds":5,"enabled":false,"height":15},"visible":false},"notice":{"type":"countdown"},"servers":[{"apiAddress":"http://adsnet4all.com/vast.xml?key=7f7e0098076fe4e8686108f500b31b7d__amp__zone=__zone____amp__epomUrl=__page-url__","type":"direct"}],"schedule":[{"zone":"PRE_ROLL","position":"pre-roll","playOnce":true}]},"debug":{"debugger":"firebug","levels":"fatal,config, vast_template, vpaid,http_calls"},"overlays":{"closeButton":{"image":"http://adsnet4all.com/img/close-ad.png","width":15,"type":"custom","height":15}},"url":"http://player.longtailvideo.com/flowplayer/ova-trial.swf","delayAdRequestUntilPlay":true}
+                 }
+             }
+     );
+	</script>
+
+	<h3>jwplayer</h3>
+	<div id="jwplayer">
+		JW Player
 	</div>
+	<script type="text/javascript"
+		src="http://www.eib-dz.com/public/js/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript">
+		 jwplayer("jwplayer").setup({
+			flashplayer:"https://ia601703.us.archive.org/8/items/JwPlayerFiles/player.swf",
+			file:"http://adsnet4all.com/video/epom.mp4",
+			image:"http://adsnet4all.com/video/epom.jpg",
+			plugins:'ova-trial',
+			config:'http://adsnet4all.com/ova139/7f7e0098076fe4e8686108f500b31b7d.xml',
+				width:640,
+				height:360
+		 });
+	</script>
 </body>
 </html>
