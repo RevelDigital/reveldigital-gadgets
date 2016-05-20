@@ -96,58 +96,43 @@ body {
 	
 </script>
 <body>
+<h3>flowplayer</h3>
+	<a href="http://adsnet4all.com/video/epom.mp4"
+	style="display:block;width:640px;height:360px" id="flowplayer">
+		 <img src="http://adsnet4all.com/video/epom.jpg"/>
+	</a>
+	<script type="text/javascript"
+	src="http://releases.flowplayer.org/js/flowplayer-3.2.9.min.js"></script>
+	<script type="text/javascript">
+     flowplayer("flowplayer",
+		"http://player.longtailvideo.com/flowplayer/flowplayer-3.2.7.swf",
+             {
+                 plugins:{
+
+					ova:{
+						"ads":{
+							"filterOnLinearAdMimeTypes":false,"pauseOnClickThrough":true,"replayNonLinearAds":false,"controls":{"skipAd":{"image":"http://adsnet4all.com/img/skip-ad.png","minimumAdDuration":10,"width":60,"showAfterSeconds":5,"showForSeconds":5,"enabled":false,"height":15},"visible":false},"notice":{"type":"countdown"},"servers":[{"apiAddress":"http://adsnet4all.com/vast.xml?key=7f7e0098076fe4e8686108f500b31b7d__amp__zone=__zone____amp__epomUrl=__page-url__","type":"direct"}],"schedule":[{"zone":"PRE_ROLL","position":"pre-roll","playOnce":true}]},"debug":{"debugger":"firebug","levels":"fatal,config, vast_template, vpaid,http_calls"},"overlays":{"closeButton":{"image":"http://adsnet4all.com/img/close-ad.png","width":15,"type":"custom","height":15}},"url":"http://player.longtailvideo.com/flowplayer/ova-trial.swf","delayAdRequestUntilPlay":true}
+                 }
+             }
+     );
+	</script>
+
+<h3>jwplayer</h3>
 <div id="jwplayer">JW Player</div>
-<a href="http://www.advertisation.com/video/epom.mp4" style="display:block;width:640px;height:360px" id="flowplayer">
-    <img src="http://www.advertisation.com/video/epom.jpg"/>
-</a>
-<script type="text/javascript" src="//flowplayer.org/6/flowplayer.js"></script>
+<script type="text/javascript"
+src="http://www.eib-dz.com/public/js/jwplayer/jwplayer.js"></script>
 <script type="text/javascript">
-    flowplayer("flowplayer", "http://player.longtailvideo.com/flowplayer/flowplayer-3.2.7.swf",
-            {
-                plugins:{
-                    ova:{
-						"ads":{"filterOnLinearAdMimeTypes":false,"pauseOnClickThrough":true,"replayNonLinearAds":false,"controls":{"skipAd":{"image":"http://www.advertisation.com/img/skip-ad.png",
-						"minimumAdDuration":10,"width":60,"showAfterSeconds":5,"showForSeconds":5,"enabled":false,"height":15},"visible":false},
-						"notice":{"type":"countdown"},"servers":[{"apiAddress":"http://adsnet4all.com/vast.xml?key=7f7e0098076fe4e8686108f500b31b7d",
-						"type":"direct"}],"schedule":[{"zone":"PRE_ROLL","position":"pre-roll","playOnce":true}]},"debug":{"debugger":"firebug","levels":"fatal, config, vast_template, vpaid, http_calls"},
-						"overlays":{"closeButton":{"image":"http://www.advertisation.com/img/close-ad.png","width":15,"type":"custom","height":15}},
-						"url":"http://player.longtailvideo.com/flowplayer/ova-trial.swf","delayAdRequestUntilPlay":true}
-                }
-            }
-    );
+     jwplayer("jwplayer").setup({
+         flashplayer:"https://ia601703.us.archive.org/8/items/JwPlayerFiles/player.swf",
+         file:"http://adsnet4all.com/video/epom.mp4",
+         image:"http://adsnet4all.com/video/epom.jpg",
+         plugins:'ova-trial',
+
+config:'http://adsnet4all.com/ova139/7f7e0098076fe4e8686108f500b31b7d.xml',
+         width:640,
+         height:360
+     });
 </script>
-<p>Simple IFrame</p><br/>
-<iframe src="http://www.advertisation.com/ads?key=b1393c59699a45ed51732194ae0d225a&ch=" width="300" height="600" frameborder="0" scrolling="no"></iframe>
-
-<script type="text/javascript">
-	supp_key = "b1393c59699a45ed51732194ae0d225a";
-	supp_time = new Date().getTime();
-	supp_channel = "";
-	supp_code_format = "ads-sync.js";
-	supp_click = "";
-	supp_custom_params = {};
-</script>
-<script type='text/javascript' src='http://www.advertsby.com/js/show_ads_supp.js?pubId=80114'></script>
-
-
-	<div id="parent">  
-		<div id="container">
-			IFRAMES
-			<iframe name="ad" style="height:400px">
-				
-			</iframe >
-			
-			<iframe  src='https://as1.reveldigital.com/proxy?url=http://scontent.lrcdn.net/outbound-cdn-static/js/LiveRail.AdManager-1.0.js?LR_PUBLISHER_ID=144578&LR_WATERFALL=1&LR_WRAPPER_LIMIT=5&LR_URL=%24%24REFERER_ESC%24%24&LR_SUBSEQUENT_VAST2_VPAID_CALL'>
-			</iframe >
-			
-			<iframe  src='http://scontent.lrcdn.net/outbound-cdn-static/js/LiveRail.AdManager-1.0.js?LR_PUBLISHER_ID=144578&LR_WATERFALL=1&LR_WRAPPER_LIMIT=5&LR_URL=%24%24REFERER_ESC%24%24&LR_SUBSEQUENT_VAST2_VPAID_CALL'>
-			</iframe >
-			
-			<iframe id="frame"></iframe>
-			
-		</div>
-		<p id="infoContainer"></p>
-	</div>
 </body>]]>
 </Content>
 </Module>
