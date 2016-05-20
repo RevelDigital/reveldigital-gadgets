@@ -11,6 +11,7 @@
   <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="white" required="true" />
   <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="white" required="true" />
   <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="" required="false" />
+  <UserPref name="CustomFont" display_name="Google Font Name" datatype="string" default_value="" required="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -32,15 +33,21 @@
     overflow: hidden;
     margin: 0;
     padding: 0;
-    font-family: Arial;
   }
 
+  span, div.condition {
+    font-family: arial,sans-serif;
+    font-family: __UP_CustomFont__;
+  }
+  
   #container {
     position: relative;
     width: __UP_rdW__px;
     height: __UP_rdH__px;
     margin: 0;
     padding: 0;
+    font-family: arial,sans-serif;
+    font-family: __UP_CustomFont__;
   }
   
   .box {
@@ -215,19 +222,70 @@
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
 <script type="text/javascript">
 
+  var re = /[^\/]+$/;
+  
   var prefs = new gadgets.Prefs();
 
   var search = prefs.getString("Location");
   var unit = prefs.getString("Units");
   
+  var conditionMap = {
+    "chanceflurries": "42d",
+    "chancerain": "40d",
+    "chancesleet": "18d",
+    "chancesnow": "42d",
+    "chancetstorms": "38d",
+    "clear": "32d",
+    "cloudy": "26d",
+    "flurries": "13d",
+    "fog": "20d",
+    "hazy": "21d",
+    "mostlycloudy": "28d",
+    "mostlysunny": "29d",
+    "partlycloudy": "30d",
+    "partlysunny": "28d",
+    "sleet": "18d",
+    "rain": "11d",
+    "snow": "16d",
+    "sunny": "32d",
+    "tstorms": "4d",
+    "nt_chanceflurries": "42n",
+    "nt_chancerain": "40n",
+    "nt_chancesleet": "18n",
+    "nt_chancesnow": "42n",
+    "nt_chancetstorms": "38n",
+    "nt_clear": "32n",
+    "nt_cloudy": "26n",
+    "nt_flurries": "13n",
+    "nt_fog": "20n",
+    "nt_hazy": "21n",
+    "nt_mostlycloudy": "28n",
+    "nt_mostlysunny": "29n",
+    "nt_partlycloudy": "30n",
+    "nt_partlysunny": "28n",
+    "nt_sleet": "18n",
+    "nt_rain": "11n",
+    "nt_snow": "16n",
+    "nt_sunny": "32n",
+    "nt_tstorms": "4n"
+  };
+
   function load() {
   
-    getWeather(search);
+    WebFont.load({
+      google: {
+        families: [ prefs.getString("CustomFont") ]
+      }
+    });
+    
+    getConditions(search);
+    getForecast(search);
     
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
@@ -239,80 +297,81 @@
     jQuery(".day-container").fitText(1, { vh: 4 });
     
     setInterval(function() {
-      getWeather(search);
+      getConditions(search);
+      getForecast(search);
     }, 1000 * 60 * 30);
   }
   
-  function getWeather(woeid) {
-  
-    var now = new Date();
-    // Create Yahoo Weather feed API address
-    //var query = "select * from weather.forecast where woeid in ("+ woeid +") and u='"+ unit +"'";
-    var query = "select * from weather.forecast where location in (select id from xml where url='http://wxdata.weather.com/wxdata/search/search?where=" + encodeURIComponent(search) + "' and itemPath='search.loc') and u='"+ unit +"'";
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
-    // Send request
+  function getConditions(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
+    }
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/' + encodeURIComponent(location) + '.json';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.query) {
-          var item = null;
-          if (data.query.results.channel.length > 1) {
-            var item = data.query.results.channel[0].item;
-          } else {
-            var item = data.query.results.channel.item;
-          }
-          $("#current div.temp span").text(item.condition.temp);
-          $("#current img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + item.condition.code + "d.png");
-          $("#current .invisible").addClass("visible");
-          
-          var fc = item.forecast;
-          for (var i=0; i<fc.length; i++) {
-            if (i == 0) {
-              $("#today div.high span").text(fc[i].high);
-              $("#today div.low span").text(fc[i].low);
-              $("#today div.condition").text(fc[i].text);
-              $("#today img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
-              $("#today .invisible").addClass("visible");
-            } else if (i == 1) {
-              $("#tomorrow div.high span").text(fc[i].high);
-              $("#tomorrow div.low span").text(fc[i].low);
-              $("#tomorrow div.condition").text(fc[i].text);
-              $("#tomorrow img.icon").attr("src", "http://l.yimg.com/a/i/us/nws/weather/gr/" + fc[i].code + "d.png");
-              $("#tomorrow .invisible").addClass("visible");
-            }
-          }
+        if (data.response.error) {
+          return;
         }
+        if (data.response.results) {
+          getConditions(re.exec(data.response.results[0].l)[0]);
+          return;
+        }
+        var co = data.current_observation;
+
+        if (prefs.getString("Units") == "f") {
+          $("#current div.temp span").text(parseInt(co.temp_f));
+        } else {
+          $("#current div.temp span").text(parseInt(co.temp_c));
+        }
+        $("#current img.icon").attr("src",  "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[co.icon] + ".png");
+        $("#current .invisible").addClass("visible");
       }
     });
   }
-  
-  function getWOEID(search) {
-    // Cache results for an hour to prevent overuse
-    now = new Date();
 
-    search = search.replace(',', ''); // YQL doesn't care for commas
-    
-    // Use a default when editing in template designer
-    if (search == "" || search.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      search = "Fargo, ND";
+  function getForecast(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
     }
-    // Create Yahoo Weather feed API address
-    var query = 'select * from geo.places where text="'+ search +'"';
-    var api = 'https://query.yahooapis.com/v1/public/yql?q='+ encodeURIComponent(query) +'&rnd='+ now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() +'&format=json&callback=?';
-
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/' + encodeURIComponent(location) + '.json';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.query.count > 1) {
-          getWeather(data.query.results.place[0].woeid);
-        } else {
-          getWeather(data.query.results.place.woeid);
+        if (data.response.error) {
+          return;
         }
+        if (data.response.results) {
+          getForecast(re.exec(data.response.results[0].l)[0]);
+          return;
+        }
+        var fc = data.forecast.simpleforecast;
+
+        if (prefs.getString("Units") == "f") {
+          $("#today div.high span").text(parseInt(fc.forecastday[0].high.fahrenheit));
+          $("#today div.low span").text(parseInt(fc.forecastday[0].low.fahrenheit));
+        } else {
+          $("#today div.high span").text(parseInt(fc.forecastday[0].high.celsius));
+          $("#today div.low span").text(parseInt(fc.forecastday[0].low.celsius));
+        }
+        $("#today div.condition").text(fc.forecastday[0].conditions);
+        $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[0].icon] + ".png");
+        $("#today .invisible").addClass("visible");
+
+        if (prefs.getString("Units") == "f") {
+          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.fahrenheit));
+          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.fahrenheit));
+        } else {
+          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.celsius));
+          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.celsius));
+        }
+        $("#tomorrow div.condition").text(fc.forecastday[1].conditions);
+        $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[1].icon] + ".png");
+        $("#tomorrow .invisible").addClass("visible");
       }
     });
   }
