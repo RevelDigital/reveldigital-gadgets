@@ -41,6 +41,7 @@
 
 <script type="text/javascript">
 		var prefs = new gadgets.Prefs();
+		var STORE = "";
 		var TIMEOUT = 5000;
 		
 		function init() {
@@ -86,6 +87,7 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
+								STORE = item.group_name;
 								requestData(item.group_name);	
 							}	
 						}
@@ -117,7 +119,28 @@
 					requestData(store);
 				}
 			});
+		}
 		
+		function requestDataForKey(gadgetKey) {
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Request is  ' + root + '?storeId=' + STORE + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			var request = $.ajax({
+				url: root + '?storeId=' + STORE + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
+					}
+					setData(data);
+				},
+				timeout: TIMEOUT
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestData(store);
+				}
+			});
 		}
 		
 		function requestDefault() {
@@ -142,6 +165,7 @@
 			});
 			
 		}
+		
 		  
 		function setData(data) {
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
