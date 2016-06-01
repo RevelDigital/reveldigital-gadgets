@@ -123,7 +123,7 @@
 		
 		function requestDataForKey(gadgetKey) {
 			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
-			setInfo('Request is  ' + root + '?storeId=' + STORE + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			setInfo('Requesting for  ' + gadgetKey);
 			var request = $.ajax({
 				url: root + '?storeId=' + STORE + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
