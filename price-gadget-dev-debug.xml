@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital EMC Gadget" description="Gadget to use with EMC web application" author="RevelDigital" background="transparent">
+  <UserPref name="apikey" display_name="Account Api Key" datatype="string" />
+  <UserPref name="deviceNameTag" display_name="Default Device Group" datatype="string"  />
+  <UserPref name="gadgetKey" display_name="EMC Gadget Key" datatype="string" />
+  <UserPref name="groupName" display_name="EMC Group Name" datatype="string" />
+  <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
+  <UserPref name="font-name" display_name="Google Font Name. More at https://www.google.com/fonts" datatype="string" default_value="Droid Sans"/>
+  <UserPref name="gadgetWidth" display_name="Width" required="true" default_value="100" datatype="hidden" />
+  <UserPref name="gadgetHeight" display_name="Height" required="true" default_value="100" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style type="text/css">
+	body {
+		background: transparent;
+		overflow: hidden; 
+		height: 100%;
+		width: 100%;
+	}
+	
+	#dataContainer {
+		__UP_text-style__;
+		font-family: __UP_font-name__, sans-serif !important;
+		
+	}
+	
+	#infoContainer {
+		font-size: 75%;
+		color: red;
+	}
+</style>
+
+<body>
+	<p id="dataContainer"></p>
+	<p id="infoContainer"></p>
+</body>
+
+<script type="text/javascript">
+		var prefs = new gadgets.Prefs();
+		var STORE = "";
+		var TIMEOUT = 5000;
+		
+		function init() {
+			setInfo('Initializing...');
+			var stored = localStorage['cached_value'];
+			var data = "";
+			if (stored) {
+				setInfo('Stored data: ' + stored);
+				data = JSON.parse(stored);
+			}
+			if (data) {
+				setInfo('Stored value: ' + data);
+				setData(data);
+			} else {
+				setInfo('No stored data, requesting from api');
+				getData();
+			}
+		}
+		
+		gadgets.util.registerOnLoadHandler(init);
+		
+		var RevelDigital = {
+			 Controller: {
+				onCommand: function(name, arg) {
+					setInfo("Command recieved name: " + name + " args: " + arg);
+					if (name == "refresh-gadget") {
+						init();
+					}
+				}
+			}
+		};
+		
+		
+		
+		function getData() {
+			var g = prefs.getString("deviceNameTag");
+			setInfo('Checking if tag ins not extracted: ' + g.toLowerCase().trim() + ' vs ' + "*|DEVICE.NAME|*".toLowerCase().trim());
+			if (g.toLowerCase().trim() != "*|DEVICE.NAME|*".toLowerCase().trim() && g.toLowerCase().trim() != "") {
+				$.getJSON("https://api.reveldigital.com/devices.json?api_key=" + prefs.getString("apikey"), function (data) {
+					$.each(data, function (index, item) {
+						setInfo('Iterating over ' + item.group_name + ' name: ' + item.name);
+						setInfo('Comparing ' + item.name + ' with ' + prefs.getString("deviceNameTag"));
+						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
+							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
+							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
+								STORE = item.group_name;
+								requestData(item.group_name);	
+							}	
+						}
+					});
+				});
+			} else {
+				requestDefault();
+			}	
+		}
+		  
+		
+		function requestData(store) {
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			var request = $.ajax({
+				url: root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
+					}
+					setData(data);
+				},
+				timeout: TIMEOUT
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestData(store);
+				}
+			});
+		}
+		
+		function requestDataForKey(gadgetKey) {
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Requesting for  ' + gadgetKey);
+			var request = $.ajax({
+				url: root + '?storeId=' + STORE + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
+					}
+					setData(data);
+				},
+				timeout: TIMEOUT
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestData(store);
+				}
+			});
+		}
+		
+		function requestDefault() {
+			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			var request = $.ajax({
+				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				success: function(response) { 
+					var data = "";
+					if(!response){ 
+						data = JSON.parse(localStorage['cached_value']);
+					} else {
+						data = response;
+					}
+					setData(data);
+				},
+				timeout: TIMEOUT
+			}).fail( function( xhr, status ) {
+				if( status == "timeout" ) {
+					requestDefault();
+				}
+			});
+			
+		}
+		
+		  
+		function setData(data) {
+			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
+			var container = $('#dataContainer');
+			container.text(data);
+		}
+		
+		function setInfo(data) {
+			var debug = true;
+			if (debug) {
+				var container = $('#infoContainer');
+				container.append(data + '<br>');
+			}	
+			if (debug) {
+				console.log(data);
+			}
+		}
+</script>]]>
+</Content>
+</Module>
