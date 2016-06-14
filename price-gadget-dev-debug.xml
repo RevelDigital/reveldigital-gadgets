@@ -174,7 +174,7 @@
 		}
 		
 		function setInfo(data) {
-			var debug = true;
+			var debug = false;
 			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
