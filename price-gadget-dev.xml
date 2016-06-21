@@ -117,6 +117,12 @@
 			}).fail( function( xhr, status ) {
 				if( status == "timeout" ) {
 					requestData(store);
+					return;
+				}
+				if (stored) {
+					setInfo('Stored data: ' + stored);
+					data = JSON.parse(stored);
+					setData(data);
 				}
 			});
 		}
