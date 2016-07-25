@@ -222,6 +222,12 @@
           }
           endpoint = "users/" + this.options.userId + "/media/recent";
           break;
+        case "self_recent":
+          endpoint = "users/self/media/recent";
+          break;
+        case "self_liked":
+          endpoint = "users/self/media/liked";
+          break;
         default:
           throw new Error("Invalid option for get: '" + this.options.get + "'.");
       }
