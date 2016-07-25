@@ -119,7 +119,7 @@ ul li p {
         target: 'container',
         get: prefs.getString("get"),
         locationId: parseInt(prefs.getString("getQuery")),
-        userId: parseInt(prefs.getString("getQuery")),
+        userId: prefs.getString("getQuery"),
         sortBy: prefs.getString("sort"),
         tagName: prefs.getString("getQuery"),
         registrationKey: key,
