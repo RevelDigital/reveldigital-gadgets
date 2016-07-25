@@ -5,7 +5,6 @@
   author="RevelDigital" background="transparent">
   <UserPref name="get" display_name="Get Images" datatype="enum" default_value="popular">
     <EnumValue value="self_recent" display_value="My most recent posts" />
-    <EnumValue value="self_liked" display_value="My most popular posts" />
     <EnumValue value="popular" display_value="From the popular page" />
     <EnumValue value="tagged" display_value="With a specific tag. Must specify the tag" />
     <EnumValue value="location" display_value="From a location. Must specify the location Id" />
