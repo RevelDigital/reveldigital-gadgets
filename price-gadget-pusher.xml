@@ -73,7 +73,7 @@
 		
 		function requestPrice(store) {
 			var price = ""
-			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
@@ -96,7 +96,7 @@
 		
 		function requestDefault() {
 			var price = ""
-			var root = 'https://msg.reveldigital.com/Api/RequestPrice';
+			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			$.getJSON(root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"), function (data) {
 					if(!data){ 
