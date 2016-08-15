@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Fetch JSON Example"/>
+  <UserPref name="myrefreshTimer" display_name="Refresh Interval(Seconds)" default_value="300">
+  <UserPref name="myapi" display_name="API Key" default_value=""/>
+  <UserPref name="mywidth" display_name="Width" default_value="500"/>
+  <UserPref name="myheight" display_name="Height" default_value="500"/>
+  </UserPref>
+  <Content type="html">
+  <![CDATA[
+    <div id="content_div"></div>
+    <script type="text/javascript">
+    
+    var prefs = new gadgets.Prefs();
+    setInterval(makeJSONRequest, parseInt(prefs.getString("myrefreshTimer"))*1000);
+    var lastUrl = "";
+    
+    function makeJSONRequest() {    
+      var params = {};
+      params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+      var url = "http://api.reveldigital.com/media?api_key="+prefs.getString("myapi")+"&format=json&";
+      gadgets.io.makeRequest(url, response, params);
+    };
+    
+    function response(obj) { 
+      var jsonData = obj.data;
+      var html="";
+      var jsonObj = JSON.parse(JSON.stringify(jsonData));
+      var srcURL="no url found";
+      var newestValue = 0;
+      for(index in jsonObj) 
+      {
+        if(jsonObj[index].group_id=="uVBpt_V2xSY")
+        {
+          if(parseInt(jsonObj[index].name)>newestValue)
+          {
+            srcURL=jsonObj[index].file_url;
+            newestValue=parseInt(jsonObj[index].name);
+          }
+        }
+      }
+      if(srcURL!=lastUrl)
+      {
+        html += '<img src="' + srcURL + '"width="'+prefs.getString("mywidth")+'" height="'+prefs.getString("myheight")+'">';
+        document.getElementById('content_div').innerHTML = html;
+        lastUrl=srcURL;
+      }
+     };
+     
+     gadgets.util.registerOnLoadHandler(makeJSONRequest);
+     </script>
+  ]]>
+  </Content>
+</Module>
