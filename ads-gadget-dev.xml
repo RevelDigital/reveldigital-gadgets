@@ -128,7 +128,7 @@ src="http://www.eib-dz.com/public/js/jwplayer/jwplayer.js"></script>
          image:"http://adsnet4all.com/video/epom.jpg",
          plugins:'ova-trial',
 
-config:'http://adsnet4all.com/ova139/7f7e0098076fe4e8686108f500b31b7d.xml',
+config:'http://www.advertizingms.com/vast.xml?key=af29a2f2dc431d7895695f54c3877416&zone=PRE_ROLL',
          width:640,
          height:360
      });
