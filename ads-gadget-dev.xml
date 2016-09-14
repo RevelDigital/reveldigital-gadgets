@@ -7,31 +7,11 @@
 <![CDATA[
 <style type="text/css" media="screen"> 
 </style>
-<script>
-  (function() {
-    var useSSL = 'https:' == document.location.protocol;
-    var src = (useSSL ? 'https:' : 'http:') +
-        '//www.googletagservices.com/tag/js/gpt.js';
-    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-  })();
-</script>
-
-<script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/123661647/Ascendant_Merchant_Services', [[728, 90], [160, 600], [300, 250]], 'div-gpt-ad-1473708974689-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
-    googletag.pubads().enableSyncRendering();
-    googletag.enableServices();
-  });
-</script>
 <body>
-	<!-- /123661647/Ascendant_Merchant_Services -->
-	<div id='div-gpt-ad-1473708974689-0'>
-		<script>
-			googletag.cmd.push(function() { googletag.display('div-gpt-ad-1473708974689-0'); });
-		</script>
-	</div>
+<script src='https://www.googletagservices.com/tag/js/gpt.js'>
+  googletag.pubads().definePassback('/123661647/Ascendant_Merchant_Services', [[160, 600], [728, 90], [300, 250]]).display();
+</script>
+</div>
 </body>]]>
 </Content>
 </Module>
