@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Ads Gadget" description="Reads XML" author="RevelDigital" background="transparent">
-  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
