@@ -192,7 +192,7 @@ img
     if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
       var tz = Client.getDeviceTimeZoneName();
       if (tz instanceof Promise) {
-        tz.resolve().then(function(value) { moment.tz.setDefault(value); } );
+        tz.then(function(value) { moment.tz.setDefault(value); } );
       } else {
         moment.tz.setDefault(tz);
       }
