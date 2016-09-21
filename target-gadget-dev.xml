@@ -85,6 +85,8 @@ body {
 	var prefs = new gadgets.Prefs();
 	var d = [];
 	gadgets.util.registerOnLoadHandler(initialize);
+	
+
  
 	function initialize() {		
 		$('#price').hide();
@@ -107,6 +109,17 @@ body {
 		}
 		resolveNext(0);
 	}
+	
+	var RevelDigital = {
+			 Controller: {
+				onCommand: function(name, arg) {
+					setInfo("Command recieved name: " + name + " args: " + arg);
+					if (name === "decode") {
+						setInfo("Barcode: " + arg);
+					}
+				}
+			}
+		};
 	
 	function resolveNext(idx) {
 		setTimeout(function () {
