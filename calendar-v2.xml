@@ -190,12 +190,7 @@ img
     moment.lang("__MSG_Lang__");
     
     if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
-      var tz = Client.getDeviceTimeZoneName();
-      if (tz instanceof Promise) {
-        tz.then(function(value) { moment.tz.setDefault(value); } );
-      } else {
-        moment.tz.setDefault(tz);
-      }
+      moment.tz.setDefault(Client.getDeviceTimeZoneName());
     }
     
     if (prefs.getBool("showHeader") == false) {
