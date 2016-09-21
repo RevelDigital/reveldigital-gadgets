@@ -190,6 +190,7 @@ img
     moment.lang("__MSG_Lang__");
     
     if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+      console.log("TZ: " + Client.getDeviceTimeZoneName());
       moment.tz.setDefault(Client.getDeviceTimeZoneName());
     }
     
