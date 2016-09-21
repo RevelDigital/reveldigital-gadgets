@@ -190,8 +190,12 @@ img
     moment.lang("__MSG_Lang__");
     
     if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
-      console.log("TZ: " + Client.getDeviceTimeZoneName());
-      moment.tz.setDefault(Client.getDeviceTimeZoneName());
+      var tz = Client.getDeviceTimeZoneName();
+      if (tz instanceof Promise) {
+        tz.resolve().then(function(value) { moment.tz.setDefault(value); } );
+      } else {
+        moment.tz.setDefault(tz);
+      }
     }
     
     if (prefs.getBool("showHeader") == false) {
@@ -241,6 +245,9 @@ img
       dataType: 'json'
     })
     .done(function(response) {
+      if (response.timeZone) {
+        momemt.tz.setDefault(response.timeZone);
+      }
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("displayFormat") == "table") {
           formatTable(response.items[i]);
