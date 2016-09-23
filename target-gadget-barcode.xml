@@ -168,7 +168,7 @@
 		}
 		
 		function setInfo(data) {
-			if (true) {
+			if (false) {
 				var container = $('#debug_console');
 				container.append(data + '<br>');
 			}	
@@ -182,7 +182,6 @@
 		
 	</script>
 	<body>
-		<p id="debug_console"></p>
 		<div class="table">
 			<div class="row">
 				<div class="cell1">
