@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Target India Custom Gadget" description="Cycle through product list fetched from Google Spreadshit" author="RevelDigital" background="transparent">
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="delay" display_name="Change product every X seconds" datatype="string" />
+  <UserPref name="regKey" display_name="Registration Key Tag" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+	<style type="text/css">
+		@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+		body {
+			font-family: Montserrat;
+		}
+
+		.table{
+			display: table;
+			border-spacing: 12px;
+		}
+
+		.row {
+			display: table-row;
+			margin-bottom: 0;
+			margin-top: 12px;
+			width: 100%;
+		}
+		.cell1 {
+			display: table-cell;
+			width: 69vw;
+			margin-right: 1%;
+			border: 1px solid #CCC;
+			margin: 12px;
+		}
+		.cell2 {
+			display: table-cell;
+			width: 30vw;
+			margin-left: 1%;
+			border: 1px solid #CCC;
+			margin 12px;
+			vertical-align: middle;
+		}
+		.inner {
+			padding-left: 12px;
+			padding-right: 12px;
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: center;
+		}
+
+		img{
+			min-height: 100%; 
+			width: auto;
+		}
+
+		.rectangle {
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 2px;
+			padding-right: 2px;
+			width:100%;
+			background:#B50000;
+			text-align: center;
+		}
+
+		#description {
+			font-size: 1.5em;
+			text-align: left;
+		}
+
+		#price {
+			font-size: 3em;
+		}
+
+		#name {
+			font-size: 3em;
+		}
+		
+		#infoContainer {
+			position:absolute;
+			top: 10px;
+			left: 10px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+	<script type="text/javascript">
+		var prefs = new gadgets.Prefs();
+		gadgets.util.registerOnLoadHandler(initialize);
+		var API_KEY = "kOFGVRFEgdmDAZiZhsSG8FfIR22VG1CI";
+		var STORE = "530";
+		
+		function initialize() {		
+			$('#product_price').hide();
+			$('#product_image').hide();
+			$('#product_name').hide();
+			$('#product_description').hide();
+		 }
+	  
+		
+		var RevelDigital = {
+				 Controller: {
+					onCommand: function(name, arg) {
+						setInfo("Command recieved name: " + name + " args: " + arg);
+						if (name === "decode") {
+							setInfo("Barcode: " + arg);
+							requestProduct(arg);
+						}
+					}
+				}
+			};
+		
+		function requestProduct(product_id) {
+			var uri = "http://api.target.com/products/v3/" + product_id + "?id_type=dpci&store_id=" + STORE + "&mode=online&fields=ids,locations,images,brand,descriptions,pricing,in_store_locations&key=" + API_KEY;
+			var res = encodeURIComponent(uri);
+			$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+				$.each(data, function (index, item) {
+					if (item !== null && item.items !== null && item.items.length > 0) {
+						setPrice(item.items[0].online_price.current_price);
+						setImage(item.items[0].image.external_primary_image_url[0]);
+						setName(item.items[0].reference_data.manufacturer_brand);
+						setDescription(decodeURI(item.items[0].online_description.value));
+					}
+				});
+			});
+		 }
+		 
+		function setPrice(data) {
+			var container = $('#product_price');
+			container.fadeOut({
+				duration: 1000,
+				done: function () {
+					container.text("$" + data);
+					container.fadeIn();
+				}
+			});
+		}
+
+
+		function setImage(data) {
+			var container = $('#product_image');
+			container.fadeOut({
+				duration: 1000,
+				done: function () {
+					container.attr("src", data);
+					container.fadeIn();
+				}
+			});
+		}
+
+		function setName(data) {
+			var container = $('#product_name');
+			container.fadeOut({
+				duration: 1000,
+				done: function () {
+					container.text(data);
+					container.fadeIn();
+				}
+			});
+		}
+
+		function setDescription(data) {
+			var container = $('#product_description');
+			container.fadeOut({
+				duration: 1000,
+				done: function () {
+					container.text(data);
+					container.fadeIn();
+				}
+			});
+		}
+		
+		function setInfo(data) {
+			if (true) {
+				var container = $('#debug_console');
+				container.append(data + '<br>');
+			}	
+			if (false) {
+				console.log(data);
+			}
+			if (false) {
+				alert(data);
+			}
+		}
+		
+	</script>
+	<body>
+		<p id="debug_console"></p>
+		<div class="table">
+			<div class="row">
+				<div class="cell1">
+					<div class="inner">
+						<img id="product_image"></img>           
+					</div>
+				</div>
+				<div class="cell2">
+					<div class="inner">
+						<div class="rectangle">
+							<p id="product_name"></p>
+						</div>
+						<br/>
+						<div class="rectangle">
+							<p id="product_price"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="rectangle">
+					<p id="product_description"></p>
+				</div>
+			</div>
+		</div>
+	</body>
+]]>
+</Content>
+</Module>
