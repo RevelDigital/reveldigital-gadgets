@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Target India Custom Gadget" description="Cycle through product list fetched from Google Spreadshit" author="RevelDigital" background="transparent">
-  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
-  <UserPref name="delay" display_name="Change product every X seconds" datatype="string" />
-  <UserPref name="regKey" display_name="Registration Key Tag" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
