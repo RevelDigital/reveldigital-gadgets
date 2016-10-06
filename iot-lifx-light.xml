@@ -57,7 +57,7 @@ figcaption {
 }
 
 .peaceful {
-  background-image: url('http://img11.deviantart.net/6f6d/i/2009/178/d/f/clouds_before_the_storm_by_joe_butler.jpg');
+  background-image: url('https://mryanhouse.files.wordpress.com/2014/04/atmosphere-clouds.jpg);
 }
 
 .relaxing {
@@ -65,7 +65,7 @@ figcaption {
 }
 
 .energizing {
-  background-image: url('http://www.personal.psu.edu/afr3/blogs/siowfa13/BlueOcean.jpg');
+  background-image: url('https://c1.staticflickr.com/5/4097/4877221256_f4c8cff65d_b.jpg');
 }
 
 .soothing {
