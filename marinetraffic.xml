@@ -194,7 +194,7 @@
                     //alert(shipname);
                     //alert(arr_dep);
                     //alert(time);
-		    alert(item);
+		    alert(item["SHIPNAME"]);
                     ct++;
                     dt.addRow([
                         shipname,
