@@ -182,12 +182,13 @@
 
             function draw(response) {
                 alert("1");
+		var ct;
 		ct=0;
                 var dt = new google.visualization.DataTable();
                 dt.addColumn('string', 'Ship Name');
                 dt.addColumn('string', 'Arrival/Departure');
                 dt.addColumn('string', 'Timestamp');
-                alert(2);
+                alert("3");
                 $.each(response, function (index, item) {
                     var shipname = item["SHIPNAME"];
                     var arr_dep = item["MOVE_TYPE"];
