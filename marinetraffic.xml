@@ -2,9 +2,8 @@
 <Module>
     <ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
         <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
-        <UserPref name="fsAppId" display_name="FlightStats App ID" datatype="string" required="true" />
-        <UserPref name="fsAppKey" display_name="FlightStats App Key" datatype="string" required="true" />
-        <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
+        <UserPref name="appKey" display_name="API Key" datatype="string" required="true" />
+        <UserPref name="portCode" display_name="Port Code" datatype="string" required="true" />
         <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
             <EnumValue value="dep" display_value="Departures" />
             <EnumValue value="arr" display_value="Arrivals" />
@@ -173,36 +172,37 @@
                     now = moment();
                 }
                 $('.lastUpdate span').text(now.format("LT"));
-                var uri = "https://services.marinetraffic.com/api/portcalls/4895176efe8e3b842650ca371b635eace3eb5b52/portid:1/protocol:jsono";
+                var uri = "https://services.marinetraffic.com/api/portcalls/"+ prefs.getString("appKey") +"/portid:"+ prefs.getString("portCode") +"/protocol:jsono";
                 var res = encodeURIComponent(uri);
                 $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
-		    alert(data);
                     draw(data);
                 });
             };
 
             function draw(response) {
-                alert("1");
+
 		var ct;
 		ct=0;
                 var dt = new google.visualization.DataTable();
                 dt.addColumn('string', 'Ship Name');
                 dt.addColumn('string', 'Arrival/Departure');
                 dt.addColumn('string', 'Timestamp');
-                alert("3");
+
                 $.each(response, function (index, item) {
                     var shipname = item["SHIPNAME"];
                     var arr_dep = item["MOVE_TYPE"];
                     var time = item["TIMESTAMP_LT"];
-		    alert(shipname);
-		    alert(arr_dep);
-		    alert(time);
-
+		    if(arr_dep === "0){
+			arr_dep = "Arrival";
+		    }
+		    else{
+			arr_dep = "Departure";
+		    }
                     ct++;
                     dt.addRow([
                         shipname,
-                        time,
-                        arr_dep
+                        arr_dep,
+                        time
                     ]);
                 });
                 dt.sort([{column:1}]);
