@@ -201,6 +201,9 @@
                 var shipname = el["SHIPNAME"];
                 var arr_dep = el["MOVE_TYPE"];
                 var time = el["TIMESTAMP_LT"];
+                alert(shipname);
+                alert(arr_dep);
+                alert(time);
                 ct++;
                 dt.addRow([
                     shipname,
