@@ -31,7 +31,6 @@
     </ModulePrefs>
     <Content type="html">
         <![CDATA[
-
         <style type="text/css">
             body *
             {
@@ -137,7 +136,6 @@
         <script type="text/javascript">
             var prefs = new gadgets.Prefs();
             function load() {
-
                 WebFont.load({
                     google: {
                         families: [
@@ -152,7 +150,6 @@
                         ]
                     }
                 });
-
                 google.load('visualization', '1', {'packages': ['table']});
                 google.setOnLoadCallback(initialize);
             }
@@ -162,34 +159,26 @@
             var container;
             var table;
             var dep = (prefs.getString("boardType") == "dep");
-
             function initialize() {
                 container = document.getElementById("table");
                 table = new google.visualization.Table(container);
                 update();
                 //setInterval(update, 1000 * 60 * 10); // 10 min update
             }
-
-
-
-
             function update() {
-
                 var now;
                 if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
                     now = moment(Client.getDeviceTime());
                 } else {
                     now = moment();
                 }
-
                 $('.lastUpdate span').text(now.format("LT"));
-			var uri = "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono";
-			var res = encodeURIComponent(uri);
-			$.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+                var uri = "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono";
+                var res = encodeURIComponent(uri);
+                $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
                     draw(data);
-				});
-			});
-                        
+                });
+            };
 
             function draw(response) {
                 alert("1");
@@ -198,13 +187,14 @@
                 dt.addColumn('string', 'Arrival/Departure');
                 dt.addColumn('string', 'Timestamp');
                 alert(2);
-                $.each(response, function (i, el) {
-                    var shipname = el["SHIPNAME"];
-                    var arr_dep = el["MOVE_TYPE"];
-                    var time = el["TIMESTAMP_LT"];
-                    alert(shipname);
-                    alert(arr_dep);
-                    alert(time);
+                $.each(response, function (index, item) {
+                    //var shipname = el["SHIPNAME"];
+                    //var arr_dep = el["MOVE_TYPE"];
+                    //var time = el["TIMESTAMP_LT"];
+                    //alert(shipname);
+                    //alert(arr_dep);
+                    //alert(time);
+		    alert(item);
                     ct++;
                     dt.addRow([
                         shipname,
@@ -212,9 +202,7 @@
                         arr_dep
                     ]);
                 });
-
                 dt.sort([{column:1}]);
-
                 google.visualization.events.addListener(table, "ready",
                         function (event) {
                             if (!prefs.getBool("hasTitle")) {
@@ -229,12 +217,10 @@
                             $("#container").data("plugin_autoScroll").play();
                         }
                 );
-
                 google.visualization.events.addListener(table, "sort",
                         function (event) {
                         }
                 );
-
                 table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
                     headerRow: 'header-style',
                     headerCell: 'header-style',
@@ -247,10 +233,8 @@
                     alternatingRowStyle: true
                 } });
             }
-
             $(document).on('click', 'table tr', function (e) {
                 var json = [];
-
                 $('td', this).each(function() {
                     var th = $(this).closest('table').find('th').eq($(this).index());
                     var o = new Object();
@@ -258,7 +242,6 @@
                     o.value = $(this).html();
                     json.push(o);
                 });
-
                 if (typeof Client != 'undefined') {
                     Client.callback(JSON.stringify(json));
                 }
