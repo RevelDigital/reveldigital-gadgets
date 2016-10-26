@@ -182,19 +182,20 @@
 
             function draw(response) {
                 alert("1");
+		ct=0;
                 var dt = new google.visualization.DataTable();
                 dt.addColumn('string', 'Ship Name');
                 dt.addColumn('string', 'Arrival/Departure');
                 dt.addColumn('string', 'Timestamp');
                 alert(2);
                 $.each(response, function (index, item) {
-                    //var shipname = el["SHIPNAME"];
-                    //var arr_dep = el["MOVE_TYPE"];
-                    //var time = el["TIMESTAMP_LT"];
-                    //alert(shipname);
-                    //alert(arr_dep);
-                    //alert(time);
-		    alert(item["SHIPNAME"]);
+                    var shipname = item["SHIPNAME"];
+                    var arr_dep = item["MOVE_TYPE"];
+                    var time = item["TIMESTAMP_LT"];
+		    alert(shipname);
+		    alert(arr_dep);
+		    alert(time);
+
                     ct++;
                     dt.addRow([
                         shipname,
