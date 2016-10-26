@@ -182,7 +182,7 @@
                 $('.lastUpdate span').text(now.format("LT"));
 
                 $.ajax({
-                    url: "https://services.marinetraffic.com/api/portcalls/9584e626fc414fbb184452b212ccfc6587184da9/portid:1/protocol:jsono",
+                    url: "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono",
                     type: "GET",
                     dataType: "jsonp",
                     success: function (data) {
