@@ -176,6 +176,7 @@
                 var uri = "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono";
                 var res = encodeURIComponent(uri);
                 $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
+		    alert(data);
                     draw(data);
                 });
             };
