@@ -192,7 +192,7 @@
                     var shipname = item["SHIPNAME"];
                     var arr_dep = item["MOVE_TYPE"];
                     var time = item["TIMESTAMP_LT"];
-		    if(arr_dep === "0){
+		    if(arr_dep === "0"){
 			arr_dep = "Arrival";
 		    }
 		    else{
