@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-<Module> 
-<ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
-  <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
-  <UserPref name="fsAppId" display_name="FlightStats App ID" datatype="string" required="true" />
-  <UserPref name="fsAppKey" display_name="FlightStats App Key" datatype="string" required="true" />
-  <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
-  <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
-    <EnumValue value="dep" display_value="Departures" />
-    <EnumValue value="arr" display_value="Arrivals" />
-  </UserPref>
-  <UserPref name="numHours" display_name="Number of hours worth of arrivals to include (6 max)" datatype="string" default_value="2" />
-  <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="body-style-odd" display_name="Alternating Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
-    <EnumValue value="fastest" display_value="Fastest" />
-    <EnumValue value="fast" display_value="Fast" />
-    <EnumValue value="medium" display_value="Medium" />
-    <EnumValue value="slow" display_value="Slow" />
-    <EnumValue value="none" display_value="None" />
-  </UserPref>
-  <UserPref name="scrollBy" display_name="Scroll By" datatype="enum" default_value="continuous">
-    <EnumValue value="continuous" display_value="Continuous" />
-    <EnumValue value="page" display_value="Page" />
-  </UserPref>
-  <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
-  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-</ModulePrefs>
-<Content type="html">
-<![CDATA[
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs title="RevelDigital FlightStats Gadget" description="Tabular display of flight information for a specific airport" author="RevelDigital" background="transparent">
+        <UserPref name="hasTitle" display_name="Show Header" datatype="bool" default_value="true" />
+        <UserPref name="fsAppId" display_name="FlightStats App ID" datatype="string" required="true" />
+        <UserPref name="fsAppKey" display_name="FlightStats App Key" datatype="string" required="true" />
+        <UserPref name="airportCode" display_name="Airport Code" datatype="string" required="true" />
+        <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
+            <EnumValue value="dep" display_value="Departures" />
+            <EnumValue value="arr" display_value="Arrivals" />
+        </UserPref>
+        <UserPref name="numHours" display_name="Number of hours worth of arrivals to include (6 max)" datatype="string" default_value="2" />
+        <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
+        <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+        <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+        <UserPref name="body-style-odd" display_name="Alternating Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+        <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
+            <EnumValue value="fastest" display_value="Fastest" />
+            <EnumValue value="fast" display_value="Fast" />
+            <EnumValue value="medium" display_value="Medium" />
+            <EnumValue value="slow" display_value="Slow" />
+            <EnumValue value="none" display_value="None" />
+        </UserPref>
+        <UserPref name="scrollBy" display_name="Scroll By" datatype="enum" default_value="continuous">
+            <EnumValue value="continuous" display_value="Continuous" />
+            <EnumValue value="page" display_value="Page" />
+        </UserPref>
+        <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
 
         <style type="text/css">
             body *
@@ -167,7 +167,7 @@
                 container = document.getElementById("table");
                 table = new google.visualization.Table(container);
                 update();
-                setInterval(update, 1000 * 60 * 10); // 10 min update
+                //setInterval(update, 1000 * 60 * 10); // 10 min update
             }
 
             function update() {
@@ -180,9 +180,9 @@
                 }
 
                 $('.lastUpdate span').text(now.format("LT"));
-
+                alert("first");
                 $.ajax({
-                    url: "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono",
+                    //url: "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono",
                     type: "GET",
                     dataType: "jsonp",
                     success: function (data) {
@@ -199,54 +199,54 @@
                 dt.addColumn('string', 'Arrival/Departure');
                 dt.addColumn('string', 'Timestamp');
                 alert(2);
-            $.each(response, function (i, el) {
-                var shipname = el["SHIPNAME"];
-                var arr_dep = el["MOVE_TYPE"];
-                var time = el["TIMESTAMP_LT"];
-                alert(shipname);
-                alert(arr_dep);
-                alert(time);
-                ct++;
-                dt.addRow([
-                    shipname,
-                    time,
-                    arr_dep
-                ]);
-            });
+                $.each(response, function (i, el) {
+                    var shipname = el["SHIPNAME"];
+                    var arr_dep = el["MOVE_TYPE"];
+                    var time = el["TIMESTAMP_LT"];
+                    alert(shipname);
+                    alert(arr_dep);
+                    alert(time);
+                    ct++;
+                    dt.addRow([
+                        shipname,
+                        time,
+                        arr_dep
+                    ]);
+                });
 
-            dt.sort([{column:1}]);
+                dt.sort([{column:1}]);
 
-            google.visualization.events.addListener(table, "ready",
-                    function (event) {
-                        if (!prefs.getBool("hasTitle")) {
-                            $(".header-style").remove();
-                        }
-                        $("#container").autoScroll({
-                            speed: 'fast', //prefs.getString("scrollSpeed"),
-                            by: 'continuous' //prefs.getString("scrollBy")
-                        }).on("done", function() {
+                google.visualization.events.addListener(table, "ready",
+                        function (event) {
+                            if (!prefs.getBool("hasTitle")) {
+                                $(".header-style").remove();
+                            }
+                            $("#container").autoScroll({
+                                speed: 'fast', //prefs.getString("scrollSpeed"),
+                                by: 'continuous' //prefs.getString("scrollBy")
+                            }).on("done", function() {
+                                $("#container").data("plugin_autoScroll").play();
+                            });
                             $("#container").data("plugin_autoScroll").play();
-                        });
-                        $("#container").data("plugin_autoScroll").play();
-                    }
-            );
+                        }
+                );
 
-            google.visualization.events.addListener(table, "sort",
-                    function (event) {
-                    }
-            );
+                google.visualization.events.addListener(table, "sort",
+                        function (event) {
+                        }
+                );
 
-            table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
-                headerRow: 'header-style',
-                headerCell: 'header-style',
-                tableRow: 'body-style',
-                tableCell: 'body-style',
-                selectedTableRow: 'body-style',
-                oddTableRow: 'body-style-odd',
-                hoverTableRow: 'body-style',
-                rowNumberCell: 'body-style',
-                alternatingRowStyle: true
-            } });
+                table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
+                    headerRow: 'header-style',
+                    headerCell: 'header-style',
+                    tableRow: 'body-style',
+                    tableCell: 'body-style',
+                    selectedTableRow: 'body-style',
+                    oddTableRow: 'body-style-odd',
+                    hoverTableRow: 'body-style',
+                    rowNumberCell: 'body-style',
+                    alternatingRowStyle: true
+                } });
             }
 
             $(document).on('click', 'table tr', function (e) {
