@@ -186,6 +186,7 @@
                     type: "GET",
                     dataType: "jsonp",
                     success: function (data) {
+                        alert(30);
                         draw(data);
                     }
                 });
