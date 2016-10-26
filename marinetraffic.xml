@@ -182,18 +182,18 @@
                 $('.lastUpdate span').text(now.format("LT"));
                 alert("first");
                 $.ajax({
-                    //url: "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono",
+                    url: "https://services.marinetraffic.com/api/portcalls/610f5c116f9821b0a2a36ee3a998ead413993105/portid:1/protocol:jsono",
                     type: "GET",
                     dataType: "jsonp",
                     success: function (data) {
-                        alert(30);
+                        alert("30");
                         draw(data);
                     }
                 });
             }
 
             function draw(response) {
-                alert(1);
+                alert("1");
                 var dt = new google.visualization.DataTable();
                 dt.addColumn('string', 'Ship Name');
                 dt.addColumn('string', 'Arrival/Departure');
