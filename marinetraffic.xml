@@ -8,8 +8,6 @@
             <EnumValue value="dep" display_value="Departures" />
             <EnumValue value="arr" display_value="Arrivals" />
         </UserPref>
-        <UserPref name="numHours" display_name="Number of hours worth of arrivals to include (6 max)" datatype="string" default_value="2" />
-        <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
         <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
         <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
         <UserPref name="body-style-odd" display_name="Alternating Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -192,18 +190,23 @@
                     var shipname = item["SHIPNAME"];
                     var arr_dep = item["MOVE_TYPE"];
                     var time = item["TIMESTAMP_LT"];
-		    if(arr_dep === "0"){
+		    if(arr_dep === "0" && prefs.getString("arr") === "Arrivals"){
 			arr_dep = "Arrival";
-		    }
-		    else{
-			arr_dep = "Departure";
-		    }
-                    ct++;
-                    dt.addRow([
+			dt.addRow([
                         shipname,
                         arr_dep,
                         time
                     ]);
+		    }
+		    if else(arr_dep === "1" && prefs.getString("dep") === "Departures"){
+			arr_dep = "Departure";
+                        dt.addRow([
+                        shipname,
+                        arr_dep,
+                        time
+                    ]);
+		    }
+                    ct++;
                 });
                 dt.sort([{column:1}]);
                 google.visualization.events.addListener(table, "ready",
