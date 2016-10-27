@@ -172,7 +172,7 @@
                     now = moment();
                 }
                 $('.lastUpdate span').text(now.format("LT"));
-                var uri = "https://services.marinetraffic.com/api/portcalls/"+ prefs.getString("appKey") +"/portid:"+ prefs.getString("portCode") +"/protocol:jsono/movetype:" + prefs.getInt("boardType");
+                var uri = "https://services.marinetraffic.com/api/portcalls/"+ prefs.getString("appKey") +"/portid:"+ prefs.getString("portCode") +"/movetype:" + prefs.getInt("boardType") + "/protocol:jsono";
                 var res = encodeURIComponent(uri);
                 $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
                     draw(data);
