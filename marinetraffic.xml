@@ -190,7 +190,7 @@
                     var shipname = item["SHIPNAME"];
                     var arr_dep = item["MOVE_TYPE"];
                     var time = item["TIMESTAMP_LT"];
-		    if(arr_dep === "0" && prefs.getString("arr") === "Arrivals"){
+		    if(arr_dep === "0" && prefs.getString("boardType") === "Arrivals"){
 			arr_dep = "Arrival";
 			dt.addRow([
                         shipname,
@@ -198,7 +198,7 @@
                         time
                     ]);
 		    }
-		    if else(arr_dep === "1" && prefs.getString("dep") === "Departures"){
+		    if else(arr_dep === "1" && prefs.getString("boardType") === "Departures"){
 			arr_dep = "Departure";
                         dt.addRow([
                         shipname,
