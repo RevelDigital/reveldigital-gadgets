@@ -157,7 +157,7 @@
         <script type="text/javascript">
             var container;
             var table;
-            var dep = (prefs.getString("boardType") == "dep");
+            var dep = (prefs.getString("boardType") == "0");
             function initialize() {
                 container = document.getElementById("table");
                 table = new google.visualization.Table(container);
