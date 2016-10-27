@@ -5,8 +5,8 @@
         <UserPref name="appKey" display_name="API Key" datatype="string" required="true" />
         <UserPref name="portCode" display_name="Port Code" datatype="string" required="true" />
         <UserPref name="boardType" display_name="Select Info Type" datatype="enum" default_value="dep">
-            <EnumValue value="1" display_value="Departures" />
-            <EnumValue value="0" display_value="Arrivals" />
+            <EnumValue value=1 display_value="Departures" />
+            <EnumValue value=0 display_value="Arrivals" />
         </UserPref>
         <UserPref name="numHours" display_name="Number of hours worth of arrivals to include (6 max)" datatype="string" default_value="2" />
         <UserPref name="maxFlights" display_name="Maximum unique flights to include" datatype="string" default_value="5" />
@@ -172,7 +172,7 @@
                     now = moment();
                 }
                 $('.lastUpdate span').text(now.format("LT"));
-                var uri = "https://services.marinetraffic.com/api/portcalls/"+ prefs.getString("appKey") +"/portid:"+ prefs.getString("portCode") +"/protocol:jsono/movetype:" + prefs.getString("boardType")";
+                var uri = "https://services.marinetraffic.com/api/portcalls/"+ prefs.getString("appKey") +"/portid:"+ prefs.getString("portCode") +"/protocol:jsono/movetype:" + prefs.getInt("boardType")";
                 var res = encodeURIComponent(uri);
                 $.getJSON("https://as1.reveldigital.com/proxy?url=" + res, function (data) {
                     draw(data);
