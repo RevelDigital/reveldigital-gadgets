@@ -53,15 +53,7 @@ img
   border-radius: 5px;
 }
 
-ul
-{
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul, p
+p
 {
   padding: 0;
   margin: 0;
@@ -137,11 +129,6 @@ span.when, .likes
   padding-right: 20px;
 }
 
-.detail .name
-{
-  font-size: 1.5em;
-}
-
 .detail i
 {
   color: #3b5998;
@@ -150,7 +137,6 @@ span.when, .likes
 .body
 {
   display:block;
-  font-size: 1.5em;
   padding-top: 20px;
 }
 
