@@ -9,7 +9,8 @@
     <EnumValue value="large" display_value="Large" />
   </UserPref>
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
-  <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
+  <UserPref name="name-style" display_name="Username Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:26px;font-weight:bold;" required="true" />
+  <UserPref name="stats-style" display_name="Stats Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:18px;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -38,13 +39,13 @@ body
 a
 {
   text-decoration:none;
-  __UP_link-style__;
+  __UP_body-style__;
 }
 
 a:hover,a:visited,a:active,a:link
 {
   text-decoration:none;
-  __UP_link-style__;
+  __UP_body-style__;
 }
 
 img
@@ -70,13 +71,7 @@ div.postscontainer
   text-align: left;
   text-align: left;
   overflow: hidden;
-  __UP_body-style__;
   background-color: #__UP_BackColor__;
-}
-
-p, span
-{
-  __UP_body-style__;
 }
 
 div.post
@@ -112,13 +107,6 @@ div.post
   height: 130px;
 }
 
-span.when, .likes
-{
-  opacity: 0.7;
-  margin-top: 2px;
-  font-size: 90%;
-}
-
 .detail
 {
   margin-top: 20px;
@@ -138,6 +126,7 @@ span.when, .likes
 {
   display:block;
   padding-top: 20px;
+  __UP_body-style__;
 }
 
 .photo
@@ -154,9 +143,16 @@ span.when, .likes
   margin-bottom: 20px;
 }
 
-.stats div
+div.stats
 {
   padding: 0 10px 0 0;
+  __UP_stats-style__;
+}
+
+div.name
+{
+  padding: 0 10px 0 0;
+  __UP_name-style__;
 }
 
 </style>
@@ -190,8 +186,8 @@ span.when, .likes
               <img src="https://svc1.reveldigital.com/facebook/${from.id}/picture/${getRegKey()}"/>
             </div>
             <div style="display:table-cell; vertical-align:top;">
-              <div class="name"><i class="fa fa-facebook-official fa-pull-left" aria-hidden="true"></i><a class="from" href="${link}" title="post by ${from.name}">${from.name}</a></div>
-              <div style="display:table" class="stats">
+              <div class="name"><i class="fa fa-facebook-official fa-pull-left" aria-hidden="true"></i>${from.name}</div>
+              <div class="stats" style="display:table">
                 <div style="display:table-cell;">
                   <span class="when" data-timestamp="${updated_time}">${timeAgo(updated_time)}</span>
                 </div>
