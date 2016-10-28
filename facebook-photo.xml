@@ -262,6 +262,9 @@ span.when
 
     $.getJSON(url, function(json){
       if (json) {
+        try {
+          $("div.postscontainer").slick("unslick");
+        } catch (e) {}
         $("div.postscontainer").empty();
         $("#postTemplate").tmpl(json.data).appendTo("div.postscontainer");
         
