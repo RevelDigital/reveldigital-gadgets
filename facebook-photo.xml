@@ -8,6 +8,10 @@
     <EnumValue value="small" display_value="Small" />
     <EnumValue value="large" display_value="Large" />
   </UserPref>
+  <UserPref name="transition" display_name="Transition Style" datatype="enum" default_value="fade">
+    <EnumValue value="fade" display_value="Fade" />
+    <EnumValue value="slide" display_value="Slide" />
+  </UserPref>
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="name-style" display_name="Username Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="stats-style" display_name="Stats Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:18px;" required="true" />
@@ -155,6 +159,10 @@ div.name
   __UP_name-style__;
 }
 
+span.when
+{
+  margin-right: 10px;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
@@ -239,14 +247,18 @@ div.name
 
   var max_id;
   var key;
+  var userId;
   
   var update = function () {
 
     key = prefs.getString("regkey");
+    userId = prefs.getString("userId");
+    
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
+      userId = "reveldigital";
     }
-    var url = 'https://svc1.reveldigital.com/facebook/' + prefs.getString('userId') + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
+    var url = 'https://svc1.reveldigital.com/facebook/' + userId + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
 
     $.getJSON(url, function(json){
       if (json) {
@@ -268,9 +280,9 @@ div.name
         
         $('.postscontainer').slick({
           dots: false,
-          speed: 500,
+          speed: prefs.getInt('pause') * 1000,
           autoplay: true,
-          fade: true,
+          fade: (prefs.getString('transition') == 'fade'),
           lazyLoad: 'progressive'
         });
       }
