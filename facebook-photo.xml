@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Facebook Gadget" description="Displays Facebook posts from your linked account." author="RevelDigital" background="transparent">
+  <UserPref name="maxItems" display_name="Maximum number of posts to retrieve from Facebook"  datatype="string" default_value="10" />
+  <UserPref name="userId" display_name="Facebook User (use 'me' for your own posts)"  datatype="string" default_value="me" />
+  <UserPref name="pause" display_name="Delay in seconds between post scrolling" datatype="string" default_value="5" />
+  <UserPref name="imageSize" display_name="Image Size" datatype="enum" default_value="small">
+    <EnumValue value="small" display_value="Small" />
+    <EnumValue value="large" display_value="Large" />
+  </UserPref>
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
+  <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="regkey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+a
+{
+  text-decoration:none;
+  __UP_link-style__;
+}
+
+a:hover,a:visited,a:active,a:link
+{
+  text-decoration:none;
+  __UP_link-style__;
+}
+
+img
+{
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+ul
+{
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul, p
+{
+  padding: 0;
+  margin: 0;
+}
+
+div.postscontainer
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: left;
+  text-align: left;
+  overflow: hidden;
+  __UP_body-style__;
+  background-color: #__UP_BackColor__;
+}
+
+p, span
+{
+  __UP_body-style__;
+}
+
+div.post
+{
+  display: block;
+}
+
+.avatar-small
+{
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.avatar-small img
+{
+  width: 80px;
+  height: 80px;
+}
+
+.avatar-large
+{
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
+  margin-right: 10px;
+}
+
+.avatar-large img
+{
+  width: 130px;
+  height: 130px;
+}
+
+span.when, .likes
+{
+  opacity: 0.7;
+  margin-top: 2px;
+  font-size: 90%;
+}
+
+.detail
+{
+  margin-top: 20px;
+}
+
+.detail .picture
+{
+  padding-right: 20px;
+}
+
+.detail .name
+{
+  font-size: 1.5em;
+}
+
+.detail i
+{
+  color: #3b5998;
+}
+
+.body
+{
+  display:block;
+  font-size: 1.5em;
+  padding-top: 20px;
+}
+
+.photo
+{
+  display: table-cell;
+  padding-right: 20px;
+  width: 50%;
+}
+
+.photo img
+{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.stats div
+{
+  padding: 0 10px 0 0;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/third-party/jquery.profanityfilter.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-langs.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script src="https://use.fontawesome.com/c461382811.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript"></script>
+
+<div class="postscontainer">
+</div>
+
+<script id="postTemplate" type="text/x-jQuery-tmpl">
+  <div class="item" style="border: none;">
+    <div style="display:table;width:100%;">
+      {{if type && type == 'photo'}}
+      <div class="photo" data-objectid="${object_id}"></div>
+      {{/if}}
+      
+      <div style="display:table-cell; vertical-align:top; width: 100%;">
+        <div style="display:table;">
+          <div class="detail">
+            <div class="${getAvatarClass()} picture" style="display:table-cell;">
+              <img src="https://svc1.reveldigital.com/facebook/${from.id}/picture/${getRegKey()}"/>
+            </div>
+            <div style="display:table-cell; vertical-align:top;">
+              <div class="name"><i class="fa fa-facebook-official fa-pull-left" aria-hidden="true"></i><a class="from" href="${link}" title="post by ${from.name}">${from.name}</a></div>
+              <div style="display:table" class="stats">
+                <div style="display:table-cell;">
+                  <span class="when" data-timestamp="${updated_time}">${timeAgo(updated_time)}</span>
+                </div>
+                <div style="display:table-cell;">
+                  {{if likes}}<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ${likes.data.length}{{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="body">
+          <p>${name}</p><p>${message}</p><p>${description}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("link-style"))
+        ]
+      }
+    });
+
+    update();
+
+    setInterval(update, 1000 * 60 * 10); // 10 min update
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+<script type="text/javascript">
+
+  var max_id;
+  var key;
+  
+  var update = function () {
+
+    key = prefs.getString("regkey");
+    if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
+      key = "68f45389-0213-441b-b69d-4e35ef94bb20";
+    }
+    var url = 'https://svc1.reveldigital.com/facebook/ + prefs.getString('userId') + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
+
+    $.getJSON(url, function(json){
+      if (json) {
+        $("div.postscontainer").empty();
+        $("#postTemplate").tmpl(json.data).appendTo("div.postscontainer");
+        
+        $('div.item').profanityFilter();
+
+        $('div.photo').each(function() {
+          var self = $(this);
+          if ($(this).data('objectid') != '') {
+            $.getJSON('https://svc1.reveldigital.com/facebook/' + $(this).data('objectid') + '/' + key + '?format=json&callback=?', function (picjson) {
+              var img = $('<img/>');
+              img.attr('src', picjson.source);
+              img.appendTo(self);
+            });
+          }
+        });
+        
+        $('.postscontainer').slick({
+          dots: false,
+          speed: 500,
+          autoplay: true,
+          fade: true,
+          lazyLoad: 'progressive'
+        });
+      }
+    });
+  }
+
+  var getTextClass = function () {
+    if (prefs.getString("imageSize") == "large") {
+      return "text-large";
+    } else {
+      return "text-small";
+    }
+  }
+  
+  var getAvatarClass = function () {
+    if (prefs.getString("imageSize") == "large") {
+      return "avatar-large";
+    } else {
+      return "avatar-small";
+    }
+  }
+  
+  var getRegKey = function () {
+    return key;
+  }
+  
+  var timeAgo = function (dateString) {
+    return moment.duration(moment(dateString) - moment()).humanize(true);
+  }
+</script>
+]]>
+</Content>
+</Module>
