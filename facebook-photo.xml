@@ -280,7 +280,7 @@ span.when
         
         $('.postscontainer').slick({
           dots: false,
-          speed: prefs.getInt('pause') * 1000,
+          autoplaySpeed: prefs.getInt('pause') * 1000,
           autoplay: true,
           fade: (prefs.getString('transition') == 'fade'),
           lazyLoad: 'progressive'
