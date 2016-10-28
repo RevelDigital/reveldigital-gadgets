@@ -209,11 +209,14 @@ span.when
   
   var update = function () {
   
-    var key = prefs.getString("regkey");
+    key = prefs.getString("regkey");
+    userId = prefs.getString("userId");
+    
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
+      userId = "reveldigital";
     }
-    var url = 'https://svc1.reveldigital.com/facebook/' + prefs.getString('userId') + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
+    var url = 'https://svc1.reveldigital.com/facebook/' + userId + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
     var display = '<div class="error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
     var imgClass = 'avatar-small';
