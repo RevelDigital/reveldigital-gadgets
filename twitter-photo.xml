@@ -123,7 +123,7 @@ div.post
 
 .detail i
 {
-  color: #3b5998;
+  color: #4099ff;
 }
 
 .body
@@ -183,31 +183,34 @@ span.when
 <script id="postTemplate" type="text/x-jQuery-tmpl">
   <div class="item" style="border: none;">
     <div style="display:table;width:100%;">
-      {{if type && type == 'photo'}}
-      <div class="photo" data-objectid="${object_id}"></div>
+      {{if Entities.MediaEntities.length }}
+      <div class="photo" data-objectid="${object_id}">
+        <img src="${Entities.MediaEntities[0].MediaUrlHttps}" />
+      </div>
       {{/if}}
       
       <div style="display:table-cell; vertical-align:top; width: 100%;">
         <div style="display:table;">
           <div class="detail">
             <div class="${getAvatarClass()} picture" style="display:table-cell;">
-              <img src="https://svc1.reveldigital.com/facebook/${from.id}/picture/${getRegKey()}"/>
+              <img src="${profileIcon(User.ProfileImageUrlHttps)}"/>
             </div>
             <div style="display:table-cell; vertical-align:top;">
-              <div class="name"><i class="fa fa-facebook-official fa-pull-left" aria-hidden="true"></i>${from.name}</div>
+              <div class="name"><i class="fa fa-twitter fa-pull-left" aria-hidden="true"></i>${User.ScreenNameResponse}</div>
               <div class="stats" style="display:table">
                 <div style="display:table-cell;">
-                  <span class="when" data-timestamp="${updated_time}">${timeAgo(updated_time)}</span>
+                  <span class="when" data-timestamp="${CreatedAt}">${timeAgo(CreatedAt)}</span>
                 </div>
                 <div style="display:table-cell;">
-                  {{if likes}}<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ${likes.data.length}{{/if}}
+                  <i class="fa fa-retweet" aria-hidden="true"></i> ${RetweetCount}
+                  <i class="fa fa-heart" aria-hidden="true"></i> ${FavoriteCount}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="body">
-          <p>${name}</p><p>${message}</p><p>${description}</p>
+          <p>${Text}</p>
         </div>
       </div>
     </div>
@@ -245,20 +248,15 @@ span.when
 
 <script type="text/javascript">
 
-  var max_id;
   var key;
-  var userId;
   
   var update = function () {
 
-    key = prefs.getString("regkey");
-    userId = prefs.getString("userId");
-    
+    key = prefs.getString("regkey");    
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
-      userId = "reveldigital";
     }
-    var url = 'https://svc1.reveldigital.com/facebook/' + userId + '/posts/' + key + '?format=json&limit=' + prefs.getInt('maxItems') + '&callback=?';
+    var url = "https://svc1.reveldigital.com/twitter/search/" + key + "?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=" + escape(prefs.getString("searchQuery"));
 
     $.getJSON(url, function(json){
       if (json) {
@@ -266,20 +264,9 @@ span.when
           $("div.postscontainer").slick("unslick");
         } catch (e) {}
         $("div.postscontainer").empty();
-        $("#postTemplate").tmpl(json.data).appendTo("div.postscontainer");
+        $("#postTemplate").tmpl(json.Statuses).appendTo("div.postscontainer");
         
         $('div.item').profanityFilter();
-
-        $('div.photo').each(function() {
-          var self = $(this);
-          if ($(this).data('objectid') != '') {
-            $.getJSON('https://svc1.reveldigital.com/facebook/' + $(this).data('objectid') + '/' + key + '?format=json&callback=?', function (picjson) {
-              var img = $('<img/>');
-              img.attr('src', picjson.source);
-              img.appendTo(self);
-            });
-          }
-        });
         
         $('.postscontainer').slick({
           dots: false,
@@ -310,6 +297,10 @@ span.when
   
   var getRegKey = function () {
     return key;
+  }
+  
+  var profileIcon = function (url) {
+    return url.replace(/_normal\./, '_bigger.');
   }
   
   var timeAgo = function (dateString) {
