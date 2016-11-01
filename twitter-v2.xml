@@ -12,6 +12,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="regkey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -124,11 +125,17 @@ span.when
 <script type="text/javascript">
 
   var max_id;
+  var key;
   
   var update = function () {
   
+    key = prefs.getString("regkey");   
+    if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
+      key = "68f45389-0213-441b-b69d-4e35ef94bb20";
+    }
+    
     //var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("numTweets") + "&since_id=" + max_id + "&callback=?&q=";
-    var url = "http://svc1.reveldigital.com/Twitter/Statuses/UserTimeline/68f45389-0213-441b-b69d-4e35ef94bb20?screen_name=CBS&format=json";
+    var url = "https://svc1.reveldigital.com/Twitter/Statuses/UserTimeline/" + key + "?screen_name=CBS&format=json";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
@@ -145,7 +152,7 @@ span.when
           ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
           ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
           display += '<div class="avatar tweet' + i + '">' +
-            '<img src="' + tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.') + '"  />' + 
+            '<img src="' + tweet.User.ProfileImageUrlHttps.replace(/_normal\./, '_bigger.') + '"  />' + 
             '</div>' +
             '<div class="text tweet' + i + '">' +
             '<h2><a href="http://twitter.com/' + tweet.ScreenName + 
