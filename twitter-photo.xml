@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Facebook Gadget" description="Displays Facebook posts from your linked account." author="RevelDigital" background="transparent">
-  <UserPref name="maxItems" display_name="Maximum number of posts to retrieve from Facebook"  datatype="string" default_value="10" />
-  <UserPref name="userId" display_name="Facebook User (use 'me' for your own posts)"  datatype="string" default_value="me" />
-  <UserPref name="pause" display_name="Delay in seconds between post scrolling" datatype="string" default_value="5" />
+  <UserPref name="searchQuery" display_name="Twitter Search Query (eg, from:CNN)" datatype="string" />
+  <UserPref name="maxItems" display_name="Maximum number of tweets to retrieve"  datatype="string" default_value="10" />
+  <UserPref name="pause" display_name="Delay in seconds between scrolling" datatype="string" default_value="5" />
   <UserPref name="imageSize" display_name="Profile Image Size" datatype="enum" default_value="small">
     <EnumValue value="small" display_value="Small" />
     <EnumValue value="large" display_value="Large" />
