@@ -27,18 +27,21 @@
 
 <script type="text/javascript">
 
-  var prefs = new gadgets.Prefs();
+  var apikey;
+  var playlistId;
 
   function load() {
+    var prefs = new gadgets.Prefs();
+
+    apikey = prefs.getString("apikey");
+    playlistId = prefs.getString("playlistId");
+
     loadResources([
       'https://reveldigital.github.io/reveldigital-gadgets/styles/mobile-slideshow-1.0.css',
       'https://reveldigital.github.io/reveldigital-gadgets/third-party/photoswipe-3.0.4/photoswipe.css'
     ],[]);
   }
-    
-  var apikey = prefs.getString("apikey");
-  var playlistId = prefs.getString("playlistId");
-  
+
   function loadPlaylist() {
     var playlist = $.getJSON("https://api.reveldigital.com/playlists.json?api_key=" + apikey + "&id=" + playlistId, function (data) {
       $.each(data, function (idx, playlist) {
