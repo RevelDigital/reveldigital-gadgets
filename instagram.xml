@@ -29,7 +29,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  <UserPref name="rdKey" display_name="RegistrationKey" required="false" default_value="68f45389-0213-441b-b69d-4e35ef94bb20" datatype="hidden" />
+  <UserPref name="rdKey" display_name="RegistrationKey" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[

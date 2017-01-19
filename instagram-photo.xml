@@ -18,7 +18,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  <UserPref name="regkey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
+  <UserPref name="rdKey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -248,11 +248,10 @@ span.when
   
   var update = function () {
 
-    key = prefs.getString("regkey");    
+    key = prefs.getString("rdKey");    
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
     }
-    //var url = "https://svc1.reveldigital.com/twitter/search/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
     var url = "https://svc1.reveldigital.com/instagram/users/self/media/recent/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
     $.getJSON(url, function(json){
       if (json) {
