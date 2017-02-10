@@ -8,7 +8,11 @@
         <UserPref name="Zoom" display_name="Zoom" default_value="" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
-        
+        <UserPref name="marker" display_name="Marker Icon" datatype="enum" default_value="1">
+      <EnumValue value="1" display_value="Defualt Marker"/>
+      <EnumValue value="2" display_value="Taxi"/>
+      <EnumValue value="3" display_value="Truck"/>
+    </UserPref>        
     </ModulePrefs>
 <Content type="html">
 
