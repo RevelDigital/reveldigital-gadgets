@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+
+        <UserPref name="apikey" display_name="API KEY" default_value="" />
+        <UserPref name="Zoom" display_name="Zoom" default_value="" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
+        
+    </ModulePrefs>
+<Content type="html">
+
+<![CDATA[
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <style>
+            #map {
+                width: __UP_rdW__px;
+                height: __UP_rdH__px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+        var prefs = new gadgets.Prefs();
+        var revelKey = prefs.getString("apikey");
+        var map;
+        var zoom = prefs.getString("Zoom");
+        var array = new Array();
+        var mapCenter = false;
+          function initialize() {
+            initMap();
+           }
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: {lat: 0, lng: 0}
+            });
+            updateMap()
+            var myVar = setInterval(updateMap, 30 * 1000);
+        }
+        function updateMap() {
+            $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+                var longitudeH;
+                var latitudeH;
+                var deviceName;
+                for (var x = 0; x < data.length; x++) {
+                    deviceName = data[x]["id"];
+                    //latitudeH = data[x].location.latitude;
+                    //longitudeH = data[x].location.longitude;
+                    latitudeH = data[x]["ping_data"]["latitude"];
+                    longitudeH = data[x]["ping_data"]["longitude"];
+                    if (latitudeH != null && longitudeH != null) {
+                        if (map != null && mapCenter==false) {
+                            map.panTo({lat: latitudeH, lng: longitudeH});
+                            map.setZoom(Number(zoom));
+                            mapCenter = true;
+                        }
+                        var value = keyInArray(deviceName)
+                        if (!value){
+                            var marker = new google.maps.Marker({
+                                position: {lat: latitudeH, lng: longitudeH},
+                                map: map
+                            });
+                            array.push(new MapObject(deviceName,marker));
+                        }
+                        else {
+                            value.setPosition({lat: latitudeH, lng:longitudeH});
+                            //value.setPosition({lat: 44.977, lng:93.265});
+                        }
+                    }
+                }
+            }, 1000);
+        }
+        function keyInArray(keyValue) {
+            for(var i = 0; i<array.length; i++) {
+                var mapObj = array[i];
+                var name = mapObj.getNameObj();
+                var marker = mapObj.getMapMarker();
+                if(name == keyValue){
+                    return marker;
+                }
+            }
+            return null;
+        }
+        class MapObject{
+            constructor(name, obj){
+                this.name = name;
+                this.obj = obj;
+            }
+            getNameObj(){
+                return this.name;
+            }
+            getMapMarker(){
+                return this.obj;
+            }
+        }
+        gadgets.util.registerOnLoadHandler(initialize);
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxB2l38KXSYsjXXNjPUyixLbFu8WHkSCs&callback=initMap">
+    </script>
+    </body>
+        ]]>
+    </Content>
+
+</Module>
