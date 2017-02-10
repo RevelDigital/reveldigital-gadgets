@@ -71,7 +71,7 @@
                                 label: name,
                                 map: map
                             });
-                            array.push(new MapObject(deviceName,marker,latitudeH, longitudeH);
+                            array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
                         }
                         else {
                             value.setPosition({lat: latitudeH, lng:longitudeH});
