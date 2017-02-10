@@ -53,6 +53,7 @@
                 var deviceName;
                 for (var x = 0; x < data.length; x++) {
                     deviceName = data[x]["id"];
+                    var name = data[x]["name"];                    
                     //latitudeH = data[x].location.latitude;
                     //longitudeH = data[x].location.longitude;
                     latitudeH = data[x]["ping_data"]["latitude"];
@@ -67,9 +68,10 @@
                         if (!value){
                             var marker = new google.maps.Marker({
                                 position: {lat: latitudeH, lng: longitudeH},
+                                label: name,
                                 map: map
                             });
-                            array.push(new MapObject(deviceName,marker));
+                            array.push(new MapObject(deviceName,marker,latitudeH, longitudeH);
                         }
                         else {
                             value.setPosition({lat: latitudeH, lng:longitudeH});
@@ -91,9 +93,12 @@
             return null;
         }
         class MapObject{
-            constructor(name, obj){
+            constructor(name, obj, lan, lon){
                 this.name = name;
                 this.obj = obj;
+                this.lan = lan;
+                this.lon = lon
+                this.same = 0;
             }
             getNameObj(){
                 return this.name;
