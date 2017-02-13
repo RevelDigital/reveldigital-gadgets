@@ -46,67 +46,137 @@
             updateMap()
             var myVar = setInterval(updateMap, 30 * 1000);
         }
-        function updateMap() {
-            $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
-                var longitudeH;
-                var latitudeH;
-                var deviceName;
-                for (var x = 0; x < data.length; x++) {
-                    deviceName = data[x]["id"];
-                    var name = data[x]["name"];                    
-                    //latitudeH = data[x].location.latitude;
-                    //longitudeH = data[x].location.longitude;
-                    latitudeH = data[x]["ping_data"]["latitude"];
-                    longitudeH = data[x]["ping_data"]["longitude"];
-                    if (latitudeH != null && longitudeH != null) {
-                        if (map != null && mapCenter==false) {
-                            map.panTo({lat: latitudeH, lng: longitudeH});
-                            map.setZoom(Number(zoom));
-                            mapCenter = true;
+function updateMap() {
+        if(icons==1){//taxi
+            redURl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/red-taxi-256.png";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-taxi-256.png";
+        }
+        else if(icons==2){//truck
+            redURl = "https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/red-truck-256.png?raw=true";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-truck256.png";
+        }
+        $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+            var longitudeH;
+            var latitudeH;
+            var deviceName;
+
+            var geocoder = new google.maps.Geocoder();
+
+
+            for (var x = 0; x < data.length; x++) {
+                deviceName = data[x]["id"];
+                var name = data[x]["name"];
+                latitudeH = data[x]["ping_data"]["latitude"];
+                longitudeH = data[x]["ping_data"]["longitude"];
+                if (latitudeH != null && longitudeH != null) {
+                    if (map != null && mapCenter==false) {
+                        var location = "Fargo ND";
+                        geocoder.geocode( { 'address': location }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                map.setCenter(results[0].geometry.location);
+                            } else {
+                                alert("Could not find location: " + location);
+                            }
+                        });
+                        map.setZoom(Number(zoom));
+                        mapCenter = true;
+                    }
+                    var value = keyInArray(deviceName)
+                    if (!value){
+                        if(icons>0) {
+                            var marker = new google.maps.Marker({
+                                position: {lat: latitudeH, lng: longitudeH},
+                                label: name,
+                                map: map,
+                                icon: blueUrl
+                            });
                         }
-                        var value = keyInArray(deviceName)
-                        if (!value){
+                        else {
                             var marker = new google.maps.Marker({
                                 position: {lat: latitudeH, lng: longitudeH},
                                 label: name,
                                 map: map
                             });
-                            array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
                         }
-                        else {
-                            value.setPosition({lat: latitudeH, lng:longitudeH});
-                            //value.setPosition({lat: 44.977, lng:93.265});
+                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
+                    }
+                    else {
+
+                        if(distance(value.getLat(), value.getLong(), latitudeH, longitudeH)<.02) {
+                            value.increaseSame();
+                            if(value.getNum()>3) {
+                                if (icons>0) {
+                                    value.getMapMarker().setIcon(redURl);
+                                }
+
+                            }
+                        } else {
+                            if(icons>0){
+                                value.getMapMarker().setIcon(blueUrl);
+                            }
+                            value.resetSame();
+                            value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
                         }
                     }
                 }
-            }, 1000);
-        }
-        function keyInArray(keyValue) {
-            for(var i = 0; i<array.length; i++) {
-                var mapObj = array[i];
-                var name = mapObj.getNameObj();
-                var marker = mapObj.getMapMarker();
-                if(name == keyValue){
-                    return marker;
-                }
             }
-            return null;
-        }
-        class MapObject{
-            constructor(name, obj, lan, lon){
-                this.name = name;
-                this.obj = obj;
-                this.lan = lan;
-                this.lon = lon
-                this.same = 0;
-            }
-            getNameObj(){
-                return this.name;
-            }
-            getMapMarker(){
-                return this.obj;
+        }, 1000);
+    }
+
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        return dist
+    }
+
+    function keyInArray(keyValue) {
+        for(var i = 0; i<array.length; i++) {
+            var mapObj = array[i];
+            var name = mapObj.getNameObj();
+            var marker = mapObj.getMapMarker();
+            if(name == keyValue){
+                return array[i];
             }
         }
+        return null;
+    }
+    class MapObject{
+        constructor(name, obj, lan, lon){
+            this.name = name;
+            this.obj = obj;
+            this.lan = lan;
+            this.lon = lon
+            this.same = 0;
+        }
+        getNameObj(){
+            return this.name;
+        }
+        getMapMarker(){
+            return this.obj;
+        }
+        getLong(){
+            return this.lon;
+        }
+        getLat(){
+            return this.lan;
+        }
+        getNum(){
+            return this.same;
+        }
+        increaseSame(){
+            this.same++;
+        }
+        resetSame(){
+            this.same=0;
+        }
+    }
         gadgets.util.registerOnLoadHandler(initialize);
     </script>
     <script async defer
