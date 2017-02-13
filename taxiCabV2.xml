@@ -37,7 +37,7 @@
         var zoom = prefs.getString("Zoom");
         var array = new Array();
         var mapCenter = false;
-        var icons = Number(prefs.getString("marker");
+        var icons = Number(prefs.getString("marker"));
         var blueUrl;
         var redURl;
         var labels = prefs.getString("labels");
@@ -77,7 +77,7 @@ function updateMap() {
                 longitudeH = data[x]["ping_data"]["longitude"];
                 if (latitudeH != null && longitudeH != null) {
                     if (map != null && mapCenter==false) {
-                        var location = "Fargo ND";
+                        var location = centerCity;
                         geocoder.geocode( { 'address': location }, function(results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
                                 map.setCenter(results[0].geometry.location);
