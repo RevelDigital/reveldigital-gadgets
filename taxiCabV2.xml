@@ -42,6 +42,7 @@
         var redURl;
         var labels = prefs.getString("labels");
         var centerCity = prefs.getString("centerCity");
+        alert(labels);
 function initialize() {
             initMap();
            }
