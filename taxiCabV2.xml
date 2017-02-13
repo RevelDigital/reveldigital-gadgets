@@ -43,6 +43,7 @@
         var labels = prefs.getString("labels");
         var centerCity = prefs.getString("centerCity");
         alert(labels);
+        alert(Object.prototype.toString.call(labels));
        if(labels=="false"){
             labels = false;
         } else{
