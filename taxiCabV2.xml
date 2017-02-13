@@ -43,6 +43,11 @@
         var labels = prefs.getString("labels");
         var centerCity = prefs.getString("centerCity");
         alert(labels);
+       if(labels=="false"){
+            labels = false;
+        } else{
+            labels = true;
+        }
 function initialize() {
             initMap();
            }
