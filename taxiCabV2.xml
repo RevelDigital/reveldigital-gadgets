@@ -5,14 +5,16 @@
     <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
 
         <UserPref name="apikey" display_name="API KEY" default_value="" />
-        <UserPref name="Zoom" display_name="Zoom" default_value="" />
+        <UserPref name="Zoom" display_name="Zoom" default_value="" />        
+        <UserPref name="centerCity" display_name="Center City" default_value="" />
+        <UserPref name="labels" display_name="Labels On" datatype="bool" />        
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         <UserPref name="marker" display_name="Marker Icon" datatype="enum" default_value="1">
-      <EnumValue value="1" display_value="Defualt Marker"/>
-      <EnumValue value="2" display_value="Taxi"/>
-      <EnumValue value="3" display_value="Truck"/>
-    </UserPref>        
+          <EnumValue value="1" display_value="Defualt Marker"/>
+          <EnumValue value="2" display_value="Taxi"/>
+          <EnumValue value="3" display_value="Truck"/>
+        </UserPref>        
     </ModulePrefs>
 <Content type="html">
 
@@ -35,9 +37,11 @@
         var zoom = prefs.getString("Zoom");
         var array = new Array();
         var mapCenter = false;
-        var icons = 1;
+        var icons = Number(prefs.getString("marker");
         var blueUrl;
-        var redURl;          
+        var redURl;
+        var labels = prefs.getString("labels");
+        var centerCity = prefs.getString("centerCity");
 function initialize() {
             initMap();
            }
