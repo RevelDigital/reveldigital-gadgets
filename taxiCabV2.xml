@@ -35,7 +35,10 @@
         var zoom = prefs.getString("Zoom");
         var array = new Array();
         var mapCenter = false;
-          function initialize() {
+        var icons = 1;
+        var blueUrl;
+        var redURl;          
+function initialize() {
             initMap();
            }
         function initMap() {
