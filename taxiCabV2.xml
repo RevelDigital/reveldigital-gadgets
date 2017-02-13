@@ -7,13 +7,13 @@
         <UserPref name="apikey" display_name="API KEY" default_value="" />
         <UserPref name="Zoom" display_name="Zoom" default_value="" />        
         <UserPref name="centerCity" display_name="Center City" default_value="" />
-        <UserPref name="labels" display_name="Labels On" datatype="bool" />        
+        <UserPref name="labels" display_name="Labels On" required="true" default_value="true" datatype="bool" />        
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         <UserPref name="marker" display_name="Marker Icon" datatype="enum" default_value="1">
-          <EnumValue value="1" display_value="Defualt Marker"/>
-          <EnumValue value="2" display_value="Taxi"/>
-          <EnumValue value="3" display_value="Truck"/>
+          <EnumValue value="0" display_value="Defualt Marker"/>
+          <EnumValue value="1" display_value="Taxi"/>
+          <EnumValue value="2" display_value="Truck"/>
         </UserPref>        
     </ModulePrefs>
 <Content type="html">
@@ -91,19 +91,34 @@ function updateMap() {
                     var value = keyInArray(deviceName)
                     if (!value){
                         if(icons>0) {
-                            var marker = new google.maps.Marker({
-                                position: {lat: latitudeH, lng: longitudeH},
-                                label: name,
-                                map: map,
-                                icon: blueUrl
-                            });
+                            if(labels){
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    label: name,
+                                    map: map,
+                                    icon: blueUrl
+                                });
+                            }else{
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    map: map,
+                                    icon: blueUrl
+                                });                            
+                            }
                         }
                         else {
-                            var marker = new google.maps.Marker({
-                                position: {lat: latitudeH, lng: longitudeH},
-                                label: name,
-                                map: map
-                            });
+                            if(labels){                           
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    label: name,
+                                    map: map
+                                });
+                            } else{
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    map: map
+                                });                            
+                            }
                         }
                         array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
                     }
