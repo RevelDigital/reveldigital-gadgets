@@ -111,9 +111,22 @@ function updateMap() {
                             if(labels){
                                 var marker = new google.maps.Marker({
                                     position: {lat: latitudeH, lng: longitudeH},
-                                    label: name,
                                     map: map,
-                                    icon: blueUrl
+                                    icon: {
+                                        url: blueUrl,
+                                        size: new google.maps.Size(45, 45),
+                                        origin: new google.maps.Point(0, 0),
+                                        anchor: new google.maps.Point(0, 20),
+                                        scaledSize: new google.maps.Size(20, 20),
+                                        labelOrigin: new google.maps.Point(9, 32)
+                                    },
+                                    label: {
+                                        text: name,
+                                        fontWeight: 'bold',
+                                        fontSize: '12px',
+                                        fontFamily: '"Courier New", Courier,Monospace',
+                                        color: 'blue'
+                                    }
                                 });
                             }else{
                                 var marker = new google.maps.Marker({
@@ -127,8 +140,22 @@ function updateMap() {
                             if(labels){                           
                                 var marker = new google.maps.Marker({
                                     position: {lat: latitudeH, lng: longitudeH},
-                                    label: name,
-                                    map: map
+                                    map: map,
+                                    icon: {
+                                        url: blueUrl,
+                                        size: new google.maps.Size(45, 45),
+                                        origin: new google.maps.Point(0, 0),
+                                        anchor: new google.maps.Point(0, 20),
+                                        scaledSize: new google.maps.Size(20, 20),
+                                        labelOrigin: new google.maps.Point(9, 32)
+                                    },
+                                    label: {
+                                        text: name,
+                                        fontWeight: 'bold',
+                                        fontSize: '12px',
+                                        fontFamily: '"Courier New", Courier,Monospace',
+                                        color: 'blue'
+                                    }
                                 });
                             } else{
                                 var marker = new google.maps.Marker({
