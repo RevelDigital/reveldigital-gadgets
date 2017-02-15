@@ -77,7 +77,21 @@ function updateMap() {
                 var name = data[x]["name"];
                 latitudeH = data[x]["ping_data"]["latitude"];
                 longitudeH = data[x]["ping_data"]["longitude"];
-                if (latitudeH != null && longitudeH != null) {
+                regKey = data[x]["registration_key"];
+                snapURL = "https://api.reveldigital.com/devices/"+ regKey +"/snap";
+                if(tag==null){
+                    tag = "No Info";
+                }          
+                var contentString = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                '<div id="bodyContent">'+
+                '<img src='+ snapURL +'>'+
+                '<p>'+ tag +'</p>'+
+                '</div>'+
+                '</div>';                
+                 if (latitudeH != null && longitudeH != null) {
                     if (map != null && mapCenter==false) {
                         var location = centerCity;
                         geocoder.geocode( { 'address': location }, function(results, status) {
@@ -122,7 +136,13 @@ function updateMap() {
                                 });                            
                             }
                         }
-                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH, contentString));
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
                     }
                     else {
                         if(distance(value.getLat(), value.getLong(), latitudeH, longitudeH)<.02) {
@@ -167,13 +187,16 @@ function updateMap() {
         }
         return null;
     }
-    function MapObject(name, obj, lan, lon){
+    function MapObject(name, obj, lan, lon, content){
         this.name = name;
         this.obj = obj;
         this.lan = lan;
         this.lon = lon
         this.same = 0;
 
+        this.getContent = function(){
+            return this.content;
+        }        
         this.getNameObj = function(){
             return this.name;
         }
