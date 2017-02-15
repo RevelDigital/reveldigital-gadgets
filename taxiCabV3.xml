@@ -90,7 +90,7 @@ function updateMap() {
                         map.setZoom(Number(zoom));
                         mapCenter = true;
                     }
-                    var value = null;//keyInArray(deviceName)
+                    var value = keyInArray(deviceName)
                     if (!value){
                         if(icons>0) {
                             if(labels){
@@ -126,18 +126,18 @@ function updateMap() {
                     }
                     else {
                         if(distance(value.getLat(), value.getLong(), latitudeH, longitudeH)<.02) {
-                            //value.increaseSame();
+                            value.increaseSame();
                             if(value.getNum()>3) {
                                 if (icons>0) {
-                                    //value.getMapMarker().setIcon(redURl);
+                                    value.getMapMarker().setIcon(redURl);
                                 }
                             }
                         } else {
                             if(icons>0){
-                                //value.getMapMarker().setIcon(blueUrl);
+                                value.getMapMarker().setIcon(blueUrl);
                             }
-                            //value.resetSame();
-                            //value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
+                            value.resetSame();
+                            value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
                         }
                     }
                 }
@@ -167,7 +167,35 @@ function updateMap() {
         }
         return null;
     }
+    function MapObject(name, obj, lan, lon){
+        this.name = name;
+        this.obj = obj;
+        this.lan = lan;
+        this.lon = lon
+        this.same = 0;
 
+        this.getNameObj = function(){
+            return this.name;
+        }
+        this.getMapMarker = function(){
+            return this.obj;
+        }
+        this.getLong = function(){
+            return this.lon;
+        }
+        this.getLat = function(){
+            return this.lan;
+        }
+        this.getNum = function (){
+            return this.same;
+        }
+        this.increaseSame = function(){
+            this.same++;
+        }
+        this.resetSame = function(){
+            this.same=0;
+        }
+    }
         gadgets.util.registerOnLoadHandler(initialize);
     </script>
     <script async defer
