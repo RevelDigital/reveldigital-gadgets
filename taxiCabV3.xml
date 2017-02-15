@@ -75,6 +75,7 @@ function updateMap() {
             for (var x = 0; x < data.length; x++) {
                 deviceName = data[x]["id"];
                 var name = data[x]["name"];
+                var tag = data[x]["tags"];                
                 latitudeH = data[x]["ping_data"]["latitude"];
                 longitudeH = data[x]["ping_data"]["longitude"];
                 regKey = data[x]["registration_key"];
