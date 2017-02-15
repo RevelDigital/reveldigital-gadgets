@@ -1,262 +1,208 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-<Module> 
-<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget. Search options available here: https://dev.twitter.com/docs/using-search" author="RevelDigital" background="transparent">
-  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
-  <UserPref name="numItems" display_name="Number of tweets visible at the same time"  datatype="string" default_value="3" />
-  <UserPref name="maxItems" display_name="Maximum number of tweets" datatype="string" default_value="10" />
-  <UserPref name="pause" display_name="Delay in seconds between tweets" datatype="string" default_value="5" />
-  <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
-  <UserPref name="showProfileImage" display_name="Show Profile Image" datatype="bool" default_value="true" />
-  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
-  <UserPref name="link-style" display_name="Link Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:24px;" required="true" />
-  <UserPref name="ForeColor" datatype="hidden" />
-  <UserPref name="BackColor" datatype="hidden" />
-  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-</ModulePrefs>
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+
+        <UserPref name="apikey" display_name="API KEY" default_value="" />
+        <UserPref name="Zoom" display_name="Zoom" default_value="" />        
+        <UserPref name="centerCity" display_name="Center City" default_value="" />
+        <UserPref name="labels" display_name="Labels On" required="true" default_value="true" datatype="bool" />        
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
+        <UserPref name="marker" display_name="Marker Icon" datatype="enum" default_value="1">
+          <EnumValue value="0" display_value="Defualt Marker"/>
+          <EnumValue value="1" display_value="Taxi"/>
+          <EnumValue value="2" display_value="Truck"/>
+        </UserPref>        
+    </ModulePrefs>
 <Content type="html">
+
 <![CDATA[
-
-<style type="text/css">
-body *
-{
-  line-height: 1.2em; 
-  letter-spacing: 0; 
-  word-spacing: normal;
-}
-
-body
-{
-  background: transparent;
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
-  overflow: hidden;
-}
-
-a
-{
-  __UP_link-style__;
-  text-decoration:none;
-}
-
-a, a:hover, a:visited, a:active, a:link
-{
-  text-decoration:none;
-  __UP_link-style__;
-}
-
-img
-{
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-ul
-{
-  position: relative;
-
-  /* Optional, required in this case since it's a <ul> element */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul, p
-{
-  padding: 0;
-  margin: 0;
-}
-
-div.tweetscontainer
-{
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none;
-  text-align: left;
-  overflow: hidden;
-  __UP_body-style__;
-  background-color: #__UP_BackColor__;
-}
-
-p, span
-{
-  __UP_body-style__;
-}
-
-div.tweet
-{
-  display: block;
-}
-
-.item
-{
-  padding: 10px 5px;
-  border-bottom: solid 1px #ccc;
-}
-
-.avatar
-{
-  float: left;
-  overflow: hidden;
-  display: block;
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-}
-
-.text
-{
-}
-
-span.when
-{
-  display:block;
-  opacity: 0.7;
-  margin-top: 2px;
-  font-size: 90%;
-}
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-core.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.min.js" type="text/javascript"></script>
-<script src="https://reveldigital.github.io/gadget-common/third-party/jquery.profanityfilter.js" type="text/javascript"></script>
-<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-langs.min.js" type="text/javascript"></script>
-<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-
-<div class="tweetscontainer jcarousel">
-  <ul></ul>
-</div>
-
-<script type="text/javascript">
-
-  var prefs = new gadgets.Prefs();
-
-  function load() {
-  
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
-        ]
-      }
-    });
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("link-style"))
-        ]
-      }
-    });
-    
-    $('.jcarousel').jcarousel({
-      vertical: true,
-      wrap: 'both',
-      transitions: true
-    }).jcarouselAutoscroll({
-        interval: parseInt(prefs.getString("pause")) * 1000,
-        target: '+=1',
-        autostart: true
-    });
-    
-    update();
-    
-    setInterval(update, 1000 * 60 * 10); // 10 min update
-  }
-
-  gadgets.util.registerOnLoadHandler(load);
-</script>
-
-<script type="text/javascript">
-
-  var max_id;
-  
-  var update = function () {
-  
-    //var url="https://search.twitter.com/search.json?rpp=" + prefs.getInt("maxItems") + "&since_id=" + max_id + "&callback=?&q=";
-    var url = "https://svc1.reveldigital.com/Twitter/Search/68f45389-0213-441b-b69d-4e35ef94bb20?format=json&count=" + prefs.getInt("maxItems") + "&callback=?&q=";
-    var query = escape( query=prefs.getString("searchQuery") );
-    var display = '<div class="tweetDisplayContainer error">no records found</div>';
-    var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
-    var hashrex = /\#+([\w\d:#@%/;$()~_?\+-=\\\.&]*)/g;
-    var thashuri = "https://twitter.com/search?q=%23";
-  
-    $.getJSON(url+query, function(json){
-
-      if(json) {
-        //var display = '';
-        //$.each(json.Statuses,function(i,tweet) {
-        //  display += '<li><div class="item">';
-        //  ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
-        //  ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
-        //  display += '<div class="avatar tweet' + i + '">' +
-        //    '<img src="' + tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.') + '"  />' + 
-        //    '</div>' +
-        //    '<div class="text tweet' + i + '">' +
-        //    '<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + 
-        //    '" title="tweets by ' + tweet.User.Identifier.ScreenName + 
-        //    '">@' +tweet.User.Identifier.ScreenName + '</a>' + 
-        //    '<p>' + ttext + '</p>' + '<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + timeAgo(tweet.CreatedAt) + '</span>' +
-        //    '</div><div style="clear:both;height:25px;"></div></div></li>';
-        //});
-        //$("div.tweetscontainer ul").html(display);
-        
-        $('div.tweetscontainer ul').empty();
-        
-        $.each(json.Statuses, function(i, tweet) {
-          var li = $('<li/>');
-          var item = $('<div class="item"/>');
-          ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
-          ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
-          if (prefs.getBool("showProfileImage")) {
-            var icon = $('<div class="avatar tweet' + i + '">');
-            icon.append($('<img/>').attr('src', tweet.User.ProfileImageUrl.replace(/_normal\./, '_bigger.').replace(/http:\/\//, 'https://')));
-            item.append(icon);
-          }
-          var body = $('<div class="text tweet' + i + '"/>');
-          body.append($('<a href="https://twitter.com/' + tweet.User.Identifier.ScreenName + '" title="tweets by ' + tweet.User.Identifier.ScreenName + '</a>'));
-          body.append($('<p/>').append(ttext));
-          body.append($('<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + '@' + tweet.User.Identifier.ScreenName + ' ' + timeAgo(tweet.CreatedAt) + '</span>'));
-          item.append(body);
-          item.append($('<div style="clear.both;height:25px;"></div>'));
-          li.append(item);
-          $("div.tweetscontainer ul").append(li);
-        });
-        
-        $('div.text').profanityFilter();
-        
-        $('.jcarousel').jcarousel('reload');
-        
-        //try {
-        //  $('div.tweetscontainer').vTicker.destroy();
-        //} catch (e) {
-        //}
-        
-        //$('div.tweetscontainer').vTicker({
-        //  showItems: prefs.getString("numItems"),
-        //  pause: parseInt(prefs.getString("pause")) * 1000,
-        //  delay: 1000
-        //});
-        
-        if (prefs.getBool("showSeparator") == false) {
-          $("div.item").css("border", "none");
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <style>
+            #map {
+                width: __UP_rdW__px;
+                height: __UP_rdH__px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+        var prefs = new gadgets.Prefs();
+        var revelKey = prefs.getString("apikey");
+        var map;
+        var zoom = prefs.getString("Zoom");
+        var array = new Array();
+        var mapCenter = false;
+        var icons = Number(prefs.getString("marker"));
+        var blueUrl;
+        var redURl;
+        var labels = prefs.getString("labels");
+        var centerCity = prefs.getString("centerCity");
+       if(labels=="false"){
+            labels = false;
+        } else{
+            labels = true;
         }
-        //$("span.when").each(function (idx) {
-        //  $(this).text(timeAgo($(this).data("timestamp")));
-        //});
-      }
-    });
-  }
+function initialize() {
+            initMap();
+           }
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: {lat: 0, lng: 0}
+            });
+            updateMap()
+            var myVar = setInterval(updateMap, 30 * 1000);
+        }
+function updateMap() {
+        if(icons==1){//taxi
+            redURl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/red-taxi-256.png";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-taxi-256.png";
+        }
+        else if(icons==2){//truck
+            redURl = "https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/red-truck-256.png?raw=true";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-truck256.png";
+        }
+        $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+            var longitudeH;
+            var latitudeH;
+            var deviceName;
+            var geocoder = new google.maps.Geocoder();
+            for (var x = 0; x < data.length; x++) {
+                deviceName = data[x]["id"];
+                var name = data[x]["name"];
+                latitudeH = data[x]["ping_data"]["latitude"];
+                longitudeH = data[x]["ping_data"]["longitude"];
+                if (latitudeH != null && longitudeH != null) {
+                    if (map != null && mapCenter==false) {
+                        var location = centerCity;
+                        geocoder.geocode( { 'address': location }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                map.setCenter(results[0].geometry.location);
+                            } else {
+                                alert("Could not find location: " + location);
+                            }
+                        });
+                        map.setZoom(Number(zoom));
+                        mapCenter = true;
+                    }
+                    var value = keyInArray(deviceName)
+                    if (!value){
+                        if(icons>0) {
+                            if(labels){
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    label: name,
+                                    map: map,
+                                    icon: blueUrl
+                                });
+                            }else{
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    map: map,
+                                    icon: blueUrl
+                                });                            
+                            }
+                        }
+                        else {
+                            if(labels){                           
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    label: name,
+                                    map: map
+                                });
+                            } else{
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitudeH, lng: longitudeH},
+                                    map: map
+                                });                            
+                            }
+                        }
+                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH));
+                    }
+                    else {
+                        if(distance(value.getLat(), value.getLong(), latitudeH, longitudeH)<.02) {
+                            value.increaseSame();
+                            if(value.getNum()>3) {
+                                if (icons>0) {
+                                    value.getMapMarker().setIcon(redURl);
+                                }
+                            }
+                        } else {
+                            if(icons>0){
+                                value.getMapMarker().setIcon(blueUrl);
+                            }
+                            value.resetSame();
+                            value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
+                        }
+                    }
+                }
+            }
+        }, 1000);
+    }
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        return dist
+    }
+    function keyInArray(keyValue) {
+        for(var i = 0; i<array.length; i++) {
+            var mapObj = array[i];
+            var name = mapObj.getNameObj();
+            var marker = mapObj.getMapMarker();
+            if(name == keyValue){
+                return array[i];
+            }
+        }
+        return null;
+    }
+    function MapObject(name, obj, lan, lon){
+        this.name = name;
+        this.obj = obj;
+        this.lan = lan;
+        this.lon = lon
+        this.same = 0;
 
-  var timeAgo = function (dateString) {
-    return moment.duration(moment(dateString) - moment()).humanize(true);
-  }
-</script>
-]]>
-</Content>
+        this.getNameObj = function(){
+            return this.name;
+        }
+        this.getMapMarker = function(){
+            return this.obj;
+        }
+        this.getLong = function(){
+            return this.lon;
+        }
+        this.getLat = function(){
+            return this.lan;
+        }
+        this.getNum = function (){
+            return this.same;
+        }
+        this.increaseSame = function(){
+            this.same++;
+        }
+        this.resetSame = function(){
+            this.same=0;
+        }
+    }
+        gadgets.util.registerOnLoadHandler(initialize);
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxB2l38KXSYsjXXNjPUyixLbFu8WHkSCs&callback=initMap">
+    </script>
+    </body>
+        ]]>
+    </Content>
+
 </Module>
