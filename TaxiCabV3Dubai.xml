@@ -68,7 +68,6 @@
                 alert("Could not find location: " + location);
             }
         });
-        locateDevice("3fe26a6f-b972-4c1e-b2a7-580f828598a7");
     }
 
     function locateDevice(regkey) {
