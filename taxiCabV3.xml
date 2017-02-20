@@ -177,7 +177,14 @@ function updateMap() {
                             value.increaseSame();
                             if(value.getNum()>3) {
                                 if (icons>0) {
-                                    value.getMapMarker().setIcon(redURl);
+                                    value.getMapMarker().setIcon({
+                                        url: redURL,
+                                        size: new google.maps.Size(45, 45),
+                                        origin: new google.maps.Point(0, 0),
+                                        anchor: new google.maps.Point(0, 20),
+                                        scaledSize: new google.maps.Size(20, 20),
+                                        labelOrigin: new google.maps.Point(9, 32)
+                                    });
                                 }
                             }
                         } else {
