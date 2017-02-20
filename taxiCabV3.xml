@@ -189,7 +189,14 @@ function updateMap() {
                             }
                         } else {
                             if(icons>0){
-                                value.getMapMarker().setIcon(blueUrl);
+                                value.getMapMarker().setIcon({
+                                        url: blueUrl,
+                                        size: new google.maps.Size(45, 45),
+                                        origin: new google.maps.Point(0, 0),
+                                        anchor: new google.maps.Point(0, 20),
+                                        scaledSize: new google.maps.Size(20, 20),
+                                        labelOrigin: new google.maps.Point(9, 32)
+                                    });
                             }
                             value.resetSame();
                             value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
