@@ -185,6 +185,13 @@ function updateMap() {
                                         scaledSize: new google.maps.Size(20, 20),
                                         labelOrigin: new google.maps.Point(9, 32)
                                     });
+                                    value.getMapMarker().setLabel({
+                                        text: name,
+                                        fontWeight: 'bold',
+                                        fontSize: '12px',
+                                        fontFamily: '"Courier New", Courier,Monospace',
+                                        color: 'red'                                    
+                                    });                                
                                 }
                             }
                         } else {
@@ -197,7 +204,14 @@ function updateMap() {
                                         scaledSize: new google.maps.Size(20, 20),
                                         labelOrigin: new google.maps.Point(9, 32)
                                     });
-                            }
+                                    value.getMapMarker().setLabel({
+                                        text: name,
+                                        fontWeight: 'bold',
+                                        fontSize: '12px',
+                                        fontFamily: '"Courier New", Courier,Monospace',
+                                        color: 'blue'                                    
+                                    });                              
+                                }
                             value.resetSame();
                             value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
                         }
