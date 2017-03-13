@@ -164,9 +164,21 @@ function updateMap() {
                                 });                            
                             }
                         }
-                        var infowindow = new google.maps.InfoWindow({
-                            content: contentString
-                        });
+
+                        var infowindow = new google.maps.InfoWindow()
+                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH, contentString));
+
+                        google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){
+                            return function() {
+                                infowindow.setContent(contentString);
+                                infowindow.open(map,marker);
+                            };
+                        })(marker,contentString,infowindow));                        
+                
+                        //var infowindow = new google.maps.InfoWindow({
+                        //    content: contentString
+                        //});
+
                         array.push(new MapObject(deviceName,marker,latitudeH, longitudeH, contentString));
                         marker.addListener('click', function() {
                             infowindow.open(map, marker);
