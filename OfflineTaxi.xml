@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+
+        <UserPref name="apikey" display_name="API KEY" default_value="" />            
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />        
+    </ModulePrefs>
+<Content type="html">
+
+<![CDATA[
+    <head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            #body {
+                width: __UP_rdW__px;
+                height: __UP_rdH__px;
+            }
+            .container { width:500px; height: 100%; overflow-y: scroll; align-content: center; text-align: center}
+          #rightSide { margin-right:10px; overflow: hidden; white-space: nowrap; float: left; width: 50%}
+          #leftSide {  float: right; margin-left: 10px; overflow: hidden; white-space: nowrap; width: 50%}
+
+          .loader {
+              border: 16px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 16px solid #3498db;
+              width: 120px;
+              height: 120px;
+              -webkit-animation: spin 2s linear infinite;
+              animation: spin 2s linear infinite;
+              margin: auto;
+          }
+
+          @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+          }
+
+          @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+          }
+          .singleLine{
+              clear: both;
+          }
+        </style>
+    </head>
+    <body>
+     
+      
+
+ 
+      <br/>
+      <div class="container" id="list">
+          <div class="loader"></div><br/>
+          <h1 id="loading">   Loading...</h1>
+          <h2>Will Take 30 Seconds Or More On Startup</h2>
+      </div>
+
+      <script type="text/javascript">
+          var footerText = "Footer";
+          var headerText = "Header Text";
+          var contentText = "Content Text";
+          var revelKey = "PHeA6yKLpdw";
+          main();
+          var myVar = setInterval(main, 10 * 1000);
+          var array = new Array();
+
+          function addElement(parentId, elementTag, elementId, html) {
+              // Adds an element to the document
+              var p = document.getElementById(parentId);
+              var newElement = document.createElement(elementTag);
+              newElement.setAttribute('id', elementId);
+              newElement.innerHTML = html;
+              p.appendChild(newElement);
+          }
+
+
+
+          function main() {
+              $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+                  var eleCounter = 0;
+                  var longitudeH;
+                  var latitudeH;
+                  var deviceID;
+                  document.getElementById("list").innerHTML = '<div class="loader"></div><br/><h1 id="loading">Loading...</h1>';
+
+                  for (var x = 0; x < data.length; x++) {
+                      deviceID = data[x]["id"];
+                      var name = data[x]["name"];
+                      var tagText = data[x]["tags"];
+                      latitudeH = data[x]["ping_data"]["latitude"];
+                      longitudeH = data[x]["ping_data"]["longitude"];
+                      var regKey = data[x]["registration_key"];
+                      var snapURL = "https://api.reveldigital.com/devices/"+ regKey +"/snap";
+                      if(!tagText || tagText.toLowerCase()==name.toLowerCase()){
+                          tagText = "No Information";
+                      }
+
+
+
+
+
+                      if (latitudeH != null && longitudeH != null) {
+                          var value = keyInArray(deviceID);
+                          if (value!=null) {
+                              if (distance(value.getLat(), value.getLong(), latitudeH, longitudeH) < .02) {
+                                  value.increaseSame();
+                                  if (value.getNum() > 1) {
+                                      var card = '<div id='+deviceID+' class="w3-container" data-toggle="collapse" data-target='+"#grow"+deviceID+'>' +
+                                          '<div class="w3-card-4" style="width:100%;">' +
+                                          '<header class="w3-container w3-blue">' +
+                                          '<div id="stylesHeading"><div class="singleLine" id="rightSide">' + name +'</div><div class="singleLine" id="leftSide">Est. 30 Mins</div></div>' +
+                                          '</header>' +
+                                          '<div id='+"grow"+deviceID+' class="w3-container collapse">' +
+                                          '<p>' + tagText+ '</p>' +
+                                          '</div>' +
+
+                                          '<footer class="w3-container w3-blue">' +
+                                          '<h5>' + footerText + '</h5>' +
+                                          '</footer>' +
+                                      '</div>';
+                                      if(eleCounter==0){
+                                          document.getElementById("list").innerHTML = null;
+                                      }
+                                      eleCounter++;
+                                      addElement("list", "Card", deviceID, card);
+                                      addElement("list", "blank", "blank", '<br/>');
+
+                                  } else {
+                                      //place remove code here
+                                  }
+                              }
+
+                          }
+                          else {
+                              array.push(new MapObject(deviceID, name,latitudeH, longitudeH));
+                          }
+                      }
+                  }
+              }, 1000);
+          }
+
+          function distance(lat1, lon1, lat2, lon2, unit) {
+              var radlat1 = Math.PI * lat1/180;
+              var radlat2 = Math.PI * lat2/180;
+              var theta = lon1-lon2;
+              var radtheta = Math.PI * theta/180;
+              var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+              dist = Math.acos(dist);
+              dist = dist * 180/Math.PI;
+              dist = dist * 60 * 1.1515;
+              if (unit=="K") { dist = dist * 1.609344 }
+              return dist
+          }
+
+          function keyInArray(keyValue) {
+              for(var i = 0; i<array.length; i++) {
+                  var mapObj = array[i];
+                  var name = mapObj.getDeviceId();
+                  if(name == keyValue){
+                      return array[i];
+                  }
+              }
+              return null;
+          }
+
+          function MapObject(deviceId, name, lan, lon){
+              this.deviceId = deviceId;
+              this.name = name;
+              this.lan = lan;
+              this.lon = lon;
+              this.same = 0;
+              this.getNameObj = function(){
+                  return this.name;
+              };
+              this.getDeviceId = function () {
+                  return this.deviceId;
+              };
+              this.getLong = function(){
+                  return this.lon;
+              };
+              this.getLat = function(){
+                  return this.lan;
+              };
+              this.getNum = function (){
+                  return this.same;
+              };
+              this.increaseSame = function(){
+                  this.same++;
+              };
+              this.resetSame = function(){
+                  this.same=0;
+              }
+              gadgets.util.registerOnLoadHandler(main);
+
+          }
+
+      </script>
+
+      </body>
+      </html>    
+   
+        ]]>
+    </Content>
+
+</Module>
