@@ -26,7 +26,7 @@
                 width: __UP_rdW__px;
                 height: __UP_rdH__px;
             }
-            .container { width:500px; height: 100%; overflow-y: scroll; align-content: center; text-align: center}
+            .container { width: 100%; height: 100%; overflow-y: scroll; align-content: center; text-align: center}
           #rightSide { margin-right:10px; overflow: hidden; white-space: nowrap; float: left; width: 50%}
           #leftSide {  float: right; margin-left: 10px; overflow: hidden; white-space: nowrap; width: 50%}
 
