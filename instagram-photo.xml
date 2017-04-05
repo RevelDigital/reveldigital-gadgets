@@ -206,7 +206,7 @@ span.when
           </div>
         </div>
         <div class="body">
-          <p>${Caption}</p>
+          <p>${Caption.Text}</p>
         </div>
       </div>
     </div>
