@@ -69,7 +69,7 @@
             localVideo = document.getElementById('localVideo');
             remoteVideo = document.getElementById('remoteVideo');
         } else {
-            alert("Sorry, your browser does not support WebRTC!")
+            alert("Sorry, your browser does not support WebRTC! <br/> Browser Version: " + jQuery.browser.version)
         }
     };
 
