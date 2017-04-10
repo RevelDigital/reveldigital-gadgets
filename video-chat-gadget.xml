@@ -2,7 +2,7 @@
 
 <Module>
 
-    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+    <ModulePrefs title="Revel Video Chat" description="Video Chat Gadget" author="RevelDigital" background="transparent">
 
         <UserPref name="cName" display_name="Client Name" default_value="" />      
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
