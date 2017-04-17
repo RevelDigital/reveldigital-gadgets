@@ -48,7 +48,7 @@
 <body>
 <video id="remoteVideo" autoplay></video>
 <video id="localVideo" autoplay muted></video>
-<img onclick="javascript:wsc.send(JSON.stringify({"closeConnection": true }));" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/endcall.png?raw=true">
+<img onclick="javascript:wsc.send(JSON.stringify({"closeConnection": true }))" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/endcall.png?raw=true">
 
 <script type="text/javascript">
     /** browser dependent definition are aligned to one and the same standard name **/
