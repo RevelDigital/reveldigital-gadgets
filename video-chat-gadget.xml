@@ -102,6 +102,7 @@
 
     // run start(true) to initiate a call
     function initiateCall() {
+        alert("here");
         prepareCall();
         // get the local stream, show it in the local video element and send it
         navigator.getUserMedia({ "audio": true, "video": true }, function (stream) {
