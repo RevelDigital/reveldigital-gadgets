@@ -91,9 +91,13 @@
             remoteVideo = document.getElementById('remoteVideo');
             img = document.getElementById('end');
             img.addEventListener("click", function (evt) {
-                alert("end call");
                   wsc.send(JSON.stringify({"closeConnection": true }));
-                    Client.callback('');
+                   if (typeof Client != "undefined") {
+                        Client.callback("end call");
+                    }
+                    else{
+                        console.log("Client Was Undefined In The Gadget!");
+                    }
                 });
         } else {
             alert("Sorry, your browser does not support WebRTC! <br/> Browser Version: ")
