@@ -55,7 +55,7 @@
 <body>
 <video id="remoteVideo" autoplay></video>
 <video id="localVideo" autoplay muted></video>
-<img onclick="javascript:function (evt) {wsc.send(JSON.stringify({"closeConnection": true }));}" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/endcall.png?raw=true">
+<img id="end" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/endcall.png?raw=true">
 
 <script type="text/javascript">
     /** browser dependent definition are aligned to one and the same standard name **/
@@ -72,7 +72,8 @@
     };
     var localVideoElem = null,
         remoteVideoElem = null,
-        localVideoStream = null;
+        localVideoStream = null,
+        img = null;
 
 
     var peerConn = null,
@@ -85,8 +86,13 @@
     function pageReady() {
         // check browser WebRTC availability
         if(navigator.getUserMedia) {
+
             localVideo = document.getElementById('localVideo');
             remoteVideo = document.getElementById('remoteVideo');
+            img = document.getElementById('end');
+            img.addEventListener("click", function (evt) {
+                  wsc.send(JSON.stringify({"closeConnection": true }));
+                });
         } else {
             alert("Sorry, your browser does not support WebRTC! <br/> Browser Version: ")
         }
@@ -183,6 +189,7 @@
     };
 
     function endCall() {
+        Client.callback('');
         wsc.send(JSON.stringify({"closeConnection": true }));
         peerConn.close();
         peerConn = null;
