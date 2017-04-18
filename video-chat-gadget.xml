@@ -24,6 +24,12 @@
 
     <title>WebRTC Audio/Video-Chat</title>
     <style>
+        body
+          {
+
+            background: transparent;
+
+          }
         #remoteVideo{
 
             width: 100%;
