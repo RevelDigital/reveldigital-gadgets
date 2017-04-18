@@ -93,11 +93,11 @@
             img.addEventListener("click", function (evt) {
                   wsc.send(JSON.stringify({"closeConnection": true }));
                    if (typeof Client != "undefined") {
-                        alert("sent");
+                        
                         Client.callback("end call");
                     }
                     else{
-                        alert("Issue");
+                        
                         console.log("Client Was Undefined In The Gadget!");
                     }
                 });
