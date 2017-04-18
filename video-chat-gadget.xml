@@ -91,7 +91,9 @@
             remoteVideo = document.getElementById('remoteVideo');
             img = document.getElementById('end');
             img.addEventListener("click", function (evt) {
+                alert("end call");
                   wsc.send(JSON.stringify({"closeConnection": true }));
+                    Client.callback('');
                 });
         } else {
             alert("Sorry, your browser does not support WebRTC! <br/> Browser Version: ")
@@ -108,7 +110,7 @@
 
     // run start(true) to initiate a call
     function initiateCall() {
-        alert("here");
+      
         prepareCall();
         // get the local stream, show it in the local video element and send it
         navigator.getUserMedia({ "audio": true, "video": true }, function (stream) {
