@@ -111,9 +111,9 @@
         navigator.getUserMedia({ "audio": true, "video": true }, function (stream) {
             localVideoStream = stream;
             localVideo.src = URL.createObjectURL(localVideoStream);
-            if(!peerConn){
-                peerConn.addStream(localVideoStream);
-            }
+            
+            peerConn.addStream(localVideoStream);
+            
             createAndSendAnswer();
         }, function(error) { console.log(error);});
     };
