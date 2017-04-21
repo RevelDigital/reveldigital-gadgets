@@ -44,10 +44,10 @@
 
         }
         img{
-            width: 10%;
-            height: 10%;
+            width: 8%;
+            height: 15%;
             position: absolute;
-            top: 0;
+            top: 65%;
             left: 0;
         }
     </style>
