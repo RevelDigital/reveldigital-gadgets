@@ -57,7 +57,7 @@
 <body>
 <video id="remoteVideo" autoplay></video>
 <video id="localVideo" autoplay muted></video>
-<img id="end" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/endcall.png?raw=true">
+<img id="end" src="https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/RL-Assistant%20Logo.png?raw=true">
 
 <script type="text/javascript">
     /** browser dependent definition are aligned to one and the same standard name **/
