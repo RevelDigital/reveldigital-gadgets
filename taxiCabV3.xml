@@ -67,7 +67,7 @@ function updateMap() {
             redURl = "https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/red-truck-256.png?raw=true";
             blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-truck256.png";
         }
-        $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+        $.getJSON("https://api.reveldigital.com/devices?include_snap=false&api_key="+revelKey, function (data) {
             var longitudeH;
             var latitudeH;
             var deviceName;
