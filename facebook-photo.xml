@@ -40,11 +40,6 @@ body
   overflow: hidden;
 }
 
-body, td, div, span, p
-{
-  __UP_body-style__;
-}
-
 a
 {
   text-decoration:none;
@@ -138,6 +133,11 @@ div.post
   __UP_body-style__;
 }
 
+.body td, .body div, .body span, .body p
+{
+  __UP_body-style__;
+}
+
 .photo
 {
   display: table-cell;
@@ -155,6 +155,11 @@ div.post
 div.stats
 {
   padding: 0 10px 0 0;
+  __UP_stats-style__;
+}
+
+.stats td, .stats div, .stats span, .stats p
+{
   __UP_stats-style__;
 }
 
