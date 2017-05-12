@@ -40,6 +40,11 @@ body
   overflow: hidden;
 }
 
+body, td, div, span, p
+{
+  __UP_body-style__;
+}
+
 a
 {
   text-decoration:none;
