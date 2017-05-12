@@ -230,11 +230,18 @@ span.when
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("link-style"))
+          RevelDigital.getFamilyName(prefs.getString("name-style"))
         ]
       }
     });
-
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("stats-style"))
+        ]
+      }
+    });
+    
     update();
 
     setInterval(update, 1000 * 60 * 10); // 10 min update
