@@ -78,7 +78,7 @@
           main();
           var myVar = setInterval(main, 30 * 1000);
           var array = new Array();
-          alert("new");
+          alert("new1");
 
           function addElement(parentId, elementTag, elementId, html) {
               // Adds an element to the document
@@ -216,7 +216,7 @@
                 if(deviceLat && deviceLng){
                     //alert(deviceLat+" "+deviceLng);
                     if (typeof Client != 'undefined') {
-                        Client.callback([deviceLat,deviceLng]);
+                        Client.callback("["+deviceLat+","+deviceLng+"]");
                     }
 
                 }
