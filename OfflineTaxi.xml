@@ -201,10 +201,10 @@
               this.resetSame = function(){
                   this.same=0;
               }
-              gadgets.util.registerOnLoadHandler(main);
+              
 
           }
-
+        gadgets.util.registerOnLoadHandler(main);
       </script>
         <script>
             $(document).on( "click",".card", function(e){
