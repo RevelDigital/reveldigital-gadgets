@@ -89,7 +89,7 @@
           }
 
     function main() {
-        $.getJSON("http://api.reveldigital.com/devices?include_snap=false&api_key="+revelKey, function (data) {
+        $.getJSON("https://api.reveldigital.com/devices?include_snap=false&api_key="+revelKey, function (data) {
             var eleCounter = 0;
             var longitudeH;
             var latitudeH;
