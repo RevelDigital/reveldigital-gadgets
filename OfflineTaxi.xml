@@ -78,7 +78,7 @@
           main();
           var myVar = setInterval(main, 30 * 1000);
           var array = new Array();
-          alert("new3");
+
 
           function addElement(parentId, elementTag, elementId, html) {
               // Adds an element to the document
@@ -208,13 +208,13 @@
         gadgets.util.registerOnLoadHandler(main);
       </script>
         <script>
-            $(document).on( "click",".card", function(e){
+            $(document).on( "click",".card", function(){
                 var id = $(this).attr('id');
                 var device = keyInArray(id);
                 var deviceLat = device.getLat()
                 var deviceLng = device.getLong();
                 if(deviceLat && deviceLng){
-                    //alert(deviceLat+" "+deviceLng);
+
                     if (typeof Client != 'undefined') {
                         //Client.callback('test');
                         Client.callback('{\"lat\":\"'+deviceLat+'\",\"long\":\"'+deviceLng+'\"}');
