@@ -74,6 +74,7 @@
       </div>
 
       <script type="text/javascript">
+          var prefs = new gadgets.Prefs();
           var footerText = "Footer";
           var headerText = "Header Text";
           var contentText = "Content Text";
