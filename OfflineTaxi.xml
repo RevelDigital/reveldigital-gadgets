@@ -217,7 +217,8 @@
 
                     if (typeof Client != 'undefined') {
                         //Client.callback("test");
-                        Client.callback('{\"lat\":\"'+deviceLat+'\",\"lng\":\"'+deviceLng+'\"}');
+                        //Client.callback('{\"lat\":\"'+deviceLat+'\",\"lng\":\"'+deviceLng+'\"}');
+                        Client.callback('{\"lat\":'+deviceLat+',\"lng\":'+deviceLng+'}');
                     }
 
                 }
