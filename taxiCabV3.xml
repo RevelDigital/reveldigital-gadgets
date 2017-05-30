@@ -233,10 +233,10 @@ function updateMap() {
         }, 1000);
     }
 
-    function setPan(jsonObj){
+    function setPan(obj){
         alert("here");
-        console.log("gadget: "+jsonObj);
-        var obj=JSON.parse(jsonObj);
+        console.log("gadget: "+obj.lat);
+        //var obj=JSON.parse(jsonObj);
         if(obj.lat && obj.lng){
             map.panTo({lat: obj.lat, lng: obj.lng});
         }
