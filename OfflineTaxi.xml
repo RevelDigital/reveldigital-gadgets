@@ -216,8 +216,8 @@
                 if(deviceLat && deviceLng){
 
                     if (typeof Client != 'undefined') {
-                        Client.callback("test");
-                        //Client.callback('{\"lat\":\"'+deviceLat+'\",\"long\":\"'+deviceLng+'\"}');
+                        //Client.callback("test");
+                        Client.callback('{\"lat\":\"'+deviceLat+'\",\"long\":\"'+deviceLng+'\"}');
                     }
 
                 }
