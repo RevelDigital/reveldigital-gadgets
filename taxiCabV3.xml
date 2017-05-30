@@ -235,10 +235,9 @@ function updateMap() {
 
     function setPan(jsonObj){
         alert("here");
-        JSON.parse(jsonObj);
-        if(jsonObj.lat && jsonObj.lng){
-            
-            map.panTo({lat: jsonObj.lat, lng: jsonObj.lng});
+        var obj=JSON.parse(jsonObj);
+        if(obj.lat && obj.lng){
+            map.panTo({lat: obj.lat, lng: obj.lng});
         }
     }
 
