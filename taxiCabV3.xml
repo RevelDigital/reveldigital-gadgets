@@ -233,8 +233,9 @@ function updateMap() {
         }, 1000);
     }
 
-    function setPan(lat, lng){
-        map.panTo({lat: lat, lng: lng});
+    function setPan(jsonObj){
+        alert(jsonObj);
+        //map.panTo({lat: lat, lng: lng});
     }
 
     function distance(lat1, lon1, lat2, lon2, unit) {
