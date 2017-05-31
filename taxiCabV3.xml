@@ -235,7 +235,7 @@ function updateMap() {
 
     function setPan(obj){
         if(obj.lat && obj.lng){
-            map.setZoom({zoom:2});
+            map.setZoom(2);
             map.panTo({lat: obj.lat, lng: obj.lng});
         }
     }
