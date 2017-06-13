@@ -146,6 +146,7 @@
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
     }
     function endCall(){
+        Client.callback('ended');
         location.reload();
     }
 </script>
