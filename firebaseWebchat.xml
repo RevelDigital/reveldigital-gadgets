@@ -48,10 +48,6 @@
     <video id="friendsVideo" autoplay></video>
     <br />
     <div>
-        <button onclick="showFriendsFace(); " type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Call
-        </button>
-
         <button onclick="endCall(); " type="button" class="deactiveButton btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> End Call
         </button>
@@ -131,8 +127,8 @@
             .then(stream => pc.addStream(stream));
     }
 
-    function showFriendsFace() {
-    showMyFace();
+    function initiateCall() {
+        showMyFace();
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer) )
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
