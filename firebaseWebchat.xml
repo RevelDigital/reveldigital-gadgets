@@ -58,6 +58,7 @@
         </button>
     </div>
 <script>
+//new
     //this makes sure that our code will work on different browsers
     var RTCPeerConnection = window.webkitRTCPeerConnection;
     var config = {
