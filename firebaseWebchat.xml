@@ -139,7 +139,7 @@
             .then(stream => pc.addStream(stream));
     }
 
-    function initiateCall()
+    function initiateCall(){
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer) )
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
