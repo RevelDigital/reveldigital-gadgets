@@ -21,24 +21,12 @@
     <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body
-          {
-            background: transparent;
-          }
-        #friendsVideo{
+        video {
             background-color: #ddd;
             border-radius: 7px;
-            width: 100%;
-            height: 100%;
-        }
-        #yourVideo{
-            background-color: #ddd;
-            border-radius: 7px;
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            max-width: 30%;
-            max-width: 30%;
+            margin: 10px 0 0 10px;
+            width: 320px;
+            height: 240px;
         }
         button {
             margin: 5px 0 0 10px !important;
@@ -60,6 +48,10 @@
     <video id="friendsVideo" autoplay></video>
     <br />
     <div>
+        <button onclick="showFriendsFace(); " type="button" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Call
+        </button>
+
         <button onclick="endCall(); " type="button" class="deactiveButton btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> End Call
         </button>
@@ -134,12 +126,13 @@
     database.on('child_added', readMessage);
 
     function showMyFace() {
+        initiateCall();
         navigator.mediaDevices.getUserMedia({audio:true, video:true})
             .then(stream => yourVideo.srcObject = stream)
             .then(stream => pc.addStream(stream));
     }
 
-    function initiateCall(){
+    function initiateCall() {
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer) )
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
@@ -154,5 +147,4 @@
         
         ]]>
     </Content>
-
 </Module>
