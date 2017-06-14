@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="showMyFace()">
     <video id="yourVideo" autoplay muted></video>
     <video id="friendsVideo" autoplay></video>
     <br />
@@ -122,7 +122,6 @@
             .then(stream => pc.addStream(stream));
     }
     function initiateCall() {
-        showMyFace();
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer) )
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
