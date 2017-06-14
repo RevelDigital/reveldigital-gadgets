@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body onload="showMyFace()">
+<body>
     <video id="yourVideo" autoplay muted></video>
     <video id="friendsVideo" autoplay></video>
     <br />
@@ -57,13 +57,9 @@
             <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> End Call
         </button>
     </div>
-
-
-
 <script>
     //this makes sure that our code will work on different browsers
     var RTCPeerConnection = window.webkitRTCPeerConnection;
-
     var config = {
         apiKey: "AIzaSyDbrUTVn85--4raiUeFC6D5R6rM852r4go",
         authDomain: "vidchat2-2a0ae.firebaseapp.com",
@@ -73,20 +69,17 @@
         messagingSenderId: "874747320746"
     };
     firebase.initializeApp(config);
-
     firebase.auth().signInAnonymously().catch(function(error) {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
         // ...
     });
-
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
             let isAnonymous = user.isAnonymous;
             let uid = user.uid;
-
             // ...
         } else {
             // User is signed out.
@@ -102,12 +95,10 @@
     let pc = new RTCPeerConnection(servers);
     pc.onicecandidate = (event => event.candidate?sendMessage(yourId, JSON.stringify({'ice': event.candidate})):console.log("Sent All Ice"));
     pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
-
     function sendMessage(senderId, data) {
         var msg = database.push({ sender: senderId, message: data });
         msg.remove();
     }
-
     function readMessage(data) {
         var msg = JSON.parse(data.val().message);
         var sender = data.val().sender;
@@ -123,17 +114,14 @@
                 pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
         }
     };
-
     database.on('child_added', readMessage);
-
     function showMyFace() {
-        initiateCall();
         navigator.mediaDevices.getUserMedia({audio:true, video:true})
             .then(stream => yourVideo.srcObject = stream)
             .then(stream => pc.addStream(stream));
     }
-
     function initiateCall() {
+        showMyFace();
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer) )
             .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
@@ -148,4 +136,5 @@
         
         ]]>
     </Content>
+
 </Module>
