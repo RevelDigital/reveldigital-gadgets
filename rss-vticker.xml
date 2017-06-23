@@ -174,7 +174,9 @@ h1, h2, h3, h4, h5
     $('#ticker').rss(prefs.getString("feedUrl"), {
       ssl: true,
       limit: prefs.getString("maxItems"),
-      
+
+      host: 'quiet-eyrie-99102.herokuapp.com',
+
       // outer template for the html transformation
       // default: "<ul>{entries}</ul>"
       // valid values: any string
