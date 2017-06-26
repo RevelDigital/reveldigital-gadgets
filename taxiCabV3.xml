@@ -75,162 +75,164 @@ function updateMap() {
             for (var x = 0; x < data.length; x++) {
                 deviceName = data[x]["id"];
                 var name = data[x]["name"];
-                var tag = data[x]["tags"];                
-                latitudeH = data[x]["ping_data"]["latitude"];
-                longitudeH = data[x]["ping_data"]["longitude"];
-                regKey = data[x]["registration_key"];
-                snapURL = "https://api.reveldigital.com/devices/"+ regKey +"/snap";
-                if(tag==null){
-                    tag = "No Info";
-                }          
-                var contentString = '<div id="content">'+
-                '<div id="siteNotice">'+
-                '</div>'+
-                '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
-                '<div id="bodyContent">'+
-                '<img src='+ snapURL +'>'+
-                '<p>'+ tag +'</p>'+
-                '</div>'+
-                '</div>';                
-                 if (latitudeH != null && longitudeH != null) {
-                    if (map != null && mapCenter==false) {
-                        var location = centerCity;
-                        geocoder.geocode( { 'address': location }, function(results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                map.setCenter(results[0].geometry.location);
-                            } else {
-                                alert("Could not find location: " + location);
-                            }
-                        });
-                        map.setZoom(Number(zoom));
-                        mapCenter = true;
+                var tag = data[x]["tags"];
+                if (data[x]["ping_data"] != null) {
+                    latitudeH = data[x]["ping_data"]["latitude"];
+                    longitudeH = data[x]["ping_data"]["longitude"];
+                    regKey = data[x]["registration_key"];
+                    snapURL = "https://api.reveldigital.com/devices/" + regKey + "/snap";
+                    if (tag == null) {
+                        tag = "No Info";
                     }
-                    var value = keyInArray(deviceName)
-                    if (!value){
-                        if(icons>0) {
-                            if(labels){
-                                var marker = new google.maps.Marker({
-                                    position: {lat: latitudeH, lng: longitudeH},
-                                    map: map,
-                                    icon: {
-                                        url: blueUrl,
-                                        size: new google.maps.Size(45, 45),
-                                        origin: new google.maps.Point(0, 0),
-                                        anchor: new google.maps.Point(0, 20),
-                                        scaledSize: new google.maps.Size(20, 20),
-                                        labelOrigin: new google.maps.Point(9, 32)
-                                    },
-                                    label: {
-                                        text: name,
-                                        fontWeight: 'bold',
-                                        fontSize: '12px',
-                                        fontFamily: '"Courier New", Courier,Monospace',
-                                        color: 'blue'
-                                    }
-                                });
-                            }else{
-                                var marker = new google.maps.Marker({
-                                    position: {lat: latitudeH, lng: longitudeH},
-                                    map: map,
-                                    icon: blueUrl
-                                });                            
+                    var contentString = '<div id="content">' +
+                        '<div id="siteNotice">' +
+                        '</div>' +
+                        '<h1 id="firstHeading" class="firstHeading">' + name + '</h1>' +
+                        '<div id="bodyContent">' +
+                        '<img src=' + snapURL + '>' +
+                        '<p>' + tag + '</p>' +
+                        '</div>' +
+                        '</div>';
+                    if (latitudeH != null && longitudeH != null) {
+                        if (map != null && mapCenter == false) {
+                            var location = centerCity;
+                            geocoder.geocode({'address': location}, function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    map.setCenter(results[0].geometry.location);
+                                } else {
+                                    alert("Could not find location: " + location);
+                                }
+                            });
+                            map.setZoom(Number(zoom));
+                            mapCenter = true;
+                        }
+                        var value = keyInArray(deviceName)
+                        if (!value) {
+                            if (icons > 0) {
+                                if (labels) {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: {
+                                            url: blueUrl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        },
+                                        label: {
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'blue'
+                                        }
+                                    });
+                                } else {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: blueUrl
+                                    });
+                                }
                             }
+                            else {
+                                if (labels) {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: {
+                                            url: blueUrl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        },
+                                        label: {
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'blue'
+                                        }
+                                    });
+                                } else {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map
+                                    });
+                                }
+                            }
+
+                            var infowindow = new google.maps.InfoWindow()
+                            array.push(new MapObject(deviceName, marker, latitudeH, longitudeH, contentString));
+
+                            google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                                return function () {
+                                    infowindow.setContent(contentString);
+                                    infowindow.open(map, marker);
+                                };
+                            })(marker, contentString, infowindow));
+
+                            //var infowindow = new google.maps.InfoWindow({
+                            //    content: contentString
+                            //});
+
+                            array.push(new MapObject(deviceName, marker, latitudeH, longitudeH, contentString));
+                            marker.addListener('click', function () {
+                                infowindow.open(map, marker);
+                            });
                         }
                         else {
-                            if(labels){                           
-                                var marker = new google.maps.Marker({
-                                    position: {lat: latitudeH, lng: longitudeH},
-                                    map: map,
-                                    icon: {
+                            if (distance(value.getLat(), value.getLong(), latitudeH, longitudeH) < .02) {
+                                value.increaseSame();
+                                if (value.getNum() > 3) {
+                                    if (icons > 0) {
+                                        value.getMapMarker().setIcon({
+                                            url: redURl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        });
+                                        value.getMapMarker().setLabel({
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'red'
+                                        });
+                                    }
+                                }
+                            } else {
+                                if (icons > 0) {
+                                    value.getMapMarker().setIcon({
                                         url: blueUrl,
                                         size: new google.maps.Size(45, 45),
                                         origin: new google.maps.Point(0, 0),
                                         anchor: new google.maps.Point(0, 20),
                                         scaledSize: new google.maps.Size(20, 20),
                                         labelOrigin: new google.maps.Point(9, 32)
-                                    },
-                                    label: {
+                                    });
+                                    value.getMapMarker().setLabel({
                                         text: name,
                                         fontWeight: 'bold',
                                         fontSize: '12px',
                                         fontFamily: '"Courier New", Courier,Monospace',
                                         color: 'blue'
-                                    }
-                                });
-                            } else{
-                                var marker = new google.maps.Marker({
-                                    position: {lat: latitudeH, lng: longitudeH},
-                                    map: map
-                                });                            
-                            }
-                        }
-
-                        var infowindow = new google.maps.InfoWindow()
-                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH, contentString));
-
-                        google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){
-                            return function() {
-                                infowindow.setContent(contentString);
-                                infowindow.open(map,marker);
-                            };
-                        })(marker,contentString,infowindow));                        
-                
-                        //var infowindow = new google.maps.InfoWindow({
-                        //    content: contentString
-                        //});
-
-                        array.push(new MapObject(deviceName,marker,latitudeH, longitudeH, contentString));
-                        marker.addListener('click', function() {
-                            infowindow.open(map, marker);
-                        });
-                    }
-                    else {
-                        if(distance(value.getLat(), value.getLong(), latitudeH, longitudeH)<.02) {
-                            value.increaseSame();
-                            if(value.getNum()>3) {
-                                if (icons>0) {
-                                    value.getMapMarker().setIcon({
-                                        url: redURl,
-                                        size: new google.maps.Size(45, 45),
-                                        origin: new google.maps.Point(0, 0),
-                                        anchor: new google.maps.Point(0, 20),
-                                        scaledSize: new google.maps.Size(20, 20),
-                                        labelOrigin: new google.maps.Point(9, 32)
                                     });
-                                    value.getMapMarker().setLabel({
-                                        text: name,
-                                        fontWeight: 'bold',
-                                        fontSize: '12px',
-                                        fontFamily: '"Courier New", Courier,Monospace',
-                                        color: 'red'                                    
-                                    });                                
                                 }
+                                value.resetSame();
+                                value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
                             }
-                        } else {
-                            if(icons>0){
-                                value.getMapMarker().setIcon({
-                                        url: blueUrl,
-                                        size: new google.maps.Size(45, 45),
-                                        origin: new google.maps.Point(0, 0),
-                                        anchor: new google.maps.Point(0, 20),
-                                        scaledSize: new google.maps.Size(20, 20),
-                                        labelOrigin: new google.maps.Point(9, 32)
-                                    });
-                                    value.getMapMarker().setLabel({
-                                        text: name,
-                                        fontWeight: 'bold',
-                                        fontSize: '12px',
-                                        fontFamily: '"Courier New", Courier,Monospace',
-                                        color: 'blue'                                    
-                                    });                              
-                                }
-                            value.resetSame();
-                            value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
                         }
                     }
                 }
             }
-        }, 1000);
+            }, 1000);
     }
 
     function setPan(obj){
