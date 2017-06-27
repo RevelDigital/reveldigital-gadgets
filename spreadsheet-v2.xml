@@ -211,9 +211,12 @@ table.google-visualization-table-table,
     if (prefs.getBool("hasTitle")) {
       ret = ret + "&headers=1";
     }
-    ret = ret + "&range=" + encodeURIComponent(prefs.getString("range"));
-    ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
-    
+    if (prefs.getString("range") != null) {
+      ret = ret + "&range=" + encodeURIComponent(prefs.getString("range"));
+    }
+    if (prefs.getString("sheet") != null) {
+      ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
+    }
     return ret;
   }
   
