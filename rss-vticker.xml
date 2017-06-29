@@ -171,6 +171,15 @@ h1, h2, h3, h4, h5
       }
     }
     
+    update();
+    
+    setInterval(update, 30 * 60 * 60 * 1000); // 30 minutes
+  }
+    
+  var update = function () {
+  
+    $('#ticker').empty();
+    
     $('#ticker').rss(prefs.getString("feedUrl"), {
       ssl: true,
       limit: prefs.getString("maxItems"),
