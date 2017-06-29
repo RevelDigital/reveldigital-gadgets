@@ -177,9 +177,7 @@ h1, h2, h3, h4, h5
   }
     
   var update = function () {
-  
-    $('#ticker').empty();
-    
+      
     $('#ticker').rss(prefs.getString("feedUrl"), {
       ssl: true,
       limit: prefs.getString("maxItems"),
