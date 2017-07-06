@@ -112,7 +112,7 @@
                         var value = keyInArray(deviceID);
     
                         if (value != null) {
-                            var time = (value.getNum() * 30) / 60;
+                            var time = (value.getNum() * 120) / 60;
                             if (distance(value.getLat(), value.getLong(), latitudeH, longitudeH) < .02) {
                                 value.increaseSame();
                                 if (value.getNum() > 3) {
