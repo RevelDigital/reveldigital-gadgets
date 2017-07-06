@@ -76,7 +76,7 @@
           var contentText = "Content Text";
           var revelKey = prefs.getString("apikey");;
           main();
-          var myVar = setInterval(main, 30 * 1000);
+          var myVar = setInterval(main, 120 * 1000);
           var array = new Array();
 
 
