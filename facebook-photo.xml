@@ -291,9 +291,11 @@ span.when
           var self = $(this);
           if ($(this).data('objectid') != '') {
             $.getJSON('https://svc1.reveldigital.com/facebook/' + $(this).data('objectid') + '/' + key + '?format=json&callback=?', function (picjson) {
-              var img = $('<img/>');
-              img.attr('src', picjson.source);
-              img.appendTo(self);
+              if (picjson.images.length > 0) {
+                var img = $('<img/>');
+                img.attr('src', picjson.images[0].source);
+                img.appendTo(self);
+              }
             });
           }
         });
