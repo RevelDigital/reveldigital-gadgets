@@ -57,6 +57,9 @@
             padding-top: 4%;
             margin-bottom: 0;
         }
+        .weatherIcon{
+            width: 25%;
+        }
     </style>
 </head>
     <meta charset="UTF-8">
@@ -73,30 +76,30 @@
                 <th class="day"  id="day5"></th>
             </thead>
             <tbody>
-                <tr class="c1">
+                                <tr class="c1">
                     <td>
                         <h6 id="date1" class="labeltext"><b></b></h6>
-                        <img id="weatherPic1">
+                        <img class="weatherIcon" id="weatherPic1">
                         <p  id="weatherDesc1"></p>
                     </td>
                     <td>
                         <h6 id="date2" class="labeltext"><b></b></h6>
-                        <img id="weatherPic2">
+                        <img class="weatherIcon"  id="weatherPic2">
                         <p id="weatherDesc2"></p>
                     </td>
                     <td>
                         <h6 id="date3" class="labeltext"><b></b></h6>
-                        <img id="weatherPic3">
+                        <img class="weatherIcon"  id="weatherPic3">
                         <p id="weatherDesc3"></p>
                     </td>
                     <td>
                         <h6 id="date4" class="labeltext"><b></b></h6>
-                        <img id="weatherPic4">
+                        <img class="weatherIcon"  id="weatherPic4">
                         <p id="weatherDesc4"></p>
                     </td>
                     <td>
                         <h6 id="date5" class="labeltext"><b></b></h6>
-                        <img id="weatherPic5">
+                        <img class="weatherIcon"  id="weatherPic5">
                         <p id="weatherDesc5"></p>
                     </td>
                 </tr>
