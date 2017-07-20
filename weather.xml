@@ -2,7 +2,7 @@
 
 <Module>
 
-    <ModulePrefs title="Weather Gadget" description="Enter full name of city, state (if in United States) and Country name. Otherwise, the gadget will not work correctly" author="RevelDigital" background="transparent">
+    <ModulePrefs title="Weather Gadget" description="Enter full name of city, state (if in United States) and Country name in the gadget or in the device information. Otherwise, the gadget will not work correctly" author="RevelDigital" background="transparent">
 
         <UserPref name="City" display_name="City Name" default_value="*|DEVICE.LOCATION.CITY|*" />
         <UserPref name="State" display_name="State" default_value="*|DEVICE.LOCATION.STATE|*" />
