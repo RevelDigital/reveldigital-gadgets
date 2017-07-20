@@ -245,13 +245,13 @@
                         document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"] + "&#176;F"; //high F
                         document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["fahrenheit"] + "&#176;F"; //high F
                         document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"] + " in";  //
-                        document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"] + " mph";
+                        document.getElementById("windPercent" + i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/wind.png?raw=true' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"] + " mph";
                     }else{
                         document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]+ "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"]  ; //day name
                         document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"] + "&#176;C"; //high F
                         document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"] + "&#176;C"; //high F
                         document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"] + " mm";  //
-                        document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["kph"] + " kph";
+                        document.getElementById("windPercent" + i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/wind.png?raw=true' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["kph"] + " kph";
                     }
 
 
@@ -262,7 +262,7 @@
                     //document.getElementById("high"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"]+"&#176;C"; //high F
                     //document.getElementById("low"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"]+"&#176;C"; //high F
                     document.getElementById("weatherDesc"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["conditions"]; //weather desc
-                    document.getElementById("rainPercent"+i).innerHTML = "<img src='images/rain.png' style='width:4%;height:2%;border: 0; display:inline; margin: 0 2%; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["pop"] + "%"; //percip in
+                    document.getElementById("rainPercent"+i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/rain.png?raw=true' style='width:4%;height:2%;border: 0; display:inline; margin: 0 2%; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["pop"] + "%"; //percip in
                     //document.getElementById("rainPercent"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"]+" mm"; //percip mm
                     document.getElementById("weatherPic"+i).src = data["forecast"]["simpleforecast"]["forecastday"][x]["icon_url"];
 
