@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+
+        <UserPref name="City" display_name="City Name" default_value="*|DEVICE.LOCATION.CITY|*" />
+        <UserPref name="State" display_name="State" default_value="*|DEVICE.LOCATION.STATE|*" />
+        <UserPref name="Country" display_name="CountryName" default_value="*|DEVICE.LOCATION.COUNTRY|*" />
+        <UserPref name="Zoom" display_name="Zoom" default_value="" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
+        
+    </ModulePrefs>
+<Content type="html">
+
+<![CDATA[
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        thead{
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            text-align: center;
+            table-layout: fixed;
+        }
+        body{
+            background: #f8f8f8;
+        }
+        th{
+            text-align: center;
+        }
+        #page td {
+            padding:0; margin:0;
+        }
+
+        #page {
+            border-collapse: collapse;
+        }
+        .gChart{
+            width: 100%;
+            height: 30%;
+        }
+        .labeltext{
+            padding-top: 4%;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h2 id="cityName"></h2>
+        <table class="table table-bordered"  id="page">
+            <thead>
+                <th class="day" id="day1" style="background: #d0d0d0"></th>
+                <th class="day"  id="day2"></th>
+                <th class="day"  id="day3"></th>
+                <th class="day"  id="day4"></th>
+                <th class="day"  id="day5"></th>
+            </thead>
+            <tbody>
+                <tr class="c1">
+                    <td>
+                        <h6 id="date1" class="labeltext"><b></b></h6>
+                        <img id="weatherPic1">
+                        <p  id="weatherDesc1"></p>
+                    </td>
+                    <td>
+                        <h6 id="date2" class="labeltext"><b></b></h6>
+                        <img id="weatherPic2">
+                        <p id="weatherDesc2"></p>
+                    </td>
+                    <td>
+                        <h6 id="date3" class="labeltext"><b></b></h6>
+                        <img id="weatherPic3">
+                        <p id="weatherDesc3"></p>
+                    </td>
+                    <td>
+                        <h6 id="date4" class="labeltext"><b></b></h6>
+                        <img id="weatherPic4">
+                        <p id="weatherDesc4"></p>
+                    </td>
+                    <td>
+                        <h6 id="date5" class="labeltext"><b></b></h6>
+                        <img id="weatherPic5">
+                        <p id="weatherDesc5"></p>
+                    </td>
+                </tr>
+                <tr class="c2">
+                    <td>
+                        <p class="labeltext" id="windPercent1" style="color: lightslategrey"> </p>
+                        <div id="chart_divwind1" class="gChart" ></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" id="windPercent2" style="color: lightslategrey"> </p>
+                        <div id="chart_divwind2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" id="windPercent3" style="color: lightslategrey"> </p>
+                        <div id="chart_divwind3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" id="windPercent4" style="color: lightslategrey"> </p>
+                        <div id="chart_divwind4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" id="windPercent5" style="color: lightslategrey"> </p>
+                        <div id="chart_divwind5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+                </tr>
+                <tr class="c3">
+                    <td>
+                        <p class="labeltext" style="color: red" id="high1"></p>
+                        <p style="color: deepskyblue" id="low1"></p>
+                        <div id="chart_div1"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: red" id="high2"></p>
+                        <p style="color: deepskyblue" id="low2"></p>
+                        <div id="chart_div2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: red" id="high3"></p>
+                        <p style="color: deepskyblue" id="low3"></p>
+                        <div id="chart_div3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: red" id="high4"></p>
+                        <p style="color: deepskyblue" id="low4"></p>
+                        <div id="chart_div4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: red" id="high5"></p>
+                        <p style="color: deepskyblue" id="low5"></p>
+                        <div id="chart_div5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+                </tr>
+                <tr class="c4">
+                    <td>
+                        <p class="labeltext" style="color: deepskyblue" id="rainPercent1"> </p>
+                        <p style="color: deepskyblue" id="rainMeasurement1"></p>
+                        <div id="chart_divrain1" class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+
+                        <p class="labeltext" style="color: deepskyblue" id="rainPercent2"> </p>
+                        <p style="color: deepskyblue" id="rainMeasurement2"></p>
+                        <div id="chart_divrain2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: deepskyblue" id="rainPercent3"> </p>
+                        <p style="color: deepskyblue" id="rainMeasurement3"></p>
+                        <div id="chart_divrain3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: deepskyblue" id="rainPercent4"> </p>
+                        <p style="color: deepskyblue" id="rainMeasurement4"></p>
+                        <div id="chart_divrain4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+
+                    <td>
+                        <p class="labeltext" style="color: deepskyblue" id="rainPercent5"> </p>
+                        <p style="color: deepskyblue" id="rainMeasurement5"></p>
+                        <div id="chart_divrain5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript">
+                //width: __UP_rdW__px;
+                //height: __UP_rdH__px;
+                //prefs.getString("Zoom")
+                //var myVar = setInterval(updateMap, 30 * 1000);
+    var cityName = "Rotterdam, Ntherlands";
+    var isMetric = true;
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(renderWeather);
+
+
+    function renderWeather() {
+        //d36c8e4bd2a20743
+
+
+        $.getJSON('https://api.wunderground.com/api/d36c8e4bd2a20743/forecast10day/conditions/lang:NL/q/'+cityName+'.json', function(data) {
+            var i = 1;
+
+            var temps = [];
+            var wind = [];
+            var rainM = [];
+
+            for(var x = 0; x < 5; x++) {
+                document.getElementById("cityName").innerHTML = cityName;
+
+
+                if (isMetric == false) {
+                    document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"] + "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]; //day name
+                    document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"] + "&#176;F"; //high F
+                    document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["fahrenheit"] + "&#176;F"; //high F
+                    document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"] + " in";  //
+                    document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"] + " mph";
+                }else{
+                    document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]+ "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"]  ; //day name
+                    document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"] + "&#176;C"; //high F
+                    document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"] + "&#176;C"; //high F
+                    document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"] + " mm";  //
+                    document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["kph"] + " kph";
+                }
+
+
+
+
+
+                document.getElementById("day"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["weekday"]; //day name
+                //document.getElementById("high"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"]+"&#176;C"; //high F
+                //document.getElementById("low"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"]+"&#176;C"; //high F
+                document.getElementById("weatherDesc"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["conditions"]; //weather desc
+                document.getElementById("rainPercent"+i).innerHTML = "<img src='images/rain.png' style='width:4%;height:2%;border: 0; display:inline; margin: 0 2%; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["pop"] + "%"; //percip in
+                //document.getElementById("rainPercent"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"]+" mm"; //percip mm
+                document.getElementById("weatherPic"+i).src = data["forecast"]["simpleforecast"]["forecastday"][x]["icon_url"];
+
+                temps.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"]));
+                wind.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"]));
+                rainM.push(parseFloat(data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"]));
+                i++;
+            }
+
+            var maxTemp = Math.max.apply(null, temps)+20;
+            var minTemp = Math.min.apply(null, temps)-1;
+
+            var maxWind = Math.max.apply(null, wind)+20;
+            var minWind = Math.min.apply(null, wind)-1;
+
+            var maxRain = Math.max.apply(null, rainM)+.3;
+            var minRain = Math.min.apply(null, rainM)-.02;
+
+
+
+            var options1 = {
+                hAxis: { textPosition: 'none'},
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minTemp,
+                        max: maxTemp
+                    },
+                    baseline: minTemp-1,
+                },
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['red','#004411']
+
+            };
+
+            var options2 = {
+                hAxis: { textPosition: 'none'},
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minWind,
+                        max: maxWind
+                    },
+                    baseline: -.01
+                },
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['grey','#004411']
+            };
+
+            var options3 = {
+                hAxis: { textPosition: 'none' },
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minRain,
+                        max: maxRain
+                    },
+                    baseline: minRain-.001
+                },
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['skyblue','#004411']
+            };
+
+            var index = 1;
+            for(var num = 0; num<5; num++){
+                if(num==0){
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      temps[0]],
+                        ['2'   ,      temps[0]],
+                        ['3'   ,      (temps[0]+temps[1])/2],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      wind[0]],
+                        ['2'   ,      wind[0]],
+                        ['3'   ,      (wind[0]+wind[1])/2],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      rainM[0]],
+                        ['2'   ,      rainM[0]],
+                        ['3'   ,      (rainM[0]+rainM[1])/2],
+                    ]);
+                }
+                else if(num==4){
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (temps[num]+temps[num-1])/2],
+                        ['2'   ,      temps[num]],
+                        ['3'   ,      temps[num]],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (wind[num]+wind[num-1])/2],
+                        ['2'   ,      wind[num]],
+                        ['3'   ,      wind[num]],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (rainM[num]+rainM[num-1])/2],
+                        ['2'   ,      rainM[num]],
+                        ['3'   ,      rainM[num]],
+                    ]);
+                }
+                else{
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (temps[num]+temps[num-1])/2],
+                        ['2'   ,      temps[num]],
+                        ['3'   ,      (temps[num]+temps[num+1])/2],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (wind[num]+wind[num-1])/2],
+                        ['2'   ,      wind[num]],
+                        ['3'   ,      (wind[num]+wind[num+1])/2],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (rainM[num]+rainM[num-1])/2],
+                        ['2'   ,      rainM[num]],
+                        ['3'   ,      (rainM[num]+rainM[num+1])/2],
+                    ]);
+                    //alert(wind[num]);
+                    //alert(wind[num+1]);
+                    //alert((wind[num]+wind[num+1])/2);
+                }
+
+
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'+index));
+                chart.draw(dataTemp, options1);
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_divwind'+index));
+                chart.draw(dataWind, options2);
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_divrain'+index));
+                chart.draw(dataRain, options3);
+                index++;
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
+        ]]>
+    </Content>
+
+</Module>
