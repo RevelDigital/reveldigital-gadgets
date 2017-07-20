@@ -196,9 +196,9 @@
     var prefs = new gadgets.Prefs();
 
     if(prefs.getString("State")==""){
-        var cityName = prefs.getString("City")+ prefs.getString("Country");
+        var cityName = prefs.getString("City")+' ,'+ prefs.getString("Country");
     } else{
-        var cityName = prefs.getString("City")+ prefs.getString("State");
+        var cityName = prefs.getString("City")+' ,'+ prefs.getString("State");
     }
     
     
