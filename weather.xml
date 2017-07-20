@@ -193,7 +193,7 @@
                 //height: __UP_rdH__px;
                 //prefs.getString("Zoom")
                 //var myVar = setInterval(updateMap, 30 * 1000);
-    var cityName = "Rotterdam, Ntherlands";
+    var cityName = "Rotterdam, Netherlands";
     var isMetric = true;
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(renderWeather);
