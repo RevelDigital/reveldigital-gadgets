@@ -7,7 +7,6 @@
         <UserPref name="City" display_name="City Name" default_value="*|DEVICE.LOCATION.CITY|*" />
         <UserPref name="State" display_name="State" default_value="*|DEVICE.LOCATION.STATE|*" />
         <UserPref name="Country" display_name="CountryName" default_value="*|DEVICE.LOCATION.COUNTRY|*" />
-        <UserPref name="Zoom" display_name="Zoom" default_value="" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         
