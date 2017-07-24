@@ -4,7 +4,11 @@
 
     <ModulePrefs title="Weather Gadget" description="Enter full name of city, state (if in United States) and Country name in the gadget or in the device information. Otherwise, the gadget will not work correctly" author="RevelDigital" background="transparent">
 
-        <UserPref name="Location" display_name="Location" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+        <UserPref name="Location" display_name="Location (Optional, will defualt to device locaiton)" default_value="" />
+        <UserPref name="isoCode" display_name="ISO3166-1-Alpha-2 Code (Optional)" default_value="" />
+        <UserPref name="state" display_name="state" required="true" default_value="*|DEVICE.LOCATION.CITY|*" datatype="hidden" />
+        <UserPref name="city" display_name="city" required="true" default_value="*|DEVICE.LOCATION.STATE|*" datatype="hidden" />
+        <UserPref name="country" display_name="country" required="true" default_value="*|DEVICE.LOCATION.COUNTRY|*" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         
@@ -212,13 +216,28 @@
     var languagesNonStandard = JSON.parse(jsonText);
     var languagesStandard = JSON.parse(jsonstandarLang);
     var countryLookup = null;
-    var cityLocation = prefs.getString("Location");
+    var cityLocation = "";
     var isMetric = true;
 
     var langCode = 'en';
     var foundLocation = '';
     var foundCountryName = 'US';
-
+    if(prefs.getString("Location")!=null && prefs.getString("Location")!=""){
+        cityLocation = prefs.getString("Location");
+    }else{
+        if(prefs.getString("city")!=null && prefs.getString("city")!=""){
+            if(prefs.getString("state")!=null && prefs.getString("state")!=""){
+                cityLocation = prefs.getString("city") + ', ' + prefs.getString("state");
+            }
+            else if(prefs.getString("country")!=null && prefs.getString("country")!=""){
+                cityLocation = prefs.getString("city") + ', ' + prefs.getString("country");
+            }else{
+                alert("No Country or State Entered In Device Info!")
+            }
+        }else{
+            alert("Invalid City. No City Entered In Device Info");
+        }
+    }
 
     document.getElementById("cityName").innerHTML = cityLocation;
     google.charts.load('current', {'packages':['corechart']});
@@ -274,6 +293,7 @@
     }
 
     function updateWeather() {
+    if()
         var myVar = setInterval(mainWeather, 60 * 10000);
         mainWeather();
     }
