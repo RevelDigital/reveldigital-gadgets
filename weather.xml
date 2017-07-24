@@ -34,6 +34,9 @@
             text-align: center;
         }
         table {
+            margin-right: 3px;
+            margin-left: 3px;
+            margin-bottom: 4px;
             width: 100%;
             height: 100%;
             text-align: center;
