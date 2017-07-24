@@ -262,7 +262,7 @@
                      return -1;
                  }
 
-            if(prefs.getString("Location")==null || prefs.getString("Location")=="") {
+            if(prefs.getString("isoCode")==null || prefs.getString("isoCode")=="") {
                 for (var i = 0; i < countryLookup.length; i++) {
                     if (countryLookup[i]["ISO3166-1-Alpha-2"].toLowerCase() == foundCountryName.toLowerCase()) {
                         var langCodeTemp = countryLookup[i]["Languages"].substr(0, 2);
@@ -282,6 +282,7 @@
                 }
             }
             else{
+                langCodeTemp = prefs.getString("isoCode");
                 if(languagesStandard.hasOwnProperty(langCodeTemp)){
                     var langName = languagesStandard[langCodeTemp];
                     if(languagesNonStandard.hasOwnProperty(langName)){
