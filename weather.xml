@@ -4,9 +4,7 @@
 
     <ModulePrefs title="Weather Gadget" description="Enter full name of city, state (if in United States) and Country name in the gadget or in the device information. Otherwise, the gadget will not work correctly" author="RevelDigital" background="transparent">
 
-        <UserPref name="City" display_name="City Name" default_value="*|DEVICE.LOCATION.CITY|*" />
-        <UserPref name="State" display_name="State" default_value="*|DEVICE.LOCATION.STATE|*" />
-        <UserPref name="Country" display_name="CountryName" default_value="*|DEVICE.LOCATION.COUNTRY|*" />
+        <UserPref name="Location" display_name="Location" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         
@@ -14,6 +12,7 @@
 <Content type="html">
 
 <![CDATA[
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +24,7 @@
     <style>
         body{
             background: transparent;
+            overflow: hidden;
         }
         thead{
             text-align: center;
@@ -35,11 +35,11 @@
             table-layout: fixed;
         }
         .container{
-            width: __UP_rdW__px;
-
-            background: #f8f8f8;
+            width: 100%;
+            background: transparent;
         }
         th{
+            white-space: nowrap;
             text-align: center;
         }
         #page td {
@@ -60,9 +60,16 @@
         .weatherIcon{
             width: 25%;
         }
+        h2{
+            margin-top: 5px;
+        }
+
+
+
     </style>
 </head>
     <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
     <div class="container">
@@ -76,7 +83,7 @@
                 <th class="day"  id="day5"></th>
             </thead>
             <tbody>
-                                <tr class="c1">
+                <tr class="c1">
                     <td>
                         <h6 id="date1" class="labeltext"><b></b></h6>
                         <img class="weatherIcon" id="weatherPic1">
@@ -111,323 +118,369 @@
 
                     <td>
                         <p class="labeltext" id="windPercent2" style="color: lightslategrey"> </p>
-                        <div id="chart_divwind2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divwind2"  class="gChart"></div>
                     </td>
 
                     <td>
                         <p class="labeltext" id="windPercent3" style="color: lightslategrey"> </p>
-                        <div id="chart_divwind3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divwind3"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" id="windPercent4" style="color: lightslategrey"> </p>
-                        <div id="chart_divwind4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divwind4"  class="gChart"></div>
                     </td>
 
                     <td>
                         <p class="labeltext" id="windPercent5" style="color: lightslategrey"> </p>
-                        <div id="chart_divwind5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divwind5"  class="gChart" ></div>
                     </td>
                 </tr>
                 <tr class="c3">
                     <td>
                         <p class="labeltext" style="color: red" id="high1"></p>
                         <p style="color: deepskyblue" id="low1"></p>
-                        <div id="chart_div1"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_div1"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: red" id="high2"></p>
                         <p style="color: deepskyblue" id="low2"></p>
-                        <div id="chart_div2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_div2"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: red" id="high3"></p>
                         <p style="color: deepskyblue" id="low3"></p>
-                        <div id="chart_div3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_div3"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: red" id="high4"></p>
                         <p style="color: deepskyblue" id="low4"></p>
-                        <div id="chart_div4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_div4"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: red" id="high5"></p>
                         <p style="color: deepskyblue" id="low5"></p>
-                        <div id="chart_div5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_div5"  class="gChart" ></div>
                     </td>
                 </tr>
                 <tr class="c4">
                     <td>
                         <p class="labeltext" style="color: deepskyblue" id="rainPercent1"> </p>
                         <p style="color: deepskyblue" id="rainMeasurement1"></p>
-                        <div id="chart_divrain1" class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divrain1" class="gChart" ></div>
                     </td>
 
                     <td>
 
                         <p class="labeltext" style="color: deepskyblue" id="rainPercent2"> </p>
                         <p style="color: deepskyblue" id="rainMeasurement2"></p>
-                        <div id="chart_divrain2"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divrain2"  class="gChart"></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: deepskyblue" id="rainPercent3"> </p>
                         <p style="color: deepskyblue" id="rainMeasurement3"></p>
-                        <div id="chart_divrain3"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divrain3"  class="gChart" ></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: deepskyblue" id="rainPercent4"> </p>
                         <p style="color: deepskyblue" id="rainMeasurement4"></p>
-                        <div id="chart_divrain4"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divrain4"  class="gChart"></div>
                     </td>
 
                     <td>
                         <p class="labeltext" style="color: deepskyblue" id="rainPercent5"> </p>
                         <p style="color: deepskyblue" id="rainMeasurement5"></p>
-                        <div id="chart_divrain5"  class="gChart" style="width: 100%; height: 100%;"></div>
+                        <div id="chart_divrain5"  class="gChart" ></div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+</body>
 <script type="text/javascript">
     var prefs = new gadgets.Prefs();
-
-    var jsonText = '{"Afrikaans":"AF","Albanian":"AL","Arabic":"AR","Armenian":"HY","Azerbaijani":"AZ","Basque":"EU","Belarusian":"BY","Bulgarian":"BU","British English":"LI","Burmese":"MY","Catalan":"CA","Chinese":"CN","Croatian":"TW","Czech":"CZ","Danish":"DK","Dhivehi":"DV","Dutch":"NL","English":"EN","Esperanto":"EO","Estonian":"ET","Farsi":"FA","Finnish":"FI","French":"FR","French Canadian":"FC","Galician":"GZ","German":"DL","Georgian":"KA","Greek":"GR","Gujarati":"GU","Haitian Creole":"HT","Hebrew":"IL","Hindi":"HI","Hungarian":"HU","Icelandic":"IS","Ido":"IO","Indonesian":"ID","Irish Gaelic":"IR","Italian":"IT","Japanese":"JP","Javanese":"JW","Khmer":"KM","Korean":"KR","Kurdish":"KU","Latin":"LA","Latvian":"LV","Lithuanian":"LT","Low German":"ND","Macedonian":"MK","Maltese":"MT","Mandinka":"GM","Maori":"MI","Marathi":"MR","Mongolian":"MN","Norwegian":"NO","Occitan":"OC","Pashto":"PS","Plautdietsch":"GN","Polish":"PL","Portuguese":"BR","Punjabi":"PA","Romanian":"RO","Russian":"RU","Serbian":"SR","Slovak":"SK","Slovenian":"SL","Spanish":"SP","Swahili":"SI","Swedish":"SW","Swiss":"CH","Tagalog":"TL","Tatarish":"TT","Thai":"TH","Turkish":"TR","Turkmen":"TK","Ukrainian":"UA","Uzbek":"UZ","Vietnamese":"VU","Welsh":"CY","Wolof":"SN","Yiddish":"JI"}'
-    var languages = JSON.parse(jsonText);
-    var cityName = prefs.getString("City");
-    var stateName = prefs.getString("State");
-    var countryName = prefs.getString("Country");
+    
+    var jsonstandarLang = '{"ab":"Abkhazian","aa":"Afar","af":"Afrikaans","ak":"Akan","sq":"Albanian","am":"Amharic","ar":"Arabic","an":"Aragonese","hy":"Armenian","as":"Assamese","av":"Avaric","ae":"Avestan","ay":"Aymara","az":"Azerbaijani","bm":"Bambara","ba":"Bashkir","eu":"Basque","be":"Belarusian","bn":"Bengali (Bangla)","bh":"Bihari","bi":"Bislama","bs":"Bosnian","br":"Breton","bg":"Bulgarian","my":"Burmese","ca":"Catalan","ch":"Chamorro","ce":"Chechen","ny":"Chichewa, Chewa, Nyanja","zh":"Chinese","zh-Hans":"Chinese (Simplified)","zh-Hant":"Chinese (Traditional)","cv":"Chuvash","kw":"Cornish","co":"Corsican","cr":"Cree","hr":"Croatian","cs":"Czech","da":"Danish","dv":"Divehi, Dhivehi, Maldivian","nl":"Dutch","dz":"Dzongkha","en":"English","eo":"Esperanto","et":"Estonian","ee":"Ewe","fo":"Faroese","fj":"Fijian","fi":"Finnish","fr":"French","ff":"Fula, Fulah, Pulaar, Pular","gl":"Galician","gd":"Gaelic (Scottish)","gv":"Gaelic (Manx)","ka":"Georgian","de":"German","el":"Greek","kl":"Greenlandic","gn":"Guarani","gu":"Gujarati","ht":"Haitian Creole","ha":"Hausa","he":"Hebrew","hz":"Herero","hi":"Hindi","ho":"Hiri Motu","hu":"Hungarian","is":"Icelandic","io":"Ido","ig":"Igbo","id, in":"Indonesian","ia":"Interlingua","ie":"Interlingue","iu":"Inuktitut","ik":"Inupiak","ga":"Irish","it":"Italian","ja":"Japanese","jv":"Javanese","kl":"Kalaallisut, Greenlandic","kn":"Kannada","kr":"Kanuri","ks":"Kashmiri","kk":"Kazakh","km":"Khmer","ki":"Kikuyu","rw":"Kinyarwanda (Rwanda)","rn":"Kirundi","ky":"Kyrgyz","kv":"Komi","kg":"Kongo","ko":"Korean","ku":"Kurdish","kj":"Kwanyama","lo":"Lao","la":"Latin","lv":"Latvian (Lettish)","li":"Limburgish ( Limburger)","ln":"Lingala","lt":"Lithuanian","lu":"Luga-Katanga","lg":"Luganda, Ganda","lb":"Luxembourgish","gv":"Manx","mk":"Macedonian","mg":"Malagasy","ms":"Malay","ml":"Malayalam","mt":"Maltese","mi":"Maori","mr":"Marathi","mh":"Marshallese","mo":"Moldavian","mn":"Mongolian","na":"Nauru","nv":"Navajo","ng":"Ndonga","nd":"Northern Ndebele","ne":"Nepali","no":"Norwegian","nb":"Norwegian bokmål","nn":"Norwegian nynorsk","ii":"Nuosu","oc":"Occitan","oj":"Ojibwe","cu":"Old Church Slavonic, Old Bulgarian","or":"Oriya","om":"Oromo (Afaan Oromo)","os":"Ossetian","pi":"Pāli","ps":"Pashto, Pushto","fa":"Persian (Farsi)","pl":"Polish","pt":"Portuguese","pa":"Punjabi (Eastern)","qu":"Quechua","rm":"Romansh","ro":"Romanian","ru":"Russian","se":"Sami","sm":"Samoan","sg":"Sango","sa":"Sanskrit","sr":"Serbian","sh":"Serbo-Croatian","st":"Sesotho","tn":"Setswana","sn":"Shona","ii":"Sichuan Yi","sd":"Sindhi","si":"Sinhalese","ss":"Siswati","sk":"Slovak","sl":"Slovenian","so":"Somali","nr":"Southern Ndebele","es":"Spanish","su":"Sundanese","sw":"Swahili (Kiswahili)","ss":"Swati","sv":"Swedish","tl":"Tagalog","ty":"Tahitian","tg":"Tajik","ta":"Tamil","tt":"Tatar","te":"Telugu","th":"Thai","bo":"Tibetan","ti":"Tigrinya","to":"Tonga","ts":"Tsonga","tr":"Turkish","tk":"Turkmen","tw":"Twi","ug":"Uyghur","uk":"Ukrainian","ur":"Urdu","uz":"Uzbek","ve":"Venda","vi":"Vietnamese","vo":"Volapük","wa":"Wallon","cy":"Welsh","wo":"Wolof","fy":"Western Frisian","xh":"Xhosa","yi, ji":"Yiddish","yo":"Yoruba","za":"Zhuang, Chuang","zu":"Zulu"}';
+    var jsonText = '{"Afrikaans":"AF","Albanian":"AL","Arabic":"AR","Armenian":"HY","Azerbaijani":"AZ","Basque":"EU","Belarusian":"BY","Bulgarian":"BU","British English":"LI","Burmese":"MY","Catalan":"CA","Chinese":"CN","Croatian":"TW","Czech":"CZ","Danish":"DK","Dhivehi":"DV","Dutch":"NL","English":"EN","Esperanto":"EO","Estonian":"ET","Farsi":"FA","Finnish":"FI","French":"FR","French Canadian":"FC","Galician":"GZ","German":"DL","Georgian":"KA","Greek":"GR","Gujarati":"GU","Haitian Creole":"HT","Hebrew":"IL","Hindi":"HI","Hungarian":"HU","Icelandic":"IS","Ido":"IO","Indonesian":"ID","Irish Gaelic":"IR","Italian":"IT","Japanese":"JP","Javanese":"JW","Khmer":"KM","Korean":"KR","Kurdish":"KU","Latin":"LA","Latvian":"LV","Lithuanian":"LT","Low German":"ND","Macedonian":"MK","Maltese":"MT","Mandinka":"GM","Maori":"MI","Marathi":"MR","Mongolian":"MN","Norwegian":"NO","Occitan":"OC","Pashto":"PS","Plautdietsch":"GN","Polish":"PL","Portuguese":"BR","Punjabi":"PA","Romanian":"RO","Russian":"RU","Serbian":"SR","Slovak":"SK","Slovenian":"SL","Spanish":"SP","Swahili":"SI","Swedish":"SW","Swiss":"CH","Tagalog":"TL","Tatarish":"TT","Thai":"TH","Turkish":"TR","Turkmen":"TK","Ukrainian":"UA","Uzbek":"UZ","Vietnamese":"VU","Welsh":"CY","Wolof":"SN","Yiddish":"JI"}';
+    var languagesNonStandard = JSON.parse(jsonText);
+    var languagesStandard = JSON.parse(jsonstandarLang);
+    var countryLookup = null;
+    var cityLocation = prefs.getString("Location");
     var isMetric = true;
-    var second = countryName;
-    if(countryName.toLowerCase().substr(0,13)=='united states'){
-        isMetric=false;
-    }
 
+    var langCode = 'en';
+    var foundLocation = '';
+    var foundCountryName = 'US';
+
+
+    document.getElementById("cityName").innerHTML = cityLocation;
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(updateWeather);
+    google.charts.setOnLoadCallback(resolveLocation);
+
+    function resolveLocation() {
+        //d36c8e4bd2a20743
+
+         $.getJSON('https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/rankings', function(data) {
+             countryLookup = data;
+             $.getJSON('https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/'+cityLocation+'.json', function(data) {
+                 if(data.hasOwnProperty('location')){
+                     foundCountryName = data["location"]["country_iso3166"];
+                     foundLocation = data["location"]["l"];
+                 }
+                 else if(data["response"].hasOwnProperty('results')){
+                     foundCountryName = data["response"]["results"][0]["country_iso3166"];
+                     foundLocation = data["response"]["results"][0]["l"];
+                 }
+                 else{
+                     console.log("Could Not Resolve Location! Is Your device Location Set?");
+                     return -1;
+                 }
+
+                 alert(foundCountryName);
+                 for(var i = 0; i < countryLookup.length; i++) {
+                     if(countryLookup[i]["ISO3166-1-Alpha-2"].toLowerCase()==foundCountryName.toLowerCase()){
+                         var langCodeTemp = countryLookup[i]["Languages"].substr(0,2);
+                         alert(langCodeTemp);
+                         if(languagesStandard.hasOwnProperty(langCodeTemp)){
+                             var langName = languagesStandard[langCodeTemp];
+                             if(languagesNonStandard.hasOwnProperty(langName)){
+                                 alert(langName);
+                                 langCode = languagesNonStandard[langName];
+                             }
+                             else{
+                                 console.log("Could Not Find Language. Using English Default");
+                             }
+                         }
+                         else{
+                             console.log("Could Not Find Standard Language Code. Using English Default");
+                         }
+                     }
+                 }
+                 if(foundCountryName=='US'){
+                     isMetric = false;
+                 }
+                 updateWeather();
+             });
+         });
+
+
+    }
 
     function updateWeather() {
-        var myVar = setInterval(renderWeather, 60 * 10000);
-        renderWeather();
+        var myVar = setInterval(mainWeather, 60 * 10000);
+        mainWeather();
     }
 
-    function renderWeather() {
-        if(stateName!=null && stateName!=""){
-            second = stateName;
-        }
-        document.getElementById("cityName").innerHTML = cityName+', '+second;
-        var langCode = 'en';
-        //d36c8e4bd2a20743
-        $.getJSON('https://restcountries.eu/rest/v2/name/'+countryName.replace(' ','%20'), function(data) {
-            var lang = data[0]['languages'][0]['name'];
-            if(languages.hasOwnProperty(lang)==true){
-                langCode = languages[lang];
-            }else{
-                var langCode = 'en';
-                alert("Couldn't Find Your Countries language. Did You Specify The Whole Country Name For This Device?");
+    function mainWeather(){
+        $.getJSON('https://api.wunderground.com/api/d36c8e4bd2a20743/forecast10day/conditions/lang:'+langCode+foundLocation+'.json', function(data) {
+
+            var i = 1;
+
+            var temps = [];
+            var wind = [];
+            var rainM = [];
+
+            for(var x = 0; x < 5; x++) {
+
+
+
+                if (isMetric == false) {
+                    document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"] + "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]; //day name
+                    document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"] + "&#176;F"; //high F
+                    document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["fahrenheit"] + "&#176;F"; //high F
+                    document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"] + " in";  //
+                    document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"] + " mph";
+                }else{
+                    document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]+ "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"]  ; //day name
+                    document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"] + "&#176;C"; //high F
+                    document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"] + "&#176;C"; //high F
+                    document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"] + " mm";  //
+                    document.getElementById("windPercent" + i).innerHTML = "<img src='images/wind.png' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["kph"] + " kph";
+                }
+
+
+
+
+
+                document.getElementById("day"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["weekday"]; //day name
+                //document.getElementById("high"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"]+"&#176;C"; //high F
+                //document.getElementById("low"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"]+"&#176;C"; //high F
+                document.getElementById("weatherDesc"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["conditions"]; //weather desc
+                document.getElementById("rainPercent"+i).innerHTML = "<img src='images/rain.png' style='width:4%;height:2%;border: 0; display:inline; margin: 0 2%; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["pop"] + "%"; //percip in
+                //document.getElementById("rainPercent"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"]+" mm"; //percip mm
+                document.getElementById("weatherPic"+i).src = data["forecast"]["simpleforecast"]["forecastday"][x]["icon_url"];
+
+                temps.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"]));
+                wind.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"]));
+                rainM.push(parseFloat(data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"]));
+                i++;
             }
-            $.getJSON('https://api.wunderground.com/api/d36c8e4bd2a20743/forecast10day/conditions/lang:'+langCode+'/q/'+cityName+', '+second+'.json', function(data) {
-                var i = 1;
 
-                var temps = [];
-                var wind = [];
-                var rainM = [];
+            var maxTemp = Math.max.apply(null, temps)+20;
+            var minTemp = Math.min.apply(null, temps)-1;
 
-                for(var x = 0; x < 5; x++) {
+            var maxWind = Math.max.apply(null, wind)+20;
+            var minWind = Math.min.apply(null, wind)-1;
 
-
-
-                    if (isMetric == false) {
-                        document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"] + "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]; //day name
-                        document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"] + "&#176;F"; //high F
-                        document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["fahrenheit"] + "&#176;F"; //high F
-                        document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"] + " in";  //
-                        document.getElementById("windPercent" + i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/wind.png?raw=true' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"] + " mph";
-                    }else{
-                        document.getElementById("date" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["day"]+ "-" + data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["month"]  ; //day name
-                        document.getElementById("high" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"] + "&#176;C"; //high F
-                        document.getElementById("low" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"] + "&#176;C"; //high F
-                        document.getElementById("rainMeasurement" + i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"] + " mm";  //
-                        document.getElementById("windPercent" + i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/wind.png?raw=true' style='width:10%;height:5%;border: 0; display:inline; margin: 0 0px; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["kph"] + " kph";
-                    }
+            var maxRain = Math.max.apply(null, rainM)+.3;
+            var minRain = Math.min.apply(null, rainM)-.02;
 
 
 
+            var options1 = {
+                hAxis: { textPosition: 'none'},
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minTemp,
+                        max: maxTemp
+                    },
+                    baseline: minTemp-1,
+                },
+                height: ((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['red','#004411']
 
+            };
 
-                    document.getElementById("day"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["date"]["weekday"]; //day name
-                    //document.getElementById("high"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["celsius"]+"&#176;C"; //high F
-                    //document.getElementById("low"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["low"]["celsius"]+"&#176;C"; //high F
-                    document.getElementById("weatherDesc"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["conditions"]; //weather desc
-                    document.getElementById("rainPercent"+i).innerHTML = "<img src='https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/images/rain.png?raw=true' style='width:4%;height:2%;border: 0; display:inline; margin: 0 2%; box-shadow: none' alt='start up icon'>" + data["forecast"]["simpleforecast"]["forecastday"][x]["pop"] + "%"; //percip in
-                    //document.getElementById("rainPercent"+i).innerHTML = data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["mm"]+" mm"; //percip mm
-                    document.getElementById("weatherPic"+i).src = data["forecast"]["simpleforecast"]["forecastday"][x]["icon_url"];
+            var options2 = {
+                hAxis: { textPosition: 'none'},
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minWind,
+                        max: maxWind
+                    },
+                    baseline: minWind-.01
+                },
+                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['grey','#004411']
+            };
 
-                    temps.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["high"]["fahrenheit"]));
-                    wind.push(parseInt(data["forecast"]["simpleforecast"]["forecastday"][x]["avewind"]["mph"]));
-                    rainM.push(parseFloat(data["forecast"]["simpleforecast"]["forecastday"][x]["qpf_allday"]["in"]));
-                    i++;
+            var options3 = {
+                hAxis: { textPosition: 'none' },
+                vAxis: {
+                    textPosition: 'none',
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    viewWindow: {
+                        min: minRain,
+                        max: maxRain
+                    },
+                    baseline: minRain-.001
+                },
+                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                legend:{position: 'none'},
+                chartArea:{left:0,top:0,width:'100%',height:'100%'},
+                backgroundColor:{fill:'none'},
+                colors:['skyblue','#004411']
+            };
+
+            var index = 1;
+            for(var num = 0; num<5; num++){
+                if(num==0){
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      temps[0]],
+                        ['2'   ,      temps[0]],
+                        ['3'   ,      (temps[0]+temps[1])/2],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      wind[0]],
+                        ['2'   ,      wind[0]],
+                        ['3'   ,      (wind[0]+wind[1])/2],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      rainM[0]],
+                        ['2'   ,      rainM[0]],
+                        ['3'   ,      (rainM[0]+rainM[1])/2],
+                    ]);
+                }
+                else if(num==4){
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (temps[num]+temps[num-1])/2],
+                        ['2'   ,      temps[num]],
+                        ['3'   ,      temps[num]],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (wind[num]+wind[num-1])/2],
+                        ['2'   ,      wind[num]],
+                        ['3'   ,      wind[num]],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (rainM[num]+rainM[num-1])/2],
+                        ['2'   ,      rainM[num]],
+                        ['3'   ,      rainM[num]],
+                    ]);
+                }
+                else{
+                    var dataTemp = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (temps[num]+temps[num-1])/2],
+                        ['2'   ,      temps[num]],
+                        ['3'   ,      (temps[num]+temps[num+1])/2],
+                    ]);
+                    var dataWind = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (wind[num]+wind[num-1])/2],
+                        ['2'   ,      wind[num]],
+                        ['3'   ,      (wind[num]+wind[num+1])/2],
+                    ]);
+                    var dataRain = google.visualization.arrayToDataTable([
+                        ['period', 'number'],
+                        ['1'   ,      (rainM[num]+rainM[num-1])/2],
+                        ['2'   ,      rainM[num]],
+                        ['3'   ,      (rainM[num]+rainM[num+1])/2],
+                    ]);
+                    //alert(wind[num]);
+                    //alert(wind[num+1]);
+                    //alert((wind[num]+wind[num+1])/2);
                 }
 
-                var maxTemp = Math.max.apply(null, temps)+20;
-                var minTemp = Math.min.apply(null, temps)-1;
-
-                var maxWind = Math.max.apply(null, wind)+20;
-                var minWind = Math.min.apply(null, wind)-1;
-
-                var maxRain = Math.max.apply(null, rainM)+.3;
-                var minRain = Math.min.apply(null, rainM)-.02;
 
 
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'+index));
+                chart.draw(dataTemp, options1);
 
-                var options1 = {
-                    hAxis: { textPosition: 'none'},
-                    vAxis: {
-                        textPosition: 'none',
-                        gridlines: {
-                            color: 'transparent'
-                        },
-                        viewWindow: {
-                            min: minTemp,
-                            max: maxTemp
-                        },
-                        baseline: minTemp-1,
-                    },
-                    legend:{position: 'none'},
-                    chartArea:{left:0,top:0,width:'100%',height:'100%'},
-                    backgroundColor:{fill:'none'},
-                    colors:['red','#004411']
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_divwind'+index));
+                chart.draw(dataWind, options2);
 
-                };
-
-                var options2 = {
-                    hAxis: { textPosition: 'none'},
-                    vAxis: {
-                        textPosition: 'none',
-                        gridlines: {
-                            color: 'transparent'
-                        },
-                        viewWindow: {
-                            min: minWind,
-                            max: maxWind
-                        },
-                        baseline: minWind-.01
-                    },
-                    legend:{position: 'none'},
-                    chartArea:{left:0,top:0,width:'100%',height:'100%'},
-                    backgroundColor:{fill:'none'},
-                    colors:['grey','#004411']
-                };
-
-                var options3 = {
-                    hAxis: { textPosition: 'none' },
-                    vAxis: {
-                        textPosition: 'none',
-                        gridlines: {
-                            color: 'transparent'
-                        },
-                        viewWindow: {
-                            min: minRain,
-                            max: maxRain
-                        },
-                        baseline: minRain-.001
-                    },
-                    legend:{position: 'none'},
-                    chartArea:{left:0,top:0,width:'100%',height:'100%'},
-                    backgroundColor:{fill:'none'},
-                    colors:['skyblue','#004411']
-                };
-
-                var index = 1;
-                for(var num = 0; num<5; num++){
-                    if(num==0){
-                        var dataTemp = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      temps[0]],
-                            ['2'   ,      temps[0]],
-                            ['3'   ,      (temps[0]+temps[1])/2],
-                        ]);
-                        var dataWind = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      wind[0]],
-                            ['2'   ,      wind[0]],
-                            ['3'   ,      (wind[0]+wind[1])/2],
-                        ]);
-                        var dataRain = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      rainM[0]],
-                            ['2'   ,      rainM[0]],
-                            ['3'   ,      (rainM[0]+rainM[1])/2],
-                        ]);
-                    }
-                    else if(num==4){
-                        var dataTemp = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (temps[num]+temps[num-1])/2],
-                            ['2'   ,      temps[num]],
-                            ['3'   ,      temps[num]],
-                        ]);
-                        var dataWind = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (wind[num]+wind[num-1])/2],
-                            ['2'   ,      wind[num]],
-                            ['3'   ,      wind[num]],
-                        ]);
-                        var dataRain = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (rainM[num]+rainM[num-1])/2],
-                            ['2'   ,      rainM[num]],
-                            ['3'   ,      rainM[num]],
-                        ]);
-                    }
-                    else{
-                        var dataTemp = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (temps[num]+temps[num-1])/2],
-                            ['2'   ,      temps[num]],
-                            ['3'   ,      (temps[num]+temps[num+1])/2],
-                        ]);
-                        var dataWind = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (wind[num]+wind[num-1])/2],
-                            ['2'   ,      wind[num]],
-                            ['3'   ,      (wind[num]+wind[num+1])/2],
-                        ]);
-                        var dataRain = google.visualization.arrayToDataTable([
-                            ['period', 'number'],
-                            ['1'   ,      (rainM[num]+rainM[num-1])/2],
-                            ['2'   ,      rainM[num]],
-                            ['3'   ,      (rainM[num]+rainM[num+1])/2],
-                        ]);
-                        //alert(wind[num]);
-                        //alert(wind[num+1]);
-                        //alert((wind[num]+wind[num+1])/2);
-                    }
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_divrain'+index));
+                chart.draw(dataRain, options3);
+                index++;
+            }
 
 
-
-                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'+index));
-                    chart.draw(dataTemp, options1);
-
-                    var chart = new google.visualization.AreaChart(document.getElementById('chart_divwind'+index));
-                    chart.draw(dataWind, options2);
-
-                    var chart = new google.visualization.AreaChart(document.getElementById('chart_divrain'+index));
-                    chart.draw(dataRain, options3);
-                    index++;
-                }
-            });
         });
+
     }
+
 
 </script>
-</body>
 </html>
         ]]>
     </Content>
