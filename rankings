@@ -1,5 +1,35 @@
-{
-  "": {
+[
+  {
+    "name": "",
+    "official_name_en": "Channel Islands",
+    "official_name_fr": "Îles Anglo-Normandes",
+    "ISO3166-1-Alpha-2": "",
+    "ISO3166-1-Alpha-3": "",
+    "M49": 830,
+    "ITU": "",
+    "MARC": "",
+    "WMO": "",
+    "DS": "",
+    "Dial": "",
+    "FIFA": "",
+    "FIPS": "",
+    "GAUL": "",
+    "IOC": "",
+    "ISO4217-currency_alphabetic_code": "",
+    "ISO4217-currency_country_name": "",
+    "ISO4217-currency_minor_unit": "",
+    "ISO4217-currency_name": "",
+    "ISO4217-currency_numeric_code": "",
+    "is_independent": "",
+    "Capital": "",
+    "Continent": "",
+    "TLD": "",
+    "Languages": "",
+    "Geoname ID": "",
+    "EDGAR": ""
+  },
+  {
+    "name": "",
     "official_name_en": "Sark",
     "official_name_fr": "Sercq",
     "ISO3166-1-Alpha-2": "",
@@ -27,7 +57,8 @@
     "Geoname ID": "",
     "EDGAR": ""
   },
-  "Afghanistan": {
+  {
+    "name": "Afghanistan",
     "official_name_en": "Afghanistan",
     "official_name_fr": "Afghanistan",
     "ISO3166-1-Alpha-2": "AF",
@@ -55,7 +86,8 @@
     "Geoname ID": 1149361,
     "EDGAR": "B2"
   },
-  "Albania": {
+  {
+    "name": "Albania",
     "official_name_en": "Albania",
     "official_name_fr": "Albanie",
     "ISO3166-1-Alpha-2": "AL",
@@ -83,7 +115,8 @@
     "Geoname ID": 783754,
     "EDGAR": "B3"
   },
-  "Algeria": {
+  {
+    "name": "Algeria",
     "official_name_en": "Algeria",
     "official_name_fr": "Algérie",
     "ISO3166-1-Alpha-2": "DZ",
@@ -111,7 +144,8 @@
     "Geoname ID": 2589581,
     "EDGAR": "B4"
   },
-  "American Samoa": {
+  {
+    "name": "American Samoa",
     "official_name_en": "American Samoa",
     "official_name_fr": "Samoa américaines",
     "ISO3166-1-Alpha-2": "AS",
@@ -139,7 +173,8 @@
     "Geoname ID": 5880801,
     "EDGAR": "B5"
   },
-  "Andorra": {
+  {
+    "name": "Andorra",
     "official_name_en": "Andorra",
     "official_name_fr": "Andorre",
     "ISO3166-1-Alpha-2": "AD",
@@ -167,7 +202,8 @@
     "Geoname ID": 3041565,
     "EDGAR": "B6"
   },
-  "Angola": {
+  {
+    "name": "Angola",
     "official_name_en": "Angola",
     "official_name_fr": "Angola",
     "ISO3166-1-Alpha-2": "AO",
@@ -195,7 +231,8 @@
     "Geoname ID": 3351879,
     "EDGAR": "B7"
   },
-  "Anguilla": {
+  {
+    "name": "Anguilla",
     "official_name_en": "Anguilla",
     "official_name_fr": "Anguilla",
     "ISO3166-1-Alpha-2": "AI",
@@ -223,7 +260,8 @@
     "Geoname ID": 3573511,
     "EDGAR": "1A"
   },
-  "Antarctica": {
+  {
+    "name": "Antarctica",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "AQ",
@@ -251,7 +289,8 @@
     "Geoname ID": 6697173,
     "EDGAR": ""
   },
-  "Antigua & Barbuda": {
+  {
+    "name": "Antigua & Barbuda",
     "official_name_en": "Antigua and Barbuda",
     "official_name_fr": "Antigua-et-Barbuda",
     "ISO3166-1-Alpha-2": "AG",
@@ -279,7 +318,8 @@
     "Geoname ID": 3576396,
     "EDGAR": "B9"
   },
-  "Argentina": {
+  {
+    "name": "Argentina",
     "official_name_en": "Argentina",
     "official_name_fr": "Argentine",
     "ISO3166-1-Alpha-2": "AR",
@@ -307,7 +347,8 @@
     "Geoname ID": 3865483,
     "EDGAR": "C1"
   },
-  "Armenia": {
+  {
+    "name": "Armenia",
     "official_name_en": "Armenia",
     "official_name_fr": "Arménie",
     "ISO3166-1-Alpha-2": "AM",
@@ -335,7 +376,8 @@
     "Geoname ID": 174982,
     "EDGAR": "1B"
   },
-  "Aruba": {
+  {
+    "name": "Aruba",
     "official_name_en": "Aruba",
     "official_name_fr": "Aruba",
     "ISO3166-1-Alpha-2": "AW",
@@ -363,7 +405,8 @@
     "Geoname ID": 3577279,
     "EDGAR": "1C"
   },
-  "Australia": {
+  {
+    "name": "Australia",
     "official_name_en": "Australia",
     "official_name_fr": "Australie",
     "ISO3166-1-Alpha-2": "AU",
@@ -391,7 +434,8 @@
     "Geoname ID": 2077456,
     "EDGAR": "C3"
   },
-  "Austria": {
+  {
+    "name": "Austria",
     "official_name_en": "Austria",
     "official_name_fr": "Autriche",
     "ISO3166-1-Alpha-2": "AT",
@@ -419,7 +463,8 @@
     "Geoname ID": 2782113,
     "EDGAR": "C4"
   },
-  "Azerbaijan": {
+  {
+    "name": "Azerbaijan",
     "official_name_en": "Azerbaijan",
     "official_name_fr": "Azerbaïdjan",
     "ISO3166-1-Alpha-2": "AZ",
@@ -447,7 +492,8 @@
     "Geoname ID": 587116,
     "EDGAR": "1D"
   },
-  "Bahamas": {
+  {
+    "name": "Bahamas",
     "official_name_en": "Bahamas",
     "official_name_fr": "Bahamas",
     "ISO3166-1-Alpha-2": "BS",
@@ -475,7 +521,8 @@
     "Geoname ID": 3572887,
     "EDGAR": "C5"
   },
-  "Bahrain": {
+  {
+    "name": "Bahrain",
     "official_name_en": "Bahrain",
     "official_name_fr": "Bahreïn",
     "ISO3166-1-Alpha-2": "BH",
@@ -503,7 +550,8 @@
     "Geoname ID": 290291,
     "EDGAR": "C6"
   },
-  "Bangladesh": {
+  {
+    "name": "Bangladesh",
     "official_name_en": "Bangladesh",
     "official_name_fr": "Bangladesh",
     "ISO3166-1-Alpha-2": "BD",
@@ -531,7 +579,8 @@
     "Geoname ID": 1210997,
     "EDGAR": "C7"
   },
-  "Barbados": {
+  {
+    "name": "Barbados",
     "official_name_en": "Barbados",
     "official_name_fr": "Barbade",
     "ISO3166-1-Alpha-2": "BB",
@@ -559,7 +608,8 @@
     "Geoname ID": 3374084,
     "EDGAR": "C8"
   },
-  "Belarus": {
+  {
+    "name": "Belarus",
     "official_name_en": "Belarus",
     "official_name_fr": "Bélarus",
     "ISO3166-1-Alpha-2": "BY",
@@ -587,7 +637,8 @@
     "Geoname ID": 630336,
     "EDGAR": "1F"
   },
-  "Belgium": {
+  {
+    "name": "Belgium",
     "official_name_en": "Belgium",
     "official_name_fr": "Belgique",
     "ISO3166-1-Alpha-2": "BE",
@@ -615,7 +666,8 @@
     "Geoname ID": 2802361,
     "EDGAR": "C9"
   },
-  "Belize": {
+  {
+    "name": "Belize",
     "official_name_en": "Belize",
     "official_name_fr": "Belize",
     "ISO3166-1-Alpha-2": "BZ",
@@ -643,7 +695,8 @@
     "Geoname ID": 3582678,
     "EDGAR": "D1"
   },
-  "Benin": {
+  {
+    "name": "Benin",
     "official_name_en": "Benin",
     "official_name_fr": "Bénin",
     "ISO3166-1-Alpha-2": "BJ",
@@ -671,7 +724,8 @@
     "Geoname ID": 2395170,
     "EDGAR": "G6"
   },
-  "Bermuda": {
+  {
+    "name": "Bermuda",
     "official_name_en": "Bermuda",
     "official_name_fr": "Bermudes",
     "ISO3166-1-Alpha-2": "BM",
@@ -699,7 +753,8 @@
     "Geoname ID": 3573345,
     "EDGAR": "D0"
   },
-  "Bhutan": {
+  {
+    "name": "Bhutan",
     "official_name_en": "Bhutan",
     "official_name_fr": "Bhoutan",
     "ISO3166-1-Alpha-2": "BT",
@@ -727,7 +782,8 @@
     "Geoname ID": 1252634,
     "EDGAR": "D2"
   },
-  "Bolivia": {
+  {
+    "name": "Bolivia",
     "official_name_en": "Bolivia (Plurinational State of)",
     "official_name_fr": "Bolivie (État plurinational de)",
     "ISO3166-1-Alpha-2": "BO",
@@ -755,7 +811,8 @@
     "Geoname ID": 3923057,
     "EDGAR": ""
   },
-  "Bosnia": {
+  {
+    "name": "Bosnia",
     "official_name_en": "Bosnia and Herzegovina",
     "official_name_fr": "Bosnie-Herzégovine",
     "ISO3166-1-Alpha-2": "BA",
@@ -783,7 +840,8 @@
     "Geoname ID": 3277605,
     "EDGAR": "1E"
   },
-  "Botswana": {
+  {
+    "name": "Botswana",
     "official_name_en": "Botswana",
     "official_name_fr": "Botswana",
     "ISO3166-1-Alpha-2": "BW",
@@ -811,7 +869,8 @@
     "Geoname ID": 933860,
     "EDGAR": "B1"
   },
-  "Bouvet Island": {
+  {
+    "name": "Bouvet Island",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "BV",
@@ -839,7 +898,8 @@
     "Geoname ID": 3371123,
     "EDGAR": ""
   },
-  "Brazil": {
+  {
+    "name": "Brazil",
     "official_name_en": "Brazil",
     "official_name_fr": "Brésil",
     "ISO3166-1-Alpha-2": "BR",
@@ -867,7 +927,8 @@
     "Geoname ID": 3469034,
     "EDGAR": "D5"
   },
-  "British Indian Ocean Territory": {
+  {
+    "name": "British Indian Ocean Territory",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "IO",
@@ -895,7 +956,8 @@
     "Geoname ID": 1282588,
     "EDGAR": ""
   },
-  "British Virgin Islands": {
+  {
+    "name": "British Virgin Islands",
     "official_name_en": "British Virgin Islands",
     "official_name_fr": "Îles Vierges britanniques",
     "ISO3166-1-Alpha-2": "VG",
@@ -923,7 +985,8 @@
     "Geoname ID": 3577718,
     "EDGAR": ""
   },
-  "Brunei": {
+  {
+    "name": "Brunei",
     "official_name_en": "Brunei Darussalam",
     "official_name_fr": "Brunéi Darussalam",
     "ISO3166-1-Alpha-2": "BN",
@@ -951,7 +1014,8 @@
     "Geoname ID": 1820814,
     "EDGAR": "D9"
   },
-  "Bulgaria": {
+  {
+    "name": "Bulgaria",
     "official_name_en": "Bulgaria",
     "official_name_fr": "Bulgarie",
     "ISO3166-1-Alpha-2": "BG",
@@ -979,7 +1043,8 @@
     "Geoname ID": 732800,
     "EDGAR": "E0"
   },
-  "Burkina Faso": {
+  {
+    "name": "Burkina Faso",
     "official_name_en": "Burkina Faso",
     "official_name_fr": "Burkina Faso",
     "ISO3166-1-Alpha-2": "BF",
@@ -1007,7 +1072,8 @@
     "Geoname ID": 2361809,
     "EDGAR": "X2"
   },
-  "Burundi": {
+  {
+    "name": "Burundi",
     "official_name_en": "Burundi",
     "official_name_fr": "Burundi",
     "ISO3166-1-Alpha-2": "BI",
@@ -1035,7 +1101,8 @@
     "Geoname ID": 433561,
     "EDGAR": "E2"
   },
-  "Cambodia": {
+  {
+    "name": "Cambodia",
     "official_name_en": "Cambodia",
     "official_name_fr": "Cambodge",
     "ISO3166-1-Alpha-2": "KH",
@@ -1063,7 +1130,8 @@
     "Geoname ID": 1831722,
     "EDGAR": "E3"
   },
-  "Cameroon": {
+  {
+    "name": "Cameroon",
     "official_name_en": "Cameroon",
     "official_name_fr": "Cameroun",
     "ISO3166-1-Alpha-2": "CM",
@@ -1091,7 +1159,8 @@
     "Geoname ID": 2233387,
     "EDGAR": "E4"
   },
-  "Canada": {
+  {
+    "name": "Canada",
     "official_name_en": "Canada",
     "official_name_fr": "Canada",
     "ISO3166-1-Alpha-2": "CA",
@@ -1119,7 +1188,8 @@
     "Geoname ID": 6251999,
     "EDGAR": ""
   },
-  "Cape Verde": {
+  {
+    "name": "Cape Verde",
     "official_name_en": "Cabo Verde",
     "official_name_fr": "Cabo Verde",
     "ISO3166-1-Alpha-2": "CV",
@@ -1147,7 +1217,8 @@
     "Geoname ID": 3374766,
     "EDGAR": ""
   },
-  "Caribbean Netherlands": {
+  {
+    "name": "Caribbean Netherlands",
     "official_name_en": "Bonaire, Sint Eustatius and Saba",
     "official_name_fr": "Bonaire, Saint-Eustache et Saba",
     "ISO3166-1-Alpha-2": "BQ",
@@ -1175,7 +1246,8 @@
     "Geoname ID": 7626844,
     "EDGAR": ""
   },
-  "Cayman Islands": {
+  {
+    "name": "Cayman Islands",
     "official_name_en": "Cayman Islands",
     "official_name_fr": "Îles Caïmanes",
     "ISO3166-1-Alpha-2": "KY",
@@ -1203,7 +1275,8 @@
     "Geoname ID": 3580718,
     "EDGAR": "E9"
   },
-  "Central African Republic": {
+  {
+    "name": "Central African Republic",
     "official_name_en": "Central African Republic",
     "official_name_fr": "République centrafricaine",
     "ISO3166-1-Alpha-2": "CF",
@@ -1231,7 +1304,8 @@
     "Geoname ID": 239880,
     "EDGAR": "F0"
   },
-  "Chad": {
+  {
+    "name": "Chad",
     "official_name_en": "Chad",
     "official_name_fr": "Tchad",
     "ISO3166-1-Alpha-2": "TD",
@@ -1259,7 +1333,8 @@
     "Geoname ID": 2434508,
     "EDGAR": "F2"
   },
-  "Chile": {
+  {
+    "name": "Chile",
     "official_name_en": "Chile",
     "official_name_fr": "Chili",
     "ISO3166-1-Alpha-2": "CL",
@@ -1287,7 +1362,8 @@
     "Geoname ID": 3895114,
     "EDGAR": "F3"
   },
-  "China": {
+  {
+    "name": "China",
     "official_name_en": "China",
     "official_name_fr": "Chine",
     "ISO3166-1-Alpha-2": "CN",
@@ -1315,7 +1391,8 @@
     "Geoname ID": 1814991,
     "EDGAR": "F4"
   },
-  "Christmas Island": {
+  {
+    "name": "Christmas Island",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "CX",
@@ -1343,7 +1420,8 @@
     "Geoname ID": 2078138,
     "EDGAR": ""
   },
-  "Cocos (Keeling) Islands": {
+  {
+    "name": "Cocos (Keeling) Islands",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "CC",
@@ -1371,7 +1449,8 @@
     "Geoname ID": 1547376,
     "EDGAR": ""
   },
-  "Colombia": {
+  {
+    "name": "Colombia",
     "official_name_en": "Colombia",
     "official_name_fr": "Colombie",
     "ISO3166-1-Alpha-2": "CO",
@@ -1399,7 +1478,8 @@
     "Geoname ID": 3686110,
     "EDGAR": "F8"
   },
-  "Comoros": {
+  {
+    "name": "Comoros",
     "official_name_en": "Comoros",
     "official_name_fr": "Comores",
     "ISO3166-1-Alpha-2": "KM",
@@ -1427,7 +1507,8 @@
     "Geoname ID": 921929,
     "EDGAR": "F9"
   },
-  "Congo - Brazzaville": {
+  {
+    "name": "Congo - Brazzaville",
     "official_name_en": "Congo",
     "official_name_fr": "Congo",
     "ISO3166-1-Alpha-2": "CG",
@@ -1455,7 +1536,8 @@
     "Geoname ID": 2260494,
     "EDGAR": "G0"
   },
-  "Congo - Kinshasa": {
+  {
+    "name": "Congo - Kinshasa",
     "official_name_en": "Democratic Republic of the Congo",
     "official_name_fr": "République démocratique du Congo",
     "ISO3166-1-Alpha-2": "CD",
@@ -1483,7 +1565,8 @@
     "Geoname ID": 203312,
     "EDGAR": ""
   },
-  "Cook Islands": {
+  {
+    "name": "Cook Islands",
     "official_name_en": "Cook Islands",
     "official_name_fr": "Îles Cook",
     "ISO3166-1-Alpha-2": "CK",
@@ -1511,7 +1594,8 @@
     "Geoname ID": 1899402,
     "EDGAR": "G1"
   },
-  "Costa Rica": {
+  {
+    "name": "Costa Rica",
     "official_name_en": "Costa Rica",
     "official_name_fr": "Costa Rica",
     "ISO3166-1-Alpha-2": "CR",
@@ -1539,7 +1623,8 @@
     "Geoname ID": 3624060,
     "EDGAR": "G2"
   },
-  "Croatia": {
+  {
+    "name": "Croatia",
     "official_name_en": "Croatia",
     "official_name_fr": "Croatie",
     "ISO3166-1-Alpha-2": "HR",
@@ -1567,7 +1652,8 @@
     "Geoname ID": 3202326,
     "EDGAR": "1M"
   },
-  "Cuba": {
+  {
+    "name": "Cuba",
     "official_name_en": "Cuba",
     "official_name_fr": "Cuba",
     "ISO3166-1-Alpha-2": "CU",
@@ -1595,7 +1681,8 @@
     "Geoname ID": 3562981,
     "EDGAR": "G3"
   },
-  "Curaçao": {
+  {
+    "name": "Curaçao",
     "official_name_en": "Curaçao",
     "official_name_fr": "Curaçao",
     "ISO3166-1-Alpha-2": "CW",
@@ -1623,7 +1710,8 @@
     "Geoname ID": 7626836,
     "EDGAR": ""
   },
-  "Cyprus": {
+  {
+    "name": "Cyprus",
     "official_name_en": "Cyprus",
     "official_name_fr": "Chypre",
     "ISO3166-1-Alpha-2": "CY",
@@ -1651,7 +1739,8 @@
     "Geoname ID": 146669,
     "EDGAR": "G4"
   },
-  "Czech Republic": {
+  {
+    "name": "Czech Republic",
     "official_name_en": "Czechia",
     "official_name_fr": "Tchéquie",
     "ISO3166-1-Alpha-2": "CZ",
@@ -1679,7 +1768,8 @@
     "Geoname ID": 3077311,
     "EDGAR": ""
   },
-  "Côte d’Ivoire": {
+  {
+    "name": "Côte d’Ivoire",
     "official_name_en": "Côte d'Ivoire",
     "official_name_fr": "Côte d'Ivoire",
     "ISO3166-1-Alpha-2": "CI",
@@ -1707,7 +1797,8 @@
     "Geoname ID": 2287781,
     "EDGAR": ""
   },
-  "Denmark": {
+  {
+    "name": "Denmark",
     "official_name_en": "Denmark",
     "official_name_fr": "Danemark",
     "ISO3166-1-Alpha-2": "DK",
@@ -1735,7 +1826,8 @@
     "Geoname ID": 2623032,
     "EDGAR": "G7"
   },
-  "Djibouti": {
+  {
+    "name": "Djibouti",
     "official_name_en": "Djibouti",
     "official_name_fr": "Djibouti",
     "ISO3166-1-Alpha-2": "DJ",
@@ -1763,7 +1855,8 @@
     "Geoname ID": 223816,
     "EDGAR": "1G"
   },
-  "Dominica": {
+  {
+    "name": "Dominica",
     "official_name_en": "Dominica",
     "official_name_fr": "Dominique",
     "ISO3166-1-Alpha-2": "DM",
@@ -1791,7 +1884,8 @@
     "Geoname ID": 3575830,
     "EDGAR": "G9"
   },
-  "Dominican Republic": {
+  {
+    "name": "Dominican Republic",
     "official_name_en": "Dominican Republic",
     "official_name_fr": "République dominicaine",
     "ISO3166-1-Alpha-2": "DO",
@@ -1819,7 +1913,8 @@
     "Geoname ID": 3508796,
     "EDGAR": "G8"
   },
-  "Ecuador": {
+  {
+    "name": "Ecuador",
     "official_name_en": "Ecuador",
     "official_name_fr": "Équateur",
     "ISO3166-1-Alpha-2": "EC",
@@ -1847,7 +1942,8 @@
     "Geoname ID": 3658394,
     "EDGAR": "H1"
   },
-  "Egypt": {
+  {
+    "name": "Egypt",
     "official_name_en": "Egypt",
     "official_name_fr": "Égypte",
     "ISO3166-1-Alpha-2": "EG",
@@ -1875,7 +1971,8 @@
     "Geoname ID": 357994,
     "EDGAR": "H2"
   },
-  "El Salvador": {
+  {
+    "name": "El Salvador",
     "official_name_en": "El Salvador",
     "official_name_fr": "El Salvador",
     "ISO3166-1-Alpha-2": "SV",
@@ -1903,7 +2000,8 @@
     "Geoname ID": 3585968,
     "EDGAR": "H3"
   },
-  "Equatorial Guinea": {
+  {
+    "name": "Equatorial Guinea",
     "official_name_en": "Equatorial Guinea",
     "official_name_fr": "Guinée équatoriale",
     "ISO3166-1-Alpha-2": "GQ",
@@ -1931,7 +2029,8 @@
     "Geoname ID": 2309096,
     "EDGAR": "H4"
   },
-  "Eritrea": {
+  {
+    "name": "Eritrea",
     "official_name_en": "Eritrea",
     "official_name_fr": "Érythrée",
     "ISO3166-1-Alpha-2": "ER",
@@ -1959,7 +2058,8 @@
     "Geoname ID": 338010,
     "EDGAR": "1J"
   },
-  "Estonia": {
+  {
+    "name": "Estonia",
     "official_name_en": "Estonia",
     "official_name_fr": "Estonie",
     "ISO3166-1-Alpha-2": "EE",
@@ -1987,7 +2087,8 @@
     "Geoname ID": 453733,
     "EDGAR": "1H"
   },
-  "Ethiopia": {
+  {
+    "name": "Ethiopia",
     "official_name_en": "Ethiopia",
     "official_name_fr": "Éthiopie",
     "ISO3166-1-Alpha-2": "ET",
@@ -2015,7 +2116,8 @@
     "Geoname ID": 337996,
     "EDGAR": "H5"
   },
-  "Falkland Islands": {
+  {
+    "name": "Falkland Islands",
     "official_name_en": "Falkland Islands (Malvinas)",
     "official_name_fr": "Îles Falkland (Malvinas)",
     "ISO3166-1-Alpha-2": "FK",
@@ -2043,7 +2145,8 @@
     "Geoname ID": 3474414,
     "EDGAR": "H7"
   },
-  "Faroe Islands": {
+  {
+    "name": "Faroe Islands",
     "official_name_en": "Faeroe Islands",
     "official_name_fr": "Îles Féroé",
     "ISO3166-1-Alpha-2": "FO",
@@ -2071,7 +2174,8 @@
     "Geoname ID": 2622320,
     "EDGAR": ""
   },
-  "Fiji": {
+  {
+    "name": "Fiji",
     "official_name_en": "Fiji",
     "official_name_fr": "Fidji",
     "ISO3166-1-Alpha-2": "FJ",
@@ -2099,7 +2203,8 @@
     "Geoname ID": 2205218,
     "EDGAR": "H8"
   },
-  "Finland": {
+  {
+    "name": "Finland",
     "official_name_en": "Finland",
     "official_name_fr": "Finlande",
     "ISO3166-1-Alpha-2": "FI",
@@ -2127,7 +2232,8 @@
     "Geoname ID": 660013,
     "EDGAR": "H9"
   },
-  "France": {
+  {
+    "name": "France",
     "official_name_en": "France",
     "official_name_fr": "France",
     "ISO3166-1-Alpha-2": "FR",
@@ -2155,7 +2261,8 @@
     "Geoname ID": 3017382,
     "EDGAR": "I0"
   },
-  "French Guiana": {
+  {
+    "name": "French Guiana",
     "official_name_en": "French Guiana",
     "official_name_fr": "Guyane française",
     "ISO3166-1-Alpha-2": "GF",
@@ -2183,7 +2290,8 @@
     "Geoname ID": 3381670,
     "EDGAR": "I3"
   },
-  "French Polynesia": {
+  {
+    "name": "French Polynesia",
     "official_name_en": "French Polynesia",
     "official_name_fr": "Polynésie française",
     "ISO3166-1-Alpha-2": "PF",
@@ -2211,7 +2319,8 @@
     "Geoname ID": 4030656,
     "EDGAR": "I4"
   },
-  "French Southern Territories": {
+  {
+    "name": "French Southern Territories",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "TF",
@@ -2239,7 +2348,8 @@
     "Geoname ID": 1546748,
     "EDGAR": ""
   },
-  "Gabon": {
+  {
+    "name": "Gabon",
     "official_name_en": "Gabon",
     "official_name_fr": "Gabon",
     "ISO3166-1-Alpha-2": "GA",
@@ -2267,7 +2377,8 @@
     "Geoname ID": 2400553,
     "EDGAR": "I5"
   },
-  "Gambia": {
+  {
+    "name": "Gambia",
     "official_name_en": "Gambia",
     "official_name_fr": "Gambie",
     "ISO3166-1-Alpha-2": "GM",
@@ -2295,7 +2406,8 @@
     "Geoname ID": 2413451,
     "EDGAR": "I6"
   },
-  "Georgia": {
+  {
+    "name": "Georgia",
     "official_name_en": "Georgia",
     "official_name_fr": "Géorgie",
     "ISO3166-1-Alpha-2": "GE",
@@ -2323,7 +2435,8 @@
     "Geoname ID": 614540,
     "EDGAR": "2Q"
   },
-  "Germany": {
+  {
+    "name": "Germany",
     "official_name_en": "Germany",
     "official_name_fr": "Allemagne",
     "ISO3166-1-Alpha-2": "DE",
@@ -2351,7 +2464,8 @@
     "Geoname ID": 2921044,
     "EDGAR": "2M"
   },
-  "Ghana": {
+  {
+    "name": "Ghana",
     "official_name_en": "Ghana",
     "official_name_fr": "Ghana",
     "ISO3166-1-Alpha-2": "GH",
@@ -2379,7 +2493,8 @@
     "Geoname ID": 2300660,
     "EDGAR": "J0"
   },
-  "Gibraltar": {
+  {
+    "name": "Gibraltar",
     "official_name_en": "Gibraltar",
     "official_name_fr": "Gibraltar",
     "ISO3166-1-Alpha-2": "GI",
@@ -2407,7 +2522,8 @@
     "Geoname ID": 2411586,
     "EDGAR": "J1"
   },
-  "Greece": {
+  {
+    "name": "Greece",
     "official_name_en": "Greece",
     "official_name_fr": "Grèce",
     "ISO3166-1-Alpha-2": "GR",
@@ -2435,7 +2551,8 @@
     "Geoname ID": 390903,
     "EDGAR": "J3"
   },
-  "Greenland": {
+  {
+    "name": "Greenland",
     "official_name_en": "Greenland",
     "official_name_fr": "Groenland",
     "ISO3166-1-Alpha-2": "GL",
@@ -2463,7 +2580,8 @@
     "Geoname ID": 3425505,
     "EDGAR": "J4"
   },
-  "Grenada": {
+  {
+    "name": "Grenada",
     "official_name_en": "Grenada",
     "official_name_fr": "Grenade",
     "ISO3166-1-Alpha-2": "GD",
@@ -2491,7 +2609,8 @@
     "Geoname ID": 3580239,
     "EDGAR": "J5"
   },
-  "Guadeloupe": {
+  {
+    "name": "Guadeloupe",
     "official_name_en": "Guadeloupe",
     "official_name_fr": "Guadeloupe",
     "ISO3166-1-Alpha-2": "GP",
@@ -2519,7 +2638,8 @@
     "Geoname ID": 3579143,
     "EDGAR": "J6"
   },
-  "Guam": {
+  {
+    "name": "Guam",
     "official_name_en": "Guam",
     "official_name_fr": "Guam",
     "ISO3166-1-Alpha-2": "GU",
@@ -2547,7 +2667,8 @@
     "Geoname ID": 4043988,
     "EDGAR": "GU"
   },
-  "Guatemala": {
+  {
+    "name": "Guatemala",
     "official_name_en": "Guatemala",
     "official_name_fr": "Guatemala",
     "ISO3166-1-Alpha-2": "GT",
@@ -2575,7 +2696,8 @@
     "Geoname ID": 3595528,
     "EDGAR": "J8"
   },
-  "Guernsey": {
+  {
+    "name": "Guernsey",
     "official_name_en": "Guernsey",
     "official_name_fr": "Guernesey",
     "ISO3166-1-Alpha-2": "GG",
@@ -2603,7 +2725,8 @@
     "Geoname ID": 3042362,
     "EDGAR": "Y7"
   },
-  "Guinea": {
+  {
+    "name": "Guinea",
     "official_name_en": "Guinea",
     "official_name_fr": "Guinée",
     "ISO3166-1-Alpha-2": "GN",
@@ -2631,7 +2754,8 @@
     "Geoname ID": 2420477,
     "EDGAR": "J9"
   },
-  "Guinea-Bissau": {
+  {
+    "name": "Guinea-Bissau",
     "official_name_en": "Guinea-Bissau",
     "official_name_fr": "Guinée-Bissau",
     "ISO3166-1-Alpha-2": "GW",
@@ -2659,7 +2783,8 @@
     "Geoname ID": 2372248,
     "EDGAR": "S0"
   },
-  "Guyana": {
+  {
+    "name": "Guyana",
     "official_name_en": "Guyana",
     "official_name_fr": "Guyana",
     "ISO3166-1-Alpha-2": "GY",
@@ -2687,7 +2812,8 @@
     "Geoname ID": 3378535,
     "EDGAR": "K0"
   },
-  "Haiti": {
+  {
+    "name": "Haiti",
     "official_name_en": "Haiti",
     "official_name_fr": "Haïti",
     "ISO3166-1-Alpha-2": "HT",
@@ -2715,7 +2841,8 @@
     "Geoname ID": 3723988,
     "EDGAR": "K1"
   },
-  "Heard & McDonald Islands": {
+  {
+    "name": "Heard & McDonald Islands",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "HM",
@@ -2743,7 +2870,8 @@
     "Geoname ID": 1547314,
     "EDGAR": ""
   },
-  "Honduras": {
+  {
+    "name": "Honduras",
     "official_name_en": "Honduras",
     "official_name_fr": "Honduras",
     "ISO3166-1-Alpha-2": "HN",
@@ -2771,7 +2899,8 @@
     "Geoname ID": 3608932,
     "EDGAR": "K2"
   },
-  "Hong Kong": {
+  {
+    "name": "Hong Kong",
     "official_name_en": "China, Hong Kong Special Administrative Region",
     "official_name_fr": "Chine, région administrative spéciale de Hong Kong",
     "ISO3166-1-Alpha-2": "HK",
@@ -2799,7 +2928,8 @@
     "Geoname ID": 1819730,
     "EDGAR": ""
   },
-  "Hungary": {
+  {
+    "name": "Hungary",
     "official_name_en": "Hungary",
     "official_name_fr": "Hongrie",
     "ISO3166-1-Alpha-2": "HU",
@@ -2827,7 +2957,8 @@
     "Geoname ID": 719819,
     "EDGAR": "K5"
   },
-  "Iceland": {
+  {
+    "name": "Iceland",
     "official_name_en": "Iceland",
     "official_name_fr": "Islande",
     "ISO3166-1-Alpha-2": "IS",
@@ -2855,7 +2986,8 @@
     "Geoname ID": 2629691,
     "EDGAR": "K6"
   },
-  "India": {
+  {
+    "name": "India",
     "official_name_en": "India",
     "official_name_fr": "Inde",
     "ISO3166-1-Alpha-2": "IN",
@@ -2883,7 +3015,8 @@
     "Geoname ID": 1269750,
     "EDGAR": "K7"
   },
-  "Indonesia": {
+  {
+    "name": "Indonesia",
     "official_name_en": "Indonesia",
     "official_name_fr": "Indonésie",
     "ISO3166-1-Alpha-2": "ID",
@@ -2911,7 +3044,8 @@
     "Geoname ID": 1643084,
     "EDGAR": "K8"
   },
-  "Iran": {
+  {
+    "name": "Iran",
     "official_name_en": "Iran (Islamic Republic of)",
     "official_name_fr": "Iran (République islamique d')",
     "ISO3166-1-Alpha-2": "IR",
@@ -2939,7 +3073,8 @@
     "Geoname ID": 130758,
     "EDGAR": "K9"
   },
-  "Iraq": {
+  {
+    "name": "Iraq",
     "official_name_en": "Iraq",
     "official_name_fr": "Iraq",
     "ISO3166-1-Alpha-2": "IQ",
@@ -2967,7 +3102,8 @@
     "Geoname ID": 99237,
     "EDGAR": "L0"
   },
-  "Ireland": {
+  {
+    "name": "Ireland",
     "official_name_en": "Ireland",
     "official_name_fr": "Irlande",
     "ISO3166-1-Alpha-2": "IE",
@@ -2995,7 +3131,8 @@
     "Geoname ID": 2963597,
     "EDGAR": "L2"
   },
-  "Isle of Man": {
+  {
+    "name": "Isle of Man",
     "official_name_en": "Isle of Man",
     "official_name_fr": "Île de Man",
     "ISO3166-1-Alpha-2": "IM",
@@ -3023,7 +3160,8 @@
     "Geoname ID": 3042225,
     "EDGAR": "Y8"
   },
-  "Israel": {
+  {
+    "name": "Israel",
     "official_name_en": "Israel",
     "official_name_fr": "Israël",
     "ISO3166-1-Alpha-2": "IL",
@@ -3051,7 +3189,8 @@
     "Geoname ID": 294640,
     "EDGAR": "L3"
   },
-  "Italy": {
+  {
+    "name": "Italy",
     "official_name_en": "Italy",
     "official_name_fr": "Italie",
     "ISO3166-1-Alpha-2": "IT",
@@ -3079,7 +3218,8 @@
     "Geoname ID": 3175395,
     "EDGAR": "L6"
   },
-  "Jamaica": {
+  {
+    "name": "Jamaica",
     "official_name_en": "Jamaica",
     "official_name_fr": "Jamaïque",
     "ISO3166-1-Alpha-2": "JM",
@@ -3107,7 +3247,8 @@
     "Geoname ID": 3489940,
     "EDGAR": "L8"
   },
-  "Japan": {
+  {
+    "name": "Japan",
     "official_name_en": "Japan",
     "official_name_fr": "Japon",
     "ISO3166-1-Alpha-2": "JP",
@@ -3135,7 +3276,8 @@
     "Geoname ID": 1861060,
     "EDGAR": "M0"
   },
-  "Jersey": {
+  {
+    "name": "Jersey",
     "official_name_en": "Jersey",
     "official_name_fr": "Jersey",
     "ISO3166-1-Alpha-2": "JE",
@@ -3163,7 +3305,8 @@
     "Geoname ID": 3042142,
     "EDGAR": "Y9"
   },
-  "Jordan": {
+  {
+    "name": "Jordan",
     "official_name_en": "Jordan",
     "official_name_fr": "Jordanie",
     "ISO3166-1-Alpha-2": "JO",
@@ -3191,7 +3334,8 @@
     "Geoname ID": 248816,
     "EDGAR": "M2"
   },
-  "Kazakhstan": {
+  {
+    "name": "Kazakhstan",
     "official_name_en": "Kazakhstan",
     "official_name_fr": "Kazakhstan",
     "ISO3166-1-Alpha-2": "KZ",
@@ -3219,7 +3363,8 @@
     "Geoname ID": 1522867,
     "EDGAR": ""
   },
-  "Kenya": {
+  {
+    "name": "Kenya",
     "official_name_en": "Kenya",
     "official_name_fr": "Kenya",
     "ISO3166-1-Alpha-2": "KE",
@@ -3247,7 +3392,8 @@
     "Geoname ID": 192950,
     "EDGAR": "M3"
   },
-  "Kiribati": {
+  {
+    "name": "Kiribati",
     "official_name_en": "Kiribati",
     "official_name_fr": "Kiribati",
     "ISO3166-1-Alpha-2": "KI",
@@ -3275,7 +3421,8 @@
     "Geoname ID": 4030945,
     "EDGAR": "J2"
   },
-  "Kuwait": {
+  {
+    "name": "Kuwait",
     "official_name_en": "Kuwait",
     "official_name_fr": "Koweït",
     "ISO3166-1-Alpha-2": "KW",
@@ -3303,7 +3450,8 @@
     "Geoname ID": 285570,
     "EDGAR": "M6"
   },
-  "Kyrgyzstan": {
+  {
+    "name": "Kyrgyzstan",
     "official_name_en": "Kyrgyzstan",
     "official_name_fr": "Kirghizistan",
     "ISO3166-1-Alpha-2": "KG",
@@ -3331,7 +3479,8 @@
     "Geoname ID": 1527747,
     "EDGAR": "1N"
   },
-  "Laos": {
+  {
+    "name": "Laos",
     "official_name_en": "Lao People's Democratic Republic",
     "official_name_fr": "République démocratique populaire lao",
     "ISO3166-1-Alpha-2": "LA",
@@ -3359,7 +3508,8 @@
     "Geoname ID": 1655842,
     "EDGAR": ""
   },
-  "Latvia": {
+  {
+    "name": "Latvia",
     "official_name_en": "Latvia",
     "official_name_fr": "Lettonie",
     "ISO3166-1-Alpha-2": "LV",
@@ -3387,7 +3537,8 @@
     "Geoname ID": 458258,
     "EDGAR": "1R"
   },
-  "Lebanon": {
+  {
+    "name": "Lebanon",
     "official_name_en": "Lebanon",
     "official_name_fr": "Liban",
     "ISO3166-1-Alpha-2": "LB",
@@ -3415,7 +3566,8 @@
     "Geoname ID": 272103,
     "EDGAR": "M8"
   },
-  "Lesotho": {
+  {
+    "name": "Lesotho",
     "official_name_en": "Lesotho",
     "official_name_fr": "Lesotho",
     "ISO3166-1-Alpha-2": "LS",
@@ -3443,7 +3595,8 @@
     "Geoname ID": 932692,
     "EDGAR": "M9"
   },
-  "Liberia": {
+  {
+    "name": "Liberia",
     "official_name_en": "Liberia",
     "official_name_fr": "Libéria",
     "ISO3166-1-Alpha-2": "LR",
@@ -3471,7 +3624,8 @@
     "Geoname ID": 2275384,
     "EDGAR": "N0"
   },
-  "Libya": {
+  {
+    "name": "Libya",
     "official_name_en": "Libya",
     "official_name_fr": "Libye",
     "ISO3166-1-Alpha-2": "LY",
@@ -3499,7 +3653,8 @@
     "Geoname ID": 2215636,
     "EDGAR": ""
   },
-  "Liechtenstein": {
+  {
+    "name": "Liechtenstein",
     "official_name_en": "Liechtenstein",
     "official_name_fr": "Liechtenstein",
     "ISO3166-1-Alpha-2": "LI",
@@ -3527,7 +3682,8 @@
     "Geoname ID": 3042058,
     "EDGAR": "N2"
   },
-  "Lithuania": {
+  {
+    "name": "Lithuania",
     "official_name_en": "Lithuania",
     "official_name_fr": "Lituanie",
     "ISO3166-1-Alpha-2": "LT",
@@ -3555,7 +3711,8 @@
     "Geoname ID": 597427,
     "EDGAR": "1Q"
   },
-  "Luxembourg": {
+  {
+    "name": "Luxembourg",
     "official_name_en": "Luxembourg",
     "official_name_fr": "Luxembourg",
     "ISO3166-1-Alpha-2": "LU",
@@ -3583,7 +3740,8 @@
     "Geoname ID": 2960313,
     "EDGAR": "N4"
   },
-  "Macau": {
+  {
+    "name": "Macau",
     "official_name_en": "China, Macao Special Administrative Region",
     "official_name_fr": "Chine, région administrative spéciale de Macao",
     "ISO3166-1-Alpha-2": "MO",
@@ -3611,7 +3769,8 @@
     "Geoname ID": 1821275,
     "EDGAR": ""
   },
-  "Macedonia": {
+  {
+    "name": "Macedonia",
     "official_name_en": "The former Yugoslav Republic of Macedonia",
     "official_name_fr": "Ex-République yougoslave de Macédoine",
     "ISO3166-1-Alpha-2": "MK",
@@ -3639,7 +3798,8 @@
     "Geoname ID": 718075,
     "EDGAR": "1U"
   },
-  "Madagascar": {
+  {
+    "name": "Madagascar",
     "official_name_en": "Madagascar",
     "official_name_fr": "Madagascar",
     "ISO3166-1-Alpha-2": "MG",
@@ -3667,7 +3827,8 @@
     "Geoname ID": 1062947,
     "EDGAR": "N6"
   },
-  "Malawi": {
+  {
+    "name": "Malawi",
     "official_name_en": "Malawi",
     "official_name_fr": "Malawi",
     "ISO3166-1-Alpha-2": "MW",
@@ -3695,7 +3856,8 @@
     "Geoname ID": 927384,
     "EDGAR": "N7"
   },
-  "Malaysia": {
+  {
+    "name": "Malaysia",
     "official_name_en": "Malaysia",
     "official_name_fr": "Malaisie",
     "ISO3166-1-Alpha-2": "MY",
@@ -3723,7 +3885,8 @@
     "Geoname ID": 1733045,
     "EDGAR": "N8"
   },
-  "Maldives": {
+  {
+    "name": "Maldives",
     "official_name_en": "Maldives",
     "official_name_fr": "Maldives",
     "ISO3166-1-Alpha-2": "MV",
@@ -3751,7 +3914,8 @@
     "Geoname ID": 1282028,
     "EDGAR": "N9"
   },
-  "Mali": {
+  {
+    "name": "Mali",
     "official_name_en": "Mali",
     "official_name_fr": "Mali",
     "ISO3166-1-Alpha-2": "ML",
@@ -3779,7 +3943,8 @@
     "Geoname ID": 2453866,
     "EDGAR": "O0"
   },
-  "Malta": {
+  {
+    "name": "Malta",
     "official_name_en": "Malta",
     "official_name_fr": "Malte",
     "ISO3166-1-Alpha-2": "MT",
@@ -3807,7 +3972,8 @@
     "Geoname ID": 2562770,
     "EDGAR": "O1"
   },
-  "Marshall Islands": {
+  {
+    "name": "Marshall Islands",
     "official_name_en": "Marshall Islands",
     "official_name_fr": "Îles Marshall",
     "ISO3166-1-Alpha-2": "MH",
@@ -3835,7 +4001,8 @@
     "Geoname ID": 2080185,
     "EDGAR": "1T"
   },
-  "Martinique": {
+  {
+    "name": "Martinique",
     "official_name_en": "Martinique",
     "official_name_fr": "Martinique",
     "ISO3166-1-Alpha-2": "MQ",
@@ -3863,7 +4030,8 @@
     "Geoname ID": 3570311,
     "EDGAR": "O2"
   },
-  "Mauritania": {
+  {
+    "name": "Mauritania",
     "official_name_en": "Mauritania",
     "official_name_fr": "Mauritanie",
     "ISO3166-1-Alpha-2": "MR",
@@ -3891,7 +4059,8 @@
     "Geoname ID": 2378080,
     "EDGAR": "O3"
   },
-  "Mauritius": {
+  {
+    "name": "Mauritius",
     "official_name_en": "Mauritius",
     "official_name_fr": "Maurice",
     "ISO3166-1-Alpha-2": "MU",
@@ -3919,7 +4088,8 @@
     "Geoname ID": 934292,
     "EDGAR": "O4"
   },
-  "Mayotte": {
+  {
+    "name": "Mayotte",
     "official_name_en": "Mayotte",
     "official_name_fr": "Mayotte",
     "ISO3166-1-Alpha-2": "YT",
@@ -3947,7 +4117,8 @@
     "Geoname ID": 1024031,
     "EDGAR": "2P"
   },
-  "Mexico": {
+  {
+    "name": "Mexico",
     "official_name_en": "Mexico",
     "official_name_fr": "Mexique",
     "ISO3166-1-Alpha-2": "MX",
@@ -3975,7 +4146,8 @@
     "Geoname ID": 3996063,
     "EDGAR": "O5"
   },
-  "Micronesia": {
+  {
+    "name": "Micronesia",
     "official_name_en": "Micronesia (Federated States of)",
     "official_name_fr": "Micronésie (États fédérés de)",
     "ISO3166-1-Alpha-2": "FM",
@@ -4003,7 +4175,8 @@
     "Geoname ID": 2081918,
     "EDGAR": "1K"
   },
-  "Moldova": {
+  {
+    "name": "Moldova",
     "official_name_en": "Republic of Moldova",
     "official_name_fr": "République de Moldova",
     "ISO3166-1-Alpha-2": "MD",
@@ -4031,7 +4204,8 @@
     "Geoname ID": 617790,
     "EDGAR": "1S"
   },
-  "Monaco": {
+  {
+    "name": "Monaco",
     "official_name_en": "Monaco",
     "official_name_fr": "Monaco",
     "ISO3166-1-Alpha-2": "MC",
@@ -4059,7 +4233,8 @@
     "Geoname ID": 2993457,
     "EDGAR": "O9"
   },
-  "Mongolia": {
+  {
+    "name": "Mongolia",
     "official_name_en": "Mongolia",
     "official_name_fr": "Mongolie",
     "ISO3166-1-Alpha-2": "MN",
@@ -4087,7 +4262,8 @@
     "Geoname ID": 2029969,
     "EDGAR": "P0"
   },
-  "Montenegro": {
+  {
+    "name": "Montenegro",
     "official_name_en": "Montenegro",
     "official_name_fr": "Monténégro",
     "ISO3166-1-Alpha-2": "ME",
@@ -4115,7 +4291,8 @@
     "Geoname ID": 3194884,
     "EDGAR": "Z5"
   },
-  "Montserrat": {
+  {
+    "name": "Montserrat",
     "official_name_en": "Montserrat",
     "official_name_fr": "Montserrat",
     "ISO3166-1-Alpha-2": "MS",
@@ -4143,7 +4320,8 @@
     "Geoname ID": 3578097,
     "EDGAR": "P1"
   },
-  "Morocco": {
+  {
+    "name": "Morocco",
     "official_name_en": "Morocco",
     "official_name_fr": "Maroc",
     "ISO3166-1-Alpha-2": "MA",
@@ -4171,7 +4349,8 @@
     "Geoname ID": 2542007,
     "EDGAR": "P2"
   },
-  "Mozambique": {
+  {
+    "name": "Mozambique",
     "official_name_en": "Mozambique",
     "official_name_fr": "Mozambique",
     "ISO3166-1-Alpha-2": "MZ",
@@ -4199,7 +4378,8 @@
     "Geoname ID": 1036973,
     "EDGAR": "P3"
   },
-  "Myanmar": {
+  {
+    "name": "Myanmar",
     "official_name_en": "Myanmar",
     "official_name_fr": "Myanmar",
     "ISO3166-1-Alpha-2": "MM",
@@ -4227,7 +4407,8 @@
     "Geoname ID": 1327865,
     "EDGAR": "E1"
   },
-  "Namibia": {
+  {
+    "name": "Namibia",
     "official_name_en": "Namibia",
     "official_name_fr": "Namibie",
     "ISO3166-1-Alpha-2": "NA",
@@ -4255,7 +4436,8 @@
     "Geoname ID": 3355338,
     "EDGAR": "T6"
   },
-  "Nauru": {
+  {
+    "name": "Nauru",
     "official_name_en": "Nauru",
     "official_name_fr": "Nauru",
     "ISO3166-1-Alpha-2": "NR",
@@ -4283,7 +4465,8 @@
     "Geoname ID": 2110425,
     "EDGAR": "P5"
   },
-  "Nepal": {
+  {
+    "name": "Nepal",
     "official_name_en": "Nepal",
     "official_name_fr": "Népal",
     "ISO3166-1-Alpha-2": "NP",
@@ -4311,7 +4494,8 @@
     "Geoname ID": 1282988,
     "EDGAR": "P6"
   },
-  "Netherlands": {
+  {
+    "name": "Netherlands",
     "official_name_en": "Netherlands",
     "official_name_fr": "Pays-Bas",
     "ISO3166-1-Alpha-2": "NL",
@@ -4339,7 +4523,8 @@
     "Geoname ID": 2750405,
     "EDGAR": "P7"
   },
-  "New Caledonia": {
+  {
+    "name": "New Caledonia",
     "official_name_en": "New Caledonia",
     "official_name_fr": "Nouvelle-Calédonie",
     "ISO3166-1-Alpha-2": "NC",
@@ -4367,7 +4552,8 @@
     "Geoname ID": 2139685,
     "EDGAR": "1W"
   },
-  "New Zealand": {
+  {
+    "name": "New Zealand",
     "official_name_en": "New Zealand",
     "official_name_fr": "Nouvelle-Zélande",
     "ISO3166-1-Alpha-2": "NZ",
@@ -4395,7 +4581,8 @@
     "Geoname ID": 2186224,
     "EDGAR": "Q2"
   },
-  "Nicaragua": {
+  {
+    "name": "Nicaragua",
     "official_name_en": "Nicaragua",
     "official_name_fr": "Nicaragua",
     "ISO3166-1-Alpha-2": "NI",
@@ -4423,7 +4610,8 @@
     "Geoname ID": 3617476,
     "EDGAR": "Q3"
   },
-  "Niger": {
+  {
+    "name": "Niger",
     "official_name_en": "Niger",
     "official_name_fr": "Niger",
     "ISO3166-1-Alpha-2": "NE",
@@ -4451,7 +4639,8 @@
     "Geoname ID": 2440476,
     "EDGAR": "Q4"
   },
-  "Nigeria": {
+  {
+    "name": "Nigeria",
     "official_name_en": "Nigeria",
     "official_name_fr": "Nigéria",
     "ISO3166-1-Alpha-2": "NG",
@@ -4479,7 +4668,8 @@
     "Geoname ID": 2328926,
     "EDGAR": "Q5"
   },
-  "Niue": {
+  {
+    "name": "Niue",
     "official_name_en": "Niue",
     "official_name_fr": "Nioué",
     "ISO3166-1-Alpha-2": "NU",
@@ -4507,7 +4697,8 @@
     "Geoname ID": 4036232,
     "EDGAR": "Q6"
   },
-  "Norfolk Island": {
+  {
+    "name": "Norfolk Island",
     "official_name_en": "Norfolk Island",
     "official_name_fr": "Île Norfolk",
     "ISO3166-1-Alpha-2": "NF",
@@ -4535,7 +4726,8 @@
     "Geoname ID": 2155115,
     "EDGAR": "Q7"
   },
-  "North Korea": {
+  {
+    "name": "North Korea",
     "official_name_en": "Democratic People's Republic of Korea",
     "official_name_fr": "République populaire démocratique de Corée",
     "ISO3166-1-Alpha-2": "KP",
@@ -4563,7 +4755,8 @@
     "Geoname ID": 1873107,
     "EDGAR": ""
   },
-  "Northern Mariana Islands": {
+  {
+    "name": "Northern Mariana Islands",
     "official_name_en": "Northern Mariana Islands",
     "official_name_fr": "Îles Mariannes septentrionales",
     "ISO3166-1-Alpha-2": "MP",
@@ -4591,7 +4784,8 @@
     "Geoname ID": 4041468,
     "EDGAR": "1V"
   },
-  "Norway": {
+  {
+    "name": "Norway",
     "official_name_en": "Norway",
     "official_name_fr": "Norvège",
     "ISO3166-1-Alpha-2": "NO",
@@ -4619,7 +4813,8 @@
     "Geoname ID": 3144096,
     "EDGAR": "Q8"
   },
-  "Oman": {
+  {
+    "name": "Oman",
     "official_name_en": "Oman",
     "official_name_fr": "Oman",
     "ISO3166-1-Alpha-2": "OM",
@@ -4647,7 +4842,8 @@
     "Geoname ID": 286963,
     "EDGAR": "P4"
   },
-  "Pakistan": {
+  {
+    "name": "Pakistan",
     "official_name_en": "Pakistan",
     "official_name_fr": "Pakistan",
     "ISO3166-1-Alpha-2": "PK",
@@ -4675,7 +4871,8 @@
     "Geoname ID": 1168579,
     "EDGAR": "R0"
   },
-  "Palau": {
+  {
+    "name": "Palau",
     "official_name_en": "Palau",
     "official_name_fr": "Palaos",
     "ISO3166-1-Alpha-2": "PW",
@@ -4703,7 +4900,8 @@
     "Geoname ID": 1559582,
     "EDGAR": "1Y"
   },
-  "Palestine": {
+  {
+    "name": "Palestine",
     "official_name_en": "State of Palestine",
     "official_name_fr": "État de Palestine",
     "ISO3166-1-Alpha-2": "PS",
@@ -4731,7 +4929,8 @@
     "Geoname ID": 6254930,
     "EDGAR": ""
   },
-  "Panama": {
+  {
+    "name": "Panama",
     "official_name_en": "Panama",
     "official_name_fr": "Panama",
     "ISO3166-1-Alpha-2": "PA",
@@ -4759,7 +4958,8 @@
     "Geoname ID": 3703430,
     "EDGAR": "R1"
   },
-  "Papua New Guinea": {
+  {
+    "name": "Papua New Guinea",
     "official_name_en": "Papua New Guinea",
     "official_name_fr": "Papouasie-Nouvelle-Guinée",
     "ISO3166-1-Alpha-2": "PG",
@@ -4787,7 +4987,8 @@
     "Geoname ID": 2088628,
     "EDGAR": "R2"
   },
-  "Paraguay": {
+  {
+    "name": "Paraguay",
     "official_name_en": "Paraguay",
     "official_name_fr": "Paraguay",
     "ISO3166-1-Alpha-2": "PY",
@@ -4815,7 +5016,8 @@
     "Geoname ID": 3437598,
     "EDGAR": "R4"
   },
-  "Peru": {
+  {
+    "name": "Peru",
     "official_name_en": "Peru",
     "official_name_fr": "Pérou",
     "ISO3166-1-Alpha-2": "PE",
@@ -4843,7 +5045,8 @@
     "Geoname ID": 3932488,
     "EDGAR": "R5"
   },
-  "Philippines": {
+  {
+    "name": "Philippines",
     "official_name_en": "Philippines",
     "official_name_fr": "Philippines",
     "ISO3166-1-Alpha-2": "PH",
@@ -4871,7 +5074,8 @@
     "Geoname ID": 1694008,
     "EDGAR": "R6"
   },
-  "Pitcairn Islands": {
+  {
+    "name": "Pitcairn Islands",
     "official_name_en": "Pitcairn",
     "official_name_fr": "Pitcairn",
     "ISO3166-1-Alpha-2": "PN",
@@ -4899,7 +5103,8 @@
     "Geoname ID": 4030699,
     "EDGAR": "R8"
   },
-  "Poland": {
+  {
+    "name": "Poland",
     "official_name_en": "Poland",
     "official_name_fr": "Pologne",
     "ISO3166-1-Alpha-2": "PL",
@@ -4927,7 +5132,8 @@
     "Geoname ID": 798544,
     "EDGAR": "R9"
   },
-  "Portugal": {
+  {
+    "name": "Portugal",
     "official_name_en": "Portugal",
     "official_name_fr": "Portugal",
     "ISO3166-1-Alpha-2": "PT",
@@ -4955,7 +5161,8 @@
     "Geoname ID": 2264397,
     "EDGAR": "S1"
   },
-  "Puerto Rico": {
+  {
+    "name": "Puerto Rico",
     "official_name_en": "Puerto Rico",
     "official_name_fr": "Porto Rico",
     "ISO3166-1-Alpha-2": "PR",
@@ -4983,7 +5190,8 @@
     "Geoname ID": 4566966,
     "EDGAR": "PR"
   },
-  "Qatar": {
+  {
+    "name": "Qatar",
     "official_name_en": "Qatar",
     "official_name_fr": "Qatar",
     "ISO3166-1-Alpha-2": "QA",
@@ -5011,7 +5219,8 @@
     "Geoname ID": 289688,
     "EDGAR": "S3"
   },
-  "Romania": {
+  {
+    "name": "Romania",
     "official_name_en": "Romania",
     "official_name_fr": "Roumanie",
     "ISO3166-1-Alpha-2": "RO",
@@ -5039,7 +5248,8 @@
     "Geoname ID": 798549,
     "EDGAR": "S5"
   },
-  "Russia": {
+  {
+    "name": "Russia",
     "official_name_en": "Russian Federation",
     "official_name_fr": "Fédération de Russie",
     "ISO3166-1-Alpha-2": "RU",
@@ -5067,7 +5277,8 @@
     "Geoname ID": 2017370,
     "EDGAR": "1Z"
   },
-  "Rwanda": {
+  {
+    "name": "Rwanda",
     "official_name_en": "Rwanda",
     "official_name_fr": "Rwanda",
     "ISO3166-1-Alpha-2": "RW",
@@ -5095,7 +5306,8 @@
     "Geoname ID": 49518,
     "EDGAR": "S6"
   },
-  "Réunion": {
+  {
+    "name": "Réunion",
     "official_name_en": "Réunion",
     "official_name_fr": "Réunion",
     "ISO3166-1-Alpha-2": "RE",
@@ -5123,7 +5335,8 @@
     "Geoname ID": 935317,
     "EDGAR": ""
   },
-  "Samoa": {
+  {
+    "name": "Samoa",
     "official_name_en": "Samoa",
     "official_name_fr": "Samoa",
     "ISO3166-1-Alpha-2": "WS",
@@ -5151,7 +5364,8 @@
     "Geoname ID": 4034894,
     "EDGAR": "Y0"
   },
-  "San Marino": {
+  {
+    "name": "San Marino",
     "official_name_en": "San Marino",
     "official_name_fr": "Saint-Marin",
     "ISO3166-1-Alpha-2": "SM",
@@ -5179,7 +5393,8 @@
     "Geoname ID": 3168068,
     "EDGAR": "S8"
   },
-  "Saudi Arabia": {
+  {
+    "name": "Saudi Arabia",
     "official_name_en": "Saudi Arabia",
     "official_name_fr": "Arabie saoudite",
     "ISO3166-1-Alpha-2": "SA",
@@ -5207,7 +5422,8 @@
     "Geoname ID": 102358,
     "EDGAR": "T0"
   },
-  "Senegal": {
+  {
+    "name": "Senegal",
     "official_name_en": "Senegal",
     "official_name_fr": "Sénégal",
     "ISO3166-1-Alpha-2": "SN",
@@ -5235,7 +5451,8 @@
     "Geoname ID": 2245662,
     "EDGAR": "T1"
   },
-  "Serbia": {
+  {
+    "name": "Serbia",
     "official_name_en": "Serbia",
     "official_name_fr": "Serbie",
     "ISO3166-1-Alpha-2": "RS",
@@ -5263,7 +5480,8 @@
     "Geoname ID": 6290252,
     "EDGAR": "Z2"
   },
-  "Seychelles": {
+  {
+    "name": "Seychelles",
     "official_name_en": "Seychelles",
     "official_name_fr": "Seychelles",
     "ISO3166-1-Alpha-2": "SC",
@@ -5291,7 +5509,8 @@
     "Geoname ID": 241170,
     "EDGAR": "T2"
   },
-  "Sierra Leone": {
+  {
+    "name": "Sierra Leone",
     "official_name_en": "Sierra Leone",
     "official_name_fr": "Sierra Leone",
     "ISO3166-1-Alpha-2": "SL",
@@ -5319,7 +5538,8 @@
     "Geoname ID": 2403846,
     "EDGAR": "T8"
   },
-  "Singapore": {
+  {
+    "name": "Singapore",
     "official_name_en": "Singapore",
     "official_name_fr": "Singapour",
     "ISO3166-1-Alpha-2": "SG",
@@ -5347,7 +5567,8 @@
     "Geoname ID": 1880251,
     "EDGAR": "U0"
   },
-  "Sint Maarten": {
+  {
+    "name": "Sint Maarten",
     "official_name_en": "Sint Maarten (Dutch part)",
     "official_name_fr": "Saint-Martin (partie néerlandaise)",
     "ISO3166-1-Alpha-2": "SX",
@@ -5375,7 +5596,8 @@
     "Geoname ID": 7609695,
     "EDGAR": ""
   },
-  "Slovakia": {
+  {
+    "name": "Slovakia",
     "official_name_en": "Slovakia",
     "official_name_fr": "Slovaquie",
     "ISO3166-1-Alpha-2": "SK",
@@ -5403,7 +5625,8 @@
     "Geoname ID": 3057568,
     "EDGAR": "2B"
   },
-  "Slovenia": {
+  {
+    "name": "Slovenia",
     "official_name_en": "Slovenia",
     "official_name_fr": "Slovénie",
     "ISO3166-1-Alpha-2": "SI",
@@ -5431,7 +5654,8 @@
     "Geoname ID": 3190538,
     "EDGAR": "2A"
   },
-  "Solomon Islands": {
+  {
+    "name": "Solomon Islands",
     "official_name_en": "Solomon Islands",
     "official_name_fr": "Îles Salomon",
     "ISO3166-1-Alpha-2": "SB",
@@ -5459,7 +5683,8 @@
     "Geoname ID": 2103350,
     "EDGAR": "D7"
   },
-  "Somalia": {
+  {
+    "name": "Somalia",
     "official_name_en": "Somalia",
     "official_name_fr": "Somalie",
     "ISO3166-1-Alpha-2": "SO",
@@ -5487,7 +5712,8 @@
     "Geoname ID": 51537,
     "EDGAR": "U1"
   },
-  "South Africa": {
+  {
+    "name": "South Africa",
     "official_name_en": "South Africa",
     "official_name_fr": "Afrique du Sud",
     "ISO3166-1-Alpha-2": "ZA",
@@ -5515,7 +5741,8 @@
     "Geoname ID": 953987,
     "EDGAR": "T3"
   },
-  "South Georgia & South Sandwich Islands": {
+  {
+    "name": "South Georgia & South Sandwich Islands",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "GS",
@@ -5543,7 +5770,8 @@
     "Geoname ID": 3474415,
     "EDGAR": ""
   },
-  "South Korea": {
+  {
+    "name": "South Korea",
     "official_name_en": "Republic of Korea",
     "official_name_fr": "République de Corée",
     "ISO3166-1-Alpha-2": "KR",
@@ -5571,7 +5799,8 @@
     "Geoname ID": 1835841,
     "EDGAR": "M5"
   },
-  "South Sudan": {
+  {
+    "name": "South Sudan",
     "official_name_en": "South Sudan",
     "official_name_fr": "Soudan du Sud",
     "ISO3166-1-Alpha-2": "SS",
@@ -5599,7 +5828,8 @@
     "Geoname ID": 7909807,
     "EDGAR": ""
   },
-  "Spain": {
+  {
+    "name": "Spain",
     "official_name_en": "Spain",
     "official_name_fr": "Espagne",
     "ISO3166-1-Alpha-2": "ES",
@@ -5627,7 +5857,8 @@
     "Geoname ID": 2510769,
     "EDGAR": "U3"
   },
-  "Sri Lanka": {
+  {
+    "name": "Sri Lanka",
     "official_name_en": "Sri Lanka",
     "official_name_fr": "Sri Lanka",
     "ISO3166-1-Alpha-2": "LK",
@@ -5655,7 +5886,8 @@
     "Geoname ID": 1227603,
     "EDGAR": "F1"
   },
-  "St. Barthélemy": {
+  {
+    "name": "St. Barthélemy",
     "official_name_en": "Saint Barthélemy",
     "official_name_fr": "Saint-Barthélemy",
     "ISO3166-1-Alpha-2": "BL",
@@ -5683,7 +5915,8 @@
     "Geoname ID": 3578476,
     "EDGAR": ""
   },
-  "St. Helena": {
+  {
+    "name": "St. Helena",
     "official_name_en": "Saint Helena",
     "official_name_fr": "Sainte-Hélène",
     "ISO3166-1-Alpha-2": "SH",
@@ -5711,7 +5944,8 @@
     "Geoname ID": 3370751,
     "EDGAR": ""
   },
-  "St. Kitts & Nevis": {
+  {
+    "name": "St. Kitts & Nevis",
     "official_name_en": "Saint Kitts and Nevis",
     "official_name_fr": "Saint-Kitts-et-Nevis",
     "ISO3166-1-Alpha-2": "KN",
@@ -5739,7 +5973,8 @@
     "Geoname ID": 3575174,
     "EDGAR": "U7"
   },
-  "St. Lucia": {
+  {
+    "name": "St. Lucia",
     "official_name_en": "Saint Lucia",
     "official_name_fr": "Sainte-Lucie",
     "ISO3166-1-Alpha-2": "LC",
@@ -5767,7 +6002,8 @@
     "Geoname ID": 3576468,
     "EDGAR": "U9"
   },
-  "St. Martin": {
+  {
+    "name": "St. Martin",
     "official_name_en": "Saint Martin (French part)",
     "official_name_fr": "Saint-Martin (partie française)",
     "ISO3166-1-Alpha-2": "MF",
@@ -5795,7 +6031,8 @@
     "Geoname ID": 3578421,
     "EDGAR": ""
   },
-  "St. Pierre & Miquelon": {
+  {
+    "name": "St. Pierre & Miquelon",
     "official_name_en": "Saint Pierre and Miquelon",
     "official_name_fr": "Saint-Pierre-et-Miquelon",
     "ISO3166-1-Alpha-2": "PM",
@@ -5823,7 +6060,8 @@
     "Geoname ID": 3424932,
     "EDGAR": "V0"
   },
-  "St. Vincent & Grenadines": {
+  {
+    "name": "St. Vincent & Grenadines",
     "official_name_en": "Saint Vincent and the Grenadines",
     "official_name_fr": "Saint-Vincent-et-les Grenadines",
     "ISO3166-1-Alpha-2": "VC",
@@ -5851,7 +6089,8 @@
     "Geoname ID": 3577815,
     "EDGAR": "V1"
   },
-  "Sudan": {
+  {
+    "name": "Sudan",
     "official_name_en": "Sudan",
     "official_name_fr": "Soudan",
     "ISO3166-1-Alpha-2": "SD",
@@ -5879,7 +6118,8 @@
     "Geoname ID": 366755,
     "EDGAR": "V2"
   },
-  "Suriname": {
+  {
+    "name": "Suriname",
     "official_name_en": "Suriname",
     "official_name_fr": "Suriname",
     "ISO3166-1-Alpha-2": "SR",
@@ -5907,7 +6147,8 @@
     "Geoname ID": 3382998,
     "EDGAR": "V3"
   },
-  "Svalbard & Jan Mayen": {
+  {
+    "name": "Svalbard & Jan Mayen",
     "official_name_en": "Svalbard and Jan Mayen Islands",
     "official_name_fr": "Îles Svalbard-et-Jan Mayen",
     "ISO3166-1-Alpha-2": "SJ",
@@ -5935,7 +6176,8 @@
     "Geoname ID": 607072,
     "EDGAR": "L9"
   },
-  "Swaziland": {
+  {
+    "name": "Swaziland",
     "official_name_en": "Swaziland",
     "official_name_fr": "Swaziland",
     "ISO3166-1-Alpha-2": "SZ",
@@ -5963,7 +6205,8 @@
     "Geoname ID": 934841,
     "EDGAR": "V6"
   },
-  "Sweden": {
+  {
+    "name": "Sweden",
     "official_name_en": "Sweden",
     "official_name_fr": "Suède",
     "ISO3166-1-Alpha-2": "SE",
@@ -5991,7 +6234,8 @@
     "Geoname ID": 2661886,
     "EDGAR": "V7"
   },
-  "Switzerland": {
+  {
+    "name": "Switzerland",
     "official_name_en": "Switzerland",
     "official_name_fr": "Suisse",
     "ISO3166-1-Alpha-2": "CH",
@@ -6019,7 +6263,8 @@
     "Geoname ID": 2658434,
     "EDGAR": "V8"
   },
-  "Syria": {
+  {
+    "name": "Syria",
     "official_name_en": "Syrian Arab Republic",
     "official_name_fr": "République arabe syrienne",
     "ISO3166-1-Alpha-2": "SY",
@@ -6047,7 +6292,8 @@
     "Geoname ID": 163843,
     "EDGAR": "V9"
   },
-  "São Tomé & Príncipe": {
+  {
+    "name": "São Tomé & Príncipe",
     "official_name_en": "Sao Tome and Principe",
     "official_name_fr": "Sao Tomé-et-Principe",
     "ISO3166-1-Alpha-2": "ST",
@@ -6075,7 +6321,8 @@
     "Geoname ID": 2410758,
     "EDGAR": "S9"
   },
-  "Taiwan": {
+  {
+    "name": "Taiwan",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "TW",
@@ -6103,7 +6350,8 @@
     "Geoname ID": 1668284,
     "EDGAR": ""
   },
-  "Tajikistan": {
+  {
+    "name": "Tajikistan",
     "official_name_en": "Tajikistan",
     "official_name_fr": "Tadjikistan",
     "ISO3166-1-Alpha-2": "TJ",
@@ -6131,7 +6379,8 @@
     "Geoname ID": 1220409,
     "EDGAR": "2D"
   },
-  "Tanzania": {
+  {
+    "name": "Tanzania",
     "official_name_en": "United Republic of Tanzania",
     "official_name_fr": "République-Unie de Tanzanie",
     "ISO3166-1-Alpha-2": "TZ",
@@ -6159,7 +6408,8 @@
     "Geoname ID": 149590,
     "EDGAR": "W0"
   },
-  "Thailand": {
+  {
+    "name": "Thailand",
     "official_name_en": "Thailand",
     "official_name_fr": "Thaïlande",
     "ISO3166-1-Alpha-2": "TH",
@@ -6187,7 +6437,8 @@
     "Geoname ID": 1605651,
     "EDGAR": "W1"
   },
-  "Timor-Leste": {
+  {
+    "name": "Timor-Leste",
     "official_name_en": "Timor-Leste",
     "official_name_fr": "Timor-Leste",
     "ISO3166-1-Alpha-2": "TL",
@@ -6215,7 +6466,8 @@
     "Geoname ID": 1966436,
     "EDGAR": "Z3"
   },
-  "Togo": {
+  {
+    "name": "Togo",
     "official_name_en": "Togo",
     "official_name_fr": "Togo",
     "ISO3166-1-Alpha-2": "TG",
@@ -6243,7 +6495,8 @@
     "Geoname ID": 2363686,
     "EDGAR": "W2"
   },
-  "Tokelau": {
+  {
+    "name": "Tokelau",
     "official_name_en": "Tokelau",
     "official_name_fr": "Tokelau",
     "ISO3166-1-Alpha-2": "TK",
@@ -6271,7 +6524,8 @@
     "Geoname ID": 4031074,
     "EDGAR": "W3"
   },
-  "Tonga": {
+  {
+    "name": "Tonga",
     "official_name_en": "Tonga",
     "official_name_fr": "Tonga",
     "ISO3166-1-Alpha-2": "TO",
@@ -6299,7 +6553,8 @@
     "Geoname ID": 4032283,
     "EDGAR": "W4"
   },
-  "Trinidad & Tobago": {
+  {
+    "name": "Trinidad & Tobago",
     "official_name_en": "Trinidad and Tobago",
     "official_name_fr": "Trinité-et-Tobago",
     "ISO3166-1-Alpha-2": "TT",
@@ -6327,7 +6582,8 @@
     "Geoname ID": 3573591,
     "EDGAR": "W5"
   },
-  "Tunisia": {
+  {
+    "name": "Tunisia",
     "official_name_en": "Tunisia",
     "official_name_fr": "Tunisie",
     "ISO3166-1-Alpha-2": "TN",
@@ -6355,7 +6611,8 @@
     "Geoname ID": 2464461,
     "EDGAR": "W6"
   },
-  "Turkey": {
+  {
+    "name": "Turkey",
     "official_name_en": "Turkey",
     "official_name_fr": "Turquie",
     "ISO3166-1-Alpha-2": "TR",
@@ -6383,7 +6640,8 @@
     "Geoname ID": 298795,
     "EDGAR": "W8"
   },
-  "Turkmenistan": {
+  {
+    "name": "Turkmenistan",
     "official_name_en": "Turkmenistan",
     "official_name_fr": "Turkménistan",
     "ISO3166-1-Alpha-2": "TM",
@@ -6411,7 +6669,8 @@
     "Geoname ID": 1218197,
     "EDGAR": "2E"
   },
-  "Turks & Caicos Islands": {
+  {
+    "name": "Turks & Caicos Islands",
     "official_name_en": "Turks and Caicos Islands",
     "official_name_fr": "Îles Turques-et-Caïques",
     "ISO3166-1-Alpha-2": "TC",
@@ -6439,7 +6698,8 @@
     "Geoname ID": 3576916,
     "EDGAR": "W7"
   },
-  "Tuvalu": {
+  {
+    "name": "Tuvalu",
     "official_name_en": "Tuvalu",
     "official_name_fr": "Tuvalu",
     "ISO3166-1-Alpha-2": "TV",
@@ -6467,7 +6727,8 @@
     "Geoname ID": 2110297,
     "EDGAR": "2G"
   },
-  "U.S. Outlying Islands": {
+  {
+    "name": "U.S. Outlying Islands",
     "official_name_en": "",
     "official_name_fr": "",
     "ISO3166-1-Alpha-2": "UM",
@@ -6495,7 +6756,8 @@
     "Geoname ID": 5854968,
     "EDGAR": ""
   },
-  "U.S. Virgin Islands": {
+  {
+    "name": "U.S. Virgin Islands",
     "official_name_en": "United States Virgin Islands",
     "official_name_fr": "Îles Vierges américaines",
     "ISO3166-1-Alpha-2": "VI",
@@ -6523,7 +6785,8 @@
     "Geoname ID": 4796775,
     "EDGAR": ""
   },
-  "UK": {
+  {
+    "name": "UK",
     "official_name_en": "United Kingdom of Great Britain and Northern Ireland",
     "official_name_fr": "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
     "ISO3166-1-Alpha-2": "GB",
@@ -6551,7 +6814,8 @@
     "Geoname ID": 2635167,
     "EDGAR": "X0"
   },
-  "US": {
+  {
+    "name": "US",
     "official_name_en": "United States of America",
     "official_name_fr": "États-Unis d'Amérique",
     "ISO3166-1-Alpha-2": "US",
@@ -6579,7 +6843,8 @@
     "Geoname ID": 6252001,
     "EDGAR": ""
   },
-  "Uganda": {
+  {
+    "name": "Uganda",
     "official_name_en": "Uganda",
     "official_name_fr": "Ouganda",
     "ISO3166-1-Alpha-2": "UG",
@@ -6607,7 +6872,8 @@
     "Geoname ID": 226074,
     "EDGAR": "W9"
   },
-  "Ukraine": {
+  {
+    "name": "Ukraine",
     "official_name_en": "Ukraine",
     "official_name_fr": "Ukraine",
     "ISO3166-1-Alpha-2": "UA",
@@ -6635,7 +6901,8 @@
     "Geoname ID": 690791,
     "EDGAR": "2H"
   },
-  "United Arab Emirates": {
+  {
+    "name": "United Arab Emirates",
     "official_name_en": "United Arab Emirates",
     "official_name_fr": "Émirats arabes unis",
     "ISO3166-1-Alpha-2": "AE",
@@ -6663,7 +6930,8 @@
     "Geoname ID": 290557,
     "EDGAR": "C0"
   },
-  "Uruguay": {
+  {
+    "name": "Uruguay",
     "official_name_en": "Uruguay",
     "official_name_fr": "Uruguay",
     "ISO3166-1-Alpha-2": "UY",
@@ -6691,7 +6959,8 @@
     "Geoname ID": 3439705,
     "EDGAR": "X3"
   },
-  "Uzbekistan": {
+  {
+    "name": "Uzbekistan",
     "official_name_en": "Uzbekistan",
     "official_name_fr": "Ouzbékistan",
     "ISO3166-1-Alpha-2": "UZ",
@@ -6719,7 +6988,8 @@
     "Geoname ID": 1512440,
     "EDGAR": "2K"
   },
-  "Vanuatu": {
+  {
+    "name": "Vanuatu",
     "official_name_en": "Vanuatu",
     "official_name_fr": "Vanuatu",
     "ISO3166-1-Alpha-2": "VU",
@@ -6747,7 +7017,8 @@
     "Geoname ID": 2134431,
     "EDGAR": "2L"
   },
-  "Vatican City": {
+  {
+    "name": "Vatican City",
     "official_name_en": "Holy See",
     "official_name_fr": "Saint-Siège",
     "ISO3166-1-Alpha-2": "VA",
@@ -6775,7 +7046,8 @@
     "Geoname ID": 3164670,
     "EDGAR": "X4"
   },
-  "Venezuela": {
+  {
+    "name": "Venezuela",
     "official_name_en": "Venezuela (Bolivarian Republic of)",
     "official_name_fr": "Venezuela (République bolivarienne du)",
     "ISO3166-1-Alpha-2": "VE",
@@ -6803,7 +7075,8 @@
     "Geoname ID": 3625428,
     "EDGAR": ""
   },
-  "Vietnam": {
+  {
+    "name": "Vietnam",
     "official_name_en": "Viet Nam",
     "official_name_fr": "Viet Nam",
     "ISO3166-1-Alpha-2": "VN",
@@ -6831,7 +7104,8 @@
     "Geoname ID": 1562822,
     "EDGAR": "Q1"
   },
-  "Wallis & Futuna": {
+  {
+    "name": "Wallis & Futuna",
     "official_name_en": "Wallis and Futuna Islands",
     "official_name_fr": "Îles Wallis-et-Futuna",
     "ISO3166-1-Alpha-2": "WF",
@@ -6859,7 +7133,8 @@
     "Geoname ID": 4034749,
     "EDGAR": "X8"
   },
-  "Western Sahara": {
+  {
+    "name": "Western Sahara",
     "official_name_en": "Western Sahara",
     "official_name_fr": "Sahara occidental",
     "ISO3166-1-Alpha-2": "EH",
@@ -6887,7 +7162,8 @@
     "Geoname ID": 2461445,
     "EDGAR": "U5"
   },
-  "Yemen": {
+  {
+    "name": "Yemen",
     "official_name_en": "Yemen",
     "official_name_fr": "Yémen",
     "ISO3166-1-Alpha-2": "YE",
@@ -6915,7 +7191,8 @@
     "Geoname ID": 69543,
     "EDGAR": "T7"
   },
-  "Zambia": {
+  {
+    "name": "Zambia",
     "official_name_en": "Zambia",
     "official_name_fr": "Zambie",
     "ISO3166-1-Alpha-2": "ZM",
@@ -6943,7 +7220,8 @@
     "Geoname ID": 895949,
     "EDGAR": "Y4"
   },
-  "Zimbabwe": {
+  {
+    "name": "Zimbabwe",
     "official_name_en": "Zimbabwe",
     "official_name_fr": "Zimbabwe",
     "ISO3166-1-Alpha-2": "ZW",
@@ -6971,7 +7249,8 @@
     "Geoname ID": 878675,
     "EDGAR": "Y5"
   },
-  "Åland Islands": {
+  {
+    "name": "Åland Islands",
     "official_name_en": "Åland Islands",
     "official_name_fr": "Îles d'Åland",
     "ISO3166-1-Alpha-2": "AX",
@@ -6999,4 +7278,4 @@
     "Geoname ID": 661882,
     "EDGAR": ""
   }
-}
+]
