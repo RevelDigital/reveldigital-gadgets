@@ -214,7 +214,7 @@
 
 </body>
 <script type="text/javascript">
-    var prefs = new gadgets.Prefs();
+    var prefs;
     
     var jsonstandarLang = '{"ab":"Abkhazian","aa":"Afar","af":"Afrikaans","ak":"Akan","sq":"Albanian","am":"Amharic","ar":"Arabic","an":"Aragonese","hy":"Armenian","as":"Assamese","av":"Avaric","ae":"Avestan","ay":"Aymara","az":"Azerbaijani","bm":"Bambara","ba":"Bashkir","eu":"Basque","be":"Belarusian","bn":"Bengali (Bangla)","bh":"Bihari","bi":"Bislama","bs":"Bosnian","br":"Breton","bg":"Bulgarian","my":"Burmese","ca":"Catalan","ch":"Chamorro","ce":"Chechen","ny":"Chichewa, Chewa, Nyanja","zh":"Chinese","zh-Hans":"Chinese (Simplified)","zh-Hant":"Chinese (Traditional)","cv":"Chuvash","kw":"Cornish","co":"Corsican","cr":"Cree","hr":"Croatian","cs":"Czech","da":"Danish","dv":"Divehi, Dhivehi, Maldivian","nl":"Dutch","dz":"Dzongkha","en":"English","eo":"Esperanto","et":"Estonian","ee":"Ewe","fo":"Faroese","fj":"Fijian","fi":"Finnish","fr":"French","ff":"Fula, Fulah, Pulaar, Pular","gl":"Galician","gd":"Gaelic (Scottish)","gv":"Gaelic (Manx)","ka":"Georgian","de":"German","el":"Greek","kl":"Greenlandic","gn":"Guarani","gu":"Gujarati","ht":"Haitian Creole","ha":"Hausa","he":"Hebrew","hz":"Herero","hi":"Hindi","ho":"Hiri Motu","hu":"Hungarian","is":"Icelandic","io":"Ido","ig":"Igbo","id, in":"Indonesian","ia":"Interlingua","ie":"Interlingue","iu":"Inuktitut","ik":"Inupiak","ga":"Irish","it":"Italian","ja":"Japanese","jv":"Javanese","kl":"Kalaallisut, Greenlandic","kn":"Kannada","kr":"Kanuri","ks":"Kashmiri","kk":"Kazakh","km":"Khmer","ki":"Kikuyu","rw":"Kinyarwanda (Rwanda)","rn":"Kirundi","ky":"Kyrgyz","kv":"Komi","kg":"Kongo","ko":"Korean","ku":"Kurdish","kj":"Kwanyama","lo":"Lao","la":"Latin","lv":"Latvian (Lettish)","li":"Limburgish ( Limburger)","ln":"Lingala","lt":"Lithuanian","lu":"Luga-Katanga","lg":"Luganda, Ganda","lb":"Luxembourgish","gv":"Manx","mk":"Macedonian","mg":"Malagasy","ms":"Malay","ml":"Malayalam","mt":"Maltese","mi":"Maori","mr":"Marathi","mh":"Marshallese","mo":"Moldavian","mn":"Mongolian","na":"Nauru","nv":"Navajo","ng":"Ndonga","nd":"Northern Ndebele","ne":"Nepali","no":"Norwegian","nb":"Norwegian bokmål","nn":"Norwegian nynorsk","ii":"Nuosu","oc":"Occitan","oj":"Ojibwe","cu":"Old Church Slavonic, Old Bulgarian","or":"Oriya","om":"Oromo (Afaan Oromo)","os":"Ossetian","pi":"Pāli","ps":"Pashto, Pushto","fa":"Persian (Farsi)","pl":"Polish","pt":"Portuguese","pa":"Punjabi (Eastern)","qu":"Quechua","rm":"Romansh","ro":"Romanian","ru":"Russian","se":"Sami","sm":"Samoan","sg":"Sango","sa":"Sanskrit","sr":"Serbian","sh":"Serbo-Croatian","st":"Sesotho","tn":"Setswana","sn":"Shona","ii":"Sichuan Yi","sd":"Sindhi","si":"Sinhalese","ss":"Siswati","sk":"Slovak","sl":"Slovenian","so":"Somali","nr":"Southern Ndebele","es":"Spanish","su":"Sundanese","sw":"Swahili (Kiswahili)","ss":"Swati","sv":"Swedish","tl":"Tagalog","ty":"Tahitian","tg":"Tajik","ta":"Tamil","tt":"Tatar","te":"Telugu","th":"Thai","bo":"Tibetan","ti":"Tigrinya","to":"Tonga","ts":"Tsonga","tr":"Turkish","tk":"Turkmen","tw":"Twi","ug":"Uyghur","uk":"Ukrainian","ur":"Urdu","uz":"Uzbek","ve":"Venda","vi":"Vietnamese","vo":"Volapük","wa":"Wallon","cy":"Welsh","wo":"Wolof","fy":"Western Frisian","xh":"Xhosa","yi, ji":"Yiddish","yo":"Yoruba","za":"Zhuang, Chuang","zu":"Zulu"}';
     var jsonText = '{"Afrikaans":"AF","Albanian":"AL","Arabic":"AR","Armenian":"HY","Azerbaijani":"AZ","Basque":"EU","Belarusian":"BY","Bulgarian":"BU","British English":"LI","Burmese":"MY","Catalan":"CA","Chinese":"CN","Croatian":"TW","Czech":"CZ","Danish":"DK","Dhivehi":"DV","Dutch":"NL","English":"EN","Esperanto":"EO","Estonian":"ET","Farsi":"FA","Finnish":"FI","French":"FR","French Canadian":"FC","Galician":"GZ","German":"DL","Georgian":"KA","Greek":"GR","Gujarati":"GU","Haitian Creole":"HT","Hebrew":"IL","Hindi":"HI","Hungarian":"HU","Icelandic":"IS","Ido":"IO","Indonesian":"ID","Irish Gaelic":"IR","Italian":"IT","Japanese":"JP","Javanese":"JW","Khmer":"KM","Korean":"KR","Kurdish":"KU","Latin":"LA","Latvian":"LV","Lithuanian":"LT","Low German":"ND","Macedonian":"MK","Maltese":"MT","Mandinka":"GM","Maori":"MI","Marathi":"MR","Mongolian":"MN","Norwegian":"NO","Occitan":"OC","Pashto":"PS","Plautdietsch":"GN","Polish":"PL","Portuguese":"BR","Punjabi":"PA","Romanian":"RO","Russian":"RU","Serbian":"SR","Slovak":"SK","Slovenian":"SL","Spanish":"SP","Swahili":"SI","Swedish":"SW","Swiss":"CH","Tagalog":"TL","Tatarish":"TT","Thai":"TH","Turkish":"TR","Turkmen":"TK","Ukrainian":"UA","Uzbek":"UZ","Vietnamese":"VU","Welsh":"CY","Wolof":"SN","Yiddish":"JI"}';
@@ -227,27 +227,30 @@
     var langCode = 'en';
     var foundLocation = '';
     var foundCountryName = 'US';
-    if(prefs.getString("Location")!=null && prefs.getString("Location")!=""){
-        cityLocation = prefs.getString("Location");
-    }else{
-        if(prefs.getString("city")!=null && prefs.getString("city")!=""){
-            if(prefs.getString("state")!=null && prefs.getString("state")!=""){
-                cityLocation = prefs.getString("city") + ', ' + prefs.getString("state");
-            }
-            else if(prefs.getString("country")!=null && prefs.getString("country")!=""){
-                cityLocation = prefs.getString("city") + ', ' + prefs.getString("country");
-            }else{
-                alert("No Country or State Entered In Device Info!")
-            }
+
+    function load(){
+        prefs = new gadgets.Prefs();
+        if(prefs.getString("Location")!=null && prefs.getString("Location")!=""){
+            cityLocation = prefs.getString("Location");
         }else{
-            alert("Invalid City. No City Entered In Device Info");
+            if(prefs.getString("city")!=null && prefs.getString("city")!=""){
+                if(prefs.getString("state")!=null && prefs.getString("state")!=""){
+                    cityLocation = prefs.getString("city") + ', ' + prefs.getString("state");
+                }
+                else if(prefs.getString("country")!=null && prefs.getString("country")!=""){
+                    cityLocation = prefs.getString("city") + ', ' + prefs.getString("country");
+                }else{
+                    alert("No Country or State Entered In Device Info!")
+                }
+            }else{
+                alert("Invalid City. No City Entered In Device Info");
+            }
         }
+
+        document.getElementById("cityName").innerHTML = cityLocation;
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(resolveLocation);
     }
-
-    document.getElementById("cityName").innerHTML = cityLocation;
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(resolveLocation);
-
     function resolveLocation() {
         //d36c8e4bd2a20743
 
@@ -518,7 +521,7 @@
 
     }
 
-
+gadgets.util.registerOnLoadHandler(load);
 </script>
 </html>
         ]]>
