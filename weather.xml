@@ -262,38 +262,50 @@
                      return -1;
                  }
 
-                 alert(foundCountryName);
-                 for(var i = 0; i < countryLookup.length; i++) {
-                     if(countryLookup[i]["ISO3166-1-Alpha-2"].toLowerCase()==foundCountryName.toLowerCase()){
-                         var langCodeTemp = countryLookup[i]["Languages"].substr(0,2);
-                         alert(langCodeTemp);
-                         if(languagesStandard.hasOwnProperty(langCodeTemp)){
-                             var langName = languagesStandard[langCodeTemp];
-                             if(languagesNonStandard.hasOwnProperty(langName)){
-                                 alert(langName);
-                                 langCode = languagesNonStandard[langName];
-                             }
-                             else{
-                                 console.log("Could Not Find Language. Using English Default");
-                             }
-                         }
-                         else{
-                             console.log("Could Not Find Standard Language Code. Using English Default");
-                         }
-                     }
-                 }
-                 if(foundCountryName=='US'){
-                     isMetric = false;
-                 }
-                 updateWeather();
+            if(prefs.getString("Location")==null || prefs.getString("Location")=="") {
+                for (var i = 0; i < countryLookup.length; i++) {
+                    if (countryLookup[i]["ISO3166-1-Alpha-2"].toLowerCase() == foundCountryName.toLowerCase()) {
+                        var langCodeTemp = countryLookup[i]["Languages"].substr(0, 2);
+                        if (languagesStandard.hasOwnProperty(langCodeTemp)) {
+                            var langName = languagesStandard[langCodeTemp];
+                            if (languagesNonStandard.hasOwnProperty(langName)) {
+                                langCode = languagesNonStandard[langName];
+                            }
+                            else {
+                                console.log("Could Not Find Language. Using English Default");
+                            }
+                        }
+                        else {
+                            console.log("Could Not Find Standard Language Code. Using English Default");
+                        }
+                    }
+                }
+            }
+            else{
+                if(languagesStandard.hasOwnProperty(langCodeTemp)){
+                    var langName = languagesStandard[langCodeTemp];
+                    if(languagesNonStandard.hasOwnProperty(langName)){
+                        langCode = languagesNonStandard[langName];
+                    }
+                    else{
+                        console.log("Could Not Find Language. Using English Default");
+                    }
+                }
+                else{
+                    console.log("Could Not Find Standard Language Code. Using English Default");
+                }
+            }
+            if(foundCountryName=='US'){
+                isMetric = false;
+            }
+            updateWeather();
+                 });
              });
-         });
 
 
     }
 
     function updateWeather() {
-    if()
         var myVar = setInterval(mainWeather, 60 * 10000);
         mainWeather();
     }
