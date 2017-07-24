@@ -6,9 +6,9 @@
 
         <UserPref name="Location" display_name="Location (Optional, will defualt to device locaiton)" default_value="" />
         <UserPref name="isoCode" display_name="ISO3166-1-Alpha-2 Code (Optional)" default_value="" />
-        <UserPref name="state" display_name="state" required="true" default_value="*|DEVICE.LOCATION.CITY|*" datatype="hidden" />
-        <UserPref name="city" display_name="city" required="true" default_value="*|DEVICE.LOCATION.STATE|*" datatype="hidden" />
-        <UserPref name="country" display_name="country" required="true" default_value="*|DEVICE.LOCATION.COUNTRY|*" datatype="hidden" />
+        <UserPref name="state" display_name="state" required="true" default_value="*|DEVICE.LOCATION.CITY|*"  />
+        <UserPref name="city" display_name="city" required="true" default_value="*|DEVICE.LOCATION.STATE|*"  />
+        <UserPref name="country" display_name="country" required="true" default_value="*|DEVICE.LOCATION.COUNTRY|*" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
         
