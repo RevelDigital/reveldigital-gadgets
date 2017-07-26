@@ -31,6 +31,7 @@
             overflow: hidden;
         }
         thead{
+            font-size: x-large;
             text-align: center;
         }
         table {
@@ -67,10 +68,20 @@
             margin-bottom: 0;
         }
         .weatherIcon{
-            width: 25%;
+            width: 40%;
         }
         h2{
+            font-size: 5px;
+            font-size: 2vw;
+            margin-left: 5px;
             margin-top: 5px;
+        }
+        p{
+            font-size: 3px;
+            font-size: 1vw;
+        }
+        h6{
+            font-size: larger;
         }
 
 
@@ -365,10 +376,10 @@
                 i++;
             }
 
-            var maxTemp = Math.max.apply(null, temps)+20;
+            var maxTemp = Math.max.apply(null, temps)+10;
             var minTemp = Math.min.apply(null, temps)-1;
 
-            var maxWind = Math.max.apply(null, wind)+20;
+            var maxWind = Math.max.apply(null, wind)+10;
             var minWind = Math.min.apply(null, wind)-1;
 
             var maxRain = Math.max.apply(null, rainM)+.3;
@@ -389,7 +400,7 @@
                     },
                     baseline: minTemp-1,
                 },
-                height: ((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                height: ((document.height !== undefined) ? document.height : document.body.offsetHeight)/3,
                 legend:{position: 'none'},
                 chartArea:{left:0,top:0,width:'100%',height:'100%'},
                 backgroundColor:{fill:'none'},
@@ -410,7 +421,7 @@
                     },
                     baseline: minWind-.01
                 },
-                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/3,
                 legend:{position: 'none'},
                 chartArea:{left:0,top:0,width:'100%',height:'100%'},
                 backgroundColor:{fill:'none'},
@@ -430,7 +441,7 @@
                     },
                     baseline: minRain-.001
                 },
-                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/8,
+                height:((document.height !== undefined) ? document.height : document.body.offsetHeight)/3,
                 legend:{position: 'none'},
                 chartArea:{left:0,top:0,width:'100%',height:'100%'},
                 backgroundColor:{fill:'none'},
