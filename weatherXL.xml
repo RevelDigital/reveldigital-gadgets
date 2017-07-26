@@ -39,7 +39,7 @@
             margin-left: 3px;
             margin-bottom: 4px;
             width: 100%;
-            height: 100%;
+            height: 95%;
             text-align: center;
             table-layout: fixed;
         }
@@ -71,6 +71,7 @@
             width: 35%;
         }
         h2{
+            height: 5%;
             font-size: 5px;
             font-size: 2vw;
             margin-left: 5px;
