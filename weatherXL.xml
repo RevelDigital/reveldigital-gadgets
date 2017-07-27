@@ -251,13 +251,12 @@
             cityLocation = prefs.getString("Location");
         }else{
             if(prefs.getString("city")!=null && prefs.getString("city")!=""){
+                cityLocation = prefs.getString("city");
                 if(prefs.getString("state")!=null && prefs.getString("state")!=""){
-                    cityLocation = prefs.getString("city") + ', ' + prefs.getString("state");
+                     cityLocation = cityLocation + ', ' + prefs.getString("state");
                 }
-                else if(prefs.getString("country")!=null && prefs.getString("country")!=""){
-                    cityLocation = prefs.getString("city") + ', ' + prefs.getString("country");
-                }else{
-                    alert("No Country or State Entered In Device Info!")
+                if(prefs.getString("country")!=null && prefs.getString("country")!=""){
+                    cityLocation = cityLocation + ', ' + prefs.getString("country");
                 }
             }else{
                 alert("Invalid City. No City Entered In Device Info");
