@@ -77,7 +77,7 @@
         h2{
             height: 5%;
             font-size: 5px;
-            font-size: 2vw;
+            font-size: 3vw;
             margin-left: 5px;
             margin-bottom: 4px;
             margin-top: 4px;
