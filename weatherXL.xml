@@ -84,7 +84,7 @@
         }
         p{
             font-size: 5px;
-            font-size: 2vw;
+            font-size: 4vw;
         }
         h6{
             font-size: larger;
