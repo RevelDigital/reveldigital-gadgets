@@ -83,8 +83,8 @@
             margin-top: 10px;
         }
         p{
-            font-size: 3px;
-            font-size: 1vw;
+            font-size: 5px;
+            font-size: 2vw;
         }
         h6{
             font-size: larger;
