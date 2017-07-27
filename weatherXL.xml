@@ -79,8 +79,8 @@
             font-size: 5px;
             font-size: 2vw;
             margin-left: 5px;
-            margin-bottom: 8px;
-            margin-top: 10px;
+            margin-bottom: 4px;
+            margin-top: 4px;
         }
         p{
             font-size: 4px;
