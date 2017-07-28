@@ -227,6 +227,8 @@
     var langCode = 'en';
     var foundLocation = '';
     var foundCountryName = 'US';
+    lng = "";
+    lat = "";
 
     function load(){
         prefs = new gadgets.Prefs();
@@ -251,68 +253,9 @@
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(resolveLocation);
     }
-    function resolveLocation() {
-        //d36c8e4bd2a20743
-
-         $.getJSON('https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/rankings', function(data) {
-             countryLookup = data;
-             $.getJSON('https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/'+cityLocation+'.json', function(data) {
-                 if(data.hasOwnProperty('location')){
-                     foundCountryName = data["location"]["country_iso3166"];
-                     foundLocation = data["location"]["l"];
-                 }
-                 else if(data["response"].hasOwnProperty('results')){
-                     foundCountryName = data["response"]["results"][0]["country_iso3166"];
-                     foundLocation = data["response"]["results"][0]["l"];
-                 }
-                 else{
-                     console.log("Could Not Resolve Location! Is Your device Location Set?");
-                     return -1;
-                 }
-
-            if(prefs.getString("isoCode")==null || prefs.getString("isoCode")=="") {
-                for (var i = 0; i < countryLookup.length; i++) {
-                    if (countryLookup[i]["ISO3166-1-Alpha-2"].toLowerCase() == foundCountryName.toLowerCase()) {
-                        var langCodeTemp = countryLookup[i]["Languages"].substr(0, 2);
-                        if (languagesStandard.hasOwnProperty(langCodeTemp)) {
-                            var langName = languagesStandard[langCodeTemp];
-                            if (languagesNonStandard.hasOwnProperty(langName)) {
-                                langCode = languagesNonStandard[langName];
-                            }
-                            else {
-                                console.log("Could Not Find Language. Using English Default");
-                            }
-                        }
-                        else {
-                            console.log("Could Not Find Standard Language Code. Using English Default");
-                        }
-                    }
-                }
-            }
-            else{
-                langCodeTemp = prefs.getString("isoCode");
-                if(languagesStandard.hasOwnProperty(langCodeTemp)){
-                    var langName = languagesStandard[langCodeTemp];
-                    if(languagesNonStandard.hasOwnProperty(langName)){
-                        langCode = languagesNonStandard[langName];
-                    }
-                    else{
-                        console.log("Could Not Find Language. Using English Default");
-                    }
-                }
-                else{
-                    console.log("Could Not Find Standard Language Code. Using English Default");
-                }
-            }
-            if(foundCountryName=='US'){
-                isMetric = false;
-            }
-            updateWeather();
-                 });
-             });
-
-
-    }
+        var city = "Leeuwarden";
+    var state = "Friesland";
+    var country = "Nederland";
 
     function updateWeather() {
         var myVar = setInterval(mainWeather, 60 * 10000);
