@@ -244,6 +244,8 @@
     var langCode = 'en';
     var foundLocation = '';
     var foundCountryName = 'US';
+    lng = "";
+    lat = "";
 
 
     function load(){
