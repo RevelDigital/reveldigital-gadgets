@@ -180,7 +180,7 @@
 		}
 		
 		function setInfo(data) {
-			var debug = false;
+			var debug = true;
 			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
