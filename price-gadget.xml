@@ -3,7 +3,7 @@
 <ModulePrefs title="RevelDigital EMC Gadget" description="Gadget to use with EMC web application" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="Account Api Key" datatype="string" />
   <UserPref name="deviceNameTag" display_name="Default Device Group" datatype="string"  />
-  <UserPref name="gadgetKey" display_name="EMC Gadget Key" datatype="string" />
+  <UserPref name="itemKey" display_name="EMC Gadget Key" datatype="string" />
   <UserPref name="groupName" display_name="EMC Group Name" datatype="string" />
   <UserPref name="price-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
   <UserPref name="font-name" display_name="Google Font Name. More at https://www.google.com/fonts" datatype="string" default_value="Droid Sans"/>
@@ -101,7 +101,7 @@
 		  
 		
 		function requestData(store) {
-			var gadgetKey = prefs.getString("gadgetKey");
+			var gadgetKey = prefs.getString("itemKey");
 			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
@@ -155,9 +155,9 @@
 		
 		function requestDefault() {
 			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
-			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("itemKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
-				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("itemKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
 					var data = "";
 					if(!response && !!localStorage['cached_value']){ 
@@ -179,7 +179,7 @@
 		  
 		function setData(data) {
 			setInfo("Set data " + data);
-			console.log("Set data " + data + " for " + prefs.getString("gadgetKey"));
+			console.log("Set data " + data + " for " + prefs.getString("itemKey"));
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
 			var container = $('#dataContainer');
 			container.text(data);
