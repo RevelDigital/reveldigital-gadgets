@@ -107,8 +107,6 @@
 			var request = $.ajax({
 				url: root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
-					console.log("Request is " + root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName") + " for " + gadgetKey);
-					console.log("Response is " + response + " for " + gadgetKey);
 					var data = "";
 					if(!response && !!localStorage['cached_value']){ 
 						data = JSON.parse(localStorage['cached_value']);
@@ -179,7 +177,6 @@
 		  
 		function setData(data) {
 			setInfo("Set data " + data);
-			console.log("Set data " + data + " for " + prefs.getString("gadgetKey"));
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
 			var container = $('#dataContainer');
 			container.text(data);
