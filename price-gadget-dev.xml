@@ -87,8 +87,8 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								STORE = item.group_name;
-								requestData(item.group_name);	
+								STORE = encodeURI(item.group_name);
+								requestData(STORE);	
 							}	
 						}
 					});
@@ -144,7 +144,7 @@
 				timeout: TIMEOUT
 			}).fail( function( xhr, status ) {
 				if( status == "timeout" ) {
-					requestData(store);
+					requestData(STORE);
 				}
 			});
 		}
@@ -180,7 +180,7 @@
 		}
 		
 		function setInfo(data) {
-			var debug = true;
+			var debug = false;
 			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
