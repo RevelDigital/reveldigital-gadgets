@@ -101,12 +101,13 @@
 		  
 		
 		function requestData(store) {
+			var gadgetKey = prefs.getString("gadgetKey");
 			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
-			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
-				url: root + '?storeId=' + store + '&gadgetKey=' + prefs.getString("gadgetKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				url: root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
-					console.log("Response is " + response + " for " + prefs.getString("gadgetKey"));
+					console.log("Response is " + response + " for " + gadgetKey);
 					var data = "";
 					if(!response && !!localStorage['cached_value']){ 
 						data = JSON.parse(localStorage['cached_value']);
