@@ -3,7 +3,7 @@
 <ModulePrefs title="RevelDigital EMC Gadget" description="Gadget to use with EMC web application" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="Account Api Key" datatype="string" />
   <UserPref name="deviceNameTag" display_name="Default Device Group" datatype="string"  />
-  <UserPref name="itemKey" display_name="EMC Gadget Key" datatype="string" />
+  <UserPref name="emcGadget" display_name="EMC Gadget Key" datatype="string" />
   <UserPref name="gadgetKey" display_name="EMC Gadget Key" datatype="string" />
   <UserPref name="groupName" display_name="EMC Group Name" datatype="string" />
   <UserPref name="price-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:24px;" required="true" />
