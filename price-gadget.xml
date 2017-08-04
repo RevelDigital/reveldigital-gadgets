@@ -102,7 +102,7 @@
 		  
 		
 		function requestData(store) {
-			var gadgetKey = prefs.getString("itemKey");
+			var gadgetKey = prefs.getString("emcGadget");
 			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
 			setInfo('Request is  ' + root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
@@ -156,9 +156,9 @@
 		
 		function requestDefault() {
 			var root = 'https://emc.reveldigital.com/Api/RequestPrice';
-			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("itemKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
+			setInfo('Request is  ' + root + '?storeId=default' + '&gadgetKey=' + prefs.getString("emcGadget") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"));
 			var request = $.ajax({
-				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("itemKey") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
+				url: root + '?storeId=default' + '&gadgetKey=' + prefs.getString("emcGadget") + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
 					var data = "";
 					if(!response && !!localStorage['cached_value']){ 
@@ -180,7 +180,7 @@
 		  
 		function setData(data) {
 			setInfo("Set data " + data);
-			console.log("Set data " + data + " for " + prefs.getString("itemKey"));
+			console.log("Set data " + data + " for " + prefs.getString("emcGadget"));
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
 			var container = $('#dataContainer');
 			container.text(data);
