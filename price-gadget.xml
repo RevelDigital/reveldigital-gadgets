@@ -107,6 +107,7 @@
 			var request = $.ajax({
 				url: root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName"),
 				success: function(response) { 
+					console.log("Request is " + root + '?storeId=' + store + '&gadgetKey=' + gadgetKey + '&apiKey=' + prefs.getString("apikey") + '&groupId=' + prefs.getString("groupName") + " for " + gadgetKey);
 					console.log("Response is " + response + " for " + gadgetKey);
 					var data = "";
 					if(!response && !!localStorage['cached_value']){ 
