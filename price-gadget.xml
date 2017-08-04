@@ -175,6 +175,7 @@
 		
 		  
 		function setData(data) {
+			setInfo("Set data " + data);
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
 			var container = $('#dataContainer');
 			container.text(data);
@@ -186,7 +187,7 @@
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
 			}	
-			if (debug) {
+			if (true) {
 				console.log(data);
 			}
 		}
