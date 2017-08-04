@@ -86,8 +86,8 @@
 						if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
 							setInfo("Got group " + item.group_name + " comparing with " + prefs.getString("groupName"));
 							if (item.name.toLowerCase().trim() == prefs.getString("deviceNameTag").toLowerCase().trim()) {
-								STORE = item.group_name;
-								requestData(item.group_name);	
+								STORE = encodeURI(item.group_name);
+								requestData(STORE);	
 							}	
 						}
 					});
