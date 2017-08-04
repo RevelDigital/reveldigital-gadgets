@@ -174,13 +174,14 @@
 		
 		  
 		function setData(data) {
+			setInfo('New data is ' + data);
 			WebFont.load({ google: { families: [ prefs.getString("font-name") ] } }); 
 			var container = $('#dataContainer');
 			container.text(data);
 		}
 		
 		function setInfo(data) {
-			var debug = false;
+			var debug = true;
 			if (debug) {
 				var container = $('#infoContainer');
 				container.append(data + '<br>');
