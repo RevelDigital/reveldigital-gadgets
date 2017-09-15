@@ -122,11 +122,9 @@
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
         hammertime.on('swipeleft', function (ev) {
             mySwipe.next();
-            console.log("swipeLeft");
         });
         hammertime.on('swiperight', function (ev) {
             mySwipe.prev();
-            console.log("swipeRight");
         });
     }
 </script>
@@ -171,17 +169,16 @@
     var machine = {};
     var products = [];
     var totalProducts;
-    $.getJSON("http://revelvendingapi.azurewebsites.net/api/machines/"+regKey, function (data) {
+    $.getJSON("https://revelvendingapi.azurewebsites.net/api/machines/"+regKey, function (data) {
         machine = data;
         console.log(JSON.stringify(machine));
-        $.getJSON("http://revelvendingapi.azurewebsites.net/api/products", function (data) {
+        $.getJSON("https://revelvendingapi.azurewebsites.net/api/products", function (data) {
             products = data;
             for(var i = 0; i<products.length; i++){
                 products[i]["num"] = 1;
             }
             products = products.filter(image => machine.contents.filter(product => product.id == image.id).length>0);
             totalProducts = products.map(x => Object.assign(x, machine.contents.find(y => y.id == x.id)));
-            console.log(JSON.stringify(totalProducts));
 
             var template = $.templates("#productTemplate");
 
