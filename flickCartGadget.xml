@@ -1,1 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 
+<Module>
+
+  <ModulePrefs title="Vending Flick Cart Gadget" author="RevelDigital" background="transparent"/>
+
+  <UserPref name="deviceId" display_name="Device ID" default_value="*|DEVICE.REGISTRATIONKEY|*" />
+
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+
+  <Content type="html">
+
+  <![CDATA[
+    http://revelvendingapi.azurewebsites.net/api/machines/
+  
+
+
+  ]]>
+
+  </Content>
+
+</Module>
