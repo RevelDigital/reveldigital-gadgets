@@ -22,14 +22,14 @@
 
 
 
-  <link href="https://reveldigital.github.io/reveldigital-gadgets/third-party//main.css" rel="stylesheet">
+  <link href="https://reveldigital.github.io/reveldigital-gadgets/third-party/cartGadget/main.css" rel="stylesheet">
 
 </head>
 <body>
   <ion-app></ion-app>
-  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party//polyfills.js" type="text/javascript"></script>
-  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party//vendor.js" type="text/javascript"></script>
-  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party//main.js" type="text/javascript"></script>
+  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/cartGadget/polyfills.js" type="text/javascript"></script>
+  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/cartGadget/vendor.js" type="text/javascript"></script>
+  <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/cartGadget/main.js" type="text/javascript"></script>
   
   
   <script type="text/javascript">
