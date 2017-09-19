@@ -40,6 +40,10 @@
          prefs = new gadgets.Prefs();
         }
 
+        function clear() {
+          window['angularComponent'].zone.run(() => {window['angularComponent'].component.clear();})
+        }
+
     gadgets.util.registerOnLoadHandler(load);
   </script>
 </body>
