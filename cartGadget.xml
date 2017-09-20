@@ -38,6 +38,7 @@
 
       function load(){
          prefs = new gadgets.Prefs();
+         alert('alert works');
         }
 
         function clear() {
