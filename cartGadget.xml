@@ -38,19 +38,6 @@
 
       function load(){
          prefs = new gadgets.Prefs();
-         alert('alert works');
-            if (typeof Client != 'undefined') {
-              Client.callback('test');
-            }
-        }
-        function test(){
-            if (typeof Client != 'undefined') {
-              Client.callback('string');
-              Client.callback(['arrayString']);
-               
-            }else{
-                console.log("not working");
-            }
         }
         function clear() {
           window['angularComponent'].zone.run(() => {window['angularComponent'].component.clear();})
