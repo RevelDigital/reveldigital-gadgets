@@ -39,6 +39,9 @@
       function load(){
          prefs = new gadgets.Prefs();
          alert('alert works');
+            if (typeof Client != 'undefined') {
+              Client.callback('test');
+            }
         }
 
         function clear() {
