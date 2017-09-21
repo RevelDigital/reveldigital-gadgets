@@ -178,7 +178,7 @@
                 products[i]["num"] = 1;
             }
             products = products.filter(image => machine.contents.filter(product => product.id == image.id).length>0);
-            totalProducts = products.map(x => Object.assign(x, machine.contents.find(y => y.id == x.id)));
+            totalProducts = machine.contents.map(x => Object.assign(x, products.find(y => y.id == x.id)));
 
             var template = $.templates("#productTemplate");
 
