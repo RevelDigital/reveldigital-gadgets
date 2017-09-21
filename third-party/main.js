@@ -67,7 +67,7 @@ var HomePage = (function () {
         this.productsList = [];
     };
     HomePage.prototype.add = function (product) {
-        this.productsList.push(JSON.parse(product));
+        this.productsList.push(product);
     };
     HomePage.prototype.completeTransaction = function () {
         var jsonArray = [];
