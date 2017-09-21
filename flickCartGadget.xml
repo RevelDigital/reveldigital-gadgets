@@ -228,7 +228,10 @@
             });
 
             $(".cart").click(function() {
-                alert('Number: '+products[mySwipe.getPos()].num+' Name: '+products[mySwipe.getPos()].name);
+                if (typeof Client != 'undefined') {
+                    Client.callback(products[mySwipe.getPos()]);
+                }
+                
             });
         });
     });
