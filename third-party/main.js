@@ -82,7 +82,7 @@ var HomePage = (function () {
             }
         }
         if (typeof Client != 'undefined') {
-            Client.callback(jsonArray);
+            Client.callback(JSON.stringify(jsonArray));
         }
         else {
             alert('client was null');
