@@ -73,7 +73,7 @@ var HomePage = (function () {
         var jsonArray = [];
         for (var i = 0; i < this.productsList.length; i++) {
             try {
-                for (var num = 0; num < this.productsList[i].quantity; num++) {
+                for (var num = 0; num < this.productsList[i].num; num++) {
                     jsonArray.push({ "name": this.productsList[i].name, "id": i });
                 }
             }
@@ -93,7 +93,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/averyknight/Desktop/sliderCartIonic/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Current Cart</ion-title>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n\n    <div ion-item *ngFor="let product of productsList">\n      <ion-thumbnail item-left>\n      <img src="{{product.image_URL}}"/>\n      </ion-thumbnail>\n\n      <h2>{{product.name}}</h2>\n      <p>{{product.quantity}} &#8226; $5.00</p>\n      <button (click)="delete(product)" item-right ion-button color="danger">Remove From Cart</button>\n    </div>\n    <h3 class="center" style="margin-top: 40%" *ngIf="productsList.length==0">No Items Added To Cart</h3>\n  </ion-list>\n\n\n\n</ion-content>\n<ion-footer>\n  <div>\n    <p class="center">Sub-Total: $3.40\n    <p class="center">Tax: $0.00</p>\n    <p class="center">Amount Due: $3.40</p>\n    <button item-left (click)="completeTransaction()" style="margin-top: 10px; margin-bottom: 10px" class="center" ion-button>Complete Transaction</button>\n  </div>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/averyknight/Desktop/sliderCartIonic/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/averyknight/Desktop/sliderCartIonic/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Current Cart</ion-title>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n\n    <div ion-item *ngFor="let product of productsList">\n      <ion-thumbnail item-left>\n      <img src="{{product.image_URL}}"/>\n      </ion-thumbnail>\n\n      <h2>{{product.name}}</h2>\n      <p>{{product.num}} &#8226; $5.00</p>\n      <button (click)="delete(product)" item-right ion-button color="danger">Remove From Cart</button>\n    </div>\n    <h3 class="center" style="margin-top: 40%" *ngIf="productsList.length==0">No Items Added To Cart</h3>\n  </ion-list>\n\n\n\n</ion-content>\n<ion-footer>\n  <div>\n    <p class="center">Sub-Total: $3.40\n    <p class="center">Tax: $0.00</p>\n    <p class="center">Amount Due: $3.40</p>\n    <button item-left (click)="completeTransaction()" style="margin-top: 10px; margin-bottom: 10px" class="center" ion-button>Complete Transaction</button>\n  </div>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/averyknight/Desktop/sliderCartIonic/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]) === "function" && _b || Object])
 ], HomePage);
