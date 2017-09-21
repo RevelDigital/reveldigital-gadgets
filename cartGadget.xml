@@ -42,6 +42,9 @@
         function clear() {
           window['angularComponent'].zone.run(() => {window['angularComponent'].component.clear();})
         }
+        function add(json) {
+          window['angularComponent'].zone.run(() => {window['angularComponent'].component.add(json);})
+        }
 
     gadgets.util.registerOnLoadHandler(load);
   </script>
