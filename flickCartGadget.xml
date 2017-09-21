@@ -179,6 +179,7 @@
             }
             products = products.filter(image => machine.contents.filter(product => product.id == image.id).length>0);
             totalProducts = machine.contents.map(x => Object.assign(x, products.find(y => y.id == x.id)));
+            products = totalProducts;
 
             var template = $.templates("#productTemplate");
 
