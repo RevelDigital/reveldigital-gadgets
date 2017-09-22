@@ -74,7 +74,7 @@ var HomePage = (function () {
         for (var i = 0; i < this.productsList.length; i++) {
             try {
                 for (var num = 0; num < this.productsList[i].num; num++) {
-                    jsonArray.push({ "name": this.productsList[i].name, "id": i });
+                    jsonArray.push({ "name": this.productsList[i].name, "id": this.productsList[i].id });
                 }
             }
             catch (e) {
