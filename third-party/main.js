@@ -87,7 +87,7 @@ var HomePage = (function () {
     };
     HomePage.prototype.completeTransaction = function () {
         if (this.productsList.length > 0) {
-            if (this.totalDue > this.balance) {
+            if (this.totalDue+this.tax > this.balance) {
                 alert("Please Check Amount Due");
             }
             else {
