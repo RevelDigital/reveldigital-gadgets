@@ -46,7 +46,11 @@
           window['angularComponent'].zone.run(() => {window['angularComponent'].component.add(json);})
         }
         function balance(total) {
-          window['angularComponent'].zone.run(() => {window['angularComponent'].component.setBalance(total);})
+            if(isNaN(total)===false && total!=null) {
+              window['angularComponent'].zone.run(() => {
+                window['angularComponent'].component.setBalance(total);
+              })
+            }
         }
 
     gadgets.util.registerOnLoadHandler(load);
