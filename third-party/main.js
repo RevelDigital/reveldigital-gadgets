@@ -102,6 +102,12 @@ var HomePage = (function () {
                         console.log(e);
                     }
                 }
+		if (typeof Client != 'undefined') {
+	           Client.callback(JSON.stringify(jsonArray));
+	        }
+	        else {
+	           alert('client was null');
+	        }
                 console.log(JSON.stringify(jsonArray));
                 this.balance = 0;
                 this.clear();
