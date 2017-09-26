@@ -200,7 +200,7 @@ table.google-visualization-table-table,
     if (sourceIdentifier.match(/http(s)*:/)) {
       url = sourceIdentifier;
       try {
-        key = url.match(/spreadsheets\/d\/(.*?)\//)[1];
+        key = url.match(/spreadsheets\/d\/(?:e\/)(.*?)\//)[1];
       } catch (error) {
       }
     } else {
