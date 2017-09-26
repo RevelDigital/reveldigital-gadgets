@@ -12,7 +12,7 @@
 <body>
 <script>
     function post(json) {
-        $.post("https://requestb.in/12i6jh01",json,
+        $.post("http://revelvendingapi.azurewebsites.net/api/transactions",json,
             function (data, status) {
                 alert("Data: " + data + "\nStatus: " + status);
             });
