@@ -230,7 +230,7 @@
 
             $(".cart").click(function() {
                 if (typeof Client != 'undefined') {
-                    products[mySwipe.getPos()].id = mySwipe.getPos();
+                    products[mySwipe.getPos()]["itemIndex"] = mySwipe.getPos();
                     Client.callback(JSON.stringify(products[mySwipe.getPos()]));
                 }
                 
