@@ -124,7 +124,6 @@ var HomePage = (function () {
                     alert('client was null');
                 }
                 console.log(JSON.stringify({ "id": this.uuidv4(),
-                    "status": "",
                     "deviceId": "",
                     "tax": this.tax,
                     "transactionTotal": this.totalDue,
