@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Post" author="RevelDigital" background="transparent">
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    function post(json) {
+        $.post("https://requestb.in/12i6jh01",json,
+            function (data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+    }
+</script>
+</body>
+</script>
+]]>
+</Content>
+</Module>
