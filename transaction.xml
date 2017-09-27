@@ -18,6 +18,7 @@
 <body>
 <p id="infoContainer"></p>
 <script>
+    setInfo("Test");
     function post(json) {
         setInfo("Debug Mode");
         json = JSON.stringify(json);
