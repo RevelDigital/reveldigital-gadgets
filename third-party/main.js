@@ -114,7 +114,6 @@ var HomePage = (function () {
                 }
                 if (typeof Client != 'undefined') {
                     Client.callback(JSON.stringify({ "id": this.uuidv4(),
-                        "status": "",
                         "deviceId": "",
                         "tax": this.tax,
                         "transactionTotal": this.totalDue,
