@@ -104,7 +104,7 @@ var HomePage = (function () {
                 for (var i = 0; i < this.productsList.length; i++) {
                     try {
                         for (var num = 0; num < this.productsList[i].num; num++) {
-                            this.productsList[i]["status"] = null;
+                            this.productsList[i]["successful"] = null;
                             jsonArray.push(this.productsList[i]);
                         }
                     }
