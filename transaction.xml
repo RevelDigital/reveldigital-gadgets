@@ -26,7 +26,7 @@
 
         $.ajax({
             type: "POST",
-            url: "http://revelvendingapi.azurewebsites.net/api/transactions",
+            url: "https://revelvendingapi.azurewebsites.net/api/transactions",
             data: json,
             contentType: "application/json; charset=utf-8",
             crossDomain: true,
