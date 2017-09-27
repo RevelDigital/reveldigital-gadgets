@@ -19,6 +19,7 @@
 <p id="infoContainer"></p>
 <script>
     function post(json) {
+        setInfo("Debug Mode");
         json = JSON.stringify(json);
         setInfo(json);
 
