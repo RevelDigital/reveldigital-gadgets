@@ -4,22 +4,52 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        #infoContainer {
+            font-size: 75%;
+            color: red;
+        }
+    </style>
 </head>
 <body>
+<p id="infoContainer"></p>
 <script>
     function post(json) {
-        $.post("http://revelvendingapi.azurewebsites.net/api/transactions",json,
-            function (data, status) {
-                alert("Data: " + data + "\nStatus: " + status);
-            });
+        json = JSON.stringify(json);
+        setInfo(json);
+
+        $.ajax({
+            type: "POST",
+            url: "http://revelvendingapi.azurewebsites.net/api/transactions",
+            data: json,
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                setInfo(success);
+            },
+            error: function (jqXHR, status) {
+                setInfo('fail ' + status.code);
+            }
+        });
+    }
+
+    function setInfo(data) {
+        var debug = true;
+        if (debug) {
+            var container = $('#infoContainer');
+            container.append(data + '<br>');
+        }
+        if (debug) {
+            console.log(data);
+        }
     }
 </script>
 </body>
-</script>
 ]]>
 </Content>
 </Module>
