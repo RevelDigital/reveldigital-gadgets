@@ -2,15 +2,14 @@
 
 <Module>
 
-  <ModulePrefs title="Vending Flick Cart Gadget" author="RevelDigital" background="transparent"/>
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
 
-  <UserPref name="regKey" display_name="regKey" default_value="*|DEVICE.REGISTRATIONKEY|*" />
-
-  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-
-  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-
-  <Content type="html">
+        <UserPref name="devRegKey" display_name="Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" />   
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
+     
+    </ModulePrefs>
+<Content type="html">
 
   <![CDATA[
 <!DOCTYPE html>
