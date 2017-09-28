@@ -19,7 +19,9 @@
 <body>
 <p id="infoContainer"></p>
 <script>
-    setInfo("Test");
+    var prefs = new gadgets.Prefs();
+    var test = prefs.getString("devRegKey");
+    setInfo(test);
     function post(json) {
         setInfo("Debug Mode");
         json = JSON.stringify(json);
