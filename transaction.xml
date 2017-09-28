@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Post" author="RevelDigital" background="transparent">
+    <UserPref name="devRegKey" display_name="Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" />  
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
