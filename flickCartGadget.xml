@@ -164,7 +164,7 @@
 
 <script>
     var prefs = new gadgets.Prefs();
-    var regKey = "101ea796-6200-497f-9bb2-1b8c5118579d";//prefs.getString("regKey");
+    var regKey = prefs.getString("devRegKey");//"101ea796-6200-497f-9bb2-1b8c5118579d";
     var machine = {};
     var products = [];
     var totalProducts;
