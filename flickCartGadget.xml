@@ -210,6 +210,7 @@
             lastEl.css('margin-left', '4px');
             lastEl.css('margin-bottom', '4px');
             lastEl.css('margin-top', '10px');
+            Client.callback("ready");
             $(".add").click(function() {
                 if(products[mySwipe.getPos()].num<5) {
                     products[mySwipe.getPos()].num += 1;
