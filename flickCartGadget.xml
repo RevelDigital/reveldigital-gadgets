@@ -189,7 +189,6 @@
             var lastEl;
             var elem = document.getElementById('mySwipe');
             window.mySwipe = Swipe(elem, {
-                // startSlide: 4,
                 continuous: false,
                 isableScroll: false,
                 callback: function(index, element) {
@@ -238,7 +237,7 @@
         });
     });
 
-    function showSlide (index) {
+    function showSlide(index) {
         mySwipe.slide(index, 300);
     }
 
