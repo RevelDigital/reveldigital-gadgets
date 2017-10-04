@@ -112,9 +112,6 @@
 <div>
 
 </div>
-
-
-
 <script type="text/javascript">
     window.onload = function() {
         var hammertime = new Hammer(document.body);
@@ -127,8 +124,6 @@
         });
     }
 </script>
-
-
 <script id="productTemplate" type="text/x-jsrender">
             <div>
             <div class="mdl-layout demo-card-square mdl-card mdl-shadow--2dp">
@@ -161,7 +156,6 @@
             </div>
         </div>
 </script>
-
 <script>
     var prefs = new gadgets.Prefs();
     var regKey = prefs.getString("devRegKey");
@@ -170,7 +164,6 @@
     var totalProducts;
     $.getJSON("https://revelvendingapi.azurewebsites.net/api/machines/"+regKey, function (data) {
         machine = data;
-        console.log(JSON.stringify(machine));
         $.getJSON("https://revelvendingapi.azurewebsites.net/api/products", function (data) {
             products = data;
             for(var i = 0; i<products.length; i++){
@@ -236,30 +229,18 @@
             });
         });
     });
-
     function showSlide(index) {
         mySwipe.slide(index, 300);
     }
-
     function resetCart(){
         for(var i = 0; i<products.length; i++){
             products[i]["num"] = 1;
             document.getElementsByClassName("number")[i].innerHTML = products[mySwipe.getPos()].num;
         }
     }
-
-
-
 </script>
-
-
-
-
 </body>
 </html>
-  
-
-
   ]]>
 
   </Content>
