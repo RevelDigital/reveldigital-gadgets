@@ -196,7 +196,6 @@ table.google-visualization-table-table,
   }
   
   function googleUrl(sourceIdentifier) {
-    console.log("Spreadsheet: " + sourceIdentifier);
     var url, key;
     if (sourceIdentifier.match(/http(s)*:/)) {
       url = sourceIdentifier;
@@ -207,7 +206,6 @@ table.google-visualization-table-table,
     } else {
       key = sourceIdentifier;
     }
-    console.log("Key: " + key);
     var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?ph=0"; // ph = placeholder
     
     if (prefs.getBool("hasTitle")) {
@@ -219,7 +217,6 @@ table.google-visualization-table-table,
     if (prefs.getString("sheet") != null) {
       ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
     }
-    console.log("URL: " + ret);
     return ret;
   }
   
