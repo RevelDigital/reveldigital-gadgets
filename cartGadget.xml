@@ -83,7 +83,7 @@
           })
         }
     }
-    function overlayOnT() {
+    function overlayOn() {
         document.getElementById("overlay").style.display = "block";
     }
 
