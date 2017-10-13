@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
+    <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+	* {
+        box-sizing: border-box;
+    }   
+
+    body {
+        background-color: #00000010;
+        font-family: 'Roboto', sans-serif;
+        background-image: 
+        linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)), 
+        url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
+        
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+        
+    }
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+    }
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+
+    html {
+        font-family: "Lucida Sans", sans-serif;
+    }
+
+    .data-field {
+        background-color: white;
+        padding: 5px;
+    }
+
+    .big-label {
+        background-color: green;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .blank_row {
+        height: 10px !important;
+    }
+
+    .company-logo {
+        max-width: 15vw;
+        max-height: 15vh;
+    }
+
+    .float-left {
+        float: left;
+    }
+
+    .green-pct {
+        background-color: green;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .shaded-background {
+        background-image: linear-gradient(rgba(53, 53, 53, 0.5),rgba(53, 53, 53, 0.5));
+    }
+
+    .green-header {
+        background-color: green;
+        border-radius: 5px;
+    }
+
+    .green-header {
+        background-color: green;
+        border-radius: 5px;
+    }
+
+    .table-data-field {
+        background-image: linear-gradient(rgba(53, 53, 53, 0.5),rgba(53, 53, 53, 0.5));
+        width: 100%;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<body>
+    <div class="row">     
+        <div class="col-9">
+            <img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
+        </div>             
+        <div class="col-3">
+            <table border="0">
+                <tr>
+                    <td colspan="2">
+                        <label>Fecha </label><span id='fecha-field' class='data-field'></span>
+                    </td>
+                </tr>
+                <tr class="blank_row">
+                        <td colspan="2"></td>
+                    </tr>
+                <tr>
+                    <td>
+                        <label>Dia </label><span id='dia-field' class='data-field'></span>
+                    </td>
+                    <td>
+                        <label>Acumulado mes </label><span id='acumulado-field' class='data-field'></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">  
+        <div class="col-9">
+            <span class='big-label'>Horno 1</span>
+        </div>
+        <div class="col-3">
+            <table border="0" cellpadding="5">
+                <tr>
+                    <td align="center">
+                        <span id="index-field-1"></span>
+                    </td>
+                    <td align="center">
+                        <span id='data-field-left-1' class='data-field'></span><span class="green-pct">%</span>
+                    </td align="center">
+                    <td align="center">
+                        <span id='data-field-right-1' class='data-field'></span><span class="green-pct">%</span>
+                    </td>
+                </tr>
+                <tr class="blank_row">
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="index-field-2"></span>
+                    </td>
+                    <td>
+                        <span id='data-field-left-2' class='data-field'></span><span class="green-pct">%</span>
+                    </td>
+                    <td>
+                        <span id='data-field-right-2' class='data-field'></span><span class="green-pct">%</span>
+                    </td>
+                </tr>
+                <tr class="blank_row">
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="index-field-3"></span>
+                    </td>
+                    <td>
+                        <span id='data-field-left-3' class='data-field'></span><span class="green-pct">%</span>
+                    </td>
+                    <td>
+                        <span id='data-field-right-3' class='data-field'></span><span class="green-pct">%</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">     
+        <div class="col-9">
+            <img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
+        </div>             
+        <div class="col-3">
+                <span class='big-label'>Horno 1</span>
+        </div>
+    </div>
+    <div class="row shaded-background">     
+        <div class="col-4">
+            <label>Pallets fabricados al mes </label><span id="pallets-mes-field" class='data-field'></span>
+        </div>             
+        <div class="col-4">
+            <label>Pallets rechazados en el mes </label><span id="pallets-recha-field" class='data-field'></span>
+        </div>
+        <div class="col-4">
+            <label>Pallets rechazados / fabricados en el mes </label><span id="recha-fabricado-field" class='data-field'></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table border="0" align="center" cellpadding="10">
+                <tr>
+                    <th></th>
+                    <th class="green-header">Modelo</th>
+                    <th class="green-header">Inicio serie</th>
+                    <th class="green-header">№ pallets rechazados ayer</th>
+                    <th class="green-header">№ pallets rechazados erie</th>
+                    <th class="green-header">Indice de rechazo</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-1"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-1" class='table-data-field'></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-2"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-2" class='table-data-field'></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-3"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-3" class='table-data-field'></span>
+                    </td>
+                </tr>
+            </table>
+        </div>   
+    </div>
+</body>
+
+<script type="text/javascript">
+    var prefs = new gadgets.Prefs();
+    var addr = prefs.getString("serverAddr");
+
+    var ENDPOINT = "http://127.0.0.1:8887";
+
+    function getFile(filename, action) {
+        console.log("getting file " + filename);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", ENDPOINT + "/" + filename, true);
+        xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+            action(xhr.responseText);
+            } else {
+            console.error(xhr.statusText);
+            }
+        }
+        };
+        xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+        };
+        xhr.send(null);
+    }
+
+    function processPlantData(data) {
+        var array = data.split(/\r?\n/);
+        if (array.length >= 4) {
+            var fechaField = document.getElementById("fecha-field");
+            fechaField.innerText = array[1];
+
+            var diaField = document.getElementById("dia-field");
+            diaField.innerText = array[2];
+
+            var acumuladoField = document.getElementById("acumulado-field");
+            acumuladoField.innerText = array[3];
+        }
+    };
+
+    function processLinearData(data) {
+        var array = data.split(/\r?\n/);
+        if (array.length >= 11) {
+            var indexField = document.getElementById("index-field-1");
+            var leftField = document.getElementById("data-field-left-1");
+            var rightField = document.getElementById("data-field-right-1");
+            indexField.innerText = array[2];
+            leftField.innerText = array[3];
+            rightField.innerText = array[4];
+
+            indexField = document.getElementById("index-field-2");
+            leftField = document.getElementById("data-field-left-2");
+            rightField = document.getElementById("data-field-right-2");
+            indexField.innerText = array[5];
+            leftField.innerText = array[6];
+            rightField.innerText = array[7];
+
+            indexField = document.getElementById("index-field-3");
+            leftField = document.getElementById("data-field-left-3");
+            rightField = document.getElementById("data-field-right-3");
+            indexField.innerText = array[8];
+            leftField.innerText = array[9];
+            rightField.innerText = array[10];
+        }
+    };
+
+    function processRechazosData(data) {
+        var array = data.split(/\r?\n/);
+        if (array.length >= 20) {
+            var tableFieldIndex = document.getElementById("table-field-index-1");
+            var tableFieldModel = document.getElementById("table-field-model-1");
+            var tableFieldSeries = document.getElementById("table-field-series-1");
+            var tableFieldAyer = document.getElementById("table-field-ayer-1");
+            var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
+            var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
+
+            tableFieldIndex.innerText = array[2];
+            tableFieldModel.innerText = array[3];
+            tableFieldSeries.innerText = array[4];
+            tableFieldAyer.innerText = array[5];
+            tableFieldPalletsRecha.innerText = array[6];
+            tableFieldIndeceRechazo.innerText = array[7];
+
+            tableFieldIndex = document.getElementById("table-field-index-2");
+            tableFieldModel = document.getElementById("table-field-model-2");
+            tableFieldSeries = document.getElementById("table-field-series-2");
+            tableFieldAyer = document.getElementById("table-field-ayer-2");
+            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
+            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
+
+            tableFieldIndex.innerText = array[8];
+            tableFieldModel.innerText = array[9];
+            tableFieldSeries.innerText = array[10];
+            tableFieldAyer.innerText = array[11];
+            tableFieldPalletsRecha.innerText = array[12];
+            tableFieldIndeceRechazo.innerText = array[13];
+
+            tableFieldIndex = document.getElementById("table-field-index-3");
+            tableFieldModel = document.getElementById("table-field-model-3");
+            tableFieldSeries = document.getElementById("table-field-series-3");
+            tableFieldAyer = document.getElementById("table-field-ayer-3");
+            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
+            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
+
+            tableFieldIndex.innerText = array[14];
+            tableFieldModel.innerText = array[15];
+            tableFieldSeries.innerText = array[16];
+            tableFieldAyer.innerText = array[17];
+            tableFieldPalletsRecha.innerText = array[18];
+            tableFieldIndeceRechazo.innerText = array[19];
+        }
+    };
+
+    function processRechaPlantData(data) {
+        var array = data.split(/\r?\n/);
+        if (array.length >= 3) {
+            var palletsField = document.getElementById("pallets-mes-field");
+            var palletsRechaField = document.getElementById("pallets-recha-field");
+            var rechaFabricadoField = document.getElementById("recha-fabricado-field");
+            palletsField.innerText = array[0];
+            palletsRechaField.innerText = array[1];
+            rechaFabricadoField.innerText = array[2];
+        }
+    };
+
+    function init() {
+        getFile("datosplanta.txt", processPlantData);
+        getFile("datoslineas.txt", processLinearData);
+        getFile("datosrechazos.txt", processRechazosData);
+        getFile("datrechaplanta.txt", processRechaPlantData);
+    }
+		  
+    gadgets.util.registerOnLoadHandler(init);
+</script>]]>
+</Content>
+</Module>
