@@ -27,7 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsviews/0.9.88/jquery.observable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsviews/0.9.88/jquery.views.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
-    <script src="nutritionLabel-min.js"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/nutritionLabel-min.js"></script>
 
     <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/swipe.js" type="text/javascript"></script>
