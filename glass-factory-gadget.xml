@@ -101,6 +101,11 @@
         background-image: linear-gradient(rgba(53, 53, 53, 0.5),rgba(53, 53, 53, 0.5));
         width: 100%;
     }
+    
+    #infoContainer {
+	font-size: 75%;
+	color: red;
+    }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -271,6 +276,7 @@
             </table>
         </div>   
     </div>
+    <p id="infoContainer"></p>
 </body>
 
 <script type="text/javascript">
@@ -280,7 +286,7 @@
     var ENDPOINT = "http://192.168.1.31:8887";
 
     function getFile(filename, action) {
-        console.log("getting file " + filename);
+        setInfo("getting file " + filename);
         var xhr = new XMLHttpRequest();
         xhr.open("GET", ENDPOINT + "/" + filename, true);
         xhr.onload = function (e) {
@@ -299,7 +305,7 @@
     }
 
     function processPlantData(data) {
-	console.log("processPlantData");
+	setInfo("processPlantData");
         var array = data.split(/\r?\n/);
         if (array.length >= 4) {
             var fechaField = document.getElementById("fecha-field");
@@ -314,7 +320,7 @@
     };
 
     function processLinearData(data) {
-	console.log("processLinearData");
+	setInfo("processLinearData");
         var array = data.split(/\r?\n/);
         if (array.length >= 11) {
             var indexField = document.getElementById("index-field-1");
@@ -341,7 +347,7 @@
     };
 
     function processRechazosData(data) {
-	console.log("processRechazosData");
+	setInfo("processRechazosData");
         var array = data.split(/\r?\n/);
         if (array.length >= 20) {
             var tableFieldIndex = document.getElementById("table-field-index-1");
@@ -389,7 +395,7 @@
     };
 
     function processRechaPlantData(data) {
-	console.log("processRechaPlantData");
+	setInfo("processRechaPlantData");
         var array = data.split(/\r?\n/);
         if (array.length >= 3) {
             var palletsField = document.getElementById("pallets-mes-field");
@@ -402,7 +408,7 @@
     };
 
     function init() {
-	console.log("init gadget");
+	setInfo("init gadget");
         getFile("datosplanta.txt", processPlantData);
         getFile("datoslineas.txt", processLinearData);
         getFile("datosrechazos.txt", processRechazosData);
@@ -410,6 +416,17 @@
     }
 		  
     gadgets.util.registerOnLoadHandler(init);
+
+    function setInfo(data) {
+	var debug = true;
+	if (debug) {
+	    var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (debug) {
+			console.log(data);
+		}
+	}
 </script>]]>
 </Content>
 </Module>
