@@ -299,6 +299,7 @@
     }
 
     function processPlantData(data) {
+	console.log("processPlantData");
         var array = data.split(/\r?\n/);
         if (array.length >= 4) {
             var fechaField = document.getElementById("fecha-field");
@@ -313,6 +314,7 @@
     };
 
     function processLinearData(data) {
+	console.log("processLinearData");
         var array = data.split(/\r?\n/);
         if (array.length >= 11) {
             var indexField = document.getElementById("index-field-1");
@@ -339,6 +341,7 @@
     };
 
     function processRechazosData(data) {
+	console.log("processRechazosData");
         var array = data.split(/\r?\n/);
         if (array.length >= 20) {
             var tableFieldIndex = document.getElementById("table-field-index-1");
@@ -386,6 +389,7 @@
     };
 
     function processRechaPlantData(data) {
+	console.log("processRechaPlantData");
         var array = data.split(/\r?\n/);
         if (array.length >= 3) {
             var palletsField = document.getElementById("pallets-mes-field");
@@ -398,6 +402,7 @@
     };
 
     function init() {
+	console.log("init gadget");
         getFile("datosplanta.txt", processPlantData);
         getFile("datoslineas.txt", processLinearData);
         getFile("datosrechazos.txt", processRechazosData);
