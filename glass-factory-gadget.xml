@@ -277,7 +277,7 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
 
-    var ENDPOINT = "http://127.0.0.1:8887";
+    var ENDPOINT = "http://192.168.1.31:8887";
 
     function getFile(filename, action) {
         console.log("getting file " + filename);
