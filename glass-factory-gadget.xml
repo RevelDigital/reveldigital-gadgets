@@ -285,7 +285,7 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
 
-    var ENDPOINT = "https://192.168.1.31";
+    var ENDPOINT = "https://192.168.1.31:8080";
 
     function getFile(filename, action) {
         setInfo("getting file " + filename);
