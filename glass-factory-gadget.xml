@@ -285,7 +285,7 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
 
-    var ENDPOINT = "https://localhost:8080";
+    var ENDPOINT = "https://localhost/Shared";
 
     function getFile(filename, action) {
         setInfo("getting file " + filename);
