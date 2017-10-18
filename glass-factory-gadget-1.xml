@@ -186,7 +186,7 @@
 			</div>     
   
 			<div class="col-3">
-				<table border="0" class="bottom-aligned">
+				<table border="0">
 					<tr>
 						<td colspan="2">
 							<label class="data-label">Fecha</label>                           
