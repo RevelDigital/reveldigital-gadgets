@@ -12,6 +12,16 @@
 		box-sizing: border-box;
 	}
 
+ 	html,body { 
+		height: 100%; 
+		margin: 0px; 
+		padding: 0px;
+	}
+	
+	html {
+		font-family: "Lucida Sans", sans-serif;
+	}
+
 	body {
 		background-color: #00000010;
 		font-family: 'Roboto', sans-serif;
@@ -49,10 +59,6 @@
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
-
-	html {
-		font-family: "Lucida Sans", sans-serif;
-	}
 
 	.data-field {
 		background-color: white;
