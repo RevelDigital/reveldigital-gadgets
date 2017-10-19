@@ -329,67 +329,6 @@
         }
     };
 
-    function processRechazosData(data) {
-		setInfo("processRechazosData");
-        var array = data.split(/\r?\n/);
-        if (array.length >= 20) {
-            var tableFieldIndex = document.getElementById("table-field-index-1");
-            var tableFieldModel = document.getElementById("table-field-model-1");
-            var tableFieldSeries = document.getElementById("table-field-series-1");
-            var tableFieldAyer = document.getElementById("table-field-ayer-1");
-            var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
-            var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
-
-            tableFieldIndex.innerText = array[2];
-            tableFieldModel.innerText = array[3];
-            tableFieldSeries.innerText = array[4];
-            tableFieldAyer.innerText = array[5];
-            tableFieldPalletsRecha.innerText = array[6];
-            tableFieldIndeceRechazo.innerText = array[7];
-
-            tableFieldIndex = document.getElementById("table-field-index-2");
-            tableFieldModel = document.getElementById("table-field-model-2");
-            tableFieldSeries = document.getElementById("table-field-series-2");
-            tableFieldAyer = document.getElementById("table-field-ayer-2");
-            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
-            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
-
-            tableFieldIndex.innerText = array[8];
-            tableFieldModel.innerText = array[9];
-            tableFieldSeries.innerText = array[10];
-            tableFieldAyer.innerText = array[11];
-            tableFieldPalletsRecha.innerText = array[12];
-            tableFieldIndeceRechazo.innerText = array[13];
-
-            tableFieldIndex = document.getElementById("table-field-index-3");
-            tableFieldModel = document.getElementById("table-field-model-3");
-            tableFieldSeries = document.getElementById("table-field-series-3");
-            tableFieldAyer = document.getElementById("table-field-ayer-3");
-            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
-            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
-
-            tableFieldIndex.innerText = array[14];
-            tableFieldModel.innerText = array[15];
-            tableFieldSeries.innerText = array[16];
-            tableFieldAyer.innerText = array[17];
-            tableFieldPalletsRecha.innerText = array[18];
-            tableFieldIndeceRechazo.innerText = array[19];
-        }
-    };
-
-    function processRechaPlantData(data) {
-		setInfo("processRechaPlantData");
-        var array = data.split(/\r?\n/);
-        if (array.length >= 3) {
-            var palletsField = document.getElementById("pallets-mes-field");
-            var palletsRechaField = document.getElementById("pallets-recha-field");
-            var rechaFabricadoField = document.getElementById("recha-fabricado-field");
-            palletsField.innerText = array[0];
-            palletsRechaField.innerText = array[1];
-            rechaFabricadoField.innerText = array[2];
-        }
-    };
-
     function init() {
 		setInfo("init gadget " + ENDPOINT);
 		
@@ -398,12 +337,6 @@
 		
 		getFile("datoslineas.txt", processLinearData);
 		setInterval(function() { getFile("datoslineas.txt", processLinearData) }, INTERVAL);
-		
-		getFile("datosrechazos.txt", processRechazosData);
-		setInterval(function() { getFile("datosrechazos.txt", processRechazosData) }, INTERVAL);
-		
-		getFile("datrechaplanta.txt", processRechaPlantData);
-		setInterval(function() { getFile("datrechaplanta.txt", processRechaPlantData) }, INTERVAL);
     }
 		  
     gadgets.util.registerOnLoadHandler(init);
