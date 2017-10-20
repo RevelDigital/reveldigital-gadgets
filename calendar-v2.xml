@@ -12,7 +12,7 @@
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
   <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
     <EnumValue value="365" display_value="No Limit" />
-    <EnumValue value="1" display_value="Today" />
+    <EnumValue value="0" display_value="Today" />
     <EnumValue value="7" display_value="Next 7 Days" />
     <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
