@@ -24,19 +24,37 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        #infoContainer {
+            font-size: 75%;
+            color: red;
+        }
     </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
     <div class="background"></div>
+    <p id="infoContainer"></p>
 </body>
 
 <script type="text/javascript">
     var prefs = new gadgets.Prefs();
-    var addr = prefs.getString("serverAddr");
+    var imgUrl = prefs.getString("ImageURL");
+    setInfo(imgUrl);
 
     function init() {
-		console.log("init gadget");
+		setInfo("init gadget");
     }
+
+    function setInfo(data) {
+		var debug = true;
+		if (debug) {
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (debug) {
+			console.log(data);
+		}
+	}
 		  
     gadgets.util.registerOnLoadHandler(init);
 </script>]]>
