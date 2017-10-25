@@ -178,11 +178,11 @@
 
 	.data-field:empty {
 		border: 3px solid blue;
-		
+		display: none !important;
 	}
 
-	.data-field:empty + span {
-		border: 3px solid blue;
+	.data-field:empty + span, .green-pct {
+		border: 3px solid blue !important;
 	}
 
 	.big-label:empty {
