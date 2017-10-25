@@ -185,6 +185,10 @@
 		border: 3px solid blue !important;
 	}
 
+	span:empty + span {
+		border: 3px solid blue !important;
+	}
+
 	.big-label:empty {
 		display: none;
 	}
