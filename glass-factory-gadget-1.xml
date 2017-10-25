@@ -177,11 +177,12 @@
 	}
 
 	.data-field:empty {
-		display: none;
+		border: 3px solid blue;
+		
 	}
 
 	.data-field:empty + span {
-		display: none;
+		border: 3px solid blue;
 	}
 
 	.big-label:empty {
