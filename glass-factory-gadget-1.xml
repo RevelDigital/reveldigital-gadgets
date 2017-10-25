@@ -345,9 +345,9 @@
 			var indexField = document.getElementById("index-field-1");
 			var leftField = document.getElementById("data-field-left-1");
 			var rightField = document.getElementById("data-field-right-1");
-			indexField.innerText = null;
-			leftField.innerText = null;
-			rightField.innerText = null;
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
 
 			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][0];
 			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][1];
@@ -358,9 +358,9 @@
 			indexField = document.getElementById("index-field-2");
 			leftField = document.getElementById("data-field-left-2");
 			rightField = document.getElementById("data-field-right-2");
-			indexField.innerText = null;
-			leftField.innerText = null;
-			rightField.innerText = null;
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
 
 			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][0];
 			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][1];
@@ -369,9 +369,9 @@
 			indexField = document.getElementById("index-field-3");
 			leftField = document.getElementById("data-field-left-3");
 			rightField = document.getElementById("data-field-right-3");
-			indexField.innerText = null;
-			leftField.innerText = null;
-			rightField.innerText = null;
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
 
 			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][0];
 			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][1];
