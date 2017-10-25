@@ -181,7 +181,7 @@
 		display: none !important;
 	}
 
-	.data-field:empty + span, .green-pct {
+	.data-field:empty + span, span:empty + .green-pct {
 		border: 3px solid blue !important;
 	}
 
