@@ -350,12 +350,12 @@
 			var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
 			var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
 		
-			tableFieldIndex.innerText = null;
-			tableFieldModel.innerText = null;
-			tableFieldSeries.innerText = null;
-			tableFieldAyer.innerText = null;
-			tableFieldPalletsRecha.innerText = null;
-			tableFieldIndeceRechazo.innerText = null;
+			tableFieldIndex.innerText = "";
+			tableFieldModel.innerText = "";
+			tableFieldSeries.innerText = "";
+			tableFieldAyer.innerText = "";
+			tableFieldPalletsRecha.innerText = "";
+			tableFieldIndeceRechazo.innerText = "";
 		
 			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][0];
 			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][1];
@@ -373,12 +373,12 @@
 			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
 			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
 		
-			tableFieldIndex.innerText = null;
-			tableFieldModel.innerText = null;
-			tableFieldSeries.innerText = null;
-			tableFieldAyer.innerText = null;
-			tableFieldPalletsRecha.innerText = null;
-			tableFieldIndeceRechazo.innerText = null;
+			tableFieldIndex.innerText = "";
+			tableFieldModel.innerText = "";
+			tableFieldSeries.innerText = "";
+			tableFieldAyer.innerText = "";
+			tableFieldPalletsRecha.innerText = "";
+			tableFieldIndeceRechazo.innerText = "";
 		
 			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][0];
 			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][1];
@@ -394,12 +394,12 @@
 			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
 			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
 		
-			tableFieldIndex.innerText = null;
-			tableFieldModel.innerText = null;
-			tableFieldSeries.innerText = null;
-			tableFieldAyer.innerText = null;
-			tableFieldPalletsRecha.innerText = null;
-			tableFieldIndeceRechazo.innerText = null;
+			tableFieldIndex.innerText = "";
+			tableFieldModel.innerText = "";
+			tableFieldSeries.innerText = "";
+			tableFieldAyer.innerText = "";
+			tableFieldPalletsRecha.innerText = "";
+			tableFieldIndeceRechazo.innerText = "";
 		
 			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][0];
 			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][1];
