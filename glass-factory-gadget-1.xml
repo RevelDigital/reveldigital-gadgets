@@ -180,7 +180,7 @@
 		display: none;
 	}
 
-	.data-field:empty+.green-pct {
+	.data-field:empty + span {
 		display: none;
 	}
 
