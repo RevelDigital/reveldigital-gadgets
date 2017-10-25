@@ -180,7 +180,7 @@
 		display: none;
 	}
 
-	.data-field:empty + span {
+	.data-field:empty+span {
 		display: none;
 	}
 
