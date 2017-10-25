@@ -175,10 +175,22 @@
 		display: flex;
 		align-items: center;
 	}
+
+	.data-field:empty {
+		display: none;
+	}
+
+	.data-field:empty + span {
+		display: none;
+	}
+
+	.big-label:empty {
+		display: none;
+	}
     
     #infoContainer {
-	font-size: 75%;
-	color: red;
+		font-size: 75%;
+		color: red;
     }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -190,7 +202,7 @@
 				<img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
 			</div>             
 			<div class="col-3">
-				<span class='big-label'>Horno 1</span>
+				<span class='big-label' id="horno-label"></span>
 			</div>
 		</div>
 		<div class="row centered shaded-background quarter">     
@@ -286,8 +298,15 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
 
-    var ENDPOINT = "https://localhost/Shared";
-	var INTERVAL = 60 * 1000; // seconds * 1000 milliseconds
+    var ENDPOINT = addr;
+	var INTERVAL = 60 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
+
+	var RECHAZOS_HORNO_ID = 0;
+	var RECHAZOS_DATA = [];
+	var RECHAZOS_DATA_IDX = 0;
+
+	var timeoutId = -1;
 
     function getFile(filename, action) {
         setInfo("getting file " + filename);
@@ -309,52 +328,91 @@
     }
 
     function processRechazosData(data) {
-		setInfo("processRechazosData");
-        var array = data.split(/\r?\n/);
-        if (array.length >= 20) {
-            var tableFieldIndex = document.getElementById("table-field-index-1");
-            var tableFieldModel = document.getElementById("table-field-model-1");
-            var tableFieldSeries = document.getElementById("table-field-series-1");
-            var tableFieldAyer = document.getElementById("table-field-ayer-1");
-            var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
-            var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
-
-            tableFieldIndex.innerText = array[2];
-            tableFieldModel.innerText = array[3];
-            tableFieldSeries.innerText = array[4];
-            tableFieldAyer.innerText = array[5];
-            tableFieldPalletsRecha.innerText = array[6];
-            tableFieldIndeceRechazo.innerText = array[7];
-
-            tableFieldIndex = document.getElementById("table-field-index-2");
-            tableFieldModel = document.getElementById("table-field-model-2");
-            tableFieldSeries = document.getElementById("table-field-series-2");
-            tableFieldAyer = document.getElementById("table-field-ayer-2");
-            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
-            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
-
-            tableFieldIndex.innerText = array[8];
-            tableFieldModel.innerText = array[9];
-            tableFieldSeries.innerText = array[10];
-            tableFieldAyer.innerText = array[11];
-            tableFieldPalletsRecha.innerText = array[12];
-            tableFieldIndeceRechazo.innerText = array[13];
-
-            tableFieldIndex = document.getElementById("table-field-index-3");
-            tableFieldModel = document.getElementById("table-field-model-3");
-            tableFieldSeries = document.getElementById("table-field-series-3");
-            tableFieldAyer = document.getElementById("table-field-ayer-3");
-            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
-            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
-
-            tableFieldIndex.innerText = array[14];
-            tableFieldModel.innerText = array[15];
-            tableFieldSeries.innerText = array[16];
-            tableFieldAyer.innerText = array[17];
-            tableFieldPalletsRecha.innerText = array[18];
-            tableFieldIndeceRechazo.innerText = array[19];
-        }
+		var START = 2;
+		RECHAZOS_DATA = [];
+		var array = data.trim ().split(/\r?\n/);
+		for (var i = START; i < array.length; i += 6) {
+			RECHAZOS_DATA.push(array.slice(i,i+6));
+		}
+		clearInterval(timeoutId);
+		displayRechazosData();
+		timeoutId = setInterval(displayRechazosData, ROTATE_INTERVAL);
     };
+
+	function displayRechazosData() {
+		try {
+			var hornoIdField = document.getElementById("horno-label");
+
+			var tableFieldIndex = document.getElementById("table-field-index-1");
+			var tableFieldModel = document.getElementById("table-field-model-1");
+			var tableFieldSeries = document.getElementById("table-field-series-1");
+			var tableFieldAyer = document.getElementById("table-field-ayer-1");
+			var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
+			var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
+		
+			tableFieldIndex.innerText = null;
+			tableFieldModel.innerText = null;
+			tableFieldSeries.innerText = null;
+			tableFieldAyer.innerText = null;
+			tableFieldPalletsRecha.innerText = null;
+			tableFieldIndeceRechazo.innerText = null;
+		
+			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][0];
+			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][1];
+			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][2];
+			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][3];
+			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][4];
+			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][5];
+
+			hornoIdField.innerText = "Horno " + Math.floor(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]/10);
+		
+			tableFieldIndex = document.getElementById("table-field-index-2");
+			tableFieldModel = document.getElementById("table-field-model-2");
+			tableFieldSeries = document.getElementById("table-field-series-2");
+			tableFieldAyer = document.getElementById("table-field-ayer-2");
+			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
+			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
+		
+			tableFieldIndex.innerText = null;
+			tableFieldModel.innerText = null;
+			tableFieldSeries.innerText = null;
+			tableFieldAyer.innerText = null;
+			tableFieldPalletsRecha.innerText = null;
+			tableFieldIndeceRechazo.innerText = null;
+		
+			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][0];
+			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][1];
+			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 1][2];
+			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][3];
+			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][4];
+			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][5];
+		
+			tableFieldIndex = document.getElementById("table-field-index-3");
+			tableFieldModel = document.getElementById("table-field-model-3");
+			tableFieldSeries = document.getElementById("table-field-series-3");
+			tableFieldAyer = document.getElementById("table-field-ayer-3");
+			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
+			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
+		
+			tableFieldIndex.innerText = null;
+			tableFieldModel.innerText = null;
+			tableFieldSeries.innerText = null;
+			tableFieldAyer.innerText = null;
+			tableFieldPalletsRecha.innerText = null;
+			tableFieldIndeceRechazo.innerText = null;
+		
+			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][0];
+			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][1];
+			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 2][2];
+			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][3];
+			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][4];
+			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][5];
+
+			RECHAZOS_DATA_IDX+=3;
+		} catch (e) {
+			RECHAZOS_DATA_IDX = 0;
+		}
+	}
 
     function processRechaPlantData(data) {
 		setInfo("processRechaPlantData");

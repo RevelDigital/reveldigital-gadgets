@@ -175,10 +175,22 @@
 		display: flex;
 		align-items: center;
 	}
+
+	.data-field:empty {
+		display: none;
+	}
+
+	.data-field:empty + span {
+		display: none;
+	}
+
+	.big-label:empty {
+		display: none;
+	}
     
     #infoContainer {
-	font-size: 75%;
-	color: red;
+		font-size: 75%;
+		color: red;
     }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -217,7 +229,7 @@
 		</div>
 		<div class="row centered lower shaded-background">  
 			<div class="col-9">
-				<span class='big-label'>Horno 1</span>
+				<span class='big-label' id="horno-label"></span>
 			</div>
 			<div class="col-3">
 				<table border="0" cellpadding="5">
@@ -271,8 +283,14 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
 
-    var ENDPOINT = "https://localhost/Shared";
-	var INTERVAL = 60 * 1000; // seconds * 1000 milliseconds
+    var ENDPOINT = addr;
+	var INTERVAL = 60 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
+
+	var LINEAR_HORNO_ID = 0;
+	var LINEAR_DATA = [];
+	var LINEAR_DATA_IDX = 0;
+	var timeoutId = -1;
 
     function getFile(filename, action) {
         setInfo("getting file " + filename);
@@ -309,31 +327,62 @@
     };
 
     function processLinearData(data) {
-		setInfo("processLinearData");
-        var array = data.split(/\r?\n/);
-        if (array.length >= 11) {
-            var indexField = document.getElementById("index-field-1");
-            var leftField = document.getElementById("data-field-left-1");
-            var rightField = document.getElementById("data-field-right-1");
-            indexField.innerText = array[2];
-            leftField.innerText = array[3];
-            rightField.innerText = array[4];
-
-            indexField = document.getElementById("index-field-2");
-            leftField = document.getElementById("data-field-left-2");
-            rightField = document.getElementById("data-field-right-2");
-            indexField.innerText = array[5];
-            leftField.innerText = array[6];
-            rightField.innerText = array[7];
-
-            indexField = document.getElementById("index-field-3");
-            leftField = document.getElementById("data-field-left-3");
-            rightField = document.getElementById("data-field-right-3");
-            indexField.innerText = array[8];
-            leftField.innerText = array[9];
-            rightField.innerText = array[10];
-        }
+		var START = 2;
+		LINEAR_DATA = [];
+		var array = data.trim ().split(/\r?\n/);
+		for (var i = START; i < array.length; i += 3) {
+			LINEAR_DATA.push(array.slice(i,i+3));
+		}
+		clearInterval(timeoutId);
+		displayLinearData();
+		timeoutId = setInterval(displayLinearData, ROTATE_INTERVAL);
     };
+
+	function displayLinearData() {
+		try {
+			var hornoIdField = document.getElementById("horno-label");
+
+			var indexField = document.getElementById("index-field-1");
+			var leftField = document.getElementById("data-field-left-1");
+			var rightField = document.getElementById("data-field-right-1");
+			indexField.innerText = null;
+			leftField.innerText = null;
+			rightField.innerText = null;
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][2];
+
+			hornoIdField.innerText = "Horno " + Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
+		
+			indexField = document.getElementById("index-field-2");
+			leftField = document.getElementById("data-field-left-2");
+			rightField = document.getElementById("data-field-right-2");
+			indexField.innerText = null;
+			leftField.innerText = null;
+			rightField.innerText = null;
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][2];
+		
+			indexField = document.getElementById("index-field-3");
+			leftField = document.getElementById("data-field-left-3");
+			rightField = document.getElementById("data-field-right-3");
+			indexField.innerText = null;
+			leftField.innerText = null;
+			rightField.innerText = null;
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][2];
+		
+			LINEAR_DATA_IDX+=3;			
+		} catch (e) {
+			LINEAR_DATA_IDX = 0;
+		}
+		
+	}
 
     function init() {
 		setInfo("init gadget " + ENDPOINT);
@@ -348,7 +397,7 @@
     gadgets.util.registerOnLoadHandler(init);
 
     function setInfo(data) {
-		var debug = false;
+		var debug = true;
 		if (debug) {
 			var container = $('#infoContainer');
 			container.append(data + '<br>');
