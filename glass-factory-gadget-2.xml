@@ -299,7 +299,7 @@
     var addr = prefs.getString("serverAddr");
 
     var ENDPOINT = addr;
-	var INTERVAL = 60 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
 	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
 
 	var RECHAZOS_HORNO_ID = 0;
