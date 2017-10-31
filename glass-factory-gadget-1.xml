@@ -177,16 +177,15 @@
 	}
 
 	.data-field:empty {
-		border: 3px solid blue;
 		display: none !important;
 	}
 
 	.data-field:empty + .green-pct {
-		border: 3px solid blue !important;
+		display: none !important;
 	}
 
 	span:empty + span {
-		border: 3px solid blue !important;
+		display: none !important;
 	}
 
 	.big-label:empty {
@@ -289,7 +288,7 @@
     var addr = prefs.getString("serverAddr");
 
     var ENDPOINT = addr;
-	var INTERVAL = 60 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
 	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
 
 	var LINEAR_HORNO_ID = 0;
