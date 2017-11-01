@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Wayfinding Gadget" description="" author="Revel Digital" background="transparent">
+  <UserPref name="imageUrl" display_name="URL for image" datatype="string" default_value="" required="true" />
+  <UserPref name="dataUrl" display_name="URL for json" datatype="string" default_value="" required="true" />
+     
+  <!-- The following preferences should not be modified -->
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/pathfinding-browser.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/paper-core.min.js" type="text/javascript"></script>
+<style type="text/css">
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+    font-family: 'Roboto', sans-serif;
+  }
+  body
+  {
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    overflow: hidden;
+  }
+  .container {
+    display: block;
+  }
+  .btnContainer {
+    position: absolute;
+    height:100%;
+    width: 15%;
+    right: 0;
+    top:0;
+    overflow-y: auto;
+    z-index: 50;
+  }
+  .map {
+    background-image: url(#__UP_imageUrl__;);
+    width: 100%;
+    height: 100%; 
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  button {
+    width:100%;
+    padding: 20px;
+    height: 50px;
+  }
+  #myCanvas {
+    position: relative;
+    top: -5%;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+<body>
+  <div id="container">
+    <div class="map">
+      <canvas id="myCanvas" resize></canvas>
+    </div>  
+    <div class="btnContainer">
+    </div> 
+  </div>
+</body>
+<script type="text/javascript">
+  var DATA = "";
+  var lastTimestamp = 0;
+  var gridHeight = 0;
+  var gridWidth = 0;
+
+  var width = 0;
+  var height = 0;
+
+  var start = {"x":95,"y":54};
+
+  var stores = [
+    {"x":16,"y":42,"name":"Target"},
+    {"x":151,"y":75,"name":"Walmart"},
+    {"x":163,"y":21,"name":"Macy"},
+    {"x":95, "y":75,"name": "Kmart"}
+  ]; 
+  
+  var prefs = new gadgets.Prefs();
+
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    var width = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    var height = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+
+    populateButtons(stores);
+  }
+
+  function populateButtons(items){
+    items.forEach(function(element) {
+            console.log(element.name);
+            var btn = $("<button>" + element.name + "</button>");
+            btn.click(function() {console.log(element.name);
+                generatePath(element.name); });
+            $(".btnContainer").append(btn);
+            
+    }, this);
+  }
+
+  function generatePath(storeName) {
+    if (paper.view) {
+      paper.view.remove();
+    }
+
+    var counter = 0;
+    // Get a reference to the canvas object
+    var canvas = document.getElementById('myCanvas');
+    // Create an empty project and a view for the canvas:
+    paper.setup(canvas);
+    // Create a Paper.js Path to draw a line into it:
+
+    var toX = start.x;
+    var toY = start.y;
+
+    stores.forEach(function(element) {
+      if (element.name === storeName) {
+        toX = element.x;
+        toY = element.y;
+      }
+    }, this);
+
+
+    var data = getPath(toX, toY);
+
+    if (!data[0]) {
+      return;
+    }
+    
+    var path = new paper.Path({
+      strokeWidth : 5,
+      strokeCap : 'round',
+      strokeColor : 'red'
+    });
+
+    var startPoint = new paper.Point(data[0].x, data[0].y);
+  
+    var scaleX =  width / (gridWidth);
+    var scaleY = height / (gridHeight);
+
+    paper.view.onFrame = function(event) { 
+      var timestamp = new Date().getTime();
+      if (timestamp - lastTimestamp > 25) {
+        if (data.length > counter) {
+          path.lineTo(startPoint.add(new paper.Point(data[counter][0] * scaleX, data[counter][1] * scaleY)));
+          path.strokeColor.hue += 1;
+          path.dashArray = [1,5]
+          counter++;
+          if (counter > (data.length / 2)) {
+            path.removeSegment(0);
+          }
+        } else {
+          var oldColor = path.strokeColor;
+          path.remove();
+          path = new paper.Path({
+            strokeWidth : 5,
+            strokeCap : 'round',
+            strokeColor : oldColor
+          });
+          counter = 0;
+        }
+        lastTimestamp = timestamp;
+      }
+    } 
+    path.closed = false;
+
+    // Draw the view now:
+    paper.view.draw();
+  }
+
+  function getPath(toX, toY) {
+    var matrix = DATA.nodes.map(function (nested) {
+      return nested.map(function (element) {
+          return element.walkable ? 0 : 1;
+      });
+    });
+    var grid = new PF.Grid(matrix);
+    var finder = new PF.AStarFinder();
+    var path = finder.findPath(start.x, start.y, toX, toY, grid);
+    return path;
+  }
+
+  function readInData() {
+  var addr = prefs.getString("dataUrl");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", addr, true);
+  xhr.onload = function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var obj = JSON.parse(xhr.responseText);
+        if (obj) {
+          DATA = obj;
+          
+          gridHeight = DATA.height;
+          gridWidth = DATA.width;
+
+          console.log(DATA);
+        }
+      } else {
+        console.error(xhr.statusText);
+      }
+    }
+  };
+  xhr.onerror = function (e) {
+    console.error(xhr.statusText);
+  };
+  xhr.send(null);
+}
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+  
+</script>
+
+]]>
+</Content>
+</Module>
