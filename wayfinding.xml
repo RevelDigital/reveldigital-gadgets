@@ -144,6 +144,8 @@
     }, this);
 
 
+    console.log(toX, toY);
+
     var data = getPath(toX, toY);
 
     if (!data[0]) {
@@ -200,6 +202,7 @@
     var grid = new PF.Grid(matrix);
     var finder = new PF.AStarFinder();
     var path = finder.findPath(start.x, start.y, toX, toY, grid);
+    console.log("path" + path);
     return path;
   }
 
