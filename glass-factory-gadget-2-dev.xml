@@ -330,11 +330,11 @@
     function init() {
 		setInfo("init gadget " + ENDPOINT);
 						
-		getFile("CR_P01/DATOS_PRODUCCION/datosrechazos.txt", processRechazosData);
-		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datosrechazos.txt", processRechazosData) }, INTERVAL);
+		getFile("datosrechazos.txt", processRechazosData);
+		setInterval(function() { getFile("datosrechazos.txt", processRechazosData) }, INTERVAL);
 		
-		getFile("CR_P01/DATOS_PRODUCCION/datrechaplanta.txt", processRechaPlantData);
-		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datrechaplanta.txt", processRechaPlantData) }, INTERVAL);
+		getFile("datrechaplanta.txt", processRechaPlantData);
+		setInterval(function() { getFile("datrechaplanta.txt", processRechaPlantData) }, INTERVAL);
     }
 		  
     gadgets.util.registerOnLoadHandler(init);
