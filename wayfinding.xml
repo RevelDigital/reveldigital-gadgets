@@ -44,7 +44,7 @@
     z-index: 50;
   }
   .map {
-    background-image: url(__UP_imageUrl__;);
+    background-image: url("__UP_imageUrl__");
     width: 100%;
     height: 100%; 
     background-position: center top;
