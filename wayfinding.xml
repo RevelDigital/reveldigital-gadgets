@@ -163,30 +163,9 @@
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
-    paper.view.onFrame = function(event) { 
-      var timestamp = new Date().getTime();
-      if (timestamp - lastTimestamp > 25) {
-        if (data.length > counter) {
-          path.lineTo(startPoint.add(new paper.Point(data[counter][0] * scaleX, data[counter][1] * scaleY)));
-          path.strokeColor.hue += 1;
-          path.dashArray = [1,5]
-          counter++;
-          if (counter > (data.length / 2)) {
-            path.removeSegment(0);
-          }
-        } else {
-          var oldColor = path.strokeColor;
-          path.remove();
-          path = new paper.Path({
-            strokeWidth : 5,
-            strokeCap : 'round',
-            strokeColor : oldColor
-          });
-          counter = 0;
-        }
-        lastTimestamp = timestamp;
-      }
-    } 
+    data.forEach(function(element) {
+        path.lineTo(startPoint.add(new paper.Point(element.x, element.y)));
+      }, this);
     path.closed = false;
 
     // Draw the view now:
