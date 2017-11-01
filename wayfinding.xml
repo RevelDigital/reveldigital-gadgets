@@ -147,8 +147,10 @@
     console.log(toX, toY);
 
     var data = getPath(toX, toY);
-
+    console.log("after getPath");
+    console.log(data);
     if (!data[0]) {
+      console.log("returning");
       return;
     }
     
