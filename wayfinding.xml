@@ -164,6 +164,7 @@
     var scaleY = height / (gridHeight);
 
     data.forEach(function(element) {
+      console.log("element " + element);
         path.lineTo(startPoint.add(new paper.Point(element.x, element.y)));
       }, this);
     path.closed = false;
