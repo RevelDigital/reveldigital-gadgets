@@ -309,7 +309,7 @@
 		try {
 			var hornoIdField = document.getElementById("horno-label");
 			var dataTable = $("#data-table");
-			$("#data-table > tr").remove();
+			dataTable.empty();
 			
 
 			var floored = Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
