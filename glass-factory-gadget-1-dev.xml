@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
+    <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style type="text/css">
+	* {
+		box-sizing: border-box;
+	}
+
+ 	html,body { 
+		height: 100%; 
+		margin: 0px; 
+		padding: 0px;
+	}
+	
+	html {
+		font-family: "Lucida Sans", sans-serif;
+	}
+
+	body {
+		background-color: #00000010;
+		font-family: 'Roboto', sans-serif;
+		background-image: 
+		linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)), 
+		url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
+		
+		background-repeat: no-repeat;
+		background-position: 50% 0;
+		-ms-background-size: cover;
+		-o-background-size: cover;
+		-moz-background-size: cover;
+		-webkit-background-size: cover;
+		background-size: cover;
+		
+	}
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+	[class*="col-"] {
+		float: left;
+		padding: 15px;
+	}
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}
+
+	.data-field {
+		background-color: white;
+		color: green;
+		padding: 10px;
+		font-size: 2em;
+	}
+
+	.data-label {
+		font-size: 1.2em;
+	}
+
+	.data-label:after {
+		content:"\a\a";
+		white-space: pre;
+	}
+
+	.big-label {
+		background-color: green;
+		color: white;
+		padding: 15px;
+		font-size: 2em;
+		border-radius: 15px;
+		text-align: end;
+	}
+
+	.blank_row {
+		height: 10px !important;
+	}
+
+	.company-logo {
+		max-width: 25vw;
+		max-height: 25vh;
+	}
+
+	.float-left {
+		float: left;
+	}
+
+	.green-pct {
+		background-color: green;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		color: white;
+		padding: 10px;
+		font-size: 2em;
+	}
+
+	.green-text {
+		color: green;
+		font-weight: bold;
+		font-size: 1.2em;
+		width: 30%;
+	}
+
+	.shaded-background {
+		background-image: linear-gradient(rgba(53, 53, 53, 0.5),rgba(53, 53, 53, 0.5));
+	}
+
+
+	.green-header-left {
+		border-top-left-radius: 15px;
+	}
+
+	.green-header {
+		background-color: green;
+		color: white;
+	}
+
+	.green-header-right {
+		border-top-right-radius: 15px;
+	}
+
+	.table-data-field {
+		display: block;
+		color: green;
+		font-size: 1.5em;
+		background-image: linear-gradient(rgba(120, 120, 120, 0.5),rgba(120, 120, 120, 0.5));
+	}
+
+	.slide {
+		height: 100%;
+	}
+
+	.upper {
+		position: relative;
+		height: 60%;
+	}
+
+	.lower {
+		height: 40%;
+	}
+
+	.quarter {
+		height: 25%;
+	}
+
+	#mid-label {
+		color: green;
+		padding: 10px;
+		font-size: 3em;
+		text-align: end;
+		width: 30%;
+	  }
+
+	  
+	.bottom-aligned {
+		position: absolute;
+		bottom: 20;
+	  }
+
+
+	.centered {
+		display: flex;
+		align-items: center;
+	}
+
+	.data-field:empty {
+		display: none !important;
+	}
+
+	.data-field:empty + .green-pct {
+		display: none !important;
+	}
+
+	span:empty + span {
+		display: none !important;
+	}
+
+	.big-label:empty {
+		display: none;
+	}
+    
+    #infoContainer {
+		font-size: 75%;
+		color: red;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<body>
+	<div class="slide">
+		<div class="row centered upper">     
+			<div class="col-9">
+				<img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
+				<span id="mid-label" class="bottom-aligned">Rendimiento Fabrica</span>
+			</div>     
+  
+			<div class="col-3">
+				<table border="0">
+					<tr>
+						<td colspan="2">
+							<label class="data-label">Fecha</label>                           
+							<span id='fecha-field' class='data-field'></span>
+						</td>
+					</tr>
+					<tr class="blank_row">
+							<td colspan="2"></td>
+						</tr>
+					<tr>
+						<td>
+							<label class="data-label">Dia</label>
+							<span id='dia-field' class='data-field'></span>
+						</td>
+						<td>
+							<label class="data-label">Acumulado mes</label>
+							<span id='acumulado-field' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row centered lower shaded-background">  
+			<div class="col-9">
+				<span class='big-label' id="horno-label"></span>
+			</div>
+			<div class="col-3">
+				<table border="0" cellpadding="5">
+					<tr>
+						<td align="center">
+							<span id="index-field-1"></span>
+						</td>
+						<td align="center">
+							<span id='data-field-left-1' class='data-field'></span><span class="green-pct">%</span>
+						</td align="center">
+						<td align="center">
+							<span id='data-field-right-1' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+					</tr>
+					<tr class="blank_row">
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>
+							<span id="index-field-2"></span>
+						</td>
+						<td>
+							<span id='data-field-left-2' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+						<td>
+							<span id='data-field-right-2' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+					</tr>
+					<tr class="blank_row">
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>
+							<span id="index-field-3"></span>
+						</td>
+						<td>
+							<span id='data-field-left-3' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+						<td>
+							<span id='data-field-right-3' class='data-field'></span><span class="green-pct">%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+    <p id="infoContainer"></p>
+</body>
+
+<script type="text/javascript">
+    var prefs = new gadgets.Prefs();
+    var addr = prefs.getString("serverAddr");
+
+    var ENDPOINT = addr;
+	var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
+
+	var LINEAR_HORNO_ID = 0;
+	var LINEAR_DATA = [];
+	var LINEAR_DATA_IDX = 0;
+	var timeoutId = -1;
+
+    function getFile(filename, action) {
+        setInfo("getting file " + filename);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", ENDPOINT + "/" + filename, true);
+        xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+            action(xhr.responseText);
+            } else {
+            console.error(xhr.statusText);
+            }
+        }
+        };
+        xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+        };
+        xhr.send(null);
+    }
+
+    function processPlantData(data) {
+		setInfo("processPlantData");
+        var array = data.split(/\r?\n/);
+        if (array.length >= 4) {
+            var fechaField = document.getElementById("fecha-field");
+            fechaField.innerText = array[1];
+
+            var diaField = document.getElementById("dia-field");
+            diaField.innerText = array[2];
+
+            var acumuladoField = document.getElementById("acumulado-field");
+            acumuladoField.innerText = array[3];
+        }
+    };
+
+    function processLinearData(data) {
+		var START = 2;
+		LINEAR_DATA = [];
+		var array = data.trim ().split(/\r?\n/);
+		for (var i = START; i < array.length; i += 3) {
+			LINEAR_DATA.push(array.slice(i,i+3));
+		}
+		clearInterval(timeoutId);
+		displayLinearData();
+		timeoutId = setInterval(displayLinearData, ROTATE_INTERVAL);
+    };
+
+	function displayLinearData() {
+		try {
+			var hornoIdField = document.getElementById("horno-label");
+
+			var indexField = document.getElementById("index-field-1");
+			var leftField = document.getElementById("data-field-left-1");
+			var rightField = document.getElementById("data-field-right-1");
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][2];
+
+			hornoIdField.innerText = "Horno " + Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
+		
+			indexField = document.getElementById("index-field-2");
+			leftField = document.getElementById("data-field-left-2");
+			rightField = document.getElementById("data-field-right-2");
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][2];
+		
+			indexField = document.getElementById("index-field-3");
+			leftField = document.getElementById("data-field-left-3");
+			rightField = document.getElementById("data-field-right-3");
+			indexField.innerText = "";
+			leftField.innerText = "";
+			rightField.innerText = "";
+
+			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][0];
+			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][1];
+			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][2];
+		
+			LINEAR_DATA_IDX+=3;			
+		} catch (e) {
+			LINEAR_DATA_IDX = 0;
+		}
+		
+	}
+
+    function init() {
+		setInfo("init gadget " + ENDPOINT);
+		
+		getFile("CR_P01/DATOS_PRODUCCION/datosplanta.txt", processPlantData);
+		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datosplanta.txt", processPlantData) }, INTERVAL);
+		
+		getFile("CR_P01/DATOS_PRODUCCION/datoslineas.txt", processLinearData);
+		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datoslineas.txt", processLinearData) }, INTERVAL);
+    }
+		  
+    gadgets.util.registerOnLoadHandler(init);
+
+    function setInfo(data) {
+		var debug = false;
+		if (debug) {
+			var container = $('#infoContainer');
+			container.append(data + '<br>');
+		}	
+		if (debug) {
+			console.log(data);
+		}
+	}
+</script>]]>
+</Content>
+</Module>
