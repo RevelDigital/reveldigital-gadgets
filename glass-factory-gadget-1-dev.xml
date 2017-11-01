@@ -336,11 +336,11 @@
     function init() {
 		setInfo("init gadget " + ENDPOINT);
 		
-		getFile("CR_P01/DATOS_PRODUCCION/datosplanta.txt", processPlantData);
-		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datosplanta.txt", processPlantData) }, INTERVAL);
+		getFile("datosplanta.txt", processPlantData);
+		setInterval(function() { getFile("datosplanta.txt", processPlantData) }, INTERVAL);
 		
-		getFile("CR_P01/DATOS_PRODUCCION/datoslineas.txt", processLinearData);
-		setInterval(function() { getFile("CR_P01/DATOS_PRODUCCION/datoslineas.txt", processLinearData) }, INTERVAL);
+		getFile("datoslineas.txt", processLinearData);
+		setInterval(function() { getFile("datoslineas.txt", processLinearData) }, INTERVAL);
     }
 		  
     gadgets.util.registerOnLoadHandler(init);
