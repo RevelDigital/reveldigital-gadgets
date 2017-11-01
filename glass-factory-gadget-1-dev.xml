@@ -308,7 +308,8 @@
 	function displayLinearData() {
 		try {
 			var hornoIdField = document.getElementById("horno-label");
-			var dataTable = document.getElementById("data-table");
+			var dataTable = $("#data-table");
+			$("#data-table > tr").remove();
 			
 
 			var floored = Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
