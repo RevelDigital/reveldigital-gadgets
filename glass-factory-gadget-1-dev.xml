@@ -236,46 +236,8 @@
 				<span class='big-label' id="horno-label"></span>
 			</div>
 			<div class="col-3">
-				<table border="0" cellpadding="5">
-					<tr>
-						<td align="center">
-							<span id="index-field-1"></span>
-						</td>
-						<td align="center">
-							<span id='data-field-left-1' class='data-field'></span><span class="green-pct">%</span>
-						</td align="center">
-						<td align="center">
-							<span id='data-field-right-1' class='data-field'></span><span class="green-pct">%</span>
-						</td>
-					</tr>
-					<tr class="blank_row">
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td>
-							<span id="index-field-2"></span>
-						</td>
-						<td>
-							<span id='data-field-left-2' class='data-field'></span><span class="green-pct">%</span>
-						</td>
-						<td>
-							<span id='data-field-right-2' class='data-field'></span><span class="green-pct">%</span>
-						</td>
-					</tr>
-					<tr class="blank_row">
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td>
-							<span id="index-field-3"></span>
-						</td>
-						<td>
-							<span id='data-field-left-3' class='data-field'></span><span class="green-pct">%</span>
-						</td>
-						<td>
-							<span id='data-field-right-3' class='data-field'></span><span class="green-pct">%</span>
-						</td>
-					</tr>
+				<table border="0" cellpadding="5" id="data-table">
+
 				</table>
 			</div>
 		</div>
@@ -337,6 +299,7 @@
 		for (var i = START; i < array.length; i += 3) {
 			LINEAR_DATA.push(array.slice(i,i+3));
 		}
+		
 		clearInterval(timeoutId);
 		displayLinearData();
 		timeoutId = setInterval(displayLinearData, ROTATE_INTERVAL);
@@ -345,43 +308,24 @@
 	function displayLinearData() {
 		try {
 			var hornoIdField = document.getElementById("horno-label");
+			var dataTable = document.getElementById("data-table");
+			
 
-			var indexField = document.getElementById("index-field-1");
-			var leftField = document.getElementById("data-field-left-1");
-			var rightField = document.getElementById("data-field-right-1");
-			indexField.innerText = "";
-			leftField.innerText = "";
-			rightField.innerText = "";
+			var floored = Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
+			var oldFloored = floored;
+			hornoIdField.innerText = "Horno " + floored;
 
-			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][0];
-			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][1];
-			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX][2];
-
-			hornoIdField.innerText = "Horno " + Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10);
-		
-			indexField = document.getElementById("index-field-2");
-			leftField = document.getElementById("data-field-left-2");
-			rightField = document.getElementById("data-field-right-2");
-			indexField.innerText = "";
-			leftField.innerText = "";
-			rightField.innerText = "";
-
-			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][0];
-			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][1];
-			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 1][2];
-		
-			indexField = document.getElementById("index-field-3");
-			leftField = document.getElementById("data-field-left-3");
-			rightField = document.getElementById("data-field-right-3");
-			indexField.innerText = "";
-			leftField.innerText = "";
-			rightField.innerText = "";
-
-			indexField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][0];
-			leftField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][1];
-			rightField.innerText = LINEAR_DATA[LINEAR_DATA_IDX + 2][2];
-		
-			LINEAR_DATA_IDX+=3;			
+			while (floored === oldFloored) {
+				var td1 = $('<td>').attr('align','center').append($('<span>').text(LINEAR_DATA[LINEAR_DATA_IDX][0]));
+				var td2 = $('<td>').attr('align','center').append($('<span>').addClass('data-field').text(LINEAR_DATA[LINEAR_DATA_IDX][1])).append($('<span>').addClass('green-pct').text("%"));
+				var td3 = $('<td>').attr('align','center').append($('<span>').addClass('data-field').text(LINEAR_DATA[LINEAR_DATA_IDX][2])).append($('<span>').addClass('green-pct').text("%"));
+				var blank = $('<tr>').addClass('blank_row').append($('<td>').attr('colspan','3'));
+       			
+				var tr = $('<tr>').append(td1).append(td2).append(td3);
+        		$(dataTable).append(tr).append(blank);
+				LINEAR_DATA_IDX++;
+				floored = Math.floor(LINEAR_DATA[LINEAR_DATA_IDX][0]/10)
+			}
 		} catch (e) {
 			LINEAR_DATA_IDX = 0;
 		}
