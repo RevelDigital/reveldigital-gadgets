@@ -218,75 +218,20 @@
 		</div>
 		<div class="row centered lower">
 			<div class="col-12">
-				<table width="90%" border="0" align="center" cellpadding="5" cellspacing="0">
-					<tr>
-						<th></th>
-						<th class="green-header green-header-left">Modelo</th>
-						<th class="green-header">Inicio serie</th>
-						<th class="green-header">№ pallets rechazados ayer</th>
-						<th class="green-header">№ pallets rechazados erie</th>
-						<th class="green-header green-header-right">Indice de rechazo</th>
-					</tr>
-					<tr>
-						<td align="center">
-							<span id="table-field-index-1"></span>
-						</td>
-						<td align="center">
-							<span id="table-field-model-1" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-series-1" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-ayer-1" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-pallets-recha-1" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-indice-rechazo-1" class='table-data-field'></span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<span id="table-field-index-2"></span>
-						</td>
-						<td align="center">
-							<span id="table-field-model-2" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-series-2" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-ayer-2" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-pallets-recha-2" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-indice-rechazo-2" class='table-data-field'></span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<span id="table-field-index-3"></span>
-						</td>
-						<td align="center">
-							<span id="table-field-model-3" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-series-3" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-ayer-3" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-pallets-recha-3" class='table-data-field'></span>
-						</td>
-						<td align="center">
-							<span id="table-field-indice-rechazo-3" class='table-data-field'></span>
-						</td>
-					</tr>
+				<table width="90%" border="0" align="center" cellpadding="5" cellspacing="0" id="data-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="green-header green-header-left">Modelo</th>
+							<th class="green-header">Inicio serie</th>
+							<th class="green-header">№ pallets rechazados ayer</th>
+							<th class="green-header">№ pallets rechazados erie</th>
+							<th class="green-header green-header-right">Indice de rechazo</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
 				</table>
 			</div>   
 		</div>
@@ -342,73 +287,28 @@
 	function displayRechazosData() {
 		try {
 			var hornoIdField = document.getElementById("horno-label");
+			var dataTable = $("#data-table");
+			$('#data-table tbody > tr').remove();
+			
 
-			var tableFieldIndex = document.getElementById("table-field-index-1");
-			var tableFieldModel = document.getElementById("table-field-model-1");
-			var tableFieldSeries = document.getElementById("table-field-series-1");
-			var tableFieldAyer = document.getElementById("table-field-ayer-1");
-			var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
-			var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
-		
-			tableFieldIndex.innerText = "";
-			tableFieldModel.innerText = "";
-			tableFieldSeries.innerText = "";
-			tableFieldAyer.innerText = "";
-			tableFieldPalletsRecha.innerText = "";
-			tableFieldIndeceRechazo.innerText = "";
-		
-			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][0];
-			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][1];
-			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][2];
-			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][3];
-			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][4];
-			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][5];
+			var floored = Math.floor(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]/10);
+			var oldFloored = floored;
+			hornoIdField.innerText = "Horno " + floored;
 
-			hornoIdField.innerText = "Horno " + Math.floor(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]/10);
-		
-			tableFieldIndex = document.getElementById("table-field-index-2");
-			tableFieldModel = document.getElementById("table-field-model-2");
-			tableFieldSeries = document.getElementById("table-field-series-2");
-			tableFieldAyer = document.getElementById("table-field-ayer-2");
-			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
-			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
-		
-			tableFieldIndex.innerText = "";
-			tableFieldModel.innerText = "";
-			tableFieldSeries.innerText = "";
-			tableFieldAyer.innerText = "";
-			tableFieldPalletsRecha.innerText = "";
-			tableFieldIndeceRechazo.innerText = "";
-		
-			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][0];
-			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][1];
-			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 1][2];
-			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][3];
-			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][4];
-			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][5];
-		
-			tableFieldIndex = document.getElementById("table-field-index-3");
-			tableFieldModel = document.getElementById("table-field-model-3");
-			tableFieldSeries = document.getElementById("table-field-series-3");
-			tableFieldAyer = document.getElementById("table-field-ayer-3");
-			tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
-			tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
-		
-			tableFieldIndex.innerText = "";
-			tableFieldModel.innerText = "";
-			tableFieldSeries.innerText = "";
-			tableFieldAyer.innerText = "";
-			tableFieldPalletsRecha.innerText = "";
-			tableFieldIndeceRechazo.innerText = "";
-		
-			tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][0];
-			tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][1];
-			tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 2][2];
-			tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][3];
-			tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][4];
-			tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][5];
-
-			RECHAZOS_DATA_IDX+=3;
+			while (floored === oldFloored) {
+				var td1 = $('<td>').attr('align','center').append($('<span>').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]));
+				var td2 = $('<td>').attr('align','center').append($('<span>').addClass('table-data-field').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][1]));
+				var td3 = $('<td>').attr('align','center').append($('<span>').addClass('table-data-field').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][2]));
+				var td4 = $('<td>').attr('align','center').append($('<span>').addClass('table-data-field').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][3]));
+				var td5 = $('<td>').attr('align','center').append($('<span>').addClass('table-data-field').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][4]));
+				var td6 = $('<td>').attr('align','center').append($('<span>').addClass('table-data-field').text(RECHAZOS_DATA[RECHAZOS_DATA_IDX][5]));
+				
+							
+				var tr = $('<tr>').append(td1).append(td2).append(td3).append(td4).append(td5).append(td6);
+        		$('#data-table tbody').append(tr);
+				RECHAZOS_DATA_IDX++;
+				floored = Math.floor(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]/10);
+			}
 		} catch (e) {
 			RECHAZOS_DATA_IDX = 0;
 		}
