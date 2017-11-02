@@ -74,7 +74,7 @@
     </div> 
   </div>
 </body>
-<script type="text/javascript">
+<script type="text/paperscript" canvas="myCanvas">
   var DATA = "";
   var lastTimestamp = 0;
   var gridHeight = 0;
@@ -127,12 +127,7 @@
     }
 
     var counter = 0;
-    // Get a reference to the canvas object
-    var canvas = document.getElementById('myCanvas');
-    // Create an empty project and a view for the canvas:
-    paper.setup(canvas);
-    // Create a Paper.js Path to draw a line into it:
-
+  
     var toX = start.x;
     var toY = start.y;
 
