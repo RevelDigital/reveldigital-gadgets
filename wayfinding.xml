@@ -170,17 +170,18 @@
 
    
     var startPoint = new Point(data[0].x, data[0].y);
-  
+    var oldPoint = startPoint;   
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
-    var path = new Path.Rectangle([50, 50], [150, 150]);
-		path.strokeColor = 'black';
 
-		view.onFrame = function(event) {
-			// On each frame, rotate the path by 3 degrees:
-			path.rotate(3);
-		}
+   data.forEach(function(element) {
+      console.log("element " + element);
+          var path = new Path.Line(oldPoint, new Point(element.x, element.y));
+		      path.strokeColor = 'red';
+          oldPoint = new Point(element.x, element.y);
+      }, this);
+
   }
 
   function getPath(toX, toY) {
