@@ -112,7 +112,7 @@
 			// On each frame, rotate the path by 3 degrees:
 			path.rotate(3);
 		}
-    
+
 	};
 
 
@@ -174,28 +174,13 @@
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
-    var path = new Path({
-      strokeWidth : 5,
-      strokeCap : 'round',
-      strokeColor : 'red'
-    });
+    var path = new Path.Rectangle([50, 50], [150, 150]);
+		path.strokeColor = 'black';
 
-
-    console.log(path);
-
-    data.forEach(function(element) {
-      console.log("element " + element);
-        path.lineTo(startPoint.add(new Point(element.x, element.y)));
-      }, this);
-    path.closed = false;
-
-
-
-    if (paper.view) {
-      console.log("drawing");
-      console.log(paper.view);
-      paper.view.draw();
-    }
+		view.onFrame = function(event) {
+			// On each frame, rotate the path by 3 degrees:
+			path.rotate(3);
+		}
   }
 
   function getPath(toX, toY) {
