@@ -99,6 +99,25 @@
   
   var prefs = new gadgets.Prefs();
 
+  window.onload = function() {
+		var canvas = document.getElementById('myCanvas');
+		paper.setup(canvas);
+		var path = new paper.Path();
+		// Give the stroke a color
+		path.strokeColor = 'black';
+		var start = new paper.Point(0, 0);
+
+		path.moveTo(start);
+		path.lineTo(start.add([ 10, 10 ]));
+    path.lineTo(start.add([ 20, 20 ]));
+    path.lineTo(start.add([ 30, 30 ]));
+    path.lineTo(start.add([ 40, 40 ]));
+    path.lineTo(start.add([ 50, 50 ]));
+    path.lineTo(start.add([ 60, 60 ]));
+		// Draw the view now:
+		paper.view.draw();
+	}
+
 
   // This function is called after the gadget has been initialized.
   function onLoad() {
@@ -156,12 +175,6 @@
       return;
     }
 
-    // Get a reference to the canvas object
-    var canvas = document.getElementById('myCanvas');
-    // Create an empty project and a view for the canvas:
-    paper.setup(canvas);
-    // Create a Paper.js Path to draw a line into it:
-    
     var path = new paper.Path({
       strokeWidth : 5,
       strokeCap : 'round',
