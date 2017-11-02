@@ -99,13 +99,6 @@
   
   var prefs = new gadgets.Prefs();
 
-   	paper.install(window);
-	window.onload = function() {
-		console.log("windows.onload");
-		paper.setup('myCanvas');
-	};
-
-
   // This function is called after the gadget has been initialized.
   function onLoad() {
     var width = window.innerWidth
@@ -153,6 +146,9 @@
 
 
     console.log(toX, toY);
+
+    paper.install(window);
+    paper.setup('myCanvas');	
 
     var data = getPath(toX, toY);
     console.log("after getPath");
