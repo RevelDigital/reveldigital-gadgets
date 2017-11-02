@@ -175,6 +175,8 @@
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
+    console.log(path);
+
     data.forEach(function(element) {
       console.log("element " + element);
         path.lineTo(startPoint.add(new paper.Point(element.x, element.y)));
@@ -183,6 +185,7 @@
 
     if (paper.view) {
 	console.log("drawing");
+ 	console.log(paper.view);
       paper.view.draw();
     }
   }
