@@ -100,9 +100,18 @@
   
   var prefs = new gadgets.Prefs();
 
+  var path;
+
   paper.install(window);
 	window.onload = function() {
 		paper.setup('myCanvas');
+
+    path = new Path({
+      strokeWidth : 5,
+      strokeCap : 'round',
+      strokeColor : 'red'
+    });
+
 	};
 
 
@@ -162,12 +171,6 @@
     }
 
    
-    var path = new Path({
-      strokeWidth : 5,
-      strokeCap : 'round',
-      strokeColor : 'red'
-    });
-
     var startPoint = new Point(data[0].x, data[0].y);
   
     var scaleX =  width / (gridWidth);
