@@ -118,13 +118,13 @@
 
   // This function is called after the gadget has been initialized.
   function onLoad() {
-    var width = window.innerWidth
-    || document.documentElement.clientWidth
-    || document.body.clientWidth;
+    //var width = window.innerWidth
+    //|| document.documentElement.clientWidth
+    //|| document.body.clientWidth;
 
-    var height = window.innerHeight
-    || document.documentElement.clientHeight
-    || document.body.clientHeight;
+    //var height = window.innerHeight
+    //|| document.documentElement.clientHeight
+    //|| document.body.clientHeight;
 
 
     populateButtons(stores);
