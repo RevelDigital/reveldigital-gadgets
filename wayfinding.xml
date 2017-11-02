@@ -159,9 +159,6 @@
 
     console.log(toX, toY);
 
-    paper.install(window);
-    paper.setup('myCanvas');	
-
     var data = getPath(toX, toY);
     console.log("after getPath");
     console.log(data);
