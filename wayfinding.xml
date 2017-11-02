@@ -85,8 +85,7 @@
   var gridHeight = 0;
   var gridWidth = 0;
 
-  var width = __UP_rdW__;
-  var height = __UP_rdH__;
+  
 
   var start = {"x":95,"y":54};
 
@@ -99,6 +98,11 @@
 
   
   var prefs = new gadgets.Prefs();
+
+  var width = prefs.getString("rdW");
+  var height = prefs.getString("rdH");
+
+  console.log("dimensions at start ", width, height);
 
   paper.install(window);
 	window.onload = function() {
