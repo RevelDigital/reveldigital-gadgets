@@ -178,7 +178,7 @@
 
    data.forEach(function(element) {
       console.log("element " + element);
-          segments.push([element.x,element.y]);
+          segments.push([element.x * scaleX,element.y * scaleY]);
       }, this);
 
     console.log(segments);
