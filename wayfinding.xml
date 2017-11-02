@@ -99,18 +99,11 @@
   
   var prefs = new gadgets.Prefs();
 
-   paper.install(window);
+   	paper.install(window);
 	window.onload = function() {
 		console.log("windows.onload");
 		paper.setup('myCanvas');
-		var path = new Path.Rectangle([75, 75], [100, 100]);
-		path.strokeColor = 'red';
-
-		view.onFrame = function(event) {
-			// On each frame, rotate the path by 3 degrees:
-			path.rotate(3);
-		}
-	}
+	};
 
 
   // This function is called after the gadget has been initialized.
@@ -169,14 +162,7 @@
       return;
     }
 
-    var canvas = document.getElementById('myCanvas');
-    console.log(canvas);
-    if (canvas) {
-	console.log("canvas is not null");
-	paper.setup(canvas);
-    }
-    
-
+   
     var path = new paper.Path({
       strokeWidth : 5,
       strokeCap : 'round',
