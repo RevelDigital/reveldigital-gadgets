@@ -96,8 +96,15 @@
     {"x":163,"y":21,"name":"Macy"},
     {"x":95, "y":75,"name": "Kmart"}
   ]; 
+
   
   var prefs = new gadgets.Prefs();
+
+  paper.install(window);
+	window.onload = function() {
+		paper.setup('myCanvas');
+	};
+
 
   // This function is called after the gadget has been initialized.
   function onLoad() {
@@ -128,10 +135,6 @@
   }
 
   function generatePath(storeName) {
-    if (paper.view) {
-      paper.view.remove();
-    }
-
     var counter = 0;
   
     var toX = start.x;
@@ -159,13 +162,13 @@
     }
 
    
-    var path = new paper.Path({
+    var path = new Path({
       strokeWidth : 5,
       strokeCap : 'round',
       strokeColor : 'red'
     });
 
-    var startPoint = new paper.Point(data[0].x, data[0].y);
+    var startPoint = new Point(data[0].x, data[0].y);
   
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
@@ -174,13 +177,13 @@
 
     data.forEach(function(element) {
       console.log("element " + element);
-        path.lineTo(startPoint.add(new paper.Point(element.x, element.y)));
+        path.lineTo(startPoint.add(new Point(element.x, element.y)));
       }, this);
     path.closed = false;
 
     if (paper.view) {
-	console.log("drawing");
- 	console.log(paper.view);
+      console.log("drawing");
+      console.log(paper.view);
       paper.view.draw();
     }
   }
