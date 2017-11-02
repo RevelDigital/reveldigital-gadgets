@@ -157,7 +157,12 @@
     }
 
     var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
+    console.log(canvas);
+    if (canvas) {
+	console.log("canvas is not null");
+	paper.setup(canvas);
+    }
+    
 
     var path = new paper.Path({
       strokeWidth : 5,
