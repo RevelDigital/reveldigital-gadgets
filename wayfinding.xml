@@ -122,19 +122,8 @@
 
   // This function is called after the gadget has been initialized.
   function onLoad() {
-    //var width = window.innerWidth
-    //|| document.documentElement.clientWidth
-    //|| document.body.clientWidth;
-
-    //var height = window.innerHeight
-    //|| document.documentElement.clientHeight
-    //|| document.body.clientHeight;
-
-
     populateButtons(stores);
     readInData();
-
-
   }
 
   function populateButtons(items){
@@ -184,11 +173,12 @@
     console.log("scale");
     console.log(scaleX, scaleY);
 
-var path = new Path();
-path.strokeColor = 'red';
+  var path = new Path();
+  path.strokeColor = 'red';
    data.forEach(function(element) {
-      console.log("element " + element);
-          path.add(new Point(element.x, element.y));
+   console.log(element);
+      console.log("element ", element.x, element.y);
+          path.add(new Point(element.x * scaleX, element.y * scaleY));
       }, this);
      
 
