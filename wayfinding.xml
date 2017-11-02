@@ -168,22 +168,25 @@
       return;
     }
 
+    console.log("size");
+    console.log(width, height);
+    console.log("grid");
+    console.log(gridWidth, gridHeight);
    
     var startPoint = new Point(data[0].x, data[0].y);
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
-    var segments = [];
+    console.log("scale");
+    console.log(scaleX, scaleY);
 
-
+var path = new Path();
+path.strokeColor = 'red';
    data.forEach(function(element) {
       console.log("element " + element);
-          segments.push([element.x * scaleX,element.y * scaleY]);
+          path.add(new Point(element.x, element.y));
       }, this);
-
-    console.log(segments);
-     var path = new Path(segments);
-     path.strokeColor = 'red';
+     
 
   }
 
