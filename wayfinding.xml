@@ -173,12 +173,17 @@
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
+    var segments = [];
+
 
    data.forEach(function(element) {
       console.log("element " + element);
-          var path = new Path.Line([0, 0], [500, 500]);
-		    path.strokeColor = 'red';
+          segments.push(new Point(element.x, element.y));
       }, this);
+
+    console.log(segments);
+     var path = new Path(segments);
+     path.strokeColor = 'red';
 
   }
 
