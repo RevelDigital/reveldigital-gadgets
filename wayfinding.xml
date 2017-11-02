@@ -170,16 +170,14 @@
 
    
     var startPoint = new Point(data[0].x, data[0].y);
-    var oldPoint = startPoint;   
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
 
    data.forEach(function(element) {
       console.log("element " + element);
-          var path = new Path.Line(oldPoint, new Point(element.x, element.y));
+          var path = new Path.Line(startPoint, new Point(element.x, element.y));
 		      path.strokeColor = 'red';
-          oldPoint = new Point(element.x, element.y);
       }, this);
 
   }
