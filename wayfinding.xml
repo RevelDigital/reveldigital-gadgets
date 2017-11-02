@@ -175,10 +175,10 @@
 
   var path = new Path();
   path.strokeColor = 'red';
-   data.forEach(function(element) {
-   console.log(element);
-      console.log("element ", element.x, element.y);
-          path.add(new Point(element.x * scaleX, element.y * scaleY));
+  data.forEach(function(element) {
+  console.log(element);
+      console.log("element ", element[0], element[1]);
+          path.add(new Point(element[0] * scaleX, element[1] * scaleY));
       }, this);
      
 
