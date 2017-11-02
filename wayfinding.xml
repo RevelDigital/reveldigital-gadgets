@@ -100,11 +100,22 @@
   
   var prefs = new gadgets.Prefs();
 
-  var path;
-
   paper.install(window);
 	window.onload = function() {
 		paper.setup('myCanvas');
+
+
+    var path = new paper.Path();
+		// Give the stroke a color
+		path.strokeColor = 'black';
+		var start = new paper.Point(0, 0);
+		// Move to start and draw a line from there
+		path.moveTo(start);
+		// Note that the plus operator on Point objects does not work
+		// in JavaScript. Instead, we need to call the add() function:
+		path.lineTo(start.add([ 100, 100 ]));
+		// Draw the view now:
+		paper.view.draw();
 	};
 
 
@@ -166,13 +177,22 @@
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
-    var path = new Path.Rectangle([75, 75], [100, 100]);
-		path.strokeColor = 'red';
+    var path = new Path({
+      strokeWidth : 5,
+      strokeCap : 'round',
+      strokeColor : 'red'
+    });
 
-		view.onFrame = function(event) {
-			// On each frame, rotate the path by 3 degrees:
-			path.rotate(3);
-		}
+
+    console.log(path);
+
+    data.forEach(function(element) {
+      console.log("element " + element);
+        path.lineTo(startPoint.add(new Point(element.x, element.y)));
+      }, this);
+    path.closed = false;
+
+
 
     if (paper.view) {
       console.log("drawing");
