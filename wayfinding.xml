@@ -192,8 +192,9 @@
       }, this);
     path.closed = false;
 
-    // Draw the view now:
-    paper.view.draw();
+    if (paper.view) {
+      paper.view.draw();
+    }
   }
 
   function getPath(toX, toY) {
