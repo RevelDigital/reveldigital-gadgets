@@ -105,17 +105,14 @@
 		paper.setup('myCanvas');
 
 
-    var path = new paper.Path();
-		// Give the stroke a color
+    var path = new Path.Rectangle([75, 75], [100, 100]);
 		path.strokeColor = 'black';
-		var start = new paper.Point(0, 0);
-		// Move to start and draw a line from there
-		path.moveTo(start);
-		// Note that the plus operator on Point objects does not work
-		// in JavaScript. Instead, we need to call the add() function:
-		path.lineTo(start.add([ 100, 100 ]));
-		// Draw the view now:
-		paper.view.draw();
+
+		view.onFrame = function(event) {
+			// On each frame, rotate the path by 3 degrees:
+			path.rotate(3);
+		}
+    
 	};
 
 
