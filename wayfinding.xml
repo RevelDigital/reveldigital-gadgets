@@ -178,7 +178,7 @@
 
    data.forEach(function(element) {
       console.log("element " + element);
-          segments.push(new Point(element.x, element.y));
+          segments.push([element.x,element.y]);
       }, this);
 
     console.log(segments);
