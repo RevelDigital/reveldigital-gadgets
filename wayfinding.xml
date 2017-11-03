@@ -30,6 +30,10 @@
     width: __UP_rdW__px;
     height: __UP_rdH__px;
     overflow: hidden;
+    background-image: url(__UP_imageUrl__);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
   .container {
     display: block;
@@ -44,12 +48,7 @@
     z-index: 50;
   }
   .map {
-    background-image: url(__UP_imageUrl__);
-    width: 100%;
-    height: 100%; 
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: contain;
+    
   }
   button {
     width:100%;
@@ -163,15 +162,12 @@
     console.log("scale");
     console.log(scaleX, scaleY);
 
-  var path = new Path();
-  path.strokeColor = 'red';
-  data.forEach(function(element) {
-  console.log(element);
-      console.log("element ", element[0], element[1]);
-          path.add(new Point(element[0] * scaleX, element[1] * scaleY));
-      }, this);
-     
-
+    var path = new Path();
+    path.strokeColor = 'red';
+    path.strokeWidth = 5;
+    data.forEach(function(element) {
+        path.add(new Point(element[0] * scaleX, element[1] * scaleY));
+    }, this);
   }
 
   function getPath(toX, toY) {
