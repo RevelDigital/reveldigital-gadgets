@@ -23,8 +23,6 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-width: __UP_rdW__px;
-    min-height: __UP_rdH__px;
   }
   body *
   {
@@ -120,10 +118,6 @@
   }
 
   function generatePath(storeName) {
-
-    if (paper.view) {
-      paper.view.remove();
-    }
     var counter = 0;
   
     var toX = start.x;
@@ -161,14 +155,14 @@
 
     var path = new Path();
     path.strokeColor = 'red';
-    path.strokeWidth = 5;
-    path.dashArray = [1,5]
+    path.strokeWidth = 5; 
+    path.dashArray = [1,5];
     data.forEach(function(element) {
         path.add(new Point(element[0] * scaleX, element[1] * scaleY));
     }, this);
 
     path.onFrame = function(event) {
-      path.strokeColor.hue += 1;		
+        path.strokeColor.hue += 1;
     }
   }
 
