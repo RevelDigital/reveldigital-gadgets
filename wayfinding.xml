@@ -34,9 +34,10 @@
     position: absolute;
     height:100%;
     width: 10%;
+    margin: 3%;
     right: 0;
     top:0;
-    overflow-y: auto;
+    overflow-y: hidden;
     z-index: 50;
   }
   button {
@@ -48,8 +49,8 @@
     position: relative;
     left: 0;
     z-index: 10;
-    width: __UP_rdW__px;
-    height: __UP_rdH__px;
+    width:100%;
+    height: 100%;
   }
   .store-btn {
     font-size: 1.2em;
