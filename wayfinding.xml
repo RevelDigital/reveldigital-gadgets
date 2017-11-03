@@ -84,8 +84,6 @@
   var width = prefs.getString("rdW");
   var height = prefs.getString("rdH");
 
-  console.log("dimensions at start ", width, height);
-
   paper.install(window);
 	window.onload = function() {
 		paper.setup('myCanvas');
@@ -102,7 +100,6 @@
     items.forEach(function(element) {
             var btn = $("<button class='store-btn'><strong>" + element.name + "</strong></button>");
             btn.click(function() {
-              console.log(element.name);
               generatePath(element.name); 
             });
             $("#btnContainer").append(btn);
@@ -112,7 +109,6 @@
 
   function generatePath(storeName) {
     if (lastPath) {
-      console.log("removing old path");
       lastPath.remove();
     }
     var counter = 0;
@@ -127,27 +123,13 @@
       }
     }, this);
 
-
-    console.log(toX, toY);
-
     var data = getPath(toX, toY);
-    console.log("after getPath");
-    console.log(data);
     if (!data[0]) {
-      console.log("returning");
       return;
     }
-
-    console.log("size");
-    console.log(width, height);
-    console.log("grid");
-    console.log(gridWidth, gridHeight);
    
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
-
-    console.log("scale");
-    console.log(scaleX, scaleY);
 
     var path = new Path();
     path.strokeColor = 'red';
@@ -158,7 +140,6 @@
     }, this);
 
     path.onFrame = function(event) {
-        console.log("onFrame");
         path.strokeColor.hue += 1;
     }
 
@@ -176,7 +157,6 @@
     var grid = new PF.Grid(matrix);
     var finder = new PF.AStarFinder();
     var path = finder.findPath(START.x, START.y, toX, toY, grid);
-    console.log("path" + path);
     return path;
   }
 
@@ -193,8 +173,6 @@
             
             gridHeight = DATA.height;
             gridWidth = DATA.width;
-
-            console.log(DATA);
           }
         } else {
           console.error(xhr.statusText);
@@ -217,8 +195,6 @@
           var obj = JSON.parse(xhr.responseText);
           if (obj) {
             STORES = obj;
-            console.log("stores");
-            console.log(STORES);
                  
             var index = STORES.map(x => x.name).indexOf('start');
             START = STORES[index];
