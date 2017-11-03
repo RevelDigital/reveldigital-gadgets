@@ -4,6 +4,7 @@
   <UserPref name="imageUrl" display_name="URL for image" datatype="string" default_value="" required="true" />
   <UserPref name="dataUrl" display_name="URL for json with data grid" datatype="string" default_value="" required="true" />
   <UserPref name="storesUrl" display_name="URL for json with destinations" datatype="string" default_value="" required="true" />
+  <UserPref name="cellSize" display_name="Cell size in pixels" datatype="string" default_value=""/>
      
   <!-- The following preferences should not be modified -->
   <UserPref name="ForeColor" datatype="hidden" />
@@ -122,9 +123,17 @@
     if (!data[0]) {
       return;
     }
+
+    var cellSize = prefs.getString("cellSize");
+
+    var editorWidth = gridWidth * cellSize;
+    var editorHeight = gridHeight * cellSize;
    
-    var scaleX =  width / (gridWidth);
-    var scaleY = height / (gridHeight);
+    var scaleX = (width / (gridWidth) * (editorWidth / width);
+    var scaleY = (height / (gridHeight) * (editorHeight / gridHeight);
+
+    console.log("scale");
+    console.log(scaleX, scaleY);
 
     var path = new Path();
     path.strokeColor = 'red';
