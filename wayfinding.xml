@@ -34,7 +34,6 @@
     position: absolute;
     height:100%;
     width: 10%;
-    margin: 3%;
     right: 0;
     top:0;
     overflow-y: hidden;
@@ -53,6 +52,7 @@
     height: 100%;
   }
   .store-btn {
+    margin: 3%;
     font-size: 1.2em;
     border: 2px solid;
     border-radius: 10px;
