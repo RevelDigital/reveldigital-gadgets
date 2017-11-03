@@ -32,7 +32,7 @@
   .container {
     display: block;
   }
-  .btnContainer {
+  #btnContainer {
     position: absolute;
     height:100%;
     width: 10%;
@@ -53,11 +53,14 @@
     width: __UP_rdW__px;
     height: __UP_rdH__px;
   }
+  .store-btn {
+    font-size: 200%;
+  }
 </style>
 <body>
   <div id="container">
-    <canvas id="myCanvas" style="border: 1px dotted red;" resize="true"></canvas>
-    <div class="btnContainer">
+    <canvas id="myCanvas" resize="true"></canvas>
+    <div id="btnContainer">
     </div> 
   </div>
 </body>
@@ -67,7 +70,6 @@
   var gridHeight = 0;
   var gridWidth = 0;
 
-  
 
   var start = {"x":95,"y":54};
 
@@ -100,16 +102,21 @@
 
   function populateButtons(items){
     items.forEach(function(element) {
-            console.log(element.name);
-            var btn = $("<button>" + element.name + "</button>");
-            btn.click(function() {console.log(element.name);
-                generatePath(element.name); });
-            $(".btnContainer").append(btn);
+            var btn = $("<button class='store-btn'><strong>" + element.name + "</strong></button>");
+            btn.click(function() {
+              console.log(element.name);
+              generatePath(element.name); 
+            });
+            $("#btnContainer").append(btn);
             
     }, this);
   }
 
   function generatePath(storeName) {
+
+    if (paper.view) {
+      paper.view.remove();
+    }
     var counter = 0;
   
     var toX = start.x;
@@ -148,7 +155,7 @@
     var path = new Path();
     path.strokeColor = 'red';
     path.strokeWidth = 5; 
-    path.dashArray = [1,5];
+    path.dashArray = [10,5];
     data.forEach(function(element) {
         path.add(new Point(element[0] * scaleX, element[1] * scaleY));
     }, this);
