@@ -131,8 +131,8 @@
     var editorHeight = gridHeight * cellSize;
     console.log("editor size", editorWidth, editorHeight);
 
-    var scaleX = (width / gridWidth) * (editorWidth / width);
-    var scaleY = (height / gridHeight) * (editorHeight / gridHeight);
+    var scaleX = (editorWidth / width);
+    var scaleY = (editorHeight / gridHeight);
 
     console.log("scale", scaleX, scaleY);
 
