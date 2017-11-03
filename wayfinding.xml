@@ -55,6 +55,8 @@
   }
   .store-btn {
     font-size: 1.2em;
+    border: 2px solid;
+    border-radius: 10px;
   }
 </style>
 <body>
