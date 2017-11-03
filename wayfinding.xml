@@ -96,7 +96,6 @@
   function onLoad() {
     readInData();
     readInStores();
-    populateButtons(STORES);
   }
 
   function populateButtons(items){
@@ -218,6 +217,7 @@
             STORES = obj;
             console.log("stores");
             console.log(STORES);
+            populateButtons(STORES);
           }
         } else {
           console.error(xhr.statusText);
