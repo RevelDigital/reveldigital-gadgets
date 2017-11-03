@@ -54,7 +54,7 @@
     height: __UP_rdH__px;
   }
   .store-btn {
-    font-size: 200%;
+    font-size: 1.2em;
   }
 </style>
 <body>
@@ -113,10 +113,10 @@
   }
 
   function generatePath(storeName) {
-
-    if (paper.view) {
-      paper.view.remove();
-    }
+  if (path) {
+    console.log("removing path");
+    path.remove();
+  }
     var counter = 0;
   
     var toX = start.x;
@@ -159,6 +159,8 @@
     data.forEach(function(element) {
         path.add(new Point(element[0] * scaleX, element[1] * scaleY));
     }, this);
+
+    path.smooth();
   }
 
   function getPath(toX, toY) {
