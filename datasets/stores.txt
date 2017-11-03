@@ -1,0 +1,1 @@
+[{"x":95,"y":50,"name":"start"},{"x":16,"y":42,"name":"Target"},{"x":151,"y":75,"name":"Walmart"},{"x":163,"y":21,"name":"Macy"},{"x":95, "y":75,"name": "Kmart"}]
