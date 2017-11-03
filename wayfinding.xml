@@ -2,7 +2,8 @@
 <Module> 
 <ModulePrefs title="Wayfinding Gadget" description="" author="Revel Digital" background="transparent">
   <UserPref name="imageUrl" display_name="URL for image" datatype="string" default_value="" required="true" />
-  <UserPref name="dataUrl" display_name="URL for json" datatype="string" default_value="" required="true" />
+  <UserPref name="dataUrl" display_name="URL for json with data grid" datatype="string" default_value="" required="true" />
+  <UserPref name="storesUrl" display_name="URL for json with destinations" datatype="string" default_value="" required="true" />
      
   <!-- The following preferences should not be modified -->
   <UserPref name="ForeColor" datatype="hidden" />
@@ -67,20 +68,13 @@
   </div>
 </body>
 <script type="text/javascript">
-  var DATA = "";
+  var DATA;
+  var STORES;
+  var START;
+
   var lastTimestamp = 0;
   var gridHeight = 0;
   var gridWidth = 0;
-
-
-  var start = {"x":95,"y":54};
-
-  var stores = [
-    {"x":16,"y":42,"name":"Target"},
-    {"x":151,"y":75,"name":"Walmart"},
-    {"x":163,"y":21,"name":"Macy"},
-    {"x":95, "y":75,"name": "Kmart"}
-  ]; 
 
   var lastPath;
 
@@ -100,8 +94,9 @@
 
   // This function is called after the gadget has been initialized.
   function onLoad() {
-    populateButtons(stores);
     readInData();
+    readInStores();
+    populateButtons(STORES);
   }
 
   function populateButtons(items){
@@ -117,16 +112,19 @@
   }
 
   function generatePath(storeName) {
-  if (lastPath) {
-    console.log("removing path");
-    lastPath.remove();
-  }
+    if (lastPath) {
+      console.log("removing old path");
+      lastPath.remove();
+    }
     var counter = 0;
   
-    var toX = start.x;
-    var toY = start.y;
+    var toX;
+    var toY;
 
-    stores.forEach(function(element) {
+    STORES.forEach(function(element) {
+      if (element.name === "start") {
+        START = element;
+      }
       if (element.name === storeName) {
         toX = element.x;
         toY = element.y;
@@ -149,7 +147,6 @@
     console.log("grid");
     console.log(gridWidth, gridHeight);
    
-    var startPoint = new Point(data[0].x, data[0].y);
     var scaleX =  width / (gridWidth);
     var scaleY = height / (gridHeight);
 
@@ -177,37 +174,61 @@
     });
     var grid = new PF.Grid(matrix);
     var finder = new PF.AStarFinder();
-    var path = finder.findPath(start.x, start.y, toX, toY, grid);
+    var path = finder.findPath(START.x, START.y, toX, toY, grid);
     console.log("path" + path);
     return path;
   }
 
   function readInData() {
-  var addr = prefs.getString("dataUrl");
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", addr, true);
-  xhr.onload = function (e) {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        var obj = JSON.parse(xhr.responseText);
-        if (obj) {
-          DATA = obj;
-          
-          gridHeight = DATA.height;
-          gridWidth = DATA.width;
+    var addr = prefs.getString("dataUrl");
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", addr, true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var obj = JSON.parse(xhr.responseText);
+          if (obj) {
+            DATA = obj;
+            
+            gridHeight = DATA.height;
+            gridWidth = DATA.width;
 
-          console.log(DATA);
+            console.log(DATA);
+          }
+        } else {
+          console.error(xhr.statusText);
         }
-      } else {
-        console.error(xhr.statusText);
       }
-    }
-  };
-  xhr.onerror = function (e) {
-    console.error(xhr.statusText);
-  };
-  xhr.send(null);
-}
+    };
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText);
+    };
+    xhr.send(null);
+  }
+
+  function readInStores() {
+    var addr = prefs.getString("storesUrl");
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", addr, true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var obj = JSON.parse(xhr.responseText);
+          if (obj) {
+            STORES = obj;
+            console.log("stores");
+            console.log(STORES);
+          }
+        } else {
+          console.error(xhr.statusText);
+        }
+      }
+    };
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText);
+    };
+    xhr.send(null);
+  }
 
   gadgets.util.registerOnLoadHandler(onLoad);
   
