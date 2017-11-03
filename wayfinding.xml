@@ -40,8 +40,7 @@
     z-index: 50;
   }
   button {
-    width:100%;
-    padding: 20px;
+    width:95%;
     height: 50px;
   }
   #myCanvas {
