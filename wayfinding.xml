@@ -123,6 +123,8 @@
     STORES.forEach(function(element) {
       if (element.name === "start") {
         START = element;
+        var index = STORES.indexOf(element);
+        STORES.splice(index, 1);
       }
       if (element.name === storeName) {
         toX = element.x;
