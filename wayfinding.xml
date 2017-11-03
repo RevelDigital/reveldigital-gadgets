@@ -80,6 +80,8 @@
     {"x":95, "y":75,"name": "Kmart"}
   ]; 
 
+  var lastPath;
+
   
   var prefs = new gadgets.Prefs();
 
@@ -113,9 +115,9 @@
   }
 
   function generatePath(storeName) {
-  if (path) {
+  if (lastPath) {
     console.log("removing path");
-    path.remove();
+    lastPath.remove();
   }
     var counter = 0;
   
@@ -161,6 +163,8 @@
     }, this);
 
     path.smooth();
+
+    lastPath = path;
   }
 
   function getPath(toX, toY) {
