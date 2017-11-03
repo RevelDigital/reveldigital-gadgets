@@ -157,6 +157,11 @@
         path.add(new Point(element[0] * scaleX, element[1] * scaleY));
     }, this);
 
+    path.onFrame = function(event) {
+        console.log("onFrame");
+        path.strokeColor.hue += 1;
+    }
+
     path.smooth();
 
     lastPath = path;
