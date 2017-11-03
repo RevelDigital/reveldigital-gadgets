@@ -30,9 +30,6 @@
     word-spacing: normal;
     font-family: 'Roboto', sans-serif;
   }
-  .container {
-    display: block;
-  }
   #btnContainer {
     position: absolute;
     height:100%;
@@ -61,11 +58,9 @@
   }
 </style>
 <body>
-  <div id="container">
     <canvas id="myCanvas" resize="true"></canvas>
     <div id="btnContainer">
     </div> 
-  </div>
 </body>
 <script type="text/javascript">
   var DATA;
