@@ -125,16 +125,10 @@
     }
 
     var cellSize = prefs.getString("cellSize");
-    console.log("cell size", cellSize);
 
-    var editorWidth = gridWidth * cellSize;
-    var editorHeight = gridHeight * cellSize;
-    console.log("editor size", editorWidth, editorHeight);
-
-    var scaleX = (editorWidth / width);
-    var scaleY = (editorHeight / gridHeight);
-
-    console.log("scale", scaleX, scaleY);
+   
+    var scaleX = width / (gridWidth);
+    var scaleY = height / (gridHeight);
 
     var path = new Path();
     path.strokeColor = 'red';
