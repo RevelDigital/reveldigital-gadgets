@@ -3,7 +3,7 @@
 <ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
     <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
     <UserPref name="tText" display_name="Top Text" datatype="string" />
-    <UserPref name="bText Text" display_name="Bottom Text" datatype="string" />
+    <UserPref name="bText" display_name="Bottom Text" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -23,14 +23,9 @@
         font-family: "Lucida Sans", sans-serif;
     }
     body {
-        background-color: #00000010;
+        background: transparent;
         font-family: 'Roboto', sans-serif;
-        background-image:
-                linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)),
-                url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
 
-        background-repeat: no-repeat;
-        background-position: 50% 0;
         -ms-background-size: cover;
         -o-background-size: cover;
         -moz-background-size: cover;
