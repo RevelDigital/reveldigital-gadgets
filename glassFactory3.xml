@@ -2,6 +2,220 @@
 <Module> 
 <ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
     <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
+    <UserPref name="tText" display_name="Top Text" datatype="string" />
+    <UserPref name="bText Text" display_name="Bottom Text" datatype="string" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    html,body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html {
+        font-family: "Lucida Sans", sans-serif;
+    }
+    body {
+        background-color: #00000010;
+        font-family: 'Roboto', sans-serif;
+        background-image:
+                linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)),
+                url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
+
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+
+    }
+
+    #daysSinceAccident{
+        position: absolute;
+        width: 700px;
+        height: 400px;
+        top: 295px;
+        left: 610px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0px 3px 69px 15px rgba(0,0,0,0.14);
+        text-align:center;
+    }
+
+
+
+    .black-text {
+        color: black;
+        font-weight: bold;
+        font-size: 20em;
+        width: 30%;
+    }
+
+    .green-text {
+        position: absolute;
+        color: #1f542f;
+        font-weight: bold;
+        font-size: 3em;
+        text-align: center;
+    }
+
+    .block {
+        height:400px;
+        width:700px;
+        text-align:left;
+    }
+    .center {
+
+        margin:auto;
+    }
+    .left {
+        margin:auto auto auto 0;
+        background-color:red;
+    }
+    .right {
+        margin:auto 0 auto auto;
+        background-color:yellow;
+    }
+    .centerTopText{
+        top: 175px;
+        left: 750px;
+        width: 400px;
+    }
+    .centerBottomText{
+        top: 650px;
+        left: 560px;
+        width: 800px;
+    }
+
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<body>
+<p id="topText" class="green-text centerTopText"></p>
+<div id="daysSinceAccident">
+    <p style="margin-top: 10px; margin-left: 80px" class="block center black-text" id="day"></p>
+</div>
+<p id="bottomText" class="green-text centerBottomText" style="font-size: 4.7em;"></p>
+</body>
+<script type="text/javascript">
+    var prefs = new gadgets.Prefs();
+    var addr = prefs.getString("serverAddr");
+    var ENDPOINT = addr;
+
+    $('#topText').html(prefs.getString("tText"));
+    $('#bottomText').html(prefs.getString("bText"));
+
+    function getFile(filename, action) {
+        setInfo("getting file " + filename);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", ENDPOINT + "/" + filename, true);
+        xhr.onload = function (e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    action(xhr.responseText);
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function (e) {
+            console.error(xhr.statusText);
+        };
+        xhr.send(null);
+    }
+    function processRechazosData(data) {
+        var array = data.trim().split(" ");
+        var monthNum;
+        var monthes = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto','septiembre', 'octubre', 'noviembre', 'diciembre'];
+        switch (array[1].toLowerCase()) {
+            case monthes[0]:
+                monthNum = 0;
+                break;
+            case monthes[1]:
+                monthNum = 1;
+                break;
+            case monthes[2]:
+                monthNum = 2;
+                break;
+            case monthes[3]:
+                monthNum = 3;
+                break;
+            case monthes[4]:
+                monthNum = 4;
+                break;
+            case monthes[5]:
+                monthNum = 5;
+                break;
+            case monthes[6]:
+                monthNum = 6;
+            case monthes[7]:
+                monthNum = 7;
+                break;
+            case monthes[8]:
+                monthNum = 8;
+                break;
+            case monthes[9]:
+                monthNum = 9;
+                break;
+            case monthes[10]:
+                monthNum = 10;
+                break;
+            case monthes[11]:
+                monthNum = 11;
+                break;
+            default:
+                monthNum = -1
+        }
+        if(-1 < monthNum && monthNum < 12){
+            var one_day=1000*60*60*24;
+            var now = Date.now();
+            var days = Math.floor((now - new Date(array[2], monthNum, array[0]).getTime())/one_day);
+            console.log(days);
+            try{
+                $('#day').html(days);
+
+            }catch (e){
+
+            }
+        }
+
+    };
+    function displayAccidentesData(acc_date) {
+
+        try {
+            console.log('here');
+
+        } catch (e) {
+        }
+    }
+
+    function init() {
+        setInfo("init gadget " + ENDPOINT);
+
+        getFile("accidentes.txt", processRechazosData);
+        setInterval(function() { getFile("accidentes.txt", processRechazosData) }, 12*1000*60);
+
+    }
+
+    gadgets.util.registerOnLoadHandler(init);
+    function setInfo(data) {
+        var debug = false;
+        if (debug) {
+            var container = $('#infoContainer');
+            container.append(data + '<br>');
+        }
+        if (debug) {
+            console.log(data);
+        }
+    }
+
+</script>
