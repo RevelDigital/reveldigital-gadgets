@@ -107,7 +107,7 @@
     var ENDPOINT = addr;
 
     $('#topText').html(prefs.getString("tText"));
-    $('#bottomText').html(prefs.getString("bText"));
+    $('#bottomText').html('literal test');
 
     function getFile(filename, action) {
         setInfo("getting file " + filename);
