@@ -51,6 +51,7 @@
   }
   
   .box {
+    position: relative;
     border-radius: 15px;
     width: 100%;
     padding: 0;
