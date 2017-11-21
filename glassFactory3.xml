@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
+    <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
