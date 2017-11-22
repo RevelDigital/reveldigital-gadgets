@@ -1,0 +1,416 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    html,body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html {
+        font-family: "Lucida Sans", sans-serif;
+    }
+    body {
+        background-color: #00000010;
+        font-family: 'Roboto', sans-serif;
+        background-image:
+                linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)),
+                url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
+
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+
+    }
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+    }
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    .data-field {
+        background-color: white;
+        color: green;
+        padding: 10px;
+        font-size: 2em;
+    }
+    .data-label {
+        font-size: 1.2em;
+    }
+    .data-label:after {
+        content:"\a\a";
+        white-space: pre;
+    }
+    .big-label {
+        background-color: green;
+        color: white;
+        padding: 15px;
+        font-size: 4em;
+        border-radius: 15px;
+        text-align: end;
+    }
+    .blank_row {
+        height: 10px !important;
+    }
+    .company-logo {
+        max-width: 25vw;
+        max-height: 25vh;
+    }
+    .float-left {
+        float: left;
+    }
+    .green-pct {
+        background-color: green;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        color: white;
+        padding: 10px;
+        font-size: 2em;
+    }
+    .green-text {
+        color: green;
+        font-weight: bold;
+        font-size: 1.4em;
+        width: 30%;
+    }
+    .shaded-background {
+        background-image: linear-gradient(rgba(53, 53, 53, 0.2),rgba(53, 53, 53, 0.2));
+    }
+    .green-header-left {
+        border-top-left-radius: 15px;
+    }
+    .green-header {
+        background-color: green;
+        color: white;
+        font-size: 1.6em;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .green-header-right {
+        border-top-right-radius: 15px;
+    }
+    .table-data-field {
+        display: block;
+        color: green;
+        font-size: 2em;
+        background-image: linear-gradient(rgba(120, 120, 120, 0.5),rgba(120, 120, 120, 0.5));
+    }
+    .slide {
+        height: 100%;
+    }
+    .upper {
+        position: relative;
+        height: 60%;
+    }
+    .lower {
+        height: 40%;
+    }
+    .quarter {
+        height: 25%;
+    }
+    #mid-label {
+        color: green;
+        padding: 10px;
+        font-size: 3em;
+        text-align: end;
+        width: 30%;
+    }
+
+    .bottom-aligned {
+        position: absolute;
+        bottom: 20;
+    }
+    .centered {
+        display: flex;
+        align-items: center;
+    }
+    .data-field:empty {
+        display: none;
+    }
+    .data-field:empty + span {
+        display: none;
+    }
+    .big-label:empty {
+        display: none;
+    }
+
+    #infoContainer {
+        font-size: 75%;
+        color: red;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<body>
+<div class="slide">
+    <div class="row centered quarter">
+        <div class="col-9">
+            <img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
+        </div>
+        <div class="col-3">
+            <span class='big-label' id="horno-label"></span>
+        </div>
+    </div>
+    <div class="row centered shaded-background quarter">
+        <div class="col-4">
+            <label class="green-text" id="fabricated"></label><span id="pallets-mes-field" class='data-field'></span>
+        </div>
+        <div class="col-4">
+            <label  class="green-text" id="rejected"></label><span style="color: #a30000" id="pallets-recha-field" class='data-field'></span>
+        </div>
+        <div class="col-4">
+            <label  class="green-text" id="reject_fabricated"> </label><span id="recha-fabricado-field" class='data-field'></span><span class="green-pct">%</span>
+        </div>
+    </div>
+    <div class="row centered lower">
+        <div class="col-12">
+            <table width="90%" border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th></th>
+                    <th id="head1" class="green-header green-header-left"></th>
+                    <th id="head2" class="green-header"></th>
+                    <th id="head3" class="green-header"></th>
+                    <th id="head4" class="green-header"></th>
+                    <th id="head5" class="green-header green-header-right"></th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-1"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-1" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-1" class='table-data-field'></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-2"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-2" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-2" class='table-data-field'></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <span id="table-field-index-3"></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-model-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-series-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-ayer-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-pallets-recha-3" class='table-data-field'></span>
+                    </td>
+                    <td align="center">
+                        <span id="table-field-indice-rechazo-3" class='table-data-field'></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<p id="infoContainer"></p>
+</body>
+<script type="text/javascript">
+    //var prefs = new gadgets.Prefs();
+    var addr = 'https://catalystllc.biz/avery/'//prefs.getString("serverAddr");
+    var ENDPOINT = addr;
+    var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+    var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
+    var RECHAZOS_HORNO_ID = 0;
+    var RECHAZOS_DATA = [];
+    var RECHAZOS_DATA_IDX = 0;
+    var timeoutId = -1;
+    $('#fabricated').html('6');
+    $('#rejected').html('7');
+    $('#reject_fabricated').html('8');
+    $('#head1').html('1');
+    $('#head2').html('2');
+    $('#head3').html('3');
+    $('#head4').html('4');
+    $('#head5').html('5');
+    var ovenTxt = 'oven';
+
+    function getFile(filename, action) {
+        setInfo("getting file " + filename);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", ENDPOINT + "/" + filename, true);
+        xhr.onload = function (e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    action(xhr.responseText);
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function (e) {
+            console.error(xhr.statusText);
+        };
+        xhr.send(null);
+    }
+    function processRechazosData(data) {
+        var START = 2;
+        RECHAZOS_DATA = [];
+        var array = data.trim ().split(/\r?\n/);
+        for (var i = START; i < array.length; i += 6) {
+            RECHAZOS_DATA.push(array.slice(i,i+6));
+        }
+        clearInterval(timeoutId);
+        displayRechazosData();
+        timeoutId = setInterval(displayRechazosData, ROTATE_INTERVAL);
+    };
+    function displayRechazosData() {
+        try {
+            var hornoIdField = document.getElementById("horno-label");
+            var tableFieldIndex = document.getElementById("table-field-index-1");
+            var tableFieldModel = document.getElementById("table-field-model-1");
+            var tableFieldSeries = document.getElementById("table-field-series-1");
+            var tableFieldAyer = document.getElementById("table-field-ayer-1");
+            var tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-1");
+            var tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-1");
+
+            tableFieldIndex.innerText = "";
+            tableFieldModel.innerText = "";
+            tableFieldSeries.innerText = "";
+            tableFieldAyer.innerText = "";
+            tableFieldPalletsRecha.innerText = "";
+            tableFieldIndeceRechazo.innerText = "";
+
+            tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][0];
+            tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][1];
+            tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][2];
+            tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][3];
+            tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][4];
+            tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX][5];
+            hornoIdField.innerText = ovenTxt + " " + Math.floor(RECHAZOS_DATA[RECHAZOS_DATA_IDX][0]/10);
+
+            tableFieldIndex = document.getElementById("table-field-index-2");
+            tableFieldModel = document.getElementById("table-field-model-2");
+            tableFieldSeries = document.getElementById("table-field-series-2");
+            tableFieldAyer = document.getElementById("table-field-ayer-2");
+            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-2");
+            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-2");
+
+            tableFieldIndex.innerText = "";
+            tableFieldModel.innerText = "";
+            tableFieldSeries.innerText = "";
+            tableFieldAyer.innerText = "";
+            tableFieldPalletsRecha.innerText = "";
+            tableFieldIndeceRechazo.innerText = "";
+
+            tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][0];
+            tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][1];
+            tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 1][2];
+            tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][3];
+            tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][4];
+            tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 1][5];
+
+            tableFieldIndex = document.getElementById("table-field-index-3");
+            tableFieldModel = document.getElementById("table-field-model-3");
+            tableFieldSeries = document.getElementById("table-field-series-3");
+            tableFieldAyer = document.getElementById("table-field-ayer-3");
+            tableFieldPalletsRecha = document.getElementById("table-field-pallets-recha-3");
+            tableFieldIndeceRechazo = document.getElementById("table-field-indice-rechazo-3");
+
+            tableFieldIndex.innerText = "";
+            tableFieldModel.innerText = "";
+            tableFieldSeries.innerText = "";
+            tableFieldAyer.innerText = "";
+            tableFieldPalletsRecha.innerText = "";
+            tableFieldIndeceRechazo.innerText = "";
+
+            tableFieldIndex.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][0];
+            tableFieldModel.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][1];
+            tableFieldSeries.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX+ 2][2];
+            tableFieldAyer.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][3];
+            tableFieldPalletsRecha.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][4];
+            tableFieldIndeceRechazo.innerText = RECHAZOS_DATA[RECHAZOS_DATA_IDX + 2][5];
+            RECHAZOS_DATA_IDX+=3;
+        } catch (e) {
+            RECHAZOS_DATA_IDX = 0;
+        }
+    }
+    function processRechaPlantData(data) {
+        setInfo("processRechaPlantData");
+        var array = data.split(/\r?\n/);
+        if (array.length >= 3) {
+            var palletsField = document.getElementById("pallets-mes-field");
+            var palletsRechaField = document.getElementById("pallets-recha-field");
+            var rechaFabricadoField = document.getElementById("recha-fabricado-field");
+            palletsField.innerText = array[0];
+            palletsRechaField.innerText = array[1];
+            rechaFabricadoField.innerText = array[2];
+        }
+    };
+    function init() {
+        setInfo("init gadget " + ENDPOINT);
+
+        getFile("datosrechazos.txt", processRechazosData);
+        setInterval(function() { getFile("datosrechazos.txt", processRechazosData) }, INTERVAL);
+
+        getFile("datrechaplanta.txt", processRechaPlantData);
+        setInterval(function() { getFile("datrechaplanta.txt", processRechaPlantData) }, INTERVAL);
+    }
+
+    //gadgets.util.registerOnLoadHandler(init);
+    function setInfo(data) {
+        var debug = false;
+        if (debug) {
+            var container = $('#infoContainer');
+            container.append(data + '<br>');
+        }
+        if (debug) {
+            console.log(data);
+        }
+    }
+    init()
+</script>
