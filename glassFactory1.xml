@@ -2,6 +2,12 @@
 <Module>
     <ModulePrefs title="Glass Factory Gadget demo" description="" author="RevelDigital" background="transparent">
         <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
+        <UserPref name="month" display_name="Month" datatype="string" />
+        <UserPref name="day" display_name="Day" datatype="string" />
+        <UserPref name="date" display_name="Date" datatype="string" />
+        <UserPref name="oven" display_name="Oven" datatype="string" />
+        <UserPref name="midLabel" display_name="Mid Label" datatype="string" />
+        
     </ModulePrefs>
     <Content type="html">
         <![CDATA[
@@ -232,8 +238,8 @@
 <p id="infoContainer"></p>
 </body>
 <script type="text/javascript">
-    //var prefs = new gadgets.Prefs();
-    var addr = 'https://catalystllc.biz/avery'//prefs.getString("serverAddr");
+    var prefs = new gadgets.Prefs();
+    var addr = prefs.getString("serverAddr");
     var ENDPOINT = addr;
     var INTERVAL = 1 * 600 * 1000; // minutes * seconds * 1000 milliseconds
     var ROTATE_INTERVAL = 2000 * 1000; // seconds * 1000 milliseconds
@@ -241,11 +247,11 @@
     var LINEAR_DATA = [];
     var LINEAR_DATA_IDX = 0;
     var timeoutId = -1;
-    var ovenTxt = 'testw';
-    $('#date').html('1');
-    $('#day').html('2');
-    $('#mid-label').html('3');
-    $('#month').html('4');
+    var ovenTxt = prefs.getString("oven");
+    $('#date').html(prefs.getString("date"));
+    $('#day').html(prefs.getString("day"));
+    $('#mid-label').html(prefs.getString("midLabel"));
+    $('#month').html(prefs.getString("month"));
     function getFile(filename, action) {
         setInfo("getting file " + filename);
         var xhr = new XMLHttpRequest();
