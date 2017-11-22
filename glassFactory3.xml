@@ -4,6 +4,19 @@
     <UserPref name="serverAddr" display_name="Local Server Address" datatype="string" />
     <UserPref name="tText" display_name="Top Text" datatype="string" />
     <UserPref name="bText" display_name="Bottom Text" datatype="string" />
+    <UserPref name="month1" display_name="Month 1" datatype="string" />
+    <UserPref name="month2" display_name="Month 2" datatype="string" />
+    <UserPref name="month3" display_name="Month 3" datatype="string" />
+    <UserPref name="month4" display_name="Month 4" datatype="string" />
+    <UserPref name="month5" display_name="Month 5" datatype="string" />
+    <UserPref name="month6" display_name="Month 6" datatype="string" />
+    <UserPref name="month7" display_name="Month 7" datatype="string" />
+    <UserPref name="month8" display_name="Month 8" datatype="string" />
+    <UserPref name="month9" display_name="Month 9" datatype="string" />
+    <UserPref name="month10" display_name="Month 10" datatype="string" />
+    <UserPref name="month11" display_name="Month 11" datatype="string" />
+    <UserPref name="month12" display_name="Month 12" datatype="string" />
+    
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -130,41 +143,41 @@
     function processRechazosData(data) {
         var array = data.trim().split(" ");
         var monthNum;
-        var monthes = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto','septiembre', 'octubre', 'noviembre', 'diciembre'];
+        var monthes = [prefs.getString("month1"), prefs.getString("month2"), prefs.getString("month3"), prefs.getString("month4"), prefs.getString("month5"), prefs.getString("month6"), prefs.getString("month7"), prefs.getString("month8"),prefs.getString("month9"), prefs.getString("month10"), prefs.getString("month11"), prefs.getString("month12")];
         switch (array[1].toLowerCase()) {
-            case monthes[0]:
+            case monthes[0].toLowerCase():
                 monthNum = 0;
                 break;
-            case monthes[1]:
+            case monthes[1].toLowerCase():
                 monthNum = 1;
                 break;
-            case monthes[2]:
+            case monthes[2].toLowerCase():
                 monthNum = 2;
                 break;
-            case monthes[3]:
+            case monthes[3].toLowerCase():
                 monthNum = 3;
                 break;
-            case monthes[4]:
+            case monthes[4].toLowerCase():
                 monthNum = 4;
                 break;
-            case monthes[5]:
+            case monthes[5].toLowerCase():
                 monthNum = 5;
                 break;
-            case monthes[6]:
+            case monthes[6].toLowerCase():
                 monthNum = 6;
-            case monthes[7]:
+            case monthes[7].toLowerCase():
                 monthNum = 7;
                 break;
-            case monthes[8]:
+            case monthes[8].toLowerCase():
                 monthNum = 8;
                 break;
-            case monthes[9]:
+            case monthes[9].toLowerCase():
                 monthNum = 9;
                 break;
-            case monthes[10]:
+            case monthes[10].toLowerCase():
                 monthNum = 10;
                 break;
-            case monthes[11]:
+            case monthes[11].toLowerCase():
                 monthNum = 11;
                 break;
             default:
