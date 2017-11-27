@@ -31,7 +31,7 @@
         font-family: "Lucida Sans", sans-serif;
     }
     body {
-        background-color: #00000010;
+        background-color: transparent;
         font-family: 'Roboto', sans-serif;
         background-repeat: no-repeat;
         background-position: 50% 0;
@@ -179,6 +179,9 @@
 <body>
 <div class="slide">
     <div class="row centered quarter">
+        <div class="col-9">
+
+        </div>
         <div class="col-3">
             <span class='big-label' id="horno-label"></span>
         </div>
@@ -197,7 +200,7 @@
 
 
             <label  class="green-text col-3" id="reject_fabricated"> </label>
-
+background-color: transparent;
             <span id="recha-fabricado-field" class='data-field col-1'></span><span style="margin-right: 5px" class="green-pct">%</span>
 
     </div>
