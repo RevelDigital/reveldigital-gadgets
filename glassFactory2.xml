@@ -33,6 +33,10 @@
     body {
         background-color: #00000010;
         font-family: 'Roboto', sans-serif;
+        background-image:
+                linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)),
+                url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
+
         background-repeat: no-repeat;
         background-position: 50% 0;
         -ms-background-size: cover;
@@ -80,7 +84,7 @@
         background-color: green;
         color: white;
         padding: 15px;
-        font-size: 4em;
+        font-size: 5.4em;
         border-radius: 15px;
         text-align: end;
     }
@@ -103,9 +107,10 @@
         font-size: 2em;
     }
     .green-text {
+        text-align: end;
         color: green;
         font-weight: bold;
-        font-size: 1.4em;
+        font-size: 2.2em;
         width: 30%;
     }
     .shaded-background {
@@ -127,7 +132,7 @@
     .table-data-field {
         display: block;
         color: green;
-        font-size: 2em;
+        font-size: 3em;
         background-image: linear-gradient(rgba(120, 120, 120, 0.5),rgba(120, 120, 120, 0.5));
     }
     .slide {
@@ -179,22 +184,29 @@
 <div class="slide">
     <div class="row centered quarter">
         <div class="col-9">
-            
+            <img src="http://www.vidrala.com/wp-content/uploads/2014/07/Vidrala22.png" class="company-logo">
         </div>
         <div class="col-3">
             <span class='big-label' id="horno-label"></span>
         </div>
     </div>
     <div class="row centered shaded-background quarter">
-        <div class="col-4">
-            <label class="green-text" id="fabricated"></label><span id="pallets-mes-field" class='data-field'></span>
-        </div>
-        <div class="col-4">
-            <label  class="green-text" id="rejected"></label><span style="color: #a30000" id="pallets-recha-field" class='data-field'></span>
-        </div>
-        <div class="col-4">
-            <label  class="green-text" id="reject_fabricated"> </label><span id="recha-fabricado-field" class='data-field'></span><span class="green-pct">%</span>
-        </div>
+            <label class="green-text col-3" id="fabricated"></label>
+
+            <span id="pallets-mes-field" class='col-1 data-field'></span>
+
+
+            <label  class="green-text col-3" id="rejected"></label>
+
+
+            <span style="color: #a30000" id="pallets-recha-field" class='col-1 data-field'></span>
+
+
+
+            <label  class="green-text col-3" id="reject_fabricated"> </label>
+
+            <span id="recha-fabricado-field" class='data-field col-1'></span><span style="margin-right: 5px" class="green-pct">%</span>
+
     </div>
     <div class="row centered lower">
         <div class="col-12">
