@@ -109,9 +109,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
 <p id="topText" class="green-text centerTopText"></p>
-<div id="daysSinceAccident">
-    <p style="margin-top: 10px; margin-left: 80px" class="block center black-text" id="day"></p>
-</div>
+<p id="daysSinceAccident" class="black-text">
+</p>
 <p id="bottomText" class="green-text centerBottomText" style="font-size: 4.7em;"></p>
 </body>
 <script type="text/javascript">
@@ -190,7 +189,7 @@
             var days = Math.floor((now - new Date(array[2], monthNum, array[0]).getTime())/one_day);
             console.log(days);
             try{
-                $('#day').html(days);
+                $('#daysSinceAccident').html(days);
 
             }catch (e){
 
