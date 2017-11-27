@@ -401,7 +401,7 @@
             var palletsRechaField = document.getElementById("pallets-recha-field");
             var rechaFabricadoField = document.getElementById("recha-fabricado-field");
             palletsField.innerText = array[0];
-            palletsRechaField.innerText = array[1];
+            palletsRechaField.innerText = array[1]/1000;
             rechaFabricadoField.innerText = array[2];
         }
     };
