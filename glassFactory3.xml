@@ -165,6 +165,7 @@
                 break;
             case monthes[6].toLowerCase():
                 monthNum = 6;
+                break;
             case monthes[7].toLowerCase():
                 monthNum = 7;
                 break;
