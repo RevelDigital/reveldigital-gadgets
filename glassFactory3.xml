@@ -20,7 +20,6 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style type="text/css">
     * {
@@ -36,9 +35,16 @@
         font-family: "Lucida Sans", sans-serif;
     }
     body {
-        background: transparent;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        background-color: #00000010;
         font-family: 'Roboto', sans-serif;
+        background-image:
+                linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.8)),
+                url("http://canadaplumbingservices.com/wp-content/uploads/2014/12/Abstract-Water-Full-HD-Wallpaper-Desktop.jpg");
 
+        background-repeat: no-repeat;
+        background-position: 50% 0;
         -ms-background-size: cover;
         -o-background-size: cover;
         -moz-background-size: cover;
@@ -49,10 +55,10 @@
 
     #daysSinceAccident{
         position: absolute;
-        width: 700px;
+        width: 870px;
         height: 400px;
         top: 295px;
-        left: 610px;
+        left: 535px;
         margin: 0 auto;
         background: white;
         border-radius: 15px;
@@ -65,7 +71,7 @@
     .black-text {
         color: black;
         font-weight: bold;
-        font-size: 20em;
+        font-size: 19em;
         width: 30%;
     }
 
@@ -104,7 +110,9 @@
         left: 560px;
         width: 800px;
     }
+    body{
 
+    }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
@@ -142,48 +150,51 @@
     function processRechazosData(data) {
         var array = data.trim().split(" ");
         var monthNum;
-        var monthes = [prefs.getString("month1"), prefs.getString("month2"), prefs.getString("month3"), prefs.getString("month4"), prefs.getString("month5"), prefs.getString("month6"), prefs.getString("month7"), prefs.getString("month8"),prefs.getString("month9"), prefs.getString("month10"), prefs.getString("month11"), prefs.getString("month12")];
+        var monthes = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto','septiembre', 'octubre', 'noviembre', 'decembre'];
+
         switch (array[1].toLowerCase()) {
-            case monthes[0].toLowerCase():
+            case monthes[0]:
                 monthNum = 0;
                 break;
-            case monthes[1].toLowerCase():
+            case monthes[1]:
                 monthNum = 1;
                 break;
-            case monthes[2].toLowerCase():
+            case monthes[2]:
                 monthNum = 2;
                 break;
-            case monthes[3].toLowerCase():
+            case monthes[3]:
                 monthNum = 3;
                 break;
-            case monthes[4].toLowerCase():
+            case monthes[4]:
                 monthNum = 4;
                 break;
-            case monthes[5].toLowerCase():
+            case monthes[5]:
                 monthNum = 5;
                 break;
-            case monthes[6].toLowerCase():
+            case monthes[6]:
                 monthNum = 6;
                 break;
-            case monthes[7].toLowerCase():
+            case monthes[7]:
                 monthNum = 7;
                 break;
-            case monthes[8].toLowerCase():
+            case monthes[8]:
                 monthNum = 8;
                 break;
-            case monthes[9].toLowerCase():
+            case monthes[9]:
                 monthNum = 9;
                 break;
-            case monthes[10].toLowerCase():
+            case monthes[10]:
                 monthNum = 10;
                 break;
-            case monthes[11].toLowerCase():
+            case monthes[11]:
                 monthNum = 11;
                 break;
             default:
                 monthNum = -1
         }
+        console.log(monthNum);
         if(-1 < monthNum && monthNum < 12){
+            console.log("Month Num: "+monthNum);
             var one_day=1000*60*60*24;
             var now = Date.now();
             var days = Math.floor((now - new Date(array[2], monthNum, array[0]).getTime())/one_day);
@@ -226,6 +237,7 @@
         }
     }
 
-</script>]]>
+</script>
+]]>
 </Content>
 </Module>
