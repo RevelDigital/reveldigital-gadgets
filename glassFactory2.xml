@@ -318,7 +318,11 @@
             var palletsField = document.getElementById("pallets-mes-field");
             var palletsRechaField = document.getElementById("pallets-recha-field");
             var rechaFabricadoField = document.getElementById("recha-fabricado-field");
-            palletsField.innerText = array[0];
+            var numField = array[0];
+            if(array[0]>=1000){
+                numField = array[0]/1000
+            }
+            palletsField.innerText = numField;
             palletsRechaField.innerText = array[1];
             rechaFabricadoField.innerText = array[2];
         }
