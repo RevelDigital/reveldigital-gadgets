@@ -200,7 +200,6 @@
 
 
             <label  class="green-text col-3" id="reject_fabricated"> </label>
-background-color: transparent;
             <span id="recha-fabricado-field" class='data-field col-1'></span><span style="margin-right: 5px" class="green-pct">%</span>
 
     </div>
