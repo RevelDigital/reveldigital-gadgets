@@ -143,7 +143,7 @@
         height: 60%;
     }
     .lower {
-        height: 40%;
+        height: 54%;
     }
     .quarter {
         height: 23%;
@@ -208,7 +208,7 @@
             <span id="recha-fabricado-field" class='data-field col-1'></span><span style="margin-right: 5px" class="green-pct">%</span>
 
     </div>
-    <div class="row centered">
+    <div class="row centered lower">
         <div class="col-12">
             <table width="90%" border="0" align="center" cellpadding="5" cellspacing="0" id="data-table">
                 <thead>
@@ -320,9 +320,14 @@
             var rechaFabricadoField = document.getElementById("recha-fabricado-field");
             var numField = array[0];
             if(array[0]>=1000){
-                numField = array[0]/1000
+                numField = (array[0]/1000).toFixed(3)
             }
             palletsField.innerText = numField;
+            numField = array[1];
+            if(array[1]>=1000){
+                numField = (array[1]/1000).toFixed(3)
+            }
+            palletsRechaField.innerText = numField;
             palletsRechaField.innerText = array[1];
             rechaFabricadoField.innerText = array[2];
         }
