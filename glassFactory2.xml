@@ -343,7 +343,6 @@
                 numField = (array[1]/1000).toFixed(3)
             }
             palletsRechaField.innerText = numField;
-            palletsRechaField.innerText = array[1];
             rechaFabricadoField.innerText = array[2];
         }
     };
