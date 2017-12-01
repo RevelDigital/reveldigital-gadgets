@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Module>
-  <ModulePrefs title="RevelDigital Weather Gadget" description="Two day weather panel in a vertical orientation" author="RevelDigital" background="transparent">
-    <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
-    <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
-    <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
-      <EnumValue value="f" display_value="US" />
-      <EnumValue value="c" display_value="Metric" />
-    </UserPref>
-    <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
-    <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="#ffffff" required="true" />
-    <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="#ffffff" required="true" />
-    <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="" required="false" />
-    <UserPref name="CustomFont" display_name="Google Font Name" datatype="string" default_value="" required="false" />
-    <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-    <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-    <UserPref name="ForeColor" datatype="hidden" />
-    <UserPref name="BackColor" datatype="hidden" />
-  </ModulePrefs>
-  <Content type="html">
-    <![CDATA[
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Gadget" description="Two day weather panel in a vertical orientation" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
+    <EnumValue value="f" display_value="US" />
+    <EnumValue value="c" display_value="Metric" />
+  </UserPref>
+  <UserPref name="Location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="TitleColor" display_name="Title Color" datatype="color" default_value="#ffffff" required="true" />
+  <UserPref name="BodyColor" display_name="Body Color" datatype="color" default_value="#ffffff" required="true" />
+  <UserPref name="TileColor" display_name="Tile Color" datatype="color" default_value="" required="false" />
+  <UserPref name="CustomFont" display_name="Google Font Name" datatype="string" default_value="" required="false" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
 
 <style type="text/css">
 
@@ -52,11 +52,18 @@
   
   .box {
     position: relative;
+    -moz-border-radius: 15px;
     border-radius: 15px;
+    background-color:  __UP_TileColor__;
     width: 100%;
     padding: 0;
     margin-bottom: 10px;
-    background-color:  __UP_TileColor__;
+  }
+  
+  .box-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
     background-image: url('https://reveldigital.github.io/reveldigital-gadgets/images/weather-cap.png');
     background-repeat: no-repeat;
     background-size: 100% 45%;
@@ -81,6 +88,7 @@
     border-radius: 15px;
     position: absolute;
     right: 0;
+    bottom: 0;
     top: 0;
     margin: 0;
     padding: 5px 5%;
@@ -162,46 +170,52 @@
   <div style="display:table; width:100%; height:100%; border-spacing:4px 10px;">
     <div style="display:table-row;">
       <div id="current" class="box" style="display:table-cell;">
-        <div class="day-container">
-          <span>__MSG_Currently__</span>
-        </div>
-        <img class="icon invisible" src="" />
-        <div class="temp-container">
-          <div class="temp invisible"><span></span>&#176;</div>
+        <div class="box-container">
+          <div class="day-container">
+            <span>__MSG_Currently__</span>
+          </div>
+          <img class="icon invisible" src="" />
+          <div class="temp-container">
+            <div class="temp invisible"><span></span>&#176;</div>
+          </div>
         </div>
       </div>
     </div>
     <div style="display:table-row;">
       <div id="today" class="box" style="display:table-cell;">
-        <div class="day-container">
-          <span>__MSG_Today__</span>
-        </div>
-        <img class="icon invisible" src="" />
-        <div class="temp-container">
-          <div class="temp-title invisible">__MSG_High__:</div>
-          <div class="high invisible"><span></span>&#176;</div>
-          <div class="temp-title invisible">__MSG_Low__:</div>
-          <div class="low invisible"><span></span>&#176;</div>
-        </div>
-        <div class="condition-container">
-          <div class="condition invisible"></div>
+        <div class="box-container">
+          <div class="day-container">
+            <span>__MSG_Today__</span>
+          </div>
+          <img class="icon invisible" src="" />
+          <div class="temp-container">
+            <div class="temp-title invisible">__MSG_High__:</div>
+            <div class="high invisible"><span></span>&#176;</div>
+            <div class="temp-title invisible">__MSG_Low__:</div>
+            <div class="low invisible"><span></span>&#176;</div>
+          </div>
+          <div class="condition-container">
+            <div class="condition invisible"></div>
+          </div>
         </div>
       </div>
     </div>
     <div style="display:table-row;">
       <div id="tomorrow" class="box" style="display:table-cell;">
-        <div class="day-container">
-          <span>__MSG_Tomorrow__</span>
-        </div>
-        <img class="icon invisible" src="" />
-        <div class="temp-container">
-          <div class="temp-title invisible">__MSG_High__:</div>
-          <div class="high invisible"><span></span>&#176;</div>
-          <div class="temp-title invisible">__MSG_Low__:</div>
-          <div class="low invisible"><span></span>&#176;</div>
-        </div>
-        <div class="condition-container">
-          <div class="condition invisible"></div>
+        <div class="box-container">
+          <div class="day-container">
+            <span>__MSG_Tomorrow__</span>
+          </div>
+          <img class="icon invisible" src="" />
+          <div class="temp-container">
+            <div class="temp-title invisible">__MSG_High__:</div>
+            <div class="high invisible"><span></span>&#176;</div>
+            <div class="temp-title invisible">__MSG_Low__:</div>
+            <div class="low invisible"><span></span>&#176;</div>
+          </div>
+          <div class="condition-container">
+            <div class="condition invisible"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -366,5 +380,5 @@
 </script>
 
 ]]>
-  </Content>
+</Content>
 </Module>
