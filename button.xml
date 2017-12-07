@@ -40,9 +40,6 @@
                     __UP_text-style__;
                     width: calc(__UP_rdW__px - 20px);
                     height: calc(__UP_rdH__px - 20px);
-                    background-image: url("https://as1.reveldigital.com/Uploads/372180%21Proudly%20Operated%20By.jpg");
-                    background-repeat: no-repeat;
-                    background-size: contain;
                 }
                
             </style>
@@ -65,7 +62,7 @@
             <script type="text/javascript">
 
                 var prefs = new gadgets.Prefs();
-                var bttnImage = prefs.getString("bttnImage");
+
                 function load() {
                     WebFont.load({
                         google: {
@@ -81,9 +78,6 @@
                     var Arg = prefs.getString("ARG");
                     Client.sendCommand(Comm, Arg);
                 });
-                
-                
-            
 
                 gadgets.util.registerOnLoadHandler(load);
 
