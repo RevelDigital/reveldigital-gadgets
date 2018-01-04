@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Regis Example" description="Sample gadget with merge tags" author="Mike Tinnes" background="transparent">
+  <UserPref name="myStringPref" display_name="Example string preference" datatype="string" default_value="*|DEVICE.NAME|*" required="true" />
+  <UserPref name="myEnumPref" display_name="Example enum preferences" datatype="enum" default_value="first">
+    <EnumValue value="first" display_value="First" />
+    <EnumValue value="second" display_value="Second" />
+  </UserPref>
+  <UserPref name="myStylePref" display_name="Example style preferences" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="myBooleanPref" display_name="Example boolean preference" datatype="bool" default_value="true" />
+  <UserPref name="myColorPref" display_name="color" datatype="color" default_value="#ff00ff" />
+  
+  <!-- The following preferences should not be modified -->
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+
+  body
+  {
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    overflow: hidden;
+  }
+  .my-style
+  {
+    __UP_myStylePref__;
+  }
+</style>
+
+<!-- Preferences can be inlined in your HTML like so -->
+<div class="my-style" id="container">__UP_myStringPref__</div> 
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    
+    <!-- Preferences can be accessed at runtime like so -->
+    alert(prefs.getString('myStringPref'));
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+  
+</script>
+
+]]>
+</Content>
+</Module>
