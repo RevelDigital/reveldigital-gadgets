@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+    <ModulePrefs title="Revel Taxi Gadget" description="Displays Taxis On A Map" author="RevelDigital" background="transparent">
+
+        <UserPref name="apikey" display_name="API KEY" default_value="" />
+        <UserPref name="Zoom" display_name="Zoom" default_value="" />        
+        <UserPref name="centerCity" display_name="Center City" default_value="" />
+        <UserPref name="labels" display_name="Labels On" required="true" default_value="true" datatype="bool" />        
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />  
+        <UserPref name="marker" display_name="Marker Icon" datatype="enum" default_value="1">
+          <EnumValue value="0" display_value="Defualt Marker"/>
+          <EnumValue value="1" display_value="Taxi"/>
+          <EnumValue value="2" display_value="Truck"/>
+        </UserPref>        
+    </ModulePrefs>
+<Content type="html">
+
+<![CDATA[
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <style>
+            #map {
+                width: __UP_rdW__px;
+                height: __UP_rdH__px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+        var prefs = new gadgets.Prefs();
+        var revelKey = prefs.getString("apikey");
+        var map;
+        var zoom = prefs.getString("Zoom");
+        var array = new Array();
+        var mapCenter = false;
+        var icons = Number(prefs.getString("marker"));
+        var blueUrl;
+        var redURl;
+        var labels = prefs.getString("labels");
+        var centerCity = prefs.getString("centerCity");
+        var currentDeviceRegKey;  
+      
+        if(labels=="false"){
+            labels = false;
+        } else{
+            labels = true;
+        }
+      
+    
+
+      function initMap() {
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: {lat: 0, lng: 0}
+        });
+        var geocoder = new google.maps.Geocoder();
+        var location = centerCity;
+        geocoder.geocode( { 'address': location }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(13);
+            } else {
+                alert("Could not find location: " + location);
+            }
+        });
+    }
+
+    function locateDevice(regkey) {
+        updateMap()
+        currentDeviceRegKey = regkey;
+        //var myVar = setInterval(updateMap, 10 * 1000);
+    }
+    function updateMap() {
+        if(icons==1){//taxi
+            redURl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/red-taxi-256.png";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-taxi-256.png";
+        }
+        else if(icons==2){//truck
+            redURl = "https://github.com/RevelDigital/reveldigital-gadgets/blob/avery/red-truck-256.png?raw=true";
+            blueUrl = "https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/avery/blue-truck256.png";
+        }
+        $.getJSON("https://as1.reveldigital.com/proxy?url=http://api.reveldigital.com/devices?api_key="+revelKey, function (data) {
+            var longitudeH;
+            var latitudeH;
+            var deviceName;
+            for (var x = 0; x < data.length; x++) {
+                deviceName = data[x]["id"];
+                var name = data[x]["name"];
+                var tag = data[x]["tags"];
+                latitudeH = data[x]["ping_data"]["latitude"];
+                longitudeH = data[x]["ping_data"]["longitude"];
+                var regKey = data[x]["registration_key"];
+                if(regKey == currentDeviceRegKey){
+                    snapURL = "https://api.reveldigital.com/devices/"+ regKey +"/snap";
+                    if(tag==null){
+                        tag = "No Info";
+                    }
+                    var contentString = '<div id="content">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                        '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                        '<div id="bodyContent">'+
+                        '<img src='+ snapURL +'>'+
+                        '<p>'+ tag +'</p>'+
+                        '</div>'+
+                        '</div>';
+                    if (latitudeH != null && longitudeH != null) {
+                            map.setCenter({lat: Number(latitudeH), lng: Number(longitudeH)});
+                            map.setZoom(Number(zoom));
+                            mapCenter = true;
+                        }
+                        var value = keyInArray(deviceName)
+                        if (!value) {
+                            if (icons > 0) {
+                                if (labels) {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: {
+                                            url: blueUrl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        },
+                                        label: {
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'blue'
+                                        }
+                                    });
+                                } else {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: blueUrl
+                                    });
+                                }
+                            }
+                            else {
+                                if (labels) {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map,
+                                        icon: {
+                                            url: blueUrl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        },
+                                        label: {
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'blue'
+                                        }
+                                    });
+                                } else {
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: latitudeH, lng: longitudeH},
+                                        map: map
+                                    });
+                                }
+                            }
+                            var infowindow = new google.maps.InfoWindow({
+                                content: contentString
+                            });
+                            array.push(new MapObject(deviceName, marker, latitudeH, longitudeH, contentString));
+                            marker.addListener('click', function () {
+                                infowindow.open(map, marker);
+                            });
+                        }
+                        else {
+                            if (distance(value.getLat(), value.getLong(), latitudeH, longitudeH) < .02) {
+                                value.increaseSame();
+                                if (value.getNum() > 3) {
+                                    if (icons > 0) {
+                                        value.getMapMarker().setIcon({
+                                            url: redURl,
+                                            size: new google.maps.Size(45, 45),
+                                            origin: new google.maps.Point(0, 0),
+                                            anchor: new google.maps.Point(0, 20),
+                                            scaledSize: new google.maps.Size(20, 20),
+                                            labelOrigin: new google.maps.Point(9, 32)
+                                        });
+                                        value.getMapMarker().setLabel({
+                                            text: name,
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: '"Courier New", Courier,Monospace',
+                                            color: 'red'
+                                        });
+                                    }
+                                }
+                            } else {
+                                if (icons > 0) {
+                                    value.getMapMarker().setIcon(blueUrl);
+                                }
+                                value.resetSame();
+                                value.getMapMarker().setPosition({lat: latitudeH, lng: longitudeH});
+                            }
+                        }
+                    }
+                }//end if
+            //end for
+        }, 1000);
+    }
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        return dist
+    }
+    function keyInArray(keyValue) {
+        for(var i = 0; i<array.length; i++) {
+            var mapObj = array[i];
+            var name = mapObj.getNameObj();
+            var marker = mapObj.getMapMarker();
+            if(name == keyValue){
+                return array[i];
+            }
+        }
+        return null;
+    }
+    function MapObject(name, obj, lan, lon, content){
+        this.name = name;
+        this.obj = obj;
+        this.lan = lan;
+        this.lon = lon
+        this.same = 0;
+        this.getContent = function(){
+            return this.content;
+        }
+        this.getNameObj = function(){
+            return this.name;
+        }
+        this.getMapMarker = function(){
+            return this.obj;
+        }
+        this.getLong = function(){
+            return this.lon;
+        }
+        this.getLat = function(){
+            return this.lan;
+        }
+        this.getNum = function (){
+            return this.same;
+        }
+        this.increaseSame = function(){
+            this.same++;
+        }
+        this.resetSame = function(){
+            this.same=0;
+        }
+    }        
+    gadgets.util.registerOnLoadHandler(initMap);
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxB2l38KXSYsjXXNjPUyixLbFu8WHkSCs&callback=initMap">
+    </script>
+    </body>
+        ]]>
+    </Content>
+
+</Module>
