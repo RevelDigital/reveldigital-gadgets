@@ -37,6 +37,7 @@
         span, div.condition {
             font-family: arial,sans-serif;
             font-family: __UP_CustomFont__;
+            font-size: 2.5vh;
         }
 
         #container {
