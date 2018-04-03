@@ -195,7 +195,7 @@
         <div class="low"><span>{{round low.fahrenheit}}</span>&#176;</div>
     </div>
     <div class="condition-container">
-        <div class="condition"></div>
+        <div class="condition">{{conditions}}</div>
     </div>
 </script>
 <script id="forecast-c-template" type="text/x-handlebars-template">
@@ -207,7 +207,7 @@
         <div class="low"><span>{{round low.celcius}}</span>&#176;</div>
     </div>
     <div class="condition-container">
-        <div class="condition"></div>
+        <div class="condition">{{conditions}}</div>
     </div>
 </script>
 
