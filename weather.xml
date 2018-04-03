@@ -159,7 +159,11 @@
             height: 120%;
         }
 
-        .invisible {
+        .visible {
+            opacity: 1;
+        }
+
+        img {
             opacity: 0;
             -webkit-transition: opacity 1s ease-in;
             -moz-transition: opacity 1s ease-in;
@@ -167,71 +171,86 @@
             -o-transition: opacity 1s ease-in;
             transition: opacity 1s ease-in;
         }
-
-        .visible {
-            opacity: 1;
-        }
         
 </style>
 
+<script id="current-f-template" type="text/x-handlebars-template">
+    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
+    <div class="temp-container">
+        <div class="temp"><span>{{round temp_f}}</span>&#176;</div>
+    </div>
+</script>
+<script id="current-c-template" type="text/x-handlebars-template">
+    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
+    <div class="temp-container">
+        <div class="temp"><span>{{round temp_c}}</span>&#176;</div>
+    </div>
+</script>
+<script id="forecast-f-template" type="text/x-handlebars-template">
+    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
+    <div class="temp-container">
+        <div class="temp-title">High:</div>
+        <div class="high"><span>{{round high.fahrenheit}}</span>&#176;</div>
+        <div class="temp-title">Low:</div>
+        <div class="low"><span>{{round low.fahrenheit}}</span>&#176;</div>
+    </div>
+    <div class="condition-container">
+        <div class="condition"></div>
+    </div>
+</script>
+<script id="forecast-c-template" type="text/x-handlebars-template">
+    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
+    <div class="temp-container">
+        <div class="temp-title">High:</div>
+        <div class="high"><span>{{round high.celcius}}</span>&#176;</div>
+        <div class="temp-title">Low:</div>
+        <div class="low"><span>{{round low.celcius}}</span>&#176;</div>
+    </div>
+    <div class="condition-container">
+        <div class="condition"></div>
+    </div>
+</script>
+
 <div id="container">
-  <div style="display:table; width:100%; height:100%; border-spacing:4px 10px;">
-    <div style="display:table-row;">
-      <div id="current" class="box" style="display:table-cell;">
-        <div class="box-container">
-          <div class="day-container">
-            <span>__MSG_Currently__</span>
-          </div>
-          <img class="icon invisible" src="" />
-          <div class="temp-container">
-            <div class="temp invisible"><span></span>&#176;</div>
-          </div>
+    <div style="display:table; width:100%; height:100%; border-spacing:4px 10px;">
+        <div style="display:table-row;">
+            <div id="current" class="box" style="display:table-cell;">
+                <div class="box-container">
+                    <div class="day-container">
+                        <span>Currently</span>
+                    </div>
+                    <div class="content">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div style="display:table-row;">
-      <div id="today" class="box" style="display:table-cell;">
-        <div class="box-container">
-          <div class="day-container">
-            <span>__MSG_Today__</span>
-          </div>
-          <img class="icon invisible" src="" />
-          <div class="temp-container">
-            <div class="temp-title invisible">__MSG_High__:</div>
-            <div class="high invisible"><span></span>&#176;</div>
-            <div class="temp-title invisible">__MSG_Low__:</div>
-            <div class="low invisible"><span></span>&#176;</div>
-          </div>
-          <div class="condition-container">
-            <div class="condition invisible"></div>
-          </div>
+        <div style="display:table-row;">
+            <div id="today" class="box" style="display:table-cell;">
+                <div class="box-container">
+                    <div class="day-container">
+                        <span>Today</span>
+                    </div>
+                    <div class="content">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div style="display:table-row;">
-      <div id="tomorrow" class="box" style="display:table-cell;">
-        <div class="box-container">
-          <div class="day-container">
-            <span>__MSG_Tomorrow__</span>
-          </div>
-          <img class="icon invisible" src="" />
-          <div class="temp-container">
-            <div class="temp-title invisible">__MSG_High__:</div>
-            <div class="high invisible"><span></span>&#176;</div>
-            <div class="temp-title invisible">__MSG_Low__:</div>
-            <div class="low invisible"><span></span>&#176;</div>
-          </div>
-          <div class="condition-container">
-            <div class="condition invisible"></div>
-          </div>
+        <div style="display:table-row;">
+            <div id="tomorrow" class="box" style="display:table-cell;">
+                <div class="box-container">
+                    <div class="day-container">
+                        <span>Tomorrow</span>
+                    </div>
+                    <div class="content">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
@@ -285,6 +304,27 @@
     "nt_tstorms": "4n"
   };
 
+  Handlebars.registerHelper('getIcon', function (icon) {
+      return conditionMap[icon];
+  });
+  Handlebars.registerHelper('round', function (num) {
+      return parseInt(num);
+  });
+
+  var currentTemplate;
+  if (prefs.getString("Units") == "f") {
+      currentTemplate = Handlebars.compile(document.getElementById("current-f-template").innerHTML);
+  } else {
+      currentTemplate = Handlebars.compile(document.getElementById("current-c-template").innerHTML);
+  }
+  var forecastTemplate;
+  if (prefs.getString("Units") == "f") {
+      forecastTemplate = Handlebars.compile(document.getElementById("forecast-f-template").innerHTML);
+  } else {
+      forecastTemplate = Handlebars.compile(document.getElementById("forecast-c-template").innerHTML);
+  }
+
+
   function load() {
   
     WebFont.load({
@@ -330,13 +370,13 @@
         }
         var co = data.current_observation;
 
-        if (prefs.getString("Units") == "f") {
-          $("#current div.temp span").text(parseInt(co.temp_f));
-        } else {
-          $("#current div.temp span").text(parseInt(co.temp_c));
-        }
-        $("#current img.icon").attr("src",  "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[co.icon] + ".png");
-        $("#current .invisible").addClass("visible");
+        var html = currentTemplate(co);
+
+        $("#current .content").html(html);
+
+        setTimeout(function () {
+            $("#current img").addClass("visible");
+        }, 1000);
       }
     });
   }
@@ -360,27 +400,15 @@
         }
         var fc = data.forecast.simpleforecast;
 
-        if (prefs.getString("Units") == "f") {
-          $("#today div.high span").text(parseInt(fc.forecastday[0].high.fahrenheit));
-          $("#today div.low span").text(parseInt(fc.forecastday[0].low.fahrenheit));
-        } else {
-          $("#today div.high span").text(parseInt(fc.forecastday[0].high.celsius));
-          $("#today div.low span").text(parseInt(fc.forecastday[0].low.celsius));
-        }
-        $("#today div.condition").text(fc.forecastday[0].conditions);
-        $("#today img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[0].icon] + ".png");
-        $("#today .invisible").addClass("visible");
+        var htmlToday = forecastTemplate(fc.forecastday[0]);
+        $("#today .content").html(htmlToday);
+        var htmlTomorrow = forecastTemplate(fc.forecastday[1]);
+        $("#tomorrow .content").html(htmlTomorrow);
 
-        if (prefs.getString("Units") == "f") {
-          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.fahrenheit));
-          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.fahrenheit));
-        } else {
-          $("#tomorrow div.high span").text(parseInt(fc.forecastday[1].high.celsius));
-          $("#tomorrow div.low span").text(parseInt(fc.forecastday[1].low.celsius));
-        }
-        $("#tomorrow div.condition").text(fc.forecastday[1].conditions);
-        $("#tomorrow img.icon").attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[fc.forecastday[1].icon] + ".png");
-        $("#tomorrow .invisible").addClass("visible");
+        setTimeout(function () {
+            $("#today img").addClass("visible");
+            $("#tomorrow img").addClass("visible");
+        }, 1000);
       }
     });
   }
