@@ -339,11 +339,6 @@
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
     }
-    //jQuery("#current .temp-container .temp").fitText(1, { vh: 12 });
-    //jQuery(".temp-title").fitText(1, { vh: 3 });
-    //jQuery(".low, .high").fitText(1, { vh: 6 });
-    //jQuery(".condition-container").fitText(1, { vh: 4 });
-    //jQuery(".day-container").fitText(1, { vh: 4 });
     
     setInterval(function() {
       getConditions(search);
@@ -369,10 +364,7 @@
           return;
         }
         var co = data.current_observation;
-
-        var html = currentTemplate(co);
-
-        $("#current .content").html(html);
+        $("#current .content").html(currentTemplate(co));
 
         setTimeout(function () {
             $("#current img").addClass("visible");
@@ -399,11 +391,8 @@
           return;
         }
         var fc = data.forecast.simpleforecast;
-
-        var htmlToday = forecastTemplate(fc.forecastday[0]);
-        $("#today .content").html(htmlToday);
-        var htmlTomorrow = forecastTemplate(fc.forecastday[1]);
-        $("#tomorrow .content").html(htmlTomorrow);
+        $("#today .content").html(forecastTemplate(fc.forecastday[0]));
+        $("#tomorrow .content").html(forecastTemplate(fc.forecastday[1]));
 
         setTimeout(function () {
             $("#today img").addClass("visible");
