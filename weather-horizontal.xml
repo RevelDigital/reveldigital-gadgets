@@ -152,8 +152,7 @@
     position: absolute;
     top: 15%;
     left: 10px;
-    width: 100%;
-    height: 120%;
+    width: 120%;
   }
   
   .invisible {
