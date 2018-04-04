@@ -138,8 +138,8 @@
     width: 100%;
     text-align: left;
     margin-top: 2vh;
-    margin-top: 10px;
     font-size: 2vw;
+    margin-left: 20px;
   }
   
   .day-container span {
