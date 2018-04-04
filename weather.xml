@@ -217,7 +217,7 @@
             <div id="current" class="box" style="display:table-cell;">
                 <div class="box-container">
                     <div class="day-container">
-                        <span>Currently</span>
+                        <span>__MSG_Currently__</span>
                     </div>
                     <div class="content">
                     </div>
@@ -228,7 +228,7 @@
             <div id="today" class="box" style="display:table-cell;">
                 <div class="box-container">
                     <div class="day-container">
-                        <span>Today</span>
+                        <span>__MSG_Today__</span>
                     </div>
                     <div class="content">
                     </div>
@@ -239,7 +239,7 @@
             <div id="tomorrow" class="box" style="display:table-cell;">
                 <div class="box-container">
                     <div class="day-container">
-                        <span>Tomorrow</span>
+                        <span>__MSG_Tomorrow__</span>
                     </div>
                     <div class="content">
                     </div>
