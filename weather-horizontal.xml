@@ -78,9 +78,8 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    top: 50%;
     margin: 0;
-    padding: 0 5%;
+    padding: 5vh 5vh;
     background-color:rgba(0,0,0,0.5);
     color: __UP_BodyColor__;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.5);
@@ -105,14 +104,14 @@
     margin-top: 5px;
     width: 100%;
     text-align: left;
-    font-size: 2vh;
+    font-size: 1.5vw;
   }
   
   .low, .high {
     font-weight: normal;
     width: 100%;
     text-align: center;
-    font-size: 2vw;
+    font-size: 4vw;
   }
   
   .temp {
