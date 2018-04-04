@@ -202,9 +202,9 @@
     <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
     <div class="temp-container">
         <div class="temp-title">High:</div>
-        <div class="high"><span>{{round high.celcius}}</span>&#176;</div>
+        <div class="high"><span>{{round high.celsius}}</span>&#176;</div>
         <div class="temp-title">Low:</div>
-        <div class="low"><span>{{round low.celcius}}</span>&#176;</div>
+        <div class="low"><span>{{round low.celsius}}</span>&#176;</div>
     </div>
     <div class="condition-container">
         <div class="condition">{{conditions}}</div>
