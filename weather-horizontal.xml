@@ -132,6 +132,7 @@
     text-align: center;
     margin-bottom: 10px;
     color: __UP_BodyColor__;
+    font-size: 2.5vh;
   }
   
   .day-container {
@@ -142,6 +143,7 @@
     text-align: left;
     margin-top: 4vh;
     margin-left: 10px;
+    font-size: 7vh;
   }
   
   .day-container span {
