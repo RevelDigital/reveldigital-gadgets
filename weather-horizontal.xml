@@ -142,7 +142,7 @@
     width: 100%;
     text-align: left;
     margin-top: 2vh;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   
   .day-container span {
