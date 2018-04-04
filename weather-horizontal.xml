@@ -221,6 +221,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 
 <script type="text/javascript">
@@ -287,11 +289,11 @@
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
     }
-    jQuery("#current .temp-container .temp").fitText(1, { vh: 25 });
-    jQuery(".temp-title").fitText(1, { vh: 7 });
-    jQuery(".low, .high").fitText(1, { vh: 15 });
-    jQuery(".condition-container").fitText(1, { vh: 8 });
-    jQuery(".day-container").fitText(1, { vh: 7 });
+    //jQuery("#current .temp-container .temp").fitText(1, { vh: 25 });
+    //jQuery(".temp-title").fitText(1, { vh: 7 });
+    //jQuery(".low, .high").fitText(1, { vh: 15 });
+    //jQuery(".condition-container").fitText(1, { vh: 8 });
+    //jQuery(".day-container").fitText(1, { vh: 7 });
     
     setInterval(function() {
       getConditions(search);
