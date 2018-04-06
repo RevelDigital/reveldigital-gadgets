@@ -289,7 +289,7 @@
                             var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
                         }
 
-                        var p = $("<p class=\"currentEvent\"><i class="fas fa-clock"></i></p>");
+                        var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
 
                         var time = '';
                         if (sd == ed) {
