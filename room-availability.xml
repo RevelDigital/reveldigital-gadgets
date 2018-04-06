@@ -55,6 +55,10 @@
             __UP_body-style__;
         }
 
+        h2, h3 {
+          margin: 0;
+        }
+        
         #data{
             font-size: 5vh;
             position: relative;
