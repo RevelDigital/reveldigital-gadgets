@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="RevelDigital Google Calendar Room Gadget" description="Lists your current Google Calendar events in chronological order for a certain location/Room" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Meeting Room Gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
@@ -60,6 +60,7 @@
             width: __UP_rdW__px;
             height: __UP_rdH__px;
             background-color: #__UP_BackColor__;
+            __UP_body-style__;
         }
 
         #room {
@@ -67,11 +68,9 @@
             position:absolute;
             top: 0;
             left: 2vw;
-            color: #__UP_ForeColor__;
         }
 
         #event{
-            color: #__UP_ForeColor__;
             width: __UP_rdW__px;
             text-align: center;
             position: fixed;
@@ -86,12 +85,10 @@
             padding-bottom: 0;
             margin-bottom: 0;
             margin-top: 0;
-            color: #__UP_ForeColor__;
         }
 
         .currentEvent {
             font-size: 1em;
-            color: #__UP_ForeColor__;
         }
 
         #next {
@@ -107,7 +104,6 @@
             margin-bottom: 0;
             top: 0;
             left: 0;
-            color: #__UP_ForeColor__;
         }
 
         .nextEvent {
@@ -117,12 +113,12 @@
             margin-bottom: 0;
             margin-top: 0;
             padding-left: 5%;
-            color: #__UP_ForeColor__;
         }
 
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+        <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
         <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
         <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
         <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
