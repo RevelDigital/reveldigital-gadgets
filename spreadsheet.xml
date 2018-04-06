@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001563671-Google-Sheets-Integration" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header"  datatype="bool" default_value="true" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
