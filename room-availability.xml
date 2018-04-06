@@ -285,7 +285,7 @@
                             var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
                         }
 
-                        var p = $("<p class=\"currentEvent\"/>");
+                        var p = $("<p class=\"currentEvent\"><i class="fas fa-clock"></i></p>");
 
                         var time = '';
                         if (sd == ed) {
@@ -294,9 +294,9 @@
                             time += sd + " - " + ed;
                         }
                         if (isAllDay) {
-                            p.text(time);
+                            p.append(time);
                         } else {
-                            p.text(st + " - " + et);
+                            p.append(st + " - " + et);
                         }
                         $(event).append(p);
 
@@ -347,7 +347,6 @@
                     } else {
                         p3.text(time2 + ", " + nst + " - " + net);
                     }
-                    $(next).append('<i class="fas fa-user"></i>');
                     $(next).append(p3);
                 }
 
