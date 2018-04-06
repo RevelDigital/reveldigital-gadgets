@@ -189,7 +189,7 @@
                 function getCalendarData() {
 
                     var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
-                    var queryParams = '&singleEvents=false&maxResults=' + "365" + '&orderBy=startTime';
+                    var queryParams = '&singleEvents=true&maxResults=' + "365" + '&orderBy=startTime';
 
                     var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
                     var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
@@ -217,12 +217,19 @@
                         dataType: 'json'
                     })
                     .done(function(response) {
+                    
+                        if (response.items.length == 0) {
+                          return;
+                        }
+                        
                         var eventStartTime = response.items[0].start.dateTime ? response.items[0].start.dateTime : response.items[0].start.date;
                         var startTime = new Date(eventStartTime);
+                        
                         console.log(startTime);
+                        
                         if (startTime > Date.now()){
                             formatDiv(0, response.items[0]);
-                        }else{
+                        }else if (response.items.length > 1) {
                             formatDiv(response.items[0], response.items[1]);
                         }
 
