@@ -96,6 +96,10 @@
             font-size: 1.5em;
         }
 
+        .currentEvent svg {
+          margin-right: 30px;
+        }
+        
         #next {
             font-size: 1em;
             position:absolute;
