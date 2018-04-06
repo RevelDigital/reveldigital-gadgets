@@ -71,8 +71,8 @@
         #room {
             font-size: 1em;
             position:absolute;
-            top: 0;
-            left: 2vw;
+            top: 1vh;
+            left: 1vw;
         }
 
         #event{
@@ -103,9 +103,9 @@
         #next {
             font-size: 1em;
             position:absolute;
-            width: calc(100% - 2vw);
-            bottom: 2vw;
-            left: 2vw;
+            width: calc(100% - 1vw);
+            bottom: 1vh;
+            left: 1vw;
         }
 
         #next h3{
