@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Calendar Gadget" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Google Calendar Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001531431-Google-Calendar-Integration" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
   <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
