@@ -4,7 +4,9 @@
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
-  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
+  <UserPref name="searchQuery" display_name="Location/Room Name" datatype="string" />
+  <UserPref name="showRoom" display_name="Show Location/Room Name" datatype="bool" default_value="true" />
+  <UserPref name="showNext" display_name="Show Next Event" datatype="bool" default_value="true" />
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
   <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
     <EnumValue value="365" display_value="No Limit" />
@@ -12,8 +14,6 @@
     <EnumValue value="7" display_value="Next 7 Days" />
     <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
-  <UserPref name="searchQuery" display_name="Location/Room Name" datatype="string" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
     <EnumValue value="fastest" display_value="Fastest" />
@@ -146,13 +146,6 @@
                 WebFont.load({
                     google: {
                         families: [
-                        RevelDigital.getFamilyName(prefs.getString("header-style"))
-                        ]
-                    }
-                });
-                WebFont.load({
-                    google: {
-                        families: [
                         RevelDigital.getFamilyName(prefs.getString("body-style"))
                         ]
                     }
@@ -161,19 +154,23 @@
                 moment.locale("__MSG_Lang__");
 
                 if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
-                moment.tz.setDefault(Client.getDeviceTimeZoneName());
+                  moment.tz.setDefault(Client.getDeviceTimeZoneName());
                 }
 
-                if (true == false) {
-                $("#events > table > thead").hide();
+                if (!prefs.getBool("showRoom")) {
+                  $("#room").hide();
                 }
+                if (!prefs.getBool("showNext")) {
+                  $("#next").hide();
+                }
+                
                 getCalendarData();
 
                 setInterval(update, 60000);
             }
 
             gadgets.util.registerOnLoadHandler(load);
-            //window.onload = load;
+            
             </script>
 
             <script type="text/javascript">
@@ -301,14 +298,13 @@
                     var nextIsAllDay = false;
                     if (nextStartDateTime) {
                         if (nextEvent.start.date) {
-                        nextIsAllDay = true;
+                          nextIsAllDay = true;
                         }
                     }
 
                     var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
                     var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
                     var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
-
 
                     if (nextIsAllDay) {
                         var ned = moment(nextEndDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
