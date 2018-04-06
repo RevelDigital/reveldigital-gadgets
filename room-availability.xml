@@ -52,7 +52,7 @@
 
         body, td, div, span, p
         {
-            _UP_body-style__;
+            __UP_body-style__;
         }
 
         #data{
