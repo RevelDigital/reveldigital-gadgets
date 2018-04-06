@@ -50,6 +50,11 @@
             height: __UP_rdH__px;
         }
 
+        body, td, div, span, p
+        {
+            _UP_body-style__;
+        }
+
         #data{
             font-size: 5vh;
             position: relative;
