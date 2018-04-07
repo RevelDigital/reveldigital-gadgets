@@ -2,14 +2,13 @@
 
 @font-face {
   font-family: "dripicons-weather";
-  src:url("fonts/dripicons-weather.eot");
-  src:url("fonts/dripicons-weather.eot?#iefix") format("embedded-opentype"),
-    url("fonts/dripicons-weather.woff") format("woff"),
-    url("fonts/dripicons-weather.ttf") format("truetype"),
-    url("fonts/dripicons-weather.svg#dripicons-weather") format("svg");
+  src:url("https://ds07610fy6yhk.cloudfront.net/dripicons-weather.eot");
+  src:url("https://ds07610fy6yhk.cloudfront.net/dripicons-weather.eot?#iefix") format("embedded-opentype"),
+    url("https://ds07610fy6yhk.cloudfront.net/dripicons-weather.woff") format("woff"),
+    url("https://ds07610fy6yhk.cloudfront.net/dripicons-weather.ttf") format("truetype"),
+    url("https://ds07610fy6yhk.cloudfront.net/dripicons-weather.svg#dripicons-weather") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
