@@ -138,7 +138,7 @@
       return parseInt(num);
   });
   Handlebars.registerHelper('isMetric', function () {
-      return prefs.getString("Units") == 'C';
+      return prefs.getString("units") == 'c';
   });
   
   var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
