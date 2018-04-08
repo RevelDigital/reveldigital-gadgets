@@ -68,7 +68,7 @@
         {{round low.fahrenheit}}&#176;
         <span data-icon="a" class="icon {{getIcon icon}}"></span>
     </div>
-    {{/if}
+    {{/if}}
 </script>
 
 <div id="container">
