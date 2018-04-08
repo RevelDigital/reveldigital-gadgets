@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Gadget" description="Two day weather panel in a vertical orientation" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
+    <EnumValue value="f" display_value="US" />
+    <EnumValue value="c" display_value="Metric" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/reveldigital-gadgets/styles/dripicons-weather.css">
+
+<style type="text/css">
+
+        body * {
+            letter-spacing: 0;
+            word-spacing: normal;
+        }
+
+        body {
+            background: transparent;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            position: relative;
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+            margin: 0;
+            padding: 0;
+            font-family: arial,sans-serif;
+            font-family: ;
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none;
+        }
+        
+        #temp {
+            __UP_font-style__;
+        }
+        
+</style>
+
+<script id="template" type="text/x-handlebars-template">
+    {{#if (isMetric)}}
+    <div id="temp">
+        {{round high.celsius}}&#176;
+        /
+        {{round low.celsius}}&#176;
+        <div data-icon="a" class="icon {{getIcon icon}}"></div>
+    </div>
+    {{else}}
+        <div id="temp">
+        {{round high.fahrenheit}}&#176;
+        /
+        {{round low.fahrenheit}}&#176;
+        <span data-icon="a" class="icon {{getIcon icon}}"></span>
+    </div>
+    {{/if}
+</script>
+
+<div id="container">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+
+<script type="text/javascript">
+
+  var re = /[^\/]+$/;
+  
+  var prefs = new gadgets.Prefs();
+
+  var search = prefs.getString("location");
+  var unit = prefs.getString("units");
+  
+  var conditionMap = {
+    "chanceflurries": "diw-cloud-snow-sun",
+    "chancerain": "diw-cloud-rain-sun",
+    "chancesleet": "diw-cloud-drizzle-sun",
+    "chancesnow": "diw-cloud-snow-sun",
+    "chancetstorms": "diw-cloud-lightning-sun",
+    "clear": "diw-sun",
+    "cloudy": "diw-cloud",
+    "flurries": "diw-snow",
+    "fog": "diw-fog",
+    "hazy": "diw-cloud-fog-sun",
+    "mostlycloudy": "diw-clouds-sun",
+    "mostlysunny": "diw-clouds-sun",
+    "partlycloudy": "diw-clouds-sun",
+    "partlysunny": "diw-clouds-sun",
+    "sleet": "diw-drizzle",
+    "rain": "diw-rain",
+    "snow": "diw-snow",
+    "sunny": "diw-sun",
+    "tstorms": "diw-lightning",
+    "nt_chanceflurries": "diw-cloud-snow-moon",
+    "nt_chancerain": "diw-cloud-rain-moon",
+    "nt_chancesleet": "diw-cloud-drizzle-moon",
+    "nt_chancesnow": "diw-cloud-snow-moon",
+    "nt_chancetstorms": "diw-cloud-lightning-moon",
+    "nt_clear": "diw-moon",
+    "nt_cloudy": "diw-cloud",
+    "nt_flurries": "diw-snow",
+    "nt_fog": "diw-fog",
+    "nt_hazy": "diw-cloud-fog-moon",
+    "nt_mostlycloudy": "diw-clouds-moon",
+    "nt_mostlysunny": "diw-clouds-moon",
+    "nt_partlycloudy": "diw-clouds-moon",
+    "nt_partlysunny": "diw-clouds-moon",
+    "nt_sleet": "diw-drizzle",
+    "nt_rain": "diw-rain",
+    "nt_snow": "diw-snow",
+    "nt_sunny": "diw-moon",
+    "nt_tstorms": "diw-lightning"
+  };
+
+  Handlebars.registerHelper('getIcon', function (icon) {
+      return conditionMap[icon];
+  });
+  Handlebars.registerHelper('round', function (num) {
+      return parseInt(num);
+  });
+  Handlebars.registerHelper('isMetric', function () {
+      return prefs.getString("Units") == 'C';
+  });
+  
+  var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
+
+  function load() {
+  
+    WebFont.load({
+      google: {
+        families: [ RevelDigital.getFamilyName(prefs.getString("font-style")) ]
+      }
+    });
+    
+    getForecast(search);
+    
+    setInterval(function() {
+      getForecast(search);
+    }, 1000 * 60 * 30);
+  }
+
+  function getForecast(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
+    }
+    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/' + encodeURIComponent(location) + '.json';
+    $.ajax({
+      type: 'GET',
+      url: api,
+      dataType: 'json',
+      success: function(data) {
+        if (data.response.error) {
+          return;
+        }
+        if (data.response.results) {
+          getForecast(re.exec(data.response.results[0].l)[0]);
+          return;
+        }
+        var fc = data.forecast.simpleforecast;
+        $("#container").html(currentTemplate(fc.forecastday[0]));
+      }
+    });
+  }
+  
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+
+]]>
+</Content>
+</Module>
