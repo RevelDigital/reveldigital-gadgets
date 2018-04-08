@@ -55,19 +55,19 @@
 
 <script id="template" type="text/x-handlebars-template">
     {{#if (isMetric)}}
-    <div id="temp">
+    	<div id="temp">
         {{round high.celsius}}&#176;
         /
         {{round low.celsius}}&#176;
-        <div data-icon="a" class="icon {{getIcon icon}}"></div>
-    </div>
+        <span class="icon {{getIcon icon}}"></span>
+    	</div>
     {{else}}
         <div id="temp">
         {{round high.fahrenheit}}&#176;
         /
         {{round low.fahrenheit}}&#176;
-        <span data-icon="a" class="icon {{getIcon icon}}"></span>
-    </div>
+        <span class="icon {{getIcon icon}}"></span>
+    	</div>
     {{/if}}
 </script>
 
