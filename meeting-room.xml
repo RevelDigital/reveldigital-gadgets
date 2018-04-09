@@ -288,7 +288,7 @@
 
             var now = moment(); // use moment to get the now() in device timezone
             
-            if (now.between(startTime, endTime)) {
+            if (now.isBetween(startTime, endTime)) {
 
                 var isAllDay = false;
                 if (items[0].start.date) {
