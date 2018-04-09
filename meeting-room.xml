@@ -217,7 +217,7 @@
                 queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
             }
 
-            var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl("h4ncmnfsieg6mgrknsjqq5f39o@group.calendar.google.com") + '/events?key=' + key + queryParams;
+            var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
 
             $("#event").empty();
             $("#next").empty();
