@@ -217,18 +217,7 @@
                         return;
                     }
 
-                    var eventStartTime = response.items[0].start.dateTime ? response.items[0].start.dateTime : response.items[0].start.date;
-                    var startTime = new Date(eventStartTime);
-
-                    console.log(startTime);
-
-                    var now = moment().toDate(); // use moment to get the now() in device timezone
-
-                    if (startTime > now) {
-                        formatDiv(0, response.items[0]);
-                    } else if (response.items.length > 1) {
-                        formatDiv(response.items[0], response.items[1]);
-                    }
+                    formatDiv(response.items);
                 })
                 .fail(function (xhr, err) {
                     console.log(url);
@@ -236,33 +225,37 @@
                 });
         }
 
-        function formatDiv(currentEvent, nextEvent) {
+        function formatDiv(items) {
+        
             var event = $("#event");
             var next = $("#next");
 
-            if (currentEvent !== 0) {
-                var startDateTime = currentEvent.start.dateTime ? currentEvent.start.dateTime : currentEvent.start.date;
-                var endDateTime = currentEvent.end.dateTime ? currentEvent.end.dateTime : currentEvent.end.date;
+            var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
+            var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
+            var startTime = moment(eventStartTime);
+            var endTime = moment(eventEndTime);
+
+            var now = moment().toDate(); // use moment to get the now() in device timezone
+            
+            if (now.between(startTime, endTime)) {
 
                 var isAllDay = false;
-                if (startDateTime) {
-                    if (currentEvent.start.date) {
-                        isAllDay = true;
-                    }
+                if (items[0].start.date) {
+                    isAllDay = true;
                 }
 
                 h1 = $("<h1 />");
-                h1.text(currentEvent.summary);
+                h1.text(items[0].summary);
                 $(event).append(h1);
 
-                var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
-                var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
-                var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+                var sd = moment(eventStartTime).format("__MSG_Calendar_DateFormat__");
+                var st = moment(eventStartTime).format("__MSG_Calendar_TimeFormat__");
+                var et = moment(eventEndTime).format("__MSG_Calendar_TimeFormat__");
 
                 if (isAllDay) {
-                    var ed = moment(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+                    var ed = moment(eventEndTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
                 } else {
-                    var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+                    var ed = moment(eventEndTime).format("__MSG_Calendar_DateFormat__");
                 }
 
                 var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
@@ -286,48 +279,51 @@
                 $(event).append(h1);
             }
 
-            var nextStartDateTime = nextEvent.start.dateTime ? nextEvent.start.dateTime : nextEvent.start.date;
-            var nextEndDateTime = nextEvent.end.dateTime ? nextEvent.end.dateTime : nextEvent.end.date;
+            if (items.length > 1) {
+            
+              var nextStartDateTime = items[1].start.dateTime ? items[1].start.dateTime : items[1].start.date;
+              var nextEndDateTime = items[1].end.dateTime ? items[1].end.dateTime : items[1].end.date;
 
-            var nextIsAllDay = false;
-            if (nextStartDateTime) {
-                if (nextEvent.start.date) {
-                    nextIsAllDay = true;
-                }
+              var nextIsAllDay = false;
+              if (nextStartDateTime) {
+                  if (nextEvent.start.date) {
+                      nextIsAllDay = true;
+                  }
+              }
+
+              var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
+              var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
+              var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
+
+              if (nextIsAllDay) {
+                  var ned = moment(nextEndDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+              } else {
+                  var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
+              }
+
+              h3 = $("<h3 />");
+              $(h3).text("Next Event");
+              $(next).append(h3);
+
+              var p2 = $("<p class=\"nextEvent\"/>");
+              p2.text(nextEvent.summary);
+              $(next).append(p2);
+
+              var p3 = $("<p class=\"nextEvent\"/>");
+
+              var time2 = "";
+              if (nsd == ned) {
+                  time2 += nsd;
+              } else {
+                  time2 += nsd + " - " + ned;
+              }
+              if (isAllDay) {
+                  p3.text(time2);
+              } else {
+                  p3.text(time2 + ", " + nst + " - " + net);
+              }
+              $(next).append(p3);
             }
-
-            var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
-            var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
-            var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
-
-            if (nextIsAllDay) {
-                var ned = moment(nextEndDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
-            } else {
-                var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
-            }
-
-            h3 = $("<h3 />");
-            $(h3).text("Next Event");
-            $(next).append(h3);
-
-            var p2 = $("<p class=\"nextEvent\"/>");
-            p2.text(nextEvent.summary);
-            $(next).append(p2);
-
-            var p3 = $("<p class=\"nextEvent\"/>");
-
-            var time2 = "";
-            if (nsd == ned) {
-                time2 += nsd;
-            } else {
-                time2 += nsd + " - " + ned;
-            }
-            if (isAllDay) {
-                p3.text(time2);
-            } else {
-                p3.text(time2 + ", " + nst + " - " + net);
-            }
-            $(next).append(p3);
         }
 
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
