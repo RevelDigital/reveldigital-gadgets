@@ -225,24 +225,24 @@
 
             var next = $("#next");
 
-            var nextStartDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
-            var nextEndDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
+            var startDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
+            var endDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
 
-            var nextIsAllDay = false;
-            if (nextStartDateTime) {
+            var isAllDay = false;
+            if (startDateTime) {
                 if (item.start.date) {
-                    nextIsAllDay = true;
+                    isAllDay = true;
                 }
             }
 
-            var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
-            var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
-            var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
+            var nsd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+            var nst = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+            var net = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
 
-            if (nextIsAllDay) {
-                var ned = moment(nextEndDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+            if (isAllDay) {
+                var ned = moment(endDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
             } else {
-                var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
+                var ned = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
             }
 
             h3 = $("<h3 />");
