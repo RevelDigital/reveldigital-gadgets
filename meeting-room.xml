@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="RevelDigital Meeting Room Gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Meeting Room Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360002538071-Meeting-room-gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
