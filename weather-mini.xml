@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Mini Weather Gadget" description="Compact weather with high/low temperature and current condition icon" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Mini Weather Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360002538071-Meeting-room-gadget" description="Compact weather with high/low temperature and current condition icon" author="RevelDigital" background="transparent">
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
