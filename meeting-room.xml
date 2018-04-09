@@ -15,17 +15,6 @@
     <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
-    <EnumValue value="fastest" display_value="Fastest" />
-    <EnumValue value="fast" display_value="Fast" />
-    <EnumValue value="medium" display_value="Medium" />
-    <EnumValue value="slow" display_value="Slow" />
-    <EnumValue value="none" display_value="None" />
-  </UserPref>
-  <UserPref name="scrollBy" display_name="Scroll By"  datatype="enum" default_value="continuous">
-    <EnumValue value="continuous" display_value="Continuous" />
-    <EnumValue value="page" display_value="Page" />
-  </UserPref>
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -127,11 +116,6 @@
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/utils/Draggable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/CSSPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.1/plugins/ScrollToPlugin.min.js"></script>
-    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
@@ -187,13 +171,12 @@
     <script type="text/javascript">
 
         function update() {
-            var currTime = new Date();
-            var minutes = currTime.getMinutes();
-            if (minutes.valueOf() == 0 || minutes.valueOf() == 30) {
-                console.log("UPDATING AT: " + minutes + " MIN");
+            var now = moment();
+            if (now.minute() == 0 || now.minute() == 30) {
+                console.log("UPDATING AT: " + now);
                 getCalendarData();
             } else {
-                console.log("NO UPDATE AT: " + minutes + " MIN");
+                console.log("NO UPDATE AT: " + now);
             }
         }
 
@@ -202,14 +185,16 @@
             var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
             var queryParams = '&singleEvents=true&maxResults=' + "365" + '&orderBy=startTime';
 
-            var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
-            var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
+            //var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
+            //var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
+            //var tomorrow = new Date();
+            //tomorrow.setDate(new Date().getDate() + "365");
+            //var min = dfMin.format(new Date());
+            //var max = dfMax.format(tomorrow);
 
-            var tomorrow = new Date();
-            tomorrow.setDate(new Date().getDate() + "365");
-            var min = dfMin.format(new Date());
-            var max = dfMax.format(tomorrow);
-
+            var min = moment().utc().format();
+            var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().format();
+            
             queryParams += '&timeMin=' + encodeURIComponent(min);
             queryParams += '&timeMax=' + encodeURIComponent(max);
 
@@ -217,7 +202,7 @@
                 queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
             }
 
-            var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl("h4ncmnfsieg6mgrknsjqq5f39o@group.calendar.google.com") + '/events?key=' + key + queryParams;
+            var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
 
             $("#event").empty();
             $("#next").empty();
@@ -228,33 +213,7 @@
                 dataType: 'json'
             })
                 .done(function (response) {
-
-                    if (response.items.length == 0) {
-                        return;
-                    }
-
-                    var eventStartTime = response.items[0].start.dateTime ? response.items[0].start.dateTime : response.items[0].start.date;
-                    var startTime = new Date(eventStartTime);
-
-                    console.log(startTime);
-
-                    var now = moment().toDate(); // use moment to get the now() in device timezone
-
-                    if (startTime > now) {
-                        formatDiv(0, response.items[0]);
-                    } else if (response.items.length > 1) {
-                        formatDiv(response.items[0], response.items[1]);
-                    }
-
-                    if ("none" != "none") {
-                        $("#data").autoScroll({
-                            speed: "medium",
-                            by: "continiuous"
-                        }).on("done", function () {
-                            $("#data").data("plugin_autoScroll").play();
-                        });
-                        $("#data").data("plugin_autoScroll").play();
-                    }
+                    formatEvent(response.items);
                 })
                 .fail(function (xhr, err) {
                     console.log(url);
@@ -262,33 +221,92 @@
                 });
         }
 
-        function formatDiv(currentEvent, nextEvent) {
+        function formatNext(item) {
+
+            var next = $("#next");
+
+            var startDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
+            var endDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
+
+            var isAllDay = false;
+            if (startDateTime) {
+                if (item.start.date) {
+                    isAllDay = true;
+                }
+            }
+
+            var nsd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+            var nst = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+            var net = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+
+            if (isAllDay) {
+                var ned = moment(endDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+            } else {
+                var ned = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+            }
+
+            h3 = $("<h3 />");
+            $(h3).text("Next Event");
+            $(next).append(h3);
+
+            var p2 = $("<p class=\"nextEvent\"/>");
+            p2.text(item.summary);
+            $(next).append(p2);
+
+            var p3 = $("<p class=\"nextEvent\"/>");
+
+            var time2 = "";
+            if (nsd == ned) {
+                time2 += nsd;
+            } else {
+                time2 += nsd + " - " + ned;
+            }
+            if (isAllDay) {
+                p3.text(time2);
+            } else {
+                p3.text(time2 + ", " + nst + " - " + net);
+            }
+            $(next).append(p3);
+        }
+        
+        function formatEvent(items) {
+        
             var event = $("#event");
             var next = $("#next");
 
-            if (currentEvent !== 0) {
-                var startDateTime = currentEvent.start.dateTime ? currentEvent.start.dateTime : currentEvent.start.date;
-                var endDateTime = currentEvent.end.dateTime ? currentEvent.end.dateTime : currentEvent.end.date;
+            if (items.length == 0) {
+                h1 = $("<h1 />");
+                h1.text("Available");
+                $(event).append(h1);
+                return;
+            }
+            
+            var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
+            var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
+            var startTime = moment(eventStartTime);
+            var endTime = moment(eventEndTime);
+
+            var now = moment(); // use moment to get the now() in device timezone
+            
+            if (now.isBetween(startTime, endTime)) {
 
                 var isAllDay = false;
-                if (startDateTime) {
-                    if (currentEvent.start.date) {
-                        isAllDay = true;
-                    }
+                if (items[0].start.date) {
+                    isAllDay = true;
                 }
 
                 h1 = $("<h1 />");
-                h1.text(currentEvent.summary);
+                h1.text(items[0].summary);
                 $(event).append(h1);
 
-                var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
-                var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
-                var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+                var sd = moment(eventStartTime).format("__MSG_Calendar_DateFormat__");
+                var st = moment(eventStartTime).format("__MSG_Calendar_TimeFormat__");
+                var et = moment(eventEndTime).format("__MSG_Calendar_TimeFormat__");
 
                 if (isAllDay) {
-                    var ed = moment(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+                    var ed = moment(eventEndTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
                 } else {
-                    var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+                    var ed = moment(eventEndTime).format("__MSG_Calendar_DateFormat__");
                 }
 
                 var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
@@ -306,54 +324,16 @@
                 }
                 $(event).append(p);
 
+                if (items.length > 1) {
+                    formatNext(items[1]);
+                }
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
+                
+                formatNext(items[0]);
             }
-
-            var nextStartDateTime = nextEvent.start.dateTime ? nextEvent.start.dateTime : nextEvent.start.date;
-            var nextEndDateTime = nextEvent.end.dateTime ? nextEvent.end.dateTime : nextEvent.end.date;
-
-            var nextIsAllDay = false;
-            if (nextStartDateTime) {
-                if (nextEvent.start.date) {
-                    nextIsAllDay = true;
-                }
-            }
-
-            var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
-            var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
-            var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
-
-            if (nextIsAllDay) {
-                var ned = moment(nextEndDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
-            } else {
-                var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
-            }
-
-            h3 = $("<h3 />");
-            $(h3).text("Next Event");
-            $(next).append(h3);
-
-            var p2 = $("<p class=\"nextEvent\"/>");
-            p2.text(nextEvent.summary);
-            $(next).append(p2);
-
-            var p3 = $("<p class=\"nextEvent\"/>");
-
-            var time2 = "";
-            if (nsd == ned) {
-                time2 += nsd;
-            } else {
-                time2 += nsd + " - " + ned;
-            }
-            if (isAllDay) {
-                p3.text(time2);
-            } else {
-                p3.text(time2 + ", " + nst + " - " + net);
-            }
-            $(next).append(p3);
         }
 
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }

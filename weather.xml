@@ -175,37 +175,31 @@
         
 </style>
 
-<script id="current-f-template" type="text/x-handlebars-template">
+<script id="current-template" type="text/x-handlebars-template">
     <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
     <div class="temp-container">
-        <div class="temp"><span>{{round temp_f}}</span>&#176;</div>
-    </div>
-</script>
-<script id="current-c-template" type="text/x-handlebars-template">
-    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
-    <div class="temp-container">
+    {{#if (isMetric)}}
         <div class="temp"><span>{{round temp_c}}</span>&#176;</div>
+    {{else}}
+        <div class="temp"><span>{{round temp_f}}</span>&#176;</div>
+    {{/if}}
     </div>
 </script>
-<script id="forecast-f-template" type="text/x-handlebars-template">
+
+<script id="forecast-template" type="text/x-handlebars-template">
     <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
     <div class="temp-container">
-        <div class="temp-title">High:</div>
-        <div class="high"><span>{{round high.fahrenheit}}</span>&#176;</div>
-        <div class="temp-title">Low:</div>
-        <div class="low"><span>{{round low.fahrenheit}}</span>&#176;</div>
-    </div>
-    <div class="condition-container">
-        <div class="condition">{{conditions}}</div>
-    </div>
-</script>
-<script id="forecast-c-template" type="text/x-handlebars-template">
-    <img class="icon" src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/{{getIcon icon}}.png" />
-    <div class="temp-container">
+    {{#if (isMetric)}}
         <div class="temp-title">High:</div>
         <div class="high"><span>{{round high.celsius}}</span>&#176;</div>
         <div class="temp-title">Low:</div>
         <div class="low"><span>{{round low.celsius}}</span>&#176;</div>
+    {{else}}
+        <div class="temp-title">High:</div>
+        <div class="high"><span>{{round high.fahrenheit}}</span>&#176;</div>
+        <div class="temp-title">Low:</div>
+        <div class="low"><span>{{round low.fahrenheit}}</span>&#176;</div>
+    {{/if}}
     </div>
     <div class="condition-container">
         <div class="condition">{{conditions}}</div>
@@ -311,20 +305,12 @@
   Handlebars.registerHelper('round', function (num) {
       return parseInt(num);
   });
-
-  var currentTemplate;
-  if (prefs.getString("Units") == "f") {
-      currentTemplate = Handlebars.compile(document.getElementById("current-f-template").innerHTML);
-  } else {
-      currentTemplate = Handlebars.compile(document.getElementById("current-c-template").innerHTML);
-  }
-  var forecastTemplate;
-  if (prefs.getString("Units") == "f") {
-      forecastTemplate = Handlebars.compile(document.getElementById("forecast-f-template").innerHTML);
-  } else {
-      forecastTemplate = Handlebars.compile(document.getElementById("forecast-c-template").innerHTML);
-  }
-
+  Handlebars.registerHelper('isMetric', function () {
+      return prefs.getString("Units") == 'c';
+  });
+  
+  var currentTemplate = Handlebars.compile(document.getElementById("current-template").innerHTML);
+  var forecastTemplate = Handlebars.compile(document.getElementById("forecast-template").innerHTML);
 
   function load() {
   
