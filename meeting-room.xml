@@ -250,7 +250,7 @@
             $(next).append(h3);
 
             var p2 = $("<p class=\"nextEvent\"/>");
-            p2.text(nextEvent.summary);
+            p2.text(item.summary);
             $(next).append(p2);
 
             var p3 = $("<p class=\"nextEvent\"/>");
