@@ -173,10 +173,10 @@
         function update() {
             var now = moment();
             if (now.minute() == 0 || now.minute() == 30) {
-                console.log("UPDATING AT: " + minutes + " MIN");
+                console.log("UPDATING AT: " + now);
                 getCalendarData();
             } else {
-                console.log("NO UPDATE AT: " + minutes + " MIN");
+                console.log("NO UPDATE AT: " + now);
             }
         }
 
