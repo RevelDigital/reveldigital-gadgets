@@ -171,9 +171,8 @@
     <script type="text/javascript">
 
         function update() {
-            var currTime = new Date();
-            var minutes = currTime.getMinutes();
-            if (minutes.valueOf() == 0 || minutes.valueOf() == 30) {
+            var now = moment();
+            if (now.minute() == 0 || now.minute() == 30) {
                 console.log("UPDATING AT: " + minutes + " MIN");
                 getCalendarData();
             } else {
@@ -186,14 +185,16 @@
             var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
             var queryParams = '&singleEvents=true&maxResults=' + "365" + '&orderBy=startTime';
 
-            var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
-            var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
+            //var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
+            //var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
+            //var tomorrow = new Date();
+            //tomorrow.setDate(new Date().getDate() + "365");
+            //var min = dfMin.format(new Date());
+            //var max = dfMax.format(tomorrow);
 
-            var tomorrow = new Date();
-            tomorrow.setDate(new Date().getDate() + "365");
-            var min = dfMin.format(new Date());
-            var max = dfMax.format(tomorrow);
-
+            var min = moment().utc().format();
+            var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().format();
+            
             queryParams += '&timeMin=' + encodeURIComponent(min);
             queryParams += '&timeMax=' + encodeURIComponent(max);
 
@@ -212,12 +213,7 @@
                 dataType: 'json'
             })
                 .done(function (response) {
-
-                    if (response.items.length == 0) {
-                        return;
-                    }
-
-                    formatDiv(response.items);
+                    formatEvent(response.items);
                 })
                 .fail(function (xhr, err) {
                     console.log(url);
@@ -225,17 +221,72 @@
                 });
         }
 
-        function formatDiv(items) {
+        function formatNext(item) {
+
+            var next = $("#next");
+
+            var nextStartDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
+            var nextEndDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
+
+            var nextIsAllDay = false;
+            if (nextStartDateTime) {
+                if (nextEvent.start.date) {
+                    nextIsAllDay = true;
+                }
+            }
+
+            var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
+            var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
+            var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
+
+            if (nextIsAllDay) {
+                var ned = moment(nextEndDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+            } else {
+                var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
+            }
+
+            h3 = $("<h3 />");
+            $(h3).text("Next Event");
+            $(next).append(h3);
+
+            var p2 = $("<p class=\"nextEvent\"/>");
+            p2.text(nextEvent.summary);
+            $(next).append(p2);
+
+            var p3 = $("<p class=\"nextEvent\"/>");
+
+            var time2 = "";
+            if (nsd == ned) {
+                time2 += nsd;
+            } else {
+                time2 += nsd + " - " + ned;
+            }
+            if (isAllDay) {
+                p3.text(time2);
+            } else {
+                p3.text(time2 + ", " + nst + " - " + net);
+            }
+            $(next).append(p3);
+        }
+        
+        function formatEvent(items) {
         
             var event = $("#event");
             var next = $("#next");
 
+            if (items.length == 0) {
+                h1 = $("<h1 />");
+                h1.text("Available");
+                $(event).append(h1);
+                return;
+            }
+            
             var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
             var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
             var startTime = moment(eventStartTime);
             var endTime = moment(eventEndTime);
 
-            var now = moment().toDate(); // use moment to get the now() in device timezone
+            var now = moment(); // use moment to get the now() in device timezone
             
             if (now.between(startTime, endTime)) {
 
@@ -253,7 +304,7 @@
                 var et = moment(eventEndTime).format("__MSG_Calendar_TimeFormat__");
 
                 if (isAllDay) {
-                    var ed = moment(eventEndTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+                    var ed = moment(eventEndTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
                 } else {
                     var ed = moment(eventEndTime).format("__MSG_Calendar_DateFormat__");
                 }
@@ -273,56 +324,15 @@
                 }
                 $(event).append(p);
 
+                if (items.length > 1) {
+                    formatNext(items[1]);
+                }
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
-            }
-
-            if (items.length > 1) {
-            
-              var nextStartDateTime = items[1].start.dateTime ? items[1].start.dateTime : items[1].start.date;
-              var nextEndDateTime = items[1].end.dateTime ? items[1].end.dateTime : items[1].end.date;
-
-              var nextIsAllDay = false;
-              if (nextStartDateTime) {
-                  if (nextEvent.start.date) {
-                      nextIsAllDay = true;
-                  }
-              }
-
-              var nsd = moment(nextStartDateTime).format("__MSG_Calendar_DateFormat__");
-              var nst = moment(nextStartDateTime).format("__MSG_Calendar_TimeFormat__");
-              var net = moment(nextEndDateTime).format("__MSG_Calendar_TimeFormat__");
-
-              if (nextIsAllDay) {
-                  var ned = moment(nextEndDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
-              } else {
-                  var ned = moment(nextEndDateTime).format("__MSG_Calendar_DateFormat__");
-              }
-
-              h3 = $("<h3 />");
-              $(h3).text("Next Event");
-              $(next).append(h3);
-
-              var p2 = $("<p class=\"nextEvent\"/>");
-              p2.text(nextEvent.summary);
-              $(next).append(p2);
-
-              var p3 = $("<p class=\"nextEvent\"/>");
-
-              var time2 = "";
-              if (nsd == ned) {
-                  time2 += nsd;
-              } else {
-                  time2 += nsd + " - " + ned;
-              }
-              if (isAllDay) {
-                  p3.text(time2);
-              } else {
-                  p3.text(time2 + ", " + nst + " - " + net);
-              }
-              $(next).append(p3);
+                
+                formatNext(items[0]);
             }
         }
 
