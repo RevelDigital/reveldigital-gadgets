@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Facebook Gadget" description="Displays Facebook posts from your linked account." author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Facebook Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001370511-Facebook-Integration" description="Displays Facebook posts from your linked account." author="RevelDigital" background="transparent">
   <UserPref name="numItems" display_name="Number of posts visible at the same time"  datatype="string" default_value="3" />
   <UserPref name="maxItems" display_name="Maximum number of posts to retrieve from Facebook"  datatype="string" default_value="10" />
   <UserPref name="userId" display_name="Facebook User (use 'me' for your own posts)"  datatype="string" default_value="me" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Twitter Gadget" description="Displays tweets from specific users or queries" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Twitter Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001516992-Twitter-Integration" description="Displays tweets from specific users or queries" author="RevelDigital" background="transparent">
   <Require feature="flash" />
   <UserPref name="username" display_name="Twitter Username" datatype="string" />
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />

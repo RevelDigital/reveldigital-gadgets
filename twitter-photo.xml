@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Twiter Photo Gadget" description="Displays Twitter posts and photos from your linked account." author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Twiter Photo Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001516992-Twitter-Integration" description="Displays Twitter posts and photos from your linked account." author="RevelDigital" background="transparent">
   <UserPref name="searchQuery" display_name="Twitter Search Query (eg, from:CNN)" datatype="string" />
   <UserPref name="maxItems" display_name="Maximum number of tweets to retrieve"  datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between scrolling" datatype="string" default_value="5" />

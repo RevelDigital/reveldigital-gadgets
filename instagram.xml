@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
 <ModulePrefs title="RevelDigital Instagram Gadget"
+  title_url="https://support.reveldigital.com/hc/en-us/articles/360001370871-Instagram-Integration"
   description="Slideshow of Instagram images with optional captions"
   author="RevelDigital" background="transparent">
   <UserPref name="get" display_name="Get Images" datatype="enum" default_value="popular">
