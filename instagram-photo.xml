@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Instagram Photo Gadget" description="Displays Instagram posts from your linked account." author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Instagram Photo Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001370871-Instagram-Integration" description="Displays Instagram posts from your linked account." author="RevelDigital" background="transparent">
   <UserPref name="maxItems" display_name="Maximum number of posts to retrieve"  datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between scrolling" datatype="string" default_value="5" />
   <UserPref name="imageSize" display_name="Profile Image Size" datatype="enum" default_value="small">

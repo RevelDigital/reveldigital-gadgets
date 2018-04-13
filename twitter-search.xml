@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Twitter Search Gadget" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Twitter Search Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001516992-Twitter-Integration" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
