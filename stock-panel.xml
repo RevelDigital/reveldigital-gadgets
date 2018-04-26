@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-<Module> 
-<ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
-  <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
-  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="10" />
-  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  <UserPref name="ForeColor" datatype="hidden" />
-  <UserPref name="BackColor" datatype="hidden" />
-</ModulePrefs>
-<Content type="html">
-<![CDATA[
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
+        <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+        <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+        <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="10" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
@@ -37,7 +37,7 @@
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: FloralWhite;
-        
+            padding: 5px;
         }
         
         #container {
@@ -82,16 +82,17 @@
 
 <script id="template" type="text/x-handlebars-template">
     <div class = 'card' id="quote">
-      <h1>
-        {{quote.symbol}}
-      </h1>
-      <h5>
-        {{quote.companyName}}
-      </h5>
-      <h3>
-      {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
-      {{else}}<i class="fas fa-sort-up"></i>{{quote.latestPrice}}{{/if}}
-      </h3>
+        <h5>
+            {{quote.companyName}}
+        </h5>
+        <h1>
+            {{quote.symbol}}
+        </h1>
+      
+        <h3>
+            {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
+            {{else}}<i class="fas fa-sort-up"></i>{{quote.latestPrice}}{{/if}}
+        </h3>
     </div>
 </script>
 
@@ -166,5 +167,5 @@
 </script>
 
 ]]>
-</Content>
+    </Content>
 </Module>
