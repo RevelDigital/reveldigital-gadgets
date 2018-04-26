@@ -230,7 +230,7 @@ i
           display += '<td class="value change">' + quote.change + '</td>';
         }
         if (prefs.getBool('include-days-range')) {
-          display += '<td class="value days-range">' + (quote.high - quote.low) + '</td>';
+          display += '<td class="value days-range">' + (Math.round((quote.high - quote.low) * 100) / 100) + '</td>';
         }
         if (prefs.getBool('include-days-low')) {
           display += '<td class="value days-low">' + quote.low + '</td>';
