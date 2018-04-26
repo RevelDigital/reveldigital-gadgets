@@ -93,11 +93,7 @@
       type: 'GET',
       url: api,
       dataType: 'json',
-      success: function(data) {
-        if (data.response.error) {
-          return;
-        }
-        
+      success: function(data) {        
         for (var key in data) {
           $('#container%').append(currentTemplate(data[key]));
         }
