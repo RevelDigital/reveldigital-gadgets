@@ -197,7 +197,7 @@ i
   
   var update = function () {
   
-    var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=prefs.getString("symbols")&types=quote";
+    var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote";
     
     $.getJSON(url, function(json) {
 
