@@ -40,8 +40,16 @@
             user-select: none;
         }
         
+        .slides_container
+        {
+          width: __UP_rdW__px;
+          height: __UP_rdH__px;
+        }
+        
         #quote {
-            __UP_font-style__;
+          width: __UP_rdW__px;
+          height: __UP_rdH__px;
+          __UP_font-style__;
         }
         
         h1 {
@@ -119,7 +127,7 @@
           effect: 'fade',
           pagination: false,
           generatePagination: false,
-          play: prefs.getInt('duration'),
+          play: prefs.getInt('duration') * 1000,
           preload: true,
           crossfade: true
         });
