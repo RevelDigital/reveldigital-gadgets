@@ -205,9 +205,9 @@ i
       
       var display = '';
       
-      for (var key in p) {
+      for (var key in json) {
       
-        var quote = p[key].quote;
+        var quote = json[key].quote;
         
         display += '<tr class="item">';
         if (prefs.getBool('include-graphic')) {
