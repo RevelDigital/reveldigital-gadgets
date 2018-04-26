@@ -56,13 +56,13 @@
         
         .slides_container
         {
-          width: __UP_rdW__px;
-          height: __UP_rdH__px;
+          width: 90%;
+          height: 90%;
         }
         
         #quote {
-          width: 90%;
-          height: 90%;
+          width: __UP_rdW__px;
+          height: __UP_rdH__px;
           __UP_font-style__;
         }
         
