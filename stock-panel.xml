@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
   <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -95,7 +95,7 @@
       dataType: 'json',
       success: function(data) {        
         for (var key in data) {
-          $('#container%').append(currentTemplate(data[key]));
+          $('#container').append(currentTemplate(data[key]));
         }
       }
     });
