@@ -32,6 +32,13 @@
           padding: 0;
           margin: 0;
         }
+
+        .card{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: FloralWhite;
+        
+        }
         
         #container {
             position: relative;
@@ -74,7 +81,7 @@
 </style>
 
 <script id="template" type="text/x-handlebars-template">
-    <div id="quote">
+    <div class = 'card' id="quote">
       <h1>
         {{quote.symbol}}
       </h1>
