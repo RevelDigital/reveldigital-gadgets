@@ -12,6 +12,8 @@
 <Content type="html">
 <![CDATA[
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
 <style type="text/css">
 
         body * {
@@ -68,7 +70,12 @@
         {{quote.symbol}}
       </h1>
       <h3>
-        {{quote.latestPrice}}
+      {{#if isDown quote.lastPrice}}
+        <i class="fas fa-sort-down"></i>
+      {{else}}
+        <i class="fas fa-sort-up"></i>
+      {{/if}}
+      {{quote.latestPrice}}
       </h3>
     </div>
 </script>
@@ -90,6 +97,10 @@
   var prefs = new gadgets.Prefs();
 
   var symbols = prefs.getString("symbols");
+  
+  Handlebars.registerHelper('isDown', function (price) {
+      return price < 0;
+  });
   
   var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
 
