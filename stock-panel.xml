@@ -74,6 +74,9 @@
       <h1>
         {{quote.symbol}}
       </h1>
+      <h5>
+        {{quote.companyName}}
+      </h5>
       <h3>
       {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
       {{else}}<i class="fas fa-sort-up"></i>{{quote.latestPrice}}{{/if}}
