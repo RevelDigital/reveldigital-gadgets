@@ -70,11 +70,11 @@
         {{quote.symbol}}
       </h1>
       <h3>
-      {{#isDown quote.lastPrice}}
+      {{#if (isDown quote.lastPrice)}}
         <i class="fas fa-sort-down"></i>
       {{else}}
         <i class="fas fa-sort-up"></i>
-      {{/isDown}}
+      {{/if}}
       {{quote.latestPrice}}
       </h3>
     </div>
