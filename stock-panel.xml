@@ -61,8 +61,8 @@
         }
         
         #quote {
-          width: __UP_rdW__px - 10px;
-          height: __UP_rdH__px - 10px;
+          width: 90%;
+          height: 90%;
           __UP_font-style__;
         }
         
