@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols.  Data provided for free by IEX." author="RevelDigital" background="transparent">
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -171,7 +171,7 @@ i
       thead += '<th class="market-cap">Market Cap</th>';
     }
     if (prefs.getBool('include-avg-daily-volume')) {
-      thead += '<th class="avg-daily-volume">Average Daily Volume</th>';
+      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
     }
     if (prefs.getBool('include-exchange')) {
       thead += '<th class="exchange">Exchange</th>';
@@ -196,77 +196,70 @@ i
   var max_id = 0;
   
   var update = function () {
-
-    var query = 'select * from yahoo.finance.quote where symbol in ("' + prefs.getString("symbols") + '")';
-    var env = "store://datatables.org/alltableswithkeys";
-    var url = "https://query.yahooapis.com/v1/public/yql?q=" + escape(query) + "&env=" + escape(env) + "&format=json&callback=?";
   
+    var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=prefs.getString("symbols")&types=quote";
+    
     $.getJSON(url, function(json) {
 
-      if (json && json.query.count > 0) {
+      $("div.quotescontainer > table > tbody").empty();
       
-        $("div.quotescontainer > table > tbody").empty();
+      var display = '';
+      
+      for (var key in p) {
+      
+        var quote = p[key].quote;
         
-        var display = '';
-        
-        if (json.query.count == 1) {
-          var array = new Array();
-          array.push(json.query.results.quote);
-          json.query.results.quote = array;
+        display += '<tr class="item">';
+        if (prefs.getBool('include-graphic')) {
+          if (parseFloat(quote.change) >= 0) {
+            display += '<td class="icon"><i class="fi-arrow-up green"></i></td>';
+          } else {
+            display += '<td class="icon"><i class="fi-arrow-down red"></i></td>';
+          }
         }
-        $.each(json.query.results.quote, function(i, quote) {
-          display += '<tr class="item">';
-          if (prefs.getBool('include-graphic')) {
-            if (parseFloat(quote.Change) >= 0) {
-              display += '<td class="icon"><i class="fi-arrow-up green"></i></td>';
-            } else {
-              display += '<td class="icon"><i class="fi-arrow-down red"></i></td>';
-            }
-          }
-          if (prefs.getBool('include-name')) {
-            display += '<td class="value name">' + quote.Name + '</td>';
-          }
-          if (prefs.getBool('include-symbol')) {
-            display += '<td class="value symbol">' + quote.Symbol + '</td>';
-          }
-          if (prefs.getBool('include-last-trade')) {
-            display += '<td class="value last-trade">' + quote.LastTradePriceOnly + '</td>';
-          }
-          if (prefs.getBool('include-change')) {
-            display += '<td class="value change">' + quote.Change + '</td>';
-          }
-          if (prefs.getBool('include-days-range')) {
-            display += '<td class="value days-range">' + quote.DaysRange + '</td>';
-          }
-          if (prefs.getBool('include-days-low')) {
-            display += '<td class="value days-low">' + quote.DaysLow + '</td>';
-          }
-          if (prefs.getBool('include-days-high')) {
-            display += '<td class="value days-high">' + quote.DaysHigh + '</td>';
-          }
-          if (prefs.getBool('include-volume')) {
-            display += '<td class="value volume">' + quote.Volume + '</td>';
-          }
-          if (prefs.getBool('include-year-low')) {
-            display += '<td class="value year-low">' + quote.YearLow + '</td>';
-          }
-          if (prefs.getBool('include-year-high')) {
-            display += '<td class="value year-high">' + quote.YearHigh + '</td>';
-          }
-          if (prefs.getBool('include-market-cap')) {
-            display += '<td class="value market-cap">' + quote.MarketCapitalization + '</td>';
-          }
-          if (prefs.getBool('include-avg-daily-volume')) {
-            display += '<td class="value avg-daily-volume">' + quote.AverageDailyVolume + '</td>';
-          }
-          if (prefs.getBool('include-exchange')) {
-            display += '<td class="value exchange">' + quote.StockExchange + '</td>';
-          }
-          display += '</tr>';
-        });
-        
-        $(display).prependTo("div.quotescontainer > table > tbody");
+        if (prefs.getBool('include-name')) {
+          display += '<td class="value name">' + quote.companyName + '</td>';
+        }
+        if (prefs.getBool('include-symbol')) {
+          display += '<td class="value symbol">' + quote.symbol + '</td>';
+        }
+        if (prefs.getBool('include-last-trade')) {
+          display += '<td class="value last-trade">' + quote.latestPrice + '</td>';
+        }
+        if (prefs.getBool('include-change')) {
+          display += '<td class="value change">' + quote.change + '</td>';
+        }
+        if (prefs.getBool('include-days-range')) {
+          display += '<td class="value days-range">' + quote.high - quote.low + '</td>';
+        }
+        if (prefs.getBool('include-days-low')) {
+          display += '<td class="value days-low">' + quote.low + '</td>';
+        }
+        if (prefs.getBool('include-days-high')) {
+          display += '<td class="value days-high">' + quote.high + '</td>';
+        }
+        if (prefs.getBool('include-volume')) {
+          display += '<td class="value volume">' + quote.latestVolume + '</td>';
+        }
+        if (prefs.getBool('include-year-low')) {
+          display += '<td class="value year-low">' + quote.week52Low + '</td>';
+        }
+        if (prefs.getBool('include-year-high')) {
+          display += '<td class="value year-high">' + quote.week52High + '</td>';
+        }
+        if (prefs.getBool('include-market-cap')) {
+          display += '<td class="value market-cap">' + quote.marketCap + '</td>';
+        }
+        if (prefs.getBool('include-avg-daily-volume')) {
+          display += '<td class="value avg-daily-volume">' + quote.avgTotalVolume + '</td>';
+        }
+        if (prefs.getBool('include-exchange')) {
+          display += '<td class="value exchange">' + quote.primaryExchange + '</td>';
+        }
+        display += '</tr>';
       }
+      
+      $(display).prependTo("div.quotescontainer > table > tbody");
     });
   }
 </script>
