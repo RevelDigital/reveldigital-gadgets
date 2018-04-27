@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
     <ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
-        <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+        <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" default_value="MSFT,AAPL" />
         <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:28px;" required="true" />
         <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="5" />
         <UserPref name="showPanel" display_name="Show background panel" datatype="bool" default_value="true" />
