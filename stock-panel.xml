@@ -118,8 +118,8 @@
         </h2>
       
         <h3>
-            {{#if (isDown quote.change)}}<span class="down"><i class="fas fa-sort-down"></i>{{quote.change}} ({{quote.changePercent}}%)</span>
-            {{else}}<span class="up"><i class="fas fa-sort-up"></i>+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
+            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
+            {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
         </h3>
 
     </div>
