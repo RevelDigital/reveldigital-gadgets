@@ -4,6 +4,8 @@
         <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
         <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
         <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="10" />
+        <UserPref name="showPanel" display_name="Show background panel with rounded corners and shadows" datatype="bool" default_value="true" />
+        <UserPref name="panelColor" display_name="Panel Color" datatype="color" default_value="#ffffff" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
         <UserPref name="ForeColor" datatype="hidden" />
@@ -47,20 +49,23 @@
             user-select: none;
         }
 
-        #quote {
+        .quote {
             position: absolute;
             top: 0;
             left: 0;
             height: calc(100% - 50px);
             width: calc(100% - 10px);
             __UP_font-style__;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            background-color: #FFFFFF;
             box-sizing: border-box;
             text-align: center;
         }
 
+        .panel {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: #__UP_panelColor__;
+        }
+        
         h1 {
             font-size: 2em;
             top: 15%;
@@ -93,7 +98,7 @@
 </style>
 
 <script id="template" type="text/x-handlebars-template">
-    <div id="quote">
+    <div class="quote">
         <h5>
             {{quote.companyName}}
         </h5>
@@ -157,22 +162,26 @@
       dataType: 'json',
       success: function(data) {
       
-        $("#container").empty();
+        $('#container').empty();
         
         for (var key in data) {
-          $("#container").append(currentTemplate(data[key]));
+          $('#container').append(currentTemplate(data[key]));
         }
         
-        $("#container > div:gt(0)").hide();
+        if (prefs.getBool('showPanel')) {
+          $('.quote').addClass('panel');
+        }
+        
+        $('#container > div:gt(0)').hide();
 
         setInterval(function () {
             $('#container > div:first')
-                .fadeOut(1000)
+                .fadeOut(2000)
                 .next()
-                .fadeIn(1000)
+                .fadeIn(2000)
                 .end()
                 .appendTo('#container');
-        }, prefs.getInt("duration") * 1000);
+        }, prefs.getInt('duration') * 1000);
       }
     });
   }
