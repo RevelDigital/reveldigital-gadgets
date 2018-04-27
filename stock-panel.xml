@@ -65,7 +65,7 @@
         }
 
         #quote {
-          position: static;
+          position: fixed;
           width: 100%;
           height: 100%;
           font-family: "Roboto Slab"; color: rgb(113, 113, 113); font-size: 60px;;
