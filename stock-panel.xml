@@ -72,23 +72,23 @@
         }
         
         h1 {
-          font-size: 2em;
+          font-size: 5vw;
           top: 15%;
         }
 
         h2 {
-            font-size: 2em;
+            font-size: 5vw;
             font-weight: normal;
             top:40%;
         }
         
         h3 {
-          font-size: .6em; 
+          font-size: 2vw; 
           bottom: 15%;
         }
         
         h5 {
-          font-size: .4em;
+          font-size: 1vw;
           top: 3%;
         }
 
