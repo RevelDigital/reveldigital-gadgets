@@ -97,7 +97,7 @@
         </h5>
 
         <h1>
-            {{quote.symbol}}
+           <strong> {{quote.symbol}} </strong>
         </h1>
 
         <h2>
