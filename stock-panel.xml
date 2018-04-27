@@ -83,7 +83,7 @@
         
         h3{
           font-size: .6em; 
-          bottom: 10%;
+          bottom: 25%;
           position: absolute;
           width: 100%;
         }
