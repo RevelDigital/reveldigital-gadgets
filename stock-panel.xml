@@ -73,8 +73,13 @@
         h1 {
           font-size: 1em;
         }
+
+        h2{
+            font-size: .9em;
+
+        }
         
-        h3.bottom {
+        h3{
           font-size: .8em; 
         }
         
@@ -93,11 +98,11 @@
             {{quote.symbol}}
         </h1>
 
-        <h2>{{quote.lastestPrice}}</h2
+        <h2>${{quote.lastestPrice}}</h2
       
-        <h3 class="bottom">
+        <h3>
             {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
-            {{else}}<i class="fas fa-sort-up"></i>{{quote.latestPrice}}{{/if}}
+            {{else}}<i class="fas fa-sort-up"></i>{{quote.change}} ({{quote.changePercent}}%{{/if}}
         </h3>
     </div>
 </script>
