@@ -39,7 +39,8 @@
             background-color: FloralWhite;
             box-sizing: border-box;
             height: 90%;
-            width: 90%;
+            width: 99%;
+            text-align: center;
 
         }
         
@@ -75,7 +76,8 @@
         
         h3 {
           font-size: .8em;
-          bottom: 10px;
+          bottom: 0;
+          
         }
         
         h5 {
