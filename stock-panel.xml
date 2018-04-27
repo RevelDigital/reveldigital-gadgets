@@ -101,7 +101,7 @@
         </h1>
 
         <h2>
-            ${{quote.lastestPrice}}
+            ${{quote.latestPrice}}
         </h2>
       
         <h3>
