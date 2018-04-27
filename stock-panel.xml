@@ -76,7 +76,7 @@
         
         h3 {
           font-size: .8em;
-          bottom: 0;
+          bottom: 5px;
           
         }
         
