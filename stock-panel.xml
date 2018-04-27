@@ -16,7 +16,6 @@
 
 <style type="text/css">
 
-      
         body * {
             letter-spacing: 0;
             word-spacing: normal;
@@ -30,73 +29,61 @@
         }
 
         h1, h2, h3, h4, h5 {
-          padding: 5px;
-          margin: 0;
-          position: absolute;
-          width: 100%;
+            padding: 5px;
+            margin: 0;
+            position: absolute;
+            width: 100%;
         }
 
-        #card{
+        #container {
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #quote {
+            position: relative;
+            height: calc(100% - 50px);
+            width: calc(100% - 10px);
+            __UP_font-style__;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: #FFFFFF;
             box-sizing: border-box;
-            height: 90%;
-            width: 99%;
             text-align: center;
         }
-        
-        #container {
-            position: relative;
-            width: 590px;
-            height: 658px;
-            margin: 0;
-            padding: 0;
-            font-family: arial,sans-serif;
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none; 
-            user-select: none;
-        }
-        
-        .slides_container {
-            height: 100%;
-            width: 100%;
-        }
 
-         #quote {
-          
-          width: 100%;
-          height: 100%;
-          font-family: "Roboto Slab"; color: rgb(113, 113, 113); font-size: 60px;;
-        }
-        
         h1 {
-          font-size: 2em;
-          top: 15%;
+            font-size: 2em;
+            top: 15%;
         }
 
         h2 {
             font-size: 2em;
             font-weight: normal;
-            top:40%;
+            top: 40%;
         }
-        
+
         h3 {
-          font-size: .7em; 
-          bottom: 15%;
+            font-size: .7em;
+            bottom: 20px;
         }
-        
+
         h5 {
-          font-size: .5em;
-          top: 3%;
+            font-size: .5em;
+            top: 20px;
         }
 
-        .up{
-            color: 	#32CD32;
+        .up {
+            color: #32CD32;
         }
 
-        .down{
+        .down {
             color: red;
         }
         
@@ -104,33 +91,23 @@
 
 <script id="template" type="text/x-handlebars-template">
     <div id="quote">
-
         <h5>
             {{quote.companyName}}
         </h5>
-
         <h1>
-           <strong> {{quote.symbol}} </strong>
+            <strong> {{quote.symbol}} </strong>
         </h1>
-
         <h2>
             ${{quote.latestPrice}}
         </h2>
-      
         <h3>
             {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
             {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
         </h3>
-
     </div>
-
-
 </script>
 
 <div id="container">
-
-    <div class="slides_container" id = "card" ></div>
-
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -177,20 +154,22 @@
       dataType: 'json',
       success: function(data) {
       
-        $("div.slides_container").empty();
+        $("#container").empty();
         
         for (var key in data) {
-          $("div.slides_container").append(currentTemplate(data[key]));
+          $("#container").append(currentTemplate(data[key]));
         }
         
-        $("#container").slides({
-          effect: 'fade',
-          pagination: false,
-          generatePagination: false,
-          play: prefs.getInt('duration') * 1000,
-          preload: true,
-          crossfade: true
-        });
+        $("#container > div:gt(0)").hide();
+
+        setInterval(function () {
+            $('#slideshow > div:first')
+                .fadeOut(1000)
+                .next()
+                .fadeIn(1000)
+                .end()
+                .appendTo('#slideshow');
+        }, prefs.getInt("duration") * 1000);
       }
     });
   }
