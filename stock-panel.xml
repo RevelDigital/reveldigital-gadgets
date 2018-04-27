@@ -86,6 +86,14 @@
         h5 {
           font-size: .4em;
         }
+
+        .up{
+            color: green;
+        }
+
+        .down{
+            color: red;
+        }
         
 </style>
 
@@ -105,8 +113,8 @@
         </h2>
       
         <h3>
-            {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
-            {{else}}<i class="fas fa-sort-up"></i>{{quote.change}} ({{quote.changePercent}}%){{/if}}
+            {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down down"></i>{{quote.latestPrice}}
+            {{else}}<i class="fas fa-sort-up up"></i>{{quote.change}} ({{quote.changePercent}}%){{/if}}
         </h3>
 
     </div>
