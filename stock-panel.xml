@@ -85,7 +85,7 @@
         h4 {
             font-size: .4em;
             bottom: 70px;
-            opacity: 0.9;
+            opacity: 0.5;
         }
 
         h5 {
