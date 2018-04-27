@@ -65,9 +65,11 @@
         }
 
         #quote {
+          position: relative;
           width: __UP_rdW__px;
           height: __UP_rdH__px;
           __UP_font-style__;
+            
         }
         
         h1 {
@@ -81,6 +83,9 @@
         
         h3{
           font-size: .6em; 
+          bottom: 10%;
+          position: absolute;
+          width: 100%;
         }
         
         h5 {
