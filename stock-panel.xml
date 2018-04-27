@@ -36,7 +36,7 @@
         #card{
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            background-color: White;
+            background-color: #FFFFFF;
             box-sizing: border-box;
             height: 90%;
             width: 99%;
