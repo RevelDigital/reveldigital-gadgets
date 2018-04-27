@@ -16,6 +16,7 @@
 
 <style type="text/css">
 
+      
         body * {
             letter-spacing: 0;
             word-spacing: normal;
@@ -31,6 +32,8 @@
         h1, h2, h3, h4, h5 {
           padding: 5px;
           margin: 0;
+          position: absolute;
+          width: 100%;
         }
 
         #card{
@@ -41,59 +44,56 @@
             height: 90%;
             width: 99%;
             text-align: center;
-
         }
         
         #container {
             position: relative;
-            width: __UP_rdW__px;
-            height: __UP_rdH__px;
+            width: 590px;
+            height: 658px;
             margin: 0;
             padding: 0;
             font-family: arial,sans-serif;
-            font-family: ;
             -webkit-user-select: none; 
             -moz-user-select: none; 
             -ms-user-select: none; 
             user-select: none;
         }
         
-        .slides_container
-        {
+        .slides_container {
             height: 100%;
             width: 100%;
         }
 
         #quote {
-          position: relative;
-          width: __UP_rdW__px;
-          height: __UP_rdH__px;
-          __UP_font-style__;
-            
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          font-family: "Roboto Slab"; color: rgb(113, 113, 113); font-size: 60px;;
         }
         
         h1 {
           font-size: 2em;
+          top: 15%;
         }
 
-        h2{
+        h2 {
             font-size: 2em;
-
+            font-weight: normal;
+            top:40%;
         }
         
-        h3{
+        h3 {
           font-size: .6em; 
-          bottom: 25%;
-          position: absolute;
-          width: 100%;
+          bottom: 15%;
         }
         
         h5 {
           font-size: .4em;
+          top: 3%;
         }
 
         .up{
-            color: green;
+            color: 	#32CD32;
         }
 
         .down{
@@ -119,10 +119,11 @@
       
         <h3>
             {{#if (isDown quote.change)}}<span class="down"><i class="fas fa-sort-down"></i>{{quote.change}} ({{quote.changePercent}}%)</span>
-            {{else}}<span class="up"><i class="fas fa-sort-up"></i>{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
+            {{else}}<span class="up"><i class="fas fa-sort-up"></i>+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
         </h3>
 
     </div>
+
 
 </script>
 
