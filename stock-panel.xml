@@ -93,7 +93,7 @@
             {{quote.symbol}}
         </h1>
 
-        <h2>{{quote.lastestPrice</h2
+        <h2>{{quote.lastestPrice}}</h2
       
         <h3 class="bottom">
             {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
