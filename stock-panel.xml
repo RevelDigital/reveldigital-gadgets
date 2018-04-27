@@ -38,6 +38,8 @@
             border-radius: 10px;
             background-color: FloralWhite;
             box-sizing: border-box;
+            height: 90%;
+            width: 90%;
 
         }
         
@@ -57,13 +59,12 @@
         
         .slides_container
         {
-            height: 90%;
-            width: 90%;
+            
         }
         
         #quote {
-          width: __UP_rdW__px;
-          height: __UP_rdH__px;
+          width: inherit;
+          height: inherit;
           __UP_font-style__;
         }
         
