@@ -91,6 +91,7 @@
 
 <script id="template" type="text/x-handlebars-template">
     <div id="quote">
+
         <h5>
             {{quote.companyName}}
         </h5>
@@ -109,10 +110,13 @@
         </h3>
 
     </div>
+
 </script>
 
 <div id="container">
-<div class="slides_container" id = "card" ></div>
+
+    <div class="slides_container" id = "card" ></div>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
