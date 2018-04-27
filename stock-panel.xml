@@ -33,7 +33,7 @@
           margin: 0;
         }
 
-        .card{
+        #card{
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: FloralWhite;
@@ -59,12 +59,13 @@
         
         .slides_container
         {
-            
+            height: 100%;
+            width: 100%;
         }
         
         #quote {
-          width: inherit;
-          height: inherit;
+          width: __UP_rdW__px;
+          height: __UP_rdH__px;
           __UP_font-style__;
         }
         
@@ -98,8 +99,8 @@
     </div>
 </script>
 
-<div class = "card" id="container">
-<div class="slides_container" ></div>
+<div id="container">
+<div class="slides_container" id = "card" ></div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
