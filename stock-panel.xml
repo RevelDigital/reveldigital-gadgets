@@ -64,30 +64,31 @@
             width: 100%;
         }
 
-        #quote {
+         #quote {
+          
           width: 100%;
           height: 100%;
           font-family: "Roboto Slab"; color: rgb(113, 113, 113); font-size: 60px;;
         }
         
         h1 {
-          font-size: 5vw;
+          font-size: 2em;
           top: 15%;
         }
 
         h2 {
-            font-size: 5vw;
+            font-size: 2em;
             font-weight: normal;
             top:40%;
         }
         
         h3 {
-          font-size: 2vw; 
+          font-size: .7em; 
           bottom: 15%;
         }
         
         h5 {
-          font-size: 1vw;
+          font-size: .5em;
           top: 3%;
         }
 
