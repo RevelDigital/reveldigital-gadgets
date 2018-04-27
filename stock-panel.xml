@@ -71,20 +71,20 @@
         }
         
         h1 {
-          font-size: 1em;
+          font-size: 2em;
         }
 
         h2{
-            font-size: .9em;
+            font-size: 1.5em;
 
         }
         
         h3{
-          font-size: .8em; 
+          font-size: .6em; 
         }
         
         h5 {
-          font-size: .3em;
+          font-size: .4em;
         }
         
 </style>
