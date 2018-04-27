@@ -56,8 +56,7 @@
         
         .slides_container
         {
-          width: 90%;
-          height: 90%;
+            padding: 10px;
         }
         
         #quote {
