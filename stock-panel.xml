@@ -63,7 +63,11 @@
             height: 100%;
             width: 100%;
         }
-        
+
+        #change{
+            bottom: 5px;
+        }
+
         #quote {
           width: __UP_rdW__px;
           height: __UP_rdH__px;
@@ -75,9 +79,7 @@
         }
         
         h3 {
-          font-size: .8em;
-          bottom: 5px;
-          
+          font-size: .8em;          
         }
         
         h5 {
@@ -95,7 +97,7 @@
             {{quote.symbol}}
         </h1>
       
-        <h3>
+        <h3 id = "change">
             {{#if (isDown quote.lastPrice)}}<i class="fas fa-sort-down"></i>{{quote.latestPrice}}
             {{else}}<i class="fas fa-sort-up"></i>{{quote.latestPrice}}{{/if}}
         </h3>
