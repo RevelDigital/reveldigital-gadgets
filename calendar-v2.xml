@@ -219,7 +219,7 @@ img
     //var max = dfMax.format(tomorrow);
     
     var min = moment().utc().format();
-    var max = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day').utc().format();
+    var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().endOf('day').format();
             
     queryParams += '&timeMin=' + encodeURIComponent(min);
     queryParams += '&timeMax=' + encodeURIComponent(max);
