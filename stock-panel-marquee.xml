@@ -2,6 +2,7 @@
 <Module>
     <ModulePrefs title="RevelDigital Stock Quote Panel" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
         <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" default_value="MSFT,AAPL" />
+        <UserPref name="speed" display_name="Scroll Speed" default_value="10"/>
         <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:28px;" required="true" />
         <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="5" />
         <UserPref name="showPanel" display_name="Show background panel" datatype="bool" default_value="true" />
@@ -13,7 +14,8 @@
     </ModulePrefs>
     <Content type="html">
         <![CDATA[
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>      
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />  
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
 <style type="text/css">
@@ -24,75 +26,59 @@
         }
 
         body {
-            background: transparent;
-            overflow: hidden;
+            background: transparent;  
             margin: 0;
             padding: 0;
         }
 
         h1, h2, h3, h4, h5 {
-            padding: 5px;
-            margin: 0;
-            position: absolute;
-            width: 100%;
+            line-height: 1.6;
+            display: inline-block;
+            padding: 5px;        
+            position: relative;
+            margin: auto;
         }
 
         #container {
             position: relative;
-            width: __UP_rdW__px;
-            height: __UP_rdH__px;
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-            user-select: none;
+            user-select: none;      
         }
 
-        .quote {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: calc(100% - 50px);
-            width: calc(100% - 10px);
+        .quote { 
+            display: inline-block;
+            position: relative;
+            height: calc(3em);
+            width: calc(24em);
             __UP_font-style__;
-            box-sizing: border-box;
-            text-align: center;
-        }
+        }    
 
         .panel {
+            display: inline-block;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            background-color: __UP_panelColor__;
+            __UP_BackColor__;
         }
         
         h1 {
-            font-size: 2em;
-            top: 15%;
+            font-size: 2em;        
         }
 
         h2 {
             font-size: 2em;
-            font-weight: normal;
-            top: 40%;
+            font-weight: normal;  
         }
 
         h3 {
-            font-size: .7em;
-            bottom: 20px;
+            font-size: .7em; 
         }
-
-        h4 {
-            font-size: .4em;
-            bottom: 70px;
-            opacity: 0.5;
-        }
-
-        h5 {
-            font-size: .5em;
-            top: 20px;
-        }
-
+        
         .up {
             color: #32CD32;
         }
@@ -104,32 +90,29 @@
 </style>
 
 <script id="template" type="text/x-handlebars-template">
-    <div class="quote">
-        <h5>
-            {{quote.companyName}}
-        </h5>
+        <div class="quote">
+            <h1>
+                <strong> {{quote.symbol}} </strong>
+                
+            </h1>
 
-        <h1>
-            <strong> {{quote.symbol}} </strong>
-        </h1>
+            <h2>
+                ${{quote.latestPrice}}
+            </h2>
 
-        <h2>
-            ${{quote.latestPrice}}
-        </h2>
-
-        <h4>
-            (Last Quote: {{quote.latestTime}})
-        </h4>
-
-        <h3>
-            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
-            {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
-        </h3>
-    </div>
+            <h3>
+                {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
+                {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
+            </h3>
+        </div>
+  
 </script>
 
-<div id="container">
-</div>
+
+<marquee scrollamount = __UP_speed__ behaviour = scroll  >
+<div id ="container"></div>
+</marquee>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -185,18 +168,8 @@
           $('.quote').addClass('panel');
         }
         
-        if ($('.quote').size() > 1) {
-          $('#container > div:gt(0)').hide();
-
-          setInterval(function () {
-              $('#container > div:first')
-                  .fadeOut(2000)
-                  .next()
-                  .fadeIn(2000)
-                  .end()
-                  .appendTo('#container');
-          }, prefs.getInt('duration') * 1000);
-        }
+        
+        
       }
     });
   }
