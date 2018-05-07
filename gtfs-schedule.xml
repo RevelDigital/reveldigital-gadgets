@@ -219,7 +219,7 @@
 
         function initalizeTable(res) {
             var now = moment();
-            var thirty_min_ahead = new.add(30, 'minutes');
+            var thirty_min_ahead = now.add(30, 'minutes');
 
             //var offset = now.getTimezoneOffset();
             //var thirty_min_ahead = new Date();
