@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+ <ModulePrefs title="Revel Transit Gadget" description="Displays YRT Transit info for a stop" author="RevelDigital" background="transparent">
+
+ <UserPref name="user_stop_id" display_name="Stop Name ex:(RICHMOND HILL CENTRE)" default_value="" />
+ <UserPref name="num_rows" display_name="Number of rows displayed at a time" required="true" default_value="25" />
+ <UserPref name="header_size" display_name="Header Font Size in px" required="true" default_value="30" />
+ <UserPref name="row_size" display_name="Row Font Size in px" required="true" default_value="25" />
+ <UserPref name="labels" display_name="Labels On" required="true" default_value="true" datatype="bool" />
+ <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+ <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+
+ </ModulePrefs>
+<Content type="html">
+
+<![CDATA[
+ <html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
+     
+    <style>
+    
+      body *
+      {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+      }
+
+      body
+      {
+        overflow: hidden;
+        background: transparent;
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+      }
+      
+      #myDiv {
+          width: __UP_rdW__px;
+          height: __UP_rdH__px
+      }
+
+      .stoptable {
+          font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+          border-collapse: collapse;
+          white-space: nowrap;
+          width: 100%
+      }
+
+      .stoptable th {
+          font-size: __UP_header_size__px;
+          border: 1px solid #ddd;
+          padding: 12px 8px;
+          text-align: left;
+          background-color: #000;
+          color: #fff
+      }
+
+      .stoptable td {
+          font-size: __UP_row_size__px;
+          border: 1px solid #ddd;
+          padding: 8px
+      }
+
+      .stoptable tr:nth-child(even) {
+          background-color: #f2f2f2
+      }
+
+      .stoptable tr:nth-child(odd) {
+          background-color: #fff
+      }
+
+      .stoptable tr:hover {
+          background-color: #ddd
+      }
+
+    </style>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+    <script>
+        // PREFS
+        var prefs = new gadgets.Prefs();
+
+        if (typeof Client != "undefined" && typeof (Client.getDeviceTimeZoneName) == "function") {
+            moment.tz.setDefault(Client.getDeviceTimeZoneName());
+        }
+
+        var display_time = 60;
+        var stopid = prefs.getString("user_stop_id"); //'RICHMOND HILL CENTRE';
+        var numRows = prefs.getString("num_rows"); // 25
+
+        console.log(numRows);
+        stopid = stopid.toUpperCase();
+
+        // GLOBALS
+        var timeout = 1; // MIGHT BECOME A PREF
+        var stoplist = [];
+        var tomorrow_stoplist = [];
+
+        // INIT GLOBALS
+        var curr_day = moment();
+        var tmpDay = moment();
+        var tomorrow = curr_day.add(1, 'days'); //new Date(tmpDay.setTime(tmpDay.getTime() + 1 * 86400000));
+
+        var cur_time = curr_day.utc().format(); //curr_day.toUTCString();
+        loadStops(cur_time, false);
+
+        // Check every minute for expired stoptimes
+        $(function() {
+            window.setInterval(function() {
+                updateList();
+            }, timeout * 60000);
+        });
+
+        // Check every hour for next days stops until tomorrow_stoplist is populated
+        // Also checks if it is the next day and updates the correct values.
+        $(function() {
+            window.setInterval(function() {
+                console.log("CHECKING IF TOMORROW LIST IS UPTO DATE");
+                if (tomorrow_stoplist.length < 1 || tomorrow_stoplist == undefined) {
+                    console.log("TOMORROW LIST NOT UP TO DATE: UPDATING");
+                    var tomorrow_str = tomorrow.utc().format();
+                    loadStops(tomorrow_str, true);
+                }
+                var now = moment();
+                if (now > tomorrow) {
+                    console.log("MOVNG TO THE NEXT DAY");
+                    curr_day = now;
+                    tomorrow = now.add(1, 'days'); //new Date(curr_day.setTime(curr_day.getTime() + 1 * 86400000));
+                    tomorrow_stoplist = [];
+                }
+            }, 60 * 60000);
+        });
+
+        function loadStops(date, loadTomorrow) {
+            $.ajax({
+                // TEST URL
+                //url: "http://localhost:5000/?stop_id=" + stopid + "&current_time=" + date,
+                // PROD URL
+                url: "https://nameless-oasis-95014.herokuapp.com/?stop_id=" + stopid + "&current_time=" + date,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+                    if (loadTomorrow) {
+                        // load stoptimes for tomorrow
+                        for (var i = 0; len = res.length, i < len; i++) {
+                            stoplist.push(res[i]);
+                            tomorrow_stoplist.push(res[i]);
+                        }
+                        console.log(stoplist);
+                    } else {
+                        // load stoptimes for current day -- only on initialization
+                        for (var i = 0; len = res.length, i < len; i++) {
+                            stoplist.push(res[i]);
+                        }
+                        // Create table for the first time
+                        console.log(stoplist);
+                        initalizeTable(stoplist);
+                    }
+                }
+            });
+        }
+
+
+       function addRow(row) {
+            var table = document.getElementById("stoptable");
+            var now = moment();
+            //var offset = now.getTimezoneOffset();
+            var departure_time = moment(departure_time); //new Date(row.departure_time);
+            //departure_time.setMinutes(departure_time.getMinutes() + offset);
+
+            // Get minutes difference b/t now and the departure time
+            var diff = departure_time - now;
+            var minutes = now.diff(departure_time, 'minutes'); //Math.round((diff / 1000) / 60);
+
+            var tr = document.createElement('tr');
+
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            //var td4 = document.createElement('td');
+
+            var text1 = document.createTextNode(row.route);
+            var text2 = document.createTextNode(row.destination);
+            var text3 = document.createTextNode(minutes + " min");
+
+            /*
+            var text3 = document.createTextNode(departure_time.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            }));
+            */
+
+            //if (row.platform_number != undefined) {
+                //var text4 = document.createTextNode(row.platform_number);
+            //}
+
+            td1.appendChild(text1);
+            td2.appendChild(text2);
+            td3.appendChild(text3);
+            //td4.appendChild(text4);
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            //if (row.platform_number != undefined) {
+                //tr.appendChild(td4);
+            //}
+
+            table.appendChild(tr);
+        }
+
+        function initalizeTable(res) {
+            var now = moment();
+            var thirty_min_ahead = new.add(30, 'minutes');
+
+            //var offset = now.getTimezoneOffset();
+            //var thirty_min_ahead = new Date();
+            //thirty_min_ahead.setMinutes(now.getMinutes() + display_time);
+            // Create Table
+            var table = document.createElement('table');
+            table.setAttribute("class", "stoptable");
+            table.setAttribute("id", "stoptable");
+
+            var table2 = document.createElement('table');
+            table2.setAttribute("class", "stoptable");
+            // Create Table Header Rows
+            // Head row 1
+            var head_row = document.createElement('tr');
+            var table_head = document.createElement('th');
+            var table_head_text = document.createTextNode(res[0].platform_name);
+            table_head.appendChild(table_head_text);
+            head_row.appendChild(table_head);
+            table2.appendChild(head_row);
+
+            // Head row 2
+            var thr = document.createElement('tr');
+            // Create table headers
+            var th1 = document.createElement('th');
+            var routehead = document.createTextNode('Route');
+            th1.appendChild(routehead);
+
+            var th2 = document.createElement('th');
+            var destinationhead = document.createTextNode('Destination');
+            th2.appendChild(destinationhead);
+
+            var th3 = document.createElement('th');
+            var stoptime = document.createTextNode('Departure');
+            th3.appendChild(stoptime);
+
+            //var th4 = document.createElement('th');
+            //var platform = document.createTextNode('Platform');
+            //th4.appendChild(platform);
+
+            // Add Headers to Row
+            thr.appendChild(th1);
+            thr.appendChild(th2);
+            thr.appendChild(th3);
+            //thr.appendChild(th4);
+            // add header row to Table
+            table.appendChild(thr);
+            document.getElementById("myDiv").appendChild(table2);
+            document.getElementById("myDiv").appendChild(table);
+            var ct = 0;
+            var templist = [];
+            for (var i = 0; len = res.length, i < len; i++) {
+                var departure_time = moment(res[i].departure_time);
+                //departure_time.setMinutes(departure_time.getMinutes() + offset);
+                //var departure_time = res[i].departure_time;
+                console.log('Departure: ' + departure_time + '     ' + 'Now: ' + now);
+                if (departure_time > now) {
+                    templist.push(res[i]);
+                }
+                if (departure_time > now && ct < numRows) {
+                    ct++;
+                    addRow(res[i]);
+                }
+            }
+            stoplist = templist;
+            console.log(stoplist);
+        }
+
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+
+        function updateList() {
+            var table = document.getElementById("stoptable");
+            var now = moment().startOf('minute');
+            //now.setSeconds(0);
+            //var offset = now.getTimezoneOffset();
+            numDeleted = 0;
+            // Loop through the table rows and check if the stop times have expired
+            current_index = 0;
+            for (var x = 1; x < table.rows.length; x++) {
+                var departure_time = moment(stoplist[current_index].departure_time);
+                //departure_time.setMinutes(departure_time.getMinutes() + offset);
+                departureDate = departure_time;
+                if (now > departureDate) {
+                    console.log("now: " + now + "  |  top row: " + departureDate);
+                    console.log(table.rows[1]);
+                    table.deleteRow(1);
+                    numDeleted++;
+                }
+                current_index++;
+            }
+            // Replace deleted rows with new ones
+            for (var y = 0; y < numDeleted; y++) {
+                console.log("delete: " + stoplist[0]);
+                stoplist.splice(0, 1);
+                addRow(stoplist[numRows - 1]);
+                console.log("add: " + stoplist[numRows - 1]);
+            }
+            current_index = 0;
+            for (var x = 1; x < table.rows.length; x++) {
+                var departure_time = moment(stoplist[current_index].departure_time);
+                //departure_time.setMinutes(departure_time.getMinutes() + offset);
+                // Calc mins before departure
+                //var diff = departure_time - now;
+                var minutes = now.diff(departure_time, 'minutes'); //Math.round((diff / 1000) / 60);
+                //console.log(table.rows[x].cells[2].innerHTML);
+                table.rows[x].cells[2].innerHTML = minutes + " min";
+                current_index++;
+            }
+        }
+    </script>
+</body>
+
+</html>
+ ]]>
+ </Content>
+
+</Module>
