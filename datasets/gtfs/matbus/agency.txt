@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
+"Fargo","MATBUS","http://www.matbus.com/","America/Chicago","(701) 232-7500","en"
