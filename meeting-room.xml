@@ -148,8 +148,10 @@
 
             moment.locale("__MSG_Lang__");
 
-            if (typeof Client != "undefined" && typeof (Client.getDeviceTimeZoneName) == "function") {
-                moment.tz.setDefault(Client.getDeviceTimeZoneName());
+            if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
+              moment.tz.setDefault(Client.getDeviceTimeZoneID());
+            } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+              moment.tz.setDefault(Client.getDeviceTimeZoneName());
             }
 
             if (!prefs.getBool("showRoom")) {
