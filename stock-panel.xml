@@ -15,6 +15,8 @@
         <![CDATA[
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
 
 <style type="text/css">
 
@@ -37,8 +39,8 @@
             width: 100%;
         }
 
+
         #container {
-            position: relative;
             width: __UP_rdW__px;
             height: __UP_rdH__px;
             margin: 0;
@@ -50,17 +52,16 @@
         }
 
         .quote {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: calc(100% - 50px);
-            width: calc(100% - 10px);
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
             __UP_font-style__;
             box-sizing: border-box;
             text-align: center;
         }
 
         .panel {
+            height: calc(__UP_rdH__px - 30px);
+            margin: 5px 5px 15px 5px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: __UP_panelColor__;
