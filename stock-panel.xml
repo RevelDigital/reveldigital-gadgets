@@ -60,7 +60,7 @@
         }
 
         .panel {
-            height: calc(350px - 30px);
+            height: calc(__UP_rdH__px - 30px);
             margin: 5px 5px 15px 5px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 10px;
