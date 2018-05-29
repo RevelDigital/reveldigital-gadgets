@@ -177,7 +177,7 @@
       success: function(data) {
       
         try {
-          $("div.postscontainer").slick("unslick");
+          $("#container").slick("unslick");
         } catch (e) {}
         $('#container').empty();
         
