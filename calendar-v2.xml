@@ -269,6 +269,13 @@
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
     
+    /**
+     * timeMin/timeMax will not filter expanded recurring events
+     */
+    if (moment(startDateTime) < moment() || moment(endDateTime) > moment().add(prefs.getInt("futureEvents"), 'days').endOf('day')) {
+      return;
+    }
+    
     var isAllDay = false;
     if (startDateTime) {
       if (event.start.date) {
@@ -327,6 +334,13 @@
     var startDateTime = event.start.dateTime ? event.start.dateTime : event.start.date;
     var endDateTime = event.end.dateTime ? event.end.dateTime : event.end.date;
     
+    /**
+     * timeMin/timeMax will not filter expanded recurring events
+     */
+    if (moment(startDateTime) < moment() || moment(endDateTime) > moment().add(prefs.getInt("futureEvents"), 'days').endOf('day')) {
+      return;
+    }
+    
     var isAllDay = false;
     if (startDateTime) {
       if (event.start.date) {
@@ -334,7 +348,6 @@
       }
     }
     
-    //var tbody = $("<tbody></tbody>");
     var tbody = $("#events > table > tbody");
     var tr = $('<tr/>');
     
@@ -371,7 +384,6 @@
     $(tr).append(td);
     
     $(tbody).append(tr);
-    //$(tbody).hide().appendTo("#data > table").fadeIn();
   }
   
   var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
