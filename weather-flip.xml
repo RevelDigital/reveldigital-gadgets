@@ -499,7 +499,7 @@
     
     $('div.location', panel).text(item.location);
     $('div.condition', panel).text(item.weather);
-    $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[item.icon] + ".png");
+    $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap_aeris[item.icon] + ".png");
     
     if (prefs.getString("Units") == "f") {
       $('div.temp', panel).text(parseInt(item.tempF) + "\u00B0");
