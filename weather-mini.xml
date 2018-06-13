@@ -21,52 +21,52 @@
 
 <style type="text/css">
 
-        body * {
-            letter-spacing: 0;
-            word-spacing: normal;
-        }
+  body * {
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
 
-        body {
-            background: transparent;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
+  body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
 
-        #container {
-            position: relative;
-            width: __UP_rdW__px;
-            height: __UP_rdH__px;
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none; 
-            user-select: none;
-        }
-        
-        #temp {
-            __UP_font-style__;
-        }
+  #container {
+    position: relative;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+  }
+
+  #temp {
+    __UP_font-style__;
+  }
         
 </style>
 
 <script id="template" type="text/x-handlebars-template">
-    {{#if (isMetric)}}
-    	<div id="temp">
-        {{round high.celsius}}&#176;
-        /
-        {{round low.celsius}}&#176;
-        <span class="icon {{getIcon icon}}"></span>
-    	</div>
-    {{else}}
-        <div id="temp">
-        {{round high.fahrenheit}}&#176;
-        /
-        {{round low.fahrenheit}}&#176;
-        <span class="icon {{getIcon icon}}"></span>
-    	</div>
-    {{/if}}
+  {{#if (isMetric)}}
+    <div id="temp">
+      {{round maxTempC}}&#176;
+      /
+      {{round minTempC}}&#176;
+      <span class="icon {{getIcon icon}}"></span>
+    </div>
+  {{else}}
+      <div id="temp">
+      {{round maxTempF}}&#176;
+      /
+      {{round minTempF}}&#176;
+      <span class="icon {{getIcon icon}}"></span>
+    </div>
+  {{/if}}
 </script>
 
 <div id="container">
@@ -87,6 +87,130 @@
 
   var search = prefs.getString("location");
   var unit = prefs.getString("units");
+  
+  var conditionMap_aeris = {
+    "am_pcloudyr.png": "cloud-rain-sun",
+    "am_showers.png": "cloud-rain",
+    "am_showshowers.png": "cloud-snow",
+    "am_tstorm.png": "cloud-lightning",
+    "blizzard.png": "snow",
+    "blizzardn.png": "snow",
+    "blowingsnow.png": "snow",
+    "blowingsnown.png": "snow",
+    "chancetstorm.png": "cloud-lightning-sun-2",
+    "chancetstormn.png": "cloud-lightning-moon",
+    "clear.png": "sun",
+    "clearn.png": "moon-50",
+    "clearw.png": "sun",
+    "clearwn.png": "moon-50",
+    "cloudy.png": "clouds",
+    "cloudyn.png": "clouds",
+    "cloudyw.png": "clouds",
+    "cloudywn.png": "clouds",
+    "drizzle.png": "clouds",
+    "drizzlef.png": "clouds",
+    "drizzlen.png": "clouds",
+    "dust.png": "fog",
+    "fair.png": "sun",
+    "fairn.png": "moon-50",
+    "fairw.png": "sun",
+    "fairwn.png": "moon-50",
+    "fdrizzle.png": "drizzle",
+    "fdrizzlen.png": "drizzle",
+    "flurries.png": "cloud-snow-sun",
+    "flurriesn.png": "cloud-snow-moon",
+    "flurriesw.png": "cloud-snow-sun",
+    "flurrieswn.png": "cloud-snow-moon",
+    "fog.png": "fog",
+    "fogn.png": "fog",
+    "freezingrain.png": "rain",
+    "freezingrainn.png": "rain",
+    "hazy.png": "fog",
+    "hazyn.png": "fog",
+    "mcloudy.png": "clouds-sun",
+    "mcloudyn.png": "clouds-moon",
+    "mcloudyr.png": "cloud-rain-sun",
+    "mcloudyrn.png": "cloud-rain-moon",
+    "mcloudyrw.png": "cloud-wind-sun",
+    "mcloudyrwn.png": "cloud-wind-moon",
+    "mcloudys.png": "cloud-snow-sun",
+    "mcloudysfn.png": "cloud-snow-moon",
+    "mcloudysfw.png": "cloud-snow-sun",
+    "mcloudysfwn.png": "cloud-snow-moon",
+    "mcloudysn.png": "cloud-snow-moon",
+    "mcloudysw.png": "cloud-snow-sun",
+    "mcloudyswn.png": "cloud-snow-moon",
+    "mcloudyt.png": "cloud-rain-lightning-sun",
+    "mcloudytn.png": "cloud-rain-lightning-moon",
+    "mcloudytw.png": "cloud-rain-lightning-sun",
+    "mcloudytwn.png": "cloud-rain-lightning-moon",
+    "mcloudyw.png": "cloud-wind-2",
+    "mcloudywn.png": "cloud-wind-2-moon",
+    "na.png": "",
+    "pcloudy.png": "clouds-sun",
+    "pcloudyn.png": "clouds-moon",
+    "pcloudyr.png": "cloud-rain-sun",
+    "pcloudyrn.png": "cloud-rain-moon",
+    "pcloudyrw.png": "cloud-wind-sun",
+    "pcloudyrwn.png": "cloud-wind-moon",
+    "pcloudys.png": "cloud-snow-sun",
+    "pcloudysf.png": "cloud-snow-sun",
+    "pcloudysfn.png": "cloud-snow-moon",
+    "pcloudysfw.png": "cloud-snow-sun",
+    "pcloudysfwn.png": "cloud-snow-moon",
+    "pcloudysn.png": "cloud-snow-moon",
+    "pcloudysw.png": "cloud-rain-sun",
+    "pcloudyswn.png": "cloud-snow-moon",
+    "pcloudyt.png": "cloud-rain-lightning-sun",
+    "pcloudytn.png": "cloud-rain-lightning-moon",
+    "pcloudytw.png": "cloud-rain-lightning-sun",
+    "pcloudytwn.png": "cloud-rain-lightning-moon",
+    "pcloudyw.png": "cloud-wind-2",
+    "pcloudywn.png": "cloud-wind-2-moon",
+    "pm_pcloudy.png": "clouds-sun",
+    "pm_pcloudyr.png": "cloud-rain-sun",
+    "pm_showers.png": "rain",
+    "pm_snowshowers.png": "snow",
+    "pm_tstorm.png": "lightning",
+    "rain.png": "rain",
+    "rainandsnow.png": "hail",
+    "rainandsnown.png": "hail",
+    "rainn.png": "rain",
+    "raintosnow.png": "rain",
+    "raintosnown.png": "rain",
+    "rainw.png": "rain",
+    "showers.png": "rain",
+    "showersn.png": "rain",
+    "showersw.png": "rain",
+    "sleet.png": "drizzle",
+    "sleetn.png": "drizzle",
+    "sleetsnow.png": "drizzle",
+    "smoke.png": "fog",
+    "smoken.png": "fog",
+    "snow.png": "snow",
+    "snown.png": "snow",
+    "snowshowers.png": "snow",	
+    "snowshowersn.png": "snow",
+    "snowshowersw.png": "snow",
+    "snowshowerswn.png": "snow",
+    "snowtorain.png": "snow",
+    "snowtorainn.png": "snow",
+    "snoww.png": "snow",
+    "snowwn.png": "snow",
+    "sunny.png": "sun",
+    "sunnyn.png": "sun",
+    "sunnyw.png": "sun",
+    "sunnywn.png": "sun",
+    "tstorm.png": "lightning",
+    "tstormn.png": "lightning",
+    "tstormsw.png": "lightning",
+    "tstormswn.png": "lightning",
+    "tstormw.png": "lightning",
+    "tstormwn.png": "lightning",
+    "wind.png": "wind",
+    "wintrymix.png": "drizzle",
+    "wintrymixn.png": "drizzle"
+  };
   
   var conditionMap = {
     "chanceflurries": "diw-cloud-snow-sun",
@@ -130,7 +254,7 @@
   };
 
   Handlebars.registerHelper('getIcon', function (icon) {
-      return conditionMap[icon];
+      return 'diw' + conditionMap_aeris[icon];
   });
   Handlebars.registerHelper('round', function (num) {
       return parseInt(num);
@@ -160,21 +284,16 @@
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/' + encodeURIComponent(location) + '.json';
+    var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.response.error) {
+        if (data.success === false) {
           return;
         }
-        if (data.response.results) {
-          getForecast(re.exec(data.response.results[0].l)[0]);
-          return;
-        }
-        var fc = data.forecast.simpleforecast;
-        $("#container").html(currentTemplate(fc.forecastday[0]));
+        $("#container").html(currentTemplate(data.response[0].periods[0]));
       }
     });
   }
