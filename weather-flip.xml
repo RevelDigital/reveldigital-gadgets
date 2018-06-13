@@ -507,9 +507,9 @@
       $('div.temp', panel).text(parseInt(item.tempc) + "\u00B0");
     }
     
-    $('div.location', panel).fitText(1, { vh: 40 });
+    $('div.location', panel).fitText(1, { vh: 30 });
     $('div.condition', panel).fitText(1, { vh: 15 });
-    $('div.temp', panel).fitText(1, { vh: 80 });
+    $('div.temp', panel).fitText(1, { vh: 50 });
     
     $('#card').toggleClass('flipped');
   }

@@ -460,7 +460,6 @@
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    //var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/' + encodeURIComponent(location) + '.json';
     var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
     $.ajax({
       type: 'GET',
@@ -470,11 +469,6 @@
         if (data.success === false) {
           return;
         }
-        //if (data.response.results) {
-        //  getConditions(re.exec(data.response.results[0].l)[0]);
-        //  return;
-        //}
-        //var co = data.current_observation;
         $("#current .content").html(currentTemplate(data.response.ob));
 
         setTimeout(function () {
@@ -489,7 +483,6 @@
       location = "Fargo, ND";
     }
     var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
-    //var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/forecast/q/' + encodeURIComponent(location) + '.json';
     $.ajax({
       type: 'GET',
       url: api,
@@ -498,11 +491,6 @@
         if (data.success === false) {
           return;
         }
-        //if (data.response.results) {
-        //  getForecast(re.exec(data.response.results[0].l)[0]);
-        //  return;
-        //}
-        //var fc = data.forecast.simpleforecast;
         $("#today .content").html(forecastTemplate(data.response[0].periods[0]));
         $("#tomorrow .content").html(forecastTemplate(data.response[0].periods[1]));
 
