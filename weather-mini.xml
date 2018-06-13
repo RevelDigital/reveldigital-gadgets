@@ -64,7 +64,7 @@
       {{round maxTempF}}&#176;
       /
       {{round minTempF}}&#176;
-      <span class="icon {{getIcon icon}}"></span>
+      <span class="icon diw-{{getIcon icon}}"></span>
     </div>
   {{/if}}
 </script>
