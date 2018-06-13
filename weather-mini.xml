@@ -57,7 +57,7 @@
       {{round maxTempC}}&#176;
       /
       {{round minTempC}}&#176;
-      <span class="icon {{getIcon icon}}"></span>
+      <span class="icon diw-{{getIcon icon}}"></span>
     </div>
   {{else}}
       <div id="temp">
@@ -254,7 +254,7 @@
   };
 
   Handlebars.registerHelper('getIcon', function (icon) {
-      return 'diw' + conditionMap_aeris[icon];
+      return conditionMap_aeris[icon];
   });
   Handlebars.registerHelper('round', function (num) {
       return parseInt(num);
