@@ -504,7 +504,7 @@
     if (prefs.getString("Units") == "f") {
       $('div.temp', panel).text(parseInt(item.tempF) + "\u00B0");
     } else {
-      $('div.temp', panel).text(parseInt(item.tempc) + "\u00B0");
+      $('div.temp', panel).text(parseInt(item.tempC) + "\u00B0");
     }
     
     $('div.location', panel).fitText(1, { vh: 30 });
