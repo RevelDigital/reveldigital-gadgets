@@ -241,7 +241,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 
 <script type="text/javascript">
@@ -254,6 +254,130 @@
   var idx = 0;
   var titles = {};
   var flipTimer;
+  
+  var conditionMap_aeris = {
+    "am_pcloudyr.png": "40d",
+    "am_showers.png": "40d",
+    "am_showshowers.png": "46d",
+    "am_tstorm.png": "4d",
+    "blizzard.png": "46d",
+    "blizzardn.png": "46n",
+    "blowingsnow.png": "42d",
+    "blowingsnown.png": "42n",
+    "chancetstorm.png": "38d",
+    "chancetstormn.png": "38n",
+    "clear.png": "32d",
+    "clearn.png": "32n",
+    "clearw.png": "32d",
+    "clearwn.png": "32n",
+    "cloudy.png": "26d",
+    "cloudyn.png": "26n",
+    "cloudyw.png": "26d",
+    "cloudywn.png": "26n",
+    "drizzle.png": "9d",
+    "drizzlef.png": "9d",
+    "drizzlen.png": "9n",
+    "dust.png": "19d",
+    "fair.png": "33d",
+    "fairn.png": "33n",
+    "fairw.png": "33d",
+    "fairwn.png": "33n",
+    "fdrizzle.png": "8d",
+    "fdrizzlen.png": "8n",
+    "flurries.png": "13d",
+    "flurriesn.png": "13n",
+    "flurriesw.png": "13d",
+    "flurrieswn.png": "13n",
+    "fog.png": "20d",
+    "fogn.png": "20n",
+    "freezingrain.png": "10d",
+    "freezingrainn.png": "10n",
+    "hazy.png": "21d",
+    "hazyn.png": "21n",
+    "mcloudy.png": "27d",
+    "mcloudyn.png": "27n",
+    "mcloudyr.png": "27d",
+    "mcloudyrn.png": "27n",
+    "mcloudyrw.png": "27d",
+    "mcloudyrwn.png": "27n",
+    "mcloudys.png": "27d",
+    "mcloudysfn.png": "27n",
+    "mcloudysfw.png": "27d",
+    "mcloudysfwn.png": "27n",
+    "mcloudysn.png": "27d",
+    "mcloudysw.png": "27d",
+    "mcloudyswn.png": "27n",
+    "mcloudyt.png": "27d",
+    "mcloudytn.png": "27n",
+    "mcloudytw.png": "27d",
+    "mcloudytwn.png": "27n",
+    "mcloudyw.png": "27d",
+    "mcloudywn.png": "27n",
+    "na.png": "",
+    "pcloudy.png": "29d",
+    "pcloudyn.png": "29n",
+    "pcloudyr.png": "29d",
+    "pcloudyrn.png": "29n",
+    "pcloudyrw.png": "29d",
+    "pcloudyrwn.png": "29n",
+    "pcloudys.png": "29d",
+    "pcloudysf.png": "29d",
+    "pcloudysfn.png": "29n",
+    "pcloudysfw.png": "29d",
+    "pcloudysfwn.png": "29n",
+    "pcloudysn.png": "29n",
+    "pcloudysw.png": "29d",
+    "pcloudyswn.png": "29n",
+    "pcloudyt.png": "29d",
+    "pcloudytn.png": "29n",
+    "pcloudytw.png": "29d",
+    "pcloudytwn.png": "29n",
+    "pcloudyw.png": "29d",
+    "pcloudywn.png": "29n",
+    "pm_pcloudy.png": "29d",
+    "pm_pcloudyr.png": "29d",
+    "pm_showers.png": "12d",
+    "pm_snowshowers.png": "46d",
+    "pm_tstorm.png": "4d",
+    "rain.png": "11d",
+    "rainandsnow.png": "5d",
+    "rainandsnown.png": "5n",
+    "rainn.png": "11n",
+    "raintosnow.png": "5d",
+    "raintosnown.png": "5n",
+    "rainw.png": "11d",
+    "showers.png": "11d",
+    "showersn.png": "11n",
+    "showersw.png": "11d",
+    "sleet.png": "18d",
+    "sleetn.png": "18n",
+    "sleetsnow.png": "7d",
+    "smoke.png": "22d",
+    "smoken.png": "22n",
+    "snow.png": "16d",
+    "snown.png": "16n",
+    "snowshowers.png": "46d",	
+    "snowshowersn.png": "46n",
+    "snowshowersw.png": "46d",
+    "snowshowerswn.png": "46n",
+    "snowtorain.png": "5d",
+    "snowtorainn.png": "5n",
+    "snoww.png": "16d",
+    "snowwn.png": "16n",
+    "sunny.png": "32d",
+    "sunnyn.png": "32n",
+    "sunnyw.png": "32d",
+    "sunnywn.png": "32n",
+    "tstorm.png": "4d",
+    "tstormn.png": "4n",
+    "tstormsw.png": "4d",
+    "tstormswn.png": "4n",
+    "tstormw.png": "4d",
+    "tstormwn.png": "4n",
+    "wind.png": "24d",
+    "wintrymix.png": "7d",
+    "wintrymixn.png": "7n"
+  };
   
   var conditionMap = {
     "chanceflurries": "42d",
@@ -342,16 +466,16 @@
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'https://api.wunderground.com/api/d36c8e4bd2a20743/geolookup/conditions/q/' + encodeURIComponent(location) + '.json';
+    var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-        if (data.response.error) {
+        if (data.success === false) {
           return;
         }
-        var item = data.current_observation;
+        var item = data.response.ob;
 
         item.location = location;
         items.push(item);
@@ -378,16 +502,14 @@
     $('img.icon', panel).attr("src", "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + conditionMap[item.icon] + ".png");
     
     if (prefs.getString("Units") == "f") {
-      $('div.temp', panel).text(parseInt(item.temp_f) + "\u00B0");
+      $('div.temp', panel).text(parseInt(item.tempF) + "\u00B0");
     } else {
-      $('div.temp', panel).text(parseInt(item.temp_c) + "\u00B0");
+      $('div.temp', panel).text(parseInt(item.tempc) + "\u00B0");
     }
-    //$('div.high-low', panel).text(parseInt(item.forecast[0].high) + "\u00B0" + " / " + parseInt(item.forecast[0].low) + "\u00B0");
     
     $('div.location', panel).fitText(1, { vh: 40 });
     $('div.condition', panel).fitText(1, { vh: 15 });
     $('div.temp', panel).fitText(1, { vh: 80 });
-    //$('div.high-low', panel).fitText(1, { vh: 25 });
     
     $('#card').toggleClass('flipped');
   }
