@@ -503,8 +503,8 @@
         //  return;
         //}
         //var fc = data.forecast.simpleforecast;
-        $("#today .content").html(forecastTemplate(data.response.periods[0]));
-        $("#tomorrow .content").html(forecastTemplate(data.response.periods[1]));
+        $("#today .content").html(forecastTemplate(data.response[0].periods[0]));
+        $("#tomorrow .content").html(forecastTemplate(data.response[0].periods[1]));
 
         setTimeout(function () {
             $("#today img").addClass("visible");
