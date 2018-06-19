@@ -272,7 +272,11 @@
     /**
      * timeMin/timeMax will not filter expanded recurring events
      */
-    if (moment(startDateTime) < moment() || moment(endDateTime) > moment().add(prefs.getInt("futureEvents"), 'days').endOf('day')) {
+    var now = moment();
+    var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
+    var sd = moment(startDateTime);
+    var ed = moment(endDateTime);
+    if (now < sd || ed > eod) {
       return;
     }
     
@@ -337,7 +341,11 @@
     /**
      * timeMin/timeMax will not filter expanded recurring events
      */
-    if (moment(startDateTime) < moment() || moment(endDateTime) > moment().add(prefs.getInt("futureEvents"), 'days').endOf('day')) {
+    var now = moment();
+    var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
+    var sd = moment(startDateTime);
+    var ed = moment(endDateTime);
+    if (now < sd || ed > eod) {
       return;
     }
     
