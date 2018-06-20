@@ -274,11 +274,11 @@
      */
     var now = moment();
     var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
-    var sd = moment(startDateTime);
-    var ed = moment(endDateTime);
-    if (now < sd || ed > eod) {
+    var sdt = moment(startDateTime).startOf('day');
+    var edt = moment(endDateTime);
+
+    if (!now.isBetween(sdt, edt))
       return;
-    }
     
     var isAllDay = false;
     if (startDateTime) {
@@ -343,11 +343,11 @@
      */
     var now = moment();
     var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
-    var sd = moment(startDateTime);
-    var ed = moment(endDateTime);
-    if (now < sd || ed > eod) {
+    var sdt = moment(startDateTime).startOf('day');
+    var edt = moment(endDateTime);
+
+    if (!now.isBetween(sdt, edt))
       return;
-    }
     
     var isAllDay = false;
     if (startDateTime) {
