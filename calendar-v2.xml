@@ -277,7 +277,8 @@
     var sdt = moment(startDateTime).startOf('day');
     var edt = moment(endDateTime);
 
-    if (!now.isBetween(sdt, edt))
+    //if (!now.isBetween(sdt, edt))
+    if (now.isAfter(edt))
       return;
     
     var isAllDay = false;
@@ -346,7 +347,8 @@
     var sdt = moment(startDateTime).startOf('day');
     var edt = moment(endDateTime);
 
-    if (!now.isBetween(sdt, edt))
+    //if (!now.isBetween(sdt, edt))
+    if (now.isAfter(edt))
       return;
     
     var isAllDay = false;
