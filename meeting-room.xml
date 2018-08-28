@@ -148,8 +148,10 @@
 
             moment.locale("__MSG_Lang__");
 
-            if (typeof Client != "undefined" && typeof (Client.getDeviceTimeZoneName) == "function") {
-                moment.tz.setDefault(Client.getDeviceTimeZoneName());
+            if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
+              moment.tz.setDefault(Client.getDeviceTimeZoneID());
+            } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+              moment.tz.setDefault(Client.getDeviceTimeZoneName());
             }
 
             if (!prefs.getBool("showRoom")) {
@@ -218,8 +220,8 @@
 
             var next = $("#next");
 
-            var startDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
-            var endDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
+            var startDateTime = moment(item.start.dateTime ? item.start.dateTime : item.start.date);
+            var endDateTime = moment(item.end.dateTime ? item.end.dateTime : item.end.date);
 
             var isAllDay = false;
             if (startDateTime) {
@@ -228,14 +230,14 @@
                 }
             }
 
-            var nsd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
-            var nst = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
-            var net = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+            var nsd = startDateTime.format("__MSG_Calendar_DateFormat__");
+            var nst = startDateTime.format("__MSG_Calendar_TimeFormat__");
+            var net = endDateTime.format("__MSG_Calendar_TimeFormat__");
 
             if (isAllDay) {
-                var ned = moment(endDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+                var ned = endDateTime.subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
             } else {
-                var ned = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+                var ned = endDateTime.format("__MSG_Calendar_DateFormat__");
             }
 
             h3 = $("<h3 />");
@@ -274,10 +276,10 @@
                 return;
             }
             
-            var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
-            var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
-            var startTime = moment(eventStartTime);
-            var endTime = moment(eventEndTime);
+            //var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
+            //var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
+            var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
+            var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
 
             var now = moment(); // use moment to get the now() in device timezone
             
@@ -292,14 +294,14 @@
                 h1.text(items[0].summary);
                 $(event).append(h1);
 
-                var sd = moment(eventStartTime).format("__MSG_Calendar_DateFormat__");
-                var st = moment(eventStartTime).format("__MSG_Calendar_TimeFormat__");
-                var et = moment(eventEndTime).format("__MSG_Calendar_TimeFormat__");
+                var sd = startTime.format("__MSG_Calendar_DateFormat__");
+                var st = startTime.format("__MSG_Calendar_TimeFormat__");
+                var et = endTime.format("__MSG_Calendar_TimeFormat__");
 
                 if (isAllDay) {
-                    var ed = moment(eventEndTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+                    var ed = endTime.subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
                 } else {
-                    var ed = moment(eventEndTime).format("__MSG_Calendar_DateFormat__");
+                    var ed = endTime.format("__MSG_Calendar_DateFormat__");
                 }
 
                 var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
