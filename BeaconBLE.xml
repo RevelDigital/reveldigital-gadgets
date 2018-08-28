@@ -34,14 +34,10 @@
 <script src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<div id="counter">
+<div id="container" class="wrapper">               
 </div>
 
-<script type="text/javascript">
-<div id="container" class="wrapper">
-                
-</div>
-        
+<script type="text/javascript">       
 <script>
                 
 function addBeacon(Name, mac, id){
