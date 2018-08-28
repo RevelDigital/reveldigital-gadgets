@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 	<ModulePrefs title="Counter" author="RevelDigital" description="Count up/down from a specified date" background="transparent">
-    <UserPref name="body-style" display_name="Counter Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-    <UserPref name="message-style" display_name="Completion Message Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-    <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-    <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    	<UserPref name="body-style" display_name="Counter Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		
 	</ModulePrefs>
-	<Content type="html">
-		<![CDATA[
+	
+<Content type="html">
+<![CDATA[
+
 <style type="text/css">
  * {box-sizing: border-box;}
 
