@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <style>
 
+            * {box-sizing: border-box;}
+
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                grid-gap: 10px; 
+                grid-auto-rows: 150px;      
+            }   
+
+            .wrapper > div {
+                border: 2px solid #4b4b4b;
+                border-radius: 5px;
+                background-color: #fffae0;
+                padding: 1em;
+                color: #303030;
+            }
+        </style>
+    </head>
+        <body onload="main()">
+
+            <div id="container" class="wrapper">
+                
+            </div>
+        
+            <script>
+                
+                function addBeacon(Name, mac, id){
+                        var div = $('<div class="beacon" data-mac="' + mac + '">');
+                       
+                        var h1 = $('<h1>');
+                        $(h1).text(Name);
+                        $(div).append(h1);
+
+                        var h2 = $('<h2>');
+                        $(h2).text(mac);
+                        $(div).append(h2);
+
+                        $("#container").append(div);           
+                }    
+                  
+                function removeBeacon(id) {
+                    var div = $('.beacon[data-mac="' + id + '"]');
+                    $(div).remove();
+                }       
+
+                function main(){
+                    addBeacon("Beacon1", "344", "10001");
+                    addBeacon("Beacon2", "345", "10002");
+                    addBeacon("Beacon3", "346", "10003");
+                    addBeacon("Beacon4", "347", "10004");
+                    addBeacon("Beacon5", "348", "10005");
+                    addBeacon("Beacon6", "349", "10006");
+                    addBeacon("Beacon7", "350", "10007");
+                    removeBeacon("345");
+                }
+
+                
+            </script>
+        </body>
+</html> 
