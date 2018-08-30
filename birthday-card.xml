@@ -85,7 +85,8 @@
                     WebFont.load({
                         google: {
                             families: [
-                            RevelDigital.getFamilyName(prefs.getString("text-style"))
+                              RevelDigital.getFamilyName(prefs.getString("title-style")),
+                              RevelDigital.getFamilyName(prefs.getString("message-style"))
                             ]
                         }
                     });
