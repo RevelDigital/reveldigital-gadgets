@@ -40,8 +40,10 @@
                 
                 .balloons
                 {
-                
-               
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 50vw;               
                 }
             </style>
 
@@ -52,7 +54,7 @@
 
 
             <div id="container">
-              <img class="balloons" src="" />
+              <img class="balloons" src="https://reveldigital.github.io/reveldigital-gadgets/images/balloons.svg" />
             </div>
             
             <script type="text/javascript">
