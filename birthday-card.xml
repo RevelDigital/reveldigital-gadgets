@@ -38,7 +38,7 @@
                     position: relative;
                     padding: 0;
                     margin: 0;
-                    background-color: #__UP_BackgroundColor__;
+                    background-color: __UP_BackgroundColor__;
                 }
                 
                 .balloons
