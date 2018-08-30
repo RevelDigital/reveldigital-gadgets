@@ -52,16 +52,16 @@
                 .title
                 {
                     position: absolute;
-                    left: 65vw;
-                    top: 20vh;
+                    left: 60vw;
+                    top: 10vh;
                     __UP_title-style__;
                 }
 
                 .message
                 {
                     position: absolute;
-                    top: 40vh;
-                    left: 65vw;
+                    top: 60vh;
+                    left: 60vw;
                     __UP_message-style__;
                 }
             </style>
