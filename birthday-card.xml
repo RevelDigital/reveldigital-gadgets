@@ -5,7 +5,6 @@
         <UserPref name="message" display_name="Message" datatype="string" required="true" /> 
         <UserPref name="rdW" display_name="width" required="true" datatype="hidden" />
         <UserPref name="rdH" display_name="height" required="true" datatype="hidden" />
-        <UserPref name="text" display_name="Text" required="true" datatype="string" />
         <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:#000000;font-size:85px;" required="true" />
         <UserPref name="message-style" display_name="Message Style" datatype="style" default_value="font-family:Verdana;color:#000000;font-size:65px;" required="true" />
         <UserPref name="BackgroundColor" display_name="Background Color" datatype="color" default_value="" required="false"/>
