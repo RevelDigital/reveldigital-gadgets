@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Happy Birthday Card" description="Simple card for saying happy birthday" author="RevelDigital" background="transparent">
-        <UserPref name="Title" display_name="Title" datatype="string" required="true" /> 
-        <UserPref name="Message" display_name="Message" datatype="string" required="true" /> 
+        <UserPref name="title" display_name="Title" datatype="string" required="true" /> 
+        <UserPref name="message" display_name="Message" datatype="string" required="true" /> 
         <UserPref name="rdW" display_name="width" required="true" datatype="hidden" />
         <UserPref name="rdH" display_name="height" required="true" datatype="hidden" />
         <UserPref name="text" display_name="Text" required="true" datatype="string" />
-        <UserPref name="text-style" display_name="Text Style" datatype="style" default_value="font-family:Verdana;color:#000000;font-size:24px;" required="true" />
+        <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:#000000;font-size:85px;" required="true" />
+        <UserPref name="message-style" display_name="Message Style" datatype="style" default_value="font-family:Verdana;color:#000000;font-size:65px;" required="true" />
         <UserPref name="BackgroundColor" display_name="Background Color" datatype="color" default_value="" required="false"/>
         <UserPref name="ForeColor" datatype="hidden" />
     </ModulePrefs>
@@ -36,6 +37,9 @@
                     width: __UP_rdW__px;
                     height: __UP_rdH__px;
                     position: relative;
+                    padding: 0;
+                    margin: 0;
+                    background-color: #__UP_BackgroundColor__;
                 }
                 
                 .balloons
@@ -43,7 +47,23 @@
                     position: absolute;
                     left: 0;
                     top: 0;
-                    width: 50vw;               
+                    width: 60vw;               
+                }
+                
+                .title
+                {
+                    position: absolute;
+                    left: 65vw;
+                    top: 20vh;
+                    __UP_title-style__;
+                }
+
+                .message
+                {
+                    position: absolute;
+                    top: 40vh;
+                    left: 65vw;
+                    __UP_message-style__;
                 }
             </style>
 
@@ -52,9 +72,10 @@
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
-
             <div id="container">
               <img class="balloons" src="https://reveldigital.github.io/reveldigital-gadgets/images/balloons.svg" />
+              <div class="title">__UP_title__</div>
+              <div class="message">__UP_message__</div>
             </div>
             
             <script type="text/javascript">
