@@ -31,7 +31,7 @@
                     overflow: hidden;
                 }
                
-                .container
+                #container
                 {
                     width: __UP_rdW__px;
                     height: __UP_rdH__px;
