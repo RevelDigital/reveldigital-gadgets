@@ -83,12 +83,18 @@
 
                 function load() {
                     WebFont.load({
-                        google: {
-                            families: [
-                              RevelDigital.getFamilyName(prefs.getString("title-style")),
-                              RevelDigital.getFamilyName(prefs.getString("message-style"))
-                            ]
-                        }
+                      google: {
+                        families: [
+                          RevelDigital.getFamilyName(prefs.getString("title-style"))
+                        ]
+                      }
+                    });
+                    WebFont.load({
+                      google: {
+                        families: [
+                          RevelDigital.getFamilyName(prefs.getString("message-style"))
+                        ]
+                      }
                     });
                 }
 
