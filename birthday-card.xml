@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Happy Birthday Card" description="Simple card for saying happy birthday" author="RevelDigital" background="transparent">
-        <UserPref name="title" display_name="Title" datatype="string" required="true" /> 
+        <UserPref name="title" display_name="Title" datatype="string" default_value="Happy Birthday!" required="true" /> 
         <UserPref name="message" display_name="Message" datatype="string" required="true" /> 
         <UserPref name="rdW" display_name="width" required="true" datatype="hidden" />
         <UserPref name="rdH" display_name="height" required="true" datatype="hidden" />
