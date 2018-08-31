@@ -53,6 +53,7 @@
                     position: absolute;
                     left: 57vw;
                     top: 10vh;
+                    width: 40vw;
                 }
 
                 .text .title
