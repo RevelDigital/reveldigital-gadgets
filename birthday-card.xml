@@ -49,21 +49,23 @@
                     width: 60vw;               
                 }
                 
-                .title
+                .text
                 {
                     position: absolute;
-                    left: 60vw;
+                    left: 57vw;
                     top: 10vh;
+                }
+
+                .text .title
+                {
                     __UP_title-style__;
                 }
 
-                .message
+                .text .message
                 {
-                    position: absolute;
-                    top: 60vh;
-                    left: 60vw;
                     __UP_message-style__;
                 }
+                
             </style>
 
 
@@ -73,8 +75,10 @@
 
             <div id="container">
               <img class="balloons" src="https://reveldigital.github.io/reveldigital-gadgets/images/balloons.svg" />
-              <div class="title">__UP_title__</div>
-              <div class="message">__UP_message__</div>
+              <div class="text">
+                <p class="title">__UP_title__</p>
+                <p class="message">__UP_message__</p>
+              </div>
             </div>
             
             <script type="text/javascript">
