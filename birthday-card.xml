@@ -45,15 +45,15 @@
                     position: absolute;
                     left: 0;
                     top: 0;
-                    width: 60vw;               
+                    width: 50vw;               
                 }
                 
                 .text
                 {
                     position: absolute;
-                    left: 57vw;
+                    left: 52vw;
                     top: 10vh;
-                    width: 40vw;
+                    width: 50vw;
                 }
 
                 .text .title
