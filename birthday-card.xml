@@ -30,24 +30,26 @@
                     height: __UP_rdH__px;
                     overflow: hidden;
                 }
-               
+                
                 #container
                 {
                     width: __UP_rdW__px;
                     height: __UP_rdH__px;
+                    background-image: url("https://reveldigital.github.io/reveldigital-gadgets/images/balloons.jpg");
+                    background-repeat: no-repeat;
+                    background-position: top center;
                     position: relative;
                     padding: 0;
                     margin: 0;
                 }
-                
-                .balloons
-                {
-                    background-image: url("https://reveldigital.github.io/reveldigital-gadgets/images/balloons.svg");
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: top center;
-                }
 
+                .card
+                {
+                    background-color: rgba(255, 255, 255, 0.9);
+                    border-radius: 25px;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                }
+                
                 .text
                 {
                     text-align: center;
@@ -70,13 +72,13 @@
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
-            <div id="container" class="frow">
-              <div class="col-lg-1-2 balloons"></div>
-              <div class="col-lg-1-2 text">
-                <p class="title">__UP_title__</p>
-                <p class="message">__UP_message__</p>
-              </div>
+            <div id="container" class="frow centered text">
+                <div class="col-xs-2-4 card">
+                    <p class="title">__UP_title__</p>
+                    <p class="message">__UP_message__</p>
+                </div>
             </div>
+
             
             <script type="text/javascript">
 
