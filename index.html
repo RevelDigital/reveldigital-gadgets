@@ -23,6 +23,7 @@
         </style>
     </head>
         <body onload="main()">
+            
 
             <div id="container" class="wrapper">
                 
@@ -43,7 +44,7 @@
 
                         $("#container").append(div);           
                 }    
-                  
+
                 function removeBeacon(id) {
                     var div = $('.beacon[data-mac="' + id + '"]');
                     $(div).remove();
