@@ -213,9 +213,9 @@
     var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
     var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
     
-    var min = moment().utc().format();
-    var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().endOf('day').format();
-            
+    var min = moment().format('YYYY-MM-DDTHH:mm:ssZ');
+    var max = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day').format('YYYY-MM-DDTHH:mm:ssZ');
+    
     queryParams += '&timeMin=' + encodeURIComponent(min);
     queryParams += '&timeMax=' + encodeURIComponent(max);
     

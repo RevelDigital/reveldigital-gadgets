@@ -30,30 +30,29 @@
                     height: __UP_rdH__px;
                     overflow: hidden;
                 }
-               
+                
                 #container
                 {
                     width: __UP_rdW__px;
                     height: __UP_rdH__px;
+                    background-image: url("https://reveldigital.github.io/reveldigital-gadgets/images/balloons.jpg");
+                    background-repeat: no-repeat;
+                    background-position: top center;
                     position: relative;
                     padding: 0;
                     margin: 0;
                 }
-                
-                .balloons
+
+                .card
                 {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 50vw;               
+                    background-color: rgba(255, 255, 255, 0.9);
+                    border-radius: 25px;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 }
                 
                 .text
                 {
-                    position: absolute;
-                    left: 52vw;
-                    top: 10vh;
-                    width: 50vw;
+                    text-align: center;
                 }
 
                 .text .title
@@ -65,21 +64,21 @@
                 {
                     __UP_message-style__;
                 }
-                
+                                
             </style>
 
-
+            <link rel="stylesheet" href="https://cdn.rawgit.com/Beg-in/frow/3.0.4/dist/frow.min.css" type="text/css">
+            <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
             <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
-            <div id="container">
-              <img class="balloons" src="https://reveldigital.github.io/reveldigital-gadgets/images/balloons.svg" />
-              <div class="text">
-                <p class="title">__UP_title__</p>
-                <p class="message">__UP_message__</p>
-              </div>
+            <div id="container" class="frow centered text">
+                <div class="col-xs-2-4 card">
+                    <p class="title">__UP_title__</p>
+                    <p class="message">__UP_message__</p>
+                </div>
             </div>
+
             
             <script type="text/javascript">
 
@@ -104,6 +103,17 @@
 
                 gadgets.util.registerOnLoadHandler(load);
 
+            </script>
+            
+            <script type="text/javascript">
+                
+                if('serviceWorker' in navigator) {
+                  navigator.serviceWorker.register('service-worker')
+                    .then(function(registration) {
+                      console.log('Service Worker Registered');
+                    });
+                }
+                
             </script>
         ]]>
     </Content>
