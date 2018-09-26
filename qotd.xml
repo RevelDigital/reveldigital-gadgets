@@ -30,7 +30,7 @@
             <app-root></app-root>
             <script  src="https://reveldigital.github.io/reveldigital-gadgets/apps/qotd/dist/runtime.js" type="text/javascript"></script>
             <script  src="https://reveldigital.github.io/reveldigital-gadgets/apps/qotd/dist/polyfills.js" type="text/javascript"></script>
-            <script  src="https://reveldigital.github.io/reveldigital-gadgets/apps/qotd/dist/quoteGadget/main.js" type="text/javascript"></script>
+            <script  src="https://reveldigital.github.io/reveldigital-gadgets/apps/qotd/dist/main.js" type="text/javascript"></script>
             </body>
         ]]>
     </Content>
