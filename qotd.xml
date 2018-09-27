@@ -14,12 +14,12 @@
                 }
 
                 h3{
-                    font-size: 100%;
+                    font-size: calc(1vw + 4vh + .5vmin);
                     text-align: center;
                 }
 
                 p{
-                    font-size: 100%;
+                    font-size: calc(1vw + 4vh + .5vmin);
                     font-weight: bold;
                     text-align: center;
                 }
