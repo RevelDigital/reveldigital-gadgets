@@ -13,12 +13,12 @@
                     height: __UP_rdH__px;
                 }
 
-                h3{
+                #container h3{
                     font-size: calc(1vw + 4vh + .5vmin);
                     text-align: center;
                 }
 
-                p{
+                #container p{
                     font-size: calc(1vw + 4vh + .5vmin);
                     font-weight: bold;
                     text-align: center;
