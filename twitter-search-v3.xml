@@ -231,6 +231,17 @@ span.when
     return moment.duration(moment(dateString) - moment()).humanize(true);
   }
 </script>
+
+<script type="text/javascript">
+        
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker')
+    .then(registration =>
+      console.log('Service Worker Registered')
+    );
+  }
+  
+</script>
 ]]>
 </Content>
 </Module>
