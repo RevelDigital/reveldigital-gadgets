@@ -1017,8 +1017,6 @@ svg#flash_1, svg#flash_2 {
 </div>
 </div>
 
-  <div id="co">a pen by @uchardon</div>
-
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
