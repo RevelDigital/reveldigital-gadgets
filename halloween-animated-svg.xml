@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Halloween Animation" description="Halloween Animation" author="Mike Tinnes" background="transparent">
-  <UserPref name="myStringPref" display_name="Example string preference" datatype="string" default_value="Hello World!" required="true" />
-  <UserPref name="myEnumPref" display_name="Example enum preferences" datatype="enum" default_value="first">
-    <EnumValue value="first" display_value="First" />
-    <EnumValue value="second" display_value="Second" />
-  </UserPref>
-  <UserPref name="myStylePref" display_name="Example style preferences" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
-  <UserPref name="myBooleanPref" display_name="Example boolean preference" datatype="bool" default_value="true" />
-  <UserPref name="myColorPref" display_name="color" datatype="color" default_value="#ff00ff" />
-  
+<ModulePrefs title="Halloween Animation" description="Halloween Animation" author="@uchardon" background="transparent">  
   <!-- The following preferences should not be modified -->
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
