@@ -1005,7 +1005,9 @@
        d="m 87.118886,201.47855 c 0,-0.74477 0,-3.27701 1.297395,-4.76657"
        id="path5449" />
   </g>
-        <text x="15" y="80" >__UP_message__</text>
+  <text y="50" transform="translate(100)">
+    <tspan x="0" text-anchor="middle">__UP_message__</tspan>
+  </text>
     </svg>
 </div>
 </div>
