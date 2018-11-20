@@ -80,7 +80,7 @@ ul li p {
 
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/instafeed.custom.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/bxslider-4.1.2/jquery.bxslider.min.js"></script>
 <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/third-party/bxslider-4.1.2/jquery.bxslider.css" type="text/css" />
