@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Module>
-
 <ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
 <UserPref required="true" datatype="hidden" display_name="width" name="rdW"/>
 <UserPref required="true" datatype="hidden" display_name="height" name="rdH"/>
-<UserPref required="true" default_value="font-family:'Mountains of Christmas', cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
+<UserPref required="true" default_value="font-family:'Mountains of Christmas',cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
 <UserPref datatype="hidden" name="ForeColor"/>
 <UserPref datatype="hidden" name="BackColor" default_value="FFFFFF" />
 </ModulePrefs>
-
--<Content type="html">
-
--<![CDATA[
+<Content type="html">
+<![CDATA[
 
             <style type="text/css">
 
@@ -35,7 +31,7 @@
                     background: radial-gradient(#88d0ee, #528ec3); /* Standard syntax */
                     background-size: cover; 
                     background-position: center;
-                    background-image: url("https://www.christmasdaycountdown.net/assets/images/background.jpg");
+                    background-image: url("https://reveldigital.github.io/reveldigital-gadgets/images/xmas-countdown-background.jpg");
                 }
 
                 a 
@@ -170,5 +166,4 @@
             </script>
         ]]>
 </Content>
-
 </Module>
