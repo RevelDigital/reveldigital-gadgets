@@ -86,8 +86,8 @@
 
   #particles-js {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
     z-index: -1;
   }
 </style>
