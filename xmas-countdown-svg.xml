@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Christmas Countdown Animation" description="Christmas Countdown Animation" author="@sashatran" background="transparent">
+  <UserPref name="message-style" display_name="Message Style" datatype="style" default_value="font-family: 'Cookie',cursive;color:#ffffff;font-size:50px;text-align: center;" required="true" />
+  
+  <!-- The following preferences should not be modified -->
+  <UserPref name="ForeColor" datatype="hidden" default_value="FFFFFF" />
+  <UserPref name="BackColor" datatype="hidden" default_value="F24236" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+<style type="text/css">
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+
+  body
+  {
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    overflow: hidden;
+  }
+
+  text {
+    __UP_message-style__;
+  }
+
+  body {
+    background-color: #__UP_BackColor__;
+    width: __UP_rdW__px;
+  }
+
+  .container {
+    position: absolute;
+    top: 90px; left: 180px;
+  }
+
+  #days {
+    letter-spacing: 3px;
+    __UP_message-style__;
+  }
+
+  .drop {
+    position: absolute;
+    top: 0;	
+    z-index: -1;
+    opacity: 0;
+  }
+  
+  .snow {
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    background-color: #__UP_ForeColor__;
+    box-shadow: 0 0 10px #__UP_ForeColor__;
+  }
+
+  .animate {
+    animation: falling 8.5s infinite ease-in;	
+  }
+
+  @keyframes falling {
+    0% {top: 0; opacity: 1;}
+    100% {top: __UP_rdH__px; opacity: 0}
+  }
+</style>
+
+<div class="container"> 
+  <p id="days"></p>
+</div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  WebFont.load({
+    google: {
+      families: [
+        RevelDigital.getFamilyName(prefs.getString("message-style"))
+      ]
+    }
+  });
+  
+  myDate=new Date(); 
+  xmas=Date.parse("Dec 25, "+myDate.getFullYear()) 
+  today=Date.parse(myDate) 
+
+  daysToChristmas=Math.round((xmas-today)/(1000*60*60*24)) 
+
+  if (daysToChristmas==0) 
+  $('#days').text("It's Christmas!! Merry Christmas!");
+
+  if (daysToChristmas<0) 
+  $('#days').text("Christmas was "+-1*(daysToChristmas)+" days ago.");
+
+  if (daysToChristmas>0) 
+  $('#days').text(daysToChristmas+" days to Christmas!");
+
+  function snow(num, speed) {
+    if (num > 0) {
+      setTimeout(function () {
+        $('#drop_' + randomInt(1, 250)).addClass('animate');
+        num--;
+        snow(num, speed);
+      }, speed);
+    }
+  };
+
+  function snowDrop(num, position) {
+    if (num > 0) {
+      var drop = '<div class="drop snow" id="drop_' + num + '"></div>';
+
+      $('body').append(drop);
+      $('#drop_' + num).css('left', position);
+      num--;
+      snowDrop(num, randomInt(60, 1920));
+    }
+  };
+
+  function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+  
+  function onLoad() {
+    //make snow
+    snowDrop(150, randomInt(1035, prefs.getInt("rdW")));
+    snow(150, 150);
+  }
+  
+  gadgets.util.registerOnLoadHandler(onLoad);
+  
+</script>
+
+<script type="text/javascript">
+                
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker')
+        .then(function(registration) {
+          console.log('Service Worker Registered');
+        });
+    }
+
+</script>
+
+]]>
+</Content>
+</Module>
