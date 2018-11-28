@@ -200,7 +200,7 @@
           }
         },
         "size": {
-          "value": 10,
+          "value": 12,
           "random": true,
           "anim": {
             "enable": false,
