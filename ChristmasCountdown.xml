@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
--<Module>
+<Module>
 
 
--<ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
+<ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
 
 <UserPref required="true" default_value="Happy Birthday!" datatype="string" display_name="Title" name="title"/>
 
