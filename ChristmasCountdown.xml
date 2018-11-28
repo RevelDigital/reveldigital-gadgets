@@ -47,7 +47,7 @@
 
                 .content 
                 {
-                    __UP_message-style__;
+                    
                     display: block;
                 }
 
@@ -63,6 +63,7 @@
 
                 #countdownHTML 
                 {
+                    __UP_message-style__;
                     font-size: calc(4vw + 4vh);
                     color: #fff;
                     margin-top: 5vh;
