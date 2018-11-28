@@ -5,7 +5,7 @@
   <!--<UserPref name="background-color" display_name="Background Color" datatype="color" default_value="fe0202" required="false"/>-->
   <!-- The following preferences should not be modified -->
   <UserPref name="ForeColor" datatype="hidden" default_value="FFFFFF" />
-  <UserPref name="BackColor" datatype="hidden" default_value="" />
+  <UserPref name="BackColor" datatype="hidden" default_value="fe0202" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
