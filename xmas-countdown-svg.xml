@@ -14,6 +14,8 @@
 <![CDATA[
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
 <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
@@ -93,9 +95,15 @@
     }
   });
   
-  myDate=new Date(); 
-  xmas=Date.parse("Dec 25, "+myDate.getFullYear()) 
-  today=Date.parse(myDate) 
+  if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
+    moment.tz.setDefault(Client.getDeviceTimeZoneID());
+  } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+    moment.tz.setDefault(Client.getDeviceTimeZoneName());
+  }
+  
+  myDate = moment();
+  xmas = Date.parse("Dec 25, " + myDate.year());
+  today = myDate.toDate(); 
 
   daysToChristmas=Math.round((xmas-today)/(1000*60*60*24)) 
 
