@@ -2,25 +2,13 @@
 
 <Module>
 
-
 <ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
-
-<UserPref required="true" default_value="Happy Birthday!" datatype="string" display_name="Title" name="title"/>
-
 <UserPref required="true" datatype="hidden" display_name="width" name="rdW"/>
-
 <UserPref required="true" datatype="hidden" display_name="height" name="rdH"/>
-
-<UserPref required="true" default_value="font-family:Verdana;color:#000000;font-size:85px;" datatype="style" display_name="Title Style" name="title-style"/>
-
-<UserPref required="true" default_value="font-family:Verdana;color:#000000;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
-
+<UserPref required="true" default_value="font-family:'Mountains of Christmas', cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
 <UserPref datatype="hidden" name="ForeColor"/>
-
-<UserPref default_value="FFFFFF" datatype="hidden" name="BackColor"/>
-
+<UserPref datatype="hidden" name="BackColor" default_value="FFFFFF" />
 </ModulePrefs>
-
 
 -<Content type="html">
 
@@ -28,36 +16,24 @@
 
             <style type="text/css">
 
-                @import url('https://fonts.googleapis.com/css?family=Mountains+of+Christmas');
-
-                html, body, img 
+                body *
                 {
-                    font-family: 'Mountains of Christmas', cursive;
-                    width: 100%;
-                    height: 100%;
-                    overflow: hidden;
-                    cursor: url("https://www.christmasdaycountdown.net/assets/images/cursor-holidays-christmas.gif") , auto;
+                    line-height: 1.2em; 
+                    letter-spacing: 0; 
+                    word-spacing: normal;
                 }
 
                 body
                 {
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                    overflow: hidden;
                     padding: 0;
                     margin: 0;
                     text-align: center;
-                }
-
-                html 
-                {
                     background: #88d0ee; /* For browsers that do not support gradients */
-                    background: -webkit-radial-gradient(#88d0ee, #528ec3); /* Safari 5.1 to 6.0 */
-                    background: -o-radial-gradient(#88d0ee, #528ec3); /* For Opera 11.6 to 12.0 */
-                    background: -moz-radial-gradient(#88d0ee, #528ec3); /* For Firefox 3.6 to 15 */
                     background: radial-gradient(#88d0ee, #528ec3); /* Standard syntax */
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    -o-background-size: cover;
-                    background-size: cover;
-                    -webkit-text-size-adjust: none;    
+                    background-size: cover; 
                     background-position: center;
                     background-image: url("https://www.christmasdaycountdown.net/assets/images/background.jpg");
                 }
@@ -71,6 +47,7 @@
 
                 .content 
                 {
+                    __UP_message-style__;
                     display: block;
                 }
 
@@ -92,31 +69,31 @@
                     cursor: default;
                     text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
                 }
-
                                 
             </style>
 
-            <link rel="stylesheet" href="https://cdn.rawgit.com/Beg-in/frow/3.0.4/dist/frow.min.css" type="text/css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
             <div class="frame">
                 <div class="content">
-                    <a href="https://www.christmasdaycountdown.net" target="_blank">ChristmasDayCountdown.net</a>
                     <div id="countdownHTML">
-                        <noscript>
-                        <div class="noscriptmessage" style="font-size: 40px">You don't have JavaScript enabled.<br/>
-                            Merry Christmas! </div>
-                        </noscript>
                     </div>
                 </div>
             </div>
 
-            
             <script type="text/javascript">
 
                 var prefs = new gadgets.Prefs();
+
+                WebFont.load({
+                    google: {
+                    families: [
+                        RevelDigital.getFamilyName(prefs.getString("message-style"))
+                    ]
+                    }
+                });
 
                 var targetDate = new Date("12/25/"+ new Date().getFullYear());
                 var sec = true;
@@ -170,10 +147,12 @@
                     document.getElementById("countdownHTML").innerHTML = string + "Till Christmas";
 
                 }
-                calculate();
-                setInterval(calculate, 1000);
                 
-
+                function onLoad() {
+                    calculate();
+                    setInterval(calculate, 1000);
+                }
+                
                 gadgets.util.registerOnLoadHandler(load);
 
             </script>
