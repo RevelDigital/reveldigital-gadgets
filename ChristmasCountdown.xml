@@ -148,7 +148,7 @@
 
                 }
                 
-                function onLoad() {
+                function load() {
                     calculate();
                     setInterval(calculate, 1000);
                 }
