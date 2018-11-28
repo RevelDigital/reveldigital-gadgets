@@ -133,7 +133,7 @@
       $('body').append(drop);
       $('#drop_' + num).css('left', position);
       num--;
-      snowDrop(num, randomInt(60, 1920));
+      snowDrop(num, randomInt(15, prefs.getInt("rdW")));
     }
   };
 
@@ -143,7 +143,7 @@
   
   function onLoad() {
     //make snow
-    snowDrop(150, randomInt(1035, prefs.getInt("rdW")));
+    snowDrop(150, randomInt(15, prefs.getInt("rdW")));
     snow(150, 150);
   }
   
