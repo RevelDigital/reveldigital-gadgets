@@ -78,7 +78,21 @@
     0% {top: 0; opacity: 1;}
     100% {top: __UP_rdH__px; opacity: 0}
   }
+  
+  canvas {
+    display: block;
+    vertical-align: bottom;
+  }
+
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
 </style>
+
+<div id="particles-js"></div>
 
 <div class="container"> 
   <p id="days"></p>
@@ -148,7 +162,7 @@
   
   function onLoad() {
   
-    particlesJS("container", {
+    particlesJS("particles-js", {
       "particles": {
         "number": {
           "value": 400,
