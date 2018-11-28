@@ -2,7 +2,7 @@
 <Module> 
 <ModulePrefs title="Christmas Countdown Animation" description="Christmas Countdown Animation" author="@sashatran" background="transparent">
   <UserPref name="message-style" display_name="Message Style" datatype="style" default_value="font-family: 'Cookie',cursive;color:#ffffff;font-size:50px;text-align: center;" required="true" />
-  
+  <UserPref name="background-color" display_name="Background Color" datatype="color" default_value="fe0202" required="false"/>
   <!-- The following preferences should not be modified -->
   <UserPref name="ForeColor" datatype="hidden" default_value="FFFFFF" />
   <UserPref name="BackColor" datatype="hidden" default_value="F24236" />
@@ -40,7 +40,7 @@
   }
 
   body {
-    background-color: #__UP_BackColor__;
+    background-color: #__UP_background-color__;
     width: __UP_rdW__px;
   }
 
