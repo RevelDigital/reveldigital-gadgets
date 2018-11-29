@@ -8,10 +8,10 @@
 <UserPref datatype="hidden" name="BackColor" default_value="FFFFFF" />
  <UserPref name="backgroundImage" display_name="Choose Background"  datatype="enum" default_value="none">
     <EnumValue value="background-1.png" display_value="Background 1" />
-    <EnumValue value="background-2.png" display_value="Background 2" />
-    <EnumValue value="background-3.png" display_value="Background 3" />
-    <EnumValue value="background-4.png" display_value="Background 4" />
-    <EnumValue value="background-5.png" display_value="Background 5" />
+    <EnumValue value="background-2.jpg" display_value="Background 2" />
+    <EnumValue value="background-3.jpg" display_value="Background 3" />
+    <EnumValue value="background-4.jpg" display_value="Background 4" />
+    <EnumValue value="background-5.jpg" display_value="Background 5" />
   </UserPref>
 </ModulePrefs>
 <Content type="html">
@@ -74,83 +74,22 @@
                     text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
                 }
 
-                .snow1 {
-                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
-                    background-repeat: repeat;
-                    width: 100%;
-                    height: 700px;
+                #particles-js {
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    animation: snowOne 10s infinite linear;
-                }
-                .snow2 {
-                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
-                    background-repeat: repeat;
-                    width: 100%;
-                    height: 700px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    animation: snowTwo 10s infinite linear;
-                    background-size: 300px;
-                    filter: blur(1px);
-                }
-                .snow3 {
-                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
-                    background-repeat: repeat;
-                    width: 100%;
-                    height: 650px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    animation: snowThree 10s infinite linear;
-                    background-size: 800px;
-                    filter: blur(2px);
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                    z-index: 99;
                 }
 
-                @keyframes snowOne{
-                    0%
-                    {
-                        background-position: 0px 0px;
-                    }
-                    100%
-                    {
-                        background-position: 100px 750px;
-                    }
-                }
-                @keyframes snowTwo{
-                    0%
-                    {
-                        background-position: 0px -100px;
-                    }
-                    100%
-                    {
-                        background-position: 0px 750px;
-                    }
-                }
-                @keyframes snowThree{
-                    0%
-                    {
-                        background-position: 0px 100px;
-                    }
-                    100%
-                    {
-                        background-position: 300px 750px;
-                    }
-                }
-                                
             </style>
 
-            
+            <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
+            <div id="particles-js"></div>
             <div class="frame">
-                <div class="snow1"></div>
-                <div class="snow2"></div>
-                <div class="snow3"></div>
                 <div class="content">
                     <div id="countdownHTML">
                     </div>
@@ -226,6 +165,117 @@
                 function load() {
                     calculate();
                     setInterval(calculate, 1000);
+
+                    particlesJS("particles-js", {
+                    "particles": {
+                        "number": {
+                        "value": 400,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                        },
+                        "color": {
+                        "value": "#ffffff"
+                        },
+                        "shape": {
+                        "type": "image",
+                        "stroke": {
+                            "width": 3,
+                            "color": "#fff"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        },
+                        "image": {
+                            "src": "",
+                            "width": 100,
+                            "height": 100
+                        }
+                        },
+                        "opacity": {
+                        "value": 0.7,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                        },
+                        "size": {
+                        "value": 5,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 20,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                        },
+                        "line_linked": {
+                        "enable": false,
+                        "distance": 50,
+                        "color": "#ffffff",
+                        "opacity": 0.6,
+                        "width": 1
+                        },
+                        "move": {
+                        "enable": true,
+                        "speed": 5,
+                        "direction": "bottom",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 300,
+                            "rotateY": 1200
+                        }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode":  "bubble"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "resize": true
+                        },
+                        "modes": {
+                        "grab": {
+                            "distance": 150,
+                            "line_linked": {
+                            "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 200,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.2
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                        }
+                    },
+                    "retina_detect": true
+                    });
                 }
                 
                 gadgets.util.registerOnLoadHandler(load);
