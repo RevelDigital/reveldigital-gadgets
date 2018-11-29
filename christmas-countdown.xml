@@ -68,7 +68,6 @@
                 {
                     __UP_message-style__;
                     font-size: calc(4vw + 4vh);
-                    color: #fff;
                     margin-top: 5vh;
                     cursor: default;
                     text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
