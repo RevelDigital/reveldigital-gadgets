@@ -7,11 +7,11 @@
 <UserPref datatype="hidden" name="ForeColor"/>
 <UserPref datatype="hidden" name="BackColor" default_value="FFFFFF" />
  <UserPref name="backgroundImage" display_name="Choose Background"  datatype="enum" default_value="none">
-    <EnumValue value="images/christmas-countdown-assets/background-1.png" display_value="Background 1" />
-    <EnumValue value="images/christmas-countdown-assets/background-2.png" display_value="Background 2" />
-    <EnumValue value="images/christmas-countdown-assets/background-3.png" display_value="Background 3" />
-    <EnumValue value="images/christmas-countdown-assets/background-4.png" display_value="Background 4" />
-    <EnumValue value="images/christmas-countdown-assets/background-5.png" display_value="Background 5" />
+    <EnumValue value="background-1.png" display_value="Background 1" />
+    <EnumValue value="background-2.png" display_value="Background 2" />
+    <EnumValue value="background-3.png" display_value="Background 3" />
+    <EnumValue value="background-4.png" display_value="Background 4" />
+    <EnumValue value="background-5.png" display_value="Background 5" />
   </UserPref>
 </ModulePrefs>
 <Content type="html">
@@ -38,7 +38,7 @@
                     background: radial-gradient(#88d0ee, #528ec3); /* Standard syntax */
                     background-size: cover; 
                     background-position: center;
-                    background-image: url('"'+__UP_backgroundImage__ +'"');
+                    background-image: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__');
                 }
 
                 a 
@@ -75,7 +75,7 @@
                 }
 
                 .snow1 {
-                    background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
                     background-repeat: repeat;
                     width: 100%;
                     height: 700px;
@@ -85,7 +85,7 @@
                     animation: snowOne 10s infinite linear;
                 }
                 .snow2 {
-                    background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
                     background-repeat: repeat;
                     width: 100%;
                     height: 700px;
@@ -97,7 +97,7 @@
                     filter: blur(1px);
                 }
                 .snow3 {
-                    background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+                    background: url(https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow.png);
                     background-repeat: repeat;
                     width: 100%;
                     height: 650px;
