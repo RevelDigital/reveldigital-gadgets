@@ -6,6 +6,13 @@
 <UserPref required="true" default_value="font-family:'Mountains of Christmas',cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
 <UserPref datatype="hidden" name="ForeColor"/>
 <UserPref datatype="hidden" name="BackColor" default_value="FFFFFF" />
+ <UserPref name="backgroundImage" display_name="Choose Background"  datatype="enum" default_value="none">
+    <EnumValue value="https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/background-1.png" display_value="Background 1" />
+    <EnumValue value="https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/background-2.png" display_value="Background 2" />
+    <EnumValue value="https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/background-3.png" display_value="Background 3" />
+    <EnumValue value="https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/background-4.png" display_value="Background 4" />
+    <EnumValue value="https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/background-5.png" display_value="Background 5" />
+  </UserPref>
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -31,7 +38,7 @@
                     background: radial-gradient(#88d0ee, #528ec3); /* Standard syntax */
                     background-size: cover; 
                     background-position: center;
-                    background-image: url("https://reveldigital.github.io/reveldigital-gadgets/images/xmas-countdown-background.jpg");
+                    background-image: url('"' + prefs.getString("backgroundImage") + '"');
                 }
 
                 a 
