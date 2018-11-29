@@ -22,15 +22,9 @@
 
                 html
                 {
-                    height:100%;
-                    min-height:100%;
-                    
-                    background: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__') no-repeat center center fixed;
-                    background-color: #__UP_BackColor__; /* For browsers that do not support gradients */
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    -o-background-size: cover;
-                    background-size: cover;         
+                    height: __UP_rdH__px;
+                    min-height: __UP_rdH__px;
+                    width: __UP_rdW__px;
                 }
                 
                 body *
@@ -49,6 +43,13 @@
                     padding: 0;
                     margin: 0;
                     text-align: center;
+                    
+                    background: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__') no-repeat center center fixed;
+                    background-color: #__UP_BackColor__; /* For browsers that do not support gradients */
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;      
                 }
 
                 a 
