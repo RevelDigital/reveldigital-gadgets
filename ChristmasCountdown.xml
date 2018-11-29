@@ -179,9 +179,9 @@
                         "value": "#ffffff"
                         },
                         "shape": {
-                        "type": "image",
+                        "type": "circle",
                         "stroke": {
-                            "width": 0,
+                            "width": 0.2,
                             "color": "#fff"
                         },
                         "polygon": {
