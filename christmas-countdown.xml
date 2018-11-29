@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
+<UserPref required="true" datatype="hidden" display_name="width" name="rdW"/>
+<UserPref required="true" datatype="hidden" display_name="height" name="rdH"/>
+<UserPref required="true" default_value="font-family:'Mountains of Christmas',cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>
+<UserPref datatype="hidden" name="ForeColor"/>
+<UserPref datatype="hidden" name="BackColor" default_value="88d0ee"/>
+  <UserPref name="backgroundImage" display_name="Choose Background"  datatype="enum" default_value="background-1.png">
+    <EnumValue value="1x1.png" display_value="None" />
+    <EnumValue value="background-1.png" display_value="Background 1" />
+    <EnumValue value="background-2.jpg" display_value="Background 2" />
+    <EnumValue value="background-3.jpg" display_value="Background 3" />
+    <EnumValue value="background-4.jpg" display_value="Background 4" />
+    <EnumValue value="background-5.jpg" display_value="Background 5" />
+  </UserPref>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+            <style type="text/css">
+
+                html
+                {
+                    height: __UP_rdH__px;
+                    min-height: __UP_rdH__px;
+                    width: __UP_rdW__px;
+                }
+                
+                body *
+                {
+                    line-height: 1.2em; 
+                    letter-spacing: 0; 
+                    word-spacing: normal;
+                }
+
+                body
+                {
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                    min-height:100%;
+                    overflow: hidden;
+                    padding: 0;
+                    margin: 0;
+                    text-align: center;
+                    
+                    background: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__') no-repeat center center fixed;
+                    background-color: #__UP_BackColor__; /* For browsers that do not support gradients */
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;      
+                }
+
+                a 
+                {
+                    color: white;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+
+                .content 
+                {
+                    
+                    display: block;
+                }
+
+                .content .text
+                {
+                    text-align: left;
+                    line-height: 1.5;
+                    width: 90%;
+                    max-width: 650px;
+                    margin: 0 auto;
+                    margin-bottom: 10px;
+                }
+
+                #countdownHTML 
+                {
+                    __UP_message-style__;
+                    font-size: calc(4vw + 4vh);
+                    margin-top: 5vh;
+                    cursor: default;
+                    text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+                }
+
+                #particles-js {
+                    position: absolute;
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                    z-index: 99;
+                }
+
+            </style>
+
+            <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+            <div id="particles-js"></div>
+            <div class="frame">
+                <div class="content">
+                    <div id="countdownHTML">
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+
+                var prefs = new gadgets.Prefs();
+
+                WebFont.load({
+                    google: {
+                    families: [
+                        RevelDigital.getFamilyName(prefs.getString("message-style"))
+                    ]
+                    }
+                });
+                
+
+                var targetDate = new Date("12/25/"+ new Date().getFullYear());
+                var sec = true;
+                var string;
+                var secondsNumber;
+                var minutesNumber;
+                var hoursNumber;
+                var daysNumber;
+                var seconds;
+                var minutes;
+                var hours;
+                var days;
+
+                function calculate()
+                {
+                    var rawCountdownNumber = targetDate.getTime() - new Date().getTime();
+                    
+                    if (rawCountdownNumber <= 1000){
+                        rawCountdownNumber = 0;
+                        document.getElementById("countdownHTML").innerHTML = "Merry Christmas!";
+                        return;
+                    }
+
+                    secondsNumber = (rawCountdownNumber / 1000) >> 0;
+                    minutesNumber = (secondsNumber / 60) >> 0;
+                    hoursNumber = (minutesNumber / 60) >> 0;
+                    daysNumber = (hoursNumber / 24) >> 0;
+                    secondsNumber = secondsNumber % 60;
+                    minutesNumber = minutesNumber % 60;
+                    hoursNumber = hoursNumber % 24;
+                    seconds = ", " + secondsNumber + " sec<br>";
+                    minutes = minutesNumber + " min";
+                    hours = hoursNumber + " hours,<br>";
+                    days = daysNumber + " days, ";
+                    
+
+                    if(hoursNumber == 1){
+                        hours = hoursNumber + " hour,<br>";
+                    }
+
+                    if(daysNumber == 1){
+                        days = daysNumber + " day, ";
+                    }
+
+                    if(sec == true){
+                        string = days + hours + minutes + seconds;
+                    }else{
+                        string = days + hours + minutes;
+                    }
+                    
+                    document.getElementById("countdownHTML").innerHTML = string + "Till Christmas";
+
+                }
+                
+                function load() {
+                    calculate();
+                    setInterval(calculate, 1000);
+
+                    particlesJS("particles-js", {  
+                       "particles":{  
+                          "number":{  
+                             "value":52,
+                             "density":{  
+                                "enable":true,
+                                "value_area":631
+                             }
+                          },
+                          "color":{  
+                             "value":"#ffffff"
+                          },
+                          "shape":{  
+                             "type":"image",
+                             "stroke":{  
+                                "width":0.2,
+                                "color":"#fff"
+                             },
+                             "polygon":{  
+                                "nb_sides":5
+                             },
+                             "image":{  
+                                "src":"https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/snow2.png",
+                                "width":100,
+                                "height":100
+                             }
+                          },
+                          "opacity":{  
+                             "value":0.5,
+                             "random":true,
+                             "anim":{  
+                                "enable":false,
+                                "speed":1,
+                                "opacity_min":0.1,
+                                "sync":false
+                             }
+                          },
+                          "size":{  
+                             "value":12,
+                             "random":true,
+                             "anim":{  
+                                "enable":false,
+                                "speed":80,
+                                "size_min":1.1,
+                                "sync":false
+                             }
+                          },
+                          "line_linked":{  
+                             "enable":false,
+                             "distance":500,
+                             "color":"#ffffff",
+                             "opacity":0.4,
+                             "width":2
+                          },
+                          "move":{  
+                             "enable":true,
+                             "speed":3.5,
+                             "direction":"bottom",
+                             "random":false,
+                             "straight":false,
+                             "out_mode":"out",
+                             "bounce":false,
+                             "attract":{  
+                                "enable":false,
+                                "rotateX":600,
+                                "rotateY":1200
+                             }
+                          }
+                       },
+                       "interactivity":{  
+                          "detect_on":"canvas",
+                          "events":{  
+                             "onhover":{  
+                                "enable":true,
+                                "mode":"bubble"
+                             },
+                             "onclick":{  
+                                "enable":true,
+                                "mode":"repulse"
+                             },
+                             "resize":true
+                          },
+                          "modes":{  
+                             "grab":{  
+                                "distance":400,
+                                "line_linked":{  
+                                   "opacity":0.5
+                                }
+                             },
+                             "bubble":{  
+                                "distance":400,
+                                "size":4,
+                                "duration":0.3,
+                                "opacity":1,
+                                "speed":3
+                             },
+                             "repulse":{  
+                                "distance":200,
+                                "duration":0.4
+                             },
+                             "push":{  
+                                "particles_nb":4
+                             },
+                             "remove":{  
+                                "particles_nb":2
+                             }
+                          }
+                       },
+                       "retina_detect":true
+                    });
+                }
+                
+                gadgets.util.registerOnLoadHandler(load);
+
+            </script>
+            
+            <script type="text/javascript">
+                
+                if('serviceWorker' in navigator) {
+                  navigator.serviceWorker.register('service-worker')
+                    .then(function(registration) {
+                      console.log('Service Worker Registered');
+                    });
+                }
+                
+            </script>
+        ]]>
+</Content>
+</Module>
