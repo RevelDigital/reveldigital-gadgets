@@ -179,7 +179,7 @@
                         "value": "#ffffff"
                         },
                         "shape": {
-                        "type": "circle",
+                        "type": "image",
                         "stroke": {
                             "width": 0,
                             "color": "#fff"
