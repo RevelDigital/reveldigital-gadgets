@@ -38,7 +38,7 @@
                     background: radial-gradient(#88d0ee, #528ec3); /* Standard syntax */
                     background-size: cover; 
                     background-position: center;
-                    background-image: __UP_backgroundImage_;
+                    background-image: __UP_backgroundImage__;
                 }
 
                 a 
