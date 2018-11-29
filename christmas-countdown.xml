@@ -35,11 +35,10 @@
                     padding: 0;
                     margin: 0;
                     text-align: center;
-                    background: #__UP_BackColor__; /* For browsers that do not support gradients */
+                    background: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__') no-repeat center center fixed;
+                    background-color: #__UP_BackColor__; /* For browsers that do not support gradients */
                     background-size: cover;
-                    -webkit-background-size: cover;
-                    background-position: center;
-                    background-image: url('https://reveldigital.github.io/reveldigital-gadgets/images/christmas-countdown-assets/__UP_backgroundImage__');
+                    -webkit-background-size: cover;                   
                 }
 
                 a 
