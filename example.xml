@@ -2,6 +2,7 @@
 <Module> 
 <ModulePrefs title="Trevor Does Tricks" height="300">
   <Require feature="flash" />
+  <Require feature="reveldigital" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
