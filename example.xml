@@ -4,6 +4,7 @@
   <Require feature="flash" />
   <Require feature="reveldigital" />
   <Require feature="jquery" />
+  <Require feature="webfont" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
