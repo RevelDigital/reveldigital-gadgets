@@ -3,6 +3,8 @@
 <ModulePrefs title="Trevor Does Tricks" height="300">
   <Require feature="flash" />
   <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feathre="webfont" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
