@@ -16,7 +16,7 @@
   <UserPref name="year-low" display_name="Include Year Low" datatype="bool" default_value="false" />
   <UserPref name="year-high" display_name="Include Year High" datatype="bool" default_value="false" />
   <UserPref name="market-cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
-  <UserPref name="avg-daily-volume" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
+  <UserPref name="adv" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
   <UserPref name="exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -170,7 +170,7 @@ i
     if (prefs.getBool('market-cap')) {
       thead += '<th class="market-cap">Market Cap</th>';
     }
-    if (prefs.getBool('avg-daily-volume')) {
+    if (prefs.getBool('adv')) {
       thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
     }
     if (prefs.getBool('exchange')) {
@@ -250,7 +250,7 @@ i
         if (prefs.getBool('market-cap')) {
           display += '<td class="value market-cap">' + quote.marketCap.commarize() + '</td>';
         }
-        if (prefs.getBool('avg-daily-volume')) {
+        if (prefs.getBool('adv')) {
           display += '<td class="value avg-daily-volume">' + quote.avgTotalVolume.commarize() + '</td>';
         }
         if (prefs.getBool('exchange')) {
