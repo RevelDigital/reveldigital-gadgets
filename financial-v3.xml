@@ -7,7 +7,7 @@
   <UserPref name="graphic" display_name="Include Graphic" datatype="bool" default_value="true" />
   <UserPref name="name" display_name="Include Name" datatype="bool" default_value="true" />
   <UserPref name="symbol" display_name="Include Symbol" datatype="bool" default_value="true" />
-  <UserPref name="last-trade" display_name="Include Last Trade" datatype="bool" default_value="true" />
+  <UserPref name="last" display_name="Include Last Trade" datatype="bool" default_value="true" />
   <UserPref name="change" display_name="Include % Change" datatype="bool" default_value="true" />
   <UserPref name="range" display_name="Include Days Range" datatype="bool" default_value="false" />
   <UserPref name="low" display_name="Include Days Low" datatype="bool" default_value="false" />
@@ -143,7 +143,7 @@ i
     if (prefs.getBool('symbol')) {
       thead += '<th class="symbol">Symbol</th>';
     }
-    if (prefs.getBool('last-trade')) {
+    if (prefs.getBool('last')) {
       thead += '<th class="last-trade">Last Trade</th>';
     }
     if (prefs.getBool('change')) {
@@ -223,7 +223,7 @@ i
         if (prefs.getBool('symbol')) {
           display += '<td class="value symbol">' + quote.symbol + '</td>';
         }
-        if (prefs.getBool('last-trade')) {
+        if (prefs.getBool('last')) {
           display += '<td class="value last-trade">' + quote.latestPrice + '</td>';
         }
         if (prefs.getBool('change')) {
