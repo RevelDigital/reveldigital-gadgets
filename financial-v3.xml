@@ -13,9 +13,9 @@
   <UserPref name="low" display_name="Include Days Low" datatype="bool" default_value="false" />
   <UserPref name="high" display_name="Include Days High" datatype="bool" default_value="false" />
   <UserPref name="volume" display_name="Include Volume" datatype="bool" default_value="false" />
-  <UserPref name="year-low" display_name="Include Year Low" datatype="bool" default_value="false" />
-  <UserPref name="year-high" display_name="Include Year High" datatype="bool" default_value="false" />
-  <UserPref name="market-cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
+  <UserPref name="yr-low" display_name="Include Year Low" datatype="bool" default_value="false" />
+  <UserPref name="yr-high" display_name="Include Year High" datatype="bool" default_value="false" />
+  <UserPref name="cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
   <UserPref name="adv" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
   <UserPref name="exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -161,13 +161,13 @@ i
     if (prefs.getBool('volume')) {
       thead += '<th class="volume">Volume</th>';
     }
-    if (prefs.getBool('year-low')) {
+    if (prefs.getBool('yr-low')) {
       thead += '<th class="year-low">Year Low</th>';
     }
-    if (prefs.getBool('year-high')) {
+    if (prefs.getBool('yr-high')) {
       thead += '<th class="year-high">Year High</th>';
     }
-    if (prefs.getBool('market-cap')) {
+    if (prefs.getBool('cap')) {
       thead += '<th class="market-cap">Market Cap</th>';
     }
     if (prefs.getBool('adv')) {
@@ -241,13 +241,13 @@ i
         if (prefs.getBool('volume')) {
           display += '<td class="value volume">' + quote.latestVolume.commarize() + '</td>';
         }
-        if (prefs.getBool('year-low')) {
+        if (prefs.getBool('yr-low')) {
           display += '<td class="value year-low">' + quote.week52Low + '</td>';
         }
-        if (prefs.getBool('year-high')) {
+        if (prefs.getBool('yr-high')) {
           display += '<td class="value year-high">' + quote.week52High + '</td>';
         }
-        if (prefs.getBool('market-cap')) {
+        if (prefs.getBool('cap')) {
           display += '<td class="value market-cap">' + quote.marketCap.commarize() + '</td>';
         }
         if (prefs.getBool('adv')) {
