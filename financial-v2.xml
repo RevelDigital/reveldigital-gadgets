@@ -115,84 +115,7 @@ i
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
-
-  function load() {
-
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("header-style"))
-        ]
-      }
-    });
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
-        ]
-      }
-    });
-    
-    var thead = '<tr>';
-    if (prefs.getBool('include-graphic')) {
-      thead += '<th></th>';
-    }
-    if (prefs.getBool('include-name')) {
-      thead += '<th class="name">Name</th>';
-    }
-    if (prefs.getBool('include-symbol')) {
-      thead += '<th class="symbol">Symbol</th>';
-    }
-    if (prefs.getBool('include-last-trade')) {
-      thead += '<th class="last-trade">Last Trade</th>';
-    }
-    if (prefs.getBool('include-change')) {
-      thead += '<th class="change">Change</th>';
-    }
-    if (prefs.getBool('include-days-range')) {
-      thead += '<th class="days-range">Days Range</th>';
-    }
-    if (prefs.getBool('include-days-low')) {
-      thead += '<th class="days-low">Days Low</th>';
-    }
-    if (prefs.getBool('include-days-high')) {
-      thead += '<th class="days-high">Days High</th>';
-    }
-    if (prefs.getBool('include-volume')) {
-      thead += '<th class="volume">Volume</th>';
-    }
-    if (prefs.getBool('include-year-low')) {
-      thead += '<th class="year-low">Year Low</th>';
-    }
-    if (prefs.getBool('include-year-high')) {
-      thead += '<th class="year-high">Year High</th>';
-    }
-    if (prefs.getBool('include-market-cap')) {
-      thead += '<th class="market-cap">Market Cap</th>';
-    }
-    if (prefs.getBool('include-avg-daily-volume')) {
-      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
-    }
-    if (prefs.getBool('include-exchange')) {
-      thead += '<th class="exchange">Exchange</th>';
-    }
-    thead += '</tr>';
-    $("div.quotescontainer > table > thead").empty();
-    $(thead).prependTo("div.quotescontainer > table > thead");
-
-    var size = $('td').css('font-size');
-    $('i').css('font-size', size);
-    
-    update();
-    
-    setInterval(update, 120000);
-  }
-
-  gadgets.util.registerOnLoadHandler(load);
-</script>
-
-<script type="text/javascript">
-
+  
   var max_id = 0;
   
   var update = function () {
@@ -286,7 +209,87 @@ i
   Number.prototype.commarize = commarize
   String.prototype.commarize = commarize
 
+
+  function load() {
+
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+
+
+    
+    var thead = '<tr>';
+    if (prefs.getBool('include-graphic')) {
+      thead += '<th></th>';
+    }
+    if (prefs.getBool('include-name')) {
+      thead += '<th class="name">Name</th>';
+    }
+    if (prefs.getBool('include-symbol')) {
+      thead += '<th class="symbol">Symbol</th>';
+    }
+    if (prefs.getBool('include-last-trade')) {
+      thead += '<th class="last-trade">Last Trade</th>';
+    }
+    if (prefs.getBool('include-change')) {
+      thead += '<th class="change">Change</th>';
+    }
+    if (prefs.getBool('include-days-range')) {
+      thead += '<th class="days-range">Days Range</th>';
+    }
+    if (prefs.getBool('include-days-low')) {
+      thead += '<th class="days-low">Days Low</th>';
+    }
+    if (prefs.getBool('include-days-high')) {
+      thead += '<th class="days-high">Days High</th>';
+    }
+    if (prefs.getBool('include-volume')) {
+      thead += '<th class="volume">Volume</th>';
+    }
+    if (prefs.getBool('include-year-low')) {
+      thead += '<th class="year-low">Year Low</th>';
+    }
+    if (prefs.getBool('include-year-high')) {
+      thead += '<th class="year-high">Year High</th>';
+    }
+    if (prefs.getBool('include-market-cap')) {
+      thead += '<th class="market-cap">Market Cap</th>';
+    }
+    if (prefs.getBool('include-avg-daily-volume')) {
+      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
+    }
+    if (prefs.getBool('include-exchange')) {
+      thead += '<th class="exchange">Exchange</th>';
+    }
+    thead += '</tr>';
+    $("div.quotescontainer > table > thead").empty();
+    $(thead).prependTo("div.quotescontainer > table > thead");
+
+    var size = $('td').css('font-size');
+    $('i').css('font-size', size);
+
+
+    
+    update();
+    
+    setInterval(update, 120000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
 </script>
+
+
 ]]>
 </Content>
 </Module>
