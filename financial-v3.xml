@@ -116,86 +116,10 @@ i
 
   var prefs = new gadgets.Prefs();
 
-  function load() {
-
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("header-style"))
-        ]
-      }
-    });
-    WebFont.load({
-      google: {
-        families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
-        ]
-      }
-    });
-    
-    var thead = '<tr>';
-    if (prefs.getBool('graphic')) {
-      thead += '<th></th>';
-    }
-    if (prefs.getBool('name')) {
-      thead += '<th class="name">Name</th>';
-    }
-    if (prefs.getBool('symbol')) {
-      thead += '<th class="symbol">Symbol</th>';
-    }
-    if (prefs.getBool('last')) {
-      thead += '<th class="last-trade">Last Trade</th>';
-    }
-    if (prefs.getBool('change')) {
-      thead += '<th class="change">Change</th>';
-    }
-    if (prefs.getBool('range')) {
-      thead += '<th class="days-range">Days Range</th>';
-    }
-    if (prefs.getBool('low')) {
-      thead += '<th class="days-low">Days Low</th>';
-    }
-    if (prefs.getBool('high')) {
-      thead += '<th class="days-high">Days High</th>';
-    }
-    if (prefs.getBool('volume')) {
-      thead += '<th class="volume">Volume</th>';
-    }
-    if (prefs.getBool('yr-low')) {
-      thead += '<th class="year-low">Year Low</th>';
-    }
-    if (prefs.getBool('yr-high')) {
-      thead += '<th class="year-high">Year High</th>';
-    }
-    if (prefs.getBool('cap')) {
-      thead += '<th class="market-cap">Market Cap</th>';
-    }
-    if (prefs.getBool('adv')) {
-      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
-    }
-    if (prefs.getBool('exchange')) {
-      thead += '<th class="exchange">Exchange</th>';
-    }
-    thead += '</tr>';
-    $("div.quotescontainer > table > thead").empty();
-    $(thead).prependTo("div.quotescontainer > table > thead");
-
-    var size = $('td').css('font-size');
-    $('i').css('font-size', size);
-    
-    update();
-    
-    setInterval(update, 120000);
-  }
-
-  gadgets.util.registerOnLoadHandler(load);
-</script>
-
-<script type="text/javascript">
-
   var max_id = 0;
   
-  var update = function () {
+  
+  function update() {
   
     var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote";
     
@@ -285,8 +209,83 @@ i
   // Add method to prototype. this allows you to use this function on numbers and strings directly
   Number.prototype.commarize = commarize
   String.prototype.commarize = commarize
+  
+  function load() {
 
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    
+    var thead = '<tr>';
+    if (prefs.getBool('graphic')) {
+      thead += '<th></th>';
+    }
+    if (prefs.getBool('name')) {
+      thead += '<th class="name">Name</th>';
+    }
+    if (prefs.getBool('symbol')) {
+      thead += '<th class="symbol">Symbol</th>';
+    }
+    if (prefs.getBool('last')) {
+      thead += '<th class="last-trade">Last Trade</th>';
+    }
+    if (prefs.getBool('change')) {
+      thead += '<th class="change">Change</th>';
+    }
+    if (prefs.getBool('range')) {
+      thead += '<th class="days-range">Days Range</th>';
+    }
+    if (prefs.getBool('low')) {
+      thead += '<th class="days-low">Days Low</th>';
+    }
+    if (prefs.getBool('high')) {
+      thead += '<th class="days-high">Days High</th>';
+    }
+    if (prefs.getBool('volume')) {
+      thead += '<th class="volume">Volume</th>';
+    }
+    if (prefs.getBool('yr-low')) {
+      thead += '<th class="year-low">Year Low</th>';
+    }
+    if (prefs.getBool('yr-high')) {
+      thead += '<th class="year-high">Year High</th>';
+    }
+    if (prefs.getBool('cap')) {
+      thead += '<th class="market-cap">Market Cap</th>';
+    }
+    if (prefs.getBool('adv')) {
+      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
+    }
+    if (prefs.getBool('exchange')) {
+      thead += '<th class="exchange">Exchange</th>';
+    }
+    thead += '</tr>';
+    $("div.quotescontainer > table > thead").empty();
+    $(thead).prependTo("div.quotescontainer > table > thead");
+
+    var size = $('td').css('font-size');
+    $('i').css('font-size', size);
+    
+    update();
+    
+    setInterval(update, 120000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
 </script>
+
 ]]>
 </Content>
 </Module>
