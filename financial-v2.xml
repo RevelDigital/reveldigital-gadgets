@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols.  Data provided for free by IEX." author="RevelDigital" background="transparent">
-  <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
@@ -120,6 +119,8 @@ i
 }
 </style>
 
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+
 <link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/gadget-common/third-party/foundation-icons/foundation-icons.css"/>
 
 <div class="quotescontainer">
@@ -140,14 +141,14 @@ i
     WebFont.load({
       google: {
         families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("header-style"))
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
