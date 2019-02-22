@@ -143,14 +143,14 @@ i
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("header-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("header-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
