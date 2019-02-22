@@ -23,6 +23,7 @@
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   
+  <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
 </ModulePrefs>
