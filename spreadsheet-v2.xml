@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Google Spreadsheet Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001563671-Google-Sheets-Integration" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="hasTitle" display_name="Use first row as header" datatype="bool" default_value="true" />
   <UserPref name="range" display_name="Cell Range" datatype="string" />
@@ -97,15 +102,13 @@ table.google-visualization-table-table,
 }
 </style>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/utils/Draggable.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/CSSPlugin.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.1/plugins/ScrollToPlugin.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 
 <div id="container">
   <div id="table" class="scroll">
@@ -121,14 +124,14 @@ table.google-visualization-table-table,
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("header-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("header-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
@@ -238,16 +241,6 @@ table.google-visualization-table-table,
   });
 </script>
 
-<script type="text/javascript">
-        
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker')
-    .then(registration =>
-      console.log('Service Worker Registered')
-    );
-  }
-  
-</script>
 ]]>
 </Content>
 </Module>

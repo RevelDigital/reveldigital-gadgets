@@ -146,14 +146,14 @@ span.when
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("link-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("link-style"))
         ]
       }
     });
@@ -235,16 +235,6 @@ span.when
   }
 </script>
 
-<script type="text/javascript">
-        
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker')
-    .then(registration =>
-      console.log('Service Worker Registered')
-    );
-  }
-  
-</script>
 ]]>
 </Content>
 </Module>
