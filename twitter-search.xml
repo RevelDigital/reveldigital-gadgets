@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Twitter Search Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001516992-Twitter-Integration" description="Displays tweets from a search in a Twitter widget" author="RevelDigital" background="transparent">
+  <Require feature="jquery" />
+  
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="numTweets" display_name="Number of Tweets" datatype="string" default_value="5" />
   <UserPref name="fontFamily" display_name="Font Family" default_value="verdana" datatype="enum" >
@@ -113,7 +115,6 @@ span.when
 }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <div class="tweetscontainer">
 </div>
@@ -140,7 +141,7 @@ span.when
   
   var update = function () {
   
-    var url="http://search.twitter.com/search.json?rpp=" + prefs.getInt("numTweets") + "&since_id=" + max_id + "&callback=?&q=";
+    var url="https://search.twitter.com/search.json?rpp=" + prefs.getInt("numTweets") + "&since_id=" + max_id + "&callback=?&q=";
     var query = escape( query=prefs.getString("searchQuery") );
     var display = '<div class="tweetDisplayContainer error">no records found</div>';
     var urirex = /(https?):\/\/+([\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
