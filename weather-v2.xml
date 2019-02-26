@@ -17,6 +17,7 @@
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="gkey" datatype="hidden" default_value="AIzaSyBZ14SEPEoqnPFNhfhk9tIdK22_Jw8YSB8" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -165,7 +166,7 @@ div, span
 </style>
 
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/skycons.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBZ14SEPEoqnPFNhfhk9tIdK22_Jw8YSB8" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=__UP_gkey__" type="text/javascript"></script>
 
 
 <div id="forecast_embed" class="fe_container">
@@ -223,7 +224,7 @@ div, span
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("TextStyle"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("TextStyle"))
         ]
       }
     });
