@@ -78,9 +78,9 @@ div#container
   function update() {
 
     if (prefs.getString("custom") != '') {
-      $("#container").text(moment().format(prefs.getString("custom"));  
+      $("#container").text(moment().format(prefs.getString("custom")));  
     } else {
-      $("#container").text(moment().format(prefs.getString("format"));  
+      $("#container").text(moment().format(prefs.getString("format")));  
     }
   }
   
