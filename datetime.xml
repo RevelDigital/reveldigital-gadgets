@@ -71,6 +71,8 @@ div#container
     });
     
     setInterval(update, 1000);
+    
+    update();
   }
 
   gadgets.util.registerOnLoadHandler(load);
