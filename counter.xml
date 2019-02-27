@@ -55,6 +55,7 @@
 <div id="counter">
 </div>
 
+
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();

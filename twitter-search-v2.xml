@@ -109,6 +109,7 @@ span.when
 
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.vticker.js"></script>
 
+
 <div class="tweetscontainer">
   <ul></ul>
 </div>
