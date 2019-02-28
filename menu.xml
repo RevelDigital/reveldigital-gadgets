@@ -68,7 +68,7 @@ td.description {
   __UP_description-style__;
 }
 
-td.price {
+td.price, td.price div {
   __UP_price-style__;
 }
 
@@ -88,6 +88,7 @@ td.filler div {
 table.classic-name-only td.name {
   white-space: nowrap;
 }
+
 table.classic td.description {
   white-space: nowrap;
 }
