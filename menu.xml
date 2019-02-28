@@ -11,12 +11,12 @@
     <EnumValue value="classic-template" display_value="Classic" />
     <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
     <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
-    <EnumValue value="centered" display_value="Centered" />
-    <EnumValue value="modern" display_value="Modern" />
+    <EnumValue value="centered-template" display_value="Centered" />
+    <EnumValue value="modern-template" display_value="Modern" />
   </UserPref>
-  <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
-  <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
-  <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:30px;font-weight:bold;" required="true" />
+  <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -36,21 +36,19 @@ body *
 body
 {
   background: transparent;
-  width: 764px;
-  height: 618px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   overflow: hidden;
 }
 
 div#container
 {
-  font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;;
-  width: 764px;
-  height: 618px;
-  color: #000;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
 }
 
 table {
-  width: 764px;
+  width: __UP_rdW__px;
 }
 
 table td {
@@ -62,13 +60,16 @@ table tr.spacer, table tr.spacer td {
 }
 
 td.name {
-    font-size: 1.4em;
-    font-weight: 700;
+  __UP_name-style__;
 }
 
 td.price {
+  __UP_price-style__;
   text-align: right;
-  font-weight: 700;
+}
+
+td.description {
+  __UP_description-style__;
 }
 
 td.filler {
