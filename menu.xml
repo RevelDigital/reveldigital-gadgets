@@ -82,7 +82,7 @@ td.filler div {
   left: 0;
   right: 0;
   bottom: .3em;
-  border-bottom: .1em dotted #333;
+  border-bottom: .1em dotted #__UP_ForeColor__;
 }
 
 table.classic-name-only td.name {
