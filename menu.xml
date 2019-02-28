@@ -77,7 +77,7 @@ td.description {
 td.filler {
   width: 100%;
   position: relative;
-  color: #__UP_BackColor__;
+  color: #__UP_ForeColor__;
 }
 
 td.filler div {
