@@ -6,21 +6,17 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="format" display_name="Format" datatype="enum" default_value="">
-    <EnumValue value="hh:mm a" display_value="8:30 pm" />
-    <EnumValue value="LT" display_value="8:30 PM" />
-    <EnumValue value="LTS" display_value="8:30:25 PM" />
-    <EnumValue value="L" display_value="06/09/2014" />
-    <EnumValue value="l" display_value="6/9/2014" />
-    <EnumValue value="LL" display_value="June 9 2014" />
-    <EnumValue value="ll" display_value="Jun 9 2014" />
-    <EnumValue value="LLL" display_value="June 9 2014 9:32 PM" />
-    <EnumValue value="lll" display_value="Jun 9 2014 9:32 PM" />
-    <EnumValue value="LLLL" display_value="Monday, June 9 2014 9:32 PM" />
-    <EnumValue value="llll" display_value="Mon, Jun 9 2014 9:32 PM" />
+  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+  <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Classic" />
+    <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
+    <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
+    <EnumValue value="centered" display_value="Centered" />
+    <EnumValue value="modern" display_value="Modern" />
   </UserPref>
-  <UserPref name="custom" display_name="Custom Format" datatype="string" />
-  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -32,41 +28,164 @@
 <style type="text/css">
 body *
 {
-  line-height: 1.2em; 
-  letter-spacing: 0; 
+  line-height: 1.2em;
+  letter-spacing: 0;
   word-spacing: normal;
 }
 
 body
 {
   background: transparent;
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
+  width: 764px;
+  height: 618px;
   overflow: hidden;
 }
 
 div#container
 {
-  __UP_font-style__;
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
+  font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;;
+  width: 764px;
+  height: 618px;
+  color: #000;
+}
+
+table {
+  width: 764px;
+}
+
+table td {
+  padding: .1em;
+}
+
+table tr.spacer, table tr.spacer td {
+  line-height: .2em;
+}
+
+td.name {
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+td.price {
+  text-align: right;
+  font-weight: 700;
+}
+
+td.filler {
+  width: 100%;
+  position: relative;
+}
+
+td.filler div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .3em;
+  border-bottom: .2em dotted #333;
+}
+
+table.classic-name-only td.name {
+  white-space: nowrap;
+}
+table.classic td.description {
+  white-space: nowrap;
+}
+
+table.centered td.name {
+  text-align: center;
+}
+
+table.centered td.description {
+  text-align: center;
+}
+
+table.centered td.price {
+  text-align: center;
 }
 </style>
 
+
 <div id="container"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 
 
 <script id="classic-template" type="text/x-handlebars-template">
-  <table class="classic">
+  <table cellpadding="0" cellspacing="0" class="classic">
   {{#each items}}
     <tr>
-      <td colspan="2">{{name}}</td>
+      <td colspan="3" class="name">{{name}}</td>
     </tr>
     <tr>
-      <td>{{description}}</td><td>{{price}}</td>
+      <td class="description">{{description}}</td>
+      <td class="filler"><div></div></td>
+      <td class="price">{{price}}</td>
     </tr>
+    <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
+  {{/each}}
+  </table>
+</script>
+
+<script id="classic-name-only-template" type="text/x-handlebars-template">
+  <table cellpadding="0" cellspacing="0" class="classic-name-only">
+  {{#each items}}
+    <tr>
+      <td class="name">{{name}}</td>
+      <td class="filler"><div></div></td>
+      <td class="price">{{price}}</td>
+    </tr>
+    <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
+  {{/each}}
+  </table>
+</script>
+
+<script id="classic-no-dots-template" type="text/x-handlebars-template">
+  <table cellpadding="0" cellspacing="0" class="classic-no-dots">
+  {{#each items}}
+    <tr>
+      <td colspan="2" class="name">{{name}}</td>
+    </tr>
+    <tr>
+      <td class="description">{{description}}</td>
+      <td class="price">{{price}}</td>
+    </tr>
+    <tr class="spacer"><td>&nbsp;</td></tr>
+  {{/each}}
+  </table>
+</script>
+
+<script id="centered-template" type="text/x-handlebars-template">
+  <table cellpadding="0" cellspacing="0" class="centered">
+  {{#each items}}
+    <tr>
+      <td class="name">{{name}}</td>
+    </tr>
+    <tr>
+      <td class="description">{{description}}</td>
+    </tr>
+    <tr>
+      <td class="price">{{price}}</td>
+    </tr>
+    <tr class="spacer"><td>&nbsp;</td></tr>
+  {{/each}}
+  </table>
+</script>
+
+<script id="modern-template" type="text/x-handlebars-template">
+  <table cellpadding="0" cellspacing="0" class="modern">
+  {{#each items}}
+    <tr>
+      <td class="name">{{name}}</td>
+    </tr>
+    <tr>
+      <td class="description">{{description}}</td>
+    </tr>
+    <tr>
+      <td class="price">{{price}}</td>
+    </tr>
+    <tr class="spacer"><td>&nbsp;</td></tr>
   {{/each}}
   </table>
 </script>
@@ -76,9 +195,7 @@ div#container
 
   var prefs = new gadgets.Prefs();
 
-  var data = [
-    { name: 'test', description: 'description', price: 4.34 }
-  ];
+  var currentTemplate = Handlebars.compile(document.getElementById(prefs.getString('template')).innerHTML);
   
   function load() {
   
@@ -90,11 +207,55 @@ div#container
       }
     });
     
-    var currentTemplate = Handlebars.compile(document.getElementById("classic-template").innerHTML);
-
-    $('#container').append(currentTemplate(data));
+    google.load('visualization', '1', {'packages': ['table']});
+    google.setOnLoadCallback(initialize);
+    
+    //$('#container').append(currentTemplate(data));
   }
 
+  function initialize() {
+    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
+    query.setRefreshInterval(300);
+    query.send(draw);
+  }
+  
+  function draw(response) {
+    if (response.isError()) {
+      return;
+    }
+    var dt = response.getDataTable();
+
+    var items = [];
+
+    for (var i=0; i<dt.getNumberOfRows(); i++) {
+      items.push({ name: dt.getValue(i,0), description: dt.getValue(i, 1), price: dt.getValue(i, 2) });
+    }
+
+    $('#container').empty().append(currentTemplate({ items: items }));
+  }
+
+  function googleUrl(sourceIdentifier) {
+
+    console.log("Spreadsheet: " + sourceIdentifier);
+
+    var url, key;
+    if (sourceIdentifier.match(/http(s)*:/)) {
+      url = sourceIdentifier;
+      try {
+        key = url.match(/spreadsheets\/d\/(?:e\/)*(.*?)\//)[1];
+      } catch (error) {
+      }
+    } else {
+      key = sourceIdentifier;
+    }
+    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?ph=0"; // ph = placeholder
+
+    if (prefs.getString("sheet") != null) {
+      ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
+    }
+    return ret;
+  }
+  
   gadgets.util.registerOnLoadHandler(load);
   
 </script>
