@@ -77,7 +77,6 @@ td.description {
 td.filler {
   width: 100%;
   position: relative;
-  color: #__UP_ForeColor__;
 }
 
 td.filler div {
@@ -85,7 +84,7 @@ td.filler div {
   left: 0;
   right: 0;
   bottom: .3em;
-  border-bottom: .2em dotted #333;
+  border-bottom: .2em dotted #__UP_ForeColor__;
 }
 
 table.classic-name-only td.name {
