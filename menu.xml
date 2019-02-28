@@ -205,15 +205,27 @@ table.centered td.price {
     WebFont.load({
       google: {
         families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("font-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("name-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          gadgets.reveldigital.getFamilyName(prefs.getString("description-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          gadgets.reveldigital.getFamilyName(prefs.getString("price-style"))
         ]
       }
     });
     
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
-    
-    //$('#container').append(currentTemplate(data));
   }
 
   function initialize() {
