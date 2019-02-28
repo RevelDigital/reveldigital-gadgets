@@ -17,7 +17,7 @@
   <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
-  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -36,19 +36,21 @@ body *
 body
 {
   background: transparent;
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
+  width: 964px;
+  height: 618px;
   overflow: hidden;
 }
 
 div#container
 {
-  width: __UP_rdW__px;
-  height: __UP_rdH__px;
+  font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;;
+  width: 964px;
+  height: 618px;
+  color: #000;
 }
 
 table {
-  width: __UP_rdW__px;
+  width:100%;
 }
 
 table td {
@@ -60,18 +62,13 @@ table tr.spacer, table tr.spacer td {
 }
 
 td.name {
-  text-align: left;
-  __UP_name-style__;
+    font-size: 1.4em;
+    font-weight: 700;
 }
 
 td.price {
   text-align: right;
-  __UP_price-style__;
-}
-
-td.description {
-  text-align: left;
-  __UP_description-style__;
+  font-weight: 700;
 }
 
 td.filler {
@@ -84,7 +81,7 @@ td.filler div {
   left: 0;
   right: 0;
   bottom: .3em;
-  border-bottom: .2em dotted #__UP_ForeColor__;
+  border-bottom: .1em dotted #333;
 }
 
 table.classic-name-only td.name {
@@ -105,14 +102,45 @@ table.centered td.description {
 table.centered td.price {
   text-align: center;
 }
-</style>
 
+table.centered .price-wrapper {
+  margin: 0 auto;
+}
+
+table.modern .price-wrapper {
+  float: right;
+}
+
+td.price table td {
+  text-align: center;
+}
+
+.price-container {
+  white-space: nowrap;
+  display: table-cell;
+  padding-right: 10px;
+}
+
+.price-label {
+  text-align: center;
+}
+
+.price-wrapper {
+  display: table;
+}
+
+.price-wrapper:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+</style>
 
 <div id="container"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
 
 
 <script id="classic-template" type="text/x-handlebars-template">
@@ -124,7 +152,16 @@ table.centered td.price {
     <tr>
       <td class="description">{{description}}</td>
       <td class="filler"><div></div></td>
-      <td class="price">{{price}}</td>
+      <td class="price">
+        <div class="price-wrapper">
+        {{#each prices}}
+          <div class="price-container">
+            <div class="price-label">{{label}}</div>
+            <div class="price-price">{{price}}</div>
+          </div>
+        {{/each}}
+        </div>
+      </td>
     </tr>
     <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
   {{/each}}
@@ -137,7 +174,16 @@ table.centered td.price {
     <tr>
       <td class="name">{{name}}</td>
       <td class="filler"><div></div></td>
-      <td class="price">{{price}}</td>
+      <td class="price">
+        <div class="price-wrapper">
+        {{#each prices}}
+          <div class="price-container">
+            <div class="price-label">{{label}}</div>
+            <div class="price-price">{{price}}</div>
+          </div>
+        {{/each}}
+        </div>
+      </td>
     </tr>
     <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
   {{/each}}
@@ -152,7 +198,16 @@ table.centered td.price {
     </tr>
     <tr>
       <td class="description">{{description}}</td>
-      <td class="price">{{price}}</td>
+      <td class="price">
+        <div class="price-wrapper">
+        {{#each prices}}
+          <div class="price-container">
+            <div class="price-label">{{label}}</div>
+            <div class="price-price">{{price}}</div>
+          </div>
+        {{/each}}
+        </div>
+      </td>
     </tr>
     <tr class="spacer"><td>&nbsp;</td></tr>
   {{/each}}
@@ -169,7 +224,16 @@ table.centered td.price {
       <td class="description">{{description}}</td>
     </tr>
     <tr>
-      <td class="price">{{price}}</td>
+      <td class="price">
+        <div class="price-wrapper">
+        {{#each prices}}
+          <div class="price-container">
+            <div class="price-label">{{label}}</div>
+            <div class="price-price">{{price}}</div>
+          </div>
+        {{/each}}
+        </div>
+      </td>
     </tr>
     <tr class="spacer"><td>&nbsp;</td></tr>
   {{/each}}
@@ -186,7 +250,16 @@ table.centered td.price {
       <td class="description">{{description}}</td>
     </tr>
     <tr>
-      <td class="price">{{price}}</td>
+      <td class="price">
+        <div class="price-wrapper">
+        {{#each prices}}
+          <div class="price-container">
+            <div class="price-label">{{label}}</div>
+            <div class="price-price">{{price}}</div>
+          </div>
+        {{/each}}
+        </div>
+      </td>
     </tr>
     <tr class="spacer"><td>&nbsp;</td></tr>
   {{/each}}
@@ -241,9 +314,12 @@ table.centered td.price {
     var dt = response.getDataTable();
 
     var items = [];
-
     for (var i=0; i<dt.getNumberOfRows(); i++) {
-      items.push({ name: dt.getValue(i,0), description: dt.getValue(i, 1), price: dt.getValue(i, 2) });
+      var prices = [];
+      for (var j=2; j<dt.getNumberOfColumns(); j++) {
+        prices.push({ label: dt.getColumnLabel(j), price: dt.getValue(i, j) });
+      }
+      items.push({ name: dt.getValue(i,0), description: dt.getValue(i, 1), prices: prices });
     }
 
     $('#container').empty().append(currentTemplate({ items: items }));
