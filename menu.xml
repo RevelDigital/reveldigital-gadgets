@@ -36,16 +36,15 @@ body *
 body
 {
   background: transparent;
-  width: 964px;
-  height: 618px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   overflow: hidden;
 }
 
 div#container
 {
-  font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;;
-  width: 964px;
-  height: 618px;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   color: #000;
 }
 
@@ -62,13 +61,15 @@ table tr.spacer, table tr.spacer td {
 }
 
 td.name {
-    font-size: 1.4em;
-    font-weight: 700;
+  __UP_name-style__;
+}
+
+td.description {
+  __UP_description-style__;
 }
 
 td.price {
-  text-align: right;
-  font-weight: 700;
+  __UP_price-style__;
 }
 
 td.filler {
