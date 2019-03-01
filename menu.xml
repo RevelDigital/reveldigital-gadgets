@@ -319,9 +319,9 @@ td.price table td {
     for (var i=0; i<dt.getNumberOfRows(); i++) {
       var prices = [];
       for (var j=2; j<dt.getNumberOfColumns(); j++) {
-        prices.push({ label: dt.getColumnLabel(j), price: dt.getValue(i, j) });
+        prices.push({ label: dt.getColumnLabel(j), price: dt.getFormattedValue(i, j) });
       }
-      items.push({ name: dt.getValue(i,0), description: dt.getValue(i, 1), prices: prices });
+      items.push({ name: dt.getFormattedValue(i,0), description: dt.getFormattedValue(i, 1), prices: prices });
     }
 
     $('#container').empty().append(currentTemplate({ items: items }));
