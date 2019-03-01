@@ -53,11 +53,10 @@ table {
 }
 
 table td {
-  padding: .1em;
 }
 
 table tr.spacer, table tr.spacer td {
-  line-height: .2em;
+  line-height: 8px;
 }
 
 td.name {
