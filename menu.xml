@@ -90,7 +90,15 @@ table.classic-name-only td.name {
 }
 
 table.classic td.description {
-  white-space: nowrap;
+  width: 80%;
+}
+
+table.classic td.price {
+  vertical-align: bottom;
+}
+
+table.classic-no-dots td.price {
+  vertical-align: top;
 }
 
 table.centered td.name {
@@ -149,12 +157,8 @@ td.price table td {
   <table cellpadding="0" cellspacing="0" class="classic">
   {{#each items}}
     <tr>
-      <td colspan="3" class="name">{{name}}</td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-      <td class="filler"><div></div></td>
-      <td class="price">
+      <td colspan="2" class="name">{{name}}</td>
+      <td rowspan="2" class="price">
         <div class="price-wrapper">
         {{#each prices}}
           <div class="price-container">
@@ -164,6 +168,10 @@ td.price table td {
         {{/each}}
         </div>
       </td>
+    </tr>
+    <tr>
+      <td class="description">{{description}}</td>
+      <td class="filler"><div></div></td>
     </tr>
     <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
   {{/each}}
@@ -196,11 +204,8 @@ td.price table td {
   <table cellpadding="0" cellspacing="0" class="classic-no-dots">
   {{#each items}}
     <tr>
-      <td colspan="2" class="name">{{name}}</td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-      <td class="price">
+      <td class="name">{{name}}</td>
+      <td rowspan="2" class="price">
         <div class="price-wrapper">
         {{#each prices}}
           <div class="price-container">
@@ -210,6 +215,9 @@ td.price table td {
         {{/each}}
         </div>
       </td>
+    </tr>
+    <tr>
+      <td class="description">{{description}}</td>
     </tr>
     <tr class="spacer"><td>&nbsp;</td></tr>
   {{/each}}
