@@ -53,6 +53,7 @@ table {
 }
 
 table td {
+  padding: 5px;
 }
 
 table tr.spacer, table tr.spacer td {
