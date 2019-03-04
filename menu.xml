@@ -14,7 +14,7 @@
     <EnumValue value="centered-template" display_value="Centered" />
     <EnumValue value="modern-template" display_value="Modern" />
   </UserPref>
-  <UserPref name="row-padding" display_name="Row padding" default_value="2" />
+  <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
   <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
@@ -57,13 +57,13 @@ table {
 }
 
 table td {
-  padding: 0 0 __UP_row-padding__px 0;
+  padding: 2px
   margin: 0;
 }
 
 table tr.spacer, table tr.spacer td {
-  line-height: 8px;
-  height: 8px;
+  line-height: __UP_row-spacing__px;
+  height: __UP_row-spacing__px;
   padding: 0;
   margin: 0;
 }
