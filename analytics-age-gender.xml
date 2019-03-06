@@ -112,8 +112,8 @@ body
 
     for (var i=0; i<data.length; i++) {
       var gender_idx = 2;
-      if (data[i].gender == 0) gender_idx = 0;
       if (data[i].gender == 1) gender_idx = 1;
+      if (data[i].gender == 2) gender_idx = 0;
 
       if (data[i].age <= 0) { matrix[gender_idx][7] += 1; } // unknown age
       else if (data[i].age < 18) { matrix[gender_idx][0] += 1; }
