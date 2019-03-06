@@ -79,7 +79,11 @@ body
         }]
       },
       options: {
+        responsive: true, 
         scales: {
+          yAxes: [{
+            stacked: true, ticks: { min: 0, stepSize: 1 }
+          }],
           xAxes: [{
             type: 'realtime',
             realtime: {
