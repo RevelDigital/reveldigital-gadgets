@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Analytics Time Series" description="Viewers over time" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="moment" />
+  
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+#myChart
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+</style>
+
+
+<canvas id="myChart"></canvas>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  var barChartData = {
+    labels: ['Under 18', '18-24', '25-34', '35-44', '45-54', '55-64', '65-74', 'Unknown'],
+    datasets: [{
+      label: 'Male',
+      backgroundColor: "rgba(10, 69, 234, 0.6)",
+      data: [
+        
+      ]
+    }, {
+      label: 'Female',
+      backgroundColor: "rgba(183, 83, 169, 0.6)",
+      data: [
+      ]
+    }, {
+      label: 'Unknown',
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
+      data: [
+      ]
+    }]
+  };
+
+  
+  function load() {
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    
+    window.myBar = new Chart(ctx, {
+      type: 'bar',
+      data: barChartData,
+      options: {
+        title: {
+          display: true,
+          text: 'Age / Gender'
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false
+        },
+        responsive: true, legend: { labels: { fontSize: 30 } },
+        scales: {
+          xAxes: [{
+            stacked: true, ticks: { fontSize: 30, min: 0, stepSize: 1 }
+          }],
+          yAxes: [{
+            stacked: true, ticks: { fontSize: 30, min: 0, stepSize: 1 }
+          }]
+        }
+      }
+    });
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+  function setData(data) {
+    
+    console.log(data.length);
+        
+    const matrix = new Array(3).fill(0).map(() => new Array(8).fill(0));
+    
+    for (var i=0; i<data.length; i++) {
+      if (data[i].age == -1) {
+        matrix[data[i].gender, 7] += 1; // unknown age
+      } else {
+        matrix[data[i].gender, 0] += data[i].age < 18;
+        matrix[data[i].gender, 1] += data[i].age < 25;
+        matrix[data[i].gender, 2] += data[i].age < 35;
+        matrix[data[i].gender, 3] += data[i].age < 45;
+        matrix[data[i].gender, 4] += data[i].age < 55;
+        matrix[data[i].gender, 5] += data[i].age < 65;
+        matrix[data[i].gender, 6] += data[i].age < 75;
+      }
+    }
+    
+    barChartData.datasets[0].data = [
+      matrix[0][0],
+      matrix[0][1],
+      matrix[0][2],
+      matrix[0][3],
+      matrix[0][4],
+      matrix[0][5],
+      matrix[0][6],
+      matrix[0][7]
+    ];
+    barChartData.datasets[1].data = [
+      matrix[1][0],
+      matrix[1][1],
+      matrix[1][2],
+      matrix[1][3],
+      matrix[1][4],
+      matrix[1][5],
+      matrix[1][6],
+      matrix[1][7]
+    ];
+    barChartData.datasets[2].data = [
+      matrix[2][0],
+      matrix[2][1],
+      matrix[2][2],
+      matrix[2][3],
+      matrix[2][4],
+      matrix[2][5],
+      matrix[2][6],
+      matrix[2][7]
+    ];
+
+    window.myBar.update();  
+  }
+  
+</script>
+]]>
+</Content>
+</Module>
