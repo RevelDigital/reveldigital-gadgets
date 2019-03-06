@@ -59,7 +59,7 @@ body
         datasets: [{
         label: 'Male',
           borderColor: 'rgb(54, 162, 235)',
-          backgroundColor: 'rgba(54, 162, 235, 0.5)'
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
           data: []
         }, {
         label: 'Female',
