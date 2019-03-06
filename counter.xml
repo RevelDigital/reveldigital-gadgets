@@ -71,14 +71,14 @@
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("message-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("message-style"))
         ]
       }
     });
