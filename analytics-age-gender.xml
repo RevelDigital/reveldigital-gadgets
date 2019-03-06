@@ -104,8 +104,6 @@ body
     
     console.log(data.length);
     
-    //const matrix = new Array(8).fill(0).map(() => new Array(3).fill(0));
-    
     var matrix = [
       [ 0, 0, 0, 0, 0, 0, 0, 0 ],
       [ 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -116,18 +114,15 @@ body
       var gender_idx = 2;
       if (data[i].gender == 0) gender_idx = 0;
       if (data[i].gender == 1) gender_idx = 1;
-      
-      if (data[i].age <= 0) {
-        matrix[gender_idx, 7] += 1; // unknown age
-      } else {
-        matrix[gender_idx, 0] += data[i].age < 18;
-        matrix[gender_idx, 1] += data[i].age < 25;
-        matrix[gender_idx, 2] += data[i].age < 35;
-        matrix[gender_idx, 3] += data[i].age < 45;
-        matrix[gender_idx, 4] += data[i].age < 55;
-        matrix[gender_idx, 5] += data[i].age < 65;
-        matrix[gender_idx, 6] += data[i].age < 75;
-      }
+
+      if (data[i].age <= 0) { matrix[gender_idx][7] += 1; } // unknown age
+      else if (data[i].age < 18) { matrix[gender_idx][0] += 1; }
+      else if (data[i].age < 25) { matrix[gender_idx][1] += 1; }
+      else if (data[i].age < 35) { matrix[gender_idx][2] += 1; }
+      else if (data[i].age < 45) { matrix[gender_idx][3] += 1; }
+      else if (data[i].age < 55) { matrix[gender_idx][4] += 1; }
+      else if (data[i].age < 65) { matrix[gender_idx][5] += 1; }
+      else if (data[i].age < 75) { matrix[gender_idx][6] += 1; }
     }
     
     barChartData.datasets[0].data = [
