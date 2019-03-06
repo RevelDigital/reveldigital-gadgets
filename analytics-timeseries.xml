@@ -85,15 +85,15 @@ body
             realtime: {
               onRefresh: function(chart) {
                 var now = Date.now();
-                chart.config.data.dataset[0].data.push({
+                chart.config.data.datasets[0].data.push({
                   x: now,
                   y: male
                 });
-                chart.config.data.dataset[1].data.push({
+                chart.config.data.datasets[1].data.push({
                   x: now,
                   y: female
                 });
-                chart.config.data.dataset[2].data.push({
+                chart.config.data.datasets[2].data.push({
                   x: now,
                   y: unknown
                 });
