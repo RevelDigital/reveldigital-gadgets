@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Analytics Time Series" description="Viewers over time" author="RevelDigital" background="transparent">
+<ModulePrefs title="Analytics Age / Gender" description="Stacked bar chart representing age and gender of viewers" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
@@ -107,7 +107,7 @@ body
     const matrix = new Array(3).fill(0).map(() => new Array(8).fill(0));
     
     for (var i=0; i<data.length; i++) {
-      int gender_idx = 2;
+      var gender_idx = 2;
       if (data[i].gender == 0) gender_idx = 0;
       if (data[i].gender == 1) gender_idx = 1;
       
