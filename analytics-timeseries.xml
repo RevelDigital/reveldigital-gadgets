@@ -63,17 +63,17 @@ body
       data: {
         datasets: [{
         label: 'Male',
-          borderColor: 'rgb(54, 162, 235)',
+          borderColor: 'rgba(10, 69, 234, 0.8)',
           backgroundColor: 'rgba(10, 69, 234, 0.6)',
           data: []
         }, {
         label: 'Female',
-          borderColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgba(183, 83, 169, 0.8)',
           backgroundColor: 'rgba(183, 83, 169, 0.6)',
           data: []
         }, {
         label: 'Unknown',
-          borderColor: 'rgb(200, 200, 200)',
+          borderColor: 'rgba(0, 0, 0, 0.4)',
           backgroundColor: 'rgba(0, 0, 0, 0.2)',
           data: []
         }]
