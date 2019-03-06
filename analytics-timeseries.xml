@@ -49,6 +49,11 @@ body
 
   var prefs = new gadgets.Prefs();
 
+  var male = 0;
+  var female = 0;
+  var unknown = 0;
+  
+  
   function load() {
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -79,11 +84,18 @@ body
             type: 'realtime',
             realtime: {
               onRefresh: function(chart) {
-                chart.data.datasets.forEach(function(dataset) {
-                  dataset.data.push({
-                    x: Date.now(),
-                    y: Math.random()
-                  });
+                var now = Date.now();
+                dataset[0].data.push({
+                  x: now,
+                  y: male
+                });
+                dataset[1].data.push({
+                  x: now,
+                  y: female
+                });
+                dataset[2].data.push({
+                  x: now,
+                  y: unknown
                 });
               }
             }
@@ -96,8 +108,19 @@ body
   gadgets.util.registerOnLoadHandler(load);
   
   function setData(data) {
-  
+    
     console.log(data.length);
+    
+    unknown = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 0);
+    }, 0);
+    female = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 1);
+    }, 0);
+    male = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 2);
+    }, 0);
+    
   }
   
 </script>
