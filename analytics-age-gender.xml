@@ -54,7 +54,6 @@ body
       label: 'Male',
       backgroundColor: "rgba(10, 69, 234, 0.6)",
       data: [
-        
       ]
     }, {
       label: 'Female',
@@ -108,16 +107,20 @@ body
     const matrix = new Array(3).fill(0).map(() => new Array(8).fill(0));
     
     for (var i=0; i<data.length; i++) {
-      if (data[i].age == -1) {
-        matrix[data[i].gender, 7] += 1; // unknown age
+      int gender_idx = 2;
+      if (data[i].gender == 0) gender_idx = 0;
+      if (data[i].gender == 1) gender_idx = 1;
+      
+      if (data[i].age <= 0) {
+        matrix[gender_idx, 7] += 1; // unknown age
       } else {
-        matrix[data[i].gender, 0] += data[i].age < 18;
-        matrix[data[i].gender, 1] += data[i].age < 25;
-        matrix[data[i].gender, 2] += data[i].age < 35;
-        matrix[data[i].gender, 3] += data[i].age < 45;
-        matrix[data[i].gender, 4] += data[i].age < 55;
-        matrix[data[i].gender, 5] += data[i].age < 65;
-        matrix[data[i].gender, 6] += data[i].age < 75;
+        matrix[gender_idx, 0] += data[i].age < 18;
+        matrix[gender_idx, 1] += data[i].age < 25;
+        matrix[gender_idx, 2] += data[i].age < 35;
+        matrix[gender_idx, 3] += data[i].age < 45;
+        matrix[gender_idx, 4] += data[i].age < 55;
+        matrix[gender_idx, 5] += data[i].age < 65;
+        matrix[gender_idx, 6] += data[i].age < 75;
       }
     }
     
