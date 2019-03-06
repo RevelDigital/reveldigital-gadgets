@@ -85,13 +85,13 @@ body
           mode: 'index',
           intersect: false
         },
-        responsive: true, legend: { labels: { fontSize: 30 } },
+        responsive: true, legend: { labels: { fontSize: 25 } },
         scales: {
           xAxes: [{
-            stacked: true, ticks: { fontSize: 30, min: 0, stepSize: 1 }
+            stacked: true, ticks: { fontSize: 25, min: 0, stepSize: 1 }
           }],
           yAxes: [{
-            stacked: true, ticks: { fontSize: 30, min: 0, stepSize: 1 }
+            stacked: true, ticks: { fontSize: 25, min: 0, stepSize: 1 }
           }]
         }
       }
