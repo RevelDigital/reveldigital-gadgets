@@ -57,15 +57,36 @@ body
       type: 'line',
       data: {
         datasets: [{
+        label: 'Male',
+          borderColor: 'rgb(54, 162, 235)',
+          backgroundColor: 'rgba(54, 162, 235, 0.5)'
           data: []
         }, {
+        label: 'Female',
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          data: []
+        }, {
+        label: 'Unknown',
+          borderColor: 'rgb(150, 150, 150)',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
           data: []
         }]
       },
       options: {
         scales: {
           xAxes: [{
-            type: 'realtime'
+            type: 'realtime',
+            realtime: {
+              onRefresh: function(chart) {
+                chart.data.datasets.forEach(function(dataset) {
+                  dataset.data.push({
+                    x: Date.now(),
+                    y: Math.random()
+                  });
+                });
+              }
+            }
           }]
         }
       }
@@ -76,8 +97,7 @@ body
   
   function setData(data) {
   
-    var faces = JSON.parse(data);
-    console.log(faces.length);
+    console.log(data.length);
   }
   
 </script>
