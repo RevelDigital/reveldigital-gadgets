@@ -5,7 +5,8 @@
   <Require feature="jquery" />
   <Require feature="webfont" />
   <Require feature="moment" />
-  
+  <Require feature="offline" />
+    
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
