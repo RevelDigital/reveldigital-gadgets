@@ -64,17 +64,17 @@ body
         datasets: [{
         label: 'Male',
           borderColor: 'rgb(54, 162, 235)',
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          backgroundColor: 'rgba(10, 69, 234, 0.6)',
           data: []
         }, {
         label: 'Female',
           borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          backgroundColor: 'rgba(183, 83, 169, 0.6)',
           data: []
         }, {
         label: 'Unknown',
-          borderColor: 'rgb(150, 150, 150)',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          borderColor: 'rgb(200, 200, 200)',
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
           data: []
         }]
       },
@@ -85,15 +85,15 @@ body
             realtime: {
               onRefresh: function(chart) {
                 var now = Date.now();
-                dataset[0].data.push({
+                chart.config.data.dataset[0].data.push({
                   x: now,
                   y: male
                 });
-                dataset[1].data.push({
+                chart.config.data.dataset[1].data.push({
                   x: now,
                   y: female
                 });
-                dataset[2].data.push({
+                chart.config.data.dataset[2].data.push({
                   x: now,
                   y: unknown
                 });
