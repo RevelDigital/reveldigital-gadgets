@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="RevelDigital Meeting Room Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360002538071-Meeting-room-gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="moment" />
+  <Require feature="offline" />
+  
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
@@ -111,13 +117,8 @@
         }
     </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
-    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
-    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
@@ -133,6 +134,72 @@
     </div>
 
     <script type="text/javascript">
+    
+      var iadea_access = {
+        ip: 'lvh.me',
+        api_base: 'http://lvh.me:8080/v2',
+        token: ''
+      };
+
+      function getToken() {
+      	var xhr = new XMLHttpRequest(),
+          data = {
+            grant_type: 'password',
+            username: 'admin',
+            password: ''
+          },
+          data_string = '';
+        
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', access.api_base + '/oauth2/token', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              access.token = JSON.parse(this.responseText).access_token;
+            } else {
+              console.log('IDEA auth failed');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
+
+      function changeLedColor(hex) {
+      
+        if (iadea_access.token == '') {
+          return;
+        }
+        
+        var xhr = new XMLHttpRequest(),
+          data = {
+            id: 0,
+            name: 'frame',
+            brightness: 1.0,
+            color: hex
+          },
+          data_string = '';
+          
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', access.api_base + '/hardware/light?access_token=' + access.token, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status != 200) {
+              alert('some errors');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
+
+    </script>
+    
+    <script type="text/javascript">
 
         var prefs = new gadgets.Prefs();
 
@@ -141,7 +208,7 @@
             WebFont.load({
                 google: {
                     families: [
-                        RevelDigital.getFamilyName(prefs.getString("body-style"))
+                        gagdets.reveldigital.getFamilyName(prefs.getString("body-style"))
                     ]
                 }
             });
@@ -161,6 +228,8 @@
                 $("#next").hide();
             }
 
+            getToken();
+            
             getCalendarData();
 
             setInterval(update, 60000);
@@ -276,8 +345,6 @@
                 return;
             }
             
-            //var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
-            //var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
 
@@ -322,12 +389,16 @@
                 if (items.length > 1) {
                     formatNext(items[1]);
                 }
+                
+                changeLedColor('#FF0000');
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
                 
                 formatNext(items[0]);
+                
+                changeLedColor('#00FF00');
             }
         }
 
