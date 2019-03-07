@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Menu Gadget" description="Menu gadget for easily formatting menu board items and pricing" author="RevelDigital" background="transparent">
+<ModulePrefs title="Menu Gadget" description="Menu gadget for easily formatting menu board items and pricing" title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
