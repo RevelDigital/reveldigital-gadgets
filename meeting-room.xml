@@ -208,7 +208,7 @@
             WebFont.load({
                 google: {
                     families: [
-                        gagdets.reveldigital.getFamilyName(prefs.getString("body-style"))
+                        gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
                     ]
                 }
             });
