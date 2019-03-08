@@ -117,10 +117,19 @@
             margin-top: 0;
             padding-left: 1.5vw;
         }
+        
+        #progress {
+          margin: 10px;
+          width: 100px;
+          height: 100px;
+          left: calc(50% - 50px);
+          position: relative;
+        }
     </style>
 
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/gadget-common/third-party/progressbar.min.js"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
@@ -271,6 +280,10 @@
 
     <script type="text/javascript">
 
+        var progressBar = null;
+        var progressEnd;
+        var progressStart;
+      
         function update() {
             var now = moment();
             if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30) {
@@ -278,6 +291,13 @@
                 getCalendarData();
             } else {
                 console.log("NO UPDATE AT: " + now);
+            }
+            
+            if (progressBar != null) {
+              var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
+              var left = moment.duration(progressEnd.diff(moment())).asMinutes();
+              var pct = 1 - (left / duration);
+              progressBar.animate(pct);
             }
         }
 
@@ -373,6 +393,8 @@
                 h1.text("Available");
                 $(event).append(h1);
                 
+                progressBar = null;
+                
                 changeLedColor('#00FF00');
                 
                 return;
@@ -423,6 +445,46 @@
                     formatNext(items[1]);
                 }
                 
+                
+                if (progressBar == null) {
+                
+                  progressEnd = moment(et, "h:mm a");
+                  progressStart = moment(st, "h:mm a");
+                  
+                  progressBar = new ProgressBar.Circle("#progress", {
+                    color: '#__UP_ForeColor__',
+                    // This has to be the same size as the maximum width to
+                    // prevent clipping
+                    strokeWidth: 6,
+                    trailWidth: 0,
+                    easing: 'easeInOut',
+                    duration: 1400,
+                    text: {
+                      autoStyleContainer: false
+                    },
+                    from: { color: '#FF0000', width: 6 },
+                    to: { color: '#00ff00', width: 6 },
+                    // Set default step function for all animate calls
+                    step: function(state, circle) {
+                      circle.path.setAttribute('stroke', state.color);
+                      circle.path.setAttribute('stroke-width', state.width);
+
+                      var value = Math.round(circle.value() * 100);
+                      if (value === 0) {
+                        circle.setText('');
+                      } else {
+                        var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
+                        var left = moment.duration(progressEnd.diff(moment())).asMinutes();
+                        circle.setText(Math.round(left) + 'm left');
+                      }
+                    }
+                  });
+                  progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+                  progressBar.text.style.fontSize = '16px';
+
+                  update();
+                }
+                
                 changeLedColor('#FF0000');
             } else {
                 h1 = $("<h1 />");
@@ -431,6 +493,8 @@
                 
                 formatNext(items[0]);
                 
+                progressBar = null;
+                                
                 changeLedColor('#00FF00');
             }
         }
