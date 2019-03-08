@@ -140,7 +140,7 @@
       var ideaDevice = window.iadeaRest.createDevice('lvh.me','8080','admin','');
     
       iadeaDevice.connect()
-        .then(ideaDevice.setColor('#0000FF')
+        .then(ideaDevice.setColor('#0000FF'))
         .catch(function (err) { console.log('IDEA auth failed'); });
     
       function iadeaConnected() {
