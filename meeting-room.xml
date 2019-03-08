@@ -161,7 +161,8 @@
             if (this.status == 200) {
               iadea_access.token = JSON.parse(this.responseText).access_token;
               
-              cycleLed(0);
+              changeLedColor('#FFFFFF');
+              //cycleLed(0);
             } else {
               console.log('IADEA auth failed');
             }
