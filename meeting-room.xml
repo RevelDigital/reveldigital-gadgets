@@ -140,8 +140,8 @@
       var iadeaDevice = window.iadeaRest.createDevice('lvh.me','8080','admin','');
     
       iadeaDevice.connect()
-        .then(ideaDevice.setColor('#0000FF'))
-        .catch(function (err) { console.log('IDEA auth failed'); });
+        .then(iadeaDevice.setColor('#0000FF'))
+        .catch(function (err) { console.log('IADEA auth failed'); });
     
       function iadeaConnected() {
       }
@@ -326,7 +326,7 @@
                 $(event).append(h1);
                 
                 //changeLedColor('#00FF00');
-                ideaDevice.setColor('#00FF00')
+                iadeaDevice.setColor('#00FF00')
                 
                 return;
             }
@@ -377,7 +377,7 @@
                 }
                 
                 //changeLedColor('#FF0000');
-                ideaDevice.setColor('#FF0000')
+                iadeaDevice.setColor('#FF0000')
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
@@ -386,7 +386,7 @@
                 formatNext(items[0]);
                 
                 //changeLedColor('#00FF00');
-                ideaDevice.setColor('#00FF00')
+                iadeaDevice.setColor('#00FF00')
             }
         }
 
