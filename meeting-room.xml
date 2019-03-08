@@ -65,6 +65,7 @@
             position: absolute;
             top: 1vh;
             left: 1vw;
+            width: __UP_rdW__px;
         }
 
         #event {
@@ -98,6 +99,7 @@
             position: absolute;
             bottom: 1vh;
             left: 1vw;
+            width: __UP_rdW__px;
         }
 
             #next h3 {
