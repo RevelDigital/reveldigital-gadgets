@@ -298,7 +298,7 @@
             if (progressBar != null) {
                 var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
                 var left = moment.duration(progressEnd.diff(moment())).asMinutes();
-                var pct = (duration / left);
+                var pct = 1 + 1 - (left / duration);
 
                 progressBar.animate(pct);  // Number from 0.0 to 1.0
 
