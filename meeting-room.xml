@@ -120,7 +120,6 @@
 
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
-    <script src="https://reveldigital.github.io/gadget-common/third-party/iadea-rest/iadea.js"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
@@ -136,15 +135,6 @@
     </div>
 
     <script type="text/javascript">
-      
-      var iadeaDevice = window.iadeaRest.createDevice('lvh.me','8080','admin','');
-    
-      iadeaDevice.connect()
-        .then(iadeaDevice.setColor('#0000FF'))
-        .catch(function (err) { console.log('IADEA auth failed'); });
-    
-      function iadeaConnected() {
-      }
     
       var iadea_access = {
         ip: 'lvh.me',
@@ -152,6 +142,33 @@
         token: ''
       };
 
+      function getToken() {
+      	var xhr = new XMLHttpRequest(),
+          data = {
+            grant_type: 'password',
+            username: 'admin',
+            password: ''
+          },
+          data_string = '';
+        
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', iadea_access.api_base + '/oauth2/token', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              iadea_access.token = JSON.parse(this.responseText).access_token;
+              
+              cycleLed(0);
+            } else {
+              console.log('IADEA auth failed');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
 
       function byte2Hex(n) {
         var nybHexString = "0123456789ABCDEF";
@@ -173,11 +190,40 @@
         green = Math.sin(frequency*i + 2) * 127 + 128;
         blue  = Math.sin(frequency*i + 4) * 127 + 128;
 
-        //changeLedColor(RGB2Color(red,green,blue));
+        changeLedColor(RGB2Color(red,green,blue));
            
         setTimeout(cycleLed(++i), 250);
       }
-
+      
+      function changeLedColor(hex) {
+      
+        if (iadea_access.token == '') {
+          return;
+        }
+        
+        var xhr = new XMLHttpRequest(),
+          data = {
+            id: 0,
+            name: 'frame',
+            brightness: 1.0,
+            color: hex
+          },
+          data_string = '';
+          
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', iadea_access.api_base + '/hardware/light?access_token=' + iadea_access.token, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status != 200) {
+              console.log('IDEA command failed');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
 
     </script>
     
@@ -210,7 +256,7 @@
                 $("#next").hide();
             }
 
-            //getToken();
+            getToken();
             
             getCalendarData();
 
@@ -325,8 +371,7 @@
                 h1.text("Available");
                 $(event).append(h1);
                 
-                //changeLedColor('#00FF00');
-                iadeaDevice.setColor('#00FF00')
+                changeLedColor('#00FF00');
                 
                 return;
             }
@@ -376,8 +421,7 @@
                     formatNext(items[1]);
                 }
                 
-                //changeLedColor('#FF0000');
-                iadeaDevice.setColor('#FF0000')
+                changeLedColor('#FF0000');
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
@@ -385,8 +429,7 @@
                 
                 formatNext(items[0]);
                 
-                //changeLedColor('#00FF00');
-                iadeaDevice.setColor('#00FF00')
+                changeLedColor('#00FF00');
             }
         }
 
