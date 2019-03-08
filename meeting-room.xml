@@ -298,9 +298,9 @@
             if (progressBar != null) {
                 var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
                 var left = moment.duration(progressEnd.diff(moment())).asMinutes();
-                var pct = 1 - (left / duration);
+                var pct = (duration / left);
 
-                progressBar.animate(pct);
+                progressBar.animate(pct);  // Number from 0.0 to 1.0
 
                 setTimeout(updateProgress, 60000);
             }
@@ -455,19 +455,19 @@
                 progressEnd = moment(et, "h:mm a");
                 progressStart = moment(st, "h:mm a");
                 
-                progressBar = new ProgressBar.Circle("#progress", {
-                  color: '#__UP_ForeColor__',
+                progressBar = new ProgressBar.Circle('#progress', {
+                  color: '#fff',
                   // This has to be the same size as the maximum width to
                   // prevent clipping
                   strokeWidth: 6,
-                  trailWidth: 0,
+                  trailWidth: .5,
                   easing: 'easeInOut',
                   duration: 1400,
                   text: {
                     autoStyleContainer: false
                   },
-                  from: { color: '#FF0000', width: 6 },
-                  to: { color: '#00ff00', width: 6 },
+                  from: { color: '#00FF00', width: 6 },
+                  to: { color: '#FF0000', width: 6 },
                   // Set default step function for all animate calls
                   step: function(state, circle) {
                     circle.path.setAttribute('stroke', state.color);
