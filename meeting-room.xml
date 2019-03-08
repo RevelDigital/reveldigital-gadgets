@@ -137,7 +137,7 @@
 
     <script type="text/javascript">
       
-      var ideaDevice = window.iadeaRest.createDevice('lvh.me','8080','admin','');
+      var iadeaDevice = window.iadeaRest.createDevice('lvh.me','8080','admin','');
     
       iadeaDevice.connect()
         .then(ideaDevice.setColor('#0000FF'))
@@ -325,7 +325,8 @@
                 h1.text("Available");
                 $(event).append(h1);
                 
-                changeLedColor('#00FF00');
+                //changeLedColor('#00FF00');
+                ideaDevice.setColor('#00FF00')
                 
                 return;
             }
@@ -375,7 +376,8 @@
                     formatNext(items[1]);
                 }
                 
-                changeLedColor('#FF0000');
+                //changeLedColor('#FF0000');
+                ideaDevice.setColor('#FF0000')
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
@@ -383,7 +385,8 @@
                 
                 formatNext(items[0]);
                 
-                changeLedColor('#00FF00');
+                //changeLedColor('#00FF00');
+                ideaDevice.setColor('#00FF00')
             }
         }
 
