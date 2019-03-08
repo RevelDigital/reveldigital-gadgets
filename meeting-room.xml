@@ -96,7 +96,6 @@
         #next {
             font-size: 1em;
             position: absolute;
-            width: calc(100% - 1vw);
             bottom: 1vh;
             left: 1vw;
         }
