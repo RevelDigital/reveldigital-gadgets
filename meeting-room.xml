@@ -153,12 +153,12 @@
         for (var key in data) {
           data_string += '&' + key + (data[key] ? '=' + data[key] : '');
         }
-        xhr.open('POST', access.api_base + '/oauth2/token', true);
+        xhr.open('POST', iadea_access.api_base + '/oauth2/token', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.onreadystatechange = function () {
           if (this.readyState == 4) {
             if (this.status == 200) {
-              access.token = JSON.parse(this.responseText).access_token;
+              iadea_access.token = JSON.parse(this.responseText).access_token;
             } else {
               console.log('IDEA auth failed');
             }
@@ -185,12 +185,12 @@
         for (var key in data) {
           data_string += '&' + key + (data[key] ? '=' + data[key] : '');
         }
-        xhr.open('POST', access.api_base + '/hardware/light?access_token=' + access.token, true);
+        xhr.open('POST', iadea_access.api_base + '/hardware/light?access_token=' + iadea_access.token, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.onreadystatechange = function () {
           if (this.readyState == 4) {
             if (this.status != 200) {
-              alert('some errors');
+              console.log('IDEA command failed');
             }
           }
         }
