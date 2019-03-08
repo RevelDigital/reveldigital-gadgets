@@ -441,6 +441,9 @@
                 }
                 $(event).append(p);
 
+                var progress = $("<div id=\"progress\"></div>");
+                $(event).append(progress);
+                
                 if (items.length > 1) {
                     formatNext(items[1]);
                 }
