@@ -160,7 +160,7 @@
             if (this.status == 200) {
               iadea_access.token = JSON.parse(this.responseText).access_token;
               
-              cycleLed();
+              cycleLed(0);
             } else {
               console.log('IDEA auth failed');
             }
@@ -178,17 +178,20 @@
         return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
       }
   
-      function cycleLed() {
+      function cycleLed(i) {
       
-        var frequency = .3;
-        for (var i = 0; i < 32; ++i)
-        {
-           red   = Math.sin(frequency*i + 0) * 127 + 128;
-           green = Math.sin(frequency*i + 2) * 127 + 128;
-           blue  = Math.sin(frequency*i + 4) * 127 + 128;
-
-           changeLedColor(RGB2Color(red,green,blue));
+        if (i == 32) {
+          return;
         }
+        
+        var frequency = .3;
+        red   = Math.sin(frequency*i + 0) * 127 + 128;
+        green = Math.sin(frequency*i + 2) * 127 + 128;
+        blue  = Math.sin(frequency*i + 4) * 127 + 128;
+
+        changeLedColor(RGB2Color(red,green,blue));
+           
+        setTimeout(cycleLed(++i), 250);
       }
       
       function changeLedColor(hex) {
