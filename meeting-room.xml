@@ -370,6 +370,9 @@
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
+                
+                changeLedColor('#00FF00');
+                
                 return;
             }
             
