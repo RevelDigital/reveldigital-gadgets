@@ -82,7 +82,7 @@ button{
   // This function is called after the gadget has been initialized.
   function onLoad() {
     
-    setInterval(checkit, 1000);
+    setInterval(checkit, 100);
   }
 
   function checkit() {
