@@ -79,8 +79,7 @@ button{
 
   function sendSync(){
       console.log("CLICKED");
-      printSync();
-      try{Client.sendCommand("sychronize", "Sync Received at: ");}catch(e){}
+      try{Client.sendCommand("sychronize", "received");}catch(e){}
   }
 
   function printSync(){
