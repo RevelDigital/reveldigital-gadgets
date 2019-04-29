@@ -17,6 +17,7 @@
 <![CDATA[
 
 
+
 <style type="text/css">
 
 body * {
@@ -75,10 +76,27 @@ button{
 
 <script>
   var prefs = new gadgets.Prefs();
-  
+  var lastSeen = moment(new Date());
+  var gotit = false;
+
   // This function is called after the gadget has been initialized.
   function onLoad() {
     
+    setInterval(checkit, 1000);
+  }
+
+  function checkit() {
+
+      var now = moment(new Date()); //todays date
+
+      var duration = moment.duration(lastSeen.diff(now));
+      var seconds = now.diff(lastSeen, 'seconds');
+
+      if (seconds > 5) {
+          $('.container').css('background-color', 'red');
+      } else {
+          $('.container').css('background-color', 'green');
+      }
   }
 
   function sendSync(){
@@ -87,12 +105,14 @@ button{
   }
 
   function printSync(){
-      $(".timestamp").toggleClass("green");
+      lastSeen = moment();
       $(".timestamp").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
   }
 
   gadgets.util.registerOnLoadHandler(onLoad);
 </script>
+
+
 
 
 
