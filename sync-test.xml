@@ -55,6 +55,10 @@ button{
     border: none;
 }
 
+.green{
+    background-color: #458B00; 
+}
+
 .timestamp{
     position: relative; 
     font-size: 50px;
@@ -83,6 +87,7 @@ button{
   }
 
   function printSync(){
+      $(".timestamp").toggleClass("green");
       $(".timestamp").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
   }
 
