@@ -105,6 +105,7 @@ button{
   }
 
   function printSync(){
+      $('.container').css('background-color', 'green');
       lastSeen = moment();
       $(".timestamp").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
   }
