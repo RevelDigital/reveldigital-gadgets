@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTU2NTYxMjA3MTU5LCJsYXN0TW9kaWZpZWQiOjE1NTY1NjEyMDcxNTl9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODAsImlzUG9ydHJhaXQiOmZhbHNlLCJzY2FsZSI6MTAwfSwicHJvZmlsZXMiOltdfQ==|**-->
+<Module>
+<ModulePrefs title="Sync test" description="Test sync command" preferred_width="1920" preferred_height="1080" author="Shaun Harmon" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden"/>
+    <UserPref name="BackColor" datatype="hidden"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <Require feature="reveldigital"/>
+    <Require feature="jquery"/>
+    <Require feature="webfont"/>
+    <Require feature="moment"/>
+    <Require feature="offline"/>
+  </ModulePrefs> 
+<Content type="html">
+<![CDATA[
+
+
+<style type="text/css">
+
+body * {
+    letter-spacing: 0;
+    word-spacing: normal;
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    background-color: #1ea3ff;
+    position: relative;
+    text-align: center;
+    padding-top: 20vh;
+}
+
+button{  
+    text-align: center;
+}
+
+#syncBtn{
+    height: 200px;
+    width: 400px;
+    margin: 100px;  
+    bottom: 0px;
+    background-color: #1d3f6f;
+    font-size: 50px;
+    color: white;
+    border: none;
+}
+
+.timestamp{
+    position: relative; 
+    font-size: 50px;
+}
+</style>
+
+
+<div class="container">
+    <div class="timestamp">Sync not found</div>
+    <div>
+        <button onclick="sendSync()" id="syncBtn">SYNC</button>
+    </div>
+</div>
+
+<script>
+  var prefs = new gadgets.Prefs();
+  
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    
+  }
+
+  function sendSync(){
+      console.log("CLICKED");
+      try{Client.sendCommand("synchronize", "received");}catch(e){}
+  }
+
+  function printSync(){
+      $(".timestamp").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
