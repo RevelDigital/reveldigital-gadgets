@@ -308,7 +308,7 @@
         
         function getCalendarData() {
 
-            var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
+            //var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
             var key = 'AIzaSyDmrjbAKGcwhqr7cF-gX9uiTsW1X8wQdZ4';
             var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
 
