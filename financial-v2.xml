@@ -234,7 +234,7 @@ i
             tr.append($("<td class='icon'><i class='fi-arrow-up green'></i></td>"));
           } else if (parseFloat(quote.change) < 0) {
             tr.addClass('row-down');
-            tr.append($("<td class='icon'><i class='fi-arrow-up red'></i></td>"));
+            tr.append($("<td class='icon'><i class='fi-arrow-down red'></i></td>"));
           } else {
             tr.append($("<td class='icon'></td>"));
           }
