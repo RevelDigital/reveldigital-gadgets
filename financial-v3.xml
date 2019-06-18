@@ -162,7 +162,7 @@ i
         if (prefs.getBool('high')) {
           display += '<td class="value days-high">' + quote.high + '</td>';
         }
-        if (prefs.getBool('volume')) {
+        if (prefs.getBool('volume') && quote.latestVolume) {
           display += '<td class="value volume">' + quote.latestVolume.commarize() + '</td>';
         }
         if (prefs.getBool('yr-low')) {
@@ -171,10 +171,10 @@ i
         if (prefs.getBool('yr-high')) {
           display += '<td class="value year-high">' + quote.week52High + '</td>';
         }
-        if (prefs.getBool('cap')) {
+        if (prefs.getBool('cap') && quote.marketCap) {
           display += '<td class="value market-cap">' + quote.marketCap.commarize() + '</td>';
         }
-        if (prefs.getBool('adv')) {
+        if (prefs.getBool('adv') && quote.avgTotalVolume) {
           display += '<td class="value avg-daily-volume">' + quote.avgTotalVolume.commarize() + '</td>';
         }
         if (prefs.getBool('exchange')) {

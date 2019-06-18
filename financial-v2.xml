@@ -234,7 +234,7 @@ i
             tr.append($("<td class='icon'><i class='fi-arrow-up green'></i></td>"));
           } else if (parseFloat(quote.change) < 0) {
             tr.addClass('row-down');
-            tr.append($("<td class='icon'><i class='fi-arrow-down red'></i></td>"));
+            tr.append($("<td class='icon'><i class='fi-arrow-up red'></i></td>"));
           } else {
             tr.append($("<td class='icon'></td>"));
           }
@@ -261,7 +261,7 @@ i
         if (prefs.getBool('include-days-high')) {
           tr.append($('<td class="value days-high">').text(quote.high));
         }
-        if (prefs.getBool('include-volume')) {
+        if (prefs.getBool('include-volume') && quote.latestVolume) {
           tr.append($('<td class="value volume">').text(quote.latestVolume.commarize()));
         }
         if (prefs.getBool('include-year-low')) {
@@ -270,10 +270,10 @@ i
         if (prefs.getBool('include-year-high')) {
           tr.append($('<td class="value year-high">').text(quote.week52High));
         }
-        if (prefs.getBool('include-market-cap')) {
+        if (prefs.getBool('include-market-cap') && quote.marketCap) {
           tr.append($('<td class="value market-cap">').text(quote.marketCap.commarize()));
         }
-        if (prefs.getBool('include-avg-daily-volume')) {
+        if (prefs.getBool('include-avg-daily-volume') && quote.avgTotalVolume) {
           tr.append($('<td class="value avg-daily-volume">').text(quote.avgTotalVolume.commarize()));
         }
         if (prefs.getBool('include-exchange')) {
