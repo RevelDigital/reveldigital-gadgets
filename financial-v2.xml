@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols.  Data provided for free by IEX." author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -91,20 +95,36 @@ i
   color: red !important;
 }
 
+.row-down
+{
+  background-color: rgba(255,0,0,0.1);
+}
+
+.row-up
+{
+  background-color: rgba(0,255,0,0.1);
+}
+
 .name, .symbol, .exchange
 {
   text-align: left !important;
 }
-</style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+.row-down
+{
+  background-color: rgba(255,0,0,.3);
+}
+
+.row-up
+{
+  background-color: rgba(0,255,0,.3);
+}
+</style>
 
 <link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/gadget-common/third-party/foundation-icons/foundation-icons.css"/>
 
 <div class="quotescontainer">
-  <table>
+  <table cellspacing="0" cellpadding="0">
     <thead>
     </thead>
     <tbody>
@@ -121,64 +141,64 @@ i
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("header-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("header-style"))
         ]
       }
     });
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });
     
-    var thead = '<tr>';
+    var thead = $('<tr>');
+
     if (prefs.getBool('include-graphic')) {
-      thead += '<th></th>';
+      thead.append($('<th>'));
     }
     if (prefs.getBool('include-name')) {
-      thead += '<th class="name">Name</th>';
+      thead.append($('<th class="name">Name</th>'));
     }
     if (prefs.getBool('include-symbol')) {
-      thead += '<th class="symbol">Symbol</th>';
+      thead.append($('<th class="symbol">Symbol</th>'));
     }
     if (prefs.getBool('include-last-trade')) {
-      thead += '<th class="last-trade">Last Trade</th>';
+      thead.append($('<th class="last-trade">Last Trade</th>'));
     }
     if (prefs.getBool('include-change')) {
-      thead += '<th class="change">Change</th>';
+      thead.append($('<th class="change">Change</th>'));
     }
     if (prefs.getBool('include-days-range')) {
-      thead += '<th class="days-range">Days Range</th>';
+      thead.append($('<th class="days-range">Days Range</th>'));
     }
     if (prefs.getBool('include-days-low')) {
-      thead += '<th class="days-low">Days Low</th>';
+      thead.append($('<th class="days-low">Days Low</th>'));
     }
     if (prefs.getBool('include-days-high')) {
-      thead += '<th class="days-high">Days High</th>';
+      thead.append($('<th class="days-high">Days High</th>'));
     }
     if (prefs.getBool('include-volume')) {
-      thead += '<th class="volume">Volume</th>';
+      thead.append($('<th class="volume">Volume</th>'));
     }
     if (prefs.getBool('include-year-low')) {
-      thead += '<th class="year-low">Year Low</th>';
+      thead.append($('<th class="year-low">Year Low</th>'));
     }
     if (prefs.getBool('include-year-high')) {
-      thead += '<th class="year-high">Year High</th>';
+      thead.append($('<th class="year-high">Year High</th>'));
     }
     if (prefs.getBool('include-market-cap')) {
-      thead += '<th class="market-cap">Market Cap</th>';
+      thead.append($('<th class="market-cap">Market Cap</th>'));
     }
     if (prefs.getBool('include-avg-daily-volume')) {
-      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
+      thead.append($('<th class="avg-daily-volume">Average 30 Day Volume</th>'));
     }
     if (prefs.getBool('include-exchange')) {
-      thead += '<th class="exchange">Exchange</th>';
+      thead.append($('<th class="exchange">Exchange</th>'));
     }
-    thead += '</tr>';
-    $("div.quotescontainer > table > thead").empty();
-    $(thead).prependTo("div.quotescontainer > table > thead");
+
+    $("div.quotescontainer > table > thead").empty().append(thead);
 
     var size = $('td').css('font-size');
     $('i').css('font-size', size);
@@ -196,70 +216,72 @@ i
   var max_id = 0;
   
   var update = function () {
-  
-    var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote";
-    
+
+    var url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
+
     $.getJSON(url, function(json) {
 
       $("div.quotescontainer > table > tbody").empty();
-      
-      var display = '';
-      
+
       for (var key in json) {
-      
+
         var quote = json[key].quote;
-        
-        display += '<tr class="item">';
+
+        var tr = $('<tr>').addClass('item');
         if (prefs.getBool('include-graphic')) {
-          if (parseFloat(quote.change) >= 0) {
-            display += '<td class="icon"><i class="fi-arrow-up green"></i></td>';
+          if (parseFloat(quote.change) > 0) {
+            tr.addClass('row-up');
+            tr.append($("<td class='icon'><i class='fi-arrow-up green'></i></td>"));
+          } else if (parseFloat(quote.change) < 0) {
+            tr.addClass('row-down');
+            tr.append($("<td class='icon'><i class='fi-arrow-up red'></i></td>"));
           } else {
-            display += '<td class="icon"><i class="fi-arrow-down red"></i></td>';
+            tr.append($("<td class='icon'></td>"));
           }
         }
+
         if (prefs.getBool('include-name')) {
-          display += '<td class="value name">' + quote.companyName + '</td>';
+          tr.append($('<td class="value name">').text(quote.companyName));
         }
         if (prefs.getBool('include-symbol')) {
-          display += '<td class="value symbol">' + quote.symbol + '</td>';
+          tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          display += '<td class="value last-trade">' + quote.latestPrice + '</td>';
+          tr.append($('<td class="value last-trade">').text(quote.latestPrice));
         }
         if (prefs.getBool('include-change')) {
-          display += '<td class="value change">' + quote.change + '</td>';
+          tr.append($('<td class="value change">').text(quote.change));
         }
         if (prefs.getBool('include-days-range')) {
-          display += '<td class="value days-range">' + (Math.round((quote.high - quote.low) * 100) / 100) + '</td>';
+          tr.append($('<td class="value days-range">').text((Math.round((quote.high - quote.low) * 100) / 100)));
         }
         if (prefs.getBool('include-days-low')) {
-          display += '<td class="value days-low">' + quote.low + '</td>';
+          tr.append($('<td class="value days-low">').text(quote.low));
         }
         if (prefs.getBool('include-days-high')) {
-          display += '<td class="value days-high">' + quote.high + '</td>';
+          tr.append($('<td class="value days-high">').text(quote.high));
         }
-        if (prefs.getBool('include-volume')) {
-          display += '<td class="value volume">' + quote.latestVolume.commarize() + '</td>';
+        if (prefs.getBool('include-volume') && quote.latestVolume) {
+          tr.append($('<td class="value volume">').text(quote.latestVolume.commarize()));
         }
         if (prefs.getBool('include-year-low')) {
-          display += '<td class="value year-low">' + quote.week52Low + '</td>';
+          tr.append($('<td class="value year-low">').text(quote.week52Low));
         }
         if (prefs.getBool('include-year-high')) {
-          display += '<td class="value year-high">' + quote.week52High + '</td>';
+          tr.append($('<td class="value year-high">').text(quote.week52High));
         }
-        if (prefs.getBool('include-market-cap')) {
-          display += '<td class="value market-cap">' + quote.marketCap.commarize() + '</td>';
+        if (prefs.getBool('include-market-cap') && quote.marketCap) {
+          tr.append($('<td class="value market-cap">').text(quote.marketCap.commarize()));
         }
-        if (prefs.getBool('include-avg-daily-volume')) {
-          display += '<td class="value avg-daily-volume">' + quote.avgTotalVolume.commarize() + '</td>';
+        if (prefs.getBool('include-avg-daily-volume') && quote.avgTotalVolume) {
+          tr.append($('<td class="value avg-daily-volume">').text(quote.avgTotalVolume.commarize()));
         }
         if (prefs.getBool('include-exchange')) {
-          display += '<td class="value exchange">' + quote.primaryExchange + '</td>';
+          tr.append($('<td class="value exchange">').text(quote.primaryExchange));
         }
-        display += '</tr>';
+
+        $("div.quotescontainer > table > tbody").append(tr);
       }
-      
-      $(display).prependTo("div.quotescontainer > table > tbody");
     });
   }
   
@@ -269,22 +291,22 @@ i
       var units = ["k", "M", "B", "T"];
       
       // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
-      let unit = Math.floor(((this).toFixed(0).length - 1) / 3) * 3
+      var unit = Math.floor(((this).toFixed(0).length - 1) / 3) * 3;
       // Calculate the remainder
-      var num = (this / ('1e'+unit)).toFixed(2)
-      var unitname = units[Math.floor(unit / 3) - 1]
+      var num = (this / ('1e'+unit)).toFixed(2);
+      var unitname = units[Math.floor(unit / 3) - 1];
       
       // output number remainder + unitname
-      return num + unitname
+      return num + unitname;
     }
     
     // return formatted original number
-    return this.toLocaleString()
+    return this.toLocaleString();
   }
 
   // Add method to prototype. this allows you to use this function on numbers and strings directly
-  Number.prototype.commarize = commarize
-  String.prototype.commarize = commarize
+  Number.prototype.commarize = commarize;
+  String.prototype.commarize = commarize;
 
 </script>
 ]]>

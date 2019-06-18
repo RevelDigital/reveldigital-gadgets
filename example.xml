@@ -3,6 +3,10 @@
 <ModulePrefs title="Trevor Does Tricks" height="300">
   <Require feature="flash" />
   <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="moment" />
+  <Require feature="offline" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -24,6 +28,9 @@
 
   // Display still photo.
   function showPhoto() {
+  
+    console.log("moment: " + moment().format('LLL'));
+    
     document.getElementById("flashcontainer").innerHTML = "<img src='http://doc.examples.googlepages.com/Trevor.JPG' />";
   }
 

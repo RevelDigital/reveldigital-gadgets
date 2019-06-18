@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="RevelDigital Meeting Room Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360002538071-Meeting-room-gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="moment" />
+  <Require feature="offline" />
+  
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
@@ -59,6 +65,7 @@
             position: absolute;
             top: 1vh;
             left: 1vw;
+            width: __UP_rdW__px;
         }
 
         #event {
@@ -69,6 +76,7 @@
             left: 50%;
             /* bring your own prefixes */
             transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
         }
 
             #event h1 {
@@ -89,9 +97,9 @@
         #next {
             font-size: 1em;
             position: absolute;
-            width: calc(100% - 1vw);
             bottom: 1vh;
             left: 1vw;
+            width: __UP_rdW__px;
         }
 
             #next h3 {
@@ -107,17 +115,21 @@
             padding-top: 0;
             margin-bottom: 0;
             margin-top: 0;
-            padding-left: 5%;
+            padding-left: 1.5vw;
+        }
+        
+        #progress {
+          margin: 10px;
+          width: 100px;
+          height: 100px;
+          left: calc(50% - 50px);
+          position: relative;
         }
     </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
-    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
-    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/gadget-common/third-party/progressbar.min.js"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
@@ -133,6 +145,100 @@
     </div>
 
     <script type="text/javascript">
+    
+      var iadea_access = {
+        ip: 'lvh.me',
+        api_base: 'http://lvh.me:8080/v2',
+        token: ''
+      };
+
+      function getToken() {
+      	var xhr = new XMLHttpRequest(),
+          data = {
+            grant_type: 'password',
+            username: 'admin',
+            password: ''
+          },
+          data_string = '';
+        
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', iadea_access.api_base + '/oauth2/token', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              iadea_access.token = JSON.parse(this.responseText).access_token;
+              
+              changeLedColor('#FFFFFF');
+              //cycleLed(0);
+            } else {
+              console.log('IADEA auth failed');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
+
+      function byte2Hex(n) {
+        var nybHexString = "0123456789ABCDEF";
+        return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+      }
+
+      function RGB2Color(r,g,b) {
+        return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+      }
+  
+      function cycleLed(i) {
+      
+        if (i == 32) {
+          return;
+        }
+        
+        var frequency = .3;
+        red   = Math.sin(frequency*i + 0) * 127 + 128;
+        green = Math.sin(frequency*i + 2) * 127 + 128;
+        blue  = Math.sin(frequency*i + 4) * 127 + 128;
+
+        changeLedColor(RGB2Color(red,green,blue));
+           
+        setTimeout(cycleLed(++i), 250);
+      }
+      
+      function changeLedColor(hex) {
+      
+        if (iadea_access.token == '') {
+          return;
+        }
+        
+        var xhr = new XMLHttpRequest(),
+          data = {
+            id: 0,
+            name: 'frame',
+            brightness: 1.0,
+            color: hex
+          },
+          data_string = '';
+          
+        for (var key in data) {
+          data_string += '&' + key + (data[key] ? '=' + data[key] : '');
+        }
+        xhr.open('POST', iadea_access.api_base + '/hardware/light?access_token=' + iadea_access.token, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status != 200) {
+              console.log('IDEA command failed');
+            }
+          }
+        }
+        xhr.send(data_string);
+      }
+
+    </script>
+    
+    <script type="text/javascript">
 
         var prefs = new gadgets.Prefs();
 
@@ -141,7 +247,7 @@
             WebFont.load({
                 google: {
                     families: [
-                        RevelDigital.getFamilyName(prefs.getString("body-style"))
+                        gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
                     ]
                 }
             });
@@ -161,6 +267,8 @@
                 $("#next").hide();
             }
 
+            getToken();
+            
             getCalendarData();
 
             setInterval(update, 60000);
@@ -172,6 +280,10 @@
 
     <script type="text/javascript">
 
+        var progressBar = null;
+        var progressEnd;
+        var progressStart;
+      
         function update() {
             var now = moment();
             if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30) {
@@ -182,9 +294,22 @@
             }
         }
 
+        function updateProgress() {
+            if (progressBar != null) {
+                var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
+                var left = moment.duration(progressEnd.diff(moment())).asMinutes();
+                var pct = 1 + 1 - (left / duration);
+
+                progressBar.animate(pct);  // Number from 0.0 to 1.0
+
+                setTimeout(updateProgress, 60000);
+            }
+        }
+        
         function getCalendarData() {
 
-            var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
+            //var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
+            var key = 'AIzaSyDmrjbAKGcwhqr7cF-gX9uiTsW1X8wQdZ4';
             var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
 
             var min = moment().utc().format();
@@ -273,11 +398,12 @@
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
+                                
+                changeLedColor('#00FF00');
+                
                 return;
             }
             
-            //var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
-            //var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
 
@@ -319,15 +445,59 @@
                 }
                 $(event).append(p);
 
+                var progress = $("<div id=\"progress\"></div>");
+                $(event).append(progress);
+                
                 if (items.length > 1) {
                     formatNext(items[1]);
                 }
+                
+                
+                progressEnd = moment(et, "h:mm a");
+                progressStart = moment(st, "h:mm a");
+                
+                progressBar = new ProgressBar.Circle('#progress', {
+                  color: '#fff',
+                  // This has to be the same size as the maximum width to
+                  // prevent clipping
+                  strokeWidth: 6,
+                  trailWidth: .5,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  text: {
+                    autoStyleContainer: false
+                  },
+                  from: { color: '#00FF00', width: 6 },
+                  to: { color: '#FF0000', width: 6 },
+                  // Set default step function for all animate calls
+                  step: function(state, circle) {
+                    circle.path.setAttribute('stroke', state.color);
+                    circle.path.setAttribute('stroke-width', state.width);
+
+                    var value = Math.round(circle.value() * 100);
+                    if (value === 0) {
+                      circle.setText('');
+                    } else {
+                      var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
+                      var left = moment.duration(progressEnd.diff(moment())).asMinutes();
+                      circle.setText(Math.round(left) + 'm left');
+                    }
+                  }
+                });
+                progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+                progressBar.text.style.fontSize = '16px';
+
+                updateProgress();
+                
+                changeLedColor('#FF0000');
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
                 $(event).append(h1);
                 
                 formatNext(items[0]);
+                                
+                changeLedColor('#00FF00');
             }
         }
 

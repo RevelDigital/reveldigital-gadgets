@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Mini Weather Gadget" description="Compact weather with high/low temperature and current condition icon" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
@@ -72,11 +76,8 @@
 <div id="container">
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -269,7 +270,7 @@
   
     WebFont.load({
       google: {
-        families: [ RevelDigital.getFamilyName(prefs.getString("font-style")) ]
+        families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
       }
     });
     
