@@ -217,7 +217,7 @@ i
   
   var update = function () {
 
-    var url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote";
+    var url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
 
     $.getJSON(url, function(json) {
 
