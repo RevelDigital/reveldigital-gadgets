@@ -145,6 +145,8 @@
         </div>
         <div id="event">
         </div>
+        <div id="available">
+        </div>
         <div id="next">
         </div>
     </div>
