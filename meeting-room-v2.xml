@@ -71,13 +71,30 @@
             transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
         }
-            #event h1 {
-                font-size: 1em;
-                position: absolute;
-                bottom: 1vh;
-                left: 1vw;
-                width: __UP_rdW__px;
-            }
+        #event h1 {
+            font-size: 1em;
+            position: absolute;
+            bottom: 1vh;
+            left: 1vw;
+            width: __UP_rdW__px;
+        }
+
+        #available {
+            font-size: 1em;
+            position: absolute;
+            bottom: 1vh;
+            left: 1vw;
+            width: __UP_rdW__px;
+        }
+
+        #available h1 {
+            font-size: 1em;
+            margin-bottom: 0;
+            top: 0;
+            left: 0;
+        }
+
+
         .currentEvent {
             font-size: 1.5em;
         }
@@ -344,11 +361,12 @@
         function formatEvent(items) {
         
             var event = $("#event");
+            var available = $("#available");
             var next = $("#next");
             if (items.length == 0) {
                 h1 = $("<h1 />");
                 h1.text("Available");
-                $(event).append(h1);
+                $(avaiable).append(h1);
                                 
                 changeLedColor('#00FF00');
                 
