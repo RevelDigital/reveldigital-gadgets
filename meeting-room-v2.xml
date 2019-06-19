@@ -368,7 +368,7 @@
             if (items.length == 0) {
                 h1 = $("<h1 />");
                 h1.text("Available");
-                $(avaiable).append(h1);
+                $(available).append(h1);
                                 
                 changeLedColor('#00FF00');
                 
@@ -454,7 +454,7 @@
             } else {
                 h1 = $("<h1 />");
                 h1.text("Available");
-                $(event).append(h1);
+                $(available).append(h1);
                 
                 formatNext(items[0]);
                                 
