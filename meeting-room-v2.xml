@@ -367,7 +367,7 @@
             var next = $("#next");
             if (items.length == 0) {
                 h1 = $("<h1 />");
-                h1.text("Available");
+                h1.text("Available - For Reservations Contact building@email.com");
                 $(available).append(h1);
                                 
                 changeLedColor('#00FF00');
@@ -453,7 +453,7 @@
                 changeLedColor('#FF0000');
             } else {
                 h1 = $("<h1 />");
-                h1.text("Available");
+                h1.text("Available - For Reservations Contact building@email.com");
                 $(available).append(h1);
                 
                 formatNext(items[0]);
