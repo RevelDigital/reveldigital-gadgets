@@ -386,6 +386,7 @@
                     isAllDay = true;
                 }
                 h1 = $("<h1 />");
+                $("#next").hide();
                 h1.text(items[0].summary);
                 $(event).append(h1);
                 var sd = startTime.format("__MSG_Calendar_DateFormat__");
@@ -413,7 +414,7 @@
                 $(event).append(progress);
                 
                 if (items.length > 1) {
-                    $("#next").hide();
+                    
                     formatNext(items[1]);
                 }
                 
