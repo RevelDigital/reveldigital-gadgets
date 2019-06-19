@@ -333,7 +333,7 @@
                 dataType: 'json'
             })
                 .done(function (response) {
-					console.log('Response: ' + response);
+					console.log('Response: ' + response.items);
                     formatEvent(response.items);
                 })
                 .fail(function (xhr, err) {
