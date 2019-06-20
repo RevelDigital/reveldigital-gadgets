@@ -456,7 +456,7 @@
                 changeLedColor('#FF0000');
             
             }else{
-                 $(event).append(h1);
+                 $(event).hide();
             }
         }
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
