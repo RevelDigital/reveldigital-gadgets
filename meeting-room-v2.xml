@@ -457,6 +457,7 @@
             
             }else{
                  $(event).hide();
+                 formatNext(items[0]);
             }
         }
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
