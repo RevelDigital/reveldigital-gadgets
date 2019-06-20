@@ -386,7 +386,7 @@
                     isAllDay = true;
                 }
                 h1 = $("<h1 />");
-                
+                $("next").hide();
                 h1.text(items[0].summary);
                 $(event).append(h1);
                 var sd = startTime.format("__MSG_Calendar_DateFormat__");
@@ -455,6 +455,8 @@
                 
                 changeLedColor('#FF0000');
             
+            }else{
+                 $(next).append(h1);
             }
         }
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
