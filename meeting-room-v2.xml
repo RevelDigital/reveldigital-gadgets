@@ -458,6 +458,8 @@
             }else{
                  $(event).hide();
                  formatNext(items[0]);
+                 $(next).show();
+                 changeLedColor('#00FF00');
             }
         }
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
