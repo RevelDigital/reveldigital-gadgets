@@ -453,7 +453,10 @@
                 progressBar.text.style.fontSize = '16px';
                 updateProgress();
                 
-                changeLedColor('#FF0000');
+                if(now.isBetween(startTime.subtract(10, 'minutes'), endTime)){
+                    changeLedColor('#FF0000');
+                }
+                //changeLedColor('#FF0000');
             
             }else{
                  $(event).hide();
