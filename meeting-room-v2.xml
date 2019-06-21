@@ -72,11 +72,10 @@
             -webkit-transform: translate(-50%, -50%);
         }
         #event h1 {
-            font-size: 1em;
-            position: absolute;
-            bottom: 1vh;
-            left: 1vw;
-            width: __UP_rdW__px;
+            font-size: 3em;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            margin-top: 0;
         }
 
         #available {
