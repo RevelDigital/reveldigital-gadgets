@@ -374,6 +374,11 @@
                 
                 return;
             }
+
+            if(now.isBetween(startTime.subtract(10, 'minutes'), endTime)){
+                changeLedColor('#FF0000');
+            }
+                //changeLedColor('#FF0000');
             
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
@@ -453,10 +458,7 @@
                 progressBar.text.style.fontSize = '16px';
                 updateProgress();
                 
-                if(now.isBetween(startTime.subtract(10, 'minutes'), endTime)){
-                    changeLedColor('#FF0000');
-                }
-                //changeLedColor('#FF0000');
+                
             
             }else{
                  $(event).hide();
