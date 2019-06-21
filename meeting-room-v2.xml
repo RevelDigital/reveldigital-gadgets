@@ -387,6 +387,7 @@
                 }
                 h1 = $("<h1 />");
                 $(next).hide();
+                $(event).show();
                 h1.text(items[0].summary);
                 $(event).append(h1);
                 var sd = startTime.format("__MSG_Calendar_DateFormat__");
