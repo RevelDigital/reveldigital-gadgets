@@ -375,15 +375,17 @@
                 return;
             }
 
-            if(now.isBetween(startTime.subtract(10, 'minutes'), endTime)){
-                changeLedColor('#FF0000');
-            }
-                //changeLedColor('#FF0000');
+            
             
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
             var now = moment(); // use moment to get the now() in device timezone
             
+
+            if(now.isBetween(startTime.subtract(10, 'minutes'), endTime)){
+                changeLedColor('#FF0000');
+            }
+                //changeLedColor('#FF0000');
             if (now.isBetween(startTime, endTime)) {
                 var isAllDay = false;
                 if (items[0].start.date) {
