@@ -60,6 +60,8 @@ div#container
 
   var prefs = new gadgets.Prefs();
 
+  moment.locale((navigator.language || navigator.browserLanguage));
+  
   function load() {
   
     WebFont.load({
