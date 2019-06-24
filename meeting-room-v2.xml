@@ -274,13 +274,13 @@
         var progressStart;
       
         function update() {
-            /*var now = moment();
-            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30) {
+            var now = moment();
+            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30 || now.minute() == 45) {
                 console.log("UPDATING AT: " + now);
                 getCalendarData();
             } else {
                 console.log("NO UPDATE AT: " + now);
-            }*/
+            }
 
             getCalendarData();
         }
