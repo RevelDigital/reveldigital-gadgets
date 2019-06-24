@@ -457,9 +457,7 @@
                 progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
                 progressBar.text.style.fontSize = '16px';
                 updateProgress();
-                
-                
-            
+                changeLedColor('#FF0000');
             }else{
                  $(event).hide();
                  formatNext(items[0]);
@@ -467,11 +465,9 @@
 
                  if(now.isBetween(warningStart, endTime)){
                     changeLedColor('#FF0000');
-                 }else {
+                }else {
                     changeLedColor('#00FF00');
-                 }
-               
-                 
+                }         
             }
         }
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
