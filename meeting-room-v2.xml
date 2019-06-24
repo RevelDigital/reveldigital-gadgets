@@ -380,9 +380,10 @@
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
             var now = moment(); // use moment to get the now() in device timezone
-            var warning = startTime.subtract(10, 'minutes');
+            var warning = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
+            var warningStart = warning.subtract(10, 'minutes');
 
-            if(now.isBetween(warning, endTime)){
+            if(now.isBetween(warningStart, endTime)){
                 changeLedColor('#FF0000');
             }
                 //changeLedColor('#FF0000');
