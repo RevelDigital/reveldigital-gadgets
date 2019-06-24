@@ -264,7 +264,8 @@
             getToken();
             
             getCalendarData();
-            setInterval(update, 60000 * 10);
+            setInterval(updateList, 60000 * 10);
+            setInterval(update, 60000);
         }
         gadgets.util.registerOnLoadHandler(load);
     </script>
@@ -274,14 +275,16 @@
         var progressStart;
       
         function update() {
-            /*var now = moment();
-            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30) {
+            var now = moment();
+            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30 || now.minute() == 45) {
                 console.log("UPDATING AT: " + now);
                 getCalendarData();
             } else {
                 console.log("NO UPDATE AT: " + now);
-            }*/
+            }            
+        }
 
+        function updateList() {
             getCalendarData();
         }
         function updateProgress() {
