@@ -145,7 +145,7 @@
         <div id="event">
         </div>
         <div id="available">
-            <h1>Available Now - For Reservations Contact building@email.com</h1>
+            <h1>For Reservations Contact building@email.com</h1>
         </div>
         <div id="next">
         </div>
@@ -287,6 +287,8 @@
         function updateList() {
             getCalendarData();
         }
+
+
         function updateProgress() {
             if (progressBar != null) {
                 var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
@@ -371,9 +373,9 @@
             var available = $("#available");
             var next = $("#next");
             if (items.length == 0) {
-                //h1 = $("<h1 />");
-                //h1.text("Available Now - For Reservations Contact building@email.com");
-                //$(available).append(h1);
+                h1 = $("<h1 />");
+                h1.text("No events Scheduled");
+                $(event).append(h1);
                                 
                 changeLedColor('#00FF00');
                 
