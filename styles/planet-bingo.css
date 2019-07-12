@@ -69,12 +69,10 @@
 	width: 150px;
 	font-family: Verdana, Arial, sans-serif;
 	font-weight: bold;
-	background-image:url(blueBGt.png);
-	background-repeat:repeat-x;
 }
 
 #Div2 {
-	display:block;
+	display:hidden;
 	font-size: 26px;
 	line-height:4em;
 	color: #fff;
@@ -91,7 +89,7 @@
 }
 
 #Div3a {
-	display:none;
+	display:hidden;
 	font-size: 26px;
 	color: #FFF;
 	text-align: center;
@@ -106,7 +104,7 @@
 }
 
 #Div4 {
-	display:none;
+	display:hidden;
 	font-size: 26px;
 	color: #FFF;
 	text-align: center;
@@ -121,7 +119,7 @@
 }
 
 #Div5 {
-	display:none;
+	display:hidden;
 	font-size: 26px;
 	color: #FFF;
 	text-align: center;
@@ -155,7 +153,7 @@
 }
 
 #Div2a {
-	display:block;
+	display:hidden;
 	font-size: 16px;
 	margin-top: 15px;
 	color: #fff;
@@ -170,7 +168,7 @@
 /* Purple Jackpot Description Hide this Div if you do not want to show the value */
 
 #Div3b {
-	display:none;
+	display:hidden;
 	font-size: 10px;
 	margin-top: 15px;
 	color: #FFF;
@@ -187,7 +185,7 @@
 /* Purple Jackpot Multiplier Title*/
 
 #Div3c {
-	display:none;
+	display:hidden;
 	font-size: 16px;
 	margin-top: 15px;
 	color: #FFF;
@@ -203,7 +201,7 @@
 
 
 #Div4a {
-	display:none;
+	display:hidden;
 	font-size: 16px;
 	margin-top: 15px;
 	color: #FFF;
@@ -217,7 +215,7 @@
 }
 
 #Div5a {
-	display:none;
+	display:hidden;
 	font-size: 16px;
 	margin-top: 15px;
 	color: #FFF;
