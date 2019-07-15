@@ -28,7 +28,7 @@
 /* JACKPOTS WRAPPER */
 
 #wrapper {
-	display:none;
+	display:hidden;
 /*	position:absolute;
 	width: 1024px;
 	height: 250px;
