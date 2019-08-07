@@ -227,6 +227,8 @@
             console.log('Event Start: ' + moment(response.items[i].start.dateTime));
             if(moment().isAfter(moment(response.items[i].start.dateTime)) && moment().isBefore(moment(response.items[i].end.dateTime)){            
                 continue;
+            }else{
+                break;
             }
         }
 
