@@ -223,7 +223,7 @@
       }
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("nextEvents")){
-            if(moment(response.start.dateTime) == moment()){
+            if(moment(response.items[i].start.dateTime) == moment()){
                 console.log('Moment Now: ' + moment());
                 console.log('Event Start: ' + moment(response.items[i].start.dateTime));
                 continue;
