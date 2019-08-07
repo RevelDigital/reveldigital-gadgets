@@ -225,7 +225,7 @@
         if (prefs.getString("nextEvents")){
             if(moment(response.start.dateTime) == moment()){
                 console.log('Moment Now: ' + moment());
-                console.log('Event Start: ' + moment(response.start.dateTime));
+                console.log('Event Start: ' + moment(response.items[i].start.dateTime));
                 continue;
             }
         }
