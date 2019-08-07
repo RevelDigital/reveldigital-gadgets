@@ -89,7 +89,7 @@
 
         h4 {
             font-size: .4em;
-            bottom: 70px;
+            bottom: 8%;
             opacity: 0.5;
         }
 
