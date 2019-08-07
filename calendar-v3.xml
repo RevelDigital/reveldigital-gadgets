@@ -16,7 +16,7 @@
     <EnumValue value="7" display_value="Next 7 Days" />
     <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
-  <UserPref name="nextEvents" display_name="Show only Next Events" dataType="bool" default_value="false"/>
+  <UserPref name="nextEvents" display_name="Show only Next Events" datatype="bool" default_value="false"/>
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
