@@ -225,7 +225,7 @@
         if (prefs.getBool("nextEvents") == true){
             console.log('Moment Now: ' + moment());
             console.log('Event Start: ' + moment(response.items[i].start.dateTime));
-            if(moment(response.items[i].start.dateTime) > moment() || moment(response.items[i].end.dateTime) < moment()){            
+            if(moment(response.items[i].start.dateTime) < moment() && moment(response.items[i].end.dateTime) > moment()){            
                 continue;
             }
         }
