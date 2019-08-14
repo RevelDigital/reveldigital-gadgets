@@ -84,12 +84,12 @@
 
         h3 {
             font-size: .7em;
-            bottom: 20px;
+            bottom: 2em;
         }
 
         h4 {
             font-size: .4em;
-            bottom: 8%;
+            bottom: 20px;
             opacity: 0.5;
         }
 
@@ -122,14 +122,14 @@
             ${{quote.latestPrice}}
         </h2>
 
-        <h4>
-            (Last Quote: {{quote.latestTime}})
-        </h4>
-
         <h3>
             {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
             {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
         </h3>
+        
+        <h4>
+            (Last Quote: {{quote.latestTime}})
+        </h4>
     </div>
 </script>
 
