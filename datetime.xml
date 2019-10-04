@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Text Gadget" description="Basic gadget for displaying text" author="RevelDigital" background="transparent">
+<ModulePrefs title="Date/Time Gadget" description="Displays date and time with formatting options" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
+  <Require feature="moment" />
   <Require feature="offline" />
   
-  <UserPref name="text" display_name="Text to Display" datatype="string" default_value="" />
+  <UserPref name="format" display_name="Format" datatype="enum" default_value="">
+    <EnumValue value="hh:mm a" display_value="8:30 pm" />
+    <EnumValue value="LT" display_value="8:30 PM" />
+    <EnumValue value="LTS" display_value="8:30:25 PM" />
+    <EnumValue value="L" display_value="06/09/2014" />
+    <EnumValue value="l" display_value="6/9/2014" />
+    <EnumValue value="LL" display_value="June 9 2014" />
+    <EnumValue value="ll" display_value="Jun 9 2014" />
+    <EnumValue value="LLL" display_value="June 9 2014 9:32 PM" />
+    <EnumValue value="lll" display_value="Jun 9 2014 9:32 PM" />
+    <EnumValue value="LLLL" display_value="Monday, June 9 2014 9:32 PM" />
+    <EnumValue value="llll" display_value="Mon, Jun 9 2014 9:32 PM" />
+  </UserPref>
+  <UserPref name="custom" display_name="Custom Format" datatype="string" />
   <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
@@ -40,13 +54,14 @@ div#container
 }
 </style>
 
-
 <div id="container"></div>
 
 <script type="text/javascript">
 
   var prefs = new gadgets.Prefs();
 
+  moment.locale((navigator.language || navigator.browserLanguage));
+  
   function load() {
   
     WebFont.load({
@@ -57,13 +72,20 @@ div#container
       }
     });
     
-    $("#container").text(prefs.getString("text"));
+    setInterval(update, 1000);
+    
+    update();
   }
 
   gadgets.util.registerOnLoadHandler(load);
   
-  function setText(text) {
-    $("#container").text(text);
+  function update() {
+
+    if (prefs.getString("custom") != '') {
+      $("#container").text(moment().format(prefs.getString("custom")));  
+    } else {
+      $("#container").text(moment().format(prefs.getString("format")));  
+    }
   }
   
 </script>

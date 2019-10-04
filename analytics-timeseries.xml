@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Analytics Time Series" description="Viewers over time" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="moment" />
+  <Require feature="offline" />
+  
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+#myChart
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+</style>
+
+
+<canvas id="myChart"></canvas>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/chartjs-plugin-streaming.min.js"></script>
+
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  var male = 0;
+  var female = 0;
+  var unknown = 0;
+  
+  
+  function load() {
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [{
+        label: 'Male',
+          borderColor: 'rgba(10, 69, 234, 0.8)',
+          backgroundColor: 'rgba(10, 69, 234, 0.6)',
+          data: []
+        }, {
+        label: 'Female',
+          borderColor: 'rgba(183, 83, 169, 0.8)',
+          backgroundColor: 'rgba(183, 83, 169, 0.6)',
+          data: []
+        }, {
+        label: 'Unknown',
+          borderColor: 'rgba(0, 0, 0, 0.4)',
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          data: []
+        }]
+      },
+      options: {
+        responsive: true, 
+        scales: {
+          yAxes: [{
+            stacked: true, ticks: { min: 0, stepSize: 1 }
+          }],
+          xAxes: [{
+            type: 'realtime',
+            realtime: {
+              onRefresh: function(chart) {
+                var now = Date.now();
+                chart.config.data.datasets[0].data.push({
+                  x: now,
+                  y: male
+                });
+                chart.config.data.datasets[1].data.push({
+                  x: now,
+                  y: female
+                });
+                chart.config.data.datasets[2].data.push({
+                  x: now,
+                  y: unknown
+                });
+              }
+            }
+          }]
+        }
+      }
+    });
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+  function setData(data) {
+    
+    console.log(data.length);
+    
+    unknown = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 0);
+    }, 0);
+    female = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 1);
+    }, 0);
+    male = data.reduce(function (acc, faceInfo) {
+      return acc + (faceInfo.gender == 2);
+    }, 0);
+    
+  }
+  
+</script>
+]]>
+</Content>
+</Module>

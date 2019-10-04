@@ -28,29 +28,24 @@
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-
     <style type="text/css">
         body * {
             line-height: 1.2em;
             letter-spacing: 0;
             word-spacing: normal;
         }
-
         body {
             overflow: hidden;
             background: transparent;
             width: __UP_rdW__px;
             height: __UP_rdH__px;
         }
-
         body, td, div, span, p {
             __UP_body-style__;
         }
-
         h2, h3 {
             margin: 0;
         }
-
         #data {
             font-size: 5vh;
             position: relative;
@@ -59,7 +54,6 @@
             background-color: #__UP_BackColor__;
             __UP_body-style__;
         }
-
         #room {
             font-size: 1em;
             position: absolute;
@@ -67,7 +61,6 @@
             left: 1vw;
             width: __UP_rdW__px;
         }
-
         #event {
             width: __UP_rdW__px;
             text-align: center;
@@ -78,23 +71,14 @@
             transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
         }
-
-            #event h1 {
-                font-size: 3em;
-                padding-bottom: 0;
-                margin-bottom: 0;
-                margin-top: 0;
-            }
-
-        .currentEvent {
-            font-size: 1.5em;
+        #event h1 {
+            font-size: 3em;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            margin-top: 0;
         }
 
-            .currentEvent svg {
-                margin-right: 30px;
-            }
-
-        #next {
+        #available {
             font-size: 1em;
             position: absolute;
             bottom: 1vh;
@@ -102,13 +86,36 @@
             width: __UP_rdW__px;
         }
 
-            #next h3 {
-                font-size: 1em;
-                margin-bottom: 0;
-                top: 0;
-                left: 0;
-            }
+        #available h1 {
+            font-size: 1em;
+            margin-bottom: 0;
+            top: 0;
+            left: 0;
+        }
 
+
+        .currentEvent {
+            font-size: 1.5em;
+        }
+            .currentEvent svg {
+                margin-right: 30px;
+            }
+        #next {
+            width: __UP_rdW__px;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            /* bring your own prefixes */
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+            #next h3 {
+                font-size: 3em;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
         .nextEvent {
             font-size: 1em;
             padding-bottom: 0;
@@ -126,24 +133,23 @@
           position: relative;
         }
     </style>
-
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
     <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
     <script src="https://reveldigital.github.io/gadget-common/third-party/progressbar.min.js"></script>
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-
-
     <div id="data">
         <div id="room">
             <h2>__UP_searchQuery__</h2>
         </div>
         <div id="event">
         </div>
+        <div id="available">
+            <h1>For Reservations Contact building@email.com</h1>
+        </div>
         <div id="next">
         </div>
     </div>
-
     <script type="text/javascript">
     
       var iadea_access = {
@@ -151,7 +157,6 @@
         api_base: 'http://lvh.me:8080/v2',
         token: ''
       };
-
       function getToken() {
       	var xhr = new XMLHttpRequest(),
           data = {
@@ -180,12 +185,10 @@
         }
         xhr.send(data_string);
       }
-
       function byte2Hex(n) {
         var nybHexString = "0123456789ABCDEF";
         return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
       }
-
       function RGB2Color(r,g,b) {
         return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
       }
@@ -200,7 +203,6 @@
         red   = Math.sin(frequency*i + 0) * 127 + 128;
         green = Math.sin(frequency*i + 2) * 127 + 128;
         blue  = Math.sin(frequency*i + 4) * 127 + 128;
-
         changeLedColor(RGB2Color(red,green,blue));
            
         setTimeout(cycleLed(++i), 250);
@@ -235,15 +237,11 @@
         }
         xhr.send(data_string);
       }
-
     </script>
     
     <script type="text/javascript">
-
         var prefs = new gadgets.Prefs();
-
         function load() {
-
             WebFont.load({
                 google: {
                     families: [
@@ -251,82 +249,71 @@
                     ]
                 }
             });
-
             moment.locale("__MSG_Lang__");
-
             if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
               moment.tz.setDefault(Client.getDeviceTimeZoneID());
             } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
               moment.tz.setDefault(Client.getDeviceTimeZoneName());
             }
-
             if (!prefs.getBool("showRoom")) {
                 $("#room").hide();
             }
             if (!prefs.getBool("showNext")) {
                 $("#next").hide();
             }
-
             getToken();
             
             getCalendarData();
-
+            setInterval(updateList, 60000 * 10);
             setInterval(update, 60000);
         }
-
         gadgets.util.registerOnLoadHandler(load);
-
     </script>
-
     <script type="text/javascript">
-
         var progressBar = null;
         var progressEnd;
         var progressStart;
       
         function update() {
             var now = moment();
-            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30) {
+            if (now.minute() == 0 || now.minute() == 15 || now.minute() == 30 || now.minute() == 45) {
                 console.log("UPDATING AT: " + now);
                 getCalendarData();
             } else {
                 console.log("NO UPDATE AT: " + now);
-            }
+            }            
         }
+
+        function updateList() {
+            getCalendarData();
+        }
+
 
         function updateProgress() {
             if (progressBar != null) {
                 var duration = moment.duration(progressEnd.diff(progressStart)).asMinutes();
                 var left = moment.duration(progressEnd.diff(moment())).asMinutes();
                 var pct = 1 + 1 - (left / duration);
-
                 progressBar.animate(pct);  // Number from 0.0 to 1.0
-
                 setTimeout(updateProgress, 60000);
             }
         }
         
         function getCalendarData() {
-
             var key = 'AIzaSyCs7MZxulSNLyV9SeBbzpAg7D8PXscaUKA';
             //var key = 'AIzaSyDmrjbAKGcwhqr7cF-gX9uiTsW1X8wQdZ4';
             var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
-
             var min = moment().utc().format();
             var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().format();
             
             queryParams += '&timeMin=' + encodeURIComponent(min);
             queryParams += '&timeMax=' + encodeURIComponent(max);
-
             if (prefs.getString("searchQuery") != '') {
                 queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
             }
-
             var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
-
             $("#event").empty();
             $("#next").empty();
-
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -341,41 +328,31 @@
                     console.log('get calendar failed: ' + xhr.responseText);
                 });
         }
-
         function formatNext(item) {
-
             var next = $("#next");
-
             var startDateTime = moment(item.start.dateTime ? item.start.dateTime : item.start.date);
             var endDateTime = moment(item.end.dateTime ? item.end.dateTime : item.end.date);
-
             var isAllDay = false;
             if (startDateTime) {
                 if (item.start.date) {
                     isAllDay = true;
                 }
             }
-
             var nsd = startDateTime.format("__MSG_Calendar_DateFormat__");
             var nst = startDateTime.format("__MSG_Calendar_TimeFormat__");
             var net = endDateTime.format("__MSG_Calendar_TimeFormat__");
-
             if (isAllDay) {
                 var ned = endDateTime.subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
             } else {
                 var ned = endDateTime.format("__MSG_Calendar_DateFormat__");
             }
-
             h3 = $("<h3 />");
             $(h3).text("Next Event");
             $(next).append(h3);
-
             var p2 = $("<p class=\"nextEvent\"/>");
             p2.text(item.summary);
             $(next).append(p2);
-
             var p3 = $("<p class=\"nextEvent\"/>");
-
             var time2 = "";
             if (nsd == ned) {
                 time2 += nsd;
@@ -393,46 +370,46 @@
         function formatEvent(items) {
         
             var event = $("#event");
+            var available = $("#available");
             var next = $("#next");
-
             if (items.length == 0) {
                 h1 = $("<h1 />");
-                h1.text("Available");
+                h1.text("No events Scheduled");
                 $(event).append(h1);
                                 
                 changeLedColor('#00FF00');
                 
                 return;
             }
+
+            
             
             var startTime = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
             var endTime = moment(items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date);
-
             var now = moment(); // use moment to get the now() in device timezone
+            var warning = moment(items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date);
+            var warningStart = warning.subtract(10, 'minutes');
+
             
             if (now.isBetween(startTime, endTime)) {
-
                 var isAllDay = false;
                 if (items[0].start.date) {
                     isAllDay = true;
                 }
-
                 h1 = $("<h1 />");
+                $(next).hide();
+                $(event).show();
                 h1.text(items[0].summary);
                 $(event).append(h1);
-
                 var sd = startTime.format("__MSG_Calendar_DateFormat__");
                 var st = startTime.format("__MSG_Calendar_TimeFormat__");
                 var et = endTime.format("__MSG_Calendar_TimeFormat__");
-
                 if (isAllDay) {
                     var ed = endTime.subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
                 } else {
                     var ed = endTime.format("__MSG_Calendar_DateFormat__");
                 }
-
                 var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
-
                 var time = '';
                 if (sd == ed) {
                     time += sd;
@@ -445,11 +422,11 @@
                     p.append(st + " - " + et);
                 }
                 $(event).append(p);
-
                 var progress = $("<div id=\"progress\"></div>");
                 $(event).append(progress);
                 
                 if (items.length > 1) {
+                    
                     formatNext(items[1]);
                 }
                 
@@ -474,7 +451,6 @@
                   step: function(state, circle) {
                     circle.path.setAttribute('stroke', state.color);
                     circle.path.setAttribute('stroke-width', state.width);
-
                     var value = Math.round(circle.value() * 100);
                     if (value === 0) {
                       circle.setText('');
@@ -487,25 +463,22 @@
                 });
                 progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
                 progressBar.text.style.fontSize = '16px';
-
                 updateProgress();
-                
                 changeLedColor('#FF0000');
-            } else {
-                h1 = $("<h1 />");
-                h1.text("Available");
-                $(event).append(h1);
-                
-                formatNext(items[0]);
-                                
-                changeLedColor('#00FF00');
+            }else{
+                 $(event).hide();
+                 formatNext(items[0]);
+                 $(next).show();
+
+                 if(now.isBetween(warningStart, endTime)){
+                    changeLedColor('#FF0000');
+                }else {
+                    changeLedColor('#00FF00');
+                }         
             }
         }
-
         var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
-
         var googleUrl = function (sourceIdentifier) {
-
             if (sourceIdentifier.match(/http(s)*:/)) {
                 try {
                     return sourceIdentifier.match(/[ical|feeds]\/(.*?)\/public\//)[1];
@@ -516,7 +489,6 @@
                 return encodeURIComponent(sourceIdentifier);
             }
         }
-
     </script>
 ]]>
 </Content>

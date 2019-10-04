@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital Weather Gadget" description="Animated weather supporting multiple locations" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
@@ -239,10 +243,7 @@
   </div>
 </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/jquery.fittext.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 
 <script type="text/javascript">
 
@@ -425,7 +426,7 @@
     WebFont.load({
       google: {
         families: [
-          RevelDigital.getFamilyName(prefs.getString("body-style"))
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
         ]
       }
     });

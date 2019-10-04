@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols.  Data provided for free by IEX." author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
+  <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="graphic" display_name="Include Graphic" datatype="bool" default_value="true" />
+  <UserPref name="name" display_name="Include Name" datatype="bool" default_value="true" />
+  <UserPref name="symbol" display_name="Include Symbol" datatype="bool" default_value="true" />
+  <UserPref name="last" display_name="Include Last Trade" datatype="bool" default_value="true" />
+  <UserPref name="change" display_name="Include % Change" datatype="bool" default_value="true" />
+  <UserPref name="range" display_name="Include Days Range" datatype="bool" default_value="false" />
+  <UserPref name="low" display_name="Include Days Low" datatype="bool" default_value="false" />
+  <UserPref name="high" display_name="Include Days High" datatype="bool" default_value="false" />
+  <UserPref name="volume" display_name="Include Volume" datatype="bool" default_value="false" />
+  <UserPref name="yr-low" display_name="Include Year Low" datatype="bool" default_value="false" />
+  <UserPref name="yr-high" display_name="Include Year High" datatype="bool" default_value="false" />
+  <UserPref name="cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
+  <UserPref name="adv" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
+  <UserPref name="exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  overflow: hidden;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+
+div.quotescontainer
+{
+  text-align: left;
+  background-color: #__UP_BackColor__;
+  width: __UP_rdW__px;
+}
+
+div.quotescontainer table
+{
+  color: #__UP_ForeColor__;
+}
+
+table
+{
+  width: 100%;
+}
+
+td, th
+{
+  padding: 10px;
+}
+
+th
+{
+  __UP_header-style__
+  text-align: right;
+}
+
+td
+{
+  __UP_body-style__
+  text-align: right;
+}
+
+i
+{
+  __UP_body-style__
+}
+
+.green
+{
+  color: green !important;
+}
+
+.red
+{
+  color: red !important;
+}
+
+.name, .symbol, .exchange
+{
+  text-align: left !important;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://reveldigital.github.io/gadget-common/third-party/foundation-icons/foundation-icons.css"/>
+
+<div class="quotescontainer">
+  <table>
+    <thead>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  var max_id = 0;
+  
+  
+  function update() {
+  
+    var url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
+    
+    $.getJSON(url, function(json) {
+
+      $("div.quotescontainer > table > tbody").empty();
+      
+      var display = '';
+      
+      for (var key in json) {
+      
+        var quote = json[key].quote;
+        
+        display += '<tr class="item">';
+        if (prefs.getBool('graphic')) {
+          if (parseFloat(quote.change) >= 0) {
+            display += '<td class="icon"><i class="fi-arrow-up green"></i></td>';
+          } else {
+            display += '<td class="icon"><i class="fi-arrow-down red"></i></td>';
+          }
+        }
+        if (prefs.getBool('name')) {
+          display += '<td class="value name">' + quote.companyName + '</td>';
+        }
+        if (prefs.getBool('symbol')) {
+          display += '<td class="value symbol">' + quote.symbol + '</td>';
+        }
+        if (prefs.getBool('last')) {
+          display += '<td class="value last-trade">' + quote.latestPrice + '</td>';
+        }
+        if (prefs.getBool('change')) {
+          display += '<td class="value change">' + quote.change + '</td>';
+        }
+        if (prefs.getBool('range')) {
+          display += '<td class="value days-range">' + (Math.round((quote.high - quote.low) * 100) / 100) + '</td>';
+        }
+        if (prefs.getBool('low')) {
+          display += '<td class="value days-low">' + quote.low + '</td>';
+        }
+        if (prefs.getBool('high')) {
+          display += '<td class="value days-high">' + quote.high + '</td>';
+        }
+        if (prefs.getBool('volume') && quote.latestVolume) {
+          display += '<td class="value volume">' + quote.latestVolume.commarize() + '</td>';
+        }
+        if (prefs.getBool('yr-low')) {
+          display += '<td class="value year-low">' + quote.week52Low + '</td>';
+        }
+        if (prefs.getBool('yr-high')) {
+          display += '<td class="value year-high">' + quote.week52High + '</td>';
+        }
+        if (prefs.getBool('cap') && quote.marketCap) {
+          display += '<td class="value market-cap">' + quote.marketCap.commarize() + '</td>';
+        }
+        if (prefs.getBool('adv') && quote.avgTotalVolume) {
+          display += '<td class="value avg-daily-volume">' + quote.avgTotalVolume.commarize() + '</td>';
+        }
+        if (prefs.getBool('exchange')) {
+          display += '<td class="value exchange">' + quote.primaryExchange + '</td>';
+        }
+        display += '</tr>';
+      }
+      
+      $(display).prependTo("div.quotescontainer > table > tbody");
+    });
+  }
+  
+  function commarize() {
+    // Alter numbers larger than 1k
+    if (this >= 1e3) {
+      var units = ["k", "M", "B", "T"];
+      
+      // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
+      var unit = Math.floor(((this).toFixed(0).length - 1) / 3) * 3;
+      // Calculate the remainder
+      var num = (this / ('1e'+unit)).toFixed(2);
+      var unitname = units[Math.floor(unit / 3) - 1];
+      
+      // output number remainder + unitname
+      return num + unitname;
+    }
+    
+    // return formatted original number
+    return this.toLocaleString();
+  }
+
+  // Add method to prototype. this allows you to use this function on numbers and strings directly
+  Number.prototype.commarize = commarize;
+  String.prototype.commarize = commarize;
+  
+  function load() {
+
+    WebFont.load({
+      google: {
+        families: [
+          gadgets.reveldigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    
+    var thead = '<tr>';
+    if (prefs.getBool('graphic')) {
+      thead += '<th></th>';
+    }
+    if (prefs.getBool('name')) {
+      thead += '<th class="name">Name</th>';
+    }
+    if (prefs.getBool('symbol')) {
+      thead += '<th class="symbol">Symbol</th>';
+    }
+    if (prefs.getBool('last')) {
+      thead += '<th class="last-trade">Last Trade</th>';
+    }
+    if (prefs.getBool('change')) {
+      thead += '<th class="change">Change</th>';
+    }
+    if (prefs.getBool('range')) {
+      thead += '<th class="days-range">Days Range</th>';
+    }
+    if (prefs.getBool('low')) {
+      thead += '<th class="days-low">Days Low</th>';
+    }
+    if (prefs.getBool('high')) {
+      thead += '<th class="days-high">Days High</th>';
+    }
+    if (prefs.getBool('volume')) {
+      thead += '<th class="volume">Volume</th>';
+    }
+    if (prefs.getBool('yr-low')) {
+      thead += '<th class="year-low">Year Low</th>';
+    }
+    if (prefs.getBool('yr-high')) {
+      thead += '<th class="year-high">Year High</th>';
+    }
+    if (prefs.getBool('cap')) {
+      thead += '<th class="market-cap">Market Cap</th>';
+    }
+    if (prefs.getBool('adv')) {
+      thead += '<th class="avg-daily-volume">Average 30 Day Volume</th>';
+    }
+    if (prefs.getBool('exchange')) {
+      thead += '<th class="exchange">Exchange</th>';
+    }
+    thead += '</tr>';
+    $("div.quotescontainer > table > thead").empty();
+    $(thead).prependTo("div.quotescontainer > table > thead");
+
+    var size = $('td').css('font-size');
+    $('i').css('font-size', size);
+    
+    update();
+    
+    setInterval(update, 120000);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+
+]]>
+</Content>
+</Module>
