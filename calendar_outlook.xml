@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Google Calendar Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001531431-Google-Calendar-Integration" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
+  <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
+    <EnumValue value="div" display_value="Consolidated" />
+    <EnumValue value="table" display_value="Tabular" />
+  </UserPref>
+  <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
+  <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
+  <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
+    <EnumValue value="365" display_value="No Limit" />
+    <EnumValue value="0" display_value="Today" />
+    <EnumValue value="7" display_value="Next 7 Days" />
+    <EnumValue value="30" display_value="Next 30 Days" />
+  </UserPref>
+  <UserPref name="nextEvents" display_name="Show only Next Events" datatype="bool" default_value="false"/>
+  <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
+    <EnumValue value="fastest" display_value="Fastest" />
+    <EnumValue value="fast" display_value="Fast" />
+    <EnumValue value="medium" display_value="Medium" />
+    <EnumValue value="slow" display_value="Slow" />
+    <EnumValue value="none" display_value="None" />
+  </UserPref>
+  <UserPref name="scrollBy" display_name="Scroll By"  datatype="enum" default_value="continuous">
+    <EnumValue value="continuous" display_value="Continuous" />
+    <EnumValue value="page" display_value="Page" />
+  </UserPref>
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+  body
+  {
+    overflow: hidden;
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+  }
+  #data
+  {
+    background-color: #__UP_BackColor__;
+    height: __UP_rdH__px;
+  }
+  #events table
+  {
+    color: #__UP_ForeColor__;
+    width: __UP_rdW__px;
+  }
+  #events
+  {
+    color: #__UP_ForeColor__;
+    width: __UP_rdW__px;
+  }
+  table, div#events
+  {
+    width: __UP_rdW__px;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+  }
+  td, th
+  {
+    padding: 8px;
+  }
+  th
+  {
+    __UP_header-style__;
+  }
+  td
+  {
+    __UP_body-style__;
+  }
+  h2
+  {
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-weight: normal;
+    __UP_header-style__;
+  }
+  h3
+  {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    __UP_body-style__;
+  }
+  img
+  {
+    float: left;
+    width: 200px;
+    margin-right: 10px;
+  }
+  .entry
+  {
+    padding: 20px 5px;
+    border-bottom: solid 1px #ccc;
+    clear:both;
+  }
+  .when
+  {
+    display:block;
+    opacity: 0.7;
+    margin-top: 2px;
+    font-weight: normal;
+    __UP_body-style__;
+    font-size: 80% !important;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/utils/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.1/plugins/ScrollToPlugin.min.js"></script>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/autoscroll.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<div id="data">
+  <div id="events" class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Event</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  
+  function load() {
+    
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    
+    moment.locale("__MSG_Lang__");
+    
+    if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
+      moment.tz.setDefault(Client.getDeviceTimeZoneID());
+    } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+      moment.tz.setDefault(Client.getDeviceTimeZoneName());
+    }
+    
+    if (prefs.getBool("showHeader") == false) {
+      $("#events > table > thead").hide();
+    }
+    update();
+    
+    setInterval(update, 120000);
+  }
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+<script type="text/javascript">
+  
+  function update() {    
+    var min = moment().format('YYYY-MM-DDTHH:mm:ssZ');
+    var max = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day').format('YYYY-MM-DDTHH:mm:ssZ');
+    
+    var url = 'https://tranquil-reef-43317.herokuapp.com?url=' + encodeURIComponent(prefs.getString("calendarUrl"));
+
+    $.getJSON({
+        url: url,
+        success: function (result, status, xhr) {    
+            const cal = Object.values(result);       
+            const events = cal[0].map(cal => cal['VEVENT']);
+            const parsedEvents = events[0].map(ev => parseEvent(ev));
+            
+            console.log(parsedEvents); 
+
+            
+            if (prefs.getString("displayFormat") != "table") {
+                $("#events").empty();
+            } else {
+                $("#events > table > tbody").empty();
+            }  
+
+            for (p in parsedEvents) {
+                if (prefs.getBool("nextEvents") == true){
+                    console.log('Moment Now: ' + moment());
+                    console.log('Event Start: ' + moment(parsedEvent.START_TIME));
+
+                    if(moment(parsedEvent.START_TIME) < moment() && moment(parsedEvent.END_TIME) > moment()){            
+                    continue;
+                    }
+                }
+                if (prefs.getString("displayFormat") == "table") {
+                    formatTable(parsedEvents[p]);
+                } else {
+                    formatDiv(parsedEvents[p]);
+                }
+            }
+
+            if (prefs.getString("scrollSpeed") != "none") {
+                $("#data").autoScroll({
+                    speed: prefs.getString("scrollSpeed"),
+                    by: prefs.getString("scrollBy")
+                }).on("done", function() {
+                    $("#data").data("plugin_autoScroll").play();
+                });
+                $("#data").data("plugin_autoScroll").play();
+            }
+        },
+        error: function (error) {
+          console.log(error);
+        }
+    });
+    
+  }  
+
+  function formatDiv(event) {
+    var startDateTime = event.START_TIME ;
+    var endDateTime = event.END_TIME;
+    
+    /**
+     * timeMin/timeMax will not filter expanded recurring events
+     */
+    var now = moment();
+    var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
+    var sdt = moment(startDateTime).startOf('day');
+    var edt = moment(endDateTime);
+    //if (!now.isBetween(sdt, edt))
+    if (now.isAfter(edt) || eod.isBefore(sdt))
+      return;
+    
+    var isAllDay = false;
+    /*if (startDateTime) {
+      if (event.start.date) {
+        isAllDay = true;
+      }
+    }*/
+    
+    var div = $("<div class=\"entry\"></div>");
+    
+    var h2 = $("<h2></h2>");
+    h2.text(event.SUMMARY);
+    $(div).append(h2);
+    
+    var h3 = $("<h3></h3>");
+    h3.text(event.LOCATION);
+    $(div).append(h3);
+    
+    var span = $("<span class=\"when\"></span>");
+    
+    var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+    var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+    var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+    /*if (isAllDay) {
+      var ed = moment(endDateTime).subtract(1, 'days').format("__MSG_Calendar_DateFormat__");
+    } else {
+      var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+    }*/
+    var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+    var time = '';
+    if (sd == ed) {
+      time += sd;
+    } else {
+      time += sd + " - " + ed;
+    }
+    /*if (isAllDay) {
+      span.text(time);
+    } else {
+      span.text(time + ", " + st + " - " + et);
+    }*/
+    span.text(time + ", " + st + " - " + et);
+    $(h3).append(span);
+    
+    $(div).append("<div style=\"clear:both;\"></div>");
+    
+    $("#events").append(div);
+  }
+  function formatTable(event) {
+    var startDateTime = event.START_TIME;
+    var endDateTime = event.END_TIME;
+    
+    /**
+     * timeMin/timeMax will not filter expanded recurring events
+     */
+    var now = moment();
+    var eod = moment().add(prefs.getInt("futureEvents"), 'days').endOf('day');
+    var sdt = moment(startDateTime).startOf('day');
+    var edt = moment(endDateTime);
+    //if (!now.isBetween(sdt, edt))
+    if (now.isAfter(edt) || eod.isBefore(sdt))
+      return;
+    
+    
+    var tbody = $("#events > table > tbody");
+    var tr = $('<tr/>');
+    
+    var sd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+    var st = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+    var et = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+    /*if (isAllDay) {
+      var ed = moment(endDateTime).subtract('days', 1).format("__MSG_Calendar_DateFormat__");
+    } else {
+      var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+    }*/
+    
+    var ed = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+    var td = $("<td class=\"date\"/>");
+    
+    var time = '';
+    if (sd == ed) {
+      time += sd;
+    } else {
+      time += sd + " - " + ed;
+    }
+    /*if (isAllDay) {
+      td.text(time);
+    } else {
+      td.text(time + ", " + st + " - " + et);
+    }*/
+    td.text(time + ", " + st + " - " + et);
+    $(tr).append(td);
+      
+    td = $("<td class=\"title\"/>");
+    td.text(event.SUMMARY);
+    $(tr).append(td);
+    
+    td = $("<td class=\"where\"/>");
+    td.text(event.LOCATION);
+    $(tr).append(td);
+    
+    $(tbody).append(tr);
+  }  
+
+  function parseEvent(ev) {
+  //console.log(ev);
+  
+    for (let p in ev) {
+      if (p.startsWith('DTSTART')) {
+        
+       /*let tz = p.split(';')[1].split('=')[1];
+        //console.log(tz);
+        ev.START_TIMEZONE = tz;
+       */
+        let time = moment(ev[p]);
+        //console.log(time.toString());
+        ev.START_TIME = time;
+      }
+      
+      if (p.startsWith("DTEND")) {
+
+        /*let tz = p.split(';')[1].split('=')[1];
+        ev.END_TIMEZONE = tz;
+       */
+        let time = moment(ev[p]);
+        ev.END_TIME = time;
+      }
+  }
+  return ev;
+}
+  
+</script>
+<script type="text/javascript">
+        
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker')
+    .then(registration =>
+      console.log('Service Worker Registered')
+    );
+  }
+  
+</script>
+]]>
+</Content>
+</Module>
