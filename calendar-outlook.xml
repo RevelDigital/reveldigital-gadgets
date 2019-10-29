@@ -3,7 +3,7 @@
 <ModulePrefs title="RevelDigital Google Calendar Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001531431-Google-Calendar-Integration" description="Lists your current Google Calendar events in chronological order" author="RevelDigital" background="transparent">
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
-  <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
+  <UserPref name="calendarUrl" display_name="Outlook Calendar ICS URL" datatype="string" />
   <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
     <EnumValue value="table" display_value="Tabular" />
