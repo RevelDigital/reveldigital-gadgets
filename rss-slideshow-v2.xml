@@ -22,107 +22,167 @@
 <style type="text/css">
 body *
 {
-  line-height: 1.2em; 
-  letter-spacing: 0; 
-  word-spacing: normal; 
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
 }
 
 body
 {
   background: transparent;
-  overflow: hidden;
-}
-
-h1, h2, h3, h4, h5
-{
-  font-weight: normal;
-}
-
-.rssFeed
-{
-	width: __UP_rdW__px;
-	height: __UP_rdH__px;
-	overflow: hidden;
-}
-
-.rssHeader, .rssHeader a
-{
-  text-decoration: none;
-  __UP_header-style__;
-}
-
-.rssBody
-{
-  position: relative;
-  overflow: hidden;
-  border: 0px solid #fff;
+  width: __UP_rdW__px;
   height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+a
+{
+  text-decoration:none;
   __UP_body-style__;
 }
 
-.rssBody ul
+a:hover,a:visited,a:active,a:link
 {
-  position: relative;
-  list-style: none;
-  margin: 0;
+  text-decoration:none;
+  __UP_body-style__;
+}
+
+img
+{
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+p
+{
   padding: 0;
+  margin: 0;
 }
 
-.rssBody ul li
+#rss-feeds
 {
-  float: left;
   width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: left;
+  text-align: left;
+  overflow: hidden;
+  background-color: #__UP_BackColor__;
 }
 
-.rssRow
+div.post
 {
+  display: block;
+}
+
+.avatar-small
+{
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.avatar-small img
+{
+  width: 80px;
+  height: 80px;
+}
+
+.avatar-large
+{
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
+  margin-right: 10px;
+}
+
+.avatar-large img
+{
+  width: 130px;
+  height: 130px;
+}
+
+.detail
+{
+  margin-top: 20px;
+}
+
+.detail .picture
+{
+  padding-right: 20px;
+}
+
+.detail i
+{
+  color: #4099ff;
+}
+
+.body
+{
+  display:block;
+  padding-top: 20px;
+  __UP_body-style__;
+}
+
+.body td, .body div, .body span, .body p
+{
+  __UP_body-style__;
+}
+
+.photo
+{
+  display: table-cell;
+  padding-right: 20px;
+  width: 50%;
+}
+
+.photo img
+{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
   margin-bottom: 20px;
 }
 
-.rssRow h4, .rssRow p, .rssRow div
+div.stats
 {
-	margin: 0;
-	width: __UP_rdW__px;
+  padding: 0 10px 0 0;
+  __UP_stats-style__;
 }
 
-.rssRow h4, .rssRow h4 a
+.stats td, .stats div, .stats span, .stats p
 {
-  text-decoration: none;
-  __UP_header-style__;
+  __UP_stats-style__;
 }
 
-.rssRow div
+div.name
 {
-  __UP_date-style__;
+  padding: 0 10px 0 0;
+  __UP_name-style__;
 }
 
-.rssRow p
+span.when
 {
-  __UP_body-style__;
+  margin-right: 10px;
 }
-
-.rssRow p a
-{
-  display: none;
-}
-
-#ticker1 .odd { background-color: #fff; }
-#ticker1 .even { background-color: #fff; }
-
-#ticker2 .odd { background-color: #fff; }
-#ticker2 .even { background-color: #fff; }
 </style>
+
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/gadget-common/third-party/jquery.rss.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel-core.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel-autoscroll.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<div id="ticker" class="rssFeed jcarousel">
+<div id="rss-feeds">
 </div>
 
 <script type="text/javascript">
@@ -196,14 +256,20 @@ h1, h2, h3, h4, h5
       entryTemplate: "<li class='rssRow'>" + header + date + content + "</li>",
       
       success: function() {
-        $('div.rssBody').jcarousel({
-          vertical: true,
-          wrap: 'both',
-          transitions: true
-        }).jcarouselAutoscroll({
-            interval: parseInt(prefs.getString("pause")) * 1000,
-            target: '+=1',
-            autostart: true
+        try {
+          $('#rss-feed').slick('unslick');
+        } catch (e) {}
+        //$("div.postscontainer").empty();
+        //$("#postTemplate").tmpl(json.Data).appendTo("div.postscontainer");
+        
+        //$('div.item').profanityFilter();
+        
+        $('#rss-feed').slick({
+          dots: false,
+          autoplaySpeed: prefs.getInt('pause') * 1000,
+          autoplay: true,
+          fade: (prefs.getString('transition') == 'fade'),
+          lazyLoad: 'progressive'
         });
       }
     });
@@ -211,6 +277,7 @@ h1, h2, h3, h4, h5
 
   gadgets.util.registerOnLoadHandler(load);
 </script>
+
 
 ]]>
 </Content>
