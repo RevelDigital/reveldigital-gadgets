@@ -238,8 +238,11 @@ span.when
       }
     }
     
-    $('#ticker').empty();
-    $('#ticker').rss(prefs.getString("feedUrl"), {
+    try {
+      $('#rss-feeds').slick('unslick');
+    } catch (e) {}
+    $('#rss-feeds').empty();
+    $('#rss-feeds').rss(prefs.getString("feedUrl"), {
       ssl: true,
       limit: prefs.getString("maxItems"),
 
@@ -256,15 +259,12 @@ span.when
       entryTemplate: "<li class='rssRow'>" + header + date + content + "</li>",
       
       success: function() {
-        try {
-          $('#rss-feed').slick('unslick');
-        } catch (e) {}
         //$("div.postscontainer").empty();
         //$("#postTemplate").tmpl(json.Data).appendTo("div.postscontainer");
-        
+
         //$('div.item').profanityFilter();
         
-        $('#rss-feed').slick({
+        $('#rss-feeds').slick({
           dots: false,
           autoplaySpeed: prefs.getInt('pause') * 1000,
           autoplay: true,
