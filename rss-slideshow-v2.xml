@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital RSS Vertical Scroller" description="Rotates through RSS feed items in a vertical scroller" author="RevelDigital" background="transparent">
+  <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
+  <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
+  <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
+  <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+  <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
+  <UserPref name="showContent" display_name="Display feed content" datatype="bool" default_value="true" />
+  <UserPref name="snippet" display_name="Display a shortened version of content" datatype="bool" default_value="true" />
+  <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
+  <UserPref name="includeHTML" display_name="Include HTML in the content" datatype="bool" default_value="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+}
+
+body
+{
+  background: transparent;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5
+{
+  font-weight: normal;
+}
+
+.rssFeed
+{
+	width: __UP_rdW__px;
+	height: __UP_rdH__px;
+	overflow: hidden;
+}
+
+.rssHeader, .rssHeader a
+{
+  text-decoration: none;
+  __UP_header-style__;
+}
+
+.rssBody
+{
+  position: relative;
+  overflow: hidden;
+  border: 0px solid #fff;
+  height: __UP_rdH__px;
+  __UP_body-style__;
+}
+
+.rssBody ul
+{
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rssBody ul li
+{
+  float: left;
+  width: __UP_rdW__px;
+}
+
+.rssRow
+{
+  margin-bottom: 20px;
+}
+
+.rssRow h4, .rssRow p, .rssRow div
+{
+	margin: 0;
+	width: __UP_rdW__px;
+}
+
+.rssRow h4, .rssRow h4 a
+{
+  text-decoration: none;
+  __UP_header-style__;
+}
+
+.rssRow div
+{
+  __UP_date-style__;
+}
+
+.rssRow p
+{
+  __UP_body-style__;
+}
+
+.rssRow p a
+{
+  display: none;
+}
+
+#ticker1 .odd { background-color: #fff; }
+#ticker1 .even { background-color: #fff; }
+
+#ticker2 .odd { background-color: #fff; }
+#ticker2 .even { background-color: #fff; }
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/third-party/jquery.rss.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel-core.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel-autoscroll.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+<div id="ticker" class="rssFeed jcarousel">
+</div>
+
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+
+  function load() {
+
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("header-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("body-style"))
+        ]
+      }
+    });
+    WebFont.load({
+      google: {
+        families: [
+          RevelDigital.getFamilyName(prefs.getString("date-style"))
+        ]
+      }
+    });
+        
+    update();
+    
+    setInterval(update, 30 * 60 * 60 * 1000); // 30 minutes
+  }
+    
+  var update = function () {
+  
+    var date = prefs.getBool("showDate") ? "<div>{date}</div>" : "";
+    var header = prefs.getBool("showHeader") ? "<h4>{title}</h4>" : "";
+    var content = "";
+    if (prefs.getBool("showContent")) {
+      if (prefs.getBool("snippet")) {
+        if (prefs.getBool("includeHTML")) {
+          content = "<p>{shortBody}</p>";
+        } else {
+          content = "<p>{shortBodyPlain}</p>";
+        }
+      } else {
+        if (prefs.getBool("includeHTML")) {
+          content = "<p>{body}</p>";
+        } else {
+          content = "<p>{bodyPlain}</p>";
+        }
+      }
+    }
+    
+    $('#ticker').empty();
+    $('#ticker').rss(prefs.getString("feedUrl"), {
+      ssl: true,
+      limit: prefs.getString("maxItems"),
+
+      host: 'quiet-eyrie-99102.herokuapp.com',
+
+      // outer template for the html transformation
+      // default: "<ul>{entries}</ul>"
+      // valid values: any string
+      layoutTemplate: "<div class='rssBody'><ul>{entries}</ul></div>",
+
+      // inner template for each entry
+      // default: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>'
+      // valid values: any string
+      entryTemplate: "<li class='rssRow'>" + header + date + content + "</li>",
+      
+      success: function() {
+        $('div.rssBody').jcarousel({
+          vertical: true,
+          wrap: 'both',
+          transitions: true
+        }).jcarouselAutoscroll({
+            interval: parseInt(prefs.getString("pause")) * 1000,
+            target: '+=1',
+            autostart: true
+        });
+      }
+    });
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+</script>
+
+]]>
+</Content>
+</Module>
