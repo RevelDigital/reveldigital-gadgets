@@ -167,7 +167,7 @@
                 if (i > prefs.getInt("maxItems")) {
                     return false;
                 }
-                $('#container').append('<div class="rss-feeds"></div>');
+                $('#container').append('<div id="rss-feeds"></div>');
                 $('#rss-feeds').append(
                     item.mediagroup ?
                     `<div class="row">
