@@ -161,13 +161,14 @@
                     `<div id="header" class="row"><div class="col-2"><img src="${data.image.url}" width="100%"></div><div class="col-10"><h1>${data.description}</h1></div>`
                 );
             }
+            $('#container').append('<div id="rss-feeds"></div>');
             
             $.each(data.items, function(i, item) {
             
                 if (i > prefs.getInt("maxItems")) {
                     return false;
                 }
-                $('#container').append('<div id="rss-feeds"></div>');
+                
                 $('#rss-feeds').append(
                     item.mediagroup ?
                     `<div class="row">
