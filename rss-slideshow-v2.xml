@@ -229,7 +229,6 @@
     gadgets.util.registerOnLoadHandler(load);
 </script>
 
-<script type="text/javascript">gadgets.util.runOnLoadHandlers();</script>
 ]]>
 </Content>
 </Module>
