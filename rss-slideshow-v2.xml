@@ -8,7 +8,7 @@
   <UserPref name="showDate" display_name="Display the post date" datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -59,7 +59,7 @@
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
-    #header {
+    #header h1 {
         __UP_header-style__;
     }
     
@@ -69,7 +69,7 @@
         display: -ms-flexbox;
         display: flex;
         color: #A6A6A6;
-        margin-bottom: 65px;
+        margin-bottom: 35px;
         __UP_date-style__;
     }
 
@@ -101,9 +101,6 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <div id="container">
-    <div id="header"></div>
-    <div id="rss-feeds">
-    </div>
 </div>
 
 <script type="text/javascript">
@@ -191,7 +188,7 @@
                               <h1>${item.title}</h1>
                           </div>
                           <div class="item-date">
-                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>${item.pubDate}</span>
+                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>${timeAgo(item.pubDate)}</span>
                           </div>
                           <div class="item-content">${item.contentSnippet}</div>
                       </div>
