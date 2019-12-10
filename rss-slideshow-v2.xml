@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="RevelDigital RSS Scroller" description="Rotates through RSS feed items" author="RevelDigital" background="transparent">
-  <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
+  <UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
+    <EnumValue value="CNN Top Stories" display_value="http://rss.cnn.com/rss/cnn_topstories.rss" />
+    <EnumValue value="CNN World" display_value="http://rss.cnn.com/rss/cnn_world.rss" />
+    <EnumValue value="CNN U.S" display_value="http://rss.cnn.com/rss/cnn_us.rss" />
+    <EnumValue value="CNN Business (CNNMoney.com)" display_value="http://rss.cnn.com/rss/money_latest.rss" />
+    <EnumValue value="CNN Politics" display_value="http://rss.cnn.com/rss/cnn_allpolitics.rss" />
+    <EnumValue value="CNN Technology" display_value="http://rss.cnn.com/rss/cnn_tech.rss" />
+    <EnumValue value="CNN Health" display_value="http://rss.cnn.com/rss/cnn_health.rss" />
+    <EnumValue value="CNN Entertainment" display_value="http://rss.cnn.com/rss/cnn_showbiz.rss" />
+    <EnumValue value="CNN Travel" display_value="http://rss.cnn.com/rss/cnn_travel.rss" />
+    <EnumValue value="CNN 10" display_value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
+    <EnumValue value="CNN Most Recent" display_value="http://rss.cnn.com/rss/cnn_latest.rss" />
+    <EnumValue value="CNN Underscored" display_value="http://rss.cnn.com/cnn-underscored" />
+                                                            
+    <EnumValue value="BBC Top Stories" display_value="http://feeds.bbci.co.uk/news/rss.xml" />
+    <EnumValue value="BBC World" display_value="http://feeds.bbci.co.uk/news/world/rss.xml" />
+    <EnumValue value="BBC UK" display_value="http://feeds.bbci.co.uk/news/uk/rss.xml" />
+    <EnumValue value="BBC Business" display_value="http://feeds.bbci.co.uk/news/business/rss.xml" />
+    <EnumValue value="BBC Politics" display_value="http://feeds.bbci.co.uk/news/politics/rss.xml" />
+    <EnumValue value="BBC Health" display_value="http://feeds.bbci.co.uk/news/health/rss.xml" />
+    <EnumValue value="BBC Education & Family" display_value="http://feeds.bbci.co.uk/news/education/rss.xml" />
+    <EnumValue value="BBC Science & Environment" display_value="http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" />
+    <EnumValue value="BBC Technology" display_value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
+    <EnumValue value="BBC Entertainment & Arts" display_value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
+    
+    <EnumValue value="FOX News Latest Headlines" display_value="https://feeds.foxnews.com/foxnews/latest" />
+    <EnumValue value="FOX News Most Popular" display_value="https://feeds.foxnews.com/foxnews/most-popular" />
+    <EnumValue value="FOX News Entertainment" display_value="https://feeds.foxnews.com/foxnews/entertainment" />
+    <EnumValue value="FOX News Health" display_value="https://feeds.foxnews.com/foxnews/health" />
+    <EnumValue value="FOX News Lifestyle" display_value="https://feeds.foxnews.com/foxnews/section/lifestyle" />
+    <EnumValue value="FOX News Opinion" display_value="https://feeds.foxnews.com/foxnews/opinion" />
+    <EnumValue value="FOX News Politics" display_value="https://feeds.foxnews.com/foxnews/politics" />
+    <EnumValue value="FOX News Science" display_value="https://feeds.foxnews.com/foxnews/science" />
+    <EnumValue value="FOX News Sports" display_value="https://feeds.foxnews.com/foxnews/sports" />
+    <EnumValue value="FOX News Tech" display_value="https://feeds.foxnews.com/foxnews/tech" />
+    <EnumValue value="FOX News Travel" display_value="https://feeds.foxnews.com/foxnews/internal/travel/mixed" />
+    <EnumValue value="FOX News U.S." display_value="https://feeds.foxnews.com/foxnews/national" />
+    <EnumValue value="FOX News World" display_value="https://feeds.foxnews.com/foxnews/world" />
+  </UserPref>
+  <UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
@@ -182,7 +221,10 @@
         $('#container').empty();
         
         var url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("feedUrl"));
-
+        if (prefs.getString("customFeedUrl") != null && prefs.getString("customFeedUrl") != '') {
+            url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("customFeedUrl"));
+        }
+        
         $.getJSON(url, function(data) {
 
             if (prefs.getBool('showHeader')) {
