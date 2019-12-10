@@ -18,47 +18,35 @@
 
 <style type="text/css">
             
-    body *
-    {
+    body * {
         line-height: 1.2em;
         letter-spacing: 0;
         word-spacing: normal;
     }
 
-    body
-    {
+    body {
         background: transparent;
         width: __UP_rdW__px;
         height: __UP_rdH__px;
         overflow: hidden;
     }
 
-    a
-    {
+    a {
         text-decoration:none;
         __UP_body-style__;
     }
 
-    a:hover,a:visited,a:active,a:link
-    {
+    a:hover,a:visited,a:active,a:link {
         text-decoration:none;
         __UP_body-style__;
     }
 
-    img
-    {
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-    }
-
-    p
-    {
+    p {
         padding: 0;
         margin: 0;
     }
 
-    #container
-    {
+    #container {
         width: __UP_rdW__px;
         height: __UP_rdH__px;
         -webkit-user-select: none;
@@ -118,8 +106,17 @@
         __UP_title-style__;
     }
   
+    .item-title h1 {
+        margin-top: 0;
+    }
+    
     .item-content {
         __UP_body-style__;
+    }
+    
+    .item-img img {
+        width: calc(100% - 1.8em);
+        float: right;
     }
 </style>
 
