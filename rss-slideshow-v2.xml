@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital RSS Vertical Scroller" description="Rotates through RSS feed items in a vertical scroller" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital RSS Scroller" description="Rotates through RSS feed items" author="RevelDigital" background="transparent">
   <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
   <UserPref name="showDate" display_name="Display the post date" datatype="bool" default_value="true" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
-  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
-  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -58,6 +59,10 @@
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
+    #header {
+        __UP_header-style__;
+    }
+    
     .item-date { 
         display: -webkit-box;
         display: -webkit-flex;
@@ -75,7 +80,7 @@
     }
   
     .item-title {
-        __UP_header-style__;
+        __UP_title-style__;
     }
   
     .item-content {
@@ -95,7 +100,10 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<div id="rss-feeds">
+<div id="container">
+    <div id="header"></div>
+    <div id="rss-feeds">
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -107,6 +115,13 @@
             google: {
               families: [
                   RevelDigital.getFamilyName(prefs.getString("header-style"))
+              ]
+            }
+        });
+        WebFont.load({
+            google: {
+              families: [
+                  RevelDigital.getFamilyName(prefs.getString("title-style"))
               ]
             }
         });
@@ -135,17 +150,27 @@
         try {
             $('#rss-feeds').slick('unslick');
         } catch (e) { }
-        $('#rss-feeds').empty();
+        $('#container').empty();
+        
         var url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("feedUrl"));
 
         $.getJSON(url, function(data) {
 
-          $.each(data.items, function(i, item) {
-              console.log(item);
-
-              $('#rss-feeds').append(
-                  item.mediagroup ? 
-                  `<div class="row">
+            if (prefs.getBool('showHeader')) {
+                $('#container').append(
+                    `<div id="header" class="row"><div class="col-2"><img src="${data.image.url}" width="100%"></div><div class="col-10"><h1>${data.description}</h1></div>`
+                );
+            }
+            
+            $.each(data.items, function(i, item) {
+            
+                if (i > prefs.getInt("maxItems")) {
+                    return false;
+                }
+                $('#container').append('<div class="rss-feeds"></div>');
+                $('#rss-feeds').append(
+                    item.mediagroup ?
+                    `<div class="row">
                       <div class="col-6">
                           <div class="item-title">
                               <h1>${item.title}</h1>
@@ -158,8 +183,8 @@
                       <div class="col-6 item-img">
                           <img src="${item.mediagroup[0]['media:content'][0].$.url}" width="100%">
                       </div>
-                  </div>` : 
-                  `<div class="row">
+                    </div>` : 
+                    `<div class="row">
                       <div class="col-12">
                           <div class="item-title">
                               <h1>${item.title}</h1>
@@ -169,29 +194,29 @@
                           </div>
                           <div class="item-content">${item.contentSnippet}</div>
                       </div>
-                  </div>`
-              );
-          });
+                    </div>`
+                );
+            });
 
-        $('#rss-feeds').slick({
-            dots: false,
-            arrows: false,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            variableWidth: false,
-            responsive: [
-                {
-                    breakpoint: 1080,
-                    settings: {
-                        variableWidth: false,
-                    }
-                }],
-            autoplaySpeed: prefs.getInt('pause') * 1000,
-            autoplay: true,
-            fade: (prefs.getString('transition') == 'fade'),
-            lazyLoad: 'progressive'
+            $('#rss-feeds').slick({
+                dots: false,
+                arrows: false,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                variableWidth: false,
+                responsive: [
+                    {
+                        breakpoint: 1080,
+                        settings: {
+                            variableWidth: false,
+                        }
+                    }],
+                autoplaySpeed: prefs.getInt('pause') * 1000,
+                autoplay: true,
+                fade: (prefs.getString('transition') == 'fade'),
+                lazyLoad: 'progressive'
             });
         });
     }
@@ -203,7 +228,7 @@
         return moment.duration(dt - moment()).humanize(true);
     }
 
-  gadgets.util.registerOnLoadHandler(load);
+    gadgets.util.registerOnLoadHandler(load);
 </script>
 
 <script type="text/javascript">gadgets.util.runOnLoadHandlers();</script>
