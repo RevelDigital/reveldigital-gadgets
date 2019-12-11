@@ -44,7 +44,6 @@
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
   <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
-  <UserPref name="showDate" display_name="Display the post date" datatype="bool" default_value="true" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:24px;" required="true" />
   <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
