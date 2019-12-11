@@ -106,7 +106,6 @@
 
     [class*="col-"] {
         float: left;
-        padding: 15px;
     }
 
     .col-1 {width: 8.33%;}
