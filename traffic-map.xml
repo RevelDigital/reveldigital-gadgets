@@ -87,7 +87,7 @@
                         trafficLayer.setMap(null);
                         trafficLayer.setMap(map);
                         console.log("Map Updated");
-                    }, 5000*20);
+                    }, 60*1000*5);
                 }
 
                 function load() {
