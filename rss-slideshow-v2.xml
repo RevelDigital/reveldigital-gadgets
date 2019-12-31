@@ -241,31 +241,31 @@
                 
                 $('#rss-feeds').append(
                     item.mediagroup ?
-                    `<div class="row">
-                      <div class="col-6">
-                          <div class="item-title">
-                              <h1>${item.title}</h1>
-                          </div>
-                          <div class="item-date">
-                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>${timeAgo(item.pubDate)}</span>
-                          </div>
-                          <div class="item-content">${item.contentSnippet}</div>
-                      </div>
-                      <div class="col-6 item-img">
-                          <img src="${item.mediagroup[0]['media:content'][0].$.url}" width="100%">
-                      </div>
-                    </div>` : 
-                    `<div class="row">
-                      <div class="col-12">
-                          <div class="item-title">
-                              <h1>${item.title}</h1>
-                          </div>
-                          <div class="item-date">
-                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>${timeAgo(item.pubDate)}</span>
-                          </div>
-                          <div class="item-content">${item.contentSnippet}</div>
-                      </div>
-                    </div>`
+                    '<div class="row"> \
+                      <div class="col-6"> \
+                          <div class="item-title"> \
+                              <h1>' + item.title + '</h1> \
+                          </div> \
+                          <div class="item-date"> \
+                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>' + timeAgo(item.pubDate) + '</span> \
+                          </div> \
+                          <div class="item-content">' + item.contentSnippet + '</div> \
+                      </div> \
+                      <div class="col-6 item-img"> \
+                          <img src="' + item.mediagroup[0]['media:content'][0].$.url + '" width="100%"> \
+                      </div> \
+                    </div>' : 
+                    '<div class="row"> \
+                      <div class="col-12"> \
+                          <div class="item-title"> \
+                              <h1>' + item.title + '</h1> \
+                          </div> \
+                          <div class="item-date"> \
+                              <img src="https://reveldigital.github.io/reveldigital-gadgets/images/pubdate.svg"><span>'+ timeAgo(item.pubDate) + '</span> \
+                          </div> \
+                          <div class="item-content">' + item.contentSnippet + '</div> \
+                      </div> \
+                    </div>'
                 );
             });
 
