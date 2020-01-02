@@ -26,19 +26,16 @@
     <EnumValue display_value="BBC Technology" value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
     <EnumValue display_value="BBC Entertainment &amp; Arts" value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
     
-    <EnumValue display_value="FOX News Latest Headlines" value="https://feeds.foxnews.com/foxnews/latest" />
-    <EnumValue display_value="FOX News Most Popular" value="https://feeds.foxnews.com/foxnews/most-popular" />
-    <EnumValue display_value="FOX News Entertainment" value="https://feeds.foxnews.com/foxnews/entertainment" />
-    <EnumValue display_value="FOX News Health" value="https://feeds.foxnews.com/foxnews/health" />
-    <EnumValue display_value="FOX News Lifestyle" value="https://feeds.foxnews.com/foxnews/section/lifestyle" />
-    <EnumValue display_value="FOX News Opinion" value="https://feeds.foxnews.com/foxnews/opinion" />
-    <EnumValue display_value="FOX News Politics" value="https://feeds.foxnews.com/foxnews/politics" />
-    <EnumValue display_value="FOX News Science" value="https://feeds.foxnews.com/foxnews/science" />
-    <EnumValue display_value="FOX News Sports" value="https://feeds.foxnews.com/foxnews/sports" />
-    <EnumValue display_value="FOX News Tech" value="https://feeds.foxnews.com/foxnews/tech" />
-    <EnumValue display_value="FOX News Travel" value="https://feeds.foxnews.com/foxnews/internal/travel/mixed" />
-    <EnumValue display_value="FOX News U.S." value="https://feeds.foxnews.com/foxnews/national" />
-    <EnumValue display_value="FOX News World" value="https://feeds.foxnews.com/foxnews/world" />
+    <EnumValue display_value="ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
+    <EnumValue display_value="ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
+    <EnumValue display_value="ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
+    <EnumValue display_value="ESPN MLB Headlines" value="https://www.espn.com/espn/rss/mlb/news" />
+    <EnumValue display_value="ESPN NHL Headlines" value="https://www.espn.com/espn/rss/nhl/news" />
+    <EnumValue display_value="ESPN Motorsports Headlines" value="https://www.espn.com/espn/rss/rpm/news" />
+    <EnumValue display_value="ESPN Soccer Headlines" value="http://soccernet.espn.com/rss/news" />
+    <EnumValue display_value="ESPNU" value="https://www.espn.com/espn/rss/espnu/news" />
+    <EnumValue display_value="ESPN College Basketball" value="https://www.espn.com/espn/rss/ncb/news" />
+    <EnumValue display_value="ESPN College Football" value="https://www.espn.com/espn/rss/ncf/news" />
   </UserPref>
   <UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
   <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="false" />
@@ -240,7 +237,7 @@
                 }
                 
                 $('#rss-feeds').append(
-                    item.mediagroup ?
+                    item.media ?
                     '<div class="row"> \
                       <div class="col-6"> \
                           <div class="item-title"> \
@@ -252,7 +249,7 @@
                           <div class="item-content">' + item.contentSnippet + '</div> \
                       </div> \
                       <div class="col-6 item-img"> \
-                          <img src="' + item.mediagroup[0]['media:content'][0].$.url + '" width="100%"> \
+                          <img src="' + item.media[0].url + '" width="100%"> \
                       </div> \
                     </div>' : 
                     '<div class="row"> \
