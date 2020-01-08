@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="RevelDigital traffic map" description="Make simple map with traffic layer" author="RevelDigital" background="transparent">
+    <ModulePrefs title="RevelDigital Traffic Map" description="Basic traffic map" author="RevelDigital" background="transparent">
         <UserPref name="rdW" display_name="width" required="true" datatype="hidden" />
         <UserPref name="rdH" display_name="height" required="true"  datatype="hidden" />
         <UserPref name="zoom" display_name="Zoom" required="true" datatype="string" default_value="10"/>
-        <UserPref name="Location" display_name="Address, State for Map" datatype="string" required="true" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+        <UserPref name="Location" display_name="Address for center of map" datatype="string" required="true" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
         <UserPref name="ForeColor" datatype="hidden" />
     </ModulePrefs>
 
