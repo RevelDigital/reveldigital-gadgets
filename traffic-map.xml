@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="RevelDigital Traffic Map" description="Basic traffic map" author="RevelDigital" background="transparent">
+    <ModulePrefs title="RevelDigital Traffic Map" description="Basic traffic map with congestion updates" author="RevelDigital" background="transparent">
         <UserPref name="rdW" display_name="width" required="true" datatype="hidden" />
         <UserPref name="rdH" display_name="height" required="true"  datatype="hidden" />
         <UserPref name="zoom" display_name="Zoom" required="true" datatype="string" default_value="10"/>
