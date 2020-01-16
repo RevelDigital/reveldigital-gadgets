@@ -49,15 +49,17 @@
             <script type="text/javascript">
 
                 var prefs = new gadgets.Prefs();
-                var address = prefs.getString("Location");
                 var map;
-
-                
 
                 function initMap() {
                     var lat;
                     var lng;
                     
+                    var address = prefs.getString("Location");
+                    if (address == '*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*') {
+                        address = 'New York, NY';
+                    }
+                
                     var geocoder = new google.maps.Geocoder();
                     geocoder.geocode({
                         "address": address
@@ -68,25 +70,24 @@
 
                         setMap(lat, lng);
                     });   
-                    
                 }
 
                 function setMap(lat, lng){
                     
                     map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: lat, lng: lng},
-                    zoom: prefs.getInt("zoom"),
-                    streetViewControl: false,
-                    zoomControl: false,
-                    mapTypeControl: false
+                      center: {lat: lat, lng: lng},
+                      zoom: prefs.getInt("zoom"),
+                      streetViewControl: false,
+                      zoomControl: false,
+                      mapTypeControl: false
                     });
                     var trafficLayer = new google.maps.TrafficLayer();
                     trafficLayer.setMap(map);
 
                     var timer = setInterval(function(){
-                        trafficLayer.setMap(null);
-                        trafficLayer.setMap(map);
-                        console.log("Map Updated");
+                      trafficLayer.setMap(null);
+                      trafficLayer.setMap(map);
+                      console.log("Map Updated");
                     }, 60*1000*5);
                 }
 
@@ -101,8 +102,6 @@
                         }
                     });
                 }
-
-              
 
                 gadgets.util.registerOnLoadHandler(load);
 
