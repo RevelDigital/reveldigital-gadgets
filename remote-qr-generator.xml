@@ -7,7 +7,6 @@
         <UserPref name="timeout" display_name="Timeout (seconds)" required="true" datatype="string" />
         <UserPref name="apiKey" display_name="API Key" required="true" datatype="string" />
         <UserPref name="deviceId" display_name="Device Id" required="true" datatype="string" />
-        <UserPref name="BackgroundColor" display_name="Background Color" datatype="color" default_value="" required="false"/>
         <UserPref name="ForeColor" datatype="hidden" />
     </ModulePrefs>
 
@@ -73,8 +72,7 @@
                         cache: false,
                         success: function(data) {
                             var code = url + data.key;
-                            console.log(code);
-                            $("#QR").attr("src", "https://svc1.reveldigital.com/Render/QRCode?text=" + encodeURIComponent(code) + "&w=__UP_rdW__&h=__UP_rdH__&fg=FFFFFF&bg=");
+                            $("#QR").attr("src", "https://svc1.reveldigital.com/Render/QRCode?text=" + encodeURIComponent(code) + "&w=__UP_rdW__&h=__UP_rdH__&fg=__UP_ForeColor__&bg=");
                         }
                     });
 
