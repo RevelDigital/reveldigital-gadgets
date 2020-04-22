@@ -31,15 +31,14 @@ body
   overflow: hidden;
 }
 
-div#container
+#container
 {
-  __UP_font-style__;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
 }
 </style>
 
-<iframe id="container"></iframe>
+<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0"></iframe>
 
 <script type="text/javascript">
 
