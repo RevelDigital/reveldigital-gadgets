@@ -35,10 +35,11 @@ body
 {
   width: __UP_rdW__px;
   height: __UP_rdH__px;
+  border: 0;
 }
 </style>
 
-<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0"></iframe>
+<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" allow="microphone; camera"></iframe>
 
 <script type="text/javascript">
 
