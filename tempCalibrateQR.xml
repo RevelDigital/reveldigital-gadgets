@@ -56,22 +56,12 @@
 
                 function generate(){
                     console.log('testing')
-                    $.ajax({
-                        type: 'POST',
-                        url: "https://template-controller.herokuapp.com/data",
-                        data: JSON.stringify(model),
-                        contentType: "application/json;charset=utf-8",
-                        dataType: 'json',
-                        cache: false,
-                        success: function(data) {
-                            $("#QR").attr("src", "https://svc1.reveldigital.com/Render/QRCode?text=" + encodeURIComponent(url) + "&w=__UP_rdW__&h=__UP_rdH__&fg=FFFFFF&bg=");
-                        }
-                    });
+                    $("#QR").attr("src", "https://svc1.reveldigital.com/Render/QRCode?text=" + encodeURIComponent(url) + "&w=__UP_rdW__&h=__UP_rdH__&fg=FFFFFF&bg=");
                 }
 
                 function load() {
 
-                    setInterval(()=>{generate()}, 5000);
+                    generate();
 
 
                     WebFont.load({
