@@ -50,7 +50,7 @@
 
 
 
-                var url = `https://template-controller.herokuapp.com/?key=${api_key}&reg=${device_Id}`
+                var url = `https://arcane-springs-91755.herokuapp.com/?key=${api_key}&reg=${device_Id}`
 
 
 
