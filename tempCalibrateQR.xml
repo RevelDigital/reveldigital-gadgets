@@ -55,6 +55,7 @@
 
 
                 function generate(){
+                    console.log('testing')
                     $.ajax({
                         type: 'POST',
                         url: "https://template-controller.herokuapp.com/data",
@@ -68,12 +69,9 @@
                     });
                 }
 
-
-
-
                 function load() {
 
-                    generate();
+                    setInterval(()=>{generate()}, 5000);
 
 
                     WebFont.load({
