@@ -22,7 +22,7 @@
 
 <script>
   var prefs = new gadgets.Prefs();
-  document.getElementById("qr").src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+prefs.getString('url')+'?reg='+prefs.getString('rdKey');
+  document.getElementById("qr").src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+prefs.getString('url')+'&reg='+prefs.getString('rdKey');
   // This function is called after the gadget has been initialized.
   function onLoad() {
 
