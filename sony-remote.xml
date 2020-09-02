@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTk3NzYyNjkzNDE1LCJsYXN0TW9kaWZpZWQiOjE1OTc3NjI2OTM0MTV9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTk5MDU4MjY2MjcxLCJsYXN0TW9kaWZpZWQiOjE1OTkwNTgyNjYyNzF9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiNDAwIiwiaGVpZ2h0IjoiNDAwIiwiaXNQb3J0cmFpdCI6ZmFsc2UsInNjYWxlIjoxMDB9LCJwcm9maWxlcyI6W119|**-->
 <Module>
-<ModulePrefs title="covid" description="covid" preferred_width="1920" preferred_height="1080" author="Avery Knight" background="Transparent">
+<ModulePrefs title="sony" description="ew" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
     <UserPref name="ForeColor" datatype="hidden" required="false"/>
     <UserPref name="BackColor" datatype="hidden" required="false"/>
     <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
     <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
-    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <UserPref display_name="Device Registration Key" name="regKey" datatype="string" required="true" default_value="2809d469-5eaa-490c-9487-172728285a46"/>
     <Require feature="offline"/>
   </ModulePrefs>
 
 <Content type="html">
 <![CDATA[
-
-
-
-
-<img id="qr" style="width:450px; height:450px;">
-
+<canvas id="qr"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<style>
+    body
+    {
+        background: transparent;
+        overflow: hidden;
+    }
+    #qr
+    {
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+        overflow: hidden;
+    }
+</style>
 
 <script>
   var prefs = new gadgets.Prefs();
   
+  // This function is called after the gadget has been initialized.
   function onLoad() {
-      updateSession();
-      setInterval(()=>{
-          updateSession()
-      }, 30*1000)
+    
   }
 
   function updateSession(){
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4){
-              document.getElementById("qr").src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent('https://sony-kiosk-remote.herokuapp.com/?reg='+prefs.getString('rdKey')+'&id='+JSON.parse(xhr.responseText).id);
-          }
-      };
-      xhr.open('GET', 'https://sony-kiosk-remote.herokuapp.com/session/'+prefs.getString('rdKey'));
-      xhr.send();
+    console.log('run')
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4){
+            var qr = new QRious({
+                element: document.getElementById('qr'),
+                size: prefs.getString('rdW'),
+                value: 'https://sony-kiosk-remote.herokuapp.com/?reg='+prefs.getString('regKey')+'&id='+JSON.parse(xhr.responseText).id
+            });
+        }
+    };
+    xhr.open('GET', 'https://sony-kiosk-remote.herokuapp.com/session/'+prefs.getString('regKey'));
+    xhr.send();
 
-  }
+}
 
+    function onLoad() {
+        updateSession();
+        setInterval(()=>{
+            updateSession()
+        }, 30*1000)
+    }
 
   gadgets.util.registerOnLoadHandler(onLoad);
 </script>
+
+
+
+
+
+
 
 
 
