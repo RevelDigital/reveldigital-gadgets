@@ -6,14 +6,16 @@
     <UserPref name="BackColor" datatype="hidden" required="false"/>
     <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
     <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
-    <UserPref display_name="Device Registration Key" name="regKey" datatype="string" required="true" default_value="2809d469-5eaa-490c-9487-172728285a46"/>
+    <UserPref name="regKey" display_name="Device Registration Key" datatype="hidden" required="true" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
     <Require feature="offline"/>
   </ModulePrefs>
 
 <Content type="html">
 <![CDATA[
+
 <canvas id="qr"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
 <style>
     body
     {
@@ -62,6 +64,8 @@
 
   gadgets.util.registerOnLoadHandler(onLoad);
 </script>
+
+
 
 
 
