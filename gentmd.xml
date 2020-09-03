@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Video Chat" description="Creates a remote video chat endpoint for use with Gent.MD" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="offline" />
+  
+  <UserPref name="key" display_name="Remote Key" datatype="string" />
+  <UserPref name="name" display_name="Location Name" datatype="string" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  border: 0;
+}
+</style>
+
+<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" allow="microphone; camera"></iframe>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+  
+  var url = 'https://app.gent.md/remote?id=' + prefs.getString('key') + '&name=' + encodeURIComponent(prefs.getString('name'));
+  
+  function load() {
+
+    $('#container').attr('src', url);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+
+]]>
+</Content>
+</Module>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTk5MDU4MjY2MjcxLCJsYXN0TW9kaWZpZWQiOjE1OTkwNTgyNjYyNzF9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiNDAwIiwiaGVpZ2h0IjoiNDAwIiwiaXNQb3J0cmFpdCI6ZmFsc2UsInNjYWxlIjoxMDB9LCJwcm9maWxlcyI6W119|**-->
+<Module>
+<ModulePrefs title="sony" description="ew" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden" required="false"/>
+    <UserPref name="BackColor" datatype="hidden" required="false"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref name="regKey" display_name="Device Registration Key" datatype="hidden" required="true" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <Require feature="offline"/>
+  </ModulePrefs>
+
+<Content type="html">
+<![CDATA[
+
+<canvas id="qr"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+<style>
+    body
+    {
+        background: transparent;
+        overflow: hidden;
+    }
+    #qr
+    {
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+  var prefs = new gadgets.Prefs();
+  
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    
+  }
+
+  function updateSession(){
+    console.log('run')
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4){
+            var qr = new QRious({
+                element: document.getElementById('qr'),
+                size: prefs.getString('rdW'),
+                value: 'https://sony-kiosk-remote.herokuapp.com/?reg='+prefs.getString('regKey')+'&id='+JSON.parse(xhr.responseText).id
+            });
+        }
+    };
+    xhr.open('GET', 'https://sony-kiosk-remote.herokuapp.com/session/'+prefs.getString('regKey'));
+    xhr.send();
+
+}
+
+    function onLoad() {
+        updateSession();
+        setInterval(()=>{
+            updateSession()
+        }, 30*1000)
+    }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>

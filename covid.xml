@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTk3NzYyNjkzNDE1LCJsYXN0TW9kaWZpZWQiOjE1OTc3NjI2OTM0MTV9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+<ModulePrefs title="covid" description="covid" preferred_width="1920" preferred_height="1080" author="Avery Knight" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden" required="false"/>
+    <UserPref name="BackColor" datatype="hidden" required="false"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <UserPref name="url" display_name="url" datatype="string" required="false"/>
+    <Require feature="offline"/>
+  </ModulePrefs>
+
+<Content type="html">
+<![CDATA[
+
+
+
+
+<img id="qr" style="width:450px; height:450px;">
+
+
+<script>
+  var prefs = new gadgets.Prefs();
+  document.getElementById("qr").src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(prefs.getString('url')+'&reg='+prefs.getString('rdKey'));
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+
+  }
+
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
