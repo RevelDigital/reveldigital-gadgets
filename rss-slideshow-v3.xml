@@ -352,7 +352,7 @@
 		} else {
 			$('.column').height(__UP_rdH__);
 		}
-		slideTimer = setInterval(next, 3000);
+		slideTimer = setInterval(next, prefs.getInt('pause') * 1000);
     }
 
 	var next = function () {
