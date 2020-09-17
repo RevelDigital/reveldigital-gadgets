@@ -372,7 +372,7 @@
             }
         });
 
-		$('#' + prefs.getString("feedUrl").split(' ')[0]).show();
+		//$('#' + prefs.getString("feedUrl").split(' ')[0]).show();
 		
 		update();
 		
