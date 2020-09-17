@@ -276,7 +276,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 <script type="text/javascript" src="https://reveldigital.github.io/gadget-common/third-party/jquery.rss.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
 <div id='container'>
@@ -347,15 +346,11 @@
         });
 
 		update();
-
-		//$('.column').height(400);
 		
-		let max = Math.max($(window).height(), $(window).width());
-		
-		if ($(window).height() > $(window).width()) {
-			$('.column').height($(window).height() / 2);
+		if (__UP_rdH__ > __UP_rdW__) {
+			$('.column').height(__UP_rdH__ / 2);
 		} else {
-			$('.column').height($(window).height());
+			$('.column').height(__UP_rdH__);
 		}
 		slideTimer = setInterval(next, 3000);
     }
