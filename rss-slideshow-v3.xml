@@ -219,7 +219,7 @@
 
 	.story__header ~ .story__meta,
 	.story__header ~ .story__image {
-	  display: none;
+
 	}
 
 	.story__summary {
