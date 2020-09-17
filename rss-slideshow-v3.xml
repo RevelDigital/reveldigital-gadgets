@@ -330,7 +330,7 @@
 		$('.story__summary').text(rssItems[idx].contentSnippet);
 		
 		if (rssItems[idx].media) {
-			document.getElementById('img').style.backgroundImage = "linear-gradient(to right, transparent 50%, transparent), url(" + rssItems[idx].media[0].url + ")";
+			document.getElementById('img').style.backgroundImage = "linear-gradient(to right, transparent 50%, #__UP_BackColor__), url(" + rssItems[idx].media[0].url + ")";
 		
 			//$(".story__image").css("background-image", "-webkit-gradient(linear, top, rgba(0,0,0,0.5), rgba(200,20,200,0.5)), url(" + rssItems[idx].media[0].url + ")");
 		}
@@ -401,7 +401,7 @@
             url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("customFeedUrl"));
         }
         
-		$('.story__image,.story__content').fadeOut();
+		//$('.story__image,.story__content').fadeOut();
 		
         $.getJSON(url, function(data) {
 
