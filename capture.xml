@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTk5MTY3NjEwNDExLCJsYXN0TW9kaWZpZWQiOjE1OTkxNjc2MTA0MTF9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+<ModulePrefs title="test" description="e" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden" required="false"/>
+    <UserPref name="BackColor" datatype="hidden" required="false"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <Require feature="offline"/>
+  </ModulePrefs>
+
+<Content type="html">
+<![CDATA[
+
+
+<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+
+<video id="webcam" autoplay playsinline width="640" height="480"></video>
+<canvas id="canvas" class="d-none"></canvas>
+<script>
+    const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const snapSoundElement = document.getElementById('snapSound');
+    const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+    webcam.start()
+        .then(result =>{
+            console.log("webcam started");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+    function capture(){
+        let picture = webcam.snap();
+        if(Client){
+            Client.callback(picture);
+        }
+        return picture;
+    }
+
+
+</script>
+
+
+<script>
+  var prefs = new gadgets.Prefs();
+  
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+
+
+
+]]>
+</Content>
+</Module>

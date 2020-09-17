@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital RSS Scroller" description="Rotates through RSS feed items" author="RevelDigital" background="transparent">
+  <UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
+    <EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
+    <EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
+    <EnumValue display_value="CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
+    <EnumValue display_value="CNN Business (CNNMoney.com)" value="http://rss.cnn.com/rss/money_latest.rss" />
+    <EnumValue display_value="CNN Politics" value="http://rss.cnn.com/rss/cnn_allpolitics.rss" />
+    <EnumValue display_value="CNN Technology" value="http://rss.cnn.com/rss/cnn_tech.rss" />
+    <EnumValue display_value="CNN Health" value="http://rss.cnn.com/rss/cnn_health.rss" />
+    <EnumValue display_value="CNN Entertainment" value="http://rss.cnn.com/rss/cnn_showbiz.rss" />
+    <EnumValue display_value="CNN Travel" value="http://rss.cnn.com/rss/cnn_travel.rss" />
+    <EnumValue display_value="CNN 10" value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
+    <EnumValue display_value="CNN Most Recent" value="http://rss.cnn.com/rss/cnn_latest.rss" />
+    <EnumValue display_value="CNN Underscored" value="http://rss.cnn.com/cnn-underscored" />
+                                                            
+    <EnumValue display_value="BBC Top Stories" value="http://feeds.bbci.co.uk/news/rss.xml" />
+    <EnumValue display_value="BBC World" value="http://feeds.bbci.co.uk/news/world/rss.xml" />
+    <EnumValue display_value="BBC UK" value="http://feeds.bbci.co.uk/news/uk/rss.xml" />
+    <EnumValue display_value="BBC Business" value="http://feeds.bbci.co.uk/news/business/rss.xml" />
+    <EnumValue display_value="BBC Politics" value="http://feeds.bbci.co.uk/news/politics/rss.xml" />
+    <EnumValue display_value="BBC Health" value="http://feeds.bbci.co.uk/news/health/rss.xml" />
+    <EnumValue display_value="BBC Education &amp; Family" value="http://feeds.bbci.co.uk/news/education/rss.xml" />
+    <EnumValue display_value="BBC Science &amp; Environment" value="http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" />
+    <EnumValue display_value="BBC Technology" value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
+    <EnumValue display_value="BBC Entertainment &amp; Arts" value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
+    
+    <EnumValue display_value="ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
+    <EnumValue display_value="ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
+    <EnumValue display_value="ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
+    <EnumValue display_value="ESPN MLB Headlines" value="https://www.espn.com/espn/rss/mlb/news" />
+    <EnumValue display_value="ESPN NHL Headlines" value="https://www.espn.com/espn/rss/nhl/news" />
+    <EnumValue display_value="ESPN Motorsports Headlines" value="https://www.espn.com/espn/rss/rpm/news" />
+    <EnumValue display_value="ESPN Soccer Headlines" value="http://soccernet.espn.com/rss/news" />
+    <EnumValue display_value="ESPNU" value="https://www.espn.com/espn/rss/espnu/news" />
+    <EnumValue display_value="ESPN College Basketball" value="https://www.espn.com/espn/rss/ncb/news" />
+    <EnumValue display_value="ESPN College Football" value="https://www.espn.com/espn/rss/ncf/news" />
+  </UserPref>
+  <UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
+  <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="false" />
+  <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+  <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:28px;" required="true" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+            
+    body * {
+        line-height: 1.2em;
+        letter-spacing: 0;
+        word-spacing: normal;
+    }
+
+    body {
+        background: transparent;
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration:none;
+        __UP_body-style__;
+    }
+
+    a:hover,a:visited,a:active,a:link {
+        text-decoration:none;
+        __UP_body-style__;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+    }
+
+    #container {
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-align: left;
+        text-align: left;
+        overflow: hidden;
+        background-color: #__UP_BackColor__;
+    }
+
+	.some-page-wrapper {
+	  margin: 15px;
+	}
+
+	.row {
+	  display: flex;
+	  flex-direction: row;
+	  flex-wrap: wrap;
+	  width: 100%;
+	}
+
+	.column {
+	  display: flex;
+	  flex-direction: column;
+	  flex-basis: 100%;
+	  position: relative;
+	  height: __UP_rdH__px;
+	}
+
+	.orange-column {
+	  background-color: orange;
+	}
+
+	.blue-column {
+	  background-color: blue;
+	}
+
+	.green-column {
+	  background-color: green;
+	}
+
+	.double-column {
+	  display: flex;
+	  flex-direction: column;
+	  flex-basis: 100%;
+	}
+
+	@media screen and (min-width: 800px) {
+	  .column {
+		flex: 1
+	  }
+
+	  .double-column {
+		flex: 2
+	  }
+	}
+
+	.story {
+	  height: 100%;
+	  width: 100%;
+	  position: relative;
+	  overflow: hidden;
+	}
+
+	.story__logo {
+
+	  flex: 0 0 auto;
+	}
+
+	.story__logo img,
+	.story__logo svg {
+	  height: 20px;
+	  width: auto;
+	}
+
+	.story__image {
+	  width: 100%;
+	  display: block;
+	}
+
+	.story__image--with-background {
+	  height: 100%;
+	  width: 100%;
+	  position: absolute;
+	  left: 0;
+	  top: 0;
+	  max-width: initial;
+	  background-repeat: no-repeat;
+	  background-position: 50% 50%;
+	  background-size: cover;
+	  position: relative;
+	  mask: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 1) 26.9841%,
+		rgba(0, 0, 0, 0) 100%,
+		transparent
+	  );
+	}
+
+	.story__content {
+	  overflow: hidden;
+	  padding: 20px;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	}
+
+	.story__content.full-width {
+	  width: 90%;
+	}
+
+	.story__columns {
+	  flex: 0 1 auto;
+	  display: flex;
+	  flex-direction: column;
+	}
+
+	.story__columns .story__column.story__column--first {
+	  flex: 0 0 auto;
+	}
+
+	.story__columns .story__column.story__column--second {
+	  flex: 1 1 auto;
+	  display: flex;
+	  flex-direction: column;
+	}
+
+	.story__header {
+	  line-height: 1.2em;
+	  margin-top: 0;
+	}
+
+	.story__header ~ .story__meta,
+	.story__header ~ .story__image {
+	  display: none;
+	}
+
+	.story__summary {
+	  flex: 1 1 auto;
+	  line-height: 1.3;
+	  overflow: hidden;
+	}
+
+	.story__summary--long {
+	  mask: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 1) 50%,
+		rgba(0, 0, 0, 0.5) 70%,
+		transparent
+	  );
+	}
+
+	.story__meta {
+	  line-height: 1em;
+	  opacity: 0.5;
+	  flex: 0 0 auto;
+	  display: flex;
+	}
+
+	.story__meta .story__date,
+	.story__meta .story__progressbar {
+	  flex: 1 1 50%;
+	  display: flex;
+	  align-content: center;
+	  align-items: center;
+	}
+
+	.story__meta .story__date svg {
+	  height: 1em;
+	  margin-right: 0.25em;
+	}
+
+	.story__meta .story__progressbar svg {
+	  height: 1em;
+	  width: initial;
+	}
+
+	.story__meta .story__progressbar {
+	  justify-content: flex-end;
+	}
+</style>
+
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/utils.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" src="https://reveldigital.github.io/gadget-common/third-party/jquery.rss.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+<div id='container'>
+  <div class='row'>
+    <div class='column orange-column'>
+		<div class="story__image story__image--with-background" style="background-image: url('https://ichef.bbci.co.uk/news/1024/branded_news/DDC8/production/_111767765_gettyimages-1209680088.jpg');"></div>
+    </div>
+    <div class='column blue-column'>
+		<div class="story__content color-text-body font-body">
+			<div class="story__logo">
+				<svg viewbox="0 0 300 86.219055" provider="bbc"><path d="m0 0c0-11.25-14-10.583-14-10.583h-14v20.333h14c14.417.083 14-9.75 14-9.75m-28 40.75h10.667c11.083-.584 10.666-8.833 10.666-8.833 0-10.25-12.25-10.417-12.25-10.417h-9.083zm25.417-23.25s9.583 4.083 9.5 14.917c0 0 1.457 17.749-22.063 19.916h-26.104v-74.416h29.917s25-.084 25 21c0 0 .583 14.333-16.25 18.583m-67.545 49.4156h109.878v-103.544h-109.878z" transform="matrix(.82302 0 0 -.82302 162.5 55.573)"></path><path d="m0 0c0-11.25-14-10.583-14-10.583h-14v20.333h14c14.417.083 14-9.75 14-9.75m-28 40.75h10.667c11.083-.584 10.666-8.833 10.666-8.833 0-10.25-12.25-10.417-12.25-10.417h-9.083zm25.417-23.25s9.583 4.083 9.5 14.917c0 0 1.457 17.749-22.063 19.916h-26.104v-74.416h29.917s25-.084 25 21c0 0 .583 14.333-16.25 18.583m-67.545 49.4156h109.878v-103.544h-109.878z" transform="matrix(.82302 0 0 -.82302 58.217 55.573)"></path><path d="m0 0v-13.75s-13.417 8.25-28.25 8.417c0 0-27.666.54-28.916-26.522 0 0-1-24.895 28.583-26.312 0 0 12.417-1.5 29.25 9.25v-14.25s-22.583-13.416-48.75-3.083c0 0-22 8.04-22.834 34.395 0 0-.917 27.105 28.417 36.105 0 0 7.834 3 21.917 1.667 0 0 8.416-.834 20.583-5.917m-87.461-83.627h109.878v103.544h-109.878z" transform="matrix(.82302 0 0 -.82302 281.05 16.892)"></path></svg>
+			</div>
+			<div class="story__columns">
+				<div class="story__column story__column--first">
+					<h1 class="story__header color-text-heading font-heading">rent holiday extension 'will hit pension schemes'</h1>
+					<div class="story__meta"><div class="story__date">2 hours ago</div></div>
+					<img alt="" src="https://ichef.bbci.co.uk/news/1024/branded_news/2edf/production/_114399911_pensioner.jpg" class="story__image">
+				</div>
+				<div class="story__column story__column--second">
+					<div class="story__summary">
+					</div>
+					<div class="story__meta">
+						<div class="story__date">2 hours ago</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+	var slideTimer;
+	var rssItems = [];
+	var idx = 0;
+
+    function load() {
+
+        WebFont.load({
+            google: {
+              families: [
+                  RevelDigital.getFamilyName(prefs.getString("header-style"))
+              ]
+            }
+        });
+        WebFont.load({
+            google: {
+              families: [
+                  RevelDigital.getFamilyName(prefs.getString("title-style"))
+              ]
+            }
+        });
+        WebFont.load({
+            google: {
+                families: [
+                    RevelDigital.getFamilyName(prefs.getString("body-style"))
+                ]
+            }
+        });
+        WebFont.load({
+            google: {
+                families: [
+                    RevelDigital.getFamilyName(prefs.getString("date-style"))
+                ]
+            }
+        });
+
+		update();
+
+		//$('.column').height(400);
+		
+		let max = Math.max($(window).height(), $(window).width());
+		
+		if ($(window).height() > $(window).width()) {
+			$('.column').height($(window).height() / 2);
+		} else {
+			$('.column').height($(window).height());
+		}
+		slideTimer = setInterval(next, 3000);
+    }
+
+	var next = function () {
+	
+		if (rssItems.length === 0) return;
+		
+		idx++;
+		if (idx >= rssItems.length) idx = 0;
+		
+		$('.story__image,.story__content').fadeOut(400, function() {
+			$('.story__header').text(rssItems[idx].title);
+			$('.story__summary').text(rssItems[idx].contentSnippet);
+			
+			if (rssItems[idx].media) {
+				$(".story__image").css("background-image", "url(" + rssItems[idx].media[0].url + ")");
+			}
+			$(this).fadeIn(400);
+		});		
+	}
+	
+    var update = function () {
+
+        var url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("feedUrl"));
+        if (prefs.getString("customFeedUrl") != null && prefs.getString("customFeedUrl") != '') {
+            url = "https://revel-rss-feed-parser.herokuapp.com/?q=" + encodeURI(prefs.getString("customFeedUrl"));
+        }
+        
+		$('.story__image,.story__content').fadeOut();
+		
+        $.getJSON(url, function(data) {
+
+			rssItems = data.items;
+			
+            if (prefs.getBool('showHeader')) {
+                //$('#container').append(
+                //    '<div id="header" class="row"><div class="col-2"><img src="' + data.image.url + '" width="100%"></div><div class="col-10"><h1>' + data.description + '</h1></div>'
+                //);
+            }
+        });
+    }
+
+    var timeAgo = function (date) {
+        var dt = moment(date);
+        if (!dt.isValid()) return "N/A";
+
+        return moment.duration(dt - moment()).humanize(true);
+    }
+
+    gadgets.util.registerOnLoadHandler(load);
+</script>
+
+]]>
+</Content>
+</Module>
