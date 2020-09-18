@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNjAwNDU0NDk3NTk3LCJsYXN0TW9kaWZpZWQiOjE2MDA0NTQ0OTc1OTd9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+<ModulePrefs title="tempSenseTandom" description="tem sense" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden" required="false"/>
+    <UserPref name="BackColor" datatype="hidden" required="false" isNew="false"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" isNew="false"/>
+    <UserPref name="reciever" display_name="reciever" datatype="string" required="false" default_value="*|VAR.REG_KEY|*"/>
+    <Require feature="offline"/>
+  </ModulePrefs>
+
+<Content type="html">
+<![CDATA[<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAVUMkE5_alZSCL4AQtk27xhwHBctdWDA4",
+        authDomain: "ad-sight-a22d8.firebaseapp.com",
+        databaseURL: "https://ad-sight-a22d8.firebaseio.com",
+        projectId: "ad-sight-a22d8",
+        storageBucket: "ad-sight-a22d8.appspot.com",
+        messagingSenderId: "1043779075783",
+        appId: "1:1043779075783:web:bc33f75a8950d03bcb48e2"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    let prefs = new gadgets.Prefs();
+    let reg = prefs.getString('reciever');
+    firebase.database().ref(reg).on('value', function(snapshot) {
+        let temp = (snapshot.val() && snapshot.val().temp);
+        if(Client){
+            Client.callback(temp);
+        }
+    });
+    function writeTemp(val) {
+        firebase.database().ref(reg).set({
+            temp: val+'_'+Date.now(),
+        });
+    }
+
+
+
+</script>
+
+
+
+<script>
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+    
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+
+
+
+
+
+]]>
+</Content>
+</Module>
