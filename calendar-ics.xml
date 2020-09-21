@@ -184,7 +184,7 @@
 
     let now = moment().format();
     
-    console.log("now", now);
+    //console.log("now", now);
 
     let endDateRange = function(d){
         if( d === "365"){
@@ -205,10 +205,13 @@
     fetch(url)
     .then(response => response.json())
     .then(data => {
+        //console.log(JSON.stringify(data,null,2));
         let occurrences = data.occurrences.map(o => {
             const recurContainer = {};
             let startTime = moment({ year :o.startDate.year, month :o.startDate.month - 1, day :o.startDate.day, hour :o.startDate.hour, minute :o.startDate.minute, second :o.startDate.second});
             let endTime = moment({ year :o.endDate.year, month :o.endDate.month - 1, day :o.endDate.day, hour :o.endDate.hour, minute :o.endDate.minute, second :o.endDate.second});
+
+        
 
             recurContainer["startDate"] = startTime;
             recurContainer["endDate"] = endTime;
@@ -230,7 +233,7 @@
 
             o.component[1].forEach(item => {
                 item.forEach(i => {
-                    if (i === "dtstart"){
+                    if (i === "dtstart"){     
                         statContainer["startDate"] = moment(item[3]);  
                     }else if(i === "dtend"){
                         statContainer["endDate"] = moment(item[3]);    
@@ -247,7 +250,8 @@
         list = occurrences.concat(statEvents).sort((a, b) => {  
             return a.startDate - b.startDate
         });  
-        console.log(list);
+
+        console.log(list);   
 
         for (var i = 0; i < list.length; i++) {
             if (prefs.getBool("nextEvents") == true){
@@ -310,6 +314,9 @@ function formatDiv(event) {
   var st = moment(event.startDate).format("__MSG_Calendar_TimeFormat__");
   var et = moment(event.endDate).format("__MSG_Calendar_TimeFormat__");
   var ed = moment(event.endDate).format("__MSG_Calendar_DateFormat__");
+  
+  console.log(ed-sd);
+
 
   var time = '';
   if (sd == ed) {
@@ -343,17 +350,20 @@ function formatTable(event) {
   var st = moment(event.startDate).format("__MSG_Calendar_TimeFormat__");
   var et = moment(event.endDate).format("__MSG_Calendar_TimeFormat__");
   var ed = moment(event.endDate).format("__MSG_Calendar_DateFormat__");
+
   
   var td = $("<td class=\"date\"/>");
   
   var time = '';
-  if (sd == ed) {
-    time += sd;
-  } else {
+  if (sd === ed) {
+    console.log("match");
     time += sd + " - " + ed;
+  } else {
+    console.log("no match");
+    time += sd;
   }
 
-  td.text(time + ", " + st + " - " + et);
+  td.text(st === et ? (time + ' - ' + 'ALL DAY EVENT') : time + ", " + st + " - " + et);
 
   $(tr).append(td);
     
