@@ -357,7 +357,7 @@
           useValue: "fr"
         }, {
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
-          useValue: '/'
+          useValue: '/gadgets/ifr'
         }],
         imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]]]
       });
@@ -382,7 +382,7 @@
               useValue: "fr"
             }, {
               provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
-              useValue: '/'
+              useValue: '/gadgets/ifr'
             }],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
           }]
