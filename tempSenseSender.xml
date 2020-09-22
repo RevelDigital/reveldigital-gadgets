@@ -29,12 +29,16 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 <script>
+    let flag = false;
     let prefs = new gadgets.Prefs();
     let reg = prefs.getString('reciever');
     firebase.database().ref(reg).on('value', function(snapshot) {
         let temp = (snapshot.val() && snapshot.val().temp);
         if(Client){
-            Client.callback(temp.substring(0,temp.indexOf("_")));
+            if(flag){
+                Client.callback(temp.substring(0,temp.indexOf("_")));
+            }
+            flag = true;
         }
     });
     function writeTemp(val) {
