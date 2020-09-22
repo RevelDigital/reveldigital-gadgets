@@ -135,6 +135,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
 <div id="data">
   <div id="events" class="scroll">
     <table>
@@ -150,6 +151,7 @@
     </table>
   </div>
 </div>
+
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   
@@ -180,110 +182,114 @@
 </script>
 <script type="text/javascript">
   
-  function update() {
+function update() {
 
-    let now = moment().format();
-    
-    //console.log("now", now);
-
-    let endDateRange = function(d){
-        if( d === "365"){
-            return moment().add(1, 'y').format('YYYY-MM-DDThh:mm');
-        }else if(d === "0"){
-            return moment().add(1, 'd').format('YYYY-MM-DDThh:mm');
-        }else if(d === "7"){
-            return moment().add(7, 'd').format('YYYY-MM-DDThh:mm');
-        }else if(d === "30"){
-            return moment().add(1, 'm').format('YYYY-MM-DDThh:mm');
-        }
-    };
-
-
-    var url = 'https://glacial-hollows-70580.herokuapp.com/ical/' + now + '/' + endDateRange(prefs.getString("futureEvents")) + 'Z' + '?url=' + prefs.getString("calendarUrl");
-    let list;
-
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        //console.log(JSON.stringify(data,null,2));
-        let occurrences = data.occurrences.map(o => {
-            const recurContainer = {};
-            let startTime = moment({ year :o.startDate.year, month :o.startDate.month - 1, day :o.startDate.day, hour :o.startDate.hour, minute :o.startDate.minute, second :o.startDate.second});
-            let endTime = moment({ year :o.endDate.year, month :o.endDate.month - 1, day :o.endDate.day, hour :o.endDate.hour, minute :o.endDate.minute, second :o.endDate.second});
-
-        
-
-            recurContainer["startDate"] = startTime;
-            recurContainer["endDate"] = endTime;
-
-            o.item.component[1].forEach(item => { 
-                item.forEach(i => {
-                    if(i === "location"){
-                        recurContainer["location"] = item[3];
-                    }else if (i === "summary"){
-                        recurContainer["summary"] = item[3];
-                    }                   
-                })         
-            }) 
-            return recurContainer 
-        });
-
-        let statEvents = data.events.map(o => {
-            const statContainer = {};
-
-            o.component[1].forEach(item => {
-                item.forEach(i => {
-                    if (i === "dtstart"){     
-                        statContainer["startDate"] = moment(item[3]);  
-                    }else if(i === "dtend"){
-                        statContainer["endDate"] = moment(item[3]);    
-                    }else if( i === "location"){
-                        statContainer["location"] = item[3];
-                    }else if (i === "summary"){
-                        statContainer["summary"] = item[3];
-                    }
-                })
-            })
-            return statContainer
-        });
-
-        list = occurrences.concat(statEvents).sort((a, b) => {  
-            return a.startDate - b.startDate
-        });  
-
-        console.log(list);   
-
-        for (var i = 0; i < list.length; i++) {
-            if (prefs.getBool("nextEvents") == true){
-                if(moment(list[i].startDate) < moment() && moment(list[i].endDate) > moment()){            
-                    continue;
-                }
-            }
-
-            if (prefs.getString("displayFormat") == "table") {
-                formatTable(list[i]);
-            } else {
-                formatDiv(list[i]);
-            }
-        }
-    });
+  let now = moment().format();
   
-    if (prefs.getString("displayFormat") != "table") {
-        $("#events").empty();
-    } else {
-        $("#events > table > tbody").empty();
-    }
+  //console.log("now", now);
 
-    if (prefs.getString("scrollSpeed") != "none") {
+  let endDateRange = function(d){
+      if( d === "365"){
+          return moment().add(1, 'y').format('YYYY-MM-DDThh:mm');
+      }else if(d === "0"){
+          return moment().add(1, 'd').format('YYYY-MM-DDThh:mm');
+      }else if(d === "7"){
+          return moment().add(7, 'd').format('YYYY-MM-DDThh:mm');
+      }else if(d === "30"){
+          return moment().add(1, 'm').format('YYYY-MM-DDThh:mm');
+      }
+  };
+
+
+  var url = 'https://glacial-hollows-70580.herokuapp.com/ical/' + now + '/' + endDateRange(prefs.getString("futureEvents")) + 'Z' + '?url=' + prefs.getString("calendarUrl");
+  let list;
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+      //console.log(JSON.stringify(data,null,2));
+      let occurrences = data.occurrences.map(o => {
+          const recurContainer = {};
+          let startTime = moment({ year :o.startDate.year, month :o.startDate.month - 1, day :o.startDate.day, hour :o.startDate.hour, minute :o.startDate.minute, second :o.startDate.second});
+          let endTime = moment({ year :o.endDate.year, month :o.endDate.month - 1, day :o.endDate.day, hour :o.endDate.hour, minute :o.endDate.minute, second :o.endDate.second});
+
+      
+
+          recurContainer["startDate"] = startTime;
+          recurContainer["endDate"] = endTime;
+
+          o.item.component[1].forEach(item => { 
+              item.forEach(i => {
+                  if(i === "location"){
+                      recurContainer["location"] = item[3];
+                  }else if (i === "summary"){
+                      recurContainer["summary"] = item[3];
+                  }                   
+              })         
+          }) 
+          return recurContainer 
+      });
+
+      let statEvents = data.events.map(o => {
+          const statContainer = {};
+
+          o.component[1].forEach(item => {
+              item.forEach(i => {
+                  if (i === "dtstart"){     
+                      statContainer["startDate"] = moment(item[3]);  
+                  }else if(i === "dtend"){
+                      statContainer["endDate"] = moment(item[3]);    
+                  }else if( i === "location"){
+                      statContainer["location"] = item[3];
+                  }else if (i === "summary"){
+                      statContainer["summary"] = item[3];
+                  }
+              })
+          })
+          return statContainer
+      });
+
+      list = occurrences.concat(statEvents).sort((a, b) => {  
+          return a.startDate - b.startDate
+      });  
+
+      console.log(list);   
+
+      for (var i = 0; i < list.length; i++) {
+          if (prefs.getBool("nextEvents") == true){
+              if(moment(list[i].startDate) < moment() && moment(list[i].endDate) > moment()){            
+                  continue;
+              }
+          }
+
+          if (prefs.getString("displayFormat") == "table") {
+              formatTable(list[i]);
+          } else {
+              formatDiv(list[i]);
+          }
+      }
+  });
+
+  if (prefs.getString("displayFormat") != "table") {
+      $("#events").empty();
+  } else {
+      $("#events > table > tbody").empty();
+  }
+
+  
+
+
+  if (prefs.getString("scrollSpeed") != "none") {
         $("#data").autoScroll({
-        speed: prefs.getString("scrollSpeed"),
-        by: prefs.getString("scrollBy")
+          speed: prefs.getString("scrollSpeed"),
+          by: prefs.getString("scrollBy")
         }).on("done", function() {
-        $("#data").data("plugin_autoScroll").play();
+          $("#data").data("plugin_autoScroll").play();
         });
         $("#data").data("plugin_autoScroll").play();
-    }
+      }
 }
+
 function formatDiv(event) {
     console.log(event);
 
@@ -354,16 +360,10 @@ function formatTable(event) {
   
   var td = $("<td class=\"date\"/>");
   
-  var time = '';
-  if (sd === ed) {
-    console.log("match");
-    time += sd + " - " + ed;
-  } else {
-    console.log("no match");
-    time += sd;
-  }
+  var time = sd;
+  
 
-  td.text(st === et ? (time + ' - ' + 'ALL DAY EVENT') : time + ", " + st + " - " + et);
+  td.text(st === et ? (time + ' - ' + 'All Day') : time + ", " + st + " - " + et);
 
   $(tr).append(td);
     
