@@ -74,6 +74,10 @@ __webpack_require__.r(__webpack_exports__);
 class AppComponent {
     constructor() {
         this.title = 'clock-greets';
+        if (gadgets) {
+            this.prefs = new gadgets.Prefs();
+            console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
+        }
         setInterval(() => {
             this.time = new Date();
         }, 1000);
@@ -82,16 +86,16 @@ class AppComponent {
     decide() {
         this.hours = new Date().getHours();
         if (this.hours < 10) {
-            this.msg = "Good Morning";
+            this.msg = 'Good Morning';
         }
         else if (this.hours < 16) {
-            this.msg = "Good Afternoon";
+            this.msg = 'Good Afternoon';
         }
         else if (this.hours < 19) {
-            this.msg = "Good Evening";
+            this.msg = 'Good Evening';
         }
         else if (this.hours < 24) {
-            this.msg = "Good Night";
+            this.msg = 'Good Night';
         }
     }
 }
