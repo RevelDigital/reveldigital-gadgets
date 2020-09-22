@@ -134,22 +134,29 @@
       /* harmony import */
 
 
-      var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _revel_digital_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./revel-digital.service */
+      "./src/app/revel-digital.service.ts");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/common */
       "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 
       var AppComponent = /*#__PURE__*/function () {
-        function AppComponent() {
+        function AppComponent(client) {
           var _this = this;
 
           _classCallCheck(this, AppComponent);
 
           this.title = 'clock-greets';
-
-          if (gadgets) {
-            this.prefs = new gadgets.Prefs();
-            console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
-          }
+          client.getDeviceTime().then(function (res) {
+            console.log('device time: ' + res);
+          }); // if (typeof gadgets !== undefined) {
+          //   this.prefs = new gadgets.Prefs();
+          //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
+          // }
 
           setInterval(function () {
             _this.time = new Date();
@@ -178,7 +185,7 @@
       }();
 
       AppComponent.ɵfac = function AppComponent_Factory(t) {
-        return new (t || AppComponent)();
+        return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_revel_digital_service__WEBPACK_IMPORTED_MODULE_1__["RevelDigitalService"]));
       };
 
       AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -246,8 +253,8 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.msg);
           }
         },
-        pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["DatePipe"]],
-        styles: ["@import url(\"https://fonts.googleapis.com/css?family=Exo:400,700\");\n.context[_ngcontent-%COMP%] {\n  width: 100%;\n  z-index: 2;\n  position: absolute;\n  top: 45vh;\n}\n.context[_ngcontent-%COMP%]   .txt-time[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  color: white;\n  font-size: 64px;\n  letter-spacing: 5px;\n}\n.context[_ngcontent-%COMP%]   .txt-greetings[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  letter-spacing: 3px;\n  color: white;\n  font-size: 18px;\n}\n.context[_ngcontent-%COMP%]   .txt-suggestion[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  color: white;\n  text-decoration: none;\n}\na[_ngcontent-%COMP%] {\n  text-decoration: none;\n}\n\na[_ngcontent-%COMP%]:link {\n  color: white;\n}\n\na[_ngcontent-%COMP%]:visited {\n  color: white;\n}\n\na[_ngcontent-%COMP%]:hover {\n  color: hotpink;\n}\n\na[_ngcontent-%COMP%]:active {\n  color: white;\n}\np[_ngcontent-%COMP%] {\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.area[_ngcontent-%COMP%] {\n  background: black;\n  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);\n  width: 100%;\n  height: 100vh;\n}\n.circles[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n  position: absolute;\n  display: block;\n  list-style: none;\n  width: 20px;\n  height: 20px;\n  background: rgba(255, 255, 255, 0.2);\n  -webkit-animation: animate 25s linear infinite;\n          animation: animate 25s linear infinite;\n  bottom: -150px;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(1) {\n  left: 25%;\n  width: 80px;\n  height: 80px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  background-color: #f06292;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(2) {\n  left: 10%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 2s;\n          animation-delay: 2s;\n  -webkit-animation-duration: 12s;\n          animation-duration: 12s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(3) {\n  left: 70%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 4s;\n          animation-delay: 4s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(4) {\n  left: 40%;\n  width: 60px;\n  height: 60px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  -webkit-animation-duration: 18s;\n          animation-duration: 18s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(5) {\n  left: 65%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(6) {\n  left: 75%;\n  width: 110px;\n  height: 110px;\n  -webkit-animation-delay: 3s;\n          animation-delay: 3s;\n  background-color: #cb132d;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(7) {\n  left: 35%;\n  width: 150px;\n  height: 150px;\n  -webkit-animation-delay: 7s;\n          animation-delay: 7s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(8) {\n  left: 50%;\n  width: 25px;\n  height: 25px;\n  -webkit-animation-delay: 15s;\n          animation-delay: 15s;\n  -webkit-animation-duration: 45s;\n          animation-duration: 45s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(9) {\n  left: 20%;\n  width: 15px;\n  height: 15px;\n  -webkit-animation-delay: 2s;\n          animation-delay: 2s;\n  -webkit-animation-duration: 35s;\n          animation-duration: 35s;\n  background-color: #cb132d;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(10) {\n  left: 85%;\n  width: 150px;\n  height: 150px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  -webkit-animation-duration: 11s;\n          animation-duration: 11s;\n  background-color: #cb132d;\n}\n@-webkit-keyframes animate {\n  0% {\n    -webkit-transform: translateY(0) rotate(0deg);\n            transform: translateY(0) rotate(0deg);\n    opacity: 1;\n    border-radius: 0;\n  }\n  100% {\n    -webkit-transform: translateY(-1000px) rotate(720deg);\n            transform: translateY(-1000px) rotate(720deg);\n    opacity: 0.2;\n    border-radius: 50%;\n  }\n}\n@keyframes animate {\n  0% {\n    -webkit-transform: translateY(0) rotate(0deg);\n            transform: translateY(0) rotate(0deg);\n    opacity: 1;\n    border-radius: 0;\n  }\n  100% {\n    -webkit-transform: translateY(-1000px) rotate(720deg);\n            transform: translateY(-1000px) rotate(720deg);\n    opacity: 0.2;\n    border-radius: 50%;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlEUSxrRUFBQTtBQXpEUjtFQUNJLFdBQUE7RUFDQSxVQUFBO0VBQ0Esa0JBQUE7RUFDQSxTQUFBO0FBRUo7QUFESTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQUFBO0FBR1I7QUFBSTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FBRVI7QUFDSTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxZQUFBO0VBQ0EscUJBQUE7QUFDUjtBQUVBO0VBQ0kscUJBQUE7QUFDSjtBQUVBLG1CQUFBO0FBQ0E7RUFDSSxZQUFBO0FBQ0o7QUFFRSxpQkFBQTtBQUNBO0VBQ0UsWUFBQTtBQUNKO0FBRUUsb0JBQUE7QUFDQTtFQUNFLGNBQUE7QUFDSjtBQUVFLGtCQUFBO0FBQ0E7RUFDRSxZQUFBO0FBQ0o7QUFFQTtFQUNJLGFBQUE7RUFDQSxnQkFBQTtBQUNKO0FBSUE7RUFDSSxpQkFBQTtFQUNBLDhEQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7QUFESjtBQUlBO0VBQ0ksa0JBQUE7RUFDQSxNQUFBO0VBQ0EsT0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsZ0JBQUE7QUFESjtBQUlBO0VBQ0ksa0JBQUE7RUFDQSxjQUFBO0VBQ0EsZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLG9DQUFBO0VBQ0EsOENBQUE7VUFBQSxzQ0FBQTtFQUNBLGNBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSx5QkFBQTtBQURKO0FBSUE7RUFDSSxTQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSwyQkFBQTtVQUFBLG1CQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsNEJBQUE7VUFBQSxvQkFBQTtFQUNBLCtCQUFBO1VBQUEsdUJBQUE7RUFDQSx5QkFBQTtBQURKO0FBSUE7RUFDSSxTQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSwyQkFBQTtVQUFBLG1CQUFBO0VBQ0EsK0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0k7SUFDSSw2Q0FBQTtZQUFBLHFDQUFBO0lBQ0EsVUFBQTtJQUNBLGdCQUFBO0VBRE47RUFJRTtJQUNJLHFEQUFBO1lBQUEsNkNBQUE7SUFDQSxZQUFBO0lBQ0Esa0JBQUE7RUFGTjtBQUNGO0FBVEE7RUFDSTtJQUNJLDZDQUFBO1lBQUEscUNBQUE7SUFDQSxVQUFBO0lBQ0EsZ0JBQUE7RUFETjtFQUlFO0lBQ0kscURBQUE7WUFBQSw2Q0FBQTtJQUNBLFlBQUE7SUFDQSxrQkFBQTtFQUZOO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGV4dCB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHotaW5kZXg6IDI7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDQ1dmg7XHJcbiAgICAudHh0LXRpbWUge1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBmb250LWZhbWlseTogXCJGaXJhIFNhbnNcIjtcclxuICAgICAgICBjb2xvcjogd2hpdGU7XHJcbiAgICAgICAgZm9udC1zaXplOiA2NHB4O1xyXG4gICAgICAgIGxldHRlci1zcGFjaW5nOiA1cHg7XHJcbiAgICB9XHJcblxyXG4gICAgLnR4dC1ncmVldGluZ3Mge1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBmb250LWZhbWlseTogXCJGaXJhIFNhbnNcIjtcclxuICAgICAgICBsZXR0ZXItc3BhY2luZzogM3B4O1xyXG4gICAgICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICB9XHJcblxyXG4gICAgLnR4dC1zdWdnZXN0aW9uIHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgZm9udC1mYW1pbHk6IFwiRmlyYSBTYW5zXCI7XHJcbiAgICAgICAgY29sb3I6IHdoaXRlO1xyXG4gICAgICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICAgIH1cclxufVxyXG5he1xyXG4gICAgdGV4dC1kZWNvcmF0aW9uOm5vbmU7XHJcbn1cclxuXHJcbi8qIHVudmlzaXRlZCBsaW5rICovXHJcbmE6bGluayB7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIHZpc2l0ZWQgbGluayAqL1xyXG4gIGE6dmlzaXRlZCB7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIG1vdXNlIG92ZXIgbGluayAqL1xyXG4gIGE6aG92ZXIge1xyXG4gICAgY29sb3I6IGhvdHBpbms7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIHNlbGVjdGVkIGxpbmsgKi9cclxuICBhOmFjdGl2ZSB7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgfVxyXG5cclxucCB7XHJcbiAgICBtYXJnaW4tdG9wOiAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMDtcclxufVxyXG5cclxuQGltcG9ydCB1cmwoXCJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9RXhvOjQwMCw3MDBcIik7XHJcblxyXG4uYXJlYSB7XHJcbiAgICBiYWNrZ3JvdW5kOiBibGFjaztcclxuICAgIGJhY2tncm91bmQ6IC13ZWJraXQtbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsICM4Zjk0ZmIsICM0ZTU0YzgpO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcblxyXG4uY2lyY2xlcyB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaSB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbiAgICB3aWR0aDogMjBweDtcclxuICAgIGhlaWdodDogMjBweDtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4yKTtcclxuICAgIGFuaW1hdGlvbjogYW5pbWF0ZSAyNXMgbGluZWFyIGluZmluaXRlO1xyXG4gICAgYm90dG9tOiAtMTUwcHg7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCgxKSB7XHJcbiAgICBsZWZ0OiAyNSU7XHJcbiAgICB3aWR0aDogODBweDtcclxuICAgIGhlaWdodDogODBweDtcclxuICAgIGFuaW1hdGlvbi1kZWxheTogMHM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjA2MjkyO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMikge1xyXG4gICAgbGVmdDogMTAlO1xyXG4gICAgd2lkdGg6IDIwcHg7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDJzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxMnM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWU4OGU1O1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMykge1xyXG4gICAgbGVmdDogNzAlO1xyXG4gICAgd2lkdGg6IDIwcHg7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDRzO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzFlODhlNTtcclxufVxyXG5cclxuLmNpcmNsZXMgbGk6bnRoLWNoaWxkKDQpIHtcclxuICAgIGxlZnQ6IDQwJTtcclxuICAgIHdpZHRoOiA2MHB4O1xyXG4gICAgaGVpZ2h0OiA2MHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAwcztcclxuICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogMThzO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzFlODhlNTtcclxufVxyXG5cclxuLmNpcmNsZXMgbGk6bnRoLWNoaWxkKDUpIHtcclxuICAgIGxlZnQ6IDY1JTtcclxuICAgIHdpZHRoOiAyMHB4O1xyXG4gICAgaGVpZ2h0OiAyMHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAwcztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxZTg4ZTU7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg2KSB7XHJcbiAgICBsZWZ0OiA3NSU7XHJcbiAgICB3aWR0aDogMTEwcHg7XHJcbiAgICBoZWlnaHQ6IDExMHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAzcztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNjYjEzMmQ7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg3KSB7XHJcbiAgICBsZWZ0OiAzNSU7XHJcbiAgICB3aWR0aDogMTUwcHg7XHJcbiAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiA3cztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxZTg4ZTU7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg4KSB7XHJcbiAgICBsZWZ0OiA1MCU7XHJcbiAgICB3aWR0aDogMjVweDtcclxuICAgIGhlaWdodDogMjVweDtcclxuICAgIGFuaW1hdGlvbi1kZWxheTogMTVzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiA0NXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWU4OGU1O1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoOSkge1xyXG4gICAgbGVmdDogMjAlO1xyXG4gICAgd2lkdGg6IDE1cHg7XHJcbiAgICBoZWlnaHQ6IDE1cHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDJzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAzNXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjY2IxMzJkO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMTApIHtcclxuICAgIGxlZnQ6IDg1JTtcclxuICAgIHdpZHRoOiAxNTBweDtcclxuICAgIGhlaWdodDogMTUwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDBzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxMXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjY2IxMzJkO1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGFuaW1hdGUge1xyXG4gICAgMCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKSByb3RhdGUoMGRlZyk7XHJcbiAgICAgICAgb3BhY2l0eTogMTtcclxuICAgICAgICBib3JkZXItcmFkaXVzOiAwO1xyXG4gICAgfVxyXG5cclxuICAgIDEwMCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTAwMHB4KSByb3RhdGUoNzIwZGVnKTtcclxuICAgICAgICBvcGFjaXR5OiAwLjI7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgfVxyXG59Il19 */"]
+        pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["DatePipe"]],
+        styles: ["@import url(\"https://fonts.googleapis.com/css?family=Exo:400,700\");\n.context[_ngcontent-%COMP%] {\n  width: 100%;\n  z-index: 2;\n  position: absolute;\n  top: 45vh;\n}\n.context[_ngcontent-%COMP%]   .txt-time[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  color: white;\n  font-size: 64px;\n  letter-spacing: 5px;\n}\n.context[_ngcontent-%COMP%]   .txt-greetings[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  letter-spacing: 3px;\n  color: white;\n  font-size: 18px;\n}\n.context[_ngcontent-%COMP%]   .txt-suggestion[_ngcontent-%COMP%] {\n  text-align: center;\n  font-family: \"Fira Sans\";\n  color: white;\n  text-decoration: none;\n}\na[_ngcontent-%COMP%] {\n  text-decoration: none;\n}\n\na[_ngcontent-%COMP%]:link {\n  color: white;\n}\n\na[_ngcontent-%COMP%]:visited {\n  color: white;\n}\n\na[_ngcontent-%COMP%]:hover {\n  color: hotpink;\n}\n\na[_ngcontent-%COMP%]:active {\n  color: white;\n}\np[_ngcontent-%COMP%] {\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.area[_ngcontent-%COMP%] {\n  background: black;\n  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);\n  width: 100%;\n  height: 100vh;\n}\n.circles[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n  position: absolute;\n  display: block;\n  list-style: none;\n  width: 20px;\n  height: 20px;\n  background: rgba(255, 255, 255, 0.2);\n  -webkit-animation: animate 25s linear infinite;\n          animation: animate 25s linear infinite;\n  bottom: -150px;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(1) {\n  left: 25%;\n  width: 80px;\n  height: 80px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  background-color: #f06292;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(2) {\n  left: 10%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 2s;\n          animation-delay: 2s;\n  -webkit-animation-duration: 12s;\n          animation-duration: 12s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(3) {\n  left: 70%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 4s;\n          animation-delay: 4s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(4) {\n  left: 40%;\n  width: 60px;\n  height: 60px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  -webkit-animation-duration: 18s;\n          animation-duration: 18s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(5) {\n  left: 65%;\n  width: 20px;\n  height: 20px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(6) {\n  left: 75%;\n  width: 110px;\n  height: 110px;\n  -webkit-animation-delay: 3s;\n          animation-delay: 3s;\n  background-color: #cb132d;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(7) {\n  left: 35%;\n  width: 150px;\n  height: 150px;\n  -webkit-animation-delay: 7s;\n          animation-delay: 7s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(8) {\n  left: 50%;\n  width: 25px;\n  height: 25px;\n  -webkit-animation-delay: 15s;\n          animation-delay: 15s;\n  -webkit-animation-duration: 45s;\n          animation-duration: 45s;\n  background-color: #1e88e5;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(9) {\n  left: 20%;\n  width: 15px;\n  height: 15px;\n  -webkit-animation-delay: 2s;\n          animation-delay: 2s;\n  -webkit-animation-duration: 35s;\n          animation-duration: 35s;\n  background-color: #cb132d;\n}\n.circles[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:nth-child(10) {\n  left: 85%;\n  width: 150px;\n  height: 150px;\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n  -webkit-animation-duration: 11s;\n          animation-duration: 11s;\n  background-color: #cb132d;\n}\n@-webkit-keyframes animate {\n  0% {\n    -webkit-transform: translateY(0) rotate(0deg);\n            transform: translateY(0) rotate(0deg);\n    opacity: 1;\n    border-radius: 0;\n  }\n  100% {\n    -webkit-transform: translateY(-1000px) rotate(720deg);\n            transform: translateY(-1000px) rotate(720deg);\n    opacity: 0.2;\n    border-radius: 50%;\n  }\n}\n@keyframes animate {\n  0% {\n    -webkit-transform: translateY(0) rotate(0deg);\n            transform: translateY(0) rotate(0deg);\n    opacity: 1;\n    border-radius: 0;\n  }\n  100% {\n    -webkit-transform: translateY(-1000px) rotate(720deg);\n            transform: translateY(-1000px) rotate(720deg);\n    opacity: 0.2;\n    border-radius: 50%;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlEUSxrRUFBQTtBQXpEUjtFQUNJLFdBQUE7RUFDQSxVQUFBO0VBQ0Esa0JBQUE7RUFDQSxTQUFBO0FBRUo7QUFESTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQUFBO0FBR1I7QUFBSTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FBRVI7QUFDSTtFQUNJLGtCQUFBO0VBQ0Esd0JBQUE7RUFDQSxZQUFBO0VBQ0EscUJBQUE7QUFDUjtBQUVBO0VBQ0kscUJBQUE7QUFDSjtBQUVBLG1CQUFBO0FBQ0E7RUFDSSxZQUFBO0FBQ0o7QUFFQSxpQkFBQTtBQUNBO0VBQ0ksWUFBQTtBQUNKO0FBRUEsb0JBQUE7QUFDQTtFQUNJLGNBQUE7QUFDSjtBQUVBLGtCQUFBO0FBQ0E7RUFDSSxZQUFBO0FBQ0o7QUFFQTtFQUNJLGFBQUE7RUFDQSxnQkFBQTtBQUNKO0FBSUE7RUFDSSxpQkFBQTtFQUNBLDhEQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7QUFESjtBQUlBO0VBQ0ksa0JBQUE7RUFDQSxNQUFBO0VBQ0EsT0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsZ0JBQUE7QUFESjtBQUlBO0VBQ0ksa0JBQUE7RUFDQSxjQUFBO0VBQ0EsZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLG9DQUFBO0VBQ0EsOENBQUE7VUFBQSxzQ0FBQTtFQUNBLGNBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7VUFBQSxtQkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSx5QkFBQTtBQURKO0FBSUE7RUFDSSxTQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSwyQkFBQTtVQUFBLG1CQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0ksU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsNEJBQUE7VUFBQSxvQkFBQTtFQUNBLCtCQUFBO1VBQUEsdUJBQUE7RUFDQSx5QkFBQTtBQURKO0FBSUE7RUFDSSxTQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSwyQkFBQTtVQUFBLG1CQUFBO0VBQ0EsK0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO0FBREo7QUFJQTtFQUNJLFNBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO1VBQUEsbUJBQUE7RUFDQSwrQkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7QUFESjtBQUlBO0VBQ0k7SUFDSSw2Q0FBQTtZQUFBLHFDQUFBO0lBQ0EsVUFBQTtJQUNBLGdCQUFBO0VBRE47RUFJRTtJQUNJLHFEQUFBO1lBQUEsNkNBQUE7SUFDQSxZQUFBO0lBQ0Esa0JBQUE7RUFGTjtBQUNGO0FBVEE7RUFDSTtJQUNJLDZDQUFBO1lBQUEscUNBQUE7SUFDQSxVQUFBO0lBQ0EsZ0JBQUE7RUFETjtFQUlFO0lBQ0kscURBQUE7WUFBQSw2Q0FBQTtJQUNBLFlBQUE7SUFDQSxrQkFBQTtFQUZOO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGV4dCB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHotaW5kZXg6IDI7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDQ1dmg7XHJcbiAgICAudHh0LXRpbWUge1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBmb250LWZhbWlseTogXCJGaXJhIFNhbnNcIjtcclxuICAgICAgICBjb2xvcjogd2hpdGU7XHJcbiAgICAgICAgZm9udC1zaXplOiA2NHB4O1xyXG4gICAgICAgIGxldHRlci1zcGFjaW5nOiA1cHg7XHJcbiAgICB9XHJcblxyXG4gICAgLnR4dC1ncmVldGluZ3Mge1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBmb250LWZhbWlseTogXCJGaXJhIFNhbnNcIjtcclxuICAgICAgICBsZXR0ZXItc3BhY2luZzogM3B4O1xyXG4gICAgICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICB9XHJcblxyXG4gICAgLnR4dC1zdWdnZXN0aW9uIHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgZm9udC1mYW1pbHk6IFwiRmlyYSBTYW5zXCI7XHJcbiAgICAgICAgY29sb3I6IHdoaXRlO1xyXG4gICAgICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICAgIH1cclxufVxyXG5hIHtcclxuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxuLyogdW52aXNpdGVkIGxpbmsgKi9cclxuYTpsaW5rIHtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLyogdmlzaXRlZCBsaW5rICovXHJcbmE6dmlzaXRlZCB7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn1cclxuXHJcbi8qIG1vdXNlIG92ZXIgbGluayAqL1xyXG5hOmhvdmVyIHtcclxuICAgIGNvbG9yOiBob3RwaW5rO1xyXG59XHJcblxyXG4vKiBzZWxlY3RlZCBsaW5rICovXHJcbmE6YWN0aXZlIHtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxucCB7XHJcbiAgICBtYXJnaW4tdG9wOiAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMDtcclxufVxyXG5cclxuQGltcG9ydCB1cmwoXCJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9RXhvOjQwMCw3MDBcIik7XHJcblxyXG4uYXJlYSB7XHJcbiAgICBiYWNrZ3JvdW5kOiBibGFjaztcclxuICAgIGJhY2tncm91bmQ6IC13ZWJraXQtbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsICM4Zjk0ZmIsICM0ZTU0YzgpO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcblxyXG4uY2lyY2xlcyB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaSB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbiAgICB3aWR0aDogMjBweDtcclxuICAgIGhlaWdodDogMjBweDtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4yKTtcclxuICAgIGFuaW1hdGlvbjogYW5pbWF0ZSAyNXMgbGluZWFyIGluZmluaXRlO1xyXG4gICAgYm90dG9tOiAtMTUwcHg7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCgxKSB7XHJcbiAgICBsZWZ0OiAyNSU7XHJcbiAgICB3aWR0aDogODBweDtcclxuICAgIGhlaWdodDogODBweDtcclxuICAgIGFuaW1hdGlvbi1kZWxheTogMHM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjA2MjkyO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMikge1xyXG4gICAgbGVmdDogMTAlO1xyXG4gICAgd2lkdGg6IDIwcHg7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDJzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxMnM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWU4OGU1O1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMykge1xyXG4gICAgbGVmdDogNzAlO1xyXG4gICAgd2lkdGg6IDIwcHg7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDRzO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzFlODhlNTtcclxufVxyXG5cclxuLmNpcmNsZXMgbGk6bnRoLWNoaWxkKDQpIHtcclxuICAgIGxlZnQ6IDQwJTtcclxuICAgIHdpZHRoOiA2MHB4O1xyXG4gICAgaGVpZ2h0OiA2MHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAwcztcclxuICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogMThzO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzFlODhlNTtcclxufVxyXG5cclxuLmNpcmNsZXMgbGk6bnRoLWNoaWxkKDUpIHtcclxuICAgIGxlZnQ6IDY1JTtcclxuICAgIHdpZHRoOiAyMHB4O1xyXG4gICAgaGVpZ2h0OiAyMHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAwcztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxZTg4ZTU7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg2KSB7XHJcbiAgICBsZWZ0OiA3NSU7XHJcbiAgICB3aWR0aDogMTEwcHg7XHJcbiAgICBoZWlnaHQ6IDExMHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiAzcztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNjYjEzMmQ7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg3KSB7XHJcbiAgICBsZWZ0OiAzNSU7XHJcbiAgICB3aWR0aDogMTUwcHg7XHJcbiAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gICAgYW5pbWF0aW9uLWRlbGF5OiA3cztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxZTg4ZTU7XHJcbn1cclxuXHJcbi5jaXJjbGVzIGxpOm50aC1jaGlsZCg4KSB7XHJcbiAgICBsZWZ0OiA1MCU7XHJcbiAgICB3aWR0aDogMjVweDtcclxuICAgIGhlaWdodDogMjVweDtcclxuICAgIGFuaW1hdGlvbi1kZWxheTogMTVzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiA0NXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWU4OGU1O1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoOSkge1xyXG4gICAgbGVmdDogMjAlO1xyXG4gICAgd2lkdGg6IDE1cHg7XHJcbiAgICBoZWlnaHQ6IDE1cHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDJzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAzNXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjY2IxMzJkO1xyXG59XHJcblxyXG4uY2lyY2xlcyBsaTpudGgtY2hpbGQoMTApIHtcclxuICAgIGxlZnQ6IDg1JTtcclxuICAgIHdpZHRoOiAxNTBweDtcclxuICAgIGhlaWdodDogMTUwcHg7XHJcbiAgICBhbmltYXRpb24tZGVsYXk6IDBzO1xyXG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxMXM7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjY2IxMzJkO1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGFuaW1hdGUge1xyXG4gICAgMCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKSByb3RhdGUoMGRlZyk7XHJcbiAgICAgICAgb3BhY2l0eTogMTtcclxuICAgICAgICBib3JkZXItcmFkaXVzOiAwO1xyXG4gICAgfVxyXG5cclxuICAgIDEwMCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTAwMHB4KSByb3RhdGUoNzIwZGVnKTtcclxuICAgICAgICBvcGFjaXR5OiAwLjI7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgfVxyXG59XHJcbiJdfQ== */"]
       });
       /*@__PURE__*/
 
@@ -260,7 +267,9 @@
             styleUrls: ['./app.component.scss']
           }]
         }], function () {
-          return [];
+          return [{
+            type: _revel_digital_service__WEBPACK_IMPORTED_MODULE_1__["RevelDigitalService"]
+          }];
         }, null);
       })();
       /***/
@@ -388,6 +397,171 @@
           }]
         }], null, null);
       })();
+      /***/
+
+    },
+
+    /***/
+    "./src/app/revel-digital.service.ts":
+    /*!******************************************!*\
+      !*** ./src/app/revel-digital.service.ts ***!
+      \******************************************/
+
+    /*! exports provided: RevelDigitalService */
+
+    /***/
+    function srcAppRevelDigitalServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "RevelDigitalService", function () {
+        return RevelDigitalService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+      var RevelDigitalService = /*#__PURE__*/function () {
+        function RevelDigitalService() {
+          _classCallCheck(this, RevelDigitalService);
+
+          this.clientPromise = null;
+        }
+
+        _createClass(RevelDigitalService, [{
+          key: "getDeviceTime",
+          value: function getDeviceTime() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var client;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return this.getClient();
+
+                    case 2:
+                      client = _context.sent;
+                      return _context.abrupt("return", client.getDeviceTime());
+
+                    case 4:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          } // ---
+          // PRIVATE METHODS.
+          // ---
+          // I return a Promise that resolves with a Tracker API (which may be the 3rd-party
+          // library or a mock API representation).
+
+        }, {
+          key: "getClient",
+          value: function getClient() {
+            if (this.clientPromise) {
+              return this.clientPromise;
+            }
+
+            if (window.Client) {
+              return this.clientPromise = Promise.resolve(window.Client);
+            } // A "complete" status indicates that the "load" event has been fired on the
+            // window; and, that all sub-resources such as Scripts, Images, and Frames have
+            // been loaded.
+
+
+            if (window.document.readyState === "complete") {
+              // If this event has fired AND the 3rd-party script isn't available (see IF-
+              // condition BEFORE this one), it means that the 3rd-party script either
+              // failed on the network or was BLOCKED by an ad-blocker. As such, we have to
+              // fall-back to using a mock API.
+              return this.clientPromise = Promise.resolve(new NoopClient());
+            } // ASSERT: If we made it this far, the document has not completed loading (but it
+            // may be in an "interactive" state which is when I believe that the Angular app
+            // gets bootstrapped). As such, we need bind to the LOAD event to wait for our
+            // third-party scripts to load (or fail to load, or be blocked).
+
+
+            this.clientPromise = new Promise(function (resolve) {
+              window.addEventListener("load", function handleWindowLoad() {
+                // At this point, the 3rd-party library is either available or
+                // it's not - there's no further loading to do. If it's not
+                // present on the global scope, we're going to fall-back to using
+                // a mock API.
+                resolve(window.Client || new NoopClient());
+              });
+            });
+            return this.clientPromise;
+          }
+        }]);
+
+        return RevelDigitalService;
+      }();
+
+      RevelDigitalService.ɵfac = function RevelDigitalService_Factory(t) {
+        return new (t || RevelDigitalService)();
+      };
+
+      RevelDigitalService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
+        token: RevelDigitalService,
+        factory: RevelDigitalService.ɵfac,
+        providedIn: 'root'
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](RevelDigitalService, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"],
+          args: [{
+            providedIn: 'root'
+          }]
+        }], function () {
+          return [];
+        }, null);
+      })(); // ----------------------------------------------------------------------------------- //
+      // ----------------------------------------------------------------------------------- //
+      // I provide a mock API for the 3rd-party script. This just allows the consuming code to
+      // act as though the library is available even if it failed to load (example, it was
+      // blocked by an ad-blocker).
+
+
+      var NoopClient = /*#__PURE__*/function () {
+        function NoopClient() {
+          _classCallCheck(this, NoopClient);
+
+          console.warn("Client API not available, falling back to mock API.");
+        }
+
+        _createClass(NoopClient, [{
+          key: "getDeviceTime",
+          value: function getDeviceTime() {
+            return Promise.resolve(null);
+          }
+        }, {
+          key: "identify",
+          value: function identify(user) {// NOOP implement, nothing to do....
+          }
+        }, {
+          key: "track",
+          value: function track(eventType, eventData) {// NOOP implement, nothing to do....
+          }
+        }]);
+
+        return NoopClient;
+      }();
       /***/
 
     },
