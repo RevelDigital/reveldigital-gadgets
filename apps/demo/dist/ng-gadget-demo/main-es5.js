@@ -155,31 +155,17 @@
           key: "decide",
           value: function decide() {
             this.hours = new Date().getHours();
-            console.log("this.hours", this.hours);
 
             if (this.hours < 10) {
               this.msg = "Good Morning";
-              this.link = "wwww.google.com";
-              console.log("selamat Pagi");
             } else if (this.hours < 16) {
               this.msg = "Good Afternoon";
-              this.link = "wwww.tokopedia.com";
-              console.log("selamat siang");
             } else if (this.hours < 19) {
               this.msg = "Good Evening";
             } else if (this.hours < 24) {
               this.msg = "Good Night";
-              this.link = "wwww.sprout.co.id";
-              console.log("selamat malam");
-            } else if (this.hours < 6) {
-              this.msg = "Sleep lah";
-              this.link = "www.mangabat.com";
-              console.log("selamat subuh");
             }
           }
-        }, {
-          key: "firebaseSusbscribing",
-          value: function firebaseSusbscribing() {}
         }]);
 
         return AppComponent;
@@ -247,7 +233,7 @@
           if (rf & 2) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 2, ctx.time, "mediumTime"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 2, ctx.time, "medium"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
 
@@ -324,6 +310,29 @@
       var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ./app.component */
       "./src/app/app.component.ts");
+      /* harmony import */
+
+
+      var _angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/common/locales/fr */
+      "./node_modules/@angular/common/locales/fr.js");
+      /* harmony import */
+
+
+      var _angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_5__);
+      /* harmony import */
+
+
+      var _angular_common_locales_ru__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/common/locales/ru */
+      "./node_modules/@angular/common/locales/ru.js");
+      /* harmony import */
+
+
+      var _angular_common_locales_ru__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_ru__WEBPACK_IMPORTED_MODULE_6__);
+
+      Object(_angular_common__WEBPACK_IMPORTED_MODULE_2__["registerLocaleData"])(_angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_5___default.a);
+      Object(_angular_common__WEBPACK_IMPORTED_MODULE_2__["registerLocaleData"])(_angular_common_locales_ru__WEBPACK_IMPORTED_MODULE_6___default.a);
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -338,6 +347,9 @@
           return new (t || AppModule)();
         },
         providers: [{
+          provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"],
+          useValue: "fr"
+        }, {
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
           useValue: '/'
         }],
@@ -360,6 +372,9 @@
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
             providers: [{
+              provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"],
+              useValue: "fr"
+            }, {
               provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
               useValue: '/'
             }],
