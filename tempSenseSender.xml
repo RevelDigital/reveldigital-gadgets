@@ -34,16 +34,14 @@
     firebase.database().ref(reg).on('value', function(snapshot) {
         let temp = (snapshot.val() && snapshot.val().temp);
         if(Client){
-            Client.callback(temp);
+            Client.callback(temp.substring(0,temp.indexOf("_")));
         }
     });
     function writeTemp(val) {
         firebase.database().ref(reg).set({
-            temp: val+'_'+Date.now(),
+            temp: JSON.stringify(val)+'_'+Date.now(),
         });
     }
-
-
 
 </script>
 
