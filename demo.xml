@@ -24,16 +24,16 @@
             
             <body>
             <app-root></app-root>
-	      	<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/runtime-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/runtime-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/polyfills-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/polyfills-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/styles-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/styles-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/vendor-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/vendor-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/main-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/main-es5.js" nomodule defer></script></body>
+	      	<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es2015.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es5.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es5.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es2015.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/styles-es2015.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/styles-es5.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/vendor-es2015.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/vendor-es5.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es2015.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es5.js" nomodule defer></script></body>
             </body>
         ]]>
     </Content>
