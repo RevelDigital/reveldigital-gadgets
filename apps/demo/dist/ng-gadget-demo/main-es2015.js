@@ -79,9 +79,13 @@ class AppComponent {
         client.getDeviceTime().then((res) => {
             console.log('device time #1: ' + res);
         });
-        client.getDeviceTime(new Date()).then((res) => {
-            console.log('device time #2: ' + res);
+        // client.getDeviceTime(new Date()).then((res) => {
+        //   console.log('device time #2: ' + res);
+        // });
+        client.getDeviceKey().then((res) => {
+            console.log('device key: ' + res);
         });
+        client.callback('test');
         // if (typeof gadgets !== undefined) {
         //   this.prefs = new gadgets.Prefs();
         //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
@@ -232,6 +236,11 @@ class RevelDigitalService {
     constructor() {
         this.clientPromise = null;
     }
+    callback(...args) {
+        this.getClient().then((client) => {
+            client.callback(args);
+        });
+    }
     getDeviceTime(date) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const client = yield this.getClient();
@@ -239,6 +248,67 @@ class RevelDigitalService {
                 return client.getDeviceTime(date);
             }
             return client.getDeviceTime();
+        });
+    }
+    getDeviceTimeZoneName() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getDeviceTimeZoneName();
+        });
+    }
+    getDeviceTimeZoneID() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getDeviceTimeZoneID();
+        });
+    }
+    getDeviceTimeZoneOffset() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getDeviceTimeZoneOffset();
+        });
+    }
+    getLanguageCode() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getLanguageCode();
+        });
+    }
+    getDeviceKey() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getDeviceKey();
+        });
+    }
+    sendCommand(name, arg) {
+        this.getClient().then((client) => {
+            client.sendCommand(name, arg);
+        });
+    }
+    track(eventName, properties) {
+        this.getClient().then((client) => {
+            client.track(eventName, properties);
+        });
+    }
+    timeEvent(eventName) {
+        this.getClient().then((client) => {
+            client.timeEvent(eventName);
+        });
+    }
+    newEventSession(id) {
+        this.getClient().then((client) => {
+            if (id !== undefined) {
+                client.newEventSession();
+            }
+            else {
+                client.newEventSession(id);
+            }
+        });
+    }
+    getRevelRoot() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const client = yield this.getClient();
+            return client.getRevelRoot();
         });
     }
     // ---
@@ -296,14 +366,53 @@ class NoopClient {
     constructor() {
         console.warn("Client API not available, falling back to mock API.");
     }
+    callback(...args) {
+        // NOOP implement, nothing to do....
+    }
     getDeviceTime(date) {
         return Promise.resolve(null);
     }
-    identify(user) {
+    getDeviceTimeZoneName() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
+    }
+    getDeviceTimeZoneID() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
+    }
+    getDeviceTimeZoneOffset() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
+    }
+    getLanguageCode() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
+    }
+    getDeviceKey() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
+    }
+    sendCommand(name, arg) {
         // NOOP implement, nothing to do....
     }
-    track(eventType, eventData) {
+    track(eventName, properties) {
         // NOOP implement, nothing to do....
+    }
+    timeEvent(eventName) {
+        // NOOP implement, nothing to do....
+    }
+    newEventSession(id) {
+        // NOOP implement, nothing to do....
+    }
+    getRevelRoot() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return Promise.resolve(null);
+        });
     }
 }
 
