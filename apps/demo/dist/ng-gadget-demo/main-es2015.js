@@ -79,6 +79,9 @@ class AppComponent {
         client.getDeviceTime().then((res) => {
             console.log('device time: ' + res);
         });
+        client.getDeviceTime(new Date()).then((res) => {
+            console.log('device time: ' + res);
+        });
         // if (typeof gadgets !== undefined) {
         //   this.prefs = new gadgets.Prefs();
         //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
@@ -229,10 +232,10 @@ class RevelDigitalService {
     constructor() {
         this.clientPromise = null;
     }
-    getDeviceTime() {
+    getDeviceTime(date) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const client = yield this.getClient();
-            return client.getDeviceTime();
+            return client.getDeviceTime(date);
         });
     }
     // ---
@@ -290,7 +293,7 @@ class NoopClient {
     constructor() {
         console.warn("Client API not available, falling back to mock API.");
     }
-    getDeviceTime() {
+    getDeviceTime(date) {
         return Promise.resolve(null);
     }
     identify(user) {
