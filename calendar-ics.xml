@@ -210,7 +210,7 @@ function update() {
   })
   .then(function(data) {
       //console.log(JSON.stringify(data,null,2));
-      let occurrences = data.occurrences.map(o => {
+      let occurrences = data.occurrences.map(function(o) {
           const recurContainer = {};
           let startTime = moment({ year :o.startDate.year, month :o.startDate.month - 1, day :o.startDate.day, hour :o.startDate.hour, minute :o.startDate.minute, second :o.startDate.second});
           let endTime = moment({ year :o.endDate.year, month :o.endDate.month - 1, day :o.endDate.day, hour :o.endDate.hour, minute :o.endDate.minute, second :o.endDate.second});
