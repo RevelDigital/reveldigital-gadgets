@@ -385,9 +385,9 @@ function formatTable(event) {
         
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker')
-    .then(registration =>
+    .then(function (registration){
       console.log('Service Worker Registered')
-    );
+    });
   }
   
 </script>
