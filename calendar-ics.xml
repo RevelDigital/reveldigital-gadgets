@@ -205,10 +205,10 @@ function update() {
   let list;
 
   fetch(url)
-  .then(function(response){
-    return response.json()
+  .then(function (response){
+    return response.json();
   })
-  .then(function(data) {
+  .then(function (data) {
       //console.log(JSON.stringify(data,null,2));
       let occurrences = data.occurrences.map(function(o) {
           const recurContainer = {};
@@ -220,8 +220,8 @@ function update() {
           recurContainer["startDate"] = startTime;
           recurContainer["endDate"] = endTime;
 
-          o.item.component[1].forEach(function(item) { 
-              item.forEach(function(i) {
+          o.item.component[1].forEach(function (item) { 
+              item.forEach(function (i) {
                   if(i === "location"){
                       recurContainer["location"] = item[3];
                   }else if (i === "summary"){
@@ -232,11 +232,11 @@ function update() {
           return recurContainer 
       });
 
-      let statEvents = data.events.map(function(o) {
+      let statEvents = data.events.map(function (o) {
           const statContainer = {};
 
-          o.component[1].forEach(function(item) {
-              item.forEach(function(i) {
+          o.component[1].forEach(function (item) {
+              item.forEach(function (i) {
                   if (i === "dtstart"){     
                       statContainer["startDate"] = moment(item[3]);  
                   }else if(i === "dtend"){
@@ -251,7 +251,7 @@ function update() {
           return statContainer
       });
 
-      list = occurrences.concat(statEvents).sort(function(a,b) {  
+      list = occurrences.concat(statEvents).sort(function (a,b) {  
           return a.startDate - b.startDate
       });  
 
