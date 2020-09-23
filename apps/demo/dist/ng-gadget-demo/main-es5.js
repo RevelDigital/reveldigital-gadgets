@@ -153,6 +153,9 @@
           this.title = 'clock-greets';
           client.getDeviceTime().then(function (res) {
             console.log('device time: ' + res);
+          });
+          client.getDeviceTime(new Date()).then(function (res) {
+            console.log('device time: ' + res);
           }); // if (typeof gadgets !== undefined) {
           //   this.prefs = new gadgets.Prefs();
           //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
@@ -442,7 +445,7 @@
 
         _createClass(RevelDigitalService, [{
           key: "getDeviceTime",
-          value: function getDeviceTime() {
+          value: function getDeviceTime(date) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
               var client;
               return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -454,7 +457,7 @@
 
                     case 2:
                       client = _context.sent;
-                      return _context.abrupt("return", client.getDeviceTime());
+                      return _context.abrupt("return", client.getDeviceTime(date));
 
                     case 4:
                     case "end":
@@ -547,7 +550,7 @@
 
         _createClass(NoopClient, [{
           key: "getDeviceTime",
-          value: function getDeviceTime() {
+          value: function getDeviceTime(date) {
             return Promise.resolve(null);
           }
         }, {
