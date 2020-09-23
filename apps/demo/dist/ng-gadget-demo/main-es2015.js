@@ -75,6 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppComponent {
     constructor(client) {
+        this.client = client;
         this.title = 'clock-greets';
         client.getDeviceTime().then((res) => {
             console.log('device time #1: ' + res);
@@ -91,24 +92,27 @@ class AppComponent {
         //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
         // }
         setInterval(() => {
-            this.time = new Date();
+            this.update();
         }, 1000);
-        this.decide();
     }
-    decide() {
-        this.hours = new Date().getHours();
-        if (this.hours < 10) {
-            this.msg = 'Good Morning';
-        }
-        else if (this.hours < 16) {
-            this.msg = 'Good Afternoon';
-        }
-        else if (this.hours < 19) {
-            this.msg = 'Good Evening';
-        }
-        else if (this.hours < 24) {
-            this.msg = 'Good Night';
-        }
+    update() {
+        this.client.getDeviceTime().then((res) => {
+            console.log('device time #1: ' + res);
+            this.time = new Date(res);
+            this.hours = this.time.getHours();
+            if (this.hours < 10) {
+                this.msg = 'Good Morning';
+            }
+            else if (this.hours < 16) {
+                this.msg = 'Good Afternoon';
+            }
+            else if (this.hours < 19) {
+                this.msg = 'Good Evening';
+            }
+            else if (this.hours < 24) {
+                this.msg = 'Good Night';
+            }
+        });
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_revel_digital_service__WEBPACK_IMPORTED_MODULE_1__["RevelDigitalService"])); };

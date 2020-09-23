@@ -150,6 +150,7 @@
 
           _classCallCheck(this, AppComponent);
 
+          this.client = client;
           this.title = 'clock-greets';
           client.getDeviceTime().then(function (res) {
             console.log('device time #1: ' + res);
@@ -166,25 +167,30 @@
           // }
 
           setInterval(function () {
-            _this.time = new Date();
+            _this.update();
           }, 1000);
-          this.decide();
         }
 
         _createClass(AppComponent, [{
-          key: "decide",
-          value: function decide() {
-            this.hours = new Date().getHours();
+          key: "update",
+          value: function update() {
+            var _this2 = this;
 
-            if (this.hours < 10) {
-              this.msg = 'Good Morning';
-            } else if (this.hours < 16) {
-              this.msg = 'Good Afternoon';
-            } else if (this.hours < 19) {
-              this.msg = 'Good Evening';
-            } else if (this.hours < 24) {
-              this.msg = 'Good Night';
-            }
+            this.client.getDeviceTime().then(function (res) {
+              console.log('device time #1: ' + res);
+              _this2.time = new Date(res);
+              _this2.hours = _this2.time.getHours();
+
+              if (_this2.hours < 10) {
+                _this2.msg = 'Good Morning';
+              } else if (_this2.hours < 16) {
+                _this2.msg = 'Good Afternoon';
+              } else if (_this2.hours < 19) {
+                _this2.msg = 'Good Evening';
+              } else if (_this2.hours < 24) {
+                _this2.msg = 'Good Night';
+              }
+            });
           }
         }]);
 
