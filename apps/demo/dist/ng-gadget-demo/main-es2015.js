@@ -77,10 +77,10 @@ class AppComponent {
     constructor(client) {
         this.title = 'clock-greets';
         client.getDeviceTime().then((res) => {
-            console.log('device time: ' + res);
+            console.log('device time #1: ' + res);
         });
         client.getDeviceTime(new Date()).then((res) => {
-            console.log('device time: ' + res);
+            console.log('device time #2: ' + res);
         });
         // if (typeof gadgets !== undefined) {
         //   this.prefs = new gadgets.Prefs();
@@ -235,7 +235,10 @@ class RevelDigitalService {
     getDeviceTime(date) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const client = yield this.getClient();
-            return client.getDeviceTime(date);
+            if (date !== undefined) {
+                return client.getDeviceTime(date);
+            }
+            return client.getDeviceTime();
         });
     }
     // ---

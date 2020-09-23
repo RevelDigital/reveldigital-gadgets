@@ -152,10 +152,10 @@
 
           this.title = 'clock-greets';
           client.getDeviceTime().then(function (res) {
-            console.log('device time: ' + res);
+            console.log('device time #1: ' + res);
           });
           client.getDeviceTime(new Date()).then(function (res) {
-            console.log('device time: ' + res);
+            console.log('device time #2: ' + res);
           }); // if (typeof gadgets !== undefined) {
           //   this.prefs = new gadgets.Prefs();
           //   console.log('rdKey pref: ' + this.prefs.getString('rdKey'));
@@ -457,9 +457,18 @@
 
                     case 2:
                       client = _context.sent;
+
+                      if (!(date !== undefined)) {
+                        _context.next = 5;
+                        break;
+                      }
+
                       return _context.abrupt("return", client.getDeviceTime(date));
 
-                    case 4:
+                    case 5:
+                      return _context.abrupt("return", client.getDeviceTime());
+
+                    case 6:
                     case "end":
                       return _context.stop();
                   }
