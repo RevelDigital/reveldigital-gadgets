@@ -21,19 +21,16 @@
 		    overflow: hidden;
 		}
             </style>
-            
+            <link rel="stylesheet" href="styles.3ff695c00d717f2d2a11.css">
+
             <body>
-            <app-root></app-root>
-	      	<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/styles-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/styles-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/vendor-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/vendor-es5.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es2015.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es5.js" nomodule defer></script></body>
+            	<app-root></app-root>
+		<script src="runtime-es2015.409e6590615fb48d139f.js" type="module"></script>
+		<script src="runtime-es5.409e6590615fb48d139f.js" nomodule defer></script>
+		<script src="polyfills-es5.d79e506dd6e913f040c1.js" nomodule defer></script>
+		<script src="polyfills-es2015.4550655a8866d3e948d9.js" type="module"></script>
+		<script src="main-es2015.58380f11d59f61bd60a6.js" type="module"></script>
+		<script src="main-es5.58380f11d59f61bd60a6.js" nomodule defer></script></body>
             </body>
         ]]>
     </Content>
