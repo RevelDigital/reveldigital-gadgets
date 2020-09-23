@@ -25,12 +25,12 @@
 
             <body>
             	<app-root></app-root>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es2015.409e6590615fb48d139f.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es5.409e6590615fb48d139f.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es5.d79e506dd6e913f040c1.js" nomodule defer></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es2015.4550655a8866d3e948d9.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es2015.58380f11d59f61bd60a6.js" type="module"></script>
-		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es5.58380f11d59f61bd60a6.js" nomodule defer></script></body>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es2015.66c79b9d36e7169e27b0.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es5.adc134663c8223046a77.js" nomodule defer></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/polyfills-es2015.c793319f8b94bf80c4ff.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es2015.4ac1eea60b148f513188.js" type="module"></script>
+		<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/demo/dist/ng-gadget-demo/main-es5.4ac1eea60b148f513188.js" nomodule defer></script>
             </body>
         ]]>
     </Content>
