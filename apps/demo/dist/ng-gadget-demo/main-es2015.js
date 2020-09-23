@@ -242,7 +242,26 @@ class RevelDigitalService {
     }
     callback(...args) {
         this.getClient().then((client) => {
-            client.callback(args);
+            switch (args.length) {
+                case 0:
+                    client.callback();
+                    break;
+                case 1:
+                    client.callback(args[0]);
+                    break;
+                case 2:
+                    client.callback(args[1]);
+                    break;
+                case 3:
+                    client.callback(args[2]);
+                    break;
+                case 4:
+                    client.callback(args[3]);
+                    break;
+                case 5:
+                    client.callback(args[4]);
+                    break;
+            }
         });
     }
     getDeviceTime(date) {
