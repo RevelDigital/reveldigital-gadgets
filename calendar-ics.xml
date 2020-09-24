@@ -16,7 +16,6 @@
     <EnumValue value="7" display_value="Next 7 Days" />
     <EnumValue value="30" display_value="Next 30 Days" />
   </UserPref>
-  <UserPref name="nextEvents" display_name="Show only Next Events" datatype="bool" default_value="false"/>
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -45,6 +44,7 @@
     letter-spacing: 0; 
     word-spacing: normal;
   }
+
   body
   {
     overflow: hidden;
@@ -52,21 +52,25 @@
     width: __UP_rdW__px;
     height: __UP_rdH__px;
   }
+
   #data
   {
     background-color: #__UP_BackColor__;
     height: __UP_rdH__px;
   }
+
   #events table
   {
     color: #__UP_ForeColor__;
     width: __UP_rdW__px;
   }
+
   #events
   {
     color: #__UP_ForeColor__;
     width: __UP_rdW__px;
   }
+
   table, div#events
   {
     width: __UP_rdW__px;
@@ -75,18 +79,22 @@
     -ms-user-select: none; 
     user-select: none;
   }
+
   td, th
   {
     padding: 8px;
   }
+
   th
   {
     __UP_header-style__;
   }
+
   td
   {
     __UP_body-style__;
   }
+
   h2
   {
     padding: 0;
@@ -94,6 +102,7 @@
     font-weight: normal;
     __UP_header-style__;
   }
+
   h3
   {
     margin: 0;
@@ -101,18 +110,21 @@
     font-weight: normal;
     __UP_body-style__;
   }
+
   img
   {
     float: left;
     width: 200px;
     margin-right: 10px;
   }
+
   .entry
   {
     padding: 20px 5px;
     border-bottom: solid 1px #ccc;
     clear:both;
   }
+
   .when
   {
     display:block;
@@ -123,6 +135,7 @@
     font-size: 80% !important;
   }
 </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
@@ -153,6 +166,7 @@
 </div>
 
 <script type="text/javascript">
+
   var prefs = new gadgets.Prefs();
   
   function load() {
@@ -171,15 +185,27 @@
         ]
       }
     });
+
+    moment.locale("__MSG_Lang__");
+    
+    if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneID) == "function") {
+      moment.tz.setDefault(Client.getDeviceTimeZoneID());
+    } else if (typeof Client != "undefined" && typeof(Client.getDeviceTimeZoneName) == "function") {
+      moment.tz.setDefault(Client.getDeviceTimeZoneName());
+    }
   
     if (prefs.getBool("showHeader") == false) {
       $("#events > table > thead").hide();
     }
+
     update();
+
     setInterval(update, 120000);
   }
+
   gadgets.util.registerOnLoadHandler(load);
 </script>
+
 <script type="text/javascript">
   
 function update() {
@@ -204,6 +230,90 @@ function update() {
   var url = 'https://glacial-hollows-70580.herokuapp.com/ical/' + now + '/' + endDateRange(prefs.getString("futureEvents")) + 'Z' + '?url=' + prefs.getString("calendarUrl");
   let list;
 
+  if (prefs.getString("displayFormat") != "table") {
+      $("#events").empty();
+  } else {
+      $("#events > table > tbody").empty();
+  }
+
+  $.ajax({
+      type: 'GET',
+      url: url,
+      dataType: 'json'
+    })
+    .done(function(data) {
+      //console.log(JSON.stringify(data,null,2));
+      let occurrences = data.occurrences.map(o => {
+          const recurContainer = {};
+          let startTime = moment({ year :o.startDate.year, month :o.startDate.month - 1, day :o.startDate.day, hour :o.startDate.hour, minute :o.startDate.minute, second :o.startDate.second});
+          let endTime = moment({ year :o.endDate.year, month :o.endDate.month - 1, day :o.endDate.day, hour :o.endDate.hour, minute :o.endDate.minute, second :o.endDate.second});
+
+      
+
+          recurContainer["startDate"] = startTime;
+          recurContainer["endDate"] = endTime;
+
+          o.item.component[1].forEach(item => { 
+              item.forEach(i => {
+                  if(i === "location"){
+                      recurContainer["location"] = item[3];
+                  }else if (i === "summary"){
+                      recurContainer["summary"] = item[3];
+                  }                   
+              })         
+          }) 
+          return recurContainer 
+      });
+
+      let statEvents = data.events.map(o => {
+          const statContainer = {};
+
+          o.component[1].forEach(item => {
+              item.forEach(i => {
+                  if (i === "dtstart"){     
+                      statContainer["startDate"] = moment(item[3]);  
+                  }else if(i === "dtend"){
+                      statContainer["endDate"] = moment(item[3]);    
+                  }else if( i === "location"){
+                      statContainer["location"] = item[3];
+                  }else if (i === "summary"){
+                      statContainer["summary"] = item[3];
+                  }
+              })
+          })
+          return statContainer
+      });
+
+      list = occurrences.concat(statEvents).sort((a, b) => {  
+          return a.startDate - b.startDate
+      });  
+
+      console.log(list);   
+
+      for (var i = 0; i < list.length; i++) {
+          if (prefs.getString("displayFormat") == "table") {
+              formatTable(list[i]);
+          } else {
+              formatDiv(list[i]);
+          }
+      }
+      if (prefs.getString("scrollSpeed") != "none") {
+        $("#data").autoScroll({
+          speed: prefs.getString("scrollSpeed"),
+          by: prefs.getString("scrollBy")
+        }).on("done", function() {
+          $("#data").data("plugin_autoScroll").play();
+        });
+        $("#data").data("plugin_autoScroll").play();
+      }
+    })
+    .fail(function(xhr, err) {
+      console.log(url);
+      console.log('get calendar failed: ' + xhr.responseText);
+    });
+
+    
+  /*
   fetch(url)
   .then(response => response.json())
   .then(data => {
@@ -256,38 +366,13 @@ function update() {
       console.log(list);   
 
       for (var i = 0; i < list.length; i++) {
-          if (prefs.getBool("nextEvents") == true){
-              if(moment(list[i].startDate) < moment() && moment(list[i].endDate) > moment()){            
-                  continue;
-              }
-          }
-
           if (prefs.getString("displayFormat") == "table") {
               formatTable(list[i]);
           } else {
               formatDiv(list[i]);
           }
       }
-  });
-
-  if (prefs.getString("displayFormat") != "table") {
-      $("#events").empty();
-  } else {
-      $("#events > table > tbody").empty();
-  }
-
-  
-
-
-  if (prefs.getString("scrollSpeed") != "none") {
-        $("#data").autoScroll({
-          speed: prefs.getString("scrollSpeed"),
-          by: prefs.getString("scrollBy")
-        }).on("done", function() {
-          $("#data").data("plugin_autoScroll").play();
-        });
-        $("#data").data("plugin_autoScroll").play();
-      }
+  });*/
 }
 
 function formatDiv(event) {
@@ -301,8 +386,10 @@ function formatDiv(event) {
   var sdt = moment(event.startDate).startOf('day');
   var edt = moment(event.endDate);
   //if (!now.isBetween(sdt, edt))
-  if (now.isAfter(edt) || eod.isBefore(sdt))
-    return;
+  if (now.isAfter(edt) || eod.isBefore(sdt)){
+      return;
+  }
+    
   
   var div = $("<div class=\"entry\"></div>");
   
@@ -344,8 +431,10 @@ function formatTable(event) {
   var sdt = moment(event.startDate).startOf('day');
   var edt = moment(event.endDate);
   //if (!now.isBetween(sdt, edt))
-  if (now.isAfter(edt) || eod.isBefore(sdt))
-    return;
+  if (now.isAfter(edt) || eod.isBefore(sdt)){
+     return;
+  }
+   
  
   var isAllDay = false;
   
@@ -383,9 +472,9 @@ function formatTable(event) {
         
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker')
-    .then(registration =>
+    .then(function(registration){
       console.log('Service Worker Registered')
-    );
+    });
   }
   
 </script>
