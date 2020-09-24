@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Angular Gadget Demo" description="Angular Gadget Demo" author="RevelDigital" background="transparent">
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="rdKey" display_name="Device Registration Key" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+				}
+            </style>
+            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.3ff695c00d717f2d2a11.css">
+
+            <body>
+            	<app-root></app-root>
+				
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es2015.66c79b9d36e7169e27b0.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.fda27e44e83f83db3772.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.d9e50e398b81e1a45238.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.0622664c69a67800a202.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.0622664c69a67800a202.js" nomodule defer></script></body>
+            </body>
+        ]]>
+    </Content>
+</Module>
