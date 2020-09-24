@@ -407,7 +407,13 @@
         },
         providers: [{
           provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"],
-          useValue: "fr"
+          useFactory: function useFactory() {
+            try {
+              return new gadgets.Prefs().getLang();
+            } catch (_a) {
+              return 'en';
+            }
+          }
         }, {
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
           useValue: '/gadgets/ifr'
@@ -432,7 +438,13 @@
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientModule"]],
             providers: [{
               provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"],
-              useValue: "fr"
+              useFactory: function useFactory() {
+                try {
+                  return new gadgets.Prefs().getLang();
+                } catch (_a) {
+                  return 'en';
+                }
+              }
             }, {
               provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["APP_BASE_HREF"],
               useValue: '/gadgets/ifr'
