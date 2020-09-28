@@ -630,15 +630,15 @@
         _createClass(DefaultTableComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            this.e = this.getEvents();
+            this.getEvents();
           }
         }, {
           key: "getEvents",
           value: function getEvents() {
-            this.calendarService.getEvents().subscribe(function (events) {
+            var eventList = this.calendarService.getEvents().subscribe(function (events) {
               return console.log('Got Events');
             });
-            console.log(this.e);
+            console.log(eventList);
           }
         }]);
 

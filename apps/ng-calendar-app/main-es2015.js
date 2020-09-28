@@ -489,12 +489,12 @@ class DefaultTableComponent {
         this.calendarService = calendarService;
     }
     ngOnInit() {
-        this.e = this.getEvents();
+        this.getEvents();
     }
     getEvents() {
-        this.calendarService.getEvents()
+        const eventList = this.calendarService.getEvents()
             .subscribe(events => console.log('Got Events'));
-        console.log(this.e);
+        console.log(eventList);
     }
 }
 DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) { return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"])); };
