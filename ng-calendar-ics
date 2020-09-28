@@ -27,11 +27,11 @@
             <body>
             	<app-root></app-root>
 				
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main.js" type="module"></script></body>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/vendor.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main.js" type="module"></script></body>
 			</body>
         ]]>
     </Content>
