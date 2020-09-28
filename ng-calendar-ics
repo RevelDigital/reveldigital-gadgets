@@ -27,16 +27,11 @@
             <body>
             	<app-root></app-root>
 				
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.js" nomodule defer></script></body>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main.js" type="module"></script></body>
 			</body>
         ]]>
     </Content>
