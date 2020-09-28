@@ -635,10 +635,12 @@
         }, {
           key: "getEvents",
           value: function getEvents() {
+            var _this = this;
+
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
-              return console.log('Got Events');
+              _this.events = events;
+              console.log(_this.events);
             });
-            console.log(eventList);
           }
         }]);
 

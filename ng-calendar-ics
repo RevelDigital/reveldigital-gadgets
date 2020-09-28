@@ -27,16 +27,16 @@
             <body>
             	<app-root></app-root>
 				
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/vendor-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/vendor-es5.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es2015.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es5.js" nomodule defer></script></body>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/runtime-es2015.js" type="module"></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/runtime-es5.js" nomodule defer></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/polyfills-es5.js" nomodule defer></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/polyfills-es2015.js" type="module"></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/styles-es2015.js" type="module"></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/styles-es5.js" nomodule defer></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/vendor-es2015.js" type="module"></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/vendor-es5.js" nomodule defer></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/main-es2015.js" type="module"></script>
+				<script src="https://raw.githubusercontent.com/RevelDigital/reveldigital-gadgets/master/apps/ng-calendar-app/main-es5.js" nomodule defer></script></body>
 			</body>
         ]]>
     </Content>
