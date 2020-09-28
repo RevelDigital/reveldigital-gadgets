@@ -490,11 +490,11 @@ class DefaultTableComponent {
     }
     ngOnInit() {
         this.e = this.getEvents();
-        console.log(this.e);
     }
     getEvents() {
         this.calendarService.getEvents()
             .subscribe(events => console.log('Got Events'));
+        console.log(this.e);
     }
 }
 DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) { return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"])); };

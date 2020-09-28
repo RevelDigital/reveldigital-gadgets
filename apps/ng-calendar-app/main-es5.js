@@ -631,7 +631,6 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.e = this.getEvents();
-            console.log(this.e);
           }
         }, {
           key: "getEvents",
@@ -639,6 +638,7 @@
             this.calendarService.getEvents().subscribe(function (events) {
               return console.log('Got Events');
             });
+            console.log(this.e);
           }
         }]);
 
