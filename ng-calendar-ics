@@ -26,11 +26,11 @@
             <body>
             	<app-root></app-root>
 				
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/vendor.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main.js" type="module"></script></body>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/vendor.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main.js" nomodule defer></script></body>
 			</body>
         ]]>
     </Content>
