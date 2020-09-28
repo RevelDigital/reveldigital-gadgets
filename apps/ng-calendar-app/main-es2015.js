@@ -63,12 +63,12 @@ __webpack_require__.r(__webpack_exports__);
 class CalendarDataService {
     constructor(http) {
         this.http = http;
-        this.obj = new Object();
         this.urlPref = new gadgets.Prefs().getString('url');
         this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
+            let obj = new Object();
             let location;
             let summary;
             let startDate;
@@ -80,24 +80,22 @@ class CalendarDataService {
                 console.log('YES');
             }
             else {
-                this.obj = {
+                obj = {
                     location: 'fargo',
                     summary: 'my meeting',
                     startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss'),
                     endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss'),
                 };
-                statContainer = this.obj;
+                statContainer = obj;
                 tempArr[0] = statContainer;
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.map((event) => {
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
-                            console.log(item[3]);
                             location = item[3];
                         }
                         if (item[0] === 'summary') {
-                            console.log(item[3]);
                             summary = item[3];
                         }
                         if (item[0] === 'dtstart') {
@@ -106,14 +104,14 @@ class CalendarDataService {
                         if (item[0] === 'dtend') {
                             endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('MM DD YYYY hh:mm:ss');
                         }
-                        this.obj = {
+                        obj = {
                             location,
                             summary,
                             startDate,
                             endDate
                         };
                     });
-                    return this.obj;
+                    return obj;
                 });
             }
             const finalList = tempArr.concat(eventContainer);
@@ -491,11 +489,12 @@ class DefaultTableComponent {
         this.calendarService = calendarService;
     }
     ngOnInit() {
-        this.getEvents();
+        this.e = this.getEvents();
+        console.log(this.e);
     }
     getEvents() {
         this.calendarService.getEvents()
-            .subscribe(events => console.log(events));
+            .subscribe(events => console.log('Got Events'));
     }
 }
 DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) { return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"])); };

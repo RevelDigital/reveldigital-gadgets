@@ -113,7 +113,6 @@
           _classCallCheck(this, CalendarDataService);
 
           this.http = http;
-          this.obj = new Object();
           this.urlPref = new gadgets.Prefs().getString('url');
           this.url = "https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=".concat(this.urlPref);
         }
@@ -121,9 +120,8 @@
         _createClass(CalendarDataService, [{
           key: "getEvents",
           value: function getEvents() {
-            var _this = this;
-
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
+              var obj = new Object();
               var location;
               var summary;
               var startDate;
@@ -135,13 +133,13 @@
               if (data.events.length > 0) {
                 console.log('YES');
               } else {
-                _this.obj = {
+                obj = {
                   location: 'fargo',
                   summary: 'my meeting',
                   startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss'),
                   endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss')
                 };
-                statContainer = _this.obj;
+                statContainer = obj;
                 tempArr[0] = statContainer;
               }
 
@@ -149,12 +147,10 @@
                 eventContainer = data.occurrences.map(function (event) {
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
-                      console.log(item[3]);
                       location = item[3];
                     }
 
                     if (item[0] === 'summary') {
-                      console.log(item[3]);
                       summary = item[3];
                     }
 
@@ -166,14 +162,14 @@
                       endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('MM DD YYYY hh:mm:ss');
                     }
 
-                    _this.obj = {
+                    obj = {
                       location: location,
                       summary: summary,
                       startDate: startDate,
                       endDate: endDate
                     };
                   });
-                  return _this.obj;
+                  return obj;
                 });
               }
 
@@ -634,13 +630,14 @@
         _createClass(DefaultTableComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            this.getEvents();
+            this.e = this.getEvents();
+            console.log(this.e);
           }
         }, {
           key: "getEvents",
           value: function getEvents() {
             this.calendarService.getEvents().subscribe(function (events) {
-              return console.log(events);
+              return console.log('Got Events');
             });
           }
         }]);
