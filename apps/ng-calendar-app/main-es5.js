@@ -188,10 +188,9 @@
             var _this = this;
 
             this.styleArray.forEach(function (e) {
-              console.log(_this.styleArray);
-              console.log(e.split(':'));
-
               if (e.length > 0) {
+                console.log(_this.styleArray);
+                console.log(e.split(':'));
                 _this.value = e.split(':');
               } //console.log(this.value[1].trim());
 
