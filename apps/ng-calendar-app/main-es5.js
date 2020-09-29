@@ -173,7 +173,6 @@
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
           this.textStyle = new gadgets.Prefs().getString('fontColor');
-          this.styleArray = this.textStyle.split(';');
         }
 
         _createClass(DefaultTableComponent, [{
@@ -187,9 +186,10 @@
           value: function getStyle() {
             var _this = this;
 
-            this.styleArray.forEach(function (e) {
+            var styleArray = this.textStyle.split(';');
+            styleArray.forEach(function (e) {
               if (e.length > 0) {
-                console.log(_this.styleArray);
+                console.log(styleArray);
                 console.log(e.split(':'));
                 _this.value = e.split(':');
               } //console.log(this.value[1].trim());

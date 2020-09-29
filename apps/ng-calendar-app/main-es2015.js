@@ -86,16 +86,16 @@ class DefaultTableComponent {
         this.calendarService = calendarService;
         this.displayedColumns = ['when', 'where', 'summary'];
         this.textStyle = new gadgets.Prefs().getString('fontColor');
-        this.styleArray = this.textStyle.split(';');
     }
     ngOnInit() {
         this.getEvents();
         this.getStyle();
     }
     getStyle() {
-        this.styleArray.forEach(e => {
+        const styleArray = this.textStyle.split(';');
+        styleArray.forEach(e => {
             if (e.length > 0) {
-                console.log(this.styleArray);
+                console.log(styleArray);
                 console.log(e.split(':'));
                 this.value = e.split(':');
             }
