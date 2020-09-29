@@ -93,13 +93,16 @@ class DefaultTableComponent {
         this.getStyle();
     }
     getStyle() {
-        this.textStyle.split(';').forEach(a => {
-            const styles = a.split(':');
-            if (styles[0]) {
-                this.styleObj[styles[0]] = styles[1];
-            }
+        const styleO = this.textStyle.split(';').map(o => `${o.split(':')[0]}: '${o.split(':')[1]}'`);
+        console.log(styleO);
+        /*this.textStyle.split(';').forEach( a => {
+          const styles = a.split(':');
+          if (styles[0]){
+            this.styleObj[styles[0].trim()] = styles[1].trim();
+          }
         });
-        console.log(this.styleObj);
+        */
+        //console.log(this.styleObj);
         /* const styleArray = this.textStyle.split(';');
          console.log(styleArray);
          styleArray.forEach(e => {

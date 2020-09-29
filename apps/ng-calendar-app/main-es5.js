@@ -185,16 +185,19 @@
         }, {
           key: "getStyle",
           value: function getStyle() {
-            var _this = this;
-
-            this.textStyle.split(';').forEach(function (a) {
-              var styles = a.split(':');
-
-              if (styles[0]) {
-                _this.styleObj[styles[0]] = styles[1];
+            var styleO = this.textStyle.split(';').map(function (o) {
+              return "".concat(o.split(':')[0], ": '").concat(o.split(':')[1], "'");
+            });
+            console.log(styleO);
+            /*this.textStyle.split(';').forEach( a => {
+              const styles = a.split(':');
+              if (styles[0]){
+                this.styleObj[styles[0].trim()] = styles[1].trim();
               }
             });
-            console.log(this.styleObj);
+            */
+            //console.log(this.styleObj);
+
             /* const styleArray = this.textStyle.split(';');
              console.log(styleArray);
              styleArray.forEach(e => {
@@ -212,10 +215,10 @@
         }, {
           key: "getEvents",
           value: function getEvents() {
-            var _this2 = this;
+            var _this = this;
 
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
-              _this2.dataSource = events;
+              _this.dataSource = events;
             });
           }
         }]);
