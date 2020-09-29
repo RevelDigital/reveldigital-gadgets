@@ -187,13 +187,10 @@
             var _this = this;
 
             var styleArray = this.textStyle.split(';');
+            console.log(styleArray);
             styleArray.forEach(function (e) {
-              if (e.length > 0) {
-                console.log(styleArray);
-                console.log(e.split(':'));
-                _this.value = e.split(':');
-              } //console.log(this.value[1].trim());
-
+              console.log(e.split(':'));
+              _this.value = e.split(':'); //console.log(this.value[1].trim());
             });
           }
         }, {

@@ -93,12 +93,10 @@ class DefaultTableComponent {
     }
     getStyle() {
         const styleArray = this.textStyle.split(';');
+        console.log(styleArray);
         styleArray.forEach(e => {
-            if (e.length > 0) {
-                console.log(styleArray);
-                console.log(e.split(':'));
-                this.value = e.split(':');
-            }
+            console.log(e.split(':'));
+            this.value = e.split(':');
             //console.log(this.value[1].trim());
         });
     }
