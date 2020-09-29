@@ -86,6 +86,7 @@ class DefaultTableComponent {
         this.calendarService = calendarService;
         this.displayedColumns = ['when', 'where', 'summary'];
         this.textStyle = new gadgets.Prefs().getString('fontColor');
+        this.styleArry = this.textStyle.split(';');
     }
     ngOnInit() {
         this.getEvents();
@@ -96,6 +97,7 @@ class DefaultTableComponent {
             this.events = events;
             console.log(this.events);
             console.log(this.textStyle);
+            console.log(this.styleArry);
             this.dataSource = events;
         });
     }

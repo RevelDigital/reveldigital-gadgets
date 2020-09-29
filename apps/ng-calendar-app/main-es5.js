@@ -173,6 +173,7 @@
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
           this.textStyle = new gadgets.Prefs().getString('fontColor');
+          this.styleArry = this.textStyle.split(';');
         }
 
         _createClass(DefaultTableComponent, [{
@@ -189,6 +190,7 @@
               _this.events = events;
               console.log(_this.events);
               console.log(_this.textStyle);
+              console.log(_this.styleArry);
               _this.dataSource = events;
             });
           }
