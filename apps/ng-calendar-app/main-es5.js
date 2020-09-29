@@ -187,9 +187,9 @@
           value: function getStyle() {
             var _this = this;
 
-            var p = JSON.parse(this.textStyle).forEach(function (a) {
+            this.textStyle.split(';').forEach(function (a) {
               var styles = a.split(':');
-              _this.styleobj[styles[0]] = _this.styleobj[1];
+              _this.styleobj[styles[0]] = styles[1];
             });
             console.log(this.styleobj);
             /* const styleArray = this.textStyle.split(';');

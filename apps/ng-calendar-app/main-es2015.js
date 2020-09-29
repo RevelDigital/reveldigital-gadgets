@@ -93,9 +93,9 @@ class DefaultTableComponent {
         this.getStyle();
     }
     getStyle() {
-        const p = JSON.parse(this.textStyle).forEach((a) => {
+        this.textStyle.split(';').forEach(a => {
             const styles = a.split(':');
-            this.styleobj[styles[0]] = this.styleobj[1];
+            this.styleobj[styles[0]] = styles[1];
         });
         console.log(this.styleobj);
         /* const styleArray = this.textStyle.split(';');
