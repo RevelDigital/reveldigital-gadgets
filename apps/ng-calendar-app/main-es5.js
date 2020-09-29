@@ -168,25 +168,30 @@
 
       var DefaultTableComponent = /*#__PURE__*/function () {
         function DefaultTableComponent(calendarService) {
-          var _this = this;
-
           _classCallCheck(this, DefaultTableComponent);
 
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
           this.textStyle = new gadgets.Prefs().getString('fontColor');
           this.styleArray = this.textStyle.split(';');
-          this.styleObject = this.styleArray.forEach(function (e) {
-            var value = e.split(':');
-            console.log(value);
-            _this.obj[value[0]] = value[1];
-          });
         }
 
         _createClass(DefaultTableComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
             this.getEvents();
+            this.getStyle();
+          }
+        }, {
+          key: "getStyle",
+          value: function getStyle() {
+            var _this = this;
+
+            this.styleArray.forEach(function (e) {
+              var value = e.split(':');
+              console.log(value);
+              _this.obj[value[0]] = value[1];
+            });
           }
         }, {
           key: "getEvents",
