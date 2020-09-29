@@ -88,10 +88,10 @@ class DefaultTableComponent {
         this.textStyle = new gadgets.Prefs().getString('fontColor');
         this.styleArray = this.textStyle.split(';');
         this.styleObject = this.styleArray.forEach(e => {
-            e.split(':');
-            console.log(e.split(':'));
+            const value = e.split(':');
+            console.log(value);
             const obj = {};
-            obj[e[0]] = e[1];
+            obj[value[0]] = value[1];
             return obj;
         });
     }

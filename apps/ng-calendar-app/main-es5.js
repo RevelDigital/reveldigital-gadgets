@@ -175,10 +175,10 @@
           this.textStyle = new gadgets.Prefs().getString('fontColor');
           this.styleArray = this.textStyle.split(';');
           this.styleObject = this.styleArray.forEach(function (e) {
-            e.split(':');
-            console.log(e.split(':'));
+            var value = e.split(':');
+            console.log(value);
             var obj = {};
-            obj[e[0]] = e[1];
+            obj[value[0]] = value[1];
             return obj;
           });
         }
