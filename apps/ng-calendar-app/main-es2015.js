@@ -94,8 +94,8 @@ class DefaultTableComponent {
     }
     getStyle() {
         this.styleArray.forEach(e => {
-            const value = e.split(':');
-            console.log(value);
+            this.value = e.split(':');
+            console.log(this.value);
         });
     }
     getEvents() {
