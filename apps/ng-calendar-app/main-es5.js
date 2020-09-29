@@ -189,7 +189,7 @@
 
             this.styleArray.forEach(function (e) {
               _this.value = e.split(':');
-              console.log(_this.value);
+              console.log(e.split(':'));
             });
           }
         }, {
