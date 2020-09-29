@@ -90,8 +90,8 @@ class DefaultTableComponent {
         this.styleObject = this.styleArray.forEach(e => {
             const value = e.split(':');
             console.log(value);
-            this.obj[value[0]] = value[1];
-            return this.obj;
+            return this.obj[value[0]] = value[1];
+            //return this.obj;
         });
     }
     ngOnInit() {
