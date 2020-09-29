@@ -96,16 +96,11 @@ class DefaultTableComponent {
         this.styleArray.forEach(e => {
             const value = e.split(':');
             console.log(value);
-            this.obj[value[0]] = value[1];
         });
     }
     getEvents() {
         const eventList = this.calendarService.getEvents()
             .subscribe(events => {
-            this.events = events;
-            console.log(this.events);
-            console.log(this.textStyle);
-            console.log(this.obj);
             this.dataSource = events;
         });
     }

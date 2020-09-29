@@ -185,25 +185,18 @@
         }, {
           key: "getStyle",
           value: function getStyle() {
-            var _this = this;
-
             this.styleArray.forEach(function (e) {
               var value = e.split(':');
               console.log(value);
-              _this.obj[value[0]] = value[1];
             });
           }
         }, {
           key: "getEvents",
           value: function getEvents() {
-            var _this2 = this;
+            var _this = this;
 
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
-              _this2.events = events;
-              console.log(_this2.events);
-              console.log(_this2.textStyle);
-              console.log(_this2.obj);
-              _this2.dataSource = events;
+              _this.dataSource = events;
             });
           }
         }]);
