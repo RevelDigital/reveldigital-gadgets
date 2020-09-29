@@ -89,7 +89,7 @@ class DefaultTableComponent {
         this.styleArray = this.textStyle.split(';');
         this.styleObject = this.styleArray.forEach(e => {
             e.split(':');
-            console.log(e.split(':'));
+            console.log(e);
             const obj = {};
             obj[e[0]] = e[1];
             return obj;
