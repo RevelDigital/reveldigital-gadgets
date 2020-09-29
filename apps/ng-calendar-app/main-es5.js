@@ -188,7 +188,10 @@
             var _this = this;
 
             this.styleArray.forEach(function (e) {
-              _this.value = e.split(':');
+              if (e.length > 0) {
+                _this.value = e.split(':');
+              }
+
               console.log(_this.value[1].trim());
             });
           }
