@@ -647,7 +647,7 @@ class CalendarDataService {
     constructor(http) {
         this.http = http;
         this.urlPref = new gadgets.Prefs().getString('url');
-        this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=${this.urlPref}`;
+        this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
