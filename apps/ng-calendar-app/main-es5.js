@@ -193,7 +193,10 @@
                 console.log(e.split(':'));
                 _this.value = e.split(':');
                 console.log(_this.value);
+                _this.styleJson[_this.value[0]] = _this.value[1];
               }
+
+              console.log(_this.styleJson);
             });
           }
         }, {
