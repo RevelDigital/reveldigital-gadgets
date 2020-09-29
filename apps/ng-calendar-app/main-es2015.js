@@ -73,50 +73,45 @@ function DefaultTableComponent_tr_10_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "tr", 10);
 } if (rf & 2) {
     const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r6.styleObj);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r6.headerStyleObj);
 } }
 function DefaultTableComponent_tr_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "tr", 11);
 } if (rf & 2) {
     const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.styleObj);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.cellStyleObj);
 } }
 class DefaultTableComponent {
     constructor(calendarService) {
         this.calendarService = calendarService;
         this.displayedColumns = ['when', 'where', 'summary'];
-        this.styleObj = {};
-        this.textStyle = new gadgets.Prefs().getString('fontColor');
+        this.headerStyleObj = {};
+        this.cellStyleObj = {};
+        this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
+        this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
     }
     ngOnInit() {
         this.getEvents();
-        this.getStyle();
+        this.getHeaderStyle();
+        this.getCellStyle();
     }
-    getStyle() {
-        //const styleO = this.textStyle.split(';').map(o => `${o.split(':')[0]}: '${o.split(':')[1]}'`);
-        //console.log(styleO);
-        this.textStyle.split(';').forEach(a => {
+    getHeaderStyle() {
+        this.textStyleHeader.split(';').forEach(a => {
             const styles = a.split(':');
             if (styles[0]) {
-                this.styleObj[styles[0].trim()] = styles[1].trim();
+                this.headerStyleObj[styles[0].trim()] = styles[1].trim();
             }
         });
-        console.log(this.styleObj);
-        /* const styleArray = this.textStyle.split(';');
-         console.log(styleArray);
-         styleArray.forEach(e => {
-           if (e !== ''){
-             console.log(e.split(':'));
-             this.value = e.split(':');
-             console.log(this.value);
-     
-             const arr = {
-               value[0]: value[1]
-             }
-     
-           }
-         });
-         */
+        console.log(this.headerStyleObj);
+    }
+    getCellStyle() {
+        this.textStyleCell.split(';').forEach(a => {
+            const styles = a.split(':');
+            if (styles[0]) {
+                this.cellStyleObj[styles[0].trim()] = styles[1].trim();
+            }
+        });
+        console.log(this.cellStyleObj);
     }
     getEvents() {
         const eventList = this.calendarService.getEvents()
