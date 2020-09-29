@@ -168,6 +168,8 @@
 
       var DefaultTableComponent = /*#__PURE__*/function () {
         function DefaultTableComponent(calendarService) {
+          var _this = this;
+
           _classCallCheck(this, DefaultTableComponent);
 
           this.calendarService = calendarService;
@@ -177,9 +179,8 @@
           this.styleObject = this.styleArray.forEach(function (e) {
             var value = e.split(':');
             console.log(value);
-            var obj = {};
-            obj[value[0]] = value[1];
-            return obj;
+            _this.obj[value[0]] = value[1];
+            return _this.obj;
           });
         }
 
@@ -191,14 +192,14 @@
         }, {
           key: "getEvents",
           value: function getEvents() {
-            var _this = this;
+            var _this2 = this;
 
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
-              _this.events = events;
-              console.log(_this.events);
-              console.log(_this.textStyle);
-              console.log(_this.styleObject);
-              _this.dataSource = events;
+              _this2.events = events;
+              console.log(_this2.events);
+              console.log(_this2.textStyle);
+              console.log(_this2.styleObject);
+              _this2.dataSource = events;
             });
           }
         }]);
