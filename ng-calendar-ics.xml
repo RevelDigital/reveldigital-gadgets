@@ -4,6 +4,7 @@
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 	    	<UserPref name="url" display_name="URL" required="true" datatype="string" />
+	    	<UserPref name="fontColor" display_name="Font Color" datatype="style" />
 		<UserPref name="rdKey" display_name="Device Registration Key" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
     </ModulePrefs>
     <Content type="html">
