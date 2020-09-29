@@ -38,7 +38,7 @@ function DefaultTableComponent_th_2_Template(rf, ctx) { if (rf & 1) {
 } }
 function DefaultTableComponent_td_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "td", 9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " TEMP VALUE ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " element.startDate ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 function DefaultTableComponent_th_5_Template(rf, ctx) { if (rf & 1) {
@@ -662,8 +662,8 @@ class CalendarDataService {
                 obj = {
                     location: 'fargo',
                     summary: 'my meeting',
-                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss'),
-                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('MM DD YYYY hh:mm:ss'),
+                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL'),
+                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL'),
                 };
                 statContainer = obj;
                 tempArr[0] = statContainer;
@@ -678,10 +678,10 @@ class CalendarDataService {
                             summary = item[3];
                         }
                         if (item[0] === 'dtstart') {
-                            startDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('MM DD YYYY hh:mm:ss');
+                            startDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LLL');
                         }
                         if (item[0] === 'dtend') {
-                            endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('MM DD YYYY hh:mm:ss');
+                            endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LLL');
                         }
                         obj = {
                             location,
