@@ -188,6 +188,7 @@
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
               _this.events = events;
               console.log(_this.events);
+              console.log(_this.textStyle);
               _this.dataSource = events;
             });
           }

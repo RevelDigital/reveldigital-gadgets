@@ -95,6 +95,7 @@ class DefaultTableComponent {
             .subscribe(events => {
             this.events = events;
             console.log(this.events);
+            console.log(this.textStyle);
             this.dataSource = events;
         });
     }
