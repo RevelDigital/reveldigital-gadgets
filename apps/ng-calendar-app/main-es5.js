@@ -90,7 +90,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r8.startDate, " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", element_r8.startDate, " - ", element_r8.endDate, "");
         }
       }
 
@@ -253,7 +253,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 2, 1, "td", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 2, 2, "td", 3);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
@@ -964,7 +964,7 @@
                   location: 'fargo',
                   summary: 'my meeting',
                   startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL'),
-                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL')
+                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LTS')
                 };
                 statContainer = obj;
                 tempArr[0] = statContainer;
@@ -986,7 +986,7 @@
                     }
 
                     if (item[0] === 'dtend') {
-                      endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LLL');
+                      endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LTS');
                     }
 
                     obj = {
