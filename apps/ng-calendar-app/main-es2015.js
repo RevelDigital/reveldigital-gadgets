@@ -85,6 +85,7 @@ class DefaultTableComponent {
     constructor(calendarService) {
         this.calendarService = calendarService;
         this.displayedColumns = ['when', 'where', 'summary'];
+        this.styleobj = {};
         this.textStyle = new gadgets.Prefs().getString('fontColor');
     }
     ngOnInit() {
