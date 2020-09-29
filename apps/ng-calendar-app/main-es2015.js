@@ -90,8 +90,7 @@ class DefaultTableComponent {
         this.styleObject = this.styleArray.forEach(e => {
             const value = e.split(':');
             console.log(value);
-            return this.obj[value[0]] = value[1];
-            //return this.obj;
+            this.obj[value[0]] = value[1];
         });
     }
     ngOnInit() {
@@ -103,7 +102,7 @@ class DefaultTableComponent {
             this.events = events;
             console.log(this.events);
             console.log(this.textStyle);
-            console.log(this.styleObject);
+            console.log(this.obj);
             this.dataSource = events;
         });
     }

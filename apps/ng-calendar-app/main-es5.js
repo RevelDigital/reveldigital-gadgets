@@ -179,7 +179,7 @@
           this.styleObject = this.styleArray.forEach(function (e) {
             var value = e.split(':');
             console.log(value);
-            return _this.obj[value[0]] = value[1]; //return this.obj;
+            _this.obj[value[0]] = value[1];
           });
         }
 
@@ -197,7 +197,7 @@
               _this2.events = events;
               console.log(_this2.events);
               console.log(_this2.textStyle);
-              console.log(_this2.styleObject);
+              console.log(_this2.obj);
               _this2.dataSource = events;
             });
           }
