@@ -92,17 +92,26 @@ class DefaultTableComponent {
         this.getStyle();
     }
     getStyle() {
-        const styleArray = this.textStyle.split(';');
-        console.log(styleArray);
-        styleArray.forEach(e => {
-            if (e !== '') {
-                console.log(e.split(':'));
-                this.value = e.split(':');
-                console.log(this.value);
-                this.styleobj[this.value[0]] = this.value[1];
-                console.log(this.styleobj);
-            }
+        const p = JSON.parse(this.textStyle).forEach((a) => {
+            const styles = a.split(':');
+            this.styleobj[styles[0]] = this.styleobj[1];
         });
+        console.log(this.styleobj);
+        /* const styleArray = this.textStyle.split(';');
+         console.log(styleArray);
+         styleArray.forEach(e => {
+           if (e !== ''){
+             console.log(e.split(':'));
+             this.value = e.split(':');
+             console.log(this.value);
+     
+             const arr = {
+               value[0]: value[1]
+             }
+     
+           }
+         });
+         */
     }
     getEvents() {
         const eventList = this.calendarService.getEvents()

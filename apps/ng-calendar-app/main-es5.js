@@ -186,17 +186,24 @@
           value: function getStyle() {
             var _this = this;
 
-            var styleArray = this.textStyle.split(';');
-            console.log(styleArray);
-            styleArray.forEach(function (e) {
-              if (e !== '') {
-                console.log(e.split(':'));
-                _this.value = e.split(':');
-                console.log(_this.value);
-                _this.styleobj[_this.value[0]] = _this.value[1];
-                console.log(_this.styleobj);
-              }
+            var p = JSON.parse(this.textStyle).forEach(function (a) {
+              var styles = a.split(':');
+              _this.styleobj[styles[0]] = _this.styleobj[1];
             });
+            console.log(this.styleobj);
+            /* const styleArray = this.textStyle.split(';');
+             console.log(styleArray);
+             styleArray.forEach(e => {
+               if (e !== ''){
+                 console.log(e.split(':'));
+                 this.value = e.split(':');
+                 console.log(this.value);
+                        const arr = {
+                   value[0]: value[1]
+                 }
+                      }
+             });
+             */
           }
         }, {
           key: "getEvents",
