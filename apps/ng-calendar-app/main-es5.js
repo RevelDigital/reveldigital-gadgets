@@ -189,8 +189,11 @@
             var styleArray = this.textStyle.split(';');
             console.log(styleArray);
             styleArray.forEach(function (e) {
-              console.log(e.split(':'));
-              _this.value = e.split(':'); //console.log(this.value[1].trim());
+              if (e !== '') {
+                console.log(e.split(':'));
+                _this.value = e.split(':');
+                console.log(_this.value);
+              }
             });
           }
         }, {

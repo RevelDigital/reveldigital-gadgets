@@ -95,9 +95,11 @@ class DefaultTableComponent {
         const styleArray = this.textStyle.split(';');
         console.log(styleArray);
         styleArray.forEach(e => {
-            console.log(e.split(':'));
-            this.value = e.split(':');
-            //console.log(this.value[1].trim());
+            if (e !== '') {
+                console.log(e.split(':'));
+                this.value = e.split(':');
+                console.log(this.value);
+            }
         });
     }
     getEvents() {
