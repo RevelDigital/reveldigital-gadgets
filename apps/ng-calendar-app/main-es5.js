@@ -150,7 +150,7 @@
         if (rf & 2) {
           var ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r6.textStyle);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r6.styleObj);
         }
       }
 
@@ -162,7 +162,7 @@
         if (rf & 2) {
           var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.textStyle);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.styleObj);
         }
       }
 
@@ -172,7 +172,7 @@
 
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
-          this.styleobj = {};
+          this.styleObj = {};
           this.textStyle = new gadgets.Prefs().getString('fontColor');
         }
 
@@ -189,9 +189,12 @@
 
             this.textStyle.split(';').forEach(function (a) {
               var styles = a.split(':');
-              _this.styleobj[styles[0]] = styles[1];
+
+              if (styles[0]) {
+                _this.styleObj[styles[0]] = styles[1];
+              }
             });
-            console.log(this.styleobj);
+            console.log(this.styleObj);
             /* const styleArray = this.textStyle.split(';');
              console.log(styleArray);
              styleArray.forEach(e => {
