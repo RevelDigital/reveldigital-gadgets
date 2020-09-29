@@ -142,12 +142,6 @@
         }
       }
 
-      var _c0 = function _c0(a0) {
-        return {
-          "color": a0
-        };
-      };
-
       function DefaultTableComponent_tr_10_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "tr", 10);
@@ -156,7 +150,7 @@
         if (rf & 2) {
           var ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](1, _c0, ctx_r6.color));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r6.textStyle);
         }
       }
 
@@ -168,7 +162,7 @@
         if (rf & 2) {
           var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](1, _c0, ctx_r7.color));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.textStyle);
         }
       }
 
@@ -178,7 +172,7 @@
 
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
-          this.color = new gadgets.Prefs().getString('fontColor');
+          this.textStyle = new gadgets.Prefs().getString('fontColor');
         }
 
         _createClass(DefaultTableComponent, [{
@@ -240,9 +234,9 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, DefaultTableComponent_tr_10_Template, 1, 3, "tr", 6);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, DefaultTableComponent_tr_10_Template, 1, 1, "tr", 6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, DefaultTableComponent_tr_11_Template, 1, 3, "tr", 7);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, DefaultTableComponent_tr_11_Template, 1, 1, "tr", 7);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           }
