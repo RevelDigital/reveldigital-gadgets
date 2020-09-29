@@ -86,7 +86,7 @@ class DefaultTableComponent {
     constructor(calendarService) {
         this.calendarService = calendarService;
         this.displayedColumns = ['when', 'where', 'summary'];
-        this.color = 'red';
+        this.color = new gadgets.Prefs().getString('fontColor');
     }
     ngOnInit() {
         this.getEvents();
@@ -622,8 +622,8 @@ __webpack_require__.r(__webpack_exports__);
 class CalendarDataService {
     constructor(http) {
         this.http = http;
-        //private urlPref = new gadgets.Prefs().getString('url');
-        this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/4t0mtlq6irm5dl32gp9euutajg%40group.calendar.google.com/private-34ab9050a491090cf13e12248be445ac/basic.ics';
+        this.urlPref = new gadgets.Prefs().getString('url');
+        this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {

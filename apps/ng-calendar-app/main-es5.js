@@ -178,7 +178,7 @@
 
           this.calendarService = calendarService;
           this.displayedColumns = ['when', 'where', 'summary'];
-          this.color = 'red';
+          this.color = new gadgets.Prefs().getString('fontColor');
         }
 
         _createClass(DefaultTableComponent, [{
@@ -906,9 +906,9 @@
         function CalendarDataService(http) {
           _classCallCheck(this, CalendarDataService);
 
-          this.http = http; //private urlPref = new gadgets.Prefs().getString('url');
-
-          this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/4t0mtlq6irm5dl32gp9euutajg%40group.calendar.google.com/private-34ab9050a491090cf13e12248be445ac/basic.ics';
+          this.http = http;
+          this.urlPref = new gadgets.Prefs().getString('url');
+          this.url = "https://glacial-hollows-70580.herokuapp.com/ical/2020-09-14T00:00:00.000Z/2020-09-15T23:00:00.000Z?url=".concat(this.urlPref);
         }
 
         _createClass(CalendarDataService, [{
