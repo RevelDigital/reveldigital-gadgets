@@ -99,9 +99,9 @@ class DefaultTableComponent {
                 console.log(e.split(':'));
                 this.value = e.split(':');
                 console.log(this.value);
-                this.styleJson[this.value[0]] = this.value[1];
+                this.styleobj[this.value[0]] = this.value[1];
+                console.log(this.styleobj);
             }
-            console.log(this.styleJson);
         });
     }
     getEvents() {
