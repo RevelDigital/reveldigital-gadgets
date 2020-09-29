@@ -176,6 +176,7 @@
           this.styleArray = this.textStyle.split(';');
           this.styleObject = this.styleArray.forEach(function (e) {
             e.split(':');
+            console.log(e.split(':'));
             var obj = {};
             obj[e[0]] = e[1];
             return obj;
