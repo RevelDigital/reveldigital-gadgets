@@ -23,9 +23,15 @@ module.exports = __webpack_require__(/*! C:\Users\shaun\GitHub\ng-calendar\ng-ca
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultTableComponent", function() { return DefaultTableComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Services/calendar-data.service */ "ZxQ1");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "wd/R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/table */ "+0xr");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Services/calendar-data.service */ "ZxQ1");
+/* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reveldigital/player-client */ "GQtI");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
+
+
 
 
 
@@ -39,11 +45,13 @@ function DefaultTableComponent_th_2_Template(rf, ctx) { if (rf & 1) {
 function DefaultTableComponent_td_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "td", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](2, "date");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](3, "date");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const element_r8 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", element_r8.startDate, " - ", element_r8.endDate, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 3, element_r8.startDate, "medium"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 6, element_r8.endDate, "shortTime"), " ", element_r8.countDown, "");
 } }
 function DefaultTableComponent_th_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "th", 8);
@@ -86,11 +94,16 @@ function DefaultTableComponent_tr_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.cellStyleObj);
 } }
 class DefaultTableComponent {
-    constructor(calendarService) {
+    // DEVELOPMENT VARIABLES
+    //textStyleHeader = 'color: red; font-size: large';
+    //textStyleCell = 'color: red; font-size: large';
+    constructor(calendarService, client) {
         this.calendarService = calendarService;
+        this.client = client;
         this.displayedColumns = ['when', 'where', 'summary'];
         this.headerStyleObj = {};
         this.cellStyleObj = {};
+        this.countDown = false;
         this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
         this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
     }
@@ -98,6 +111,22 @@ class DefaultTableComponent {
         this.getEvents();
         this.getHeaderStyle();
         this.getCellStyle();
+        setInterval(() => this.updateEvents(), 5000);
+    }
+    updateEvents() {
+        if (!this.events) {
+            return;
+        }
+        this.events.forEach((element, index) => {
+            const diff = ((moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1__().valueOf()));
+            if (diff < 1000 * 1000 * 3.6) {
+                element.countDown = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+            }
+            if (diff < 0) {
+                this.events.splice(index, 1);
+            }
+        });
+        this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.events);
     }
     getHeaderStyle() {
         this.textStyleHeader.split(';').forEach(a => {
@@ -106,7 +135,6 @@ class DefaultTableComponent {
                 this.headerStyleObj[styles[0].trim()] = styles[1].trim();
             }
         });
-        console.log(this.headerStyleObj);
     }
     getCellStyle() {
         this.textStyleCell.split(';').forEach(a => {
@@ -115,21 +143,21 @@ class DefaultTableComponent {
                 this.cellStyleObj[styles[0].trim()] = styles[1].trim();
             }
         });
-        console.log(this.cellStyleObj);
     }
     getEvents() {
         const eventList = this.calendarService.getEvents()
             .subscribe(events => {
-            this.dataSource = events;
+            this.events = events;
+            this.updateEvents();
         });
     }
 }
-DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) { return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"])); };
+DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) { return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__["CalendarDataService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"])); };
 DefaultTableComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DefaultTableComponent, selectors: [["app-default-table"]], decls: 12, vars: 3, consts: [["mat-table", "", 3, "dataSource"], ["matColumnDef", "when"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "where"], ["matColumnDef", "summary"], ["mat-header-row", "", 3, "ngStyle", 4, "matHeaderRowDef"], ["mat-row", "", 3, "ngStyle", 4, "matRowDef", "matRowDefColumns"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-header-row", "", 3, "ngStyle"], ["mat-row", "", 3, "ngStyle"]], template: function DefaultTableComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "table", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 2, 2, "td", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 9, "td", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](4, 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DefaultTableComponent_th_5_Template, 2, 0, "th", 2);
@@ -148,7 +176,7 @@ DefaultTableComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
-    } }, directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgStyle"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]], styles: ["table[_ngcontent-%COMP%]{\r\n  width: 100%\r\n}\r\n\r\n.mat-header-cell[_ngcontent-%COMP%] {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  text-align: center;\r\n}\r\n\r\n.mat-cell[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n  -webkit-box-pack:center;\r\n      -ms-flex-pack:center;\r\n          justify-content:center;\r\n\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7QUFDRjs7QUFFQTtFQUNFLDRCQUFzQjtFQUF0Qiw2QkFBc0I7TUFBdEIsMEJBQXNCO1VBQXRCLHNCQUFzQjtFQUN0Qix3QkFBdUI7TUFBdkIscUJBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXNCO01BQXRCLG9CQUFzQjtVQUF0QixzQkFBc0I7O0FBRXhCIiwiZmlsZSI6Ii4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGV7XHJcbiAgd2lkdGg6IDEwMCVcclxufVxyXG5cclxuLm1hdC1oZWFkZXItY2VsbCB7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5tYXQtY2VsbCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDpjZW50ZXI7XHJcblxyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgStyle"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]], styles: ["table[_ngcontent-%COMP%]{\r\n  width: 100%\r\n}\r\n\r\n.mat-header-cell[_ngcontent-%COMP%] {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  text-align: center;\r\n}\r\n\r\n.mat-cell[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n  -webkit-box-pack:center;\r\n      -ms-flex-pack:center;\r\n          justify-content:center;\r\n\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7QUFDRjs7QUFFQTtFQUNFLDRCQUFzQjtFQUF0Qiw2QkFBc0I7TUFBdEIsMEJBQXNCO1VBQXRCLHNCQUFzQjtFQUN0Qix3QkFBdUI7TUFBdkIscUJBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXNCO01BQXRCLG9CQUFzQjtVQUF0QixzQkFBc0I7O0FBRXhCIiwiZmlsZSI6Ii4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGV7XHJcbiAgd2lkdGg6IDEwMCVcclxufVxyXG5cclxuLm1hdC1oZWFkZXItY2VsbCB7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5tYXQtY2VsbCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDpjZW50ZXI7XHJcblxyXG59XHJcbiJdfQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DefaultTableComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -156,7 +184,7 @@ DefaultTableComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
                 templateUrl: './default-table.component.html',
                 styleUrls: ['./default-table.component.css']
             }]
-    }], function () { return [{ type: _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"] }]; }, null); })();
+    }], function () { return [{ type: _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__["CalendarDataService"] }, { type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"] }]; }, null); })();
 
 
 /***/ }),
@@ -637,21 +665,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "wd/R");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment-timezone */ "f0Wu");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @reveldigital/player-client */ "GQtI");
+
+
 
 
 
 
 
 class CalendarDataService {
-    constructor(http) {
+    constructor(http, client) {
         this.http = http;
+        this.client = client;
         this.urlPref = new gadgets.Prefs().getString('url');
         this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
+        this.client.getDeviceTimeZoneName().then((res) => {
+            this.TZName = res;
+        });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
-            let obj = new Object();
+            let eventObj = new Object();
             let location;
             let summary;
             let startDate;
@@ -659,21 +696,46 @@ class CalendarDataService {
             let statContainer;
             let eventContainer;
             const tempArr = [];
+            moment_timezone__WEBPACK_IMPORTED_MODULE_3__["tz"].setDefault(this.TZName);
             if (data.events.length > 0) {
                 console.log('YES');
             }
             else {
-                obj = {
+                eventObj = {
                     location: 'fargo',
                     summary: 'my meeting',
-                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL'),
-                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LTS'),
+                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                 };
-                statContainer = obj;
+                statContainer = eventObj;
                 tempArr[0] = statContainer;
             }
             if (data.occurrences.length > 0) {
-                eventContainer = data.occurrences.map((event) => {
+                eventContainer = data.occurrences.reduce((result, event) => {
+                    const timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                        year: event.startDate.year,
+                        month: event.startDate.month - 1,
+                        day: event.startDate.day,
+                        hour: event.startDate.hour,
+                        minute: event.startDate.minute,
+                        second: event.startDate.second
+                    });
+                    startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                        year: event.startDate.year,
+                        month: event.startDate.month - 1,
+                        day: event.startDate.day,
+                        hour: event.startDate.hour,
+                        minute: event.startDate.minute,
+                        second: event.startDate.second
+                    }).toDate();
+                    endDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                        year: event.endDate.year,
+                        month: event.endDate.month - 1,
+                        day: event.endDate.day,
+                        hour: event.endDate.hour,
+                        minute: event.endDate.minute,
+                        second: event.endDate.second
+                    }).toDate();
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
                             location = item[3];
@@ -681,35 +743,33 @@ class CalendarDataService {
                         if (item[0] === 'summary') {
                             summary = item[3];
                         }
-                        if (item[0] === 'dtstart') {
-                            startDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LLL');
-                        }
-                        if (item[0] === 'dtend') {
-                            endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LTS');
-                        }
-                        obj = {
+                        eventObj = {
                             location,
                             summary,
                             startDate,
-                            endDate
+                            endDate,
                         };
                     });
-                    return obj;
-                });
+                    result.push(eventObj);
+                    return result;
+                }, []);
             }
-            const finalList = tempArr.concat(eventContainer);
+            const finalList = tempArr.concat(eventContainer).sort((a, b) => {
+                return a.startDate - b.startDate;
+            });
+            console.log(finalList);
             return finalList;
         }));
     }
 }
-CalendarDataService.ɵfac = function CalendarDataService_Factory(t) { return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
+CalendarDataService.ɵfac = function CalendarDataService_Factory(t) { return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"])); };
 CalendarDataService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: CalendarDataService, factory: CalendarDataService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CalendarDataService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }, { type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"] }]; }, null); })();
 
 
 /***/ }),

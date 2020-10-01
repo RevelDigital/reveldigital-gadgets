@@ -50,9 +50,13 @@
       /* harmony import */
 
 
-      var _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../Services/calendar-data.service */
-      "ZxQ1");
+      var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! moment */
+      "wd/R");
+      /* harmony import */
+
+
+      var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
       /* harmony import */
 
 
@@ -62,7 +66,19 @@
       /* harmony import */
 
 
-      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../Services/calendar-data.service */
+      "ZxQ1");
+      /* harmony import */
+
+
+      var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @reveldigital/player-client */
+      "GQtI");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/common */
       "ofXK");
 
@@ -82,6 +98,10 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](2, "date");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](3, "date");
+
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
 
@@ -90,7 +110,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", element_r8.startDate, " - ", element_r8.endDate, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 3, element_r8.startDate, "medium"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 6, element_r8.endDate, "shortTime"), " ", element_r8.countDown, "");
         }
       }
 
@@ -175,13 +195,18 @@
       }
 
       var DefaultTableComponent = /*#__PURE__*/function () {
-        function DefaultTableComponent(calendarService) {
+        // DEVELOPMENT VARIABLES
+        //textStyleHeader = 'color: red; font-size: large';
+        //textStyleCell = 'color: red; font-size: large';
+        function DefaultTableComponent(calendarService, client) {
           _classCallCheck(this, DefaultTableComponent);
 
           this.calendarService = calendarService;
+          this.client = client;
           this.displayedColumns = ['when', 'where', 'summary'];
           this.headerStyleObj = {};
           this.cellStyleObj = {};
+          this.countDown = false;
           this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
           this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
         }
@@ -189,45 +214,72 @@
         _createClass(DefaultTableComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
+            var _this = this;
+
             this.getEvents();
             this.getHeaderStyle();
             this.getCellStyle();
+            setInterval(function () {
+              return _this.updateEvents();
+            }, 5000);
+          }
+        }, {
+          key: "updateEvents",
+          value: function updateEvents() {
+            var _this2 = this;
+
+            if (!this.events) {
+              return;
+            }
+
+            this.events.forEach(function (element, index) {
+              var diff = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1__().valueOf();
+
+              if (diff < 1000 * 1000 * 3.6) {
+                element.countDown = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+              }
+
+              if (diff < 0) {
+                _this2.events.splice(index, 1);
+              }
+            });
+            this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.events);
           }
         }, {
           key: "getHeaderStyle",
           value: function getHeaderStyle() {
-            var _this = this;
+            var _this3 = this;
 
             this.textStyleHeader.split(';').forEach(function (a) {
               var styles = a.split(':');
 
               if (styles[0]) {
-                _this.headerStyleObj[styles[0].trim()] = styles[1].trim();
+                _this3.headerStyleObj[styles[0].trim()] = styles[1].trim();
               }
             });
-            console.log(this.headerStyleObj);
           }
         }, {
           key: "getCellStyle",
           value: function getCellStyle() {
-            var _this2 = this;
+            var _this4 = this;
 
             this.textStyleCell.split(';').forEach(function (a) {
               var styles = a.split(':');
 
               if (styles[0]) {
-                _this2.cellStyleObj[styles[0].trim()] = styles[1].trim();
+                _this4.cellStyleObj[styles[0].trim()] = styles[1].trim();
               }
             });
-            console.log(this.cellStyleObj);
           }
         }, {
           key: "getEvents",
           value: function getEvents() {
-            var _this3 = this;
+            var _this5 = this;
 
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
-              _this3.dataSource = events;
+              _this5.events = events;
+
+              _this5.updateEvents();
             });
           }
         }]);
@@ -236,7 +288,7 @@
       }();
 
       DefaultTableComponent.ɵfac = function DefaultTableComponent_Factory(t) {
-        return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"]));
+        return new (t || DefaultTableComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__["CalendarDataService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"]));
       };
 
       DefaultTableComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -253,7 +305,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 2, 2, "td", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 9, "td", 3);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
@@ -292,7 +344,8 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
           }
         },
-        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgStyle"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]],
+        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgStyle"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]],
+        pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]],
         styles: ["table[_ngcontent-%COMP%]{\r\n  width: 100%\r\n}\r\n\r\n.mat-header-cell[_ngcontent-%COMP%] {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  text-align: center;\r\n}\r\n\r\n.mat-cell[_ngcontent-%COMP%] {\r\n  text-align: center;\r\n  -webkit-box-pack:center;\r\n      -ms-flex-pack:center;\r\n          justify-content:center;\r\n\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7QUFDRjs7QUFFQTtFQUNFLDRCQUFzQjtFQUF0Qiw2QkFBc0I7TUFBdEIsMEJBQXNCO1VBQXRCLHNCQUFzQjtFQUN0Qix3QkFBdUI7TUFBdkIscUJBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXNCO01BQXRCLG9CQUFzQjtVQUF0QixzQkFBc0I7O0FBRXhCIiwiZmlsZSI6Ii4uL2RlZmF1bHQtdGFibGUvZGVmYXVsdC10YWJsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGV7XHJcbiAgd2lkdGg6IDEwMCVcclxufVxyXG5cclxuLm1hdC1oZWFkZXItY2VsbCB7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5tYXQtY2VsbCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDpjZW50ZXI7XHJcblxyXG59XHJcbiJdfQ== */"]
       });
       /*@__PURE__*/
@@ -307,7 +360,9 @@
           }]
         }], function () {
           return [{
-            type: _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_1__["CalendarDataService"]
+            type: _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__["CalendarDataService"]
+          }, {
+            type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"]
           }];
         }, null);
       })();
@@ -931,15 +986,32 @@
       /* harmony import */
 
 
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! moment-timezone */
+      "f0Wu");
+      /* harmony import */
+
+
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_3__);
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/common/http */
       "tk/3");
+      /* harmony import */
+
+
+      var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @reveldigital/player-client */
+      "GQtI");
 
       var CalendarDataService = /*#__PURE__*/function () {
-        function CalendarDataService(http) {
+        function CalendarDataService(http, client) {
           _classCallCheck(this, CalendarDataService);
 
           this.http = http;
+          this.client = client;
           this.urlPref = new gadgets.Prefs().getString('url');
           this.url = "https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=".concat(this.urlPref);
         }
@@ -947,8 +1019,13 @@
         _createClass(CalendarDataService, [{
           key: "getEvents",
           value: function getEvents() {
+            var _this6 = this;
+
+            this.client.getDeviceTimeZoneName().then(function (res) {
+              _this6.TZName = res;
+            });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
-              var obj = new Object();
+              var eventObj = new Object();
               var location;
               var summary;
               var startDate;
@@ -956,22 +1033,47 @@
               var statContainer;
               var eventContainer;
               var tempArr = [];
+              moment_timezone__WEBPACK_IMPORTED_MODULE_3__["tz"].setDefault(_this6.TZName);
 
               if (data.events.length > 0) {
                 console.log('YES');
               } else {
-                obj = {
+                eventObj = {
                   location: 'fargo',
                   summary: 'my meeting',
-                  startDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LLL'),
-                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().format('LTS')
+                  startDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate()
                 };
-                statContainer = obj;
+                statContainer = eventObj;
                 tempArr[0] = statContainer;
               }
 
               if (data.occurrences.length > 0) {
-                eventContainer = data.occurrences.map(function (event) {
+                eventContainer = data.occurrences.reduce(function (result, event) {
+                  var timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                    year: event.startDate.year,
+                    month: event.startDate.month - 1,
+                    day: event.startDate.day,
+                    hour: event.startDate.hour,
+                    minute: event.startDate.minute,
+                    second: event.startDate.second
+                  });
+                  startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                    year: event.startDate.year,
+                    month: event.startDate.month - 1,
+                    day: event.startDate.day,
+                    hour: event.startDate.hour,
+                    minute: event.startDate.minute,
+                    second: event.startDate.second
+                  }).toDate();
+                  endDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                    year: event.endDate.year,
+                    month: event.endDate.month - 1,
+                    day: event.endDate.day,
+                    hour: event.endDate.hour,
+                    minute: event.endDate.minute,
+                    second: event.endDate.second
+                  }).toDate();
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
                       location = item[3];
@@ -981,26 +1083,22 @@
                       summary = item[3];
                     }
 
-                    if (item[0] === 'dtstart') {
-                      startDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LLL');
-                    }
-
-                    if (item[0] === 'dtend') {
-                      endDate = moment__WEBPACK_IMPORTED_MODULE_2__(item[3]).format('LTS');
-                    }
-
-                    obj = {
+                    eventObj = {
                       location: location,
                       summary: summary,
                       startDate: startDate,
                       endDate: endDate
                     };
                   });
-                  return obj;
-                });
+                  result.push(eventObj);
+                  return result;
+                }, []);
               }
 
-              var finalList = tempArr.concat(eventContainer);
+              var finalList = tempArr.concat(eventContainer).sort(function (a, b) {
+                return a.startDate - b.startDate;
+              });
+              console.log(finalList);
               return finalList;
             }));
           }
@@ -1010,7 +1108,7 @@
       }();
 
       CalendarDataService.ɵfac = function CalendarDataService_Factory(t) {
-        return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]));
+        return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"]));
       };
 
       CalendarDataService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -1028,7 +1126,9 @@
           }]
         }], function () {
           return [{
-            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+          }, {
+            type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"]
           }];
         }, null);
       })();
