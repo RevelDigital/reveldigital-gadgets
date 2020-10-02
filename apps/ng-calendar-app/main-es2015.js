@@ -758,6 +758,7 @@ class CalendarDataService {
                 return a.startDate - b.startDate;
             });
             console.log(finalList);
+            console.log(this.TZName);
             return finalList;
         }));
     }

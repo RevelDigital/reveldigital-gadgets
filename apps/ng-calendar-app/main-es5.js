@@ -1099,6 +1099,7 @@
                 return a.startDate - b.startDate;
               });
               console.log(finalList);
+              console.log(_this6.TZName);
               return finalList;
             }));
           }
