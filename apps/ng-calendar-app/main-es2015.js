@@ -686,6 +686,7 @@ class CalendarDataService {
     getEvents() {
         this.client.getDeviceTimeZoneName().then((res) => {
             this.TZName = res;
+            console.log(res);
         });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
             let eventObj = new Object();
