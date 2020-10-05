@@ -45,7 +45,7 @@
 
 <body>
   <app-root></app-root>
-<script src="runtime-es2015.5536431006e0c9c1290b.js" type="module"></script><script src="runtime-es5.5536431006e0c9c1290b.js" nomodule defer></script><script src="polyfills-es5.6efe7ecd690ba21b65e9.js" nomodule defer></script><script src="polyfills-es2015.91389ecfa80f1063947d.js" type="module"></script><script src="main-es2015.c013df0145f4e64d49de.js" type="module"></script><script src="main-es5.c013df0145f4e64d49de.js" nomodule defer></script></body>
+<script src="runtime-es2015.5536431006e0c9c1290b.js" type="module"></script><script src="runtime-es5.5536431006e0c9c1290b.js" nomodule defer></script><script src="polyfills-es5.6efe7ecd690ba21b65e9.js" nomodule defer></script><script src="polyfills-es2015.91389ecfa80f1063947d.js" type="module"></script><script src="main-es2015.98e1a1f7d89b8cfa6ac7.js" type="module"></script><script src="main-es5.98e1a1f7d89b8cfa6ac7.js" nomodule defer></script></body>
   <script>
     // class gadgets{
     //   constructor() {
