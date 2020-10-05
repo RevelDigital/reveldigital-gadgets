@@ -32,6 +32,7 @@
 
   <base href="https://reveldigital.github.io/reveldigital-gadgets/apps/covidQuestions/" />
   <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
@@ -45,7 +46,7 @@
 
 <body>
   <app-root></app-root>
-<script src="runtime-es2015.5536431006e0c9c1290b.js" type="module"></script><script src="runtime-es5.5536431006e0c9c1290b.js" nomodule defer></script><script src="polyfills-es5.6efe7ecd690ba21b65e9.js" nomodule defer></script><script src="polyfills-es2015.91389ecfa80f1063947d.js" type="module"></script><script src="main-es2015.586ec5f997ccb3087d68.js" type="module"></script><script src="main-es5.586ec5f997ccb3087d68.js" nomodule defer></script></body>
+<script src="runtime-es2015.5536431006e0c9c1290b.js" type="module"></script><script src="runtime-es5.5536431006e0c9c1290b.js" nomodule defer></script><script src="polyfills-es5.6efe7ecd690ba21b65e9.js" nomodule defer></script><script src="polyfills-es2015.91389ecfa80f1063947d.js" type="module"></script><script src="main-es2015.a19fb3a138cfccb79f49.js" type="module"></script><script src="main-es5.a19fb3a138cfccb79f49.js" nomodule defer></script></body>
   <script>
     // class gadgets{
     //   constructor() {
