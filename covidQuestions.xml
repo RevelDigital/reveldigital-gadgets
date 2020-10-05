@@ -30,7 +30,7 @@
   <meta charset="utf-8" />
   <title>Ionic App</title>
 
-  <base href="https://reveldigital-webplayer-package.s3.amazonaws.com/kiosk/" />
+  <base href="https://reveldigital.github.io/reveldigital-gadgets/apps/covidQuestions/" />
 
   <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -42,7 +42,7 @@
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <link rel="stylesheet" href="styles.b90531eb9c5954f757a1.css"></head>
+<link rel="stylesheet" href="styles.b90531eb9c5954f757a1.css"></head>
 
 <body>
   <app-root></app-root>
@@ -63,8 +63,6 @@
     //   }
     // }
   </script>
-</html>
-
 
 
 
@@ -79,7 +77,7 @@
   gadgets.util.registerOnLoadHandler(onLoad);
 </script>
 
-
+</html>
 
 ]]>
     </Content>
