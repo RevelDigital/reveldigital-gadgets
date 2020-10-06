@@ -133,7 +133,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <section style=\"position: absolute; bottom: 0; display: flex; \">\n        <ion-button size=\"large\" (click)=\"toNext(true)\" color=\"primary\">Yes</ion-button>\n        <div style=\"width: 10px\"></div>\n        <ion-button size=\"large\" (click)=\"toNext(false)\" color=\"secondary\">No </ion-button>\n      </section>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <section style=\"position: absolute; bottom: 0; display: flex; \">\n        <ion-button size=\"large\" (click)=\"toNext(q)\" color=\"primary\">Yes</ion-button>\n        <div style=\"width: 10px\"></div>\n        <ion-button size=\"large\" (click)=\"toNext(null)\" color=\"secondary\">No </ion-button>\n      </section>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
       /***/
     },
 
@@ -285,9 +285,9 @@
           this.fontSize = '30px';
           this.tfontSize = '35px';
           this.pfontSize = '30px';
-          this.pass = true;
           this.count = 0;
           this.title = "";
+          this.failedQuestions = [];
           this.question = [];
           this.initializeApp();
           var tmpArray = [];
@@ -327,7 +327,7 @@
         }, {
           key: "toNext",
           value: function toNext(val) {
-            if (this.pass && !val) this.pass = false;
+            if (val) this.failedQuestions.push(val);
             this.slides.lockSwipeToNext(false);
             this.slides.lockSwipeToPrev(false);
             this.count++;
@@ -335,12 +335,12 @@
             if (this.count == this.question.length) {
               //output to client
               if (typeof Client != 'undefined') {
-                Client.callback(this.pass ? 'fail' : 'pass');
+                Client.callback(JSON.stringify(this.failedQuestions));
               }
 
               this.slides.slideTo(0);
               this.count = 0;
-              this.pass = true;
+              this.failedQuestions = [];
             } else {
               this.slides.slideNext();
             }
