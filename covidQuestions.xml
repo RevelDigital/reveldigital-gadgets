@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNjAxOTEyNzk3MTQ5LCJsYXN0TW9kaWZpZWQiOjE2MDE5MTI3OTcxNDl9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+    <ModulePrefs title="questions" description="Covid Questions" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
+        <UserPref name="ForeColor" datatype="hidden" required="false"/>
+        <UserPref name="BackColor" datatype="hidden" required="false"/>
+        <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+        <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+        <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+        <UserPref display_name="title" name="title" datatype="string" required="true" default_value="25px"/>
+        <UserPref display_name="font size" name="fontsize" datatype="string" required="false" default_value="25px"/>
+        <UserPref display_name="title font size" name="tfontsize" datatype="string" required="false" default_value="25px"/>
+        <UserPref display_name="page font size" name="pfontsize" datatype="string" required="false" default_value="25px"/>
+        <UserPref display_name="Question 1" name="q1" datatype="string" required="true"/>
+        <UserPref display_name="Question 2" name="q2" datatype="string" required="false"/>
+        <UserPref display_name="Question 3" name="q3" datatype="string" required="false"/>
+        <UserPref display_name="Question 4" name="q4" datatype="string" required="false"/>
+        <UserPref display_name="Question 5" name="q5" datatype="string" required="false"/>
+        <UserPref display_name="Question 6" name="q6" datatype="string" required="false"/>
+        <UserPref display_name="Question 7" name="q7" datatype="string" required="false"/>
+        <UserPref display_name="Question 8" name="q8" datatype="string" required="false"/>
+        <UserPref display_name="Question 9" name="q9" datatype="string" required="false"/>
+        <UserPref display_name="Question 10" name="q10" datatype="string" required="false"/>
+        <Require feature="offline"/>
+    </ModulePrefs>
+
+    <Content type="html">
+        <![CDATA[
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ionic App</title>
+
+  <base href="https://reveldigital.github.io/reveldigital-gadgets/apps/covidQuestions/" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+<body>
+  <app-root></app-root>
+<script src="runtime-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills-es2015.js" type="module"></script><script src="styles-es2015.js" type="module"></script><script src="styles-es5.js" nomodule defer></script><script src="vendor-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule defer></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule defer></script></body>
+  <script>
+
+    // let prefs=  {
+    //   getString: ()=>{
+    //     return Math.random()
+    //   }}
+
+
+    // let Client = {
+    //   callback:(input)=>{
+    //     console.log('Came from client:', input)
+    //   }
+    // }
+  </script>
+
+
+<script>
+  var prefs = new gadgets.Prefs();
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+</html>
+
+]]>
+    </Content>
+</Module>
