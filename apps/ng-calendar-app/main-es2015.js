@@ -688,6 +688,12 @@ class CalendarDataService {
             this.TZName = res;
             console.log(res);
         });
+        this.client.getDeviceTimeZoneID().then((res) => {
+            console.log(res);
+        });
+        this.client.getDeviceTimeZoneOffset().then((res) => {
+            console.log(res);
+        });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
             let eventObj = new Object();
             let location;
