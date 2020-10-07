@@ -133,7 +133,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <section style=\"position: absolute; bottom: 0; display: flex; \">\n        <ion-button size=\"large\" (click)=\"toNext(q)\" color=\"primary\">Yes</ion-button>\n        <div style=\"width: 10px\"></div>\n        <ion-button size=\"large\" (click)=\"toNext(null)\" color=\"secondary\">No </ion-button>\n      </section>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(q)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
       /***/
     },
 
@@ -285,6 +285,13 @@
           this.fontSize = '30px';
           this.tfontSize = '35px';
           this.pfontSize = '30px';
+          this.bfontSize = '30px';
+          this.ycolor = '';
+          this.ncolor = '';
+          this.ypos = '';
+          this.npos = '';
+          this.bheight = '';
+          this.bwidth = '';
           this.count = 0;
           this.title = "";
           this.failedQuestions = [];
@@ -298,6 +305,13 @@
             this.fontSize = prefs.getString('fontsize');
             this.tfontSize = prefs.getString('tfontsize');
             this.pfontSize = prefs.getString('pfontsize');
+            this.bfontSize = prefs.getString('bfontsize');
+            this.ycolor = prefs.getString('ycolor');
+            this.ypos = prefs.getString('ypos');
+            this.bheight = prefs.getString('bheight');
+            this.bwidth = prefs.getString('bwidth');
+            this.ncolor = prefs.getString('ncolor');
+            this.npos = prefs.getString('npos');
 
             for (var index = 0; index < 10; index++) {
               console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));

@@ -11,6 +11,13 @@
         <UserPref display_name="font size" name="fontsize" datatype="string" required="false" default_value="25px"/>
         <UserPref display_name="title font size" name="tfontsize" datatype="string" required="false" default_value="25px"/>
         <UserPref display_name="page font size" name="pfontsize" datatype="string" required="false" default_value="25px"/>
+        <UserPref display_name="button font size" name="b" datatype="string" required="false" default_value="25px"/>
+        <UserPref display_name="Yes color" name="ycolor" datatype="hidden" required="false" default_value="#00FF00"/>
+        <UserPref display_name="No color" name="ncolor" datatype="hidden" required="false" default_value="#FF0000"/>
+        <UserPref display_name="button width" name="bwidth" datatype="string" required="false" default_value="150px"/>
+        <UserPref display_name="button height" name="bheight" datatype="string" required="false" default_value="50px"/>
+        <UserPref display_name="Yes Position" name="ypos" datatype="string" required="false" default_value="100px"/>
+        <UserPref display_name="No Position" name="npos" datatype="string" required="false" default_value="200px"/>
         <UserPref display_name="Question 1" name="q1" datatype="string" required="true"/>
         <UserPref display_name="Question 2" name="q2" datatype="string" required="false"/>
         <UserPref display_name="Question 3" name="q3" datatype="string" required="false"/>
@@ -34,6 +41,7 @@
   <title>Ionic App</title>
 
   <base href="https://reveldigital.github.io/reveldigital-gadgets/apps/covidQuestions/" />
+
   <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
@@ -52,8 +60,17 @@
   <script>
 
     // let prefs=  {
-    //   getString: ()=>{
-    //     return Math.random()
+    //   getString: (val)=>{
+    //     switch (val) {
+    //       case 'ycolor':return 'green'
+    //       case 'ncolor':return 'red'
+    //       case 'bwidth':return '25px'
+    //       case 'bheight':return '50px'
+    //       case 'ypos':return '170px'
+    //       case 'npos':return '30px'
+    //       case 'bfontsize':return '50px'
+    //       default: return Math.random();
+    //     }
     //   }}
 
 
@@ -63,7 +80,6 @@
     //   }
     // }
   </script>
-
 
 <script>
   var prefs = new gadgets.Prefs();
