@@ -80,7 +80,6 @@
     //   }
     // }
   </script>
-
 <script>
   var prefs = new gadgets.Prefs();
 
