@@ -1023,13 +1023,13 @@
 
             this.client.getDeviceTimeZoneName().then(function (res) {
               _this6.TZName = res;
-              console.log(res);
+              console.log('Time Zone Name: ' + res);
             });
             this.client.getDeviceTimeZoneID().then(function (res) {
-              console.log(res);
+              console.log('Time Zone Id: ' + res);
             });
             this.client.getDeviceTimeZoneOffset().then(function (res) {
-              console.log(res);
+              console.log('Time Zone Offset: ' + res);
             });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
               var eventObj = new Object();
