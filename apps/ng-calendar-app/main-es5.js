@@ -976,35 +976,26 @@
       /* harmony import */
 
 
-      var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! moment */
-      "wd/R");
-      /* harmony import */
-
-
-      var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-      /* harmony import */
-
-
-      var moment_timezone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! moment-timezone */
       "f0Wu");
       /* harmony import */
 
 
-      var moment_timezone__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_3__);
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
       /* harmony import */
 
 
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/common/http */
       "tk/3");
       /* harmony import */
 
 
-      var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @reveldigital/player-client */
-      "GQtI");
+      "GQtI"); //import * as moment from 'moment';
+
 
       var CalendarDataService = /*#__PURE__*/function () {
         function CalendarDataService(http, client) {
@@ -1031,6 +1022,7 @@
             this.client.getDeviceTimeZoneOffset().then(function (res) {
               console.log('Time Zone Offset: ' + res);
             });
+            moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
               var eventObj = new Object();
               var location;
@@ -1040,7 +1032,6 @@
               var statContainer;
               var eventContainer;
               var tempArr = [];
-              moment_timezone__WEBPACK_IMPORTED_MODULE_3__["tz"].setDefault(_this6.TZName);
 
               if (data.events.length > 0) {
                 console.log('YES');
@@ -1048,8 +1039,8 @@
                 eventObj = {
                   location: 'fargo',
                   summary: 'my meeting',
-                  startDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate()
+                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate()
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;
@@ -1057,7 +1048,7 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  var timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                  var timeDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1065,7 +1056,7 @@
                     minute: event.startDate.minute,
                     second: event.startDate.second
                   });
-                  startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1073,7 +1064,7 @@
                     minute: event.startDate.minute,
                     second: event.startDate.second
                   }).toDate();
-                  endDate = moment__WEBPACK_IMPORTED_MODULE_2__({
+                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
@@ -1116,7 +1107,7 @@
       }();
 
       CalendarDataService.ɵfac = function CalendarDataService_Factory(t) {
-        return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"]));
+        return new (t || CalendarDataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"]));
       };
 
       CalendarDataService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -1134,9 +1125,9 @@
           }]
         }], function () {
           return [{
-            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
           }, {
-            type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"]
+            type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__["PlayerClientService"]
           }];
         }, null);
       })();
