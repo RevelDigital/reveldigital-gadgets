@@ -692,8 +692,8 @@ class CalendarDataService {
         this.client.getDeviceTimeZoneOffset().then((res) => {
             console.log('Time Zone Offset: ' + res);
         });
-        moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
+            moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
             let eventObj = new Object();
             let location;
             let summary;
