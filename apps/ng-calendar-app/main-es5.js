@@ -1047,14 +1047,6 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  var timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
-                    year: event.startDate.year,
-                    month: event.startDate.month - 1,
-                    day: event.startDate.day,
-                    hour: event.startDate.hour,
-                    minute: event.startDate.minute,
-                    second: event.startDate.second
-                  });
                   startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
