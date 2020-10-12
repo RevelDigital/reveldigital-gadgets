@@ -688,10 +688,10 @@ class CalendarDataService {
         });
         this.client.getDeviceTimeZoneID().then((res) => {
             console.log('Time Zone Id: ' + res);
-            this.TZName = res;
         });
         this.client.getDeviceTimeZoneOffset().then((res) => {
             console.log('Time Zone Offset: ' + res);
+            this.TZName = res;
         });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
             moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);

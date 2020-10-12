@@ -1018,10 +1018,10 @@
             });
             this.client.getDeviceTimeZoneID().then(function (res) {
               console.log('Time Zone Id: ' + res);
-              _this6.TZName = res;
             });
             this.client.getDeviceTimeZoneOffset().then(function (res) {
               console.log('Time Zone Offset: ' + res);
+              _this6.TZName = res;
             });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
               moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(_this6.TZName);
