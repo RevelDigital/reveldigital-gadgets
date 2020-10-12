@@ -23,8 +23,8 @@ module.exports = __webpack_require__(/*! C:\Users\shaun\GitHub\ng-calendar\ng-ca
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultTableComponent", function() { return DefaultTableComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "wd/R");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ "f0Wu");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/table */ "+0xr");
 /* harmony import */ var _Services_calendar_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Services/calendar-data.service */ "ZxQ1");
 /* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reveldigital/player-client */ "GQtI");
@@ -118,9 +118,10 @@ class DefaultTableComponent {
             return;
         }
         this.events.forEach((element, index) => {
-            const diff = ((moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1__().valueOf()));
+            moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"].setDefault(element.timeZone);
+            const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__().valueOf()));
             if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
             }
             if (diff < 0) {
                 this.events.splice(index, 1);
@@ -669,7 +670,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reveldigital/player-client */ "GQtI");
 
 
-//import * as moment from 'moment';
 
 
 

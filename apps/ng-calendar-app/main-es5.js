@@ -50,13 +50,13 @@
       /* harmony import */
 
 
-      var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! moment */
-      "wd/R");
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! moment-timezone */
+      "f0Wu");
       /* harmony import */
 
 
-      var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+      var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
       /* harmony import */
 
 
@@ -233,10 +233,11 @@
             }
 
             this.events.forEach(function (element, index) {
-              var diff = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1__().valueOf();
+              moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"].setDefault(element.timeZone);
+              var diff = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__().valueOf();
 
               if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
               }
 
               if (diff < 0) {
@@ -994,8 +995,7 @@
 
       var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @reveldigital/player-client */
-      "GQtI"); //import * as moment from 'moment';
-
+      "GQtI");
 
       var CalendarDataService = /*#__PURE__*/function () {
         function CalendarDataService(http, client) {
