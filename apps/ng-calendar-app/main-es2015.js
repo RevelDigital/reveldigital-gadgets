@@ -702,7 +702,7 @@ class CalendarDataService {
             let statContainer;
             let eventContainer;
             const tempArr = [];
-            const timeZone = this.TZName;
+            let timeZone;
             if (data.events.length > 0) {
                 console.log('YES');
             }
@@ -712,7 +712,7 @@ class CalendarDataService {
                     summary: 'my meeting',
                     startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                     endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                    timeZone
+                    timeZone: this.TZName
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;

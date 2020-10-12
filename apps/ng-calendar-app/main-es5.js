@@ -1032,7 +1032,7 @@
               var statContainer;
               var eventContainer;
               var tempArr = [];
-              var timeZone = _this6.TZName;
+              var timeZone;
 
               if (data.events.length > 0) {
                 console.log('YES');
@@ -1042,7 +1042,7 @@
                   summary: 'my meeting',
                   startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                   endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                  timeZone: timeZone
+                  timeZone: _this6.TZName
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;
