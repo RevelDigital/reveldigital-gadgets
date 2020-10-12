@@ -51,7 +51,7 @@ function DefaultTableComponent_td_3_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const element_r8 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](2, 3, element_r8.startDate, "medium", element_r8.timeZone), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](3, 7, element_r8.endDate, "shortTime", element_r8.timeZone), " ", element_r8.countDown, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](2, 3, element_r8.startDate, "medium", "element.timeZone"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](3, 7, element_r8.endDate, "shortTime", "element.timeZone"), " ", element_r8.countDown, "");
 } }
 function DefaultTableComponent_th_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "th", 8);
