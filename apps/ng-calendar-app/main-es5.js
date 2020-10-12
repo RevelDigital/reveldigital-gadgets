@@ -110,7 +110,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 3, element_r8.startDate, "medium"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 6, element_r8.endDate, "shortTime"), " ", element_r8.countDown, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](2, 3, element_r8.startDate, "medium", element_r8.timeZone), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](3, 7, element_r8.endDate, "shortTime", element_r8.timeZone), " ", element_r8.countDown, "");
         }
       }
 
@@ -305,7 +305,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 9, "td", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 11, "td", 3);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
@@ -1032,6 +1032,7 @@
               var statContainer;
               var eventContainer;
               var tempArr = [];
+              var timeZone = _this6.TZName;
 
               if (data.events.length > 0) {
                 console.log('YES');
@@ -1040,7 +1041,8 @@
                   location: 'fargo',
                   summary: 'my meeting',
                   startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate()
+                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  timeZone: timeZone
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;
@@ -1077,7 +1079,8 @@
                       location: location,
                       summary: summary,
                       startDate: startDate,
-                      endDate: endDate
+                      endDate: endDate,
+                      timeZone: timeZone
                     };
                   });
                   result.push(eventObj);
