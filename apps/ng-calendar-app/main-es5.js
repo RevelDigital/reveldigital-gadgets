@@ -1012,7 +1012,6 @@
           value: function getEvents() {
             var _this6 = this;
 
-            //moment.tz.setDefault(this.TZName);
             this.client.getDeviceTimeZoneName().then(function (res) {
               console.log('Time Zone Name: ' + res);
             });
@@ -1024,7 +1023,6 @@
               _this6.TZName = res;
             });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
-              //moment.tz.setDefault(this.TZName);
               var eventObj = new Object();
               var location;
               var summary;

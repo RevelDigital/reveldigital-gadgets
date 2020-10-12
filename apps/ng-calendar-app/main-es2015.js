@@ -682,7 +682,6 @@ class CalendarDataService {
         this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
-        //moment.tz.setDefault(this.TZName);
         this.client.getDeviceTimeZoneName().then((res) => {
             console.log('Time Zone Name: ' + res);
         });
@@ -694,7 +693,6 @@ class CalendarDataService {
             this.TZName = res;
         });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
-            //moment.tz.setDefault(this.TZName);
             let eventObj = new Object();
             let location;
             let summary;
