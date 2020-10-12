@@ -110,7 +110,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](2, 3, element_r8.startDate, "medium", element_r8.timeZone), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](3, 7, element_r8.endDate, "shortTime", element_r8.timeZone), " ", element_r8.countDown, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 3, element_r8.startDate, "medium"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 6, element_r8.endDate, "shortTime"), " ", element_r8.countDown, "");
         }
       }
 
@@ -306,7 +306,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 11, "td", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 9, "td", 3);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
@@ -1040,8 +1040,8 @@
                 eventObj = {
                   location: 'fargo',
                   summary: 'my meeting',
-                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](_this6.TZName).toDate(),
+                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](_this6.TZName).toDate(),
                   timeZone: _this6.TZName
                 };
                 statContainer = eventObj;
@@ -1050,22 +1050,24 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
                     hour: event.startDate.hour,
                     minute: event.startDate.minute,
-                    second: event.startDate.second
-                  }).toDate();
-                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    second: event.startDate.second,
+                    timezone: event.startDate.timezone
+                  }, _this6.TZName).toDate();
+                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
                     hour: event.endDate.hour,
                     minute: event.endDate.minute,
-                    second: event.endDate.second
-                  }).toDate();
+                    second: event.endDate.second,
+                    timezone: event.startDate.timezone
+                  }, _this6.TZName).toDate();
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
                       location = item[3];

@@ -51,7 +51,7 @@ function DefaultTableComponent_td_3_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const element_r8 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](2, 3, element_r8.startDate, "medium", element_r8.timeZone), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind3"](3, 7, element_r8.endDate, "shortTime", element_r8.timeZone), " ", element_r8.countDown, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 3, element_r8.startDate, "medium"), " - ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](3, 6, element_r8.endDate, "shortTime"), " ", element_r8.countDown, "");
 } }
 function DefaultTableComponent_th_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "th", 8);
@@ -158,7 +158,7 @@ DefaultTableComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "table", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultTableComponent_th_2_Template, 2, 0, "th", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 11, "td", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultTableComponent_td_3_Template, 4, 9, "td", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](4, 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DefaultTableComponent_th_5_Template, 2, 0, "th", 2);
@@ -710,8 +710,8 @@ class CalendarDataService {
                 eventObj = {
                     location: 'fargo',
                     summary: 'my meeting',
-                    startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                    endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                    startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](this.TZName).toDate(),
+                    endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](this.TZName).toDate(),
                     timeZone: this.TZName
                 };
                 statContainer = eventObj;
@@ -719,22 +719,24 @@ class CalendarDataService {
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
                         hour: event.startDate.hour,
                         minute: event.startDate.minute,
-                        second: event.startDate.second
-                    }).toDate();
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                        second: event.startDate.second,
+                        timezone: event.startDate.timezone
+                    }, this.TZName).toDate();
+                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,
                         hour: event.endDate.hour,
                         minute: event.endDate.minute,
-                        second: event.endDate.second
-                    }).toDate();
+                        second: event.endDate.second,
+                        timezone: event.startDate.timezone
+                    }, this.TZName).toDate();
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
                             location = item[3];
