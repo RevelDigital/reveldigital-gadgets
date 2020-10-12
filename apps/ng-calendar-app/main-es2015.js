@@ -663,17 +663,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarDataService", function() { return CalendarDataService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment-timezone */ "f0Wu");
-/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "wd/R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reveldigital/player-client */ "GQtI");
 
 
-//import * as moment from 'moment';
 
 
 
 
+//import * as moment from 'moment-timezone';
 class CalendarDataService {
     constructor(http, client) {
         this.http = http;
@@ -682,7 +682,7 @@ class CalendarDataService {
         this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
-        moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
+        //moment.tz.setDefault(this.TZName);
         this.client.getDeviceTimeZoneName().then((res) => {
             console.log('Time Zone Name: ' + res);
         });
@@ -694,7 +694,7 @@ class CalendarDataService {
             this.TZName = res;
         });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
-            moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
+            //moment.tz.setDefault(this.TZName);
             let eventObj = new Object();
             let location;
             let summary;
@@ -710,15 +710,15 @@ class CalendarDataService {
                 eventObj = {
                     location: 'fargo',
                     summary: 'my meeting',
-                    startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                    endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                    startDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                    endDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    const timeDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    const timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
@@ -726,7 +726,7 @@ class CalendarDataService {
                         minute: event.startDate.minute,
                         second: event.startDate.second
                     });
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
@@ -734,7 +734,7 @@ class CalendarDataService {
                         minute: event.startDate.minute,
                         second: event.startDate.second
                     }).toDate();
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    endDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,

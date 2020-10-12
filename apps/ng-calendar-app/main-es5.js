@@ -976,13 +976,13 @@
       /* harmony import */
 
 
-      var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! moment-timezone */
-      "f0Wu");
+      var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! moment */
+      "wd/R");
       /* harmony import */
 
 
-      var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
+      var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
       /* harmony import */
 
 
@@ -994,7 +994,7 @@
 
       var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @reveldigital/player-client */
-      "GQtI"); //import * as moment from 'moment';
+      "GQtI"); //import * as moment from 'moment-timezone';
 
 
       var CalendarDataService = /*#__PURE__*/function () {
@@ -1012,7 +1012,7 @@
           value: function getEvents() {
             var _this6 = this;
 
-            moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
+            //moment.tz.setDefault(this.TZName);
             this.client.getDeviceTimeZoneName().then(function (res) {
               console.log('Time Zone Name: ' + res);
             });
@@ -1024,7 +1024,7 @@
               _this6.TZName = res;
             });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
-              moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(_this6.TZName);
+              //moment.tz.setDefault(this.TZName);
               var eventObj = new Object();
               var location;
               var summary;
@@ -1040,8 +1040,8 @@
                 eventObj = {
                   location: 'fargo',
                   summary: 'my meeting',
-                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
-                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate()
+                  startDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  endDate: moment__WEBPACK_IMPORTED_MODULE_2__().toDate()
                 };
                 statContainer = eventObj;
                 tempArr[0] = statContainer;
@@ -1049,7 +1049,7 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  var timeDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  var timeDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1057,7 +1057,7 @@
                     minute: event.startDate.minute,
                     second: event.startDate.second
                   });
-                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  startDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1065,7 +1065,7 @@
                     minute: event.startDate.minute,
                     second: event.startDate.second
                   }).toDate();
-                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  endDate = moment__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
