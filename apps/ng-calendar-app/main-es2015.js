@@ -683,11 +683,11 @@ class CalendarDataService {
     }
     getEvents() {
         this.client.getDeviceTimeZoneName().then((res) => {
-            this.TZName = res;
             console.log('Time Zone Name: ' + res);
         });
         this.client.getDeviceTimeZoneID().then((res) => {
             console.log('Time Zone Id: ' + res);
+            this.TZName = res;
         });
         this.client.getDeviceTimeZoneOffset().then((res) => {
             console.log('Time Zone Offset: ' + res);

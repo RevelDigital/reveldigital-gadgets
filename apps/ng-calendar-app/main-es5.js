@@ -1013,11 +1013,11 @@
             var _this6 = this;
 
             this.client.getDeviceTimeZoneName().then(function (res) {
-              _this6.TZName = res;
               console.log('Time Zone Name: ' + res);
             });
             this.client.getDeviceTimeZoneID().then(function (res) {
               console.log('Time Zone Id: ' + res);
+              _this6.TZName = res;
             });
             this.client.getDeviceTimeZoneOffset().then(function (res) {
               console.log('Time Zone Offset: ' + res);
