@@ -121,9 +121,8 @@ class DefaultTableComponent {
             const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.timezone).valueOf()));
             console.log(`DIFF : ${diff}`);
             if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).local().fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
             }
-            console.log('Moment: ' + moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.startDate, element.timezone).fromNow());
             if (diff < 0) {
                 this.events.splice(index, 1);
             }
@@ -716,7 +715,7 @@ class CalendarDataService {
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
@@ -725,7 +724,7 @@ class CalendarDataService {
                         second: event.startDate.second,
                     });
                     console.log(`Start date: ${startDate}`);
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,
@@ -733,7 +732,9 @@ class CalendarDataService {
                         minute: event.endDate.minute,
                         second: event.endDate.second,
                     });
-                    console.log(`End date: ${endDate}`);
+                    const startEndDate = startDate.tz(this.TZName);
+                    const finalEndDate = endDate.tz(this.TZName);
+                    console.log(`End date: ${finalEndDate}`);
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
                             location = item[3];
@@ -744,8 +745,8 @@ class CalendarDataService {
                         eventObj = {
                             location,
                             summary,
-                            startDate,
-                            endDate,
+                            startEndDate,
+                            finalEndDate,
                             timeZone: this.TZName
                         };
                     });
