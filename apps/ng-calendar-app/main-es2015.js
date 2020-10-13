@@ -121,7 +121,7 @@ class DefaultTableComponent {
             const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__["utc"](element.timezone).valueOf()));
             console.log(`DIFF : ${diff}`);
             if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__["utc"](element.startDate).fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
             }
             if (diff < 0) {
                 this.events.splice(index, 1);
