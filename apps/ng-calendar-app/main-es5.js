@@ -233,7 +233,7 @@
             }
 
             this.events.forEach(function (element, index) {
-              var diff = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.timezone).valueOf();
+              var diff = element.startDate.valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.timezone).valueOf();
               console.log("DIFF : ".concat(diff));
 
               if (diff < 1000 * 1000 * 3.6) {
@@ -1046,7 +1046,7 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1055,7 +1055,7 @@
                     second: event.startDate.second
                   });
                   console.log("Start date: ".concat(startDate));
-                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
@@ -1063,6 +1063,8 @@
                     minute: event.endDate.minute,
                     second: event.endDate.second
                   });
+                  var finalEnd = endDate.local();
+                  var finalStart = startDate.local();
                   console.log("End date: ".concat(endDate));
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
@@ -1076,8 +1078,8 @@
                     eventObj = {
                       location: location,
                       summary: summary,
-                      startDate: startDate,
-                      endDate: endDate,
+                      finalStart: finalStart,
+                      finalEnd: finalEnd,
                       timeZone: _this6.TZName
                     };
                   });

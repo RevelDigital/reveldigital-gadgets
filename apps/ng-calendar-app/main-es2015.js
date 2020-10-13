@@ -118,7 +118,7 @@ class DefaultTableComponent {
             return;
         }
         this.events.forEach((element, index) => {
-            const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.timezone).valueOf()));
+            const diff = ((element.startDate.valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.timezone).valueOf()));
             console.log(`DIFF : ${diff}`);
             if (diff < 1000 * 1000 * 3.6) {
                 element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
@@ -715,7 +715,7 @@ class CalendarDataService {
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
@@ -724,7 +724,7 @@ class CalendarDataService {
                         second: event.startDate.second,
                     });
                     console.log(`Start date: ${startDate}`);
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
+                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,
@@ -732,6 +732,8 @@ class CalendarDataService {
                         minute: event.endDate.minute,
                         second: event.endDate.second,
                     });
+                    const finalEnd = endDate.local();
+                    const finalStart = startDate.local();
                     console.log(`End date: ${endDate}`);
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
@@ -743,8 +745,8 @@ class CalendarDataService {
                         eventObj = {
                             location,
                             summary,
-                            startDate,
-                            endDate,
+                            finalStart,
+                            finalEnd,
                             timeZone: this.TZName
                         };
                     });
