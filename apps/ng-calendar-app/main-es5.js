@@ -195,9 +195,6 @@
       }
 
       var DefaultTableComponent = /*#__PURE__*/function () {
-        // DEVELOPMENT VARIABLES
-        //textStyleHeader = 'color: red; font-size: large';
-        //textStyleCell = 'color: red; font-size: large';
         function DefaultTableComponent(calendarService, client) {
           _classCallCheck(this, DefaultTableComponent);
 
@@ -206,9 +203,12 @@
           this.displayedColumns = ['when', 'where', 'summary'];
           this.headerStyleObj = {};
           this.cellStyleObj = {};
-          this.countDown = false;
-          this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
-          this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
+          this.countDown = false; // textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
+          // textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
+          // DEVELOPMENT VARIABLES
+
+          this.textStyleHeader = 'color: red; font-size: large';
+          this.textStyleCell = 'color: red; font-size: large';
         }
 
         _createClass(DefaultTableComponent, [{
@@ -997,13 +997,15 @@
       "GQtI");
 
       var CalendarDataService = /*#__PURE__*/function () {
+        // private urlPref = new gadgets.Prefs().getString('url');
+        // private url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
         function CalendarDataService(http, client) {
           _classCallCheck(this, CalendarDataService);
 
           this.http = http;
-          this.client = client;
-          this.urlPref = new gadgets.Prefs().getString('url');
-          this.url = "https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=".concat(this.urlPref);
+          this.client = client; // DEVELOPMENT VARAIBLES
+
+          this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-10-14T00:00:00.000Z/2020-10-28T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/nn7p43qvv93aum1r96um2jb25c%40group.calendar.google.com/public/basic.ics';
         }
 
         _createClass(CalendarDataService, [{
@@ -1018,9 +1020,6 @@
             this.client.getDeviceTimeZoneID().then(function (res) {
               console.log('Time Zone Id: ' + res);
             });
-            this.client.getDeviceTimeZoneOffset().then(function (res) {
-              console.log('Time Zone Offset: ' + res);
-            });
             return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
               moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(_this6.TZName);
               var eventObj = new Object();
@@ -1031,7 +1030,6 @@
               var statContainer;
               var eventContainer;
               var tempArr = [];
-              var timeZone;
 
               if (data.events.length > 0) {
                 console.log('YES');
@@ -1039,8 +1037,8 @@
                 eventObj = {
                   location: 'fargo',
                   summary: 'my meeting',
-                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](_this6.TZName).toDate(),
-                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](_this6.TZName).toDate(),
+                  startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                  endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                   timeZone: _this6.TZName
                 };
                 statContainer = eventObj;
@@ -1049,24 +1047,24 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
+                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
                     hour: event.startDate.hour,
                     minute: event.startDate.minute,
-                    second: event.startDate.second,
-                    timezone: event.startDate.timezone
-                  }, _this6.TZName).toDate();
-                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
+                    second: event.startDate.second
+                  });
+                  console.log("Start date: ".concat(startDate));
+                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
                     hour: event.endDate.hour,
                     minute: event.endDate.minute,
-                    second: event.endDate.second,
-                    timezone: event.startDate.timezone
-                  }, _this6.TZName).toDate();
+                    second: event.endDate.second
+                  });
+                  console.log("End date: ".concat(endDate));
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
                       location = item[3];
@@ -1081,7 +1079,7 @@
                       summary: summary,
                       startDate: startDate,
                       endDate: endDate,
-                      timeZone: timeZone
+                      timeZone: _this6.TZName
                     };
                   });
                   result.push(eventObj);
@@ -1092,8 +1090,6 @@
               var finalList = tempArr.concat(eventContainer).sort(function (a, b) {
                 return a.startDate - b.startDate;
               });
-              console.log(finalList);
-              console.log(_this6.TZName);
               return finalList;
             }));
           }

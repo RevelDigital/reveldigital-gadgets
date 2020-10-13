@@ -94,9 +94,6 @@ function DefaultTableComponent_tr_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.cellStyleObj);
 } }
 class DefaultTableComponent {
-    // DEVELOPMENT VARIABLES
-    //textStyleHeader = 'color: red; font-size: large';
-    //textStyleCell = 'color: red; font-size: large';
     constructor(calendarService, client) {
         this.calendarService = calendarService;
         this.client = client;
@@ -104,8 +101,11 @@ class DefaultTableComponent {
         this.headerStyleObj = {};
         this.cellStyleObj = {};
         this.countDown = false;
-        this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
-        this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
+        // textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
+        // textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
+        // DEVELOPMENT VARIABLES
+        this.textStyleHeader = 'color: red; font-size: large';
+        this.textStyleCell = 'color: red; font-size: large';
     }
     ngOnInit() {
         this.getEvents();
@@ -674,11 +674,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class CalendarDataService {
+    // private urlPref = new gadgets.Prefs().getString('url');
+    // private url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     constructor(http, client) {
         this.http = http;
         this.client = client;
-        this.urlPref = new gadgets.Prefs().getString('url');
-        this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
+        // DEVELOPMENT VARAIBLES
+        this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-10-14T00:00:00.000Z/2020-10-28T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/nn7p43qvv93aum1r96um2jb25c%40group.calendar.google.com/public/basic.ics';
     }
     getEvents() {
         this.client.getDeviceTimeZoneName().then((res) => {
@@ -687,9 +689,6 @@ class CalendarDataService {
         });
         this.client.getDeviceTimeZoneID().then((res) => {
             console.log('Time Zone Id: ' + res);
-        });
-        this.client.getDeviceTimeZoneOffset().then((res) => {
-            console.log('Time Zone Offset: ' + res);
         });
         return this.http.get(this.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(data => {
             moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"].setDefault(this.TZName);
@@ -701,7 +700,6 @@ class CalendarDataService {
             let statContainer;
             let eventContainer;
             const tempArr = [];
-            let timeZone;
             if (data.events.length > 0) {
                 console.log('YES');
             }
@@ -709,8 +707,8 @@ class CalendarDataService {
                 eventObj = {
                     location: 'fargo',
                     summary: 'my meeting',
-                    startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](this.TZName).toDate(),
-                    endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"](this.TZName).toDate(),
+                    startDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
+                    endDate: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().toDate(),
                     timeZone: this.TZName
                 };
                 statContainer = eventObj;
@@ -718,24 +716,24 @@ class CalendarDataService {
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
+                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
                         hour: event.startDate.hour,
                         minute: event.startDate.minute,
                         second: event.startDate.second,
-                        timezone: event.startDate.timezone
-                    }, this.TZName).toDate();
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["tz"]({
+                    });
+                    console.log(`Start date: ${startDate}`);
+                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,
                         hour: event.endDate.hour,
                         minute: event.endDate.minute,
                         second: event.endDate.second,
-                        timezone: event.startDate.timezone
-                    }, this.TZName).toDate();
+                    });
+                    console.log(`End date: ${endDate}`);
                     event.item.component[1].map((item) => {
                         if (item[0] === 'location') {
                             location = item[3];
@@ -748,7 +746,7 @@ class CalendarDataService {
                             summary,
                             startDate,
                             endDate,
-                            timeZone
+                            timeZone: this.TZName
                         };
                     });
                     result.push(eventObj);
@@ -758,8 +756,6 @@ class CalendarDataService {
             const finalList = tempArr.concat(eventContainer).sort((a, b) => {
                 return a.startDate - b.startDate;
             });
-            console.log(finalList);
-            console.log(this.TZName);
             return finalList;
         }));
     }
