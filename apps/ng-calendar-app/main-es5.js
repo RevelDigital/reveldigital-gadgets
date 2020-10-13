@@ -1046,7 +1046,7 @@
 
               if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce(function (result, event) {
-                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
+                  startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.startDate.year,
                     month: event.startDate.month - 1,
                     day: event.startDate.day,
@@ -1055,7 +1055,7 @@
                     second: event.startDate.second
                   });
                   console.log("Start date: ".concat(startDate));
-                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
+                  endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                     year: event.endDate.year,
                     month: event.endDate.month - 1,
                     day: event.endDate.day,
@@ -1063,9 +1063,7 @@
                     minute: event.endDate.minute,
                     second: event.endDate.second
                   });
-                  var startEndDate = startDate.tz(_this6.TZName);
-                  var finalEndDate = endDate.tz(_this6.TZName);
-                  console.log("End date: ".concat(finalEndDate));
+                  console.log("End date: ".concat(endDate));
                   event.item.component[1].map(function (item) {
                     if (item[0] === 'location') {
                       location = item[3];
@@ -1078,8 +1076,8 @@
                     eventObj = {
                       location: location,
                       summary: summary,
-                      startEndDate: startEndDate,
-                      finalEndDate: finalEndDate,
+                      startDate: startDate,
+                      endDate: endDate,
                       timeZone: _this6.TZName
                     };
                   });
