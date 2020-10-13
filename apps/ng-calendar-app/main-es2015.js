@@ -715,7 +715,7 @@ class CalendarDataService {
             }
             if (data.occurrences.length > 0) {
                 eventContainer = data.occurrences.reduce((result, event) => {
-                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
+                    startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.startDate.year,
                         month: event.startDate.month - 1,
                         day: event.startDate.day,
@@ -724,7 +724,7 @@ class CalendarDataService {
                         second: event.startDate.second,
                     });
                     console.log(`Start date: ${startDate}`);
-                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__["utc"]({
+                    endDate = moment_timezone__WEBPACK_IMPORTED_MODULE_2__({
                         year: event.endDate.year,
                         month: event.endDate.month - 1,
                         day: event.endDate.day,
