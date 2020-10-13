@@ -118,10 +118,11 @@ class DefaultTableComponent {
             return;
         }
         this.events.forEach((element, index) => {
-            const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__().valueOf()));
+            let m = moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.timezone);
+            const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - m.valueOf()));
             console.log(`DIFF : ${diff}`);
             if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate, element.timezone).fromNow();
             }
             if (diff < 0) {
                 this.events.splice(index, 1);

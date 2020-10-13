@@ -233,11 +233,12 @@
             }
 
             this.events.forEach(function (element, index) {
-              var diff = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__().valueOf();
+              var m = moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.timezone);
+              var diff = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - m.valueOf();
               console.log("DIFF : ".concat(diff));
 
               if (diff < 1000 * 1000 * 3.6) {
-                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
+                element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate, element.timezone).fromNow();
               }
 
               if (diff < 0) {
