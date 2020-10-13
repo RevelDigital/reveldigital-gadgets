@@ -240,6 +240,8 @@
                 element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.startDate, element.timezone).fromNow();
               }
 
+              console.log('Moment: ' + moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.startDate, element.timezone).fromNow());
+
               if (diff < 0) {
                 _this2.events.splice(index, 1);
               }

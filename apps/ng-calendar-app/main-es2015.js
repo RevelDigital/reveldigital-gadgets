@@ -123,6 +123,7 @@ class DefaultTableComponent {
             if (diff < 1000 * 1000 * 3.6) {
                 element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.startDate, element.timezone).fromNow();
             }
+            console.log('Moment: ' + moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"](element.startDate, element.timezone).fromNow());
             if (diff < 0) {
                 this.events.splice(index, 1);
             }
