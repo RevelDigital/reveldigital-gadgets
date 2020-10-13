@@ -219,6 +219,7 @@
             this.getEvents();
             this.getHeaderStyle();
             this.getCellStyle();
+            this.updateEvents();
             setInterval(function () {
               return _this.updateEvents();
             }, 5000);
@@ -279,8 +280,6 @@
 
             var eventList = this.calendarService.getEvents().subscribe(function (events) {
               _this5.events = events;
-
-              _this5.updateEvents();
             });
           }
         }]);

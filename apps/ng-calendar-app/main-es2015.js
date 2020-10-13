@@ -111,6 +111,7 @@ class DefaultTableComponent {
         this.getEvents();
         this.getHeaderStyle();
         this.getCellStyle();
+        this.updateEvents();
         setInterval(() => this.updateEvents(), 5000);
     }
     updateEvents() {
@@ -149,7 +150,6 @@ class DefaultTableComponent {
         const eventList = this.calendarService.getEvents()
             .subscribe(events => {
             this.events = events;
-            this.updateEvents();
         });
     }
 }
