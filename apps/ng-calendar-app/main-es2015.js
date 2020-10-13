@@ -119,6 +119,7 @@ class DefaultTableComponent {
         }
         this.events.forEach((element, index) => {
             const diff = ((moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).valueOf() - moment_timezone__WEBPACK_IMPORTED_MODULE_1__().valueOf()));
+            console.log(`DIFF : ${diff}`);
             if (diff < 1000 * 1000 * 3.6) {
                 element.countDown = moment_timezone__WEBPACK_IMPORTED_MODULE_1__(element.startDate).fromNow();
             }
