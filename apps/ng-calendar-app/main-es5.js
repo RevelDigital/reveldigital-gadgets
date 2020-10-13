@@ -195,6 +195,9 @@
       }
 
       var DefaultTableComponent = /*#__PURE__*/function () {
+        // DEVELOPMENT VARIABLES
+        // textStyleHeader = 'color: red; font-size: large';
+        // textStyleCell = 'color: red; font-size: large';
         function DefaultTableComponent(calendarService, client) {
           _classCallCheck(this, DefaultTableComponent);
 
@@ -203,12 +206,9 @@
           this.displayedColumns = ['when', 'where', 'summary'];
           this.headerStyleObj = {};
           this.cellStyleObj = {};
-          this.countDown = false; // textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
-          // textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
-          // DEVELOPMENT VARIABLES
-
-          this.textStyleHeader = 'color: red; font-size: large';
-          this.textStyleCell = 'color: red; font-size: large';
+          this.countDown = false;
+          this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
+          this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
         }
 
         _createClass(DefaultTableComponent, [{
@@ -997,15 +997,13 @@
       "GQtI");
 
       var CalendarDataService = /*#__PURE__*/function () {
-        // private urlPref = new gadgets.Prefs().getString('url');
-        // private url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
         function CalendarDataService(http, client) {
           _classCallCheck(this, CalendarDataService);
 
           this.http = http;
-          this.client = client; // DEVELOPMENT VARAIBLES
-
-          this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-10-14T00:00:00.000Z/2020-10-28T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/nn7p43qvv93aum1r96um2jb25c%40group.calendar.google.com/public/basic.ics';
+          this.client = client;
+          this.urlPref = new gadgets.Prefs().getString('url');
+          this.url = "https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=".concat(this.urlPref);
         }
 
         _createClass(CalendarDataService, [{

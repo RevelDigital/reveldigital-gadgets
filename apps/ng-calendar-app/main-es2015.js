@@ -94,6 +94,9 @@ function DefaultTableComponent_tr_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r7.cellStyleObj);
 } }
 class DefaultTableComponent {
+    // DEVELOPMENT VARIABLES
+    // textStyleHeader = 'color: red; font-size: large';
+    // textStyleCell = 'color: red; font-size: large';
     constructor(calendarService, client) {
         this.calendarService = calendarService;
         this.client = client;
@@ -101,11 +104,8 @@ class DefaultTableComponent {
         this.headerStyleObj = {};
         this.cellStyleObj = {};
         this.countDown = false;
-        // textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
-        // textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
-        // DEVELOPMENT VARIABLES
-        this.textStyleHeader = 'color: red; font-size: large';
-        this.textStyleCell = 'color: red; font-size: large';
+        this.textStyleHeader = new gadgets.Prefs().getString('fontStyleHeader');
+        this.textStyleCell = new gadgets.Prefs().getString('fontStyleCell');
     }
     ngOnInit() {
         this.getEvents();
@@ -674,13 +674,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class CalendarDataService {
-    // private urlPref = new gadgets.Prefs().getString('url');
-    // private url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     constructor(http, client) {
         this.http = http;
         this.client = client;
-        // DEVELOPMENT VARAIBLES
-        this.url = 'https://glacial-hollows-70580.herokuapp.com/ical/2020-10-14T00:00:00.000Z/2020-10-28T23:00:00.000Z?url=https://calendar.google.com/calendar/ical/nn7p43qvv93aum1r96um2jb25c%40group.calendar.google.com/public/basic.ics';
+        this.urlPref = new gadgets.Prefs().getString('url');
+        this.url = `https://glacial-hollows-70580.herokuapp.com/ical/2020-09-29T00:00:00.000Z/2020-10-15T23:00:00.000Z?url=${this.urlPref}`;
     }
     getEvents() {
         this.client.getDeviceTimeZoneName().then((res) => {
