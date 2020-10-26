@@ -30,6 +30,7 @@
 </script>
 <script>
     let flag = false;
+    let flag2 = false;
     let prefs = new gadgets.Prefs();
     let reg = prefs.getString('reciever');
     firebase.database().ref(reg).on('value', function(snapshot) {
@@ -39,6 +40,15 @@
                 Client.callback(temp.substring(0,temp.indexOf("_")));
             }
             flag = true;
+        }
+    });
+    firebase.database().ref('results/'+reg).on('value', function(snapshot) {
+        let result = (snapshot.val() && snapshot.val());
+        if(Client){
+            if(flag2 && result){
+                Client.callback(result.substring(0,result.indexOf("*")));
+            }
+            flag2 = true;
         }
     });
     function writeTemp(val) {
