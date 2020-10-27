@@ -7,6 +7,7 @@
         <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
         <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
         <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+        <UserPref display_name="Require Name" name="reqName" datatype="string" required="false" default_value="*|VAR.COLLECT_NAME|*"/>
         <UserPref display_name="title" name="title" datatype="string" required="true" default_value="25px"/>
         <UserPref display_name="font size" name="fontsize" datatype="string" required="false" default_value="25px"/>
         <UserPref display_name="title font size" name="tfontsize" datatype="string" required="false" default_value="25px"/>
