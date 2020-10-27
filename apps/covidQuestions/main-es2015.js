@@ -270,7 +270,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngIf=\"requireName\">\n      <div  [style.font-size]=\"fontSize\" >\n        <ion-input #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\"></ion-input>\n        <ion-input [(ngModel)]=\"lname\" placeholder=\"Last Name\"></ion-input>\n        <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"50\" (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n");
 
 /***/ }),
 
@@ -354,6 +354,8 @@ let AppComponent = class AppComponent {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.fname = '';
+        this.lname = '';
         this.fontSize = '30px';
         this.tfontSize = '35px';
         this.pfontSize = '30px';
@@ -364,6 +366,7 @@ let AppComponent = class AppComponent {
         this.npos = '';
         this.bheight = '';
         this.bwidth = '';
+        this.requireName = true;
         this.count = 0;
         this.title = "";
         this.failedQuestions = [];
@@ -372,6 +375,7 @@ let AppComponent = class AppComponent {
         let tmpArray = [];
         tmpArray.push("");
         if (prefs) {
+            this.requireName = prefs.getString('reqName') === 'true';
             this.title = prefs.getString('title');
             this.fontSize = prefs.getString('fontsize');
             this.tfontSize = prefs.getString('tfontsize');
@@ -401,6 +405,19 @@ let AppComponent = class AppComponent {
             this.splashScreen.hide();
         });
     }
+    finsihedName() {
+        if (this.fname && this.lname) {
+            this.slides.lockSwipeToNext(false);
+            this.slides.lockSwipeToPrev(false);
+            this.slides.slideNext();
+            this.slides.lockSwipeToNext(true);
+            this.slides.lockSwipeToPrev(true);
+        }
+        else {
+            console.log(this.lname, this.fname);
+            alert('Please enter first name and last name!');
+        }
+    }
     toNext(val) {
         if (val)
             this.failedQuestions.push(val);
@@ -410,7 +427,8 @@ let AppComponent = class AppComponent {
         if (this.count == this.question.length) {
             //output to client
             if (typeof Client != 'undefined') {
-                Client.callback(JSON.stringify(this.failedQuestions));
+                let result = { 'first_name': this.fname, 'last_name': this.lname, pass: this.failedQuestions.length > 0, session: null, failedQuestions: this.failedQuestions };
+                Client.callback(JSON.stringify(result));
             }
             this.slides.slideTo(0);
             this.count = 0;
@@ -468,6 +486,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+
 
 
 
@@ -483,7 +503,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"]],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
