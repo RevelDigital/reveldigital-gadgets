@@ -33,7 +33,7 @@
     let flag2 = false;
     let prefs = new gadgets.Prefs();
     let reg = prefs.getString('rdKey');
-    firebase.database().ref(prefs.getString('reciever')).on('value', function(snapshot) {
+    firebase.database().ref(reg).on('value', function(snapshot) {
         let temp = (snapshot.val() && snapshot.val().temp);
         if(Client){
             if(flag){
