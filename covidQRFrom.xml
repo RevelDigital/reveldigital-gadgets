@@ -67,9 +67,7 @@
     writeQuestions(questions.trim());
 
     function writeQuestions(val) {
-        firebase.database().ref('questions/'+reg).set({
-            questions: JSON.stringify(val)
-        });
+        firebase.database().ref('questions/'+reg).set(val);
     }
     function genQRCode(temp,mask,session) {
         let base = 'https://api.qrserver.com/v1/create-qr-code/?size='+ prefs.getString('rdW')+'x'+prefs.getString('rdH')+'&data='
