@@ -133,7 +133,11 @@
       /* harmony default export */
 
 
+<<<<<<< Updated upstream
       __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngIf=\"requireName\">\n      <div  [style.font-size]=\"fontSize\" >\n        <ion-input #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\"></ion-input>\n        <ion-input [(ngModel)]=\"lname\" placeholder=\"Last Name\"></ion-input>\n        <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"50\" (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
+=======
+      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n      <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n          <ion-label >First Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n          <ion-label >Last Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n        <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
+>>>>>>> Stashed changes
       /***/
     },
 
@@ -633,7 +637,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/kioskQuestions/src/main.ts */
+      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */
       "./src/main.ts");
       /***/
     }
