@@ -522,7 +522,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/covid-questionnaire/src/main.ts */
+      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/covid-questionnaire/src/main.ts */
       "./src/main.ts");
       /***/
     }

@@ -1,4 +1,10 @@
 (function () {
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -133,19 +139,7 @@
       /* harmony default export */
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngIf=\"requireName\">\n      <div  [style.font-size]=\"fontSize\" >\n        <ion-input #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\"></ion-input>\n        <ion-input [(ngModel)]=\"lname\" placeholder=\"Last Name\"></ion-input>\n        <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"50\" (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
-=======
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n      <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n          <ion-label >First Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n          <ion-label >Last Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n        <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
->>>>>>> Stashed changes
-=======
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n      <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n          <ion-label >First Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n          <ion-label >Last Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n        <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
->>>>>>> Stashed changes
-=======
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n      <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n          <ion-label >First Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n          <ion-label >Last Name</ion-label>\n          <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n        <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
->>>>>>> Stashed changes
+      __webpack_exports__["default"] = "<ion-content>\n    <ion-slides style=\"width: 100vw; height: 100vh\">\n        <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n            <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n                <ion-label >First Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n                <ion-label >Last Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n                <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n            </div>\n        </ion-slide>\n        <ion-slide *ngFor=\"let q of question; let i = index\">\n            <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n            <section>\n                <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n            </section>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n            <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n        </ion-slide>\n\n    </ion-slides>\n</ion-content>\n";
       /***/
     },
 
@@ -378,13 +372,30 @@
 
             if (this.count == this.question.length) {
               //output to client
+              var tmp = [];
+
+              var _iterator = _createForOfIteratorHelper(this.failedQuestions),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var _val = _step.value;
+                  tmp.push(this.question[_val]);
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+
               if (typeof Client != 'undefined') {
                 var result = {
-                  'first_name': this.fname,
-                  'last_name': this.lname,
+                  first_name: this.fname,
+                  last_name: this.lname,
                   pass: this.failedQuestions.length > 0,
                   session: null,
-                  failedQuestions: this.failedQuestions
+                  failed_questions: tmp,
+                  failed_questions_index: this.failedQuestions
                 };
                 Client.callback(JSON.stringify(result));
               }

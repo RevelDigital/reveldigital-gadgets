@@ -526,11 +526,11 @@
     /***/
     function _(module, exports, __webpack_require__) {
       __webpack_require__(
-      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/covid-questionnaire/src/theme/variables.scss */
+      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/covid-questionnaire/src/theme/variables.scss */
       "./src/theme/variables.scss");
 
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/covid-questionnaire/src/global.scss */
+      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/covid-questionnaire/src/global.scss */
       "./src/global.scss");
       /***/
     }

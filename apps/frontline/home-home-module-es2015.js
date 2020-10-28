@@ -1,9 +1,6006 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["home-home-module"],{
 
-/***/ "../node_modules/@firebase/analytics/dist/index.esm.js":
+/***/ "../node_modules/@firebase/functions/dist/index.cjs.js":
 /*!*************************************************************!*\
-  !*** ../node_modules/@firebase/analytics/dist/index.esm.js ***!
+  !*** ../node_modules/@firebase/functions/dist/index.cjs.js ***!
   \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
+var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+var component = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var firebase__default = /*#__PURE__*/_interopDefaultLegacy(firebase);
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Standard error codes for different ways a request can fail, as defined by:
+ * https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+ *
+ * This map is used primarily to convert from a backend error code string to
+ * a client SDK error code string, and make sure it's in the supported set.
+ */
+var errorCodeMap = {
+    OK: 'ok',
+    CANCELLED: 'cancelled',
+    UNKNOWN: 'unknown',
+    INVALID_ARGUMENT: 'invalid-argument',
+    DEADLINE_EXCEEDED: 'deadline-exceeded',
+    NOT_FOUND: 'not-found',
+    ALREADY_EXISTS: 'already-exists',
+    PERMISSION_DENIED: 'permission-denied',
+    UNAUTHENTICATED: 'unauthenticated',
+    RESOURCE_EXHAUSTED: 'resource-exhausted',
+    FAILED_PRECONDITION: 'failed-precondition',
+    ABORTED: 'aborted',
+    OUT_OF_RANGE: 'out-of-range',
+    UNIMPLEMENTED: 'unimplemented',
+    INTERNAL: 'internal',
+    UNAVAILABLE: 'unavailable',
+    DATA_LOSS: 'data-loss'
+};
+/**
+ * An explicit error that can be thrown from a handler to send an error to the
+ * client that called the function.
+ */
+var HttpsErrorImpl = /** @class */ (function (_super) {
+    tslib.__extends(HttpsErrorImpl, _super);
+    function HttpsErrorImpl(code, message, details) {
+        var _this = _super.call(this, message) || this;
+        // This is a workaround for a bug in TypeScript when extending Error:
+        // tslint:disable-next-line
+        // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+        Object.setPrototypeOf(_this, HttpsErrorImpl.prototype);
+        _this.code = code;
+        _this.details = details;
+        return _this;
+    }
+    return HttpsErrorImpl;
+}(Error));
+/**
+ * Takes an HTTP status code and returns the corresponding ErrorCode.
+ * This is the standard HTTP status code -> error mapping defined in:
+ * https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+ *
+ * @param status An HTTP status code.
+ * @return The corresponding ErrorCode, or ErrorCode.UNKNOWN if none.
+ */
+function codeForHTTPStatus(status) {
+    // Make sure any successful status is OK.
+    if (status >= 200 && status < 300) {
+        return 'ok';
+    }
+    switch (status) {
+        case 0:
+            // This can happen if the server returns 500.
+            return 'internal';
+        case 400:
+            return 'invalid-argument';
+        case 401:
+            return 'unauthenticated';
+        case 403:
+            return 'permission-denied';
+        case 404:
+            return 'not-found';
+        case 409:
+            return 'aborted';
+        case 429:
+            return 'resource-exhausted';
+        case 499:
+            return 'cancelled';
+        case 500:
+            return 'internal';
+        case 501:
+            return 'unimplemented';
+        case 503:
+            return 'unavailable';
+        case 504:
+            return 'deadline-exceeded';
+    }
+    return 'unknown';
+}
+/**
+ * Takes an HTTP response and returns the corresponding Error, if any.
+ */
+function _errorForResponse(status, bodyJSON, serializer) {
+    var code = codeForHTTPStatus(status);
+    // Start with reasonable defaults from the status code.
+    var description = code;
+    var details = undefined;
+    // Then look through the body for explicit details.
+    try {
+        var errorJSON = bodyJSON && bodyJSON.error;
+        if (errorJSON) {
+            var status_1 = errorJSON.status;
+            if (typeof status_1 === 'string') {
+                if (!errorCodeMap[status_1]) {
+                    // They must've included an unknown error code in the body.
+                    return new HttpsErrorImpl('internal', 'internal');
+                }
+                code = errorCodeMap[status_1];
+                // TODO(klimt): Add better default descriptions for error enums.
+                // The default description needs to be updated for the new code.
+                description = status_1;
+            }
+            var message = errorJSON.message;
+            if (typeof message === 'string') {
+                description = message;
+            }
+            details = errorJSON.details;
+            if (details !== undefined) {
+                details = serializer.decode(details);
+            }
+        }
+    }
+    catch (e) {
+        // If we couldn't parse explicit error data, that's fine.
+    }
+    if (code === 'ok') {
+        // Technically, there's an edge case where a developer could explicitly
+        // return an error code of OK, and we will treat it as success, but that
+        // seems reasonable.
+        return null;
+    }
+    return new HttpsErrorImpl(code, description, details);
+}
+
+/**
+ * Helper class to get metadata that should be included with a function call.
+ */
+var ContextProvider = /** @class */ (function () {
+    function ContextProvider(authProvider, messagingProvider) {
+        var _this = this;
+        this.auth = null;
+        this.messaging = null;
+        this.auth = authProvider.getImmediate({ optional: true });
+        this.messaging = messagingProvider.getImmediate({
+            optional: true
+        });
+        if (!this.auth) {
+            authProvider.get().then(function (auth) { return (_this.auth = auth); }, function () {
+                /* get() never rejects */
+            });
+        }
+        if (!this.messaging) {
+            messagingProvider.get().then(function (messaging) { return (_this.messaging = messaging); }, function () {
+                /* get() never rejects */
+            });
+        }
+    }
+    ContextProvider.prototype.getAuthToken = function () {
+        return tslib.__awaiter(this, void 0, void 0, function () {
+            var token, e_1;
+            return tslib.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.auth) {
+                            return [2 /*return*/, undefined];
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.auth.getToken()];
+                    case 2:
+                        token = _a.sent();
+                        if (!token) {
+                            return [2 /*return*/, undefined];
+                        }
+                        return [2 /*return*/, token.accessToken];
+                    case 3:
+                        e_1 = _a.sent();
+                        // If there's any error when trying to get the auth token, leave it off.
+                        return [2 /*return*/, undefined];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ContextProvider.prototype.getInstanceIdToken = function () {
+        return tslib.__awaiter(this, void 0, void 0, function () {
+            return tslib.__generator(this, function (_a) {
+                if (!this.messaging ||
+                    !('Notification' in self) ||
+                    Notification.permission !== 'granted') {
+                    return [2 /*return*/, undefined];
+                }
+                try {
+                    return [2 /*return*/, this.messaging.getToken()];
+                }
+                catch (e) {
+                    // We don't warn on this, because it usually means messaging isn't set up.
+                    // console.warn('Failed to retrieve instance id token.', e);
+                    // If there's any error when trying to get the token, leave it off.
+                    return [2 /*return*/, undefined];
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    ContextProvider.prototype.getContext = function () {
+        return tslib.__awaiter(this, void 0, void 0, function () {
+            var authToken, instanceIdToken;
+            return tslib.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAuthToken()];
+                    case 1:
+                        authToken = _a.sent();
+                        return [4 /*yield*/, this.getInstanceIdToken()];
+                    case 2:
+                        instanceIdToken = _a.sent();
+                        return [2 /*return*/, { authToken: authToken, instanceIdToken: instanceIdToken }];
+                }
+            });
+        });
+    };
+    return ContextProvider;
+}());
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var LONG_TYPE = 'type.googleapis.com/google.protobuf.Int64Value';
+var UNSIGNED_LONG_TYPE = 'type.googleapis.com/google.protobuf.UInt64Value';
+function mapValues(
+// { [k: string]: unknown } is no longer a wildcard assignment target after typescript 3.5
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+o, f) {
+    var result = {};
+    for (var key in o) {
+        if (o.hasOwnProperty(key)) {
+            result[key] = f(o[key]);
+        }
+    }
+    return result;
+}
+var Serializer = /** @class */ (function () {
+    function Serializer() {
+    }
+    // Takes data and encodes it in a JSON-friendly way, such that types such as
+    // Date are preserved.
+    Serializer.prototype.encode = function (data) {
+        var _this = this;
+        if (data == null) {
+            return null;
+        }
+        if (data instanceof Number) {
+            data = data.valueOf();
+        }
+        if (typeof data === 'number' && isFinite(data)) {
+            // Any number in JS is safe to put directly in JSON and parse as a double
+            // without any loss of precision.
+            return data;
+        }
+        if (data === true || data === false) {
+            return data;
+        }
+        if (Object.prototype.toString.call(data) === '[object String]') {
+            return data;
+        }
+        if (Array.isArray(data)) {
+            return data.map(function (x) { return _this.encode(x); });
+        }
+        if (typeof data === 'function' || typeof data === 'object') {
+            return mapValues(data, function (x) { return _this.encode(x); });
+        }
+        // If we got this far, the data is not encodable.
+        throw new Error('Data cannot be encoded in JSON: ' + data);
+    };
+    // Takes data that's been encoded in a JSON-friendly form and returns a form
+    // with richer datatypes, such as Dates, etc.
+    Serializer.prototype.decode = function (json) {
+        var _this = this;
+        if (json == null) {
+            return json;
+        }
+        if (json['@type']) {
+            switch (json['@type']) {
+                case LONG_TYPE:
+                // Fall through and handle this the same as unsigned.
+                case UNSIGNED_LONG_TYPE: {
+                    // Technically, this could work return a valid number for malformed
+                    // data if there was a number followed by garbage. But it's just not
+                    // worth all the extra code to detect that case.
+                    var value = Number(json['value']);
+                    if (isNaN(value)) {
+                        throw new Error('Data cannot be decoded from JSON: ' + json);
+                    }
+                    return value;
+                }
+                default: {
+                    throw new Error('Data cannot be decoded from JSON: ' + json);
+                }
+            }
+        }
+        if (Array.isArray(json)) {
+            return json.map(function (x) { return _this.decode(x); });
+        }
+        if (typeof json === 'function' || typeof json === 'object') {
+            return mapValues(json, function (x) { return _this.decode(x); });
+        }
+        // Anything else is safe to return.
+        return json;
+    };
+    return Serializer;
+}());
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Returns a Promise that will be rejected after the given duration.
+ * The error will be of type HttpsErrorImpl.
+ *
+ * @param millis Number of milliseconds to wait before rejecting.
+ */
+function failAfter(millis) {
+    var timer;
+    var promise = new Promise(function (_, reject) {
+        timer = setTimeout(function () {
+            reject(new HttpsErrorImpl('deadline-exceeded', 'deadline-exceeded'));
+        }, millis);
+    });
+    return {
+        timer: timer,
+        promise: promise
+    };
+}
+/**
+ * The main class for the Firebase Functions SDK.
+ */
+var Service = /** @class */ (function () {
+    /**
+     * Creates a new Functions service for the given app and (optional) region or custom domain.
+     * @param app_ The FirebaseApp to use.
+     * @param regionOrCustomDomain_ one of:
+     *   a) A region to call functions from, such as us-central1
+     *   b) A custom domain to use as a functions prefix, such as https://mydomain.com
+     */
+    function Service(app_, authProvider, messagingProvider, regionOrCustomDomain_, fetchImpl) {
+        var _this = this;
+        if (regionOrCustomDomain_ === void 0) { regionOrCustomDomain_ = 'us-central1'; }
+        this.app_ = app_;
+        this.fetchImpl = fetchImpl;
+        this.serializer = new Serializer();
+        this.emulatorOrigin = null;
+        this.INTERNAL = {
+            delete: function () {
+                return Promise.resolve(_this.deleteService());
+            }
+        };
+        this.contextProvider = new ContextProvider(authProvider, messagingProvider);
+        // Cancels all ongoing requests when resolved.
+        this.cancelAllRequests = new Promise(function (resolve) {
+            _this.deleteService = function () {
+                return resolve();
+            };
+        });
+        // Resolve the region or custom domain overload by attempting to parse it.
+        try {
+            var url = new URL(regionOrCustomDomain_);
+            this.customDomain = url.origin;
+            this.region = 'us-central1';
+        }
+        catch (e) {
+            this.customDomain = null;
+            this.region = regionOrCustomDomain_;
+        }
+    }
+    Object.defineProperty(Service.prototype, "app", {
+        get: function () {
+            return this.app_;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    /**
+     * Returns the URL for a callable with the given name.
+     * @param name The name of the callable.
+     */
+    Service.prototype._url = function (name) {
+        var projectId = this.app_.options.projectId;
+        if (this.emulatorOrigin !== null) {
+            var origin_1 = this.emulatorOrigin;
+            return origin_1 + "/" + projectId + "/" + this.region + "/" + name;
+        }
+        if (this.customDomain !== null) {
+            return this.customDomain + "/" + name;
+        }
+        return "https://" + this.region + "-" + projectId + ".cloudfunctions.net/" + name;
+    };
+    /**
+     * Changes this instance to point to a Cloud Functions emulator running
+     * locally. See https://firebase.google.com/docs/functions/local-emulator
+     *
+     * @param origin The origin of the local emulator, such as
+     * "http://localhost:5005".
+     */
+    Service.prototype.useFunctionsEmulator = function (origin) {
+        this.emulatorOrigin = origin;
+    };
+    /**
+     * Returns a reference to the callable https trigger with the given name.
+     * @param name The name of the trigger.
+     */
+    Service.prototype.httpsCallable = function (name, options) {
+        var _this = this;
+        return function (data) {
+            return _this.call(name, data, options || {});
+        };
+    };
+    /**
+     * Does an HTTP POST and returns the completed response.
+     * @param url The url to post to.
+     * @param body The JSON body of the post.
+     * @param headers The HTTP headers to include in the request.
+     * @return A Promise that will succeed when the request finishes.
+     */
+    Service.prototype.postJSON = function (url, body, headers) {
+        return tslib.__awaiter(this, void 0, void 0, function () {
+            var response, e_1, json, e_2;
+            return tslib.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        headers['Content-Type'] = 'application/json';
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.fetchImpl(url, {
+                                method: 'POST',
+                                body: JSON.stringify(body),
+                                headers: headers
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        // This could be an unhandled error on the backend, or it could be a
+                        // network error. There's no way to know, since an unhandled error on the
+                        // backend will fail to set the proper CORS header, and thus will be
+                        // treated as a network error by fetch.
+                        return [2 /*return*/, {
+                                status: 0,
+                                json: null
+                            }];
+                    case 4:
+                        json = null;
+                        _a.label = 5;
+                    case 5:
+                        _a.trys.push([5, 7, , 8]);
+                        return [4 /*yield*/, response.json()];
+                    case 6:
+                        json = _a.sent();
+                        return [3 /*break*/, 8];
+                    case 7:
+                        e_2 = _a.sent();
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/, {
+                            status: response.status,
+                            json: json
+                        }];
+                }
+            });
+        });
+    };
+    /**
+     * Calls a callable function asynchronously and returns the result.
+     * @param name The name of the callable trigger.
+     * @param data The data to pass as params to the function.s
+     */
+    Service.prototype.call = function (name, data, options) {
+        return tslib.__awaiter(this, void 0, void 0, function () {
+            var url, body, headers, context, timeout, _a, timer, failAfterPromise, response, error, responseData, decodedData;
+            return tslib.__generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        url = this._url(name);
+                        // Encode any special types, such as dates, in the input data.
+                        data = this.serializer.encode(data);
+                        body = { data: data };
+                        headers = {};
+                        return [4 /*yield*/, this.contextProvider.getContext()];
+                    case 1:
+                        context = _b.sent();
+                        if (context.authToken) {
+                            headers['Authorization'] = 'Bearer ' + context.authToken;
+                        }
+                        if (context.instanceIdToken) {
+                            headers['Firebase-Instance-ID-Token'] = context.instanceIdToken;
+                        }
+                        timeout = options.timeout || 70000;
+                        _a = failAfter(timeout), timer = _a.timer, failAfterPromise = _a.promise;
+                        return [4 /*yield*/, Promise.race([
+                                clearTimeoutWrapper(timer, this.postJSON(url, body, headers)),
+                                failAfterPromise,
+                                clearTimeoutWrapper(timer, this.cancelAllRequests)
+                            ])];
+                    case 2:
+                        response = _b.sent();
+                        // If service was deleted, interrupted response throws an error.
+                        if (!response) {
+                            throw new HttpsErrorImpl('cancelled', 'Firebase Functions instance was deleted.');
+                        }
+                        error = _errorForResponse(response.status, response.json, this.serializer);
+                        if (error) {
+                            throw error;
+                        }
+                        if (!response.json) {
+                            throw new HttpsErrorImpl('internal', 'Response is not valid JSON object.');
+                        }
+                        responseData = response.json.data;
+                        // TODO(klimt): For right now, allow "result" instead of "data", for
+                        // backwards compatibility.
+                        if (typeof responseData === 'undefined') {
+                            responseData = response.json.result;
+                        }
+                        if (typeof responseData === 'undefined') {
+                            // Consider the response malformed.
+                            throw new HttpsErrorImpl('internal', 'Response is missing data field.');
+                        }
+                        decodedData = this.serializer.decode(responseData);
+                        return [2 /*return*/, { data: decodedData }];
+                }
+            });
+        });
+    };
+    return Service;
+}());
+function clearTimeoutWrapper(timer, promise) {
+    return tslib.__awaiter(this, void 0, void 0, function () {
+        var result;
+        return tslib.__generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, promise];
+                case 1:
+                    result = _a.sent();
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    clearTimeout(timer);
+                    return [2 /*return*/, result];
+            }
+        });
+    });
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Type constant for Firebase Functions.
+ */
+var FUNCTIONS_TYPE = 'functions';
+function registerFunctions(instance, fetchImpl) {
+    var namespaceExports = {
+        // no-inline
+        Functions: Service
+    };
+    function factory(container, regionOrCustomDomain) {
+        // Dependencies
+        var app = container.getProvider('app').getImmediate();
+        var authProvider = container.getProvider('auth-internal');
+        var messagingProvider = container.getProvider('messaging');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return new Service(app, authProvider, messagingProvider, regionOrCustomDomain, fetchImpl);
+    }
+    instance.INTERNAL.registerComponent(new component.Component(FUNCTIONS_TYPE, factory, "PUBLIC" /* PUBLIC */)
+        .setServiceProps(namespaceExports)
+        .setMultipleInstances(true));
+}
+
+var name = "@firebase/functions";
+var version = "0.5.1";
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+registerFunctions(firebase__default['default'], fetch.bind(self));
+firebase__default['default'].registerVersion(name, version);
+//# sourceMappingURL=index.cjs.js.map
+
+
+/***/ }),
+
+/***/ "../node_modules/@firebase/performance/dist/index.cjs.js":
+/*!***************************************************************!*\
+  !*** ../node_modules/@firebase/performance/dist/index.cjs.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/installations */ "./node_modules/@firebase/installations/dist/index.esm.js");
+var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+var util = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
+var logger$1 = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js");
+var component = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var firebase__default = /*#__PURE__*/_interopDefaultLegacy(firebase);
+
+var name = "@firebase/performance";
+var version = "0.4.2";
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var SDK_VERSION = version;
+/** The prefix for start User Timing marks used for creating Traces. */
+var TRACE_START_MARK_PREFIX = 'FB-PERF-TRACE-START';
+/** The prefix for stop User Timing marks used for creating Traces. */
+var TRACE_STOP_MARK_PREFIX = 'FB-PERF-TRACE-STOP';
+/** The prefix for User Timing measure used for creating Traces. */
+var TRACE_MEASURE_PREFIX = 'FB-PERF-TRACE-MEASURE';
+/** The prefix for out of the box page load Trace name. */
+var OOB_TRACE_PAGE_LOAD_PREFIX = '_wt_';
+var FIRST_PAINT_COUNTER_NAME = '_fp';
+var FIRST_CONTENTFUL_PAINT_COUNTER_NAME = '_fcp';
+var FIRST_INPUT_DELAY_COUNTER_NAME = '_fid';
+var CONFIG_LOCAL_STORAGE_KEY = '@firebase/performance/config';
+var CONFIG_EXPIRY_LOCAL_STORAGE_KEY = '@firebase/performance/configexpire';
+var SERVICE = 'performance';
+var SERVICE_NAME = 'Performance';
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var _a;
+var ERROR_DESCRIPTION_MAP = (_a = {},
+    _a["trace started" /* TRACE_STARTED_BEFORE */] = 'Trace {$traceName} was started before.',
+    _a["trace stopped" /* TRACE_STOPPED_BEFORE */] = 'Trace {$traceName} is not running.',
+    _a["nonpositive trace startTime" /* NONPOSITIVE_TRACE_START_TIME */] = 'Trace {$traceName} startTime should be positive.',
+    _a["nonpositive trace duration" /* NONPOSITIVE_TRACE_DURATION */] = 'Trace {$traceName} duration should be positive.',
+    _a["no window" /* NO_WINDOW */] = 'Window is not available.',
+    _a["no app id" /* NO_APP_ID */] = 'App id is not available.',
+    _a["no project id" /* NO_PROJECT_ID */] = 'Project id is not available.',
+    _a["no api key" /* NO_API_KEY */] = 'Api key is not available.',
+    _a["invalid cc log" /* INVALID_CC_LOG */] = 'Attempted to queue invalid cc event',
+    _a["FB not default" /* FB_NOT_DEFAULT */] = 'Performance can only start when Firebase app instance is the default one.',
+    _a["RC response not ok" /* RC_NOT_OK */] = 'RC response is not ok',
+    _a["invalid attribute name" /* INVALID_ATTRIBUTE_NAME */] = 'Attribute name {$attributeName} is invalid.',
+    _a["invalid attribute value" /* INVALID_ATTRIBUTE_VALUE */] = 'Attribute value {$attributeValue} is invalid.',
+    _a["invalid custom metric name" /* INVALID_CUSTOM_METRIC_NAME */] = 'Custom metric name {$customMetricName} is invalid',
+    _a["invalid String merger input" /* INVALID_STRING_MERGER_PARAMETER */] = 'Input for String merger is invalid, contact support team to resolve.',
+    _a);
+var ERROR_FACTORY = new util.ErrorFactory(SERVICE, SERVICE_NAME, ERROR_DESCRIPTION_MAP);
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var consoleLogger = new logger$1.Logger(SERVICE_NAME);
+consoleLogger.logLevel = logger$1.LogLevel.INFO;
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var apiInstance;
+var windowInstance;
+/**
+ * This class holds a reference to various browser related objects injected by
+ * set methods.
+ */
+var Api = /** @class */ (function () {
+    function Api(window) {
+        this.window = window;
+        if (!window) {
+            throw ERROR_FACTORY.create("no window" /* NO_WINDOW */);
+        }
+        this.performance = window.performance;
+        this.PerformanceObserver = window.PerformanceObserver;
+        this.windowLocation = window.location;
+        this.navigator = window.navigator;
+        this.document = window.document;
+        if (this.navigator && this.navigator.cookieEnabled) {
+            // If user blocks cookies on the browser, accessing localStorage will
+            // throw an exception.
+            this.localStorage = window.localStorage;
+        }
+        if (window.perfMetrics && window.perfMetrics.onFirstInputDelay) {
+            this.onFirstInputDelay = window.perfMetrics.onFirstInputDelay;
+        }
+    }
+    Api.prototype.getUrl = function () {
+        // Do not capture the string query part of url.
+        return this.windowLocation.href.split('?')[0];
+    };
+    Api.prototype.mark = function (name) {
+        if (!this.performance || !this.performance.mark) {
+            return;
+        }
+        this.performance.mark(name);
+    };
+    Api.prototype.measure = function (measureName, mark1, mark2) {
+        if (!this.performance || !this.performance.measure) {
+            return;
+        }
+        this.performance.measure(measureName, mark1, mark2);
+    };
+    Api.prototype.getEntriesByType = function (type) {
+        if (!this.performance || !this.performance.getEntriesByType) {
+            return [];
+        }
+        return this.performance.getEntriesByType(type);
+    };
+    Api.prototype.getEntriesByName = function (name) {
+        if (!this.performance || !this.performance.getEntriesByName) {
+            return [];
+        }
+        return this.performance.getEntriesByName(name);
+    };
+    Api.prototype.getTimeOrigin = function () {
+        // Polyfill the time origin with performance.timing.navigationStart.
+        return (this.performance &&
+            (this.performance.timeOrigin || this.performance.timing.navigationStart));
+    };
+    Api.prototype.requiredApisAvailable = function () {
+        if (!fetch ||
+            !Promise ||
+            !this.navigator ||
+            !this.navigator.cookieEnabled) {
+            consoleLogger.info('Firebase Performance cannot start if browser does not support fetch and Promise or cookie is disabled.');
+            return false;
+        }
+        if (!util.isIndexedDBAvailable()) {
+            consoleLogger.info('IndexedDB is not supported by current browswer');
+            return false;
+        }
+        return true;
+    };
+    Api.prototype.setupObserver = function (entryType, callback) {
+        if (!this.PerformanceObserver) {
+            return;
+        }
+        var observer = new this.PerformanceObserver(function (list) {
+            for (var _i = 0, _a = list.getEntries(); _i < _a.length; _i++) {
+                var entry = _a[_i];
+                // `entry` is a PerformanceEntry instance.
+                callback(entry);
+            }
+        });
+        // Start observing the entry types you care about.
+        observer.observe({ entryTypes: [entryType] });
+    };
+    Api.getInstance = function () {
+        if (apiInstance === undefined) {
+            apiInstance = new Api(windowInstance);
+        }
+        return apiInstance;
+    };
+    return Api;
+}());
+function setupApi(window) {
+    windowInstance = window;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+function mergeStrings(part1, part2) {
+    var sizeDiff = part1.length - part2.length;
+    if (sizeDiff < 0 || sizeDiff > 1) {
+        throw ERROR_FACTORY.create("invalid String merger input" /* INVALID_STRING_MERGER_PARAMETER */);
+    }
+    var resultArray = [];
+    for (var i = 0; i < part1.length; i++) {
+        resultArray.push(part1.charAt(i));
+        if (part2.length > i) {
+            resultArray.push(part2.charAt(i));
+        }
+    }
+    return resultArray.join('');
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var settingsServiceInstance;
+var SettingsService = /** @class */ (function () {
+    function SettingsService() {
+        // The variable which controls logging of automatic traces and HTTP/S network monitoring.
+        this.instrumentationEnabled = true;
+        // The variable which controls logging of custom traces.
+        this.dataCollectionEnabled = true;
+        // Configuration flags set through remote config.
+        this.loggingEnabled = false;
+        // Sampling rate between 0 and 1.
+        this.tracesSamplingRate = 1;
+        this.networkRequestsSamplingRate = 1;
+        // Address of logging service.
+        this.logEndPointUrl = 'https://firebaselogging.googleapis.com/v0cc/log?format=json_proto';
+        // Performance event transport endpoint URL which should be compatible with proto3.
+        // New Address for transport service, not configurable via Remote Config.
+        this.flTransportEndpointUrl = mergeStrings('hts/frbslgigp.ogepscmv/ieo/eaylg', 'tp:/ieaeogn-agolai.o/1frlglgc/o');
+        this.transportKey = mergeStrings('AzSC8r6ReiGqFMyfvgow', 'Iayx0u-XT3vksVM-pIV');
+        // Source type for performance event logs.
+        this.logSource = 462;
+        // Flags which control per session logging of traces and network requests.
+        this.logTraceAfterSampling = false;
+        this.logNetworkAfterSampling = false;
+        // TTL of config retrieved from remote config in hours.
+        this.configTimeToLive = 12;
+    }
+    SettingsService.prototype.getAppId = function () {
+        var appId = this.firebaseAppInstance &&
+            this.firebaseAppInstance.options &&
+            this.firebaseAppInstance.options.appId;
+        if (!appId) {
+            throw ERROR_FACTORY.create("no app id" /* NO_APP_ID */);
+        }
+        return appId;
+    };
+    SettingsService.prototype.getProjectId = function () {
+        var projectId = this.firebaseAppInstance &&
+            this.firebaseAppInstance.options &&
+            this.firebaseAppInstance.options.projectId;
+        if (!projectId) {
+            throw ERROR_FACTORY.create("no project id" /* NO_PROJECT_ID */);
+        }
+        return projectId;
+    };
+    SettingsService.prototype.getApiKey = function () {
+        var apiKey = this.firebaseAppInstance &&
+            this.firebaseAppInstance.options &&
+            this.firebaseAppInstance.options.apiKey;
+        if (!apiKey) {
+            throw ERROR_FACTORY.create("no api key" /* NO_API_KEY */);
+        }
+        return apiKey;
+    };
+    SettingsService.prototype.getFlTransportFullUrl = function () {
+        return this.flTransportEndpointUrl.concat('?key=', this.transportKey);
+    };
+    SettingsService.getInstance = function () {
+        if (settingsServiceInstance === undefined) {
+            settingsServiceInstance = new SettingsService();
+        }
+        return settingsServiceInstance;
+    };
+    return SettingsService;
+}());
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var iid;
+function getIidPromise() {
+    var iidPromise = SettingsService.getInstance().installationsService.getId();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    iidPromise.then(function (iidVal) {
+        iid = iidVal;
+    });
+    return iidPromise;
+}
+// This method should be used after the iid is retrieved by getIidPromise method.
+function getIid() {
+    return iid;
+}
+function getAuthTokenPromise() {
+    var authTokenPromise = SettingsService.getInstance().installationsService.getToken();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    authTokenPromise.then(function (authTokenVal) {
+    });
+    return authTokenPromise;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var VisibilityState;
+(function (VisibilityState) {
+    VisibilityState[VisibilityState["UNKNOWN"] = 0] = "UNKNOWN";
+    VisibilityState[VisibilityState["VISIBLE"] = 1] = "VISIBLE";
+    VisibilityState[VisibilityState["HIDDEN"] = 2] = "HIDDEN";
+})(VisibilityState || (VisibilityState = {}));
+var RESERVED_ATTRIBUTE_PREFIXES = ['firebase_', 'google_', 'ga_'];
+var ATTRIBUTE_FORMAT_REGEX = new RegExp('^[a-zA-Z]\\w*$');
+var MAX_ATTRIBUTE_NAME_LENGTH = 40;
+var MAX_ATTRIBUTE_VALUE_LENGTH = 100;
+function getServiceWorkerStatus() {
+    var navigator = Api.getInstance().navigator;
+    if ('serviceWorker' in navigator) {
+        if (navigator.serviceWorker.controller) {
+            return 2 /* CONTROLLED */;
+        }
+        else {
+            return 3 /* UNCONTROLLED */;
+        }
+    }
+    else {
+        return 1 /* UNSUPPORTED */;
+    }
+}
+function getVisibilityState() {
+    var document = Api.getInstance().document;
+    var visibilityState = document.visibilityState;
+    switch (visibilityState) {
+        case 'visible':
+            return VisibilityState.VISIBLE;
+        case 'hidden':
+            return VisibilityState.HIDDEN;
+        default:
+            return VisibilityState.UNKNOWN;
+    }
+}
+function getEffectiveConnectionType() {
+    var navigator = Api.getInstance().navigator;
+    var navigatorConnection = navigator.connection;
+    var effectiveType = navigatorConnection && navigatorConnection.effectiveType;
+    switch (effectiveType) {
+        case 'slow-2g':
+            return 1 /* CONNECTION_SLOW_2G */;
+        case '2g':
+            return 2 /* CONNECTION_2G */;
+        case '3g':
+            return 3 /* CONNECTION_3G */;
+        case '4g':
+            return 4 /* CONNECTION_4G */;
+        default:
+            return 0 /* UNKNOWN */;
+    }
+}
+function isValidCustomAttributeName(name) {
+    if (name.length === 0 || name.length > MAX_ATTRIBUTE_NAME_LENGTH) {
+        return false;
+    }
+    var matchesReservedPrefix = RESERVED_ATTRIBUTE_PREFIXES.some(function (prefix) {
+        return name.startsWith(prefix);
+    });
+    return !matchesReservedPrefix && !!name.match(ATTRIBUTE_FORMAT_REGEX);
+}
+function isValidCustomAttributeValue(value) {
+    return value.length !== 0 && value.length <= MAX_ATTRIBUTE_VALUE_LENGTH;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var REMOTE_CONFIG_SDK_VERSION = '0.0.1';
+// These values will be used if the remote config object is successfully
+// retrieved, but the template does not have these fields.
+var DEFAULT_CONFIGS = {
+    loggingEnabled: true
+};
+var FIS_AUTH_PREFIX = 'FIREBASE_INSTALLATIONS_AUTH';
+function getConfig(iid) {
+    var config = getStoredConfig();
+    if (config) {
+        processConfig(config);
+        return Promise.resolve();
+    }
+    return getRemoteConfig(iid)
+        .then(processConfig)
+        .then(function (config) { return storeConfig(config); }, 
+    /** Do nothing for error, use defaults set in settings service. */
+    function () { });
+}
+function getStoredConfig() {
+    var localStorage = Api.getInstance().localStorage;
+    if (!localStorage) {
+        return;
+    }
+    var expiryString = localStorage.getItem(CONFIG_EXPIRY_LOCAL_STORAGE_KEY);
+    if (!expiryString || !configValid(expiryString)) {
+        return;
+    }
+    var configStringified = localStorage.getItem(CONFIG_LOCAL_STORAGE_KEY);
+    if (!configStringified) {
+        return;
+    }
+    try {
+        var configResponse = JSON.parse(configStringified);
+        return configResponse;
+    }
+    catch (_a) {
+        return;
+    }
+}
+function storeConfig(config) {
+    var localStorage = Api.getInstance().localStorage;
+    if (!config || !localStorage) {
+        return;
+    }
+    localStorage.setItem(CONFIG_LOCAL_STORAGE_KEY, JSON.stringify(config));
+    localStorage.setItem(CONFIG_EXPIRY_LOCAL_STORAGE_KEY, String(Date.now() +
+        SettingsService.getInstance().configTimeToLive * 60 * 60 * 1000));
+}
+var COULD_NOT_GET_CONFIG_MSG = 'Could not fetch config, will use default configs';
+function getRemoteConfig(iid) {
+    // Perf needs auth token only to retrieve remote config.
+    return getAuthTokenPromise()
+        .then(function (authToken) {
+        var projectId = SettingsService.getInstance().getProjectId();
+        var configEndPoint = "https://firebaseremoteconfig.googleapis.com/v1/projects/" + projectId + "/namespaces/fireperf:fetch?key=" + SettingsService.getInstance().getApiKey();
+        var request = new Request(configEndPoint, {
+            method: 'POST',
+            headers: { Authorization: FIS_AUTH_PREFIX + " " + authToken },
+            /* eslint-disable camelcase */
+            body: JSON.stringify({
+                app_instance_id: iid,
+                app_instance_id_token: authToken,
+                app_id: SettingsService.getInstance().getAppId(),
+                app_version: SDK_VERSION,
+                sdk_version: REMOTE_CONFIG_SDK_VERSION
+            })
+            /* eslint-enable camelcase */
+        });
+        return fetch(request).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            }
+            // In case response is not ok. This will be caught by catch.
+            throw ERROR_FACTORY.create("RC response not ok" /* RC_NOT_OK */);
+        });
+    })
+        .catch(function () {
+        consoleLogger.info(COULD_NOT_GET_CONFIG_MSG);
+        return undefined;
+    });
+}
+/**
+ * Processes config coming either from calling RC or from local storage.
+ * This method only runs if call is successful or config in storage
+ * is valid.
+ */
+function processConfig(config) {
+    if (!config) {
+        return config;
+    }
+    var settingsServiceInstance = SettingsService.getInstance();
+    var entries = config.entries || {};
+    if (entries.fpr_enabled !== undefined) {
+        // TODO: Change the assignment of loggingEnabled once the received type is
+        // known.
+        settingsServiceInstance.loggingEnabled =
+            String(entries.fpr_enabled) === 'true';
+    }
+    else {
+        // Config retrieved successfully, but there is no fpr_enabled in template.
+        // Use secondary configs value.
+        settingsServiceInstance.loggingEnabled = DEFAULT_CONFIGS.loggingEnabled;
+    }
+    if (entries.fpr_log_source) {
+        settingsServiceInstance.logSource = Number(entries.fpr_log_source);
+    }
+    if (entries.fpr_log_endpoint_url) {
+        settingsServiceInstance.logEndPointUrl = entries.fpr_log_endpoint_url;
+    }
+    // Key from Remote Config has to be non-empty string, otherwsie use local value.
+    if (entries.fpr_log_transport_key) {
+        settingsServiceInstance.transportKey = entries.fpr_log_transport_key;
+    }
+    if (entries.fpr_vc_network_request_sampling_rate !== undefined) {
+        settingsServiceInstance.networkRequestsSamplingRate = Number(entries.fpr_vc_network_request_sampling_rate);
+    }
+    if (entries.fpr_vc_trace_sampling_rate !== undefined) {
+        settingsServiceInstance.tracesSamplingRate = Number(entries.fpr_vc_trace_sampling_rate);
+    }
+    // Set the per session trace and network logging flags.
+    settingsServiceInstance.logTraceAfterSampling = shouldLogAfterSampling(settingsServiceInstance.tracesSamplingRate);
+    settingsServiceInstance.logNetworkAfterSampling = shouldLogAfterSampling(settingsServiceInstance.networkRequestsSamplingRate);
+    return config;
+}
+function configValid(expiry) {
+    return Number(expiry) > Date.now();
+}
+function shouldLogAfterSampling(samplingRate) {
+    return Math.random() <= samplingRate;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var initializationStatus = 1 /* notInitialized */;
+var initializationPromise;
+function getInitializationPromise() {
+    initializationStatus = 2 /* initializationPending */;
+    initializationPromise = initializationPromise || initializePerf();
+    return initializationPromise;
+}
+function isPerfInitialized() {
+    return initializationStatus === 3 /* initialized */;
+}
+function initializePerf() {
+    return getDocumentReadyComplete()
+        .then(function () { return getIidPromise(); })
+        .then(function (iid) { return getConfig(iid); })
+        .then(function () { return changeInitializationStatus(); }, function () { return changeInitializationStatus(); });
+}
+/**
+ * Returns a promise which resolves whenever the document readystate is complete or
+ * immediately if it is called after page load complete.
+ */
+function getDocumentReadyComplete() {
+    var document = Api.getInstance().document;
+    return new Promise(function (resolve) {
+        if (document && document.readyState !== 'complete') {
+            var handler_1 = function () {
+                if (document.readyState === 'complete') {
+                    document.removeEventListener('readystatechange', handler_1);
+                    resolve();
+                }
+            };
+            document.addEventListener('readystatechange', handler_1);
+        }
+        else {
+            resolve();
+        }
+    });
+}
+function changeInitializationStatus() {
+    initializationStatus = 3 /* initialized */;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var DEFAULT_SEND_INTERVAL_MS = 10 * 1000;
+var INITIAL_SEND_TIME_DELAY_MS = 5.5 * 1000;
+// If end point does not work, the call will be tried for these many times.
+var DEFAULT_REMAINING_TRIES = 3;
+var remainingTries = DEFAULT_REMAINING_TRIES;
+/* eslint-enable camelcase */
+var queue = [];
+var isTransportSetup = false;
+function setupTransportService() {
+    if (!isTransportSetup) {
+        processQueue(INITIAL_SEND_TIME_DELAY_MS);
+        isTransportSetup = true;
+    }
+}
+function processQueue(timeOffset) {
+    setTimeout(function () {
+        // If there is no remainingTries left, stop retrying.
+        if (remainingTries === 0) {
+            return;
+        }
+        // If there are no events to process, wait for DEFAULT_SEND_INTERVAL_MS and try again.
+        if (!queue.length) {
+            return processQueue(DEFAULT_SEND_INTERVAL_MS);
+        }
+        dispatchQueueEvents();
+    }, timeOffset);
+}
+function dispatchQueueEvents() {
+    // Capture a snapshot of the queue and empty the "official queue".
+    var staged = tslib.__spreadArrays(queue);
+    queue = [];
+    /* eslint-disable camelcase */
+    // We will pass the JSON serialized event to the backend.
+    var log_event = staged.map(function (evt) { return ({
+        source_extension_json_proto3: evt.message,
+        event_time_ms: String(evt.eventTime)
+    }); });
+    var data = {
+        request_time_ms: String(Date.now()),
+        client_info: {
+            client_type: 1,
+            js_client_info: {}
+        },
+        log_source: SettingsService.getInstance().logSource,
+        log_event: log_event
+    };
+    /* eslint-enable camelcase */
+    sendEventsToFl(data, staged).catch(function () {
+        // If the request fails for some reason, add the events that were attempted
+        // back to the primary queue to retry later.
+        queue = tslib.__spreadArrays(staged, queue);
+        remainingTries--;
+        consoleLogger.info("Tries left: " + remainingTries + ".");
+        processQueue(DEFAULT_SEND_INTERVAL_MS);
+    });
+}
+function sendEventsToFl(data, staged) {
+    return postToFlEndpoint(data)
+        .then(function (res) {
+        if (!res.ok) {
+            consoleLogger.info('Call to Firebase backend failed.');
+        }
+        return res.json();
+    })
+        .then(function (res) {
+        // Find the next call wait time from the response.
+        var transportWait = Number(res.nextRequestWaitMillis);
+        var requestOffset = DEFAULT_SEND_INTERVAL_MS;
+        if (!isNaN(transportWait)) {
+            requestOffset = Math.max(transportWait, requestOffset);
+        }
+        // Delete request if response include RESPONSE_ACTION_UNKNOWN or DELETE_REQUEST action.
+        // Otherwise, retry request using normal scheduling if response include RETRY_REQUEST_LATER.
+        var logResponseDetails = res.logResponseDetails;
+        if (Array.isArray(logResponseDetails) &&
+            logResponseDetails.length > 0 &&
+            logResponseDetails[0].responseAction === 'RETRY_REQUEST_LATER') {
+            queue = tslib.__spreadArrays(staged, queue);
+            consoleLogger.info("Retry transport request later.");
+        }
+        remainingTries = DEFAULT_REMAINING_TRIES;
+        // Schedule the next process.
+        processQueue(requestOffset);
+    });
+}
+function postToFlEndpoint(data) {
+    var flTransportFullUrl = SettingsService.getInstance().getFlTransportFullUrl();
+    return fetch(flTransportFullUrl, {
+        method: 'POST',
+        body: JSON.stringify(data)
+    });
+}
+function addToQueue(evt) {
+    if (!evt.eventTime || !evt.message) {
+        throw ERROR_FACTORY.create("invalid cc log" /* INVALID_CC_LOG */);
+    }
+    // Add the new event to the queue.
+    queue = tslib.__spreadArrays(queue, [evt]);
+}
+/** Log handler for cc service to send the performance logs to the server. */
+function transportHandler(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+serializer) {
+    return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var message = serializer.apply(void 0, args);
+        addToQueue({
+            message: message,
+            eventTime: Date.now()
+        });
+    };
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* eslint-enble camelcase */
+var logger;
+// This method is not called before initialization.
+function sendLog(resource, resourceType) {
+    if (!logger) {
+        logger = transportHandler(serializer);
+    }
+    logger(resource, resourceType);
+}
+function logTrace(trace) {
+    var settingsService = SettingsService.getInstance();
+    // Do not log if trace is auto generated and instrumentation is disabled.
+    if (!settingsService.instrumentationEnabled && trace.isAuto) {
+        return;
+    }
+    // Do not log if trace is custom and data collection is disabled.
+    if (!settingsService.dataCollectionEnabled && !trace.isAuto) {
+        return;
+    }
+    // Do not log if required apis are not available.
+    if (!Api.getInstance().requiredApisAvailable()) {
+        return;
+    }
+    // Only log the page load auto traces if page is visible.
+    if (trace.isAuto && getVisibilityState() !== VisibilityState.VISIBLE) {
+        return;
+    }
+    if (isPerfInitialized()) {
+        sendTraceLog(trace);
+    }
+    else {
+        // Custom traces can be used before the initialization but logging
+        // should wait until after.
+        getInitializationPromise().then(function () { return sendTraceLog(trace); }, function () { return sendTraceLog(trace); });
+    }
+}
+function sendTraceLog(trace) {
+    if (!getIid()) {
+        return;
+    }
+    var settingsService = SettingsService.getInstance();
+    if (!settingsService.loggingEnabled ||
+        !settingsService.logTraceAfterSampling) {
+        return;
+    }
+    setTimeout(function () { return sendLog(trace, 1 /* Trace */); }, 0);
+}
+function logNetworkRequest(networkRequest) {
+    var settingsService = SettingsService.getInstance();
+    // Do not log network requests if instrumentation is disabled.
+    if (!settingsService.instrumentationEnabled) {
+        return;
+    }
+    // Do not log the js sdk's call to transport service domain to avoid unnecessary cycle.
+    // Need to blacklist both old and new endpoints to avoid migration gap.
+    var networkRequestUrl = networkRequest.url;
+    // Blacklist old log endpoint and new transport endpoint.
+    // Because Performance SDK doesn't instrument requests sent from SDK itself.
+    var logEndpointUrl = settingsService.logEndPointUrl.split('?')[0];
+    var flEndpointUrl = settingsService.flTransportEndpointUrl.split('?')[0];
+    if (networkRequestUrl === logEndpointUrl ||
+        networkRequestUrl === flEndpointUrl) {
+        return;
+    }
+    if (!settingsService.loggingEnabled ||
+        !settingsService.logNetworkAfterSampling) {
+        return;
+    }
+    setTimeout(function () { return sendLog(networkRequest, 0 /* NetworkRequest */); }, 0);
+}
+function serializer(resource, resourceType) {
+    if (resourceType === 0 /* NetworkRequest */) {
+        return serializeNetworkRequest(resource);
+    }
+    return serializeTrace(resource);
+}
+function serializeNetworkRequest(networkRequest) {
+    var networkRequestMetric = {
+        url: networkRequest.url,
+        http_method: networkRequest.httpMethod || 0,
+        http_response_code: 200,
+        response_payload_bytes: networkRequest.responsePayloadBytes,
+        client_start_time_us: networkRequest.startTimeUs,
+        time_to_response_initiated_us: networkRequest.timeToResponseInitiatedUs,
+        time_to_response_completed_us: networkRequest.timeToResponseCompletedUs
+    };
+    var perfMetric = {
+        application_info: getApplicationInfo(),
+        network_request_metric: networkRequestMetric
+    };
+    return JSON.stringify(perfMetric);
+}
+function serializeTrace(trace) {
+    var traceMetric = {
+        name: trace.name,
+        is_auto: trace.isAuto,
+        client_start_time_us: trace.startTimeUs,
+        duration_us: trace.durationUs
+    };
+    if (Object.keys(trace.counters).length !== 0) {
+        traceMetric.counters = trace.counters;
+    }
+    var customAttributes = trace.getAttributes();
+    if (Object.keys(customAttributes).length !== 0) {
+        traceMetric.custom_attributes = customAttributes;
+    }
+    var perfMetric = {
+        application_info: getApplicationInfo(),
+        trace_metric: traceMetric
+    };
+    return JSON.stringify(perfMetric);
+}
+function getApplicationInfo() {
+    return {
+        google_app_id: SettingsService.getInstance().getAppId(),
+        app_instance_id: getIid(),
+        web_app_info: {
+            sdk_version: SDK_VERSION,
+            page_url: Api.getInstance().getUrl(),
+            service_worker_status: getServiceWorkerStatus(),
+            visibility_state: getVisibilityState(),
+            effective_connection_type: getEffectiveConnectionType()
+        },
+        application_process_state: 0
+    };
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var MAX_METRIC_NAME_LENGTH = 100;
+var RESERVED_AUTO_PREFIX = '_';
+var oobMetrics = [
+    FIRST_PAINT_COUNTER_NAME,
+    FIRST_CONTENTFUL_PAINT_COUNTER_NAME,
+    FIRST_INPUT_DELAY_COUNTER_NAME
+];
+/**
+ * Returns true if the metric is custom and does not start with reserved prefix, or if
+ * the metric is one of out of the box page load trace metrics.
+ */
+function isValidMetricName(name, traceName) {
+    if (name.length === 0 || name.length > MAX_METRIC_NAME_LENGTH) {
+        return false;
+    }
+    return ((traceName &&
+        traceName.startsWith(OOB_TRACE_PAGE_LOAD_PREFIX) &&
+        oobMetrics.indexOf(name) > -1) ||
+        !name.startsWith(RESERVED_AUTO_PREFIX));
+}
+/**
+ * Converts the provided value to an integer value to be used in case of a metric.
+ * @param providedValue Provided number value of the metric that needs to be converted to an integer.
+ *
+ * @returns Converted integer number to be set for the metric.
+ */
+function convertMetricValueToInteger(providedValue) {
+    var valueAsInteger = Math.floor(providedValue);
+    if (valueAsInteger < providedValue) {
+        consoleLogger.info("Metric value should be an Integer, setting the value as : " + valueAsInteger + ".");
+    }
+    return valueAsInteger;
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Trace = /** @class */ (function () {
+    /**
+     * @param name The name of the trace.
+     * @param isAuto If the trace is auto-instrumented.
+     * @param traceMeasureName The name of the measure marker in user timing specification. This field
+     * is only set when the trace is built for logging when the user directly uses the user timing
+     * api (performance.mark and performance.measure).
+     */
+    function Trace(name, isAuto, traceMeasureName) {
+        if (isAuto === void 0) { isAuto = false; }
+        this.name = name;
+        this.isAuto = isAuto;
+        this.state = 1 /* UNINITIALIZED */;
+        this.customAttributes = {};
+        this.counters = {};
+        this.api = Api.getInstance();
+        this.randomId = Math.floor(Math.random() * 1000000);
+        if (!this.isAuto) {
+            this.traceStartMark = TRACE_START_MARK_PREFIX + "-" + this.randomId + "-" + this.name;
+            this.traceStopMark = TRACE_STOP_MARK_PREFIX + "-" + this.randomId + "-" + this.name;
+            this.traceMeasure =
+                traceMeasureName ||
+                    TRACE_MEASURE_PREFIX + "-" + this.randomId + "-" + this.name;
+            if (traceMeasureName) {
+                // For the case of direct user timing traces, no start stop will happen. The measure object
+                // is already available.
+                this.calculateTraceMetrics();
+            }
+        }
+    }
+    /**
+     * Starts a trace. The measurement of the duration starts at this point.
+     */
+    Trace.prototype.start = function () {
+        if (this.state !== 1 /* UNINITIALIZED */) {
+            throw ERROR_FACTORY.create("trace started" /* TRACE_STARTED_BEFORE */, {
+                traceName: this.name
+            });
+        }
+        this.api.mark(this.traceStartMark);
+        this.state = 2 /* RUNNING */;
+    };
+    /**
+     * Stops the trace. The measurement of the duration of the trace stops at this point and trace
+     * is logged.
+     */
+    Trace.prototype.stop = function () {
+        if (this.state !== 2 /* RUNNING */) {
+            throw ERROR_FACTORY.create("trace stopped" /* TRACE_STOPPED_BEFORE */, {
+                traceName: this.name
+            });
+        }
+        this.state = 3 /* TERMINATED */;
+        this.api.mark(this.traceStopMark);
+        this.api.measure(this.traceMeasure, this.traceStartMark, this.traceStopMark);
+        this.calculateTraceMetrics();
+        logTrace(this);
+    };
+    /**
+     * Records a trace with predetermined values. If this method is used a trace is created and logged
+     * directly. No need to use start and stop methods.
+     * @param startTime Trace start time since epoch in millisec
+     * @param duration The duraction of the trace in millisec
+     * @param options An object which can optionally hold maps of custom metrics and custom attributes
+     */
+    Trace.prototype.record = function (startTime, duration, options) {
+        if (startTime <= 0) {
+            throw ERROR_FACTORY.create("nonpositive trace startTime" /* NONPOSITIVE_TRACE_START_TIME */, {
+                traceName: this.name
+            });
+        }
+        if (duration <= 0) {
+            throw ERROR_FACTORY.create("nonpositive trace duration" /* NONPOSITIVE_TRACE_DURATION */, {
+                traceName: this.name
+            });
+        }
+        this.durationUs = Math.floor(duration * 1000);
+        this.startTimeUs = Math.floor(startTime * 1000);
+        if (options && options.attributes) {
+            this.customAttributes = tslib.__assign({}, options.attributes);
+        }
+        if (options && options.metrics) {
+            for (var _i = 0, _a = Object.keys(options.metrics); _i < _a.length; _i++) {
+                var metric = _a[_i];
+                if (!isNaN(Number(options.metrics[metric]))) {
+                    this.counters[metric] = Number(Math.floor(options.metrics[metric]));
+                }
+            }
+        }
+        logTrace(this);
+    };
+    /**
+     * Increments a custom metric by a certain number or 1 if number not specified. Will create a new
+     * custom metric if one with the given name does not exist. The value will be floored down to an
+     * integer.
+     * @param counter Name of the custom metric
+     * @param numAsInteger Increment by value
+     */
+    Trace.prototype.incrementMetric = function (counter, numAsInteger) {
+        if (numAsInteger === void 0) { numAsInteger = 1; }
+        if (this.counters[counter] === undefined) {
+            this.putMetric(counter, numAsInteger);
+        }
+        else {
+            this.putMetric(counter, this.counters[counter] + numAsInteger);
+        }
+    };
+    /**
+     * Sets a custom metric to a specified value. Will create a new custom metric if one with the
+     * given name does not exist. The value will be floored down to an integer.
+     * @param counter Name of the custom metric
+     * @param numAsInteger Set custom metric to this value
+     */
+    Trace.prototype.putMetric = function (counter, numAsInteger) {
+        if (isValidMetricName(counter, this.name)) {
+            this.counters[counter] = convertMetricValueToInteger(numAsInteger);
+        }
+        else {
+            throw ERROR_FACTORY.create("invalid custom metric name" /* INVALID_CUSTOM_METRIC_NAME */, {
+                customMetricName: counter
+            });
+        }
+    };
+    /**
+     * Returns the value of the custom metric by that name. If a custom metric with that name does
+     * not exist will return zero.
+     * @param counter
+     */
+    Trace.prototype.getMetric = function (counter) {
+        return this.counters[counter] || 0;
+    };
+    /**
+     * Sets a custom attribute of a trace to a certain value.
+     * @param attr
+     * @param value
+     */
+    Trace.prototype.putAttribute = function (attr, value) {
+        var isValidName = isValidCustomAttributeName(attr);
+        var isValidValue = isValidCustomAttributeValue(value);
+        if (isValidName && isValidValue) {
+            this.customAttributes[attr] = value;
+            return;
+        }
+        // Throw appropriate error when the attribute name or value is invalid.
+        if (!isValidName) {
+            throw ERROR_FACTORY.create("invalid attribute name" /* INVALID_ATTRIBUTE_NAME */, {
+                attributeName: attr
+            });
+        }
+        if (!isValidValue) {
+            throw ERROR_FACTORY.create("invalid attribute value" /* INVALID_ATTRIBUTE_VALUE */, {
+                attributeValue: value
+            });
+        }
+    };
+    /**
+     * Retrieves the value a custom attribute of a trace is set to.
+     * @param attr
+     */
+    Trace.prototype.getAttribute = function (attr) {
+        return this.customAttributes[attr];
+    };
+    Trace.prototype.removeAttribute = function (attr) {
+        if (this.customAttributes[attr] === undefined) {
+            return;
+        }
+        delete this.customAttributes[attr];
+    };
+    Trace.prototype.getAttributes = function () {
+        return tslib.__assign({}, this.customAttributes);
+    };
+    Trace.prototype.setStartTime = function (startTime) {
+        this.startTimeUs = startTime;
+    };
+    Trace.prototype.setDuration = function (duration) {
+        this.durationUs = duration;
+    };
+    /**
+     * Calculates and assigns the duration and start time of the trace using the measure performance
+     * entry.
+     */
+    Trace.prototype.calculateTraceMetrics = function () {
+        var perfMeasureEntries = this.api.getEntriesByName(this.traceMeasure);
+        var perfMeasureEntry = perfMeasureEntries && perfMeasureEntries[0];
+        if (perfMeasureEntry) {
+            this.durationUs = Math.floor(perfMeasureEntry.duration * 1000);
+            this.startTimeUs = Math.floor((perfMeasureEntry.startTime + this.api.getTimeOrigin()) * 1000);
+        }
+    };
+    /**
+     * @param navigationTimings A single element array which contains the navigationTIming object of
+     * the page load
+     * @param paintTimings A array which contains paintTiming object of the page load
+     * @param firstInputDelay First input delay in millisec
+     */
+    Trace.createOobTrace = function (navigationTimings, paintTimings, firstInputDelay) {
+        var route = Api.getInstance().getUrl();
+        if (!route) {
+            return;
+        }
+        var trace = new Trace(OOB_TRACE_PAGE_LOAD_PREFIX + route, true);
+        var timeOriginUs = Math.floor(Api.getInstance().getTimeOrigin() * 1000);
+        trace.setStartTime(timeOriginUs);
+        // navigationTimings includes only one element.
+        if (navigationTimings && navigationTimings[0]) {
+            trace.setDuration(Math.floor(navigationTimings[0].duration * 1000));
+            trace.putMetric('domInteractive', Math.floor(navigationTimings[0].domInteractive * 1000));
+            trace.putMetric('domContentLoadedEventEnd', Math.floor(navigationTimings[0].domContentLoadedEventEnd * 1000));
+            trace.putMetric('loadEventEnd', Math.floor(navigationTimings[0].loadEventEnd * 1000));
+        }
+        var FIRST_PAINT = 'first-paint';
+        var FIRST_CONTENTFUL_PAINT = 'first-contentful-paint';
+        if (paintTimings) {
+            var firstPaint = paintTimings.find(function (paintObject) { return paintObject.name === FIRST_PAINT; });
+            if (firstPaint && firstPaint.startTime) {
+                trace.putMetric(FIRST_PAINT_COUNTER_NAME, Math.floor(firstPaint.startTime * 1000));
+            }
+            var firstContentfulPaint = paintTimings.find(function (paintObject) { return paintObject.name === FIRST_CONTENTFUL_PAINT; });
+            if (firstContentfulPaint && firstContentfulPaint.startTime) {
+                trace.putMetric(FIRST_CONTENTFUL_PAINT_COUNTER_NAME, Math.floor(firstContentfulPaint.startTime * 1000));
+            }
+            if (firstInputDelay) {
+                trace.putMetric(FIRST_INPUT_DELAY_COUNTER_NAME, Math.floor(firstInputDelay * 1000));
+            }
+        }
+        logTrace(trace);
+    };
+    Trace.createUserTimingTrace = function (measureName) {
+        var trace = new Trace(measureName, false, measureName);
+        logTrace(trace);
+    };
+    return Trace;
+}());
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+function createNetworkRequestEntry(entry) {
+    var performanceEntry = entry;
+    if (!performanceEntry || performanceEntry.responseStart === undefined) {
+        return;
+    }
+    var timeOrigin = Api.getInstance().getTimeOrigin();
+    var startTimeUs = Math.floor((performanceEntry.startTime + timeOrigin) * 1000);
+    var timeToResponseInitiatedUs = performanceEntry.responseStart
+        ? Math.floor((performanceEntry.responseStart - performanceEntry.startTime) * 1000)
+        : undefined;
+    var timeToResponseCompletedUs = Math.floor((performanceEntry.responseEnd - performanceEntry.startTime) * 1000);
+    // Remove the query params from logged network request url.
+    var url = performanceEntry.name && performanceEntry.name.split('?')[0];
+    var networkRequest = {
+        url: url,
+        responsePayloadBytes: performanceEntry.transferSize,
+        startTimeUs: startTimeUs,
+        timeToResponseInitiatedUs: timeToResponseInitiatedUs,
+        timeToResponseCompletedUs: timeToResponseCompletedUs
+    };
+    logNetworkRequest(networkRequest);
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var FID_WAIT_TIME_MS = 5000;
+function setupOobResources() {
+    // Do not initialize unless iid is available.
+    if (!getIid()) {
+        return;
+    }
+    // The load event might not have fired yet, and that means performance navigation timing
+    // object has a duration of 0. The setup should run after all current tasks in js queue.
+    setTimeout(function () { return setupOobTraces(); }, 0);
+    setTimeout(function () { return setupNetworkRequests(); }, 0);
+    setTimeout(function () { return setupUserTimingTraces(); }, 0);
+}
+function setupNetworkRequests() {
+    var api = Api.getInstance();
+    var resources = api.getEntriesByType('resource');
+    for (var _i = 0, resources_1 = resources; _i < resources_1.length; _i++) {
+        var resource = resources_1[_i];
+        createNetworkRequestEntry(resource);
+    }
+    api.setupObserver('resource', createNetworkRequestEntry);
+}
+function setupOobTraces() {
+    var api = Api.getInstance();
+    var navigationTimings = api.getEntriesByType('navigation');
+    var paintTimings = api.getEntriesByType('paint');
+    // If First Input Desly polyfill is added to the page, report the fid value.
+    // https://github.com/GoogleChromeLabs/first-input-delay
+    if (api.onFirstInputDelay) {
+        // If the fid call back is not called for certain time, continue without it.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var timeoutId_1 = setTimeout(function () {
+            Trace.createOobTrace(navigationTimings, paintTimings);
+            timeoutId_1 = undefined;
+        }, FID_WAIT_TIME_MS);
+        api.onFirstInputDelay(function (fid) {
+            if (timeoutId_1) {
+                clearTimeout(timeoutId_1);
+                Trace.createOobTrace(navigationTimings, paintTimings, fid);
+            }
+        });
+    }
+    else {
+        Trace.createOobTrace(navigationTimings, paintTimings);
+    }
+}
+function setupUserTimingTraces() {
+    var api = Api.getInstance();
+    // Run through the measure performance entries collected up to this point.
+    var measures = api.getEntriesByType('measure');
+    for (var _i = 0, measures_1 = measures; _i < measures_1.length; _i++) {
+        var measure = measures_1[_i];
+        createUserTimingTrace(measure);
+    }
+    // Setup an observer to capture the measures from this point on.
+    api.setupObserver('measure', createUserTimingTrace);
+}
+function createUserTimingTrace(measure) {
+    var measureName = measure.name;
+    // Do not create a trace, if the user timing marks and measures are created by the sdk itself.
+    if (measureName.substring(0, TRACE_MEASURE_PREFIX.length) ===
+        TRACE_MEASURE_PREFIX) {
+        return;
+    }
+    Trace.createUserTimingTrace(measureName);
+}
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var PerformanceController = /** @class */ (function () {
+    function PerformanceController(app) {
+        this.app = app;
+        if (Api.getInstance().requiredApisAvailable()) {
+            util.validateIndexedDBOpenable()
+                .then(function (isAvailable) {
+                if (isAvailable) {
+                    setupTransportService();
+                    getInitializationPromise().then(setupOobResources, setupOobResources);
+                }
+            })
+                .catch(function (error) {
+                consoleLogger.info("Environment doesn't support IndexedDB: " + error);
+            });
+        }
+    }
+    PerformanceController.prototype.trace = function (name) {
+        return new Trace(name);
+    };
+    Object.defineProperty(PerformanceController.prototype, "instrumentationEnabled", {
+        get: function () {
+            return SettingsService.getInstance().instrumentationEnabled;
+        },
+        set: function (val) {
+            SettingsService.getInstance().instrumentationEnabled = val;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(PerformanceController.prototype, "dataCollectionEnabled", {
+        get: function () {
+            return SettingsService.getInstance().dataCollectionEnabled;
+        },
+        set: function (val) {
+            SettingsService.getInstance().dataCollectionEnabled = val;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return PerformanceController;
+}());
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var DEFAULT_ENTRY_NAME = '[DEFAULT]';
+function registerPerformance(instance) {
+    var factoryMethod = function (app, installations) {
+        if (app.name !== DEFAULT_ENTRY_NAME) {
+            throw ERROR_FACTORY.create("FB not default" /* FB_NOT_DEFAULT */);
+        }
+        if (typeof window === 'undefined') {
+            throw ERROR_FACTORY.create("no window" /* NO_WINDOW */);
+        }
+        setupApi(window);
+        SettingsService.getInstance().firebaseAppInstance = app;
+        SettingsService.getInstance().installationsService = installations;
+        return new PerformanceController(app);
+    };
+    // Register performance with firebase-app.
+    instance.INTERNAL.registerComponent(new component.Component('performance', function (container) {
+        /* Dependencies */
+        // getImmediate for FirebaseApp will always succeed
+        var app = container.getProvider('app').getImmediate();
+        // The following call will always succeed because perf has `import '@firebase/installations'`
+        var installations = container
+            .getProvider('installations')
+            .getImmediate();
+        return factoryMethod(app, installations);
+    }, "PUBLIC" /* PUBLIC */));
+    instance.registerVersion(name, version);
+}
+registerPerformance(firebase__default['default']);
+
+exports.registerPerformance = registerPerformance;
+//# sourceMappingURL=index.cjs.js.map
+
+
+/***/ }),
+
+/***/ "../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js":
+/*!**********************************************************************!*\
+  !*** ../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js ***!
+  \**********************************************************************/
+/*! exports provided: default, ErrorCode, EventType, WebChannel, XhrIo, createWebChannelTransport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorCode", function() { return ErrorCode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventType", function() { return EventType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebChannel", function() { return WebChannel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XhrIo", function() { return XhrIo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createWebChannelTransport", function() { return createWebChannelTransport; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+var g, goog = goog || {}, k = commonjsGlobal || self;
+function aa() { }
+function ba(a) { var b = typeof a; return "object" != b ? b : a ? Array.isArray(a) ? "array" : b : "null"; }
+function ca(a) { var b = ba(a); return "array" == b || "object" == b && "number" == typeof a.length; }
+function n(a) { var b = typeof a; return "object" == b && null != a || "function" == b; }
+function da(a) { return Object.prototype.hasOwnProperty.call(a, ea) && a[ea] || (a[ea] = ++fa); }
+var ea = "closure_uid_" + (1E9 * Math.random() >>> 0), fa = 0;
+function ha(a, b, c) { return a.call.apply(a.bind, arguments); }
+function ja(a, b, c) { if (!a)
+    throw Error(); if (2 < arguments.length) {
+    var d = Array.prototype.slice.call(arguments, 2);
+    return function () { var e = Array.prototype.slice.call(arguments); Array.prototype.unshift.apply(e, d); return a.apply(b, e); };
+} return function () { return a.apply(b, arguments); }; }
+function p(a, b, c) { Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf("native code") ? p = ha : p = ja; return p.apply(null, arguments); }
+function ka(a, b) { var c = Array.prototype.slice.call(arguments, 1); return function () { var d = c.slice(); d.push.apply(d, arguments); return a.apply(this, d); }; }
+var q = Date.now;
+function r(a, b) { function c() { } c.prototype = b.prototype; a.S = b.prototype; a.prototype = new c; a.prototype.constructor = a; }
+function u() { this.j = this.j; this.i = this.i; }
+var la = 0;
+u.prototype.j = !1;
+u.prototype.ja = function () { if (!this.j && (this.j = !0, this.G(), 0 != la)) {
+    var a = da(this);
+} };
+u.prototype.G = function () { if (this.i)
+    for (; this.i.length;)
+        this.i.shift()(); };
+var na = Array.prototype.indexOf ? function (a, b) { return Array.prototype.indexOf.call(a, b, void 0); } : function (a, b) { if ("string" === typeof a)
+    return "string" !== typeof b || 1 != b.length ? -1 : a.indexOf(b, 0); for (var c = 0; c < a.length; c++)
+    if (c in a && a[c] === b)
+        return c; return -1; }, oa = Array.prototype.forEach ? function (a, b, c) { Array.prototype.forEach.call(a, b, c); } : function (a, b, c) { for (var d = a.length, e = "string" === typeof a ? a.split("") : a, f = 0; f < d; f++)
+    f in e && b.call(c, e[f], f, a); };
+function pa(a) { a: {
+    var b = qa;
+    for (var c = a.length, d = "string" === typeof a ? a.split("") : a, e = 0; e < c; e++)
+        if (e in d && b.call(void 0, d[e], e, a)) {
+            b = e;
+            break a;
+        }
+    b = -1;
+} return 0 > b ? null : "string" === typeof a ? a.charAt(b) : a[b]; }
+function ra(a) { return Array.prototype.concat.apply([], arguments); }
+function sa(a) { var b = a.length; if (0 < b) {
+    for (var c = Array(b), d = 0; d < b; d++)
+        c[d] = a[d];
+    return c;
+} return []; }
+function ta(a) { return /^[\s\xa0]*$/.test(a); }
+var ua = String.prototype.trim ? function (a) { return a.trim(); } : function (a) { return /^[\s\xa0]*([\s\S]*?)[\s\xa0]*$/.exec(a)[1]; };
+function v(a, b) { return -1 != a.indexOf(b); }
+function xa(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
+var w;
+a: {
+    var ya = k.navigator;
+    if (ya) {
+        var za = ya.userAgent;
+        if (za) {
+            w = za;
+            break a;
+        }
+    }
+    w = "";
+}
+function Aa(a, b, c) { for (var d in a)
+    b.call(c, a[d], d, a); }
+function Ba(a) { var b = {}; for (var c in a)
+    b[c] = a[c]; return b; }
+var Ca = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
+function Da(a, b) { var c, d; for (var e = 1; e < arguments.length; e++) {
+    d = arguments[e];
+    for (c in d)
+        a[c] = d[c];
+    for (var f = 0; f < Ca.length; f++)
+        c = Ca[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
+} }
+function Ea(a) { Ea[" "](a); return a; }
+Ea[" "] = aa;
+function Fa(a, b) { var c = Ga; return Object.prototype.hasOwnProperty.call(c, a) ? c[a] : c[a] = b(a); }
+var Ha = v(w, "Opera"), x = v(w, "Trident") || v(w, "MSIE"), Ia = v(w, "Edge"), Ja = Ia || x, Ka = v(w, "Gecko") && !(v(w.toLowerCase(), "webkit") && !v(w, "Edge")) && !(v(w, "Trident") || v(w, "MSIE")) && !v(w, "Edge"), La = v(w.toLowerCase(), "webkit") && !v(w, "Edge");
+function Ma() { var a = k.document; return a ? a.documentMode : void 0; }
+var Na;
+a: {
+    var Oa = "", Pa = function () { var a = w; if (Ka)
+        return /rv:([^\);]+)(\)|;)/.exec(a); if (Ia)
+        return /Edge\/([\d\.]+)/.exec(a); if (x)
+        return /\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a); if (La)
+        return /WebKit\/(\S+)/.exec(a); if (Ha)
+        return /(?:Version)[ \/]?(\S+)/.exec(a); }();
+    Pa && (Oa = Pa ? Pa[1] : "");
+    if (x) {
+        var Qa = Ma();
+        if (null != Qa && Qa > parseFloat(Oa)) {
+            Na = String(Qa);
+            break a;
+        }
+    }
+    Na = Oa;
+}
+var Ga = {};
+function Ra(a) { return Fa(a, function () { {
+    var b = 0;
+    var e = ua(String(Na)).split("."), f = ua(String(a)).split("."), h = Math.max(e.length, f.length);
+    for (var m = 0; 0 == b && m < h; m++) {
+        var c = e[m] || "", d = f[m] || "";
+        do {
+            c = /(\d*)(\D*)(.*)/.exec(c) || ["", "", "", ""];
+            d = /(\d*)(\D*)(.*)/.exec(d) || ["", "", "", ""];
+            if (0 == c[0].length && 0 == d[0].length)
+                break;
+            b = xa(0 == c[1].length ? 0 : parseInt(c[1], 10), 0 == d[1].length ? 0 : parseInt(d[1], 10)) || xa(0 == c[2].length, 0 == d[2].length) || xa(c[2], d[2]);
+            c = c[3];
+            d = d[3];
+        } while (0 == b);
+    }
+} return 0 <= b; }); }
+var Sa;
+if (k.document && x) {
+    var Ta = Ma();
+    Sa = Ta ? Ta : parseInt(Na, 10) || void 0;
+}
+else
+    Sa = void 0;
+var Ua = Sa;
+var Va = !x || 9 <= Number(Ua), Wa = x && !Ra("9"), Xa = function () { if (!k.addEventListener || !Object.defineProperty)
+    return !1; var a = !1, b = Object.defineProperty({}, "passive", { get: function () { a = !0; } }); try {
+    k.addEventListener("test", aa, b), k.removeEventListener("test", aa, b);
+}
+catch (c) { } return a; }();
+function y(a, b) { this.type = a; this.a = this.target = b; this.defaultPrevented = !1; }
+y.prototype.b = function () { this.defaultPrevented = !0; };
+function A(a, b) {
+    y.call(this, a ? a.type : "");
+    this.relatedTarget = this.a = this.target = null;
+    this.button = this.screenY = this.screenX = this.clientY = this.clientX = 0;
+    this.key = "";
+    this.metaKey = this.shiftKey = this.altKey = this.ctrlKey = !1;
+    this.pointerId = 0;
+    this.pointerType = "";
+    this.c = null;
+    if (a) {
+        var c = this.type = a.type, d = a.changedTouches && a.changedTouches.length ? a.changedTouches[0] : null;
+        this.target = a.target || a.srcElement;
+        this.a = b;
+        if (b = a.relatedTarget) {
+            if (Ka) {
+                a: {
+                    try {
+                        Ea(b.nodeName);
+                        var e = !0;
+                        break a;
+                    }
+                    catch (f) { }
+                    e = !1;
+                }
+                e || (b = null);
+            }
+        }
+        else
+            "mouseover" ==
+                c ? b = a.fromElement : "mouseout" == c && (b = a.toElement);
+        this.relatedTarget = b;
+        d ? (this.clientX = void 0 !== d.clientX ? d.clientX : d.pageX, this.clientY = void 0 !== d.clientY ? d.clientY : d.pageY, this.screenX = d.screenX || 0, this.screenY = d.screenY || 0) : (this.clientX = void 0 !== a.clientX ? a.clientX : a.pageX, this.clientY = void 0 !== a.clientY ? a.clientY : a.pageY, this.screenX = a.screenX || 0, this.screenY = a.screenY || 0);
+        this.button = a.button;
+        this.key = a.key || "";
+        this.ctrlKey = a.ctrlKey;
+        this.altKey = a.altKey;
+        this.shiftKey = a.shiftKey;
+        this.metaKey =
+            a.metaKey;
+        this.pointerId = a.pointerId || 0;
+        this.pointerType = "string" === typeof a.pointerType ? a.pointerType : Ya[a.pointerType] || "";
+        this.c = a;
+        a.defaultPrevented && this.b();
+    }
+}
+r(A, y);
+var Ya = { 2: "touch", 3: "pen", 4: "mouse" };
+A.prototype.b = function () { A.S.b.call(this); var a = this.c; if (a.preventDefault)
+    a.preventDefault();
+else if (a.returnValue = !1, Wa)
+    try {
+        if (a.ctrlKey || 112 <= a.keyCode && 123 >= a.keyCode)
+            a.keyCode = -1;
+    }
+    catch (b) { } };
+var C = "closure_listenable_" + (1E6 * Math.random() | 0), Za = 0;
+function $a(a, b, c, d, e) { this.listener = a; this.proxy = null; this.src = b; this.type = c; this.capture = !!d; this.ca = e; this.key = ++Za; this.Y = this.Z = !1; }
+function ab(a) { a.Y = !0; a.listener = null; a.proxy = null; a.src = null; a.ca = null; }
+function bb(a) { this.src = a; this.a = {}; this.b = 0; }
+bb.prototype.add = function (a, b, c, d, e) { var f = a.toString(); a = this.a[f]; a || (a = this.a[f] = [], this.b++); var h = cb(a, b, d, e); -1 < h ? (b = a[h], c || (b.Z = !1)) : (b = new $a(b, this.src, f, !!d, e), b.Z = c, a.push(b)); return b; };
+function db(a, b) { var c = b.type; if (c in a.a) {
+    var d = a.a[c], e = na(d, b), f;
+    (f = 0 <= e) && Array.prototype.splice.call(d, e, 1);
+    f && (ab(b), 0 == a.a[c].length && (delete a.a[c], a.b--));
+} }
+function cb(a, b, c, d) { for (var e = 0; e < a.length; ++e) {
+    var f = a[e];
+    if (!f.Y && f.listener == b && f.capture == !!c && f.ca == d)
+        return e;
+} return -1; }
+var eb = "closure_lm_" + (1E6 * Math.random() | 0), fb = {};
+function hb(a, b, c, d, e) { if (d && d.once)
+    return ib(a, b, c, d, e); if (Array.isArray(b)) {
+    for (var f = 0; f < b.length; f++)
+        hb(a, b[f], c, d, e);
+    return null;
+} c = jb(c); return a && a[C] ? a.va(b, c, n(d) ? !!d.capture : !!d, e) : kb(a, b, c, !1, d, e); }
+function kb(a, b, c, d, e, f) {
+    if (!b)
+        throw Error("Invalid event type");
+    var h = n(e) ? !!e.capture : !!e;
+    if (h && !Va)
+        return null;
+    var m = lb(a);
+    m || (a[eb] = m = new bb(a));
+    c = m.add(b, c, d, h, f);
+    if (c.proxy)
+        return c;
+    d = mb();
+    c.proxy = d;
+    d.src = a;
+    d.listener = c;
+    if (a.addEventListener)
+        Xa || (e = h), void 0 === e && (e = !1), a.addEventListener(b.toString(), d, e);
+    else if (a.attachEvent)
+        a.attachEvent(nb(b.toString()), d);
+    else if (a.addListener && a.removeListener)
+        a.addListener(d);
+    else
+        throw Error("addEventListener and attachEvent are unavailable.");
+    return c;
+}
+function mb() { var a = ob, b = Va ? function (c) { return a.call(b.src, b.listener, c); } : function (c) { c = a.call(b.src, b.listener, c); if (!c)
+    return c; }; return b; }
+function ib(a, b, c, d, e) { if (Array.isArray(b)) {
+    for (var f = 0; f < b.length; f++)
+        ib(a, b[f], c, d, e);
+    return null;
+} c = jb(c); return a && a[C] ? a.wa(b, c, n(d) ? !!d.capture : !!d, e) : kb(a, b, c, !0, d, e); }
+function pb(a, b, c, d, e) { if (Array.isArray(b))
+    for (var f = 0; f < b.length; f++)
+        pb(a, b[f], c, d, e);
+else
+    (d = n(d) ? !!d.capture : !!d, c = jb(c), a && a[C]) ? (a = a.c, b = String(b).toString(), b in a.a && (f = a.a[b], c = cb(f, c, d, e), -1 < c && (ab(f[c]), Array.prototype.splice.call(f, c, 1), 0 == f.length && (delete a.a[b], a.b--)))) : a && (a = lb(a)) && (b = a.a[b.toString()], a = -1, b && (a = cb(b, c, d, e)), (c = -1 < a ? b[a] : null) && rb(c)); }
+function rb(a) { if ("number" !== typeof a && a && !a.Y) {
+    var b = a.src;
+    if (b && b[C])
+        db(b.c, a);
+    else {
+        var c = a.type, d = a.proxy;
+        b.removeEventListener ? b.removeEventListener(c, d, a.capture) : b.detachEvent ? b.detachEvent(nb(c), d) : b.addListener && b.removeListener && b.removeListener(d);
+        (c = lb(b)) ? (db(c, a), 0 == c.b && (c.src = null, b[eb] = null)) : ab(a);
+    }
+} }
+function nb(a) { return a in fb ? fb[a] : fb[a] = "on" + a; }
+function sb(a, b) { var c = a.listener, d = a.ca || a.src; a.Z && rb(a); return c.call(d, b); }
+function ob(a, b) { if (a.Y)
+    return !0; if (!Va) {
+    if (!b)
+        a: {
+            b = ["window", "event"];
+            for (var c = k, d = 0; d < b.length; d++)
+                if (c = c[b[d]], null == c) {
+                    b = null;
+                    break a;
+                }
+            b = c;
+        }
+    b = new A(b, this);
+    return sb(a, b);
+} return sb(a, new A(b, this)); }
+function lb(a) { a = a[eb]; return a instanceof bb ? a : null; }
+var tb = "__closure_events_fn_" + (1E9 * Math.random() >>> 0);
+function jb(a) { if ("function" == ba(a))
+    return a; a[tb] || (a[tb] = function (b) { return a.handleEvent(b); }); return a[tb]; }
+function D() { u.call(this); this.c = new bb(this); this.J = this; this.C = null; }
+r(D, u);
+D.prototype[C] = !0;
+g = D.prototype;
+g.addEventListener = function (a, b, c, d) { hb(this, a, b, c, d); };
+g.removeEventListener = function (a, b, c, d) { pb(this, a, b, c, d); };
+g.dispatchEvent = function (a) { var b, c = this.C; if (c)
+    for (b = []; c; c = c.C)
+        b.push(c); c = this.J; var d = a.type || a; if ("string" === typeof a)
+    a = new y(a, c);
+else if (a instanceof y)
+    a.target = a.target || c;
+else {
+    var e = a;
+    a = new y(d, c);
+    Da(a, e);
+} e = !0; if (b)
+    for (var f = b.length - 1; 0 <= f; f--) {
+        var h = a.a = b[f];
+        e = ub(h, d, !0, a) && e;
+    } h = a.a = c; e = ub(h, d, !0, a) && e; e = ub(h, d, !1, a) && e; if (b)
+    for (f = 0; f < b.length; f++)
+        h = a.a = b[f], e = ub(h, d, !1, a) && e; return e; };
+g.G = function () { D.S.G.call(this); if (this.c) {
+    var a = this.c, c;
+    for (c in a.a) {
+        for (var d = a.a[c], e = 0; e < d.length; e++)
+            ab(d[e]);
+        delete a.a[c];
+        a.b--;
+    }
+} this.C = null; };
+g.va = function (a, b, c, d) { return this.c.add(String(a), b, !1, c, d); };
+g.wa = function (a, b, c, d) { return this.c.add(String(a), b, !0, c, d); };
+function ub(a, b, c, d) { b = a.c.a[String(b)]; if (!b)
+    return !0; b = b.concat(); for (var e = !0, f = 0; f < b.length; ++f) {
+    var h = b[f];
+    if (h && !h.Y && h.capture == c) {
+        var m = h.listener, l = h.ca || h.src;
+        h.Z && db(a.c, h);
+        e = !1 !== m.call(l, d) && e;
+    }
+} return e && !d.defaultPrevented; }
+var vb = k.JSON.stringify;
+function wb() { this.b = this.a = null; }
+var yb = new /** @class */ (function () {
+    function class_1(a, b, c) {
+        this.f = c;
+        this.c = a;
+        this.g = b;
+        this.b = 0;
+        this.a = null;
+    }
+    class_1.prototype.get = function () { var a; 0 < this.b ? (this.b--, a = this.a, this.a = a.next, a.next = null) : a = this.c(); return a; };
+    return class_1;
+}())(function () { return new xb; }, function (a) { a.reset(); }, 100);
+wb.prototype.add = function (a, b) { var c = yb.get(); c.set(a, b); this.b ? this.b.next = c : this.a = c; this.b = c; };
+function zb() { var a = Ab, b = null; a.a && (b = a.a, a.a = a.a.next, a.a || (a.b = null), b.next = null); return b; }
+function xb() { this.next = this.b = this.a = null; }
+xb.prototype.set = function (a, b) { this.a = a; this.b = b; this.next = null; };
+xb.prototype.reset = function () { this.next = this.b = this.a = null; };
+function Bb(a) { k.setTimeout(function () { throw a; }, 0); }
+function Cb(a, b) { Db || Eb(); Fb || (Db(), Fb = !0); Ab.add(a, b); }
+var Db;
+function Eb() { var a = k.Promise.resolve(void 0); Db = function () { a.then(Gb); }; }
+var Fb = !1, Ab = new wb;
+function Gb() { for (var a; a = zb();) {
+    try {
+        a.a.call(a.b);
+    }
+    catch (c) {
+        Bb(c);
+    }
+    var b = yb;
+    b.g(a);
+    b.b < b.f && (b.b++, a.next = b.a, b.a = a);
+} Fb = !1; }
+function Hb(a, b) { D.call(this); this.b = a || 1; this.a = b || k; this.f = p(this.Ya, this); this.g = q(); }
+r(Hb, D);
+g = Hb.prototype;
+g.aa = !1;
+g.M = null;
+g.Ya = function () { if (this.aa) {
+    var a = q() - this.g;
+    0 < a && a < .8 * this.b ? this.M = this.a.setTimeout(this.f, this.b - a) : (this.M && (this.a.clearTimeout(this.M), this.M = null), this.dispatchEvent("tick"), this.aa && (Ib(this), this.start()));
+} };
+g.start = function () { this.aa = !0; this.M || (this.M = this.a.setTimeout(this.f, this.b), this.g = q()); };
+function Ib(a) { a.aa = !1; a.M && (a.a.clearTimeout(a.M), a.M = null); }
+g.G = function () { Hb.S.G.call(this); Ib(this); delete this.a; };
+function Jb(a, b, c) { if ("function" == ba(a))
+    c && (a = p(a, c));
+else if (a && "function" == typeof a.handleEvent)
+    a = p(a.handleEvent, a);
+else
+    throw Error("Invalid listener argument"); return 2147483647 < Number(b) ? -1 : k.setTimeout(a, b || 0); }
+function Kb(a) { a.a = Jb(function () { a.a = null; a.c && (a.c = !1, Kb(a)); }, a.h); var b = a.b; a.b = null; a.g.apply(null, b); }
+var Lb = /** @class */ (function (_super) {
+    __extends(Lb, _super);
+    function Lb(a, b, c) {
+        var _this = _super.call(this) || this;
+        _this.g = null != c ? a.bind(c) : a;
+        _this.h = b;
+        _this.b = null;
+        _this.c = !1;
+        _this.a = null;
+        return _this;
+    }
+    Lb.prototype.f = function (a) { this.b = arguments; this.a ? this.c = !0 : Kb(this); };
+    Lb.prototype.G = function () { _super.prototype.G.call(this); this.a && (k.clearTimeout(this.a), this.a = null, this.c = !1, this.b = null); };
+    return Lb;
+}(u));
+function E(a) { u.call(this); this.b = a; this.a = {}; }
+r(E, u);
+var Mb = [];
+function Nb(a, b, c, d) { Array.isArray(c) || (c && (Mb[0] = c.toString()), c = Mb); for (var e = 0; e < c.length; e++) {
+    var f = hb(b, c[e], d || a.handleEvent, !1, a.b || a);
+    if (!f)
+        break;
+    a.a[f.key] = f;
+} }
+function Ob(a) { Aa(a.a, function (b, c) { this.a.hasOwnProperty(c) && rb(b); }, a); a.a = {}; }
+E.prototype.G = function () { E.S.G.call(this); Ob(this); };
+E.prototype.handleEvent = function () { throw Error("EventHandler.handleEvent not implemented"); };
+function Pb() { this.a = !0; }
+function Qb(a, b, c, d, e, f) { a.info(function () { if (a.a)
+    if (f) {
+        var h = "";
+        for (var m = f.split("&"), l = 0; l < m.length; l++) {
+            var t = m[l].split("=");
+            if (1 < t.length) {
+                var B = t[0];
+                t = t[1];
+                var z = B.split("_");
+                h = 2 <= z.length && "type" == z[1] ? h + (B + "=" + t + "&") : h + (B + "=redacted&");
+            }
+        }
+    }
+    else
+        h = null;
+else
+    h = f; return "XMLHTTP REQ (" + d + ") [attempt " + e + "]: " + b + "\n" + c + "\n" + h; }); }
+function Rb(a, b, c, d, e, f, h) { a.info(function () { return "XMLHTTP RESP (" + d + ") [ attempt " + e + "]: " + b + "\n" + c + "\n" + f + " " + h; }); }
+function F(a, b, c, d) { a.info(function () { return "XMLHTTP TEXT (" + b + "): " + Sb(a, c) + (d ? " " + d : ""); }); }
+function Tb(a, b) { a.info(function () { return "TIMEOUT: " + b; }); }
+Pb.prototype.info = function () { };
+function Sb(a, b) { if (!a.a)
+    return b; if (!b)
+    return null; try {
+    var c = JSON.parse(b);
+    if (c)
+        for (a = 0; a < c.length; a++)
+            if (Array.isArray(c[a])) {
+                var d = c[a];
+                if (!(2 > d.length)) {
+                    var e = d[1];
+                    if (Array.isArray(e) && !(1 > e.length)) {
+                        var f = e[0];
+                        if ("noop" != f && "stop" != f && "close" != f)
+                            for (var h = 1; h < e.length; h++)
+                                e[h] = "";
+                    }
+                }
+            }
+    return vb(c);
+}
+catch (m) {
+    return b;
+} }
+var Ub = null;
+function Vb() { return Ub = Ub || new D; }
+function Wb(a) { y.call(this, "serverreachability", a); }
+r(Wb, y);
+function G(a) { var b = Vb(); b.dispatchEvent(new Wb(b, a)); }
+function Xb(a) { y.call(this, "statevent", a); }
+r(Xb, y);
+function H(a) { var b = Vb(); b.dispatchEvent(new Xb(b, a)); }
+function Yb(a) { y.call(this, "timingevent", a); }
+r(Yb, y);
+function I(a, b) { if ("function" != ba(a))
+    throw Error("Fn must not be null and must be a function"); return k.setTimeout(function () { a(); }, b); }
+var Zb = { NO_ERROR: 0, Za: 1, gb: 2, fb: 3, bb: 4, eb: 5, hb: 6, Da: 7, TIMEOUT: 8, kb: 9 };
+var $b = { ab: "complete", ob: "success", Ea: "error", Da: "abort", mb: "ready", nb: "readystatechange", TIMEOUT: "timeout", ib: "incrementaldata", lb: "progress", cb: "downloadprogress", pb: "uploadprogress" };
+function ac() { }
+ac.prototype.a = null;
+function bc(a) { var b; (b = a.a) || (b = a.a = {}); return b; }
+function cc() { }
+var J = { OPEN: "a", $a: "b", Ea: "c", jb: "d" };
+function dc() { y.call(this, "d"); }
+r(dc, y);
+function ec() { y.call(this, "c"); }
+r(ec, y);
+var fc;
+function gc() { }
+r(gc, ac);
+fc = new gc;
+function K(a, b, c, d) { this.g = a; this.c = b; this.f = c; this.T = d || 1; this.J = new E(this); this.P = hc; a = Ja ? 125 : void 0; this.R = new Hb(a); this.B = null; this.b = !1; this.j = this.l = this.i = this.H = this.u = this.U = this.o = null; this.s = []; this.a = null; this.D = 0; this.h = this.m = null; this.N = -1; this.A = !1; this.O = 0; this.F = null; this.W = this.C = this.V = this.I = !1; }
+var hc = 45E3, ic = {}, jc = {};
+g = K.prototype;
+g.setTimeout = function (a) { this.P = a; };
+function kc(a, b, c) { a.H = 1; a.i = lc(L(b)); a.j = c; a.I = !0; mc(a, null); }
+function mc(a, b) { a.u = q(); M(a); a.l = L(a.i); var c = a.l, d = a.T; Array.isArray(d) || (d = [String(d)]); nc(c.b, "t", d); a.D = 0; a.a = oc(a.g, a.g.C ? b : null); 0 < a.O && (a.F = new Lb(p(a.Ca, a, a.a), a.O)); Nb(a.J, a.a, "readystatechange", a.Wa); b = a.B ? Ba(a.B) : {}; a.j ? (a.m || (a.m = "POST"), b["Content-Type"] = "application/x-www-form-urlencoded", a.a.ba(a.l, a.m, a.j, b)) : (a.m = "GET", a.a.ba(a.l, a.m, null, b)); G(1); Qb(a.c, a.m, a.l, a.f, a.T, a.j); }
+g.Wa = function (a) { a = a.target; var b = this.F; b && 3 == N(a) ? b.f() : this.Ca(a); };
+g.Ca = function (a) {
+    try {
+        if (a == this.a)
+            a: {
+                var b = N(this.a), c = this.a.ua(), d = this.a.X();
+                if (!(3 > b || 3 == b && !Ja && !this.a.$())) {
+                    this.A || 4 != b || 7 == c || (8 == c || 0 >= d ? G(3) : G(2));
+                    pc(this);
+                    var e = this.a.X();
+                    this.N = e;
+                    var f = this.a.$();
+                    this.b = 200 == e;
+                    Rb(this.c, this.m, this.l, this.f, this.T, b, e);
+                    if (this.b) {
+                        if (this.V && !this.C) {
+                            b: {
+                                if (this.a) {
+                                    var h, m = this.a;
+                                    if ((h = m.a ? m.a.getResponseHeader("X-HTTP-Initial-Response") : null) && !ta(h)) {
+                                        var l = h;
+                                        break b;
+                                    }
+                                }
+                                l = null;
+                            }
+                            if (l)
+                                F(this.c, this.f, l, "Initial handshake response via X-HTTP-Initial-Response"),
+                                    this.C = !0, qc(this, l);
+                            else {
+                                this.b = !1;
+                                this.h = 3;
+                                H(12);
+                                O(this);
+                                rc(this);
+                                break a;
+                            }
+                        }
+                        this.I ? (tc(this, b, f), Ja && this.b && 3 == b && (Nb(this.J, this.R, "tick", this.Va), this.R.start())) : (F(this.c, this.f, f, null), qc(this, f));
+                        4 == b && O(this);
+                        this.b && !this.A && (4 == b ? uc(this.g, this) : (this.b = !1, M(this)));
+                    }
+                    else
+                        400 == e && 0 < f.indexOf("Unknown SID") ? (this.h = 3, H(12)) : (this.h = 0, H(13)), O(this), rc(this);
+                }
+            }
+    }
+    catch (t) { }
+    finally { }
+};
+function tc(a, b, c) { for (var d = !0; !a.A && a.D < c.length;) {
+    var e = vc(a, c);
+    if (e == jc) {
+        4 == b && (a.h = 4, H(14), d = !1);
+        F(a.c, a.f, null, "[Incomplete Response]");
+        break;
+    }
+    else if (e == ic) {
+        a.h = 4;
+        H(15);
+        F(a.c, a.f, c, "[Invalid Chunk]");
+        d = !1;
+        break;
+    }
+    else
+        F(a.c, a.f, e, null), qc(a, e);
+} 4 == b && 0 == c.length && (a.h = 1, H(16), d = !1); a.b = a.b && d; d ? 0 < c.length && !a.W && (a.W = !0, b = a.g, b.a == a && b.V && !b.F && (b.c.info("Great, no buffering proxy detected. Bytes received: " + c.length), xc(b), b.F = !0)) : (F(a.c, a.f, c, "[Invalid Chunked Response]"), O(a), rc(a)); }
+g.Va = function () { if (this.a) {
+    var a = N(this.a), b = this.a.$();
+    this.D < b.length && (pc(this), tc(this, a, b), this.b && 4 != a && M(this));
+} };
+function vc(a, b) { var c = a.D, d = b.indexOf("\n", c); if (-1 == d)
+    return jc; c = Number(b.substring(c, d)); if (isNaN(c))
+    return ic; d += 1; if (d + c > b.length)
+    return jc; b = b.substr(d, c); a.D = d + c; return b; }
+g.cancel = function () { this.A = !0; O(this); };
+function M(a) { a.U = q() + a.P; yc(a, a.P); }
+function yc(a, b) { if (null != a.o)
+    throw Error("WatchDog timer not null"); a.o = I(p(a.Ua, a), b); }
+function pc(a) { a.o && (k.clearTimeout(a.o), a.o = null); }
+g.Ua = function () { this.o = null; var a = q(); 0 <= a - this.U ? (Tb(this.c, this.l), 2 != this.H && (G(3), H(17)), O(this), this.h = 2, rc(this)) : yc(this, this.U - a); };
+function rc(a) { 0 == a.g.v || a.A || uc(a.g, a); }
+function O(a) { pc(a); var b = a.F; b && "function" == typeof b.ja && b.ja(); a.F = null; Ib(a.R); Ob(a.J); a.a && (b = a.a, a.a = null, b.abort(), b.ja()); }
+function qc(a, b) {
+    try {
+        var c = a.g;
+        if (0 != c.v && (c.a == a || zc(c.b, a)))
+            if (c.I = a.N, !a.C && zc(c.b, a) && 3 == c.v) {
+                try {
+                    var d = c.ka.a.parse(b);
+                }
+                catch (sc) {
+                    d = null;
+                }
+                if (Array.isArray(d) && 3 == d.length) {
+                    var e = d;
+                    if (0 == e[0])
+                        a: {
+                            if (!c.j) {
+                                if (c.a)
+                                    if (c.a.u + 3E3 < a.u)
+                                        Ac(c), Bc(c);
+                                    else
+                                        break a;
+                                Cc(c);
+                                H(18);
+                            }
+                        }
+                    else
+                        c.oa = e[1], 0 < c.oa - c.P && 37500 > e[2] && c.H && 0 == c.o && !c.m && (c.m = I(p(c.Ra, c), 6E3));
+                    if (1 >= Dc(c.b) && c.ea) {
+                        try {
+                            c.ea();
+                        }
+                        catch (sc) { }
+                        c.ea = void 0;
+                    }
+                }
+                else
+                    P(c, 11);
+            }
+            else if ((a.C || c.a == a) && Ac(c), !ta(b))
+                for (b = d = c.ka.a.parse(b), d = 0; d < b.length; d++)
+                    if (e =
+                        b[d], c.P = e[0], e = e[1], 2 == c.v)
+                        if ("c" == e[0]) {
+                            c.J = e[1];
+                            c.ga = e[2];
+                            var f = e[3];
+                            null != f && (c.ha = f, c.c.info("VER=" + c.ha));
+                            var h = e[4];
+                            null != h && (c.pa = h, c.c.info("SVER=" + c.pa));
+                            var m = e[5];
+                            if (null != m && "number" === typeof m && 0 < m) {
+                                var l = 1.5 * m;
+                                c.D = l;
+                                c.c.info("backChannelRequestTimeoutMs_=" + l);
+                            }
+                            l = c;
+                            var t = a.a;
+                            if (t) {
+                                var B = t.a ? t.a.getResponseHeader("X-Client-Wire-Protocol") : null;
+                                if (B) {
+                                    var z = l.b;
+                                    !z.a && (v(B, "spdy") || v(B, "quic") || v(B, "h2")) && (z.f = z.g, z.a = new Set, z.b && (Ec(z, z.b), z.b = null));
+                                }
+                                if (l.A) {
+                                    var qb = t.a ? t.a.getResponseHeader("X-HTTP-Session-Id") :
+                                        null;
+                                    qb && (l.na = qb, Q(l.B, l.A, qb));
+                                }
+                            }
+                            c.v = 3;
+                            c.f && c.f.ta();
+                            c.V && (c.N = q() - a.u, c.c.info("Handshake RTT: " + c.N + "ms"));
+                            l = c;
+                            var va = a;
+                            l.la = Fc(l, l.C ? l.ga : null, l.fa);
+                            if (va.C) {
+                                Gc(l.b, va);
+                                var wa = va, wc = l.D;
+                                wc && wa.setTimeout(wc);
+                                wa.o && (pc(wa), M(wa));
+                                l.a = va;
+                            }
+                            else
+                                Hc(l);
+                            0 < c.g.length && Ic(c);
+                        }
+                        else
+                            "stop" != e[0] && "close" != e[0] || P(c, 7);
+                    else
+                        3 == c.v && ("stop" == e[0] || "close" == e[0] ? "stop" == e[0] ? P(c, 7) : Jc(c) : "noop" != e[0] && c.f && c.f.sa(e), c.o = 0);
+        G(4);
+    }
+    catch (sc) { }
+}
+function Kc(a) { if (a.K && "function" == typeof a.K)
+    return a.K(); if ("string" === typeof a)
+    return a.split(""); if (ca(a)) {
+    for (var b = [], c = a.length, d = 0; d < c; d++)
+        b.push(a[d]);
+    return b;
+} b = []; c = 0; for (d in a)
+    b[c++] = a[d]; return a = b; }
+function Lc(a, b) { if (a.forEach && "function" == typeof a.forEach)
+    a.forEach(b, void 0);
+else if (ca(a) || "string" === typeof a)
+    oa(a, b, void 0);
+else {
+    if (a.L && "function" == typeof a.L)
+        var c = a.L();
+    else if (a.K && "function" == typeof a.K)
+        c = void 0;
+    else if (ca(a) || "string" === typeof a) {
+        c = [];
+        for (var d = a.length, e = 0; e < d; e++)
+            c.push(e);
+    }
+    else
+        for (e in c = [], d = 0, a)
+            c[d++] = e;
+    d = Kc(a);
+    e = d.length;
+    for (var f = 0; f < e; f++)
+        b.call(void 0, d[f], c && c[f], a);
+} }
+function R(a, b) { this.b = {}; this.a = []; this.c = 0; var c = arguments.length; if (1 < c) {
+    if (c % 2)
+        throw Error("Uneven number of arguments");
+    for (var d = 0; d < c; d += 2)
+        this.set(arguments[d], arguments[d + 1]);
+}
+else if (a)
+    if (a instanceof R)
+        for (c = a.L(), d = 0; d < c.length; d++)
+            this.set(c[d], a.get(c[d]));
+    else
+        for (d in a)
+            this.set(d, a[d]); }
+g = R.prototype;
+g.K = function () { Mc(this); for (var a = [], b = 0; b < this.a.length; b++)
+    a.push(this.b[this.a[b]]); return a; };
+g.L = function () { Mc(this); return this.a.concat(); };
+function Mc(a) { if (a.c != a.a.length) {
+    for (var b = 0, c = 0; b < a.a.length;) {
+        var d = a.a[b];
+        S(a.b, d) && (a.a[c++] = d);
+        b++;
+    }
+    a.a.length = c;
+} if (a.c != a.a.length) {
+    var e = {};
+    for (c = b = 0; b < a.a.length;)
+        d = a.a[b], S(e, d) || (a.a[c++] = d, e[d] = 1), b++;
+    a.a.length = c;
+} }
+g.get = function (a, b) { return S(this.b, a) ? this.b[a] : b; };
+g.set = function (a, b) { S(this.b, a) || (this.c++, this.a.push(a)); this.b[a] = b; };
+g.forEach = function (a, b) { for (var c = this.L(), d = 0; d < c.length; d++) {
+    var e = c[d], f = this.get(e);
+    a.call(b, f, e, this);
+} };
+function S(a, b) { return Object.prototype.hasOwnProperty.call(a, b); }
+var Nc = /^(?:([^:/?#.]+):)?(?:\/\/(?:([^\\/?#]*)@)?([^\\/?#]*?)(?::([0-9]+))?(?=[\\/?#]|$))?([^?#]+)?(?:\?([^#]*))?(?:#([\s\S]*))?$/;
+function Oc(a, b) { if (a) {
+    a = a.split("&");
+    for (var c = 0; c < a.length; c++) {
+        var d = a[c].indexOf("="), e = null;
+        if (0 <= d) {
+            var f = a[c].substring(0, d);
+            e = a[c].substring(d + 1);
+        }
+        else
+            f = a[c];
+        b(f, e ? decodeURIComponent(e.replace(/\+/g, " ")) : "");
+    }
+} }
+function T(a, b) { this.c = this.j = this.f = ""; this.h = null; this.i = this.g = ""; this.a = !1; if (a instanceof T) {
+    this.a = void 0 !== b ? b : a.a;
+    Pc(this, a.f);
+    this.j = a.j;
+    Qc(this, a.c);
+    Rc(this, a.h);
+    this.g = a.g;
+    b = a.b;
+    var c = new U;
+    c.c = b.c;
+    b.a && (c.a = new R(b.a), c.b = b.b);
+    Sc(this, c);
+    this.i = a.i;
+}
+else
+    a && (c = String(a).match(Nc)) ? (this.a = !!b, Pc(this, c[1] || "", !0), this.j = Tc(c[2] || ""), Qc(this, c[3] || "", !0), Rc(this, c[4]), this.g = Tc(c[5] || "", !0), Sc(this, c[6] || "", !0), this.i = Tc(c[7] || "")) : (this.a = !!b, this.b = new U(null, this.a)); }
+T.prototype.toString = function () { var a = [], b = this.f; b && a.push(Uc(b, Vc, !0), ":"); var c = this.c; if (c || "file" == b)
+    a.push("//"), (b = this.j) && a.push(Uc(b, Vc, !0), "@"), a.push(encodeURIComponent(String(c)).replace(/%25([0-9a-fA-F]{2})/g, "%$1")), c = this.h, null != c && a.push(":", String(c)); if (c = this.g)
+    this.c && "/" != c.charAt(0) && a.push("/"), a.push(Uc(c, "/" == c.charAt(0) ? Wc : Xc, !0)); (c = this.b.toString()) && a.push("?", c); (c = this.i) && a.push("#", Uc(c, Yc)); return a.join(""); };
+function L(a) { return new T(a); }
+function Pc(a, b, c) { a.f = c ? Tc(b, !0) : b; a.f && (a.f = a.f.replace(/:$/, "")); }
+function Qc(a, b, c) { a.c = c ? Tc(b, !0) : b; }
+function Rc(a, b) { if (b) {
+    b = Number(b);
+    if (isNaN(b) || 0 > b)
+        throw Error("Bad port number " + b);
+    a.h = b;
+}
+else
+    a.h = null; }
+function Sc(a, b, c) { b instanceof U ? (a.b = b, Zc(a.b, a.a)) : (c || (b = Uc(b, $c)), a.b = new U(b, a.a)); }
+function Q(a, b, c) { a.b.set(b, c); }
+function lc(a) { Q(a, "zx", Math.floor(2147483648 * Math.random()).toString(36) + Math.abs(Math.floor(2147483648 * Math.random()) ^ q()).toString(36)); return a; }
+function ad(a) { return a instanceof T ? L(a) : new T(a, void 0); }
+function bd(a, b, c, d) { var e = new T(null, void 0); a && Pc(e, a); b && Qc(e, b); c && Rc(e, c); d && (e.g = d); return e; }
+function Tc(a, b) { return a ? b ? decodeURI(a.replace(/%25/g, "%2525")) : decodeURIComponent(a) : ""; }
+function Uc(a, b, c) { return "string" === typeof a ? (a = encodeURI(a).replace(b, cd), c && (a = a.replace(/%25([0-9a-fA-F]{2})/g, "%$1")), a) : null; }
+function cd(a) { a = a.charCodeAt(0); return "%" + (a >> 4 & 15).toString(16) + (a & 15).toString(16); }
+var Vc = /[#\/\?@]/g, Xc = /[#\?:]/g, Wc = /[#\?]/g, $c = /[#\?@]/g, Yc = /#/g;
+function U(a, b) { this.b = this.a = null; this.c = a || null; this.f = !!b; }
+function V(a) { a.a || (a.a = new R, a.b = 0, a.c && Oc(a.c, function (b, c) { a.add(decodeURIComponent(b.replace(/\+/g, " ")), c); })); }
+g = U.prototype;
+g.add = function (a, b) { V(this); this.c = null; a = W(this, a); var c = this.a.get(a); c || this.a.set(a, c = []); c.push(b); this.b += 1; return this; };
+function dd(a, b) { V(a); b = W(a, b); S(a.a.b, b) && (a.c = null, a.b -= a.a.get(b).length, a = a.a, S(a.b, b) && (delete a.b[b], a.c--, a.a.length > 2 * a.c && Mc(a))); }
+function ed(a, b) { V(a); b = W(a, b); return S(a.a.b, b); }
+g.forEach = function (a, b) { V(this); this.a.forEach(function (c, d) { oa(c, function (e) { a.call(b, e, d, this); }, this); }, this); };
+g.L = function () { V(this); for (var a = this.a.K(), b = this.a.L(), c = [], d = 0; d < b.length; d++)
+    for (var e = a[d], f = 0; f < e.length; f++)
+        c.push(b[d]); return c; };
+g.K = function (a) { V(this); var b = []; if ("string" === typeof a)
+    ed(this, a) && (b = ra(b, this.a.get(W(this, a))));
+else {
+    a = this.a.K();
+    for (var c = 0; c < a.length; c++)
+        b = ra(b, a[c]);
+} return b; };
+g.set = function (a, b) { V(this); this.c = null; a = W(this, a); ed(this, a) && (this.b -= this.a.get(a).length); this.a.set(a, [b]); this.b += 1; return this; };
+g.get = function (a, b) { if (!a)
+    return b; a = this.K(a); return 0 < a.length ? String(a[0]) : b; };
+function nc(a, b, c) { dd(a, b); 0 < c.length && (a.c = null, a.a.set(W(a, b), sa(c)), a.b += c.length); }
+g.toString = function () { if (this.c)
+    return this.c; if (!this.a)
+    return ""; for (var a = [], b = this.a.L(), c = 0; c < b.length; c++) {
+    var d = b[c], e = encodeURIComponent(String(d));
+    d = this.K(d);
+    for (var f = 0; f < d.length; f++) {
+        var h = e;
+        "" !== d[f] && (h += "=" + encodeURIComponent(String(d[f])));
+        a.push(h);
+    }
+} return this.c = a.join("&"); };
+function W(a, b) { b = String(b); a.f && (b = b.toLowerCase()); return b; }
+function Zc(a, b) { b && !a.f && (V(a), a.c = null, a.a.forEach(function (c, d) { var e = d.toLowerCase(); d != e && (dd(this, d), nc(this, e, c)); }, a)); a.f = b; }
+function fd(a, b) { this.b = a; this.a = b; }
+function gd(a) { this.g = a || hd; k.PerformanceNavigationTiming ? (a = k.performance.getEntriesByType("navigation"), a = 0 < a.length && ("hq" == a[0].nextHopProtocol || "h2" == a[0].nextHopProtocol)) : a = !!(k.ia && k.ia.ya && k.ia.ya() && k.ia.ya().qb); this.f = a ? this.g : 1; this.a = null; 1 < this.f && (this.a = new Set); this.b = null; this.c = []; }
+var hd = 10;
+function id(a) { return a.b ? !0 : a.a ? a.a.size >= a.f : !1; }
+function Dc(a) { return a.b ? 1 : a.a ? a.a.size : 0; }
+function zc(a, b) { return a.b ? a.b == b : a.a ? a.a.has(b) : !1; }
+function Ec(a, b) { a.a ? a.a.add(b) : a.b = b; }
+function Gc(a, b) { a.b && a.b == b ? a.b = null : a.a && a.a.has(b) && a.a.delete(b); }
+gd.prototype.cancel = function () {
+    var e_1, _a;
+    this.c = jd(this);
+    if (this.b)
+        this.b.cancel(), this.b = null;
+    else if (this.a && 0 !== this.a.size) {
+        try {
+            for (var _b = __values(this.a.values()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var a = _c.value;
+                a.cancel();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        this.a.clear();
+    }
+};
+function jd(a) {
+    var e_2, _a;
+    if (null != a.b)
+        return a.c.concat(a.b.s);
+    if (null != a.a && 0 !== a.a.size) {
+        var b = a.c;
+        try {
+            for (var _b = __values(a.a.values()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var c = _c.value;
+                b = b.concat(c.s);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        return b;
+    }
+    return sa(a.c);
+}
+function kd() { }
+kd.prototype.stringify = function (a) { return k.JSON.stringify(a, void 0); };
+kd.prototype.parse = function (a) { return k.JSON.parse(a, void 0); };
+function ld() { this.a = new kd; }
+function md(a, b, c) { var d = c || ""; try {
+    Lc(a, function (e, f) { var h = e; n(e) && (h = vb(e)); b.push(d + f + "=" + encodeURIComponent(h)); });
+}
+catch (e) {
+    throw b.push(d + "type=" + encodeURIComponent("_badmap")), e;
+} }
+function nd(a, b) { var c = new Pb; if (k.Image) {
+    var d = new Image;
+    d.onload = ka(od, c, d, "TestLoadImage: loaded", !0, b);
+    d.onerror = ka(od, c, d, "TestLoadImage: error", !1, b);
+    d.onabort = ka(od, c, d, "TestLoadImage: abort", !1, b);
+    d.ontimeout = ka(od, c, d, "TestLoadImage: timeout", !1, b);
+    k.setTimeout(function () { if (d.ontimeout)
+        d.ontimeout(); }, 1E4);
+    d.src = a;
+}
+else
+    b(!1); }
+function od(a, b, c, d, e) { try {
+    b.onload = null, b.onerror = null, b.onabort = null, b.ontimeout = null, e(d);
+}
+catch (f) { } }
+var pd = k.JSON.parse;
+function X(a) { D.call(this); this.headers = new R; this.H = a || null; this.b = !1; this.s = this.a = null; this.B = ""; this.h = 0; this.f = ""; this.g = this.A = this.l = this.u = !1; this.o = 0; this.m = null; this.I = qd; this.D = this.F = !1; }
+r(X, D);
+var qd = "", rd = /^https?$/i, sd = ["POST", "PUT"];
+g = X.prototype;
+g.ba = function (a, b, c, d) {
+    if (this.a)
+        throw Error("[goog.net.XhrIo] Object is active with another request=" + this.B + "; newUri=" + a);
+    b = b ? b.toUpperCase() : "GET";
+    this.B = a;
+    this.f = "";
+    this.h = 0;
+    this.u = !1;
+    this.b = !0;
+    this.a = new XMLHttpRequest;
+    this.s = this.H ? bc(this.H) : bc(fc);
+    this.a.onreadystatechange = p(this.za, this);
+    try {
+        this.A = !0, this.a.open(b, String(a), !0), this.A = !1;
+    }
+    catch (f) {
+        td(this, f);
+        return;
+    }
+    a = c || "";
+    var e = new R(this.headers);
+    d && Lc(d, function (f, h) { e.set(h, f); });
+    d = pa(e.L());
+    c = k.FormData && a instanceof k.FormData;
+    !(0 <=
+        na(sd, b)) || d || c || e.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    e.forEach(function (f, h) { this.a.setRequestHeader(h, f); }, this);
+    this.I && (this.a.responseType = this.I);
+    "withCredentials" in this.a && this.a.withCredentials !== this.F && (this.a.withCredentials = this.F);
+    try {
+        ud(this), 0 < this.o && ((this.D = vd(this.a)) ? (this.a.timeout = this.o, this.a.ontimeout = p(this.xa, this)) : this.m = Jb(this.xa, this.o, this)), this.l = !0, this.a.send(a), this.l = !1;
+    }
+    catch (f) {
+        td(this, f);
+    }
+};
+function vd(a) { return x && Ra(9) && "number" === typeof a.timeout && void 0 !== a.ontimeout; }
+function qa(a) { return "content-type" == a.toLowerCase(); }
+g.xa = function () { "undefined" != typeof goog && this.a && (this.f = "Timed out after " + this.o + "ms, aborting", this.h = 8, this.dispatchEvent("timeout"), this.abort(8)); };
+function td(a, b) { a.b = !1; a.a && (a.g = !0, a.a.abort(), a.g = !1); a.f = b; a.h = 5; wd(a); xd(a); }
+function wd(a) { a.u || (a.u = !0, a.dispatchEvent("complete"), a.dispatchEvent("error")); }
+g.abort = function (a) { this.a && this.b && (this.b = !1, this.g = !0, this.a.abort(), this.g = !1, this.h = a || 7, this.dispatchEvent("complete"), this.dispatchEvent("abort"), xd(this)); };
+g.G = function () { this.a && (this.b && (this.b = !1, this.g = !0, this.a.abort(), this.g = !1), xd(this, !0)); X.S.G.call(this); };
+g.za = function () { this.j || (this.A || this.l || this.g ? yd(this) : this.Ta()); };
+g.Ta = function () { yd(this); };
+function yd(a) {
+    if (a.b && "undefined" != typeof goog && (!a.s[1] || 4 != N(a) || 2 != a.X()))
+        if (a.l && 4 == N(a))
+            Jb(a.za, 0, a);
+        else if (a.dispatchEvent("readystatechange"), 4 == N(a)) {
+            a.b = !1;
+            try {
+                var b = a.X();
+                a: switch (b) {
+                    case 200:
+                    case 201:
+                    case 202:
+                    case 204:
+                    case 206:
+                    case 304:
+                    case 1223:
+                        var c = !0;
+                        break a;
+                    default: c = !1;
+                }
+                var d;
+                if (!(d = c)) {
+                    var e;
+                    if (e = 0 === b) {
+                        var f = String(a.B).match(Nc)[1] || null;
+                        if (!f && k.self && k.self.location) {
+                            var h = k.self.location.protocol;
+                            f = h.substr(0, h.length - 1);
+                        }
+                        e = !rd.test(f ? f.toLowerCase() : "");
+                    }
+                    d = e;
+                }
+                if (d)
+                    a.dispatchEvent("complete"),
+                        a.dispatchEvent("success");
+                else {
+                    a.h = 6;
+                    try {
+                        var m = 2 < N(a) ? a.a.statusText : "";
+                    }
+                    catch (l) {
+                        m = "";
+                    }
+                    a.f = m + " [" + a.X() + "]";
+                    wd(a);
+                }
+            }
+            finally {
+                xd(a);
+            }
+        }
+}
+function xd(a, b) { if (a.a) {
+    ud(a);
+    var c = a.a, d = a.s[0] ? aa : null;
+    a.a = null;
+    a.s = null;
+    b || a.dispatchEvent("ready");
+    try {
+        c.onreadystatechange = d;
+    }
+    catch (e) { }
+} }
+function ud(a) { a.a && a.D && (a.a.ontimeout = null); a.m && (k.clearTimeout(a.m), a.m = null); }
+function N(a) { return a.a ? a.a.readyState : 0; }
+g.X = function () { try {
+    return 2 < N(this) ? this.a.status : -1;
+}
+catch (a) {
+    return -1;
+} };
+g.$ = function () { try {
+    return this.a ? this.a.responseText : "";
+}
+catch (a) {
+    return "";
+} };
+g.Na = function (a) { if (this.a) {
+    var b = this.a.responseText;
+    a && 0 == b.indexOf(a) && (b = b.substring(a.length));
+    return pd(b);
+} };
+g.ua = function () { return this.h; };
+g.Qa = function () { return "string" === typeof this.f ? this.f : String(this.f); };
+function zd(a) { var b = ""; Aa(a, function (c, d) { b += d; b += ":"; b += c; b += "\r\n"; }); return b; }
+function Ad(a, b, c) { a: {
+    for (d in c) {
+        var d = !1;
+        break a;
+    }
+    d = !0;
+} d || (c = zd(c), "string" === typeof a ? (null != c && encodeURIComponent(String(c))) : Q(a, b, c)); }
+function Bd(a, b, c) { return c && c.internalChannelParams ? c.internalChannelParams[a] || b : b; }
+function Cd(a) {
+    this.pa = 0;
+    this.g = [];
+    this.c = new Pb;
+    this.ga = this.la = this.B = this.fa = this.a = this.na = this.A = this.W = this.i = this.O = this.l = null;
+    this.La = this.R = 0;
+    this.Ia = Bd("failFast", !1, a);
+    this.H = this.m = this.j = this.h = this.f = null;
+    this.T = !0;
+    this.I = this.oa = this.P = -1;
+    this.U = this.o = this.u = 0;
+    this.Fa = Bd("baseRetryDelayMs", 5E3, a);
+    this.Ma = Bd("retryDelaySeedMs", 1E4, a);
+    this.Ja = Bd("forwardChannelMaxRetries", 2, a);
+    this.ma = Bd("forwardChannelRequestTimeoutMs", 2E4, a);
+    this.Ka = a && a.g || void 0;
+    this.D = void 0;
+    this.C = a && a.supportsCrossDomainXhr ||
+        !1;
+    this.J = "";
+    this.b = new gd(a && a.concurrentRequestLimit);
+    this.ka = new ld;
+    this.da = a && a.fastHandshake || !1;
+    this.Ga = a && a.b || !1;
+    a && a.f && (this.c.a = !1);
+    a && a.forceLongPolling && (this.T = !1);
+    this.V = !this.da && this.T && a && a.c || !1;
+    this.ea = void 0;
+    this.N = 0;
+    this.F = !1;
+    this.s = null;
+}
+g = Cd.prototype;
+g.ha = 8;
+g.v = 1;
+function Jc(a) { Dd(a); if (3 == a.v) {
+    var b = a.R++, c = L(a.B);
+    Q(c, "SID", a.J);
+    Q(c, "RID", b);
+    Q(c, "TYPE", "terminate");
+    Ed(a, c);
+    b = new K(a, a.c, b, void 0);
+    b.H = 2;
+    b.i = lc(L(c));
+    c = !1;
+    k.navigator && k.navigator.sendBeacon && (c = k.navigator.sendBeacon(b.i.toString(), ""));
+    !c && k.Image && ((new Image).src = b.i, c = !0);
+    c || (b.a = oc(b.g, null), b.a.ba(b.i));
+    b.u = q();
+    M(b);
+} Fd(a); }
+function Bc(a) { a.a && (xc(a), a.a.cancel(), a.a = null); }
+function Dd(a) { Bc(a); a.j && (k.clearTimeout(a.j), a.j = null); Ac(a); a.b.cancel(); a.h && ("number" === typeof a.h && k.clearTimeout(a.h), a.h = null); }
+function Gd(a, b) { a.g.push(new fd(a.La++, b)); 3 == a.v && Ic(a); }
+function Ic(a) { id(a.b) || a.h || (a.h = !0, Cb(a.Ba, a), a.u = 0); }
+function Hd(a, b) { if (Dc(a.b) >= a.b.f - (a.h ? 1 : 0))
+    return !1; if (a.h)
+    return a.g = b.s.concat(a.g), !0; if (1 == a.v || 2 == a.v || a.u >= (a.Ia ? 0 : a.Ja))
+    return !1; a.h = I(p(a.Ba, a, b), Id(a, a.u)); a.u++; return !0; }
+g.Ba = function (a) {
+    if (this.h)
+        if (this.h = null, 1 == this.v) {
+            if (!a) {
+                this.R = Math.floor(1E5 * Math.random());
+                a = this.R++;
+                var b = new K(this, this.c, a, void 0), c = this.l;
+                this.O && (c ? (c = Ba(c), Da(c, this.O)) : c = this.O);
+                null === this.i && (b.B = c);
+                var d;
+                if (this.da)
+                    a: {
+                        for (var e = d = 0; e < this.g.length; e++) {
+                            b: {
+                                var f = this.g[e];
+                                if ("__data__" in f.a && (f = f.a.__data__, "string" === typeof f)) {
+                                    f = f.length;
+                                    break b;
+                                }
+                                f = void 0;
+                            }
+                            if (void 0 === f)
+                                break;
+                            d += f;
+                            if (4096 < d) {
+                                d = e;
+                                break a;
+                            }
+                            if (4096 === d || e === this.g.length - 1) {
+                                d = e + 1;
+                                break a;
+                            }
+                        }
+                        d = 1E3;
+                    }
+                else
+                    d = 1E3;
+                d = Jd(this, b, d);
+                e = L(this.B);
+                Q(e, "RID", a);
+                Q(e, "CVER", 22);
+                this.A && Q(e, "X-HTTP-Session-Id", this.A);
+                Ed(this, e);
+                this.i && c && Ad(e, this.i, c);
+                Ec(this.b, b);
+                this.Ga && Q(e, "TYPE", "init");
+                this.da ? (Q(e, "$req", d), Q(e, "SID", "null"), b.V = !0, kc(b, e, null)) : kc(b, e, d);
+                this.v = 2;
+            }
+        }
+        else
+            3 == this.v && (a ? Kd(this, a) : 0 == this.g.length || id(this.b) || Kd(this));
+};
+function Kd(a, b) { var c; b ? c = b.f : c = a.R++; var d = L(a.B); Q(d, "SID", a.J); Q(d, "RID", c); Q(d, "AID", a.P); Ed(a, d); a.i && a.l && Ad(d, a.i, a.l); c = new K(a, a.c, c, a.u + 1); null === a.i && (c.B = a.l); b && (a.g = b.s.concat(a.g)); b = Jd(a, c, 1E3); c.setTimeout(Math.round(.5 * a.ma) + Math.round(.5 * a.ma * Math.random())); Ec(a.b, c); kc(c, d, b); }
+function Ed(a, b) { a.f && Lc({}, function (c, d) { Q(b, d, c); }); }
+function Jd(a, b, c) { c = Math.min(a.g.length, c); var d = a.f ? p(a.f.Ha, a.f, a) : null; a: for (var e = a.g, f = -1;;) {
+    var h = ["count=" + c];
+    -1 == f ? 0 < c ? (f = e[0].b, h.push("ofs=" + f)) : f = 0 : h.push("ofs=" + f);
+    for (var m = !0, l = 0; l < c; l++) {
+        var t = e[l].b, B = e[l].a;
+        t -= f;
+        if (0 > t)
+            f = Math.max(0, e[l].b - 100), m = !1;
+        else
+            try {
+                md(B, h, "req" + t + "_");
+            }
+            catch (z) {
+                d && d(B);
+            }
+    }
+    if (m) {
+        d = h.join("&");
+        break a;
+    }
+} a = a.g.splice(0, c); b.s = a; return d; }
+function Hc(a) { a.a || a.j || (a.U = 1, Cb(a.Aa, a), a.o = 0); }
+function Cc(a) { if (a.a || a.j || 3 <= a.o)
+    return !1; a.U++; a.j = I(p(a.Aa, a), Id(a, a.o)); a.o++; return !0; }
+g.Aa = function () { this.j = null; Ld(this); if (this.V && !(this.F || null == this.a || 0 >= this.N)) {
+    var a = 2 * this.N;
+    this.c.info("BP detection timer enabled: " + a);
+    this.s = I(p(this.Sa, this), a);
+} };
+g.Sa = function () { this.s && (this.s = null, this.c.info("BP detection timeout reached."), this.c.info("Buffering proxy detected and switch to long-polling!"), this.H = !1, this.F = !0, Bc(this), Ld(this)); };
+function xc(a) { null != a.s && (k.clearTimeout(a.s), a.s = null); }
+function Ld(a) { a.a = new K(a, a.c, "rpc", a.U); null === a.i && (a.a.B = a.l); a.a.O = 0; var b = L(a.la); Q(b, "RID", "rpc"); Q(b, "SID", a.J); Q(b, "CI", a.H ? "0" : "1"); Q(b, "AID", a.P); Ed(a, b); Q(b, "TYPE", "xmlhttp"); a.i && a.l && Ad(b, a.i, a.l); a.D && a.a.setTimeout(a.D); var c = a.a; a = a.ga; c.H = 1; c.i = lc(L(b)); c.j = null; c.I = !0; mc(c, a); }
+g.Ra = function () { null != this.m && (this.m = null, Bc(this), Cc(this), H(19)); };
+function Ac(a) { null != a.m && (k.clearTimeout(a.m), a.m = null); }
+function uc(a, b) { var c = null; if (a.a == b) {
+    Ac(a);
+    xc(a);
+    a.a = null;
+    var d = 2;
+}
+else if (zc(a.b, b))
+    c = b.s, Gc(a.b, b), d = 1;
+else
+    return; a.I = b.N; if (0 != a.v)
+    if (b.b)
+        if (1 == d) {
+            c = b.j ? b.j.length : 0;
+            b = q() - b.u;
+            var e = a.u;
+            d = Vb();
+            d.dispatchEvent(new Yb(d, c, b, e));
+            Ic(a);
+        }
+        else
+            Hc(a);
+    else if (e = b.h, 3 == e || 0 == e && 0 < a.I || !(1 == d && Hd(a, b) || 2 == d && Cc(a)))
+        switch (c && 0 < c.length && (b = a.b, b.c = b.c.concat(c)), e) {
+            case 1:
+                P(a, 5);
+                break;
+            case 4:
+                P(a, 10);
+                break;
+            case 3:
+                P(a, 6);
+                break;
+            default: P(a, 2);
+        } }
+function Id(a, b) { var c = a.Fa + Math.floor(Math.random() * a.Ma); a.f || (c *= 2); return c * b; }
+function P(a, b) { a.c.info("Error code " + b); if (2 == b) {
+    var c = null;
+    a.f && (c = null);
+    var d = p(a.Xa, a);
+    c || (c = new T("//www.google.com/images/cleardot.gif"), k.location && "http" == k.location.protocol || Pc(c, "https"), lc(c));
+    nd(c.toString(), d);
+}
+else
+    H(2); a.v = 0; a.f && a.f.ra(b); Fd(a); Dd(a); }
+g.Xa = function (a) { a ? (this.c.info("Successfully pinged google.com"), H(2)) : (this.c.info("Failed to ping google.com"), H(1)); };
+function Fd(a) { a.v = 0; a.I = -1; if (a.f) {
+    if (0 != jd(a.b).length || 0 != a.g.length)
+        a.b.c.length = 0, sa(a.g), a.g.length = 0;
+    a.f.qa();
+} }
+function Fc(a, b, c) { var d = ad(c); if ("" != d.c)
+    b && Qc(d, b + "." + d.c), Rc(d, d.h);
+else {
+    var e = k.location;
+    d = bd(e.protocol, b ? b + "." + e.hostname : e.hostname, +e.port, c);
+} a.W && Aa(a.W, function (f, h) { Q(d, h, f); }); b = a.A; c = a.na; b && c && Q(d, b, c); Q(d, "VER", a.ha); Ed(a, d); return d; }
+function oc(a, b) { if (b && !a.C)
+    throw Error("Can't create secondary domain capable XhrIo object."); b = new X(a.Ka); b.F = a.C; return b; }
+function Md() { }
+g = Md.prototype;
+g.ta = function () { };
+g.sa = function () { };
+g.ra = function () { };
+g.qa = function () { };
+g.Ha = function () { };
+function Nd() { if (x && !(10 <= Number(Ua)))
+    throw Error("Environmental error: no available transport."); }
+Nd.prototype.a = function (a, b) { return new Y(a, b); };
+function Y(a, b) {
+    D.call(this);
+    this.a = new Cd(b);
+    this.l = a;
+    this.b = b && b.messageUrlParams || null;
+    a = b && b.messageHeaders || null;
+    b && b.clientProtocolHeaderRequired && (a ? a["X-Client-Protocol"] = "webchannel" : a = { "X-Client-Protocol": "webchannel" });
+    this.a.l = a;
+    a = b && b.initMessageHeaders || null;
+    b && b.messageContentType && (a ? a["X-WebChannel-Content-Type"] = b.messageContentType : a = { "X-WebChannel-Content-Type": b.messageContentType });
+    b && b.a && (a ? a["X-WebChannel-Client-Profile"] = b.a : a = { "X-WebChannel-Client-Profile": b.a });
+    this.a.O =
+        a;
+    (a = b && b.httpHeadersOverwriteParam) && !ta(a) && (this.a.i = a);
+    this.h = b && b.supportsCrossDomainXhr || !1;
+    this.g = b && b.sendRawJson || !1;
+    (b = b && b.httpSessionIdParam) && !ta(b) && (this.a.A = b, a = this.b, null !== a && b in a && (a = this.b, b in a && delete a[b]));
+    this.f = new Z(this);
+}
+r(Y, D);
+g = Y.prototype;
+g.addEventListener = function (a, b, c, d) { Y.S.addEventListener.call(this, a, b, c, d); };
+g.removeEventListener = function (a, b, c, d) { Y.S.removeEventListener.call(this, a, b, c, d); };
+g.Oa = function () { this.a.f = this.f; this.h && (this.a.C = !0); var a = this.a, b = this.l, c = this.b || void 0; H(0); a.fa = b; a.W = c || {}; a.H = a.T; a.B = Fc(a, null, a.fa); Ic(a); };
+g.close = function () { Jc(this.a); };
+g.Pa = function (a) { if ("string" === typeof a) {
+    var b = {};
+    b.__data__ = a;
+    Gd(this.a, b);
+}
+else
+    this.g ? (b = {}, b.__data__ = vb(a), Gd(this.a, b)) : Gd(this.a, a); };
+g.G = function () { this.a.f = null; delete this.f; Jc(this.a); delete this.a; Y.S.G.call(this); };
+function Od(a) { dc.call(this); var b = a.__sm__; if (b) {
+    a: {
+        for (var c in b) {
+            a = c;
+            break a;
+        }
+        a = void 0;
+    }
+    (this.c = a) ? (a = this.c, this.data = null !== b && a in b ? b[a] : void 0) : this.data = b;
+}
+else
+    this.data = a; }
+r(Od, dc);
+function Pd() { ec.call(this); this.status = 1; }
+r(Pd, ec);
+function Z(a) { this.a = a; }
+r(Z, Md);
+Z.prototype.ta = function () { this.a.dispatchEvent("a"); };
+Z.prototype.sa = function (a) { this.a.dispatchEvent(new Od(a)); };
+Z.prototype.ra = function (a) { this.a.dispatchEvent(new Pd(a)); };
+Z.prototype.qa = function () { this.a.dispatchEvent("b"); }; /*
+
+ Copyright 2017 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+Nd.prototype.createWebChannel = Nd.prototype.a;
+Y.prototype.send = Y.prototype.Pa;
+Y.prototype.open = Y.prototype.Oa;
+Y.prototype.close = Y.prototype.close;
+Zb.NO_ERROR = 0;
+Zb.TIMEOUT = 8;
+Zb.HTTP_ERROR = 6;
+$b.COMPLETE = "complete";
+cc.EventType = J;
+J.OPEN = "a";
+J.CLOSE = "b";
+J.ERROR = "c";
+J.MESSAGE = "d";
+D.prototype.listen = D.prototype.va;
+X.prototype.listenOnce = X.prototype.wa;
+X.prototype.getLastError = X.prototype.Qa;
+X.prototype.getLastErrorCode = X.prototype.ua;
+X.prototype.getStatus = X.prototype.X;
+X.prototype.getResponseJson = X.prototype.Na;
+X.prototype.getResponseText = X.prototype.$;
+X.prototype.send = X.prototype.ba;
+var createWebChannelTransport = function () { return new Nd; };
+var ErrorCode = Zb;
+var EventType = $b;
+var WebChannel = cc;
+var XhrIo = X;
+
+var esm = {
+    createWebChannelTransport: createWebChannelTransport,
+    ErrorCode: ErrorCode,
+    EventType: EventType,
+    WebChannel: WebChannel,
+    XhrIo: XhrIo
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (esm);
+
+//# sourceMappingURL=index.esm.js.map
+
+
+/***/ }),
+
+/***/ "../node_modules/tslib/tslib.es6.js":
+/*!******************************************!*\
+  !*** ../node_modules/tslib/tslib.es6.js ***!
+  \******************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __createBinding, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__createBinding", function() { return __createBinding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __createBinding(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js ***!
+  \********************************************************************/
+/*! exports provided: HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HttpErrorResponse, HttpEventType, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpRequest, HttpResponse, HttpResponseBase, HttpUrlEncodingCodec, HttpXhrBackend, HttpXsrfTokenExtractor, JsonpClientBackend, JsonpInterceptor, XhrFactory, ɵHttpInterceptingHandler, ɵangular_packages_common_http_http_a, ɵangular_packages_common_http_http_b, ɵangular_packages_common_http_http_c, ɵangular_packages_common_http_http_d, ɵangular_packages_common_http_http_e, ɵangular_packages_common_http_http_f, ɵangular_packages_common_http_http_g, ɵangular_packages_common_http_http_h */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HTTP_INTERCEPTORS", function() { return HTTP_INTERCEPTORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpBackend", function() { return HttpBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClient", function() { return HttpClient; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientJsonpModule", function() { return HttpClientJsonpModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientModule", function() { return HttpClientModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientXsrfModule", function() { return HttpClientXsrfModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorResponse", function() { return HttpErrorResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpEventType", function() { return HttpEventType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHandler", function() { return HttpHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaderResponse", function() { return HttpHeaderResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaders", function() { return HttpHeaders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpParams", function() { return HttpParams; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpRequest", function() { return HttpRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponse", function() { return HttpResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponseBase", function() { return HttpResponseBase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpUrlEncodingCodec", function() { return HttpUrlEncodingCodec; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXhrBackend", function() { return HttpXhrBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXsrfTokenExtractor", function() { return HttpXsrfTokenExtractor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpClientBackend", function() { return JsonpClientBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpInterceptor", function() { return JsonpInterceptor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XhrFactory", function() { return XhrFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵHttpInterceptingHandler", function() { return HttpInterceptingHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_a", function() { return NoopInterceptor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_b", function() { return JsonpCallbackContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_c", function() { return jsonpCallbackContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_d", function() { return BrowserXhr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_e", function() { return XSRF_COOKIE_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_f", function() { return XSRF_HEADER_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_g", function() { return HttpXsrfCookieExtractor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_h", function() { return HttpXsrfInterceptor; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/**
+ * @license Angular v10.0.9
+ * (c) 2010-2020 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
+ * `HttpResponse`.
+ *
+ * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
+ * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
+ * `HttpBackend`.
+ *
+ * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
+ *
+ * @publicApi
+ */
+
+class HttpHandler {
+}
+/**
+ * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
+ *
+ * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
+ *
+ * When injected, `HttpBackend` dispatches requests directly to the backend, without going
+ * through the interceptor chain.
+ *
+ * @publicApi
+ */
+class HttpBackend {
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Represents the header configuration options for an HTTP request.
+ * Instances are immutable. Modifying methods return a cloned
+ * instance with the change. The original object is never changed.
+ *
+ * @publicApi
+ */
+class HttpHeaders {
+    /**  Constructs a new HTTP header object with the given values.*/
+    constructor(headers) {
+        /**
+         * Internal map of lowercased header names to the normalized
+         * form of the name (the form seen first).
+         */
+        this.normalizedNames = new Map();
+        /**
+         * Queued updates to be materialized the next initialization.
+         */
+        this.lazyUpdate = null;
+        if (!headers) {
+            this.headers = new Map();
+        }
+        else if (typeof headers === 'string') {
+            this.lazyInit = () => {
+                this.headers = new Map();
+                headers.split('\n').forEach(line => {
+                    const index = line.indexOf(':');
+                    if (index > 0) {
+                        const name = line.slice(0, index);
+                        const key = name.toLowerCase();
+                        const value = line.slice(index + 1).trim();
+                        this.maybeSetNormalizedName(name, key);
+                        if (this.headers.has(key)) {
+                            this.headers.get(key).push(value);
+                        }
+                        else {
+                            this.headers.set(key, [value]);
+                        }
+                    }
+                });
+            };
+        }
+        else {
+            this.lazyInit = () => {
+                this.headers = new Map();
+                Object.keys(headers).forEach(name => {
+                    let values = headers[name];
+                    const key = name.toLowerCase();
+                    if (typeof values === 'string') {
+                        values = [values];
+                    }
+                    if (values.length > 0) {
+                        this.headers.set(key, values);
+                        this.maybeSetNormalizedName(name, key);
+                    }
+                });
+            };
+        }
+    }
+    /**
+     * Checks for existence of a given header.
+     *
+     * @param name The header name to check for existence.
+     *
+     * @returns True if the header exists, false otherwise.
+     */
+    has(name) {
+        this.init();
+        return this.headers.has(name.toLowerCase());
+    }
+    /**
+     * Retrieves the first value of a given header.
+     *
+     * @param name The header name.
+     *
+     * @returns The value string if the header exists, null otherwise
+     */
+    get(name) {
+        this.init();
+        const values = this.headers.get(name.toLowerCase());
+        return values && values.length > 0 ? values[0] : null;
+    }
+    /**
+     * Retrieves the names of the headers.
+     *
+     * @returns A list of header names.
+     */
+    keys() {
+        this.init();
+        return Array.from(this.normalizedNames.values());
+    }
+    /**
+     * Retrieves a list of values for a given header.
+     *
+     * @param name The header name from which to retrieve values.
+     *
+     * @returns A string of values if the header exists, null otherwise.
+     */
+    getAll(name) {
+        this.init();
+        return this.headers.get(name.toLowerCase()) || null;
+    }
+    /**
+     * Appends a new value to the existing set of values for a header
+     * and returns them in a clone of the original instance.
+     *
+     * @param name The header name for which to append the values.
+     * @param value The value to append.
+     *
+     * @returns A clone of the HTTP headers object with the value appended to the given header.
+     */
+    append(name, value) {
+        return this.clone({ name, value, op: 'a' });
+    }
+    /**
+     * Sets or modifies a value for a given header in a clone of the original instance.
+     * If the header already exists, its value is replaced with the given value
+     * in the returned object.
+     *
+     * @param name The header name.
+     * @param value The value or values to set or overide for the given header.
+     *
+     * @returns A clone of the HTTP headers object with the newly set header value.
+     */
+    set(name, value) {
+        return this.clone({ name, value, op: 's' });
+    }
+    /**
+     * Deletes values for a given header in a clone of the original instance.
+     *
+     * @param name The header name.
+     * @param value The value or values to delete for the given header.
+     *
+     * @returns A clone of the HTTP headers object with the given value deleted.
+     */
+    delete(name, value) {
+        return this.clone({ name, value, op: 'd' });
+    }
+    maybeSetNormalizedName(name, lcName) {
+        if (!this.normalizedNames.has(lcName)) {
+            this.normalizedNames.set(lcName, name);
+        }
+    }
+    init() {
+        if (!!this.lazyInit) {
+            if (this.lazyInit instanceof HttpHeaders) {
+                this.copyFrom(this.lazyInit);
+            }
+            else {
+                this.lazyInit();
+            }
+            this.lazyInit = null;
+            if (!!this.lazyUpdate) {
+                this.lazyUpdate.forEach(update => this.applyUpdate(update));
+                this.lazyUpdate = null;
+            }
+        }
+    }
+    copyFrom(other) {
+        other.init();
+        Array.from(other.headers.keys()).forEach(key => {
+            this.headers.set(key, other.headers.get(key));
+            this.normalizedNames.set(key, other.normalizedNames.get(key));
+        });
+    }
+    clone(update) {
+        const clone = new HttpHeaders();
+        clone.lazyInit =
+            (!!this.lazyInit && this.lazyInit instanceof HttpHeaders) ? this.lazyInit : this;
+        clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
+        return clone;
+    }
+    applyUpdate(update) {
+        const key = update.name.toLowerCase();
+        switch (update.op) {
+            case 'a':
+            case 's':
+                let value = update.value;
+                if (typeof value === 'string') {
+                    value = [value];
+                }
+                if (value.length === 0) {
+                    return;
+                }
+                this.maybeSetNormalizedName(update.name, key);
+                const base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
+                base.push(...value);
+                this.headers.set(key, base);
+                break;
+            case 'd':
+                const toDelete = update.value;
+                if (!toDelete) {
+                    this.headers.delete(key);
+                    this.normalizedNames.delete(key);
+                }
+                else {
+                    let existing = this.headers.get(key);
+                    if (!existing) {
+                        return;
+                    }
+                    existing = existing.filter(value => toDelete.indexOf(value) === -1);
+                    if (existing.length === 0) {
+                        this.headers.delete(key);
+                        this.normalizedNames.delete(key);
+                    }
+                    else {
+                        this.headers.set(key, existing);
+                    }
+                }
+                break;
+        }
+    }
+    /**
+     * @internal
+     */
+    forEach(fn) {
+        this.init();
+        Array.from(this.normalizedNames.keys())
+            .forEach(key => fn(this.normalizedNames.get(key), this.headers.get(key)));
+    }
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Provides encoding and decoding of URL parameter and query-string values.
+ *
+ * Serializes and parses URL parameter keys and values to encode and decode them.
+ * If you pass URL query parameters without encoding,
+ * the query parameters can be misinterpreted at the receiving end.
+ *
+ *
+ * @publicApi
+ */
+class HttpUrlEncodingCodec {
+    /**
+     * Encodes a key name for a URL parameter or query-string.
+     * @param key The key name.
+     * @returns The encoded key name.
+     */
+    encodeKey(key) {
+        return standardEncoding(key);
+    }
+    /**
+     * Encodes the value of a URL parameter or query-string.
+     * @param value The value.
+     * @returns The encoded value.
+     */
+    encodeValue(value) {
+        return standardEncoding(value);
+    }
+    /**
+     * Decodes an encoded URL parameter or query-string key.
+     * @param key The encoded key name.
+     * @returns The decoded key name.
+     */
+    decodeKey(key) {
+        return decodeURIComponent(key);
+    }
+    /**
+     * Decodes an encoded URL parameter or query-string value.
+     * @param value The encoded value.
+     * @returns The decoded value.
+     */
+    decodeValue(value) {
+        return decodeURIComponent(value);
+    }
+}
+function paramParser(rawParams, codec) {
+    const map = new Map();
+    if (rawParams.length > 0) {
+        const params = rawParams.split('&');
+        params.forEach((param) => {
+            const eqIdx = param.indexOf('=');
+            const [key, val] = eqIdx == -1 ?
+                [codec.decodeKey(param), ''] :
+                [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))];
+            const list = map.get(key) || [];
+            list.push(val);
+            map.set(key, list);
+        });
+    }
+    return map;
+}
+function standardEncoding(v) {
+    return encodeURIComponent(v)
+        .replace(/%40/gi, '@')
+        .replace(/%3A/gi, ':')
+        .replace(/%24/gi, '$')
+        .replace(/%2C/gi, ',')
+        .replace(/%3B/gi, ';')
+        .replace(/%2B/gi, '+')
+        .replace(/%3D/gi, '=')
+        .replace(/%3F/gi, '?')
+        .replace(/%2F/gi, '/');
+}
+/**
+ * An HTTP request/response body that represents serialized parameters,
+ * per the MIME type `application/x-www-form-urlencoded`.
+ *
+ * This class is immutable; all mutation operations return a new instance.
+ *
+ * @publicApi
+ */
+class HttpParams {
+    constructor(options = {}) {
+        this.updates = null;
+        this.cloneFrom = null;
+        this.encoder = options.encoder || new HttpUrlEncodingCodec();
+        if (!!options.fromString) {
+            if (!!options.fromObject) {
+                throw new Error(`Cannot specify both fromString and fromObject.`);
+            }
+            this.map = paramParser(options.fromString, this.encoder);
+        }
+        else if (!!options.fromObject) {
+            this.map = new Map();
+            Object.keys(options.fromObject).forEach(key => {
+                const value = options.fromObject[key];
+                this.map.set(key, Array.isArray(value) ? value : [value]);
+            });
+        }
+        else {
+            this.map = null;
+        }
+    }
+    /**
+     * Reports whether the body includes one or more values for a given parameter.
+     * @param param The parameter name.
+     * @returns True if the parameter has one or more values,
+     * false if it has no value or is not present.
+     */
+    has(param) {
+        this.init();
+        return this.map.has(param);
+    }
+    /**
+     * Retrieves the first value for a parameter.
+     * @param param The parameter name.
+     * @returns The first value of the given parameter,
+     * or `null` if the parameter is not present.
+     */
+    get(param) {
+        this.init();
+        const res = this.map.get(param);
+        return !!res ? res[0] : null;
+    }
+    /**
+     * Retrieves all values for a  parameter.
+     * @param param The parameter name.
+     * @returns All values in a string array,
+     * or `null` if the parameter not present.
+     */
+    getAll(param) {
+        this.init();
+        return this.map.get(param) || null;
+    }
+    /**
+     * Retrieves all the parameters for this body.
+     * @returns The parameter names in a string array.
+     */
+    keys() {
+        this.init();
+        return Array.from(this.map.keys());
+    }
+    /**
+     * Appends a new value to existing values for a parameter.
+     * @param param The parameter name.
+     * @param value The new value to add.
+     * @return A new body with the appended value.
+     */
+    append(param, value) {
+        return this.clone({ param, value, op: 'a' });
+    }
+    /**
+     * Replaces the value for a parameter.
+     * @param param The parameter name.
+     * @param value The new value.
+     * @return A new body with the new value.
+     */
+    set(param, value) {
+        return this.clone({ param, value, op: 's' });
+    }
+    /**
+     * Removes a given value or all values from a parameter.
+     * @param param The parameter name.
+     * @param value The value to remove, if provided.
+     * @return A new body with the given value removed, or with all values
+     * removed if no value is specified.
+     */
+    delete(param, value) {
+        return this.clone({ param, value, op: 'd' });
+    }
+    /**
+     * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
+     * separated by `&`s.
+     */
+    toString() {
+        this.init();
+        return this.keys()
+            .map(key => {
+            const eKey = this.encoder.encodeKey(key);
+            // `a: ['1']` produces `'a=1'`
+            // `b: []` produces `''`
+            // `c: ['1', '2']` produces `'c=1&c=2'`
+            return this.map.get(key).map(value => eKey + '=' + this.encoder.encodeValue(value))
+                .join('&');
+        })
+            // filter out empty values because `b: []` produces `''`
+            // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
+            .filter(param => param !== '')
+            .join('&');
+    }
+    clone(update) {
+        const clone = new HttpParams({ encoder: this.encoder });
+        clone.cloneFrom = this.cloneFrom || this;
+        clone.updates = (this.updates || []).concat([update]);
+        return clone;
+    }
+    init() {
+        if (this.map === null) {
+            this.map = new Map();
+        }
+        if (this.cloneFrom !== null) {
+            this.cloneFrom.init();
+            this.cloneFrom.keys().forEach(key => this.map.set(key, this.cloneFrom.map.get(key)));
+            this.updates.forEach(update => {
+                switch (update.op) {
+                    case 'a':
+                    case 's':
+                        const base = (update.op === 'a' ? this.map.get(update.param) : undefined) || [];
+                        base.push(update.value);
+                        this.map.set(update.param, base);
+                        break;
+                    case 'd':
+                        if (update.value !== undefined) {
+                            let base = this.map.get(update.param) || [];
+                            const idx = base.indexOf(update.value);
+                            if (idx !== -1) {
+                                base.splice(idx, 1);
+                            }
+                            if (base.length > 0) {
+                                this.map.set(update.param, base);
+                            }
+                            else {
+                                this.map.delete(update.param);
+                            }
+                        }
+                        else {
+                            this.map.delete(update.param);
+                            break;
+                        }
+                }
+            });
+            this.cloneFrom = this.updates = null;
+        }
+    }
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Determine whether the given HTTP method may include a body.
+ */
+function mightHaveBody(method) {
+    switch (method) {
+        case 'DELETE':
+        case 'GET':
+        case 'HEAD':
+        case 'OPTIONS':
+        case 'JSONP':
+            return false;
+        default:
+            return true;
+    }
+}
+/**
+ * Safely assert whether the given value is an ArrayBuffer.
+ *
+ * In some execution environments ArrayBuffer is not defined.
+ */
+function isArrayBuffer(value) {
+    return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
+}
+/**
+ * Safely assert whether the given value is a Blob.
+ *
+ * In some execution environments Blob is not defined.
+ */
+function isBlob(value) {
+    return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+/**
+ * Safely assert whether the given value is a FormData instance.
+ *
+ * In some execution environments FormData is not defined.
+ */
+function isFormData(value) {
+    return typeof FormData !== 'undefined' && value instanceof FormData;
+}
+/**
+ * An outgoing HTTP request with an optional typed body.
+ *
+ * `HttpRequest` represents an outgoing request, including URL, method,
+ * headers, body, and other request configuration options. Instances should be
+ * assumed to be immutable. To modify a `HttpRequest`, the `clone`
+ * method should be used.
+ *
+ * @publicApi
+ */
+class HttpRequest {
+    constructor(method, url, third, fourth) {
+        this.url = url;
+        /**
+         * The request body, or `null` if one isn't set.
+         *
+         * Bodies are not enforced to be immutable, as they can include a reference to any
+         * user-defined data type. However, interceptors should take care to preserve
+         * idempotence by treating them as such.
+         */
+        this.body = null;
+        /**
+         * Whether this request should be made in a way that exposes progress events.
+         *
+         * Progress events are expensive (change detection runs on each event) and so
+         * they should only be requested if the consumer intends to monitor them.
+         */
+        this.reportProgress = false;
+        /**
+         * Whether this request should be sent with outgoing credentials (cookies).
+         */
+        this.withCredentials = false;
+        /**
+         * The expected response type of the server.
+         *
+         * This is used to parse the response appropriately before returning it to
+         * the requestee.
+         */
+        this.responseType = 'json';
+        this.method = method.toUpperCase();
+        // Next, need to figure out which argument holds the HttpRequestInit
+        // options, if any.
+        let options;
+        // Check whether a body argument is expected. The only valid way to omit
+        // the body argument is to use a known no-body method like GET.
+        if (mightHaveBody(this.method) || !!fourth) {
+            // Body is the third argument, options are the fourth.
+            this.body = (third !== undefined) ? third : null;
+            options = fourth;
+        }
+        else {
+            // No body required, options are the third argument. The body stays null.
+            options = third;
+        }
+        // If options have been passed, interpret them.
+        if (options) {
+            // Normalize reportProgress and withCredentials.
+            this.reportProgress = !!options.reportProgress;
+            this.withCredentials = !!options.withCredentials;
+            // Override default response type of 'json' if one is provided.
+            if (!!options.responseType) {
+                this.responseType = options.responseType;
+            }
+            // Override headers if they're provided.
+            if (!!options.headers) {
+                this.headers = options.headers;
+            }
+            if (!!options.params) {
+                this.params = options.params;
+            }
+        }
+        // If no headers have been passed in, construct a new HttpHeaders instance.
+        if (!this.headers) {
+            this.headers = new HttpHeaders();
+        }
+        // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
+        if (!this.params) {
+            this.params = new HttpParams();
+            this.urlWithParams = url;
+        }
+        else {
+            // Encode the parameters to a string in preparation for inclusion in the URL.
+            const params = this.params.toString();
+            if (params.length === 0) {
+                // No parameters, the visible URL is just the URL given at creation time.
+                this.urlWithParams = url;
+            }
+            else {
+                // Does the URL already have query parameters? Look for '?'.
+                const qIdx = url.indexOf('?');
+                // There are 3 cases to handle:
+                // 1) No existing parameters -> append '?' followed by params.
+                // 2) '?' exists and is followed by existing query string ->
+                //    append '&' followed by params.
+                // 3) '?' exists at the end of the url -> append params directly.
+                // This basically amounts to determining the character, if any, with
+                // which to join the URL and parameters.
+                const sep = qIdx === -1 ? '?' : (qIdx < url.length - 1 ? '&' : '');
+                this.urlWithParams = url + sep + params;
+            }
+        }
+    }
+    /**
+     * Transform the free-form body into a serialized format suitable for
+     * transmission to the server.
+     */
+    serializeBody() {
+        // If no body is present, no need to serialize it.
+        if (this.body === null) {
+            return null;
+        }
+        // Check whether the body is already in a serialized form. If so,
+        // it can just be returned directly.
+        if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) ||
+            typeof this.body === 'string') {
+            return this.body;
+        }
+        // Check whether the body is an instance of HttpUrlEncodedParams.
+        if (this.body instanceof HttpParams) {
+            return this.body.toString();
+        }
+        // Check whether the body is an object or array, and serialize with JSON if so.
+        if (typeof this.body === 'object' || typeof this.body === 'boolean' ||
+            Array.isArray(this.body)) {
+            return JSON.stringify(this.body);
+        }
+        // Fall back on toString() for everything else.
+        return this.body.toString();
+    }
+    /**
+     * Examine the body and attempt to infer an appropriate MIME type
+     * for it.
+     *
+     * If no such type can be inferred, this method will return `null`.
+     */
+    detectContentTypeHeader() {
+        // An empty body has no content type.
+        if (this.body === null) {
+            return null;
+        }
+        // FormData bodies rely on the browser's content type assignment.
+        if (isFormData(this.body)) {
+            return null;
+        }
+        // Blobs usually have their own content type. If it doesn't, then
+        // no type can be inferred.
+        if (isBlob(this.body)) {
+            return this.body.type || null;
+        }
+        // Array buffers have unknown contents and thus no type can be inferred.
+        if (isArrayBuffer(this.body)) {
+            return null;
+        }
+        // Technically, strings could be a form of JSON data, but it's safe enough
+        // to assume they're plain strings.
+        if (typeof this.body === 'string') {
+            return 'text/plain';
+        }
+        // `HttpUrlEncodedParams` has its own content-type.
+        if (this.body instanceof HttpParams) {
+            return 'application/x-www-form-urlencoded;charset=UTF-8';
+        }
+        // Arrays, objects, and numbers will be encoded as JSON.
+        if (typeof this.body === 'object' || typeof this.body === 'number' ||
+            Array.isArray(this.body)) {
+            return 'application/json';
+        }
+        // No type could be inferred.
+        return null;
+    }
+    clone(update = {}) {
+        // For method, url, and responseType, take the current value unless
+        // it is overridden in the update hash.
+        const method = update.method || this.method;
+        const url = update.url || this.url;
+        const responseType = update.responseType || this.responseType;
+        // The body is somewhat special - a `null` value in update.body means
+        // whatever current body is present is being overridden with an empty
+        // body, whereas an `undefined` value in update.body implies no
+        // override.
+        const body = (update.body !== undefined) ? update.body : this.body;
+        // Carefully handle the boolean options to differentiate between
+        // `false` and `undefined` in the update args.
+        const withCredentials = (update.withCredentials !== undefined) ? update.withCredentials : this.withCredentials;
+        const reportProgress = (update.reportProgress !== undefined) ? update.reportProgress : this.reportProgress;
+        // Headers and params may be appended to if `setHeaders` or
+        // `setParams` are used.
+        let headers = update.headers || this.headers;
+        let params = update.params || this.params;
+        // Check whether the caller has asked to add headers.
+        if (update.setHeaders !== undefined) {
+            // Set every requested header.
+            headers =
+                Object.keys(update.setHeaders)
+                    .reduce((headers, name) => headers.set(name, update.setHeaders[name]), headers);
+        }
+        // Check whether the caller has asked to set params.
+        if (update.setParams) {
+            // Set every requested param.
+            params = Object.keys(update.setParams)
+                .reduce((params, param) => params.set(param, update.setParams[param]), params);
+        }
+        // Finally, construct the new HttpRequest using the pieces from above.
+        return new HttpRequest(method, url, body, {
+            params,
+            headers,
+            reportProgress,
+            responseType,
+            withCredentials,
+        });
+    }
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Type enumeration for the different kinds of `HttpEvent`.
+ *
+ * @publicApi
+ */
+var HttpEventType;
+(function (HttpEventType) {
+    /**
+     * The request was sent out over the wire.
+     */
+    HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
+    /**
+     * An upload progress event was received.
+     */
+    HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
+    /**
+     * The response status code and headers were received.
+     */
+    HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
+    /**
+     * A download progress event was received.
+     */
+    HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
+    /**
+     * The full response including the body was received.
+     */
+    HttpEventType[HttpEventType["Response"] = 4] = "Response";
+    /**
+     * A custom event from an interceptor or a backend.
+     */
+    HttpEventType[HttpEventType["User"] = 5] = "User";
+})(HttpEventType || (HttpEventType = {}));
+/**
+ * Base class for both `HttpResponse` and `HttpHeaderResponse`.
+ *
+ * @publicApi
+ */
+class HttpResponseBase {
+    /**
+     * Super-constructor for all responses.
+     *
+     * The single parameter accepted is an initialization hash. Any properties
+     * of the response passed there will override the default values.
+     */
+    constructor(init, defaultStatus = 200, defaultStatusText = 'OK') {
+        // If the hash has values passed, use them to initialize the response.
+        // Otherwise use the default values.
+        this.headers = init.headers || new HttpHeaders();
+        this.status = init.status !== undefined ? init.status : defaultStatus;
+        this.statusText = init.statusText || defaultStatusText;
+        this.url = init.url || null;
+        // Cache the ok value to avoid defining a getter.
+        this.ok = this.status >= 200 && this.status < 300;
+    }
+}
+/**
+ * A partial HTTP response which only includes the status and header data,
+ * but no response body.
+ *
+ * `HttpHeaderResponse` is a `HttpEvent` available on the response
+ * event stream, only when progress events are requested.
+ *
+ * @publicApi
+ */
+class HttpHeaderResponse extends HttpResponseBase {
+    /**
+     * Create a new `HttpHeaderResponse` with the given parameters.
+     */
+    constructor(init = {}) {
+        super(init);
+        this.type = HttpEventType.ResponseHeader;
+    }
+    /**
+     * Copy this `HttpHeaderResponse`, overriding its contents with the
+     * given parameter hash.
+     */
+    clone(update = {}) {
+        // Perform a straightforward initialization of the new HttpHeaderResponse,
+        // overriding the current parameters with new ones if given.
+        return new HttpHeaderResponse({
+            headers: update.headers || this.headers,
+            status: update.status !== undefined ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    }
+}
+/**
+ * A full HTTP response, including a typed response body (which may be `null`
+ * if one was not returned).
+ *
+ * `HttpResponse` is a `HttpEvent` available on the response event
+ * stream.
+ *
+ * @publicApi
+ */
+class HttpResponse extends HttpResponseBase {
+    /**
+     * Construct a new `HttpResponse`.
+     */
+    constructor(init = {}) {
+        super(init);
+        this.type = HttpEventType.Response;
+        this.body = init.body !== undefined ? init.body : null;
+    }
+    clone(update = {}) {
+        return new HttpResponse({
+            body: (update.body !== undefined) ? update.body : this.body,
+            headers: update.headers || this.headers,
+            status: (update.status !== undefined) ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    }
+}
+/**
+ * A response that represents an error or failure, either from a
+ * non-successful HTTP status, an error while executing the request,
+ * or some other failure which occurred during the parsing of the response.
+ *
+ * Any error returned on the `Observable` response stream will be
+ * wrapped in an `HttpErrorResponse` to provide additional context about
+ * the state of the HTTP layer when the error occurred. The error property
+ * will contain either a wrapped Error object or the error response returned
+ * from the server.
+ *
+ * @publicApi
+ */
+class HttpErrorResponse extends HttpResponseBase {
+    constructor(init) {
+        // Initialize with a default status of 0 / Unknown Error.
+        super(init, 0, 'Unknown Error');
+        this.name = 'HttpErrorResponse';
+        /**
+         * Errors are never okay, even when the status code is in the 2xx success range.
+         */
+        this.ok = false;
+        // If the response was successful, then this was a parse error. Otherwise, it was
+        // a protocol-level failure of some sort. Either the request failed in transit
+        // or the server returned an unsuccessful status code.
+        if (this.status >= 200 && this.status < 300) {
+            this.message = `Http failure during parsing for ${init.url || '(unknown url)'}`;
+        }
+        else {
+            this.message = `Http failure response for ${init.url || '(unknown url)'}: ${init.status} ${init.statusText}`;
+        }
+        this.error = init.error || null;
+    }
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
+ * the given `body`. This function clones the object and adds the body.
+ *
+ * Note that the `responseType` *options* value is a String that identifies the
+ * single data type of the response.
+ * A single overload version of the method handles each response type.
+ * The value of `responseType` cannot be a union, as the combined signature could imply.
+ *
+ */
+function addBody(options, body) {
+    return {
+        body,
+        headers: options.headers,
+        observe: options.observe,
+        params: options.params,
+        reportProgress: options.reportProgress,
+        responseType: options.responseType,
+        withCredentials: options.withCredentials,
+    };
+}
+/**
+ * Performs HTTP requests.
+ * This service is available as an injectable class, with methods to perform HTTP requests.
+ * Each request method has multiple signatures, and the return type varies based on
+ * the signature that is called (mainly the values of `observe` and `responseType`).
+ *
+ * Note that the `responseType` *options* value is a String that identifies the
+ * single data type of the response.
+ * A single overload version of the method handles each response type.
+ * The value of `responseType` cannot be a union, as the combined signature could imply.
+
+ *
+ * @usageNotes
+ * Sample HTTP requests for the [Tour of Heroes](/tutorial/toh-pt0) application.
+ *
+ * ### HTTP Request Example
+ *
+ * ```
+ *  // GET heroes whose name contains search term
+ * searchHeroes(term: string): observable<Hero[]>{
+ *
+ *  const params = new HttpParams({fromString: 'name=term'});
+ *    return this.httpClient.request('GET', this.heroesUrl, {responseType:'json', params});
+ * }
+ * ```
+ * ### JSONP Example
+ * ```
+ * requestJsonp(url, callback = 'callback') {
+ *  return this.httpClient.jsonp(this.heroesURL, callback);
+ * }
+ * ```
+ *
+ * ### PATCH Example
+ * ```
+ * // PATCH one of the heroes' name
+ * patchHero (id: number, heroName: string): Observable<{}> {
+ * const url = `${this.heroesUrl}/${id}`;   // PATCH api/heroes/42
+ *  return this.httpClient.patch(url, {name: heroName}, httpOptions)
+ *    .pipe(catchError(this.handleError('patchHero')));
+ * }
+ * ```
+ *
+ * @see [HTTP Guide](guide/http)
+ *
+ * @publicApi
+ */
+class HttpClient {
+    constructor(handler) {
+        this.handler = handler;
+    }
+    /**
+     * Constructs an observable for a generic HTTP request that, when subscribed,
+     * fires the request through the chain of registered interceptors and on to the
+     * server.
+     *
+     * You can pass an `HttpRequest` directly as the only parameter. In this case,
+     * the call returns an observable of the raw `HttpEvent` stream.
+     *
+     * Alternatively you can pass an HTTP method as the first parameter,
+     * a URL string as the second, and an options hash containing the request body as the third.
+     * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
+     * type of returned observable.
+     *   * The `responseType` value determines how a successful response body is parsed.
+     *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
+     * object as a type parameter to the call.
+     *
+     * The `observe` value determines the return type, according to what you are interested in
+     * observing.
+     *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
+     * progress events by default.
+     *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
+     * where the `T` parameter depends on the `responseType` and any optionally provided type
+     * parameter.
+     *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
+     *
+     */
+    request(first, url, options = {}) {
+        let req;
+        // First, check whether the primary argument is an instance of `HttpRequest`.
+        if (first instanceof HttpRequest) {
+            // It is. The other arguments must be undefined (per the signatures) and can be
+            // ignored.
+            req = first;
+        }
+        else {
+            // It's a string, so it represents a URL. Construct a request based on it,
+            // and incorporate the remaining arguments (assuming `GET` unless a method is
+            // provided.
+            // Figure out the headers.
+            let headers = undefined;
+            if (options.headers instanceof HttpHeaders) {
+                headers = options.headers;
+            }
+            else {
+                headers = new HttpHeaders(options.headers);
+            }
+            // Sort out parameters.
+            let params = undefined;
+            if (!!options.params) {
+                if (options.params instanceof HttpParams) {
+                    params = options.params;
+                }
+                else {
+                    params = new HttpParams({ fromObject: options.params });
+                }
+            }
+            // Construct the request.
+            req = new HttpRequest(first, url, (options.body !== undefined ? options.body : null), {
+                headers,
+                params,
+                reportProgress: options.reportProgress,
+                // By default, JSON is assumed to be returned for all calls.
+                responseType: options.responseType || 'json',
+                withCredentials: options.withCredentials,
+            });
+        }
+        // Start with an Observable.of() the initial request, and run the handler (which
+        // includes all interceptors) inside a concatMap(). This way, the handler runs
+        // inside an Observable chain, which causes interceptors to be re-run on every
+        // subscription (this also makes retries re-run the handler, including interceptors).
+        const events$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])((req) => this.handler.handle(req)));
+        // If coming via the API signature which accepts a previously constructed HttpRequest,
+        // the only option is to get the event stream. Otherwise, return the event stream if
+        // that is what was requested.
+        if (first instanceof HttpRequest || options.observe === 'events') {
+            return events$;
+        }
+        // The requested stream contains either the full response or the body. In either
+        // case, the first step is to filter the event stream to extract a stream of
+        // responses(s).
+        const res$ = events$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])((event) => event instanceof HttpResponse));
+        // Decide which stream to return.
+        switch (options.observe || 'body') {
+            case 'body':
+                // The requested stream is the body. Map the response stream to the response
+                // body. This could be done more simply, but a misbehaving interceptor might
+                // transform the response body into a different format and ignore the requested
+                // responseType. Guard against this by validating that the response is of the
+                // requested type.
+                switch (req.responseType) {
+                    case 'arraybuffer':
+                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                            // Validate that the body is an ArrayBuffer.
+                            if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
+                                throw new Error('Response is not an ArrayBuffer.');
+                            }
+                            return res.body;
+                        }));
+                    case 'blob':
+                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                            // Validate that the body is a Blob.
+                            if (res.body !== null && !(res.body instanceof Blob)) {
+                                throw new Error('Response is not a Blob.');
+                            }
+                            return res.body;
+                        }));
+                    case 'text':
+                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                            // Validate that the body is a string.
+                            if (res.body !== null && typeof res.body !== 'string') {
+                                throw new Error('Response is not a string.');
+                            }
+                            return res.body;
+                        }));
+                    case 'json':
+                    default:
+                        // No validation needed for JSON responses, as they can be of any type.
+                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => res.body));
+                }
+            case 'response':
+                // The response stream was requested directly, so return it.
+                return res$;
+            default:
+                // Guard against new future observe types being added.
+                throw new Error(`Unreachable: unhandled observe type ${options.observe}}`);
+        }
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `DELETE` request to execute on the server. See the individual overloads for
+     * details on the return type.
+     *
+     * @param url     The endpoint URL.
+     * @param options The HTTP options to send with the request.
+     *
+     */
+    delete(url, options = {}) {
+        return this.request('DELETE', url, options);
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `GET` request to execute on the server. See the individual overloads for
+     * details on the return type.
+     */
+    get(url, options = {}) {
+        return this.request('GET', url, options);
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `HEAD` request to execute on the server. The `HEAD` method returns
+     * meta information about the resource without transferring the
+     * resource itself. See the individual overloads for
+     * details on the return type.
+     */
+    head(url, options = {}) {
+        return this.request('HEAD', url, options);
+    }
+    /**
+     * Constructs an `Observable` that, when subscribed, causes a request with the special method
+     * `JSONP` to be dispatched via the interceptor pipeline.
+     * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
+     * API endpoints that don't support newer,
+     * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
+     * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
+     * requests even if the API endpoint is not located on the same domain (origin) as the client-side
+     * application making the request.
+     * The endpoint API must support JSONP callback for JSONP requests to work.
+     * The resource API returns the JSON response wrapped in a callback function.
+     * You can pass the callback function name as one of the query parameters.
+     * Note that JSONP requests can only be used with `GET` requests.
+     *
+     * @param url The resource URL.
+     * @param callbackParam The callback function name.
+     *
+     */
+    jsonp(url, callbackParam) {
+        return this.request('JSONP', url, {
+            params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
+            observe: 'body',
+            responseType: 'json',
+        });
+    }
+    /**
+     * Constructs an `Observable` that, when subscribed, causes the configured
+     * `OPTIONS` request to execute on the server. This method allows the client
+     * to determine the supported HTTP methods and other capabilites of an endpoint,
+     * without implying a resource action. See the individual overloads for
+     * details on the return type.
+     */
+    options(url, options = {}) {
+        return this.request('OPTIONS', url, options);
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `PATCH` request to execute on the server. See the individual overloads for
+     * details on the return type.
+     */
+    patch(url, body, options = {}) {
+        return this.request('PATCH', url, addBody(options, body));
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `POST` request to execute on the server. The server responds with the location of
+     * the replaced resource. See the individual overloads for
+     * details on the return type.
+     */
+    post(url, body, options = {}) {
+        return this.request('POST', url, addBody(options, body));
+    }
+    /**
+     * Constructs an observable that, when subscribed, causes the configured
+     * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
+     * with a new set of values.
+     * See the individual overloads for details on the return type.
+     */
+    put(url, body, options = {}) {
+        return this.request('PUT', url, addBody(options, body));
+    }
+}
+HttpClient.ɵfac = function HttpClient_Factory(t) { return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpHandler)); };
+HttpClient.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpClient, factory: HttpClient.ɵfac });
+HttpClient.ctorParameters = () => [
+    { type: HttpHandler }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClient, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: HttpHandler }]; }, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+ *
+ *
+ */
+class HttpInterceptorHandler {
+    constructor(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    handle(req) {
+        return this.interceptor.intercept(req, this.next);
+    }
+}
+/**
+ * A multi-provider token that represents the array of registered
+ * `HttpInterceptor` objects.
+ *
+ * @publicApi
+ */
+const HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HTTP_INTERCEPTORS');
+class NoopInterceptor {
+    intercept(req, next) {
+        return next.handle(req);
+    }
+}
+NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) { return new (t || NoopInterceptor)(); };
+NoopInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: NoopInterceptor, factory: NoopInterceptor.ɵfac });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NoopInterceptor, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], null, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Every request made through JSONP needs a callback name that's unique across the
+// whole page. Each request is assigned an id and the callback name is constructed
+// from that. The next id to be assigned is tracked in a global variable here that
+// is shared among all applications on the page.
+let nextRequestId = 0;
+// Error text given when a JSONP script is injected, but doesn't invoke the callback
+// passed in its URL.
+const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
+// Error text given when a request is passed to the JsonpClientBackend that doesn't
+// have a request method JSONP.
+const JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
+const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
+/**
+ * DI token/abstract type representing a map of JSONP callbacks.
+ *
+ * In the browser, this should always be the `window` object.
+ *
+ *
+ */
+class JsonpCallbackContext {
+}
+/**
+ * Processes an `HttpRequest` with the JSONP method,
+ * by performing JSONP style requests.
+ * @see `HttpHandler`
+ * @see `HttpXhrBackend`
+ *
+ * @publicApi
+ */
+class JsonpClientBackend {
+    constructor(callbackMap, document) {
+        this.callbackMap = callbackMap;
+        this.document = document;
+    }
+    /**
+     * Get the name of the next callback method, by incrementing the global `nextRequestId`.
+     */
+    nextCallback() {
+        return `ng_jsonp_callback_${nextRequestId++}`;
+    }
+    /**
+     * Processes a JSONP request and returns an event stream of the results.
+     * @param req The request object.
+     * @returns An observable of the response events.
+     *
+     */
+    handle(req) {
+        // Firstly, check both the method and response type. If either doesn't match
+        // then the request was improperly routed here and cannot be handled.
+        if (req.method !== 'JSONP') {
+            throw new Error(JSONP_ERR_WRONG_METHOD);
+        }
+        else if (req.responseType !== 'json') {
+            throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
+        }
+        // Everything else happens inside the Observable boundary.
+        return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
+            // The first step to make a request is to generate the callback name, and replace the
+            // callback placeholder in the URL with the name. Care has to be taken here to ensure
+            // a trailing &, if matched, gets inserted back into the URL in the correct place.
+            const callback = this.nextCallback();
+            const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
+            // Construct the <script> tag and point it at the URL.
+            const node = this.document.createElement('script');
+            node.src = url;
+            // A JSONP request requires waiting for multiple callbacks. These variables
+            // are closed over and track state across those callbacks.
+            // The response object, if one has been received, or null otherwise.
+            let body = null;
+            // Whether the response callback has been called.
+            let finished = false;
+            // Whether the request has been cancelled (and thus any other callbacks)
+            // should be ignored.
+            let cancelled = false;
+            // Set the response callback in this.callbackMap (which will be the window
+            // object in the browser. The script being loaded via the <script> tag will
+            // eventually call this callback.
+            this.callbackMap[callback] = (data) => {
+                // Data has been received from the JSONP script. Firstly, delete this callback.
+                delete this.callbackMap[callback];
+                // Next, make sure the request wasn't cancelled in the meantime.
+                if (cancelled) {
+                    return;
+                }
+                // Set state to indicate data was received.
+                body = data;
+                finished = true;
+            };
+            // cleanup() is a utility closure that removes the <script> from the page and
+            // the response callback from the window. This logic is used in both the
+            // success, error, and cancellation paths, so it's extracted out for convenience.
+            const cleanup = () => {
+                // Remove the <script> tag if it's still on the page.
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                }
+                // Remove the response callback from the callbackMap (window object in the
+                // browser).
+                delete this.callbackMap[callback];
+            };
+            // onLoad() is the success callback which runs after the response callback
+            // if the JSONP script loads successfully. The event itself is unimportant.
+            // If something went wrong, onLoad() may run without the response callback
+            // having been invoked.
+            const onLoad = (event) => {
+                // Do nothing if the request has been cancelled.
+                if (cancelled) {
+                    return;
+                }
+                // Cleanup the page.
+                cleanup();
+                // Check whether the response callback has run.
+                if (!finished) {
+                    // It hasn't, something went wrong with the request. Return an error via
+                    // the Observable error path. All JSONP errors have status 0.
+                    observer.error(new HttpErrorResponse({
+                        url,
+                        status: 0,
+                        statusText: 'JSONP Error',
+                        error: new Error(JSONP_ERR_NO_CALLBACK),
+                    }));
+                    return;
+                }
+                // Success. body either contains the response body or null if none was
+                // returned.
+                observer.next(new HttpResponse({
+                    body,
+                    status: 200,
+                    statusText: 'OK',
+                    url,
+                }));
+                // Complete the stream, the response is over.
+                observer.complete();
+            };
+            // onError() is the error callback, which runs if the script returned generates
+            // a Javascript error. It emits the error via the Observable error channel as
+            // a HttpErrorResponse.
+            const onError = (error) => {
+                // If the request was already cancelled, no need to emit anything.
+                if (cancelled) {
+                    return;
+                }
+                cleanup();
+                // Wrap the error in a HttpErrorResponse.
+                observer.error(new HttpErrorResponse({
+                    error,
+                    status: 0,
+                    statusText: 'JSONP Error',
+                    url,
+                }));
+            };
+            // Subscribe to both the success (load) and error events on the <script> tag,
+            // and add it to the page.
+            node.addEventListener('load', onLoad);
+            node.addEventListener('error', onError);
+            this.document.body.appendChild(node);
+            // The request has now been successfully sent.
+            observer.next({ type: HttpEventType.Sent });
+            // Cancellation handler.
+            return () => {
+                // Track the cancellation so event listeners won't do anything even if already scheduled.
+                cancelled = true;
+                // Remove the event listeners so they won't run if the events later fire.
+                node.removeEventListener('load', onLoad);
+                node.removeEventListener('error', onError);
+                // And finally, clean up the page.
+                cleanup();
+            };
+        });
+    }
+}
+JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) { return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])); };
+JsonpClientBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpClientBackend, factory: JsonpClientBackend.ɵfac });
+JsonpClientBackend.ctorParameters = () => [
+    { type: JsonpCallbackContext },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"],] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpClientBackend, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: JsonpCallbackContext }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+            }] }]; }, null); })();
+/**
+ * Identifies requests with the method JSONP and
+ * shifts them to the `JsonpClientBackend`.
+ *
+ * @see `HttpInterceptor`
+ *
+ * @publicApi
+ */
+class JsonpInterceptor {
+    constructor(jsonp) {
+        this.jsonp = jsonp;
+    }
+    /**
+     * Identifies and handles a given JSONP request.
+     * @param req The outgoing request object to handle.
+     * @param next The next interceptor in the chain, or the backend
+     * if no interceptors remain in the chain.
+     * @returns An observable of the event stream.
+     */
+    intercept(req, next) {
+        if (req.method === 'JSONP') {
+            return this.jsonp.handle(req);
+        }
+        // Fall through for normal HTTP requests.
+        return next.handle(req);
+    }
+}
+JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) { return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpClientBackend)); };
+JsonpInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpInterceptor, factory: JsonpInterceptor.ɵfac });
+JsonpInterceptor.ctorParameters = () => [
+    { type: JsonpClientBackend }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpInterceptor, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: JsonpClientBackend }]; }, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+const XSSI_PREFIX = /^\)\]\}',?\n/;
+/**
+ * Determine an appropriate URL for the response, by checking either
+ * XMLHttpRequest.responseURL or the X-Request-URL header.
+ */
+function getResponseUrl(xhr) {
+    if ('responseURL' in xhr && xhr.responseURL) {
+        return xhr.responseURL;
+    }
+    if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+        return xhr.getResponseHeader('X-Request-URL');
+    }
+    return null;
+}
+/**
+ * A wrapper around the `XMLHttpRequest` constructor.
+ *
+ * @publicApi
+ */
+class XhrFactory {
+}
+/**
+ * A factory for `HttpXhrBackend` that uses the `XMLHttpRequest` browser API.
+ *
+ */
+class BrowserXhr {
+    constructor() { }
+    build() {
+        return (new XMLHttpRequest());
+    }
+}
+BrowserXhr.ɵfac = function BrowserXhr_Factory(t) { return new (t || BrowserXhr)(); };
+BrowserXhr.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BrowserXhr, factory: BrowserXhr.ɵfac });
+BrowserXhr.ctorParameters = () => [];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BrowserXhr, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return []; }, null); })();
+/**
+ * Uses `XMLHttpRequest` to send requests to a backend server.
+ * @see `HttpHandler`
+ * @see `JsonpClientBackend`
+ *
+ * @publicApi
+ */
+class HttpXhrBackend {
+    constructor(xhrFactory) {
+        this.xhrFactory = xhrFactory;
+    }
+    /**
+     * Processes a request and returns a stream of response events.
+     * @param req The request object.
+     * @returns An observable of the response events.
+     */
+    handle(req) {
+        // Quick check to give a better error message when a user attempts to use
+        // HttpClient.jsonp() without installing the JsonpClientModule
+        if (req.method === 'JSONP') {
+            throw new Error(`Attempted to construct Jsonp request without JsonpClientModule installed.`);
+        }
+        // Everything happens on Observable subscription.
+        return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
+            // Start by setting up the XHR object with request method, URL, and withCredentials flag.
+            const xhr = this.xhrFactory.build();
+            xhr.open(req.method, req.urlWithParams);
+            if (!!req.withCredentials) {
+                xhr.withCredentials = true;
+            }
+            // Add all the requested headers.
+            req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(',')));
+            // Add an Accept header if one isn't present already.
+            if (!req.headers.has('Accept')) {
+                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+            }
+            // Auto-detect the Content-Type header if one isn't present already.
+            if (!req.headers.has('Content-Type')) {
+                const detectedType = req.detectContentTypeHeader();
+                // Sometimes Content-Type detection fails.
+                if (detectedType !== null) {
+                    xhr.setRequestHeader('Content-Type', detectedType);
+                }
+            }
+            // Set the responseType if one was requested.
+            if (req.responseType) {
+                const responseType = req.responseType.toLowerCase();
+                // JSON responses need to be processed as text. This is because if the server
+                // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
+                // xhr.response will be null, and xhr.responseText cannot be accessed to
+                // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
+                // is parsed by first requesting text and then applying JSON.parse.
+                xhr.responseType = ((responseType !== 'json') ? responseType : 'text');
+            }
+            // Serialize the request body if one is present. If not, this will be set to null.
+            const reqBody = req.serializeBody();
+            // If progress events are enabled, response headers will be delivered
+            // in two events - the HttpHeaderResponse event and the full HttpResponse
+            // event. However, since response headers don't change in between these
+            // two events, it doesn't make sense to parse them twice. So headerResponse
+            // caches the data extracted from the response whenever it's first parsed,
+            // to ensure parsing isn't duplicated.
+            let headerResponse = null;
+            // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+            // state, and memoizes it into headerResponse.
+            const partialFromXhr = () => {
+                if (headerResponse !== null) {
+                    return headerResponse;
+                }
+                // Read status and normalize an IE9 bug (http://bugs.jquery.com/ticket/1450).
+                const status = xhr.status === 1223 ? 204 : xhr.status;
+                const statusText = xhr.statusText || 'OK';
+                // Parse headers from XMLHttpRequest - this step is lazy.
+                const headers = new HttpHeaders(xhr.getAllResponseHeaders());
+                // Read the response URL from the XMLHttpResponse instance and fall back on the
+                // request URL.
+                const url = getResponseUrl(xhr) || req.url;
+                // Construct the HttpHeaderResponse and memoize it.
+                headerResponse = new HttpHeaderResponse({ headers, status, statusText, url });
+                return headerResponse;
+            };
+            // Next, a few closures are defined for the various events which XMLHttpRequest can
+            // emit. This allows them to be unregistered as event listeners later.
+            // First up is the load event, which represents a response being fully available.
+            const onLoad = () => {
+                // Read response state from the memoized partial data.
+                let { headers, status, statusText, url } = partialFromXhr();
+                // The body will be read out if present.
+                let body = null;
+                if (status !== 204) {
+                    // Use XMLHttpRequest.response if set, responseText otherwise.
+                    body = (typeof xhr.response === 'undefined') ? xhr.responseText : xhr.response;
+                }
+                // Normalize another potential bug (this one comes from CORS).
+                if (status === 0) {
+                    status = !!body ? 200 : 0;
+                }
+                // ok determines whether the response will be transmitted on the event or
+                // error channel. Unsuccessful status codes (not 2xx) will always be errors,
+                // but a successful status code can still result in an error if the user
+                // asked for JSON data and the body cannot be parsed as such.
+                let ok = status >= 200 && status < 300;
+                // Check whether the body needs to be parsed as JSON (in many cases the browser
+                // will have done that already).
+                if (req.responseType === 'json' && typeof body === 'string') {
+                    // Save the original body, before attempting XSSI prefix stripping.
+                    const originalBody = body;
+                    body = body.replace(XSSI_PREFIX, '');
+                    try {
+                        // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                        body = body !== '' ? JSON.parse(body) : null;
+                    }
+                    catch (error) {
+                        // Since the JSON.parse failed, it's reasonable to assume this might not have been a
+                        // JSON response. Restore the original body (including any XSSI prefix) to deliver
+                        // a better error response.
+                        body = originalBody;
+                        // If this was an error request to begin with, leave it as a string, it probably
+                        // just isn't JSON. Otherwise, deliver the parsing error to the user.
+                        if (ok) {
+                            // Even though the response status was 2xx, this is still an error.
+                            ok = false;
+                            // The parse error contains the text of the body that failed to parse.
+                            body = { error, text: body };
+                        }
+                    }
+                }
+                if (ok) {
+                    // A successful response is delivered on the event stream.
+                    observer.next(new HttpResponse({
+                        body,
+                        headers,
+                        status,
+                        statusText,
+                        url: url || undefined,
+                    }));
+                    // The full body has been received and delivered, no further events
+                    // are possible. This request is complete.
+                    observer.complete();
+                }
+                else {
+                    // An unsuccessful request is delivered on the error channel.
+                    observer.error(new HttpErrorResponse({
+                        // The error in this case is the response body (error from the server).
+                        error: body,
+                        headers,
+                        status,
+                        statusText,
+                        url: url || undefined,
+                    }));
+                }
+            };
+            // The onError callback is called when something goes wrong at the network level.
+            // Connection timeout, DNS error, offline, etc. These are actual errors, and are
+            // transmitted on the error channel.
+            const onError = (error) => {
+                const { url } = partialFromXhr();
+                const res = new HttpErrorResponse({
+                    error,
+                    status: xhr.status || 0,
+                    statusText: xhr.statusText || 'Unknown Error',
+                    url: url || undefined,
+                });
+                observer.error(res);
+            };
+            // The sentHeaders flag tracks whether the HttpResponseHeaders event
+            // has been sent on the stream. This is necessary to track if progress
+            // is enabled since the event will be sent on only the first download
+            // progerss event.
+            let sentHeaders = false;
+            // The download progress event handler, which is only registered if
+            // progress events are enabled.
+            const onDownProgress = (event) => {
+                // Send the HttpResponseHeaders event if it hasn't been sent already.
+                if (!sentHeaders) {
+                    observer.next(partialFromXhr());
+                    sentHeaders = true;
+                }
+                // Start building the download progress event to deliver on the response
+                // event stream.
+                let progressEvent = {
+                    type: HttpEventType.DownloadProgress,
+                    loaded: event.loaded,
+                };
+                // Set the total number of bytes in the event if it's available.
+                if (event.lengthComputable) {
+                    progressEvent.total = event.total;
+                }
+                // If the request was for text content and a partial response is
+                // available on XMLHttpRequest, include it in the progress event
+                // to allow for streaming reads.
+                if (req.responseType === 'text' && !!xhr.responseText) {
+                    progressEvent.partialText = xhr.responseText;
+                }
+                // Finally, fire the event.
+                observer.next(progressEvent);
+            };
+            // The upload progress event handler, which is only registered if
+            // progress events are enabled.
+            const onUpProgress = (event) => {
+                // Upload progress events are simpler. Begin building the progress
+                // event.
+                let progress = {
+                    type: HttpEventType.UploadProgress,
+                    loaded: event.loaded,
+                };
+                // If the total number of bytes being uploaded is available, include
+                // it.
+                if (event.lengthComputable) {
+                    progress.total = event.total;
+                }
+                // Send the event.
+                observer.next(progress);
+            };
+            // By default, register for load and error events.
+            xhr.addEventListener('load', onLoad);
+            xhr.addEventListener('error', onError);
+            // Progress events are only enabled if requested.
+            if (req.reportProgress) {
+                // Download progress is always enabled if requested.
+                xhr.addEventListener('progress', onDownProgress);
+                // Upload progress depends on whether there is a body to upload.
+                if (reqBody !== null && xhr.upload) {
+                    xhr.upload.addEventListener('progress', onUpProgress);
+                }
+            }
+            // Fire the request, and notify the event stream that it was fired.
+            xhr.send(reqBody);
+            observer.next({ type: HttpEventType.Sent });
+            // This is the return from the Observable function, which is the
+            // request cancellation handler.
+            return () => {
+                // On a cancellation, remove all registered event listeners.
+                xhr.removeEventListener('error', onError);
+                xhr.removeEventListener('load', onLoad);
+                if (req.reportProgress) {
+                    xhr.removeEventListener('progress', onDownProgress);
+                    if (reqBody !== null && xhr.upload) {
+                        xhr.upload.removeEventListener('progress', onUpProgress);
+                    }
+                }
+                // Finally, abort the in-flight request.
+                if (xhr.readyState !== xhr.DONE) {
+                    xhr.abort();
+                }
+            };
+        });
+    }
+}
+HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) { return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XhrFactory)); };
+HttpXhrBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXhrBackend, factory: HttpXhrBackend.ɵfac });
+HttpXhrBackend.ctorParameters = () => [
+    { type: XhrFactory }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXhrBackend, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: XhrFactory }]; }, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+const XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_COOKIE_NAME');
+const XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_HEADER_NAME');
+/**
+ * Retrieves the current XSRF token to use with the next outgoing request.
+ *
+ * @publicApi
+ */
+class HttpXsrfTokenExtractor {
+}
+/**
+ * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
+ */
+class HttpXsrfCookieExtractor {
+    constructor(doc, platform, cookieName) {
+        this.doc = doc;
+        this.platform = platform;
+        this.cookieName = cookieName;
+        this.lastCookieString = '';
+        this.lastToken = null;
+        /**
+         * @internal for testing
+         */
+        this.parseCount = 0;
+    }
+    getToken() {
+        if (this.platform === 'server') {
+            return null;
+        }
+        const cookieString = this.doc.cookie || '';
+        if (cookieString !== this.lastCookieString) {
+            this.parseCount++;
+            this.lastToken = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["ɵparseCookieValue"])(cookieString, this.cookieName);
+            this.lastCookieString = cookieString;
+        }
+        return this.lastToken;
+    }
+}
+HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) { return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_COOKIE_NAME)); };
+HttpXsrfCookieExtractor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfCookieExtractor, factory: HttpXsrfCookieExtractor.ɵfac });
+HttpXsrfCookieExtractor.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"],] }] },
+    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"],] }] },
+    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [XSRF_COOKIE_NAME,] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
+            }] }, { type: String, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
+            }] }, { type: String, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [XSRF_COOKIE_NAME]
+            }] }]; }, null); })();
+/**
+ * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
+ */
+class HttpXsrfInterceptor {
+    constructor(tokenService, headerName) {
+        this.tokenService = tokenService;
+        this.headerName = headerName;
+    }
+    intercept(req, next) {
+        const lcUrl = req.url.toLowerCase();
+        // Skip both non-mutating requests and absolute URLs.
+        // Non-mutating requests don't require a token, and absolute URLs require special handling
+        // anyway as the cookie set
+        // on our origin is not the same as the token expected by another origin.
+        if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') ||
+            lcUrl.startsWith('https://')) {
+            return next.handle(req);
+        }
+        const token = this.tokenService.getToken();
+        // Be careful not to overwrite an existing header of the same name.
+        if (token !== null && !req.headers.has(this.headerName)) {
+            req = req.clone({ headers: req.headers.set(this.headerName, token) });
+        }
+        return next.handle(req);
+    }
+}
+HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) { return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_HEADER_NAME)); };
+HttpXsrfInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfInterceptor, factory: HttpXsrfInterceptor.ɵfac });
+HttpXsrfInterceptor.ctorParameters = () => [
+    { type: HttpXsrfTokenExtractor },
+    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [XSRF_HEADER_NAME,] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: HttpXsrfTokenExtractor }, { type: String, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [XSRF_HEADER_NAME]
+            }] }]; }, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * An injectable `HttpHandler` that applies multiple interceptors
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * The interceptors are loaded lazily from the injector, to allow
+ * interceptors to themselves inject classes depending indirectly
+ * on `HttpInterceptingHandler` itself.
+ * @see `HttpInterceptor`
+ */
+class HttpInterceptingHandler {
+    constructor(backend, injector) {
+        this.backend = backend;
+        this.injector = injector;
+        this.chain = null;
+    }
+    handle(req) {
+        if (this.chain === null) {
+            const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+            this.chain = interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), this.backend);
+        }
+        return this.chain.handle(req);
+    }
+}
+HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) { return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"])); };
+HttpInterceptingHandler.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpInterceptingHandler, factory: HttpInterceptingHandler.ɵfac });
+HttpInterceptingHandler.ctorParameters = () => [
+    { type: HttpBackend },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: HttpBackend }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"] }]; }, null); })();
+/**
+ * Constructs an `HttpHandler` that applies interceptors
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * Use as a factory function within `HttpClientModule`.
+ *
+ *
+ */
+function interceptingHandler(backend, interceptors = []) {
+    if (!interceptors) {
+        return backend;
+    }
+    return interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), backend);
+}
+/**
+ * Factory function that determines where to store JSONP callbacks.
+ *
+ * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
+ * in test environments. In that case, callbacks are stored on an anonymous object instead.
+ *
+ *
+ */
+function jsonpCallbackContext() {
+    if (typeof window === 'object') {
+        return window;
+    }
+    return {};
+}
+/**
+ * Configures XSRF protection support for outgoing requests.
+ *
+ * For a server that supports a cookie-based XSRF protection system,
+ * use directly to configure XSRF protection with the correct
+ * cookie and header names.
+ *
+ * If no names are supplied, the default cookie name is `XSRF-TOKEN`
+ * and the default header name is `X-XSRF-TOKEN`.
+ *
+ * @publicApi
+ */
+class HttpClientXsrfModule {
+    /**
+     * Disable the default XSRF protection.
+     */
+    static disable() {
+        return {
+            ngModule: HttpClientXsrfModule,
+            providers: [
+                { provide: HttpXsrfInterceptor, useClass: NoopInterceptor },
+            ],
+        };
+    }
+    /**
+     * Configure XSRF protection.
+     * @param options An object that can specify either or both
+     * cookie name or header name.
+     * - Cookie name default is `XSRF-TOKEN`.
+     * - Header name default is `X-XSRF-TOKEN`.
+     *
+     */
+    static withOptions(options = {}) {
+        return {
+            ngModule: HttpClientXsrfModule,
+            providers: [
+                options.cookieName ? { provide: XSRF_COOKIE_NAME, useValue: options.cookieName } : [],
+                options.headerName ? { provide: XSRF_HEADER_NAME, useValue: options.headerName } : [],
+            ],
+        };
+    }
+}
+HttpClientXsrfModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientXsrfModule });
+HttpClientXsrfModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientXsrfModule_Factory(t) { return new (t || HttpClientXsrfModule)(); }, providers: [
+        HttpXsrfInterceptor,
+        { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
+        { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
+        { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
+        { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
+    ] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+        args: [{
+                providers: [
+                    HttpXsrfInterceptor,
+                    { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
+                    { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
+                    { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
+                    { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
+                ]
+            }]
+    }], null, null); })();
+/**
+ * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+ * with supporting services for XSRF. Automatically imported by `HttpClientModule`.
+ *
+ * You can add interceptors to the chain behind `HttpClient` by binding them to the
+ * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+ *
+ * @publicApi
+ */
+class HttpClientModule {
+}
+HttpClientModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientModule });
+HttpClientModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientModule_Factory(t) { return new (t || HttpClientModule)(); }, providers: [
+        HttpClient,
+        { provide: HttpHandler, useClass: HttpInterceptingHandler },
+        HttpXhrBackend,
+        { provide: HttpBackend, useExisting: HttpXhrBackend },
+        BrowserXhr,
+        { provide: XhrFactory, useExisting: BrowserXhr },
+    ], imports: [[
+            HttpClientXsrfModule.withOptions({
+                cookieName: 'XSRF-TOKEN',
+                headerName: 'X-XSRF-TOKEN'
+            }),
+        ]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HttpClientModule, { imports: [HttpClientXsrfModule] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+        args: [{
+                /**
+                 * Optional configuration for XSRF protection.
+                 */
+                imports: [
+                    HttpClientXsrfModule.withOptions({
+                        cookieName: 'XSRF-TOKEN',
+                        headerName: 'X-XSRF-TOKEN'
+                    }),
+                ],
+                /**
+                 * Configures the [dependency injector](guide/glossary#injector) where it is imported
+                 * with supporting services for HTTP communications.
+                 */
+                providers: [
+                    HttpClient,
+                    { provide: HttpHandler, useClass: HttpInterceptingHandler },
+                    HttpXhrBackend,
+                    { provide: HttpBackend, useExisting: HttpXhrBackend },
+                    BrowserXhr,
+                    { provide: XhrFactory, useExisting: BrowserXhr },
+                ]
+            }]
+    }], null, null); })();
+/**
+ * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+ * with supporting services for JSONP.
+ * Without this module, Jsonp requests reach the backend
+ * with method JSONP, where they are rejected.
+ *
+ * You can add interceptors to the chain behind `HttpClient` by binding them to the
+ * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+ *
+ * @publicApi
+ */
+class HttpClientJsonpModule {
+}
+HttpClientJsonpModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientJsonpModule });
+HttpClientJsonpModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientJsonpModule_Factory(t) { return new (t || HttpClientJsonpModule)(); }, providers: [
+        JsonpClientBackend,
+        { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
+        { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
+    ] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+        args: [{
+                providers: [
+                    JsonpClientBackend,
+                    { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
+                    { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
+                ]
+            }]
+    }], null, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+//# sourceMappingURL=http.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@firebase/analytics/dist/index.esm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@firebase/analytics/dist/index.esm.js ***!
+  \************************************************************/
 /*! exports provided: factory, getGlobalVars, registerAnalytics, resetGlobalVars, settings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15,13 +6012,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetGlobalVars", function() { return resetGlobalVars; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 /* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_firebase_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _firebase_installations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/installations */ "../node_modules/@firebase/installations/dist/index.esm.js");
-/* harmony import */ var _firebase_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js");
-/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
+/* harmony import */ var _firebase_installations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/installations */ "./node_modules/@firebase/installations/dist/index.esm.js");
+/* harmony import */ var _firebase_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js");
+/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
 /* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_firebase_util__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 /* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_firebase_component__WEBPACK_IMPORTED_MODULE_5__);
 
 
@@ -1248,10 +7245,10 @@ function isSupported() {
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/app/dist/index.cjs.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/@firebase/app/dist/index.cjs.js ***!
-  \*******************************************************/
+/***/ "./node_modules/@firebase/app/dist/index.cjs.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@firebase/app/dist/index.cjs.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1261,9 +7258,9 @@ function isSupported() {
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var util = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
-var component = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
-var logger$1 = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js");
+var util = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
+var component = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
+var logger$1 = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js");
 
 /**
  * @license
@@ -1934,14 +7931,14 @@ exports.firebase = firebase$1;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/auth/dist/auth.js":
-/*!***************************************************!*\
-  !*** ../node_modules/@firebase/auth/dist/auth.js ***!
-  \***************************************************/
+/***/ "./node_modules/@firebase/auth/dist/auth.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@firebase/auth/dist/auth.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-(function() {var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js").default;/*
+(function() {var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js").default;/*
 
  Copyright The Closure Library Authors.
  SPDX-License-Identifier: Apache-2.0
@@ -2381,10 +8378,10 @@ instanceFactory:function(b){b=b.getProvider("auth").getImmediate();return{getUid
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/component/dist/index.cjs.js":
-/*!*************************************************************!*\
-  !*** ../node_modules/@firebase/component/dist/index.cjs.js ***!
-  \*************************************************************/
+/***/ "./node_modules/@firebase/component/dist/index.cjs.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@firebase/component/dist/index.cjs.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2394,7 +8391,7 @@ instanceFactory:function(b){b=b.getProvider("auth").getImmediate();return{getUid
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var util = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
+var util = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
 
 /**
  * Component for service name T, e.g. `auth`, `auth-internal`
@@ -2711,10 +8708,10 @@ exports.Provider = Provider;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/database/dist/index.cjs.js":
-/*!************************************************************!*\
-  !*** ../node_modules/@firebase/database/dist/index.cjs.js ***!
-  \************************************************************/
+/***/ "./node_modules/@firebase/database/dist/index.cjs.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@firebase/database/dist/index.cjs.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2723,11 +8720,11 @@ exports.Provider = Provider;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var util = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
-var logger$1 = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js");
-var component = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+var util = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
+var logger$1 = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js");
+var component = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -18129,10 +24126,10 @@ exports.registerDatabase = registerDatabase;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/firestore/dist/index.cjs.js":
-/*!*************************************************************!*\
-  !*** ../node_modules/@firebase/firestore/dist/index.cjs.js ***!
-  \*************************************************************/
+/***/ "./node_modules/@firebase/firestore/dist/index.cjs.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@firebase/firestore/dist/index.cjs.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18143,7 +24140,7 @@ Object.defineProperty(exports, "__esModule", {
     value: !0
 });
 
-var t = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"), e = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js"), n = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js"), r = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js"), i = __webpack_require__(/*! @firebase/webchannel-wrapper */ "../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js"), o = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+var t = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"), e = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js"), n = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js"), r = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js"), i = __webpack_require__(/*! @firebase/webchannel-wrapper */ "../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js"), o = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 
 function s(t) {
     return t && "object" == typeof t && "default" in t ? t : {
@@ -34270,696 +40267,24 @@ ba(u.default), exports.__PRIVATE_registerFirestore = ba;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/functions/dist/index.cjs.js":
-/*!*************************************************************!*\
-  !*** ../node_modules/@firebase/functions/dist/index.cjs.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
-var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var component = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var firebase__default = /*#__PURE__*/_interopDefaultLegacy(firebase);
-
-/**
- * @license
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * Standard error codes for different ways a request can fail, as defined by:
- * https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
- *
- * This map is used primarily to convert from a backend error code string to
- * a client SDK error code string, and make sure it's in the supported set.
- */
-var errorCodeMap = {
-    OK: 'ok',
-    CANCELLED: 'cancelled',
-    UNKNOWN: 'unknown',
-    INVALID_ARGUMENT: 'invalid-argument',
-    DEADLINE_EXCEEDED: 'deadline-exceeded',
-    NOT_FOUND: 'not-found',
-    ALREADY_EXISTS: 'already-exists',
-    PERMISSION_DENIED: 'permission-denied',
-    UNAUTHENTICATED: 'unauthenticated',
-    RESOURCE_EXHAUSTED: 'resource-exhausted',
-    FAILED_PRECONDITION: 'failed-precondition',
-    ABORTED: 'aborted',
-    OUT_OF_RANGE: 'out-of-range',
-    UNIMPLEMENTED: 'unimplemented',
-    INTERNAL: 'internal',
-    UNAVAILABLE: 'unavailable',
-    DATA_LOSS: 'data-loss'
-};
-/**
- * An explicit error that can be thrown from a handler to send an error to the
- * client that called the function.
- */
-var HttpsErrorImpl = /** @class */ (function (_super) {
-    tslib.__extends(HttpsErrorImpl, _super);
-    function HttpsErrorImpl(code, message, details) {
-        var _this = _super.call(this, message) || this;
-        // This is a workaround for a bug in TypeScript when extending Error:
-        // tslint:disable-next-line
-        // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
-        Object.setPrototypeOf(_this, HttpsErrorImpl.prototype);
-        _this.code = code;
-        _this.details = details;
-        return _this;
-    }
-    return HttpsErrorImpl;
-}(Error));
-/**
- * Takes an HTTP status code and returns the corresponding ErrorCode.
- * This is the standard HTTP status code -> error mapping defined in:
- * https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
- *
- * @param status An HTTP status code.
- * @return The corresponding ErrorCode, or ErrorCode.UNKNOWN if none.
- */
-function codeForHTTPStatus(status) {
-    // Make sure any successful status is OK.
-    if (status >= 200 && status < 300) {
-        return 'ok';
-    }
-    switch (status) {
-        case 0:
-            // This can happen if the server returns 500.
-            return 'internal';
-        case 400:
-            return 'invalid-argument';
-        case 401:
-            return 'unauthenticated';
-        case 403:
-            return 'permission-denied';
-        case 404:
-            return 'not-found';
-        case 409:
-            return 'aborted';
-        case 429:
-            return 'resource-exhausted';
-        case 499:
-            return 'cancelled';
-        case 500:
-            return 'internal';
-        case 501:
-            return 'unimplemented';
-        case 503:
-            return 'unavailable';
-        case 504:
-            return 'deadline-exceeded';
-    }
-    return 'unknown';
-}
-/**
- * Takes an HTTP response and returns the corresponding Error, if any.
- */
-function _errorForResponse(status, bodyJSON, serializer) {
-    var code = codeForHTTPStatus(status);
-    // Start with reasonable defaults from the status code.
-    var description = code;
-    var details = undefined;
-    // Then look through the body for explicit details.
-    try {
-        var errorJSON = bodyJSON && bodyJSON.error;
-        if (errorJSON) {
-            var status_1 = errorJSON.status;
-            if (typeof status_1 === 'string') {
-                if (!errorCodeMap[status_1]) {
-                    // They must've included an unknown error code in the body.
-                    return new HttpsErrorImpl('internal', 'internal');
-                }
-                code = errorCodeMap[status_1];
-                // TODO(klimt): Add better default descriptions for error enums.
-                // The default description needs to be updated for the new code.
-                description = status_1;
-            }
-            var message = errorJSON.message;
-            if (typeof message === 'string') {
-                description = message;
-            }
-            details = errorJSON.details;
-            if (details !== undefined) {
-                details = serializer.decode(details);
-            }
-        }
-    }
-    catch (e) {
-        // If we couldn't parse explicit error data, that's fine.
-    }
-    if (code === 'ok') {
-        // Technically, there's an edge case where a developer could explicitly
-        // return an error code of OK, and we will treat it as success, but that
-        // seems reasonable.
-        return null;
-    }
-    return new HttpsErrorImpl(code, description, details);
-}
-
-/**
- * Helper class to get metadata that should be included with a function call.
- */
-var ContextProvider = /** @class */ (function () {
-    function ContextProvider(authProvider, messagingProvider) {
-        var _this = this;
-        this.auth = null;
-        this.messaging = null;
-        this.auth = authProvider.getImmediate({ optional: true });
-        this.messaging = messagingProvider.getImmediate({
-            optional: true
-        });
-        if (!this.auth) {
-            authProvider.get().then(function (auth) { return (_this.auth = auth); }, function () {
-                /* get() never rejects */
-            });
-        }
-        if (!this.messaging) {
-            messagingProvider.get().then(function (messaging) { return (_this.messaging = messaging); }, function () {
-                /* get() never rejects */
-            });
-        }
-    }
-    ContextProvider.prototype.getAuthToken = function () {
-        return tslib.__awaiter(this, void 0, void 0, function () {
-            var token, e_1;
-            return tslib.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.auth) {
-                            return [2 /*return*/, undefined];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.auth.getToken()];
-                    case 2:
-                        token = _a.sent();
-                        if (!token) {
-                            return [2 /*return*/, undefined];
-                        }
-                        return [2 /*return*/, token.accessToken];
-                    case 3:
-                        e_1 = _a.sent();
-                        // If there's any error when trying to get the auth token, leave it off.
-                        return [2 /*return*/, undefined];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ContextProvider.prototype.getInstanceIdToken = function () {
-        return tslib.__awaiter(this, void 0, void 0, function () {
-            return tslib.__generator(this, function (_a) {
-                if (!this.messaging ||
-                    !('Notification' in self) ||
-                    Notification.permission !== 'granted') {
-                    return [2 /*return*/, undefined];
-                }
-                try {
-                    return [2 /*return*/, this.messaging.getToken()];
-                }
-                catch (e) {
-                    // We don't warn on this, because it usually means messaging isn't set up.
-                    // console.warn('Failed to retrieve instance id token.', e);
-                    // If there's any error when trying to get the token, leave it off.
-                    return [2 /*return*/, undefined];
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    ContextProvider.prototype.getContext = function () {
-        return tslib.__awaiter(this, void 0, void 0, function () {
-            var authToken, instanceIdToken;
-            return tslib.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAuthToken()];
-                    case 1:
-                        authToken = _a.sent();
-                        return [4 /*yield*/, this.getInstanceIdToken()];
-                    case 2:
-                        instanceIdToken = _a.sent();
-                        return [2 /*return*/, { authToken: authToken, instanceIdToken: instanceIdToken }];
-                }
-            });
-        });
-    };
-    return ContextProvider;
-}());
-
-/**
- * @license
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var LONG_TYPE = 'type.googleapis.com/google.protobuf.Int64Value';
-var UNSIGNED_LONG_TYPE = 'type.googleapis.com/google.protobuf.UInt64Value';
-function mapValues(
-// { [k: string]: unknown } is no longer a wildcard assignment target after typescript 3.5
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-o, f) {
-    var result = {};
-    for (var key in o) {
-        if (o.hasOwnProperty(key)) {
-            result[key] = f(o[key]);
-        }
-    }
-    return result;
-}
-var Serializer = /** @class */ (function () {
-    function Serializer() {
-    }
-    // Takes data and encodes it in a JSON-friendly way, such that types such as
-    // Date are preserved.
-    Serializer.prototype.encode = function (data) {
-        var _this = this;
-        if (data == null) {
-            return null;
-        }
-        if (data instanceof Number) {
-            data = data.valueOf();
-        }
-        if (typeof data === 'number' && isFinite(data)) {
-            // Any number in JS is safe to put directly in JSON and parse as a double
-            // without any loss of precision.
-            return data;
-        }
-        if (data === true || data === false) {
-            return data;
-        }
-        if (Object.prototype.toString.call(data) === '[object String]') {
-            return data;
-        }
-        if (Array.isArray(data)) {
-            return data.map(function (x) { return _this.encode(x); });
-        }
-        if (typeof data === 'function' || typeof data === 'object') {
-            return mapValues(data, function (x) { return _this.encode(x); });
-        }
-        // If we got this far, the data is not encodable.
-        throw new Error('Data cannot be encoded in JSON: ' + data);
-    };
-    // Takes data that's been encoded in a JSON-friendly form and returns a form
-    // with richer datatypes, such as Dates, etc.
-    Serializer.prototype.decode = function (json) {
-        var _this = this;
-        if (json == null) {
-            return json;
-        }
-        if (json['@type']) {
-            switch (json['@type']) {
-                case LONG_TYPE:
-                // Fall through and handle this the same as unsigned.
-                case UNSIGNED_LONG_TYPE: {
-                    // Technically, this could work return a valid number for malformed
-                    // data if there was a number followed by garbage. But it's just not
-                    // worth all the extra code to detect that case.
-                    var value = Number(json['value']);
-                    if (isNaN(value)) {
-                        throw new Error('Data cannot be decoded from JSON: ' + json);
-                    }
-                    return value;
-                }
-                default: {
-                    throw new Error('Data cannot be decoded from JSON: ' + json);
-                }
-            }
-        }
-        if (Array.isArray(json)) {
-            return json.map(function (x) { return _this.decode(x); });
-        }
-        if (typeof json === 'function' || typeof json === 'object') {
-            return mapValues(json, function (x) { return _this.decode(x); });
-        }
-        // Anything else is safe to return.
-        return json;
-    };
-    return Serializer;
-}());
-
-/**
- * @license
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * Returns a Promise that will be rejected after the given duration.
- * The error will be of type HttpsErrorImpl.
- *
- * @param millis Number of milliseconds to wait before rejecting.
- */
-function failAfter(millis) {
-    var timer;
-    var promise = new Promise(function (_, reject) {
-        timer = setTimeout(function () {
-            reject(new HttpsErrorImpl('deadline-exceeded', 'deadline-exceeded'));
-        }, millis);
-    });
-    return {
-        timer: timer,
-        promise: promise
-    };
-}
-/**
- * The main class for the Firebase Functions SDK.
- */
-var Service = /** @class */ (function () {
-    /**
-     * Creates a new Functions service for the given app and (optional) region or custom domain.
-     * @param app_ The FirebaseApp to use.
-     * @param regionOrCustomDomain_ one of:
-     *   a) A region to call functions from, such as us-central1
-     *   b) A custom domain to use as a functions prefix, such as https://mydomain.com
-     */
-    function Service(app_, authProvider, messagingProvider, regionOrCustomDomain_, fetchImpl) {
-        var _this = this;
-        if (regionOrCustomDomain_ === void 0) { regionOrCustomDomain_ = 'us-central1'; }
-        this.app_ = app_;
-        this.fetchImpl = fetchImpl;
-        this.serializer = new Serializer();
-        this.emulatorOrigin = null;
-        this.INTERNAL = {
-            delete: function () {
-                return Promise.resolve(_this.deleteService());
-            }
-        };
-        this.contextProvider = new ContextProvider(authProvider, messagingProvider);
-        // Cancels all ongoing requests when resolved.
-        this.cancelAllRequests = new Promise(function (resolve) {
-            _this.deleteService = function () {
-                return resolve();
-            };
-        });
-        // Resolve the region or custom domain overload by attempting to parse it.
-        try {
-            var url = new URL(regionOrCustomDomain_);
-            this.customDomain = url.origin;
-            this.region = 'us-central1';
-        }
-        catch (e) {
-            this.customDomain = null;
-            this.region = regionOrCustomDomain_;
-        }
-    }
-    Object.defineProperty(Service.prototype, "app", {
-        get: function () {
-            return this.app_;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    /**
-     * Returns the URL for a callable with the given name.
-     * @param name The name of the callable.
-     */
-    Service.prototype._url = function (name) {
-        var projectId = this.app_.options.projectId;
-        if (this.emulatorOrigin !== null) {
-            var origin_1 = this.emulatorOrigin;
-            return origin_1 + "/" + projectId + "/" + this.region + "/" + name;
-        }
-        if (this.customDomain !== null) {
-            return this.customDomain + "/" + name;
-        }
-        return "https://" + this.region + "-" + projectId + ".cloudfunctions.net/" + name;
-    };
-    /**
-     * Changes this instance to point to a Cloud Functions emulator running
-     * locally. See https://firebase.google.com/docs/functions/local-emulator
-     *
-     * @param origin The origin of the local emulator, such as
-     * "http://localhost:5005".
-     */
-    Service.prototype.useFunctionsEmulator = function (origin) {
-        this.emulatorOrigin = origin;
-    };
-    /**
-     * Returns a reference to the callable https trigger with the given name.
-     * @param name The name of the trigger.
-     */
-    Service.prototype.httpsCallable = function (name, options) {
-        var _this = this;
-        return function (data) {
-            return _this.call(name, data, options || {});
-        };
-    };
-    /**
-     * Does an HTTP POST and returns the completed response.
-     * @param url The url to post to.
-     * @param body The JSON body of the post.
-     * @param headers The HTTP headers to include in the request.
-     * @return A Promise that will succeed when the request finishes.
-     */
-    Service.prototype.postJSON = function (url, body, headers) {
-        return tslib.__awaiter(this, void 0, void 0, function () {
-            var response, e_1, json, e_2;
-            return tslib.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        headers['Content-Type'] = 'application/json';
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.fetchImpl(url, {
-                                method: 'POST',
-                                body: JSON.stringify(body),
-                                headers: headers
-                            })];
-                    case 2:
-                        response = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        // This could be an unhandled error on the backend, or it could be a
-                        // network error. There's no way to know, since an unhandled error on the
-                        // backend will fail to set the proper CORS header, and thus will be
-                        // treated as a network error by fetch.
-                        return [2 /*return*/, {
-                                status: 0,
-                                json: null
-                            }];
-                    case 4:
-                        json = null;
-                        _a.label = 5;
-                    case 5:
-                        _a.trys.push([5, 7, , 8]);
-                        return [4 /*yield*/, response.json()];
-                    case 6:
-                        json = _a.sent();
-                        return [3 /*break*/, 8];
-                    case 7:
-                        e_2 = _a.sent();
-                        return [3 /*break*/, 8];
-                    case 8: return [2 /*return*/, {
-                            status: response.status,
-                            json: json
-                        }];
-                }
-            });
-        });
-    };
-    /**
-     * Calls a callable function asynchronously and returns the result.
-     * @param name The name of the callable trigger.
-     * @param data The data to pass as params to the function.s
-     */
-    Service.prototype.call = function (name, data, options) {
-        return tslib.__awaiter(this, void 0, void 0, function () {
-            var url, body, headers, context, timeout, _a, timer, failAfterPromise, response, error, responseData, decodedData;
-            return tslib.__generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        url = this._url(name);
-                        // Encode any special types, such as dates, in the input data.
-                        data = this.serializer.encode(data);
-                        body = { data: data };
-                        headers = {};
-                        return [4 /*yield*/, this.contextProvider.getContext()];
-                    case 1:
-                        context = _b.sent();
-                        if (context.authToken) {
-                            headers['Authorization'] = 'Bearer ' + context.authToken;
-                        }
-                        if (context.instanceIdToken) {
-                            headers['Firebase-Instance-ID-Token'] = context.instanceIdToken;
-                        }
-                        timeout = options.timeout || 70000;
-                        _a = failAfter(timeout), timer = _a.timer, failAfterPromise = _a.promise;
-                        return [4 /*yield*/, Promise.race([
-                                clearTimeoutWrapper(timer, this.postJSON(url, body, headers)),
-                                failAfterPromise,
-                                clearTimeoutWrapper(timer, this.cancelAllRequests)
-                            ])];
-                    case 2:
-                        response = _b.sent();
-                        // If service was deleted, interrupted response throws an error.
-                        if (!response) {
-                            throw new HttpsErrorImpl('cancelled', 'Firebase Functions instance was deleted.');
-                        }
-                        error = _errorForResponse(response.status, response.json, this.serializer);
-                        if (error) {
-                            throw error;
-                        }
-                        if (!response.json) {
-                            throw new HttpsErrorImpl('internal', 'Response is not valid JSON object.');
-                        }
-                        responseData = response.json.data;
-                        // TODO(klimt): For right now, allow "result" instead of "data", for
-                        // backwards compatibility.
-                        if (typeof responseData === 'undefined') {
-                            responseData = response.json.result;
-                        }
-                        if (typeof responseData === 'undefined') {
-                            // Consider the response malformed.
-                            throw new HttpsErrorImpl('internal', 'Response is missing data field.');
-                        }
-                        decodedData = this.serializer.decode(responseData);
-                        return [2 /*return*/, { data: decodedData }];
-                }
-            });
-        });
-    };
-    return Service;
-}());
-function clearTimeoutWrapper(timer, promise) {
-    return tslib.__awaiter(this, void 0, void 0, function () {
-        var result;
-        return tslib.__generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, promise];
-                case 1:
-                    result = _a.sent();
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    clearTimeout(timer);
-                    return [2 /*return*/, result];
-            }
-        });
-    });
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * Type constant for Firebase Functions.
- */
-var FUNCTIONS_TYPE = 'functions';
-function registerFunctions(instance, fetchImpl) {
-    var namespaceExports = {
-        // no-inline
-        Functions: Service
-    };
-    function factory(container, regionOrCustomDomain) {
-        // Dependencies
-        var app = container.getProvider('app').getImmediate();
-        var authProvider = container.getProvider('auth-internal');
-        var messagingProvider = container.getProvider('messaging');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return new Service(app, authProvider, messagingProvider, regionOrCustomDomain, fetchImpl);
-    }
-    instance.INTERNAL.registerComponent(new component.Component(FUNCTIONS_TYPE, factory, "PUBLIC" /* PUBLIC */)
-        .setServiceProps(namespaceExports)
-        .setMultipleInstances(true));
-}
-
-var name = "@firebase/functions";
-var version = "0.5.1";
-
-/**
- * @license
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-registerFunctions(firebase__default['default'], fetch.bind(self));
-firebase__default['default'].registerVersion(name, version);
-//# sourceMappingURL=index.cjs.js.map
-
-
-/***/ }),
-
-/***/ "../node_modules/@firebase/installations/dist/index.esm.js":
-/*!*****************************************************************!*\
-  !*** ../node_modules/@firebase/installations/dist/index.esm.js ***!
-  \*****************************************************************/
+/***/ "./node_modules/@firebase/installations/dist/index.esm.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@firebase/installations/dist/index.esm.js ***!
+  \****************************************************************/
 /*! exports provided: registerInstallations */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerInstallations", function() { return registerInstallations; });
-/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 /* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_firebase_app__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 /* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_firebase_component__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
+/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
 /* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_firebase_util__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! idb */ "../node_modules/idb/build/idb.js");
+/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! idb */ "./node_modules/idb/build/idb.js");
 /* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(idb__WEBPACK_IMPORTED_MODULE_4__);
 
 
@@ -36294,10 +41619,10 @@ registerInstallations(_firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a);
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/logger/dist/index.esm.js":
-/*!**********************************************************!*\
-  !*** ../node_modules/@firebase/logger/dist/index.esm.js ***!
-  \**********************************************************/
+/***/ "./node_modules/@firebase/logger/dist/index.esm.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@firebase/logger/dist/index.esm.js ***!
+  \*********************************************************/
 /*! exports provided: LogLevel, Logger, setLogLevel, setUserLogHandler */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -36598,24 +41923,24 @@ function setUserLogHandler(logCallback, options) {
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/messaging/dist/index.esm.js":
-/*!*************************************************************!*\
-  !*** ../node_modules/@firebase/messaging/dist/index.esm.js ***!
-  \*************************************************************/
+/***/ "./node_modules/@firebase/messaging/dist/index.esm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@firebase/messaging/dist/index.esm.js ***!
+  \************************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _firebase_installations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/installations */ "../node_modules/@firebase/installations/dist/index.esm.js");
-/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+/* harmony import */ var _firebase_installations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/installations */ "./node_modules/@firebase/installations/dist/index.esm.js");
+/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 /* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_firebase_component__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
+/* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
 /* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_util__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! idb */ "../node_modules/idb/build/idb.js");
+/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! idb */ "./node_modules/idb/build/idb.js");
 /* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(idb__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 /* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_firebase_app__WEBPACK_IMPORTED_MODULE_5__);
 
 
@@ -38348,10 +43673,10 @@ function isSWControllerSupported() {
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/performance/dist/index.cjs.js":
-/*!***************************************************************!*\
-  !*** ../node_modules/@firebase/performance/dist/index.cjs.js ***!
-  \***************************************************************/
+/***/ "./node_modules/@firebase/remote-config/dist/index.cjs.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@firebase/remote-config/dist/index.cjs.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38360,1482 +43685,12 @@ function isSWControllerSupported() {
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/installations */ "../node_modules/@firebase/installations/dist/index.esm.js");
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/installations */ "./node_modules/@firebase/installations/dist/index.esm.js");
 var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var util = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
-var logger$1 = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js");
-var component = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var firebase__default = /*#__PURE__*/_interopDefaultLegacy(firebase);
-
-var name = "@firebase/performance";
-var version = "0.4.2";
-
-/**
- * @license
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var SDK_VERSION = version;
-/** The prefix for start User Timing marks used for creating Traces. */
-var TRACE_START_MARK_PREFIX = 'FB-PERF-TRACE-START';
-/** The prefix for stop User Timing marks used for creating Traces. */
-var TRACE_STOP_MARK_PREFIX = 'FB-PERF-TRACE-STOP';
-/** The prefix for User Timing measure used for creating Traces. */
-var TRACE_MEASURE_PREFIX = 'FB-PERF-TRACE-MEASURE';
-/** The prefix for out of the box page load Trace name. */
-var OOB_TRACE_PAGE_LOAD_PREFIX = '_wt_';
-var FIRST_PAINT_COUNTER_NAME = '_fp';
-var FIRST_CONTENTFUL_PAINT_COUNTER_NAME = '_fcp';
-var FIRST_INPUT_DELAY_COUNTER_NAME = '_fid';
-var CONFIG_LOCAL_STORAGE_KEY = '@firebase/performance/config';
-var CONFIG_EXPIRY_LOCAL_STORAGE_KEY = '@firebase/performance/configexpire';
-var SERVICE = 'performance';
-var SERVICE_NAME = 'Performance';
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var _a;
-var ERROR_DESCRIPTION_MAP = (_a = {},
-    _a["trace started" /* TRACE_STARTED_BEFORE */] = 'Trace {$traceName} was started before.',
-    _a["trace stopped" /* TRACE_STOPPED_BEFORE */] = 'Trace {$traceName} is not running.',
-    _a["nonpositive trace startTime" /* NONPOSITIVE_TRACE_START_TIME */] = 'Trace {$traceName} startTime should be positive.',
-    _a["nonpositive trace duration" /* NONPOSITIVE_TRACE_DURATION */] = 'Trace {$traceName} duration should be positive.',
-    _a["no window" /* NO_WINDOW */] = 'Window is not available.',
-    _a["no app id" /* NO_APP_ID */] = 'App id is not available.',
-    _a["no project id" /* NO_PROJECT_ID */] = 'Project id is not available.',
-    _a["no api key" /* NO_API_KEY */] = 'Api key is not available.',
-    _a["invalid cc log" /* INVALID_CC_LOG */] = 'Attempted to queue invalid cc event',
-    _a["FB not default" /* FB_NOT_DEFAULT */] = 'Performance can only start when Firebase app instance is the default one.',
-    _a["RC response not ok" /* RC_NOT_OK */] = 'RC response is not ok',
-    _a["invalid attribute name" /* INVALID_ATTRIBUTE_NAME */] = 'Attribute name {$attributeName} is invalid.',
-    _a["invalid attribute value" /* INVALID_ATTRIBUTE_VALUE */] = 'Attribute value {$attributeValue} is invalid.',
-    _a["invalid custom metric name" /* INVALID_CUSTOM_METRIC_NAME */] = 'Custom metric name {$customMetricName} is invalid',
-    _a["invalid String merger input" /* INVALID_STRING_MERGER_PARAMETER */] = 'Input for String merger is invalid, contact support team to resolve.',
-    _a);
-var ERROR_FACTORY = new util.ErrorFactory(SERVICE, SERVICE_NAME, ERROR_DESCRIPTION_MAP);
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var consoleLogger = new logger$1.Logger(SERVICE_NAME);
-consoleLogger.logLevel = logger$1.LogLevel.INFO;
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var apiInstance;
-var windowInstance;
-/**
- * This class holds a reference to various browser related objects injected by
- * set methods.
- */
-var Api = /** @class */ (function () {
-    function Api(window) {
-        this.window = window;
-        if (!window) {
-            throw ERROR_FACTORY.create("no window" /* NO_WINDOW */);
-        }
-        this.performance = window.performance;
-        this.PerformanceObserver = window.PerformanceObserver;
-        this.windowLocation = window.location;
-        this.navigator = window.navigator;
-        this.document = window.document;
-        if (this.navigator && this.navigator.cookieEnabled) {
-            // If user blocks cookies on the browser, accessing localStorage will
-            // throw an exception.
-            this.localStorage = window.localStorage;
-        }
-        if (window.perfMetrics && window.perfMetrics.onFirstInputDelay) {
-            this.onFirstInputDelay = window.perfMetrics.onFirstInputDelay;
-        }
-    }
-    Api.prototype.getUrl = function () {
-        // Do not capture the string query part of url.
-        return this.windowLocation.href.split('?')[0];
-    };
-    Api.prototype.mark = function (name) {
-        if (!this.performance || !this.performance.mark) {
-            return;
-        }
-        this.performance.mark(name);
-    };
-    Api.prototype.measure = function (measureName, mark1, mark2) {
-        if (!this.performance || !this.performance.measure) {
-            return;
-        }
-        this.performance.measure(measureName, mark1, mark2);
-    };
-    Api.prototype.getEntriesByType = function (type) {
-        if (!this.performance || !this.performance.getEntriesByType) {
-            return [];
-        }
-        return this.performance.getEntriesByType(type);
-    };
-    Api.prototype.getEntriesByName = function (name) {
-        if (!this.performance || !this.performance.getEntriesByName) {
-            return [];
-        }
-        return this.performance.getEntriesByName(name);
-    };
-    Api.prototype.getTimeOrigin = function () {
-        // Polyfill the time origin with performance.timing.navigationStart.
-        return (this.performance &&
-            (this.performance.timeOrigin || this.performance.timing.navigationStart));
-    };
-    Api.prototype.requiredApisAvailable = function () {
-        if (!fetch ||
-            !Promise ||
-            !this.navigator ||
-            !this.navigator.cookieEnabled) {
-            consoleLogger.info('Firebase Performance cannot start if browser does not support fetch and Promise or cookie is disabled.');
-            return false;
-        }
-        if (!util.isIndexedDBAvailable()) {
-            consoleLogger.info('IndexedDB is not supported by current browswer');
-            return false;
-        }
-        return true;
-    };
-    Api.prototype.setupObserver = function (entryType, callback) {
-        if (!this.PerformanceObserver) {
-            return;
-        }
-        var observer = new this.PerformanceObserver(function (list) {
-            for (var _i = 0, _a = list.getEntries(); _i < _a.length; _i++) {
-                var entry = _a[_i];
-                // `entry` is a PerformanceEntry instance.
-                callback(entry);
-            }
-        });
-        // Start observing the entry types you care about.
-        observer.observe({ entryTypes: [entryType] });
-    };
-    Api.getInstance = function () {
-        if (apiInstance === undefined) {
-            apiInstance = new Api(windowInstance);
-        }
-        return apiInstance;
-    };
-    return Api;
-}());
-function setupApi(window) {
-    windowInstance = window;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-function mergeStrings(part1, part2) {
-    var sizeDiff = part1.length - part2.length;
-    if (sizeDiff < 0 || sizeDiff > 1) {
-        throw ERROR_FACTORY.create("invalid String merger input" /* INVALID_STRING_MERGER_PARAMETER */);
-    }
-    var resultArray = [];
-    for (var i = 0; i < part1.length; i++) {
-        resultArray.push(part1.charAt(i));
-        if (part2.length > i) {
-            resultArray.push(part2.charAt(i));
-        }
-    }
-    return resultArray.join('');
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var settingsServiceInstance;
-var SettingsService = /** @class */ (function () {
-    function SettingsService() {
-        // The variable which controls logging of automatic traces and HTTP/S network monitoring.
-        this.instrumentationEnabled = true;
-        // The variable which controls logging of custom traces.
-        this.dataCollectionEnabled = true;
-        // Configuration flags set through remote config.
-        this.loggingEnabled = false;
-        // Sampling rate between 0 and 1.
-        this.tracesSamplingRate = 1;
-        this.networkRequestsSamplingRate = 1;
-        // Address of logging service.
-        this.logEndPointUrl = 'https://firebaselogging.googleapis.com/v0cc/log?format=json_proto';
-        // Performance event transport endpoint URL which should be compatible with proto3.
-        // New Address for transport service, not configurable via Remote Config.
-        this.flTransportEndpointUrl = mergeStrings('hts/frbslgigp.ogepscmv/ieo/eaylg', 'tp:/ieaeogn-agolai.o/1frlglgc/o');
-        this.transportKey = mergeStrings('AzSC8r6ReiGqFMyfvgow', 'Iayx0u-XT3vksVM-pIV');
-        // Source type for performance event logs.
-        this.logSource = 462;
-        // Flags which control per session logging of traces and network requests.
-        this.logTraceAfterSampling = false;
-        this.logNetworkAfterSampling = false;
-        // TTL of config retrieved from remote config in hours.
-        this.configTimeToLive = 12;
-    }
-    SettingsService.prototype.getAppId = function () {
-        var appId = this.firebaseAppInstance &&
-            this.firebaseAppInstance.options &&
-            this.firebaseAppInstance.options.appId;
-        if (!appId) {
-            throw ERROR_FACTORY.create("no app id" /* NO_APP_ID */);
-        }
-        return appId;
-    };
-    SettingsService.prototype.getProjectId = function () {
-        var projectId = this.firebaseAppInstance &&
-            this.firebaseAppInstance.options &&
-            this.firebaseAppInstance.options.projectId;
-        if (!projectId) {
-            throw ERROR_FACTORY.create("no project id" /* NO_PROJECT_ID */);
-        }
-        return projectId;
-    };
-    SettingsService.prototype.getApiKey = function () {
-        var apiKey = this.firebaseAppInstance &&
-            this.firebaseAppInstance.options &&
-            this.firebaseAppInstance.options.apiKey;
-        if (!apiKey) {
-            throw ERROR_FACTORY.create("no api key" /* NO_API_KEY */);
-        }
-        return apiKey;
-    };
-    SettingsService.prototype.getFlTransportFullUrl = function () {
-        return this.flTransportEndpointUrl.concat('?key=', this.transportKey);
-    };
-    SettingsService.getInstance = function () {
-        if (settingsServiceInstance === undefined) {
-            settingsServiceInstance = new SettingsService();
-        }
-        return settingsServiceInstance;
-    };
-    return SettingsService;
-}());
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var iid;
-function getIidPromise() {
-    var iidPromise = SettingsService.getInstance().installationsService.getId();
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    iidPromise.then(function (iidVal) {
-        iid = iidVal;
-    });
-    return iidPromise;
-}
-// This method should be used after the iid is retrieved by getIidPromise method.
-function getIid() {
-    return iid;
-}
-function getAuthTokenPromise() {
-    var authTokenPromise = SettingsService.getInstance().installationsService.getToken();
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    authTokenPromise.then(function (authTokenVal) {
-    });
-    return authTokenPromise;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var VisibilityState;
-(function (VisibilityState) {
-    VisibilityState[VisibilityState["UNKNOWN"] = 0] = "UNKNOWN";
-    VisibilityState[VisibilityState["VISIBLE"] = 1] = "VISIBLE";
-    VisibilityState[VisibilityState["HIDDEN"] = 2] = "HIDDEN";
-})(VisibilityState || (VisibilityState = {}));
-var RESERVED_ATTRIBUTE_PREFIXES = ['firebase_', 'google_', 'ga_'];
-var ATTRIBUTE_FORMAT_REGEX = new RegExp('^[a-zA-Z]\\w*$');
-var MAX_ATTRIBUTE_NAME_LENGTH = 40;
-var MAX_ATTRIBUTE_VALUE_LENGTH = 100;
-function getServiceWorkerStatus() {
-    var navigator = Api.getInstance().navigator;
-    if ('serviceWorker' in navigator) {
-        if (navigator.serviceWorker.controller) {
-            return 2 /* CONTROLLED */;
-        }
-        else {
-            return 3 /* UNCONTROLLED */;
-        }
-    }
-    else {
-        return 1 /* UNSUPPORTED */;
-    }
-}
-function getVisibilityState() {
-    var document = Api.getInstance().document;
-    var visibilityState = document.visibilityState;
-    switch (visibilityState) {
-        case 'visible':
-            return VisibilityState.VISIBLE;
-        case 'hidden':
-            return VisibilityState.HIDDEN;
-        default:
-            return VisibilityState.UNKNOWN;
-    }
-}
-function getEffectiveConnectionType() {
-    var navigator = Api.getInstance().navigator;
-    var navigatorConnection = navigator.connection;
-    var effectiveType = navigatorConnection && navigatorConnection.effectiveType;
-    switch (effectiveType) {
-        case 'slow-2g':
-            return 1 /* CONNECTION_SLOW_2G */;
-        case '2g':
-            return 2 /* CONNECTION_2G */;
-        case '3g':
-            return 3 /* CONNECTION_3G */;
-        case '4g':
-            return 4 /* CONNECTION_4G */;
-        default:
-            return 0 /* UNKNOWN */;
-    }
-}
-function isValidCustomAttributeName(name) {
-    if (name.length === 0 || name.length > MAX_ATTRIBUTE_NAME_LENGTH) {
-        return false;
-    }
-    var matchesReservedPrefix = RESERVED_ATTRIBUTE_PREFIXES.some(function (prefix) {
-        return name.startsWith(prefix);
-    });
-    return !matchesReservedPrefix && !!name.match(ATTRIBUTE_FORMAT_REGEX);
-}
-function isValidCustomAttributeValue(value) {
-    return value.length !== 0 && value.length <= MAX_ATTRIBUTE_VALUE_LENGTH;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var REMOTE_CONFIG_SDK_VERSION = '0.0.1';
-// These values will be used if the remote config object is successfully
-// retrieved, but the template does not have these fields.
-var DEFAULT_CONFIGS = {
-    loggingEnabled: true
-};
-var FIS_AUTH_PREFIX = 'FIREBASE_INSTALLATIONS_AUTH';
-function getConfig(iid) {
-    var config = getStoredConfig();
-    if (config) {
-        processConfig(config);
-        return Promise.resolve();
-    }
-    return getRemoteConfig(iid)
-        .then(processConfig)
-        .then(function (config) { return storeConfig(config); }, 
-    /** Do nothing for error, use defaults set in settings service. */
-    function () { });
-}
-function getStoredConfig() {
-    var localStorage = Api.getInstance().localStorage;
-    if (!localStorage) {
-        return;
-    }
-    var expiryString = localStorage.getItem(CONFIG_EXPIRY_LOCAL_STORAGE_KEY);
-    if (!expiryString || !configValid(expiryString)) {
-        return;
-    }
-    var configStringified = localStorage.getItem(CONFIG_LOCAL_STORAGE_KEY);
-    if (!configStringified) {
-        return;
-    }
-    try {
-        var configResponse = JSON.parse(configStringified);
-        return configResponse;
-    }
-    catch (_a) {
-        return;
-    }
-}
-function storeConfig(config) {
-    var localStorage = Api.getInstance().localStorage;
-    if (!config || !localStorage) {
-        return;
-    }
-    localStorage.setItem(CONFIG_LOCAL_STORAGE_KEY, JSON.stringify(config));
-    localStorage.setItem(CONFIG_EXPIRY_LOCAL_STORAGE_KEY, String(Date.now() +
-        SettingsService.getInstance().configTimeToLive * 60 * 60 * 1000));
-}
-var COULD_NOT_GET_CONFIG_MSG = 'Could not fetch config, will use default configs';
-function getRemoteConfig(iid) {
-    // Perf needs auth token only to retrieve remote config.
-    return getAuthTokenPromise()
-        .then(function (authToken) {
-        var projectId = SettingsService.getInstance().getProjectId();
-        var configEndPoint = "https://firebaseremoteconfig.googleapis.com/v1/projects/" + projectId + "/namespaces/fireperf:fetch?key=" + SettingsService.getInstance().getApiKey();
-        var request = new Request(configEndPoint, {
-            method: 'POST',
-            headers: { Authorization: FIS_AUTH_PREFIX + " " + authToken },
-            /* eslint-disable camelcase */
-            body: JSON.stringify({
-                app_instance_id: iid,
-                app_instance_id_token: authToken,
-                app_id: SettingsService.getInstance().getAppId(),
-                app_version: SDK_VERSION,
-                sdk_version: REMOTE_CONFIG_SDK_VERSION
-            })
-            /* eslint-enable camelcase */
-        });
-        return fetch(request).then(function (response) {
-            if (response.ok) {
-                return response.json();
-            }
-            // In case response is not ok. This will be caught by catch.
-            throw ERROR_FACTORY.create("RC response not ok" /* RC_NOT_OK */);
-        });
-    })
-        .catch(function () {
-        consoleLogger.info(COULD_NOT_GET_CONFIG_MSG);
-        return undefined;
-    });
-}
-/**
- * Processes config coming either from calling RC or from local storage.
- * This method only runs if call is successful or config in storage
- * is valid.
- */
-function processConfig(config) {
-    if (!config) {
-        return config;
-    }
-    var settingsServiceInstance = SettingsService.getInstance();
-    var entries = config.entries || {};
-    if (entries.fpr_enabled !== undefined) {
-        // TODO: Change the assignment of loggingEnabled once the received type is
-        // known.
-        settingsServiceInstance.loggingEnabled =
-            String(entries.fpr_enabled) === 'true';
-    }
-    else {
-        // Config retrieved successfully, but there is no fpr_enabled in template.
-        // Use secondary configs value.
-        settingsServiceInstance.loggingEnabled = DEFAULT_CONFIGS.loggingEnabled;
-    }
-    if (entries.fpr_log_source) {
-        settingsServiceInstance.logSource = Number(entries.fpr_log_source);
-    }
-    if (entries.fpr_log_endpoint_url) {
-        settingsServiceInstance.logEndPointUrl = entries.fpr_log_endpoint_url;
-    }
-    // Key from Remote Config has to be non-empty string, otherwsie use local value.
-    if (entries.fpr_log_transport_key) {
-        settingsServiceInstance.transportKey = entries.fpr_log_transport_key;
-    }
-    if (entries.fpr_vc_network_request_sampling_rate !== undefined) {
-        settingsServiceInstance.networkRequestsSamplingRate = Number(entries.fpr_vc_network_request_sampling_rate);
-    }
-    if (entries.fpr_vc_trace_sampling_rate !== undefined) {
-        settingsServiceInstance.tracesSamplingRate = Number(entries.fpr_vc_trace_sampling_rate);
-    }
-    // Set the per session trace and network logging flags.
-    settingsServiceInstance.logTraceAfterSampling = shouldLogAfterSampling(settingsServiceInstance.tracesSamplingRate);
-    settingsServiceInstance.logNetworkAfterSampling = shouldLogAfterSampling(settingsServiceInstance.networkRequestsSamplingRate);
-    return config;
-}
-function configValid(expiry) {
-    return Number(expiry) > Date.now();
-}
-function shouldLogAfterSampling(samplingRate) {
-    return Math.random() <= samplingRate;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var initializationStatus = 1 /* notInitialized */;
-var initializationPromise;
-function getInitializationPromise() {
-    initializationStatus = 2 /* initializationPending */;
-    initializationPromise = initializationPromise || initializePerf();
-    return initializationPromise;
-}
-function isPerfInitialized() {
-    return initializationStatus === 3 /* initialized */;
-}
-function initializePerf() {
-    return getDocumentReadyComplete()
-        .then(function () { return getIidPromise(); })
-        .then(function (iid) { return getConfig(iid); })
-        .then(function () { return changeInitializationStatus(); }, function () { return changeInitializationStatus(); });
-}
-/**
- * Returns a promise which resolves whenever the document readystate is complete or
- * immediately if it is called after page load complete.
- */
-function getDocumentReadyComplete() {
-    var document = Api.getInstance().document;
-    return new Promise(function (resolve) {
-        if (document && document.readyState !== 'complete') {
-            var handler_1 = function () {
-                if (document.readyState === 'complete') {
-                    document.removeEventListener('readystatechange', handler_1);
-                    resolve();
-                }
-            };
-            document.addEventListener('readystatechange', handler_1);
-        }
-        else {
-            resolve();
-        }
-    });
-}
-function changeInitializationStatus() {
-    initializationStatus = 3 /* initialized */;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var DEFAULT_SEND_INTERVAL_MS = 10 * 1000;
-var INITIAL_SEND_TIME_DELAY_MS = 5.5 * 1000;
-// If end point does not work, the call will be tried for these many times.
-var DEFAULT_REMAINING_TRIES = 3;
-var remainingTries = DEFAULT_REMAINING_TRIES;
-/* eslint-enable camelcase */
-var queue = [];
-var isTransportSetup = false;
-function setupTransportService() {
-    if (!isTransportSetup) {
-        processQueue(INITIAL_SEND_TIME_DELAY_MS);
-        isTransportSetup = true;
-    }
-}
-function processQueue(timeOffset) {
-    setTimeout(function () {
-        // If there is no remainingTries left, stop retrying.
-        if (remainingTries === 0) {
-            return;
-        }
-        // If there are no events to process, wait for DEFAULT_SEND_INTERVAL_MS and try again.
-        if (!queue.length) {
-            return processQueue(DEFAULT_SEND_INTERVAL_MS);
-        }
-        dispatchQueueEvents();
-    }, timeOffset);
-}
-function dispatchQueueEvents() {
-    // Capture a snapshot of the queue and empty the "official queue".
-    var staged = tslib.__spreadArrays(queue);
-    queue = [];
-    /* eslint-disable camelcase */
-    // We will pass the JSON serialized event to the backend.
-    var log_event = staged.map(function (evt) { return ({
-        source_extension_json_proto3: evt.message,
-        event_time_ms: String(evt.eventTime)
-    }); });
-    var data = {
-        request_time_ms: String(Date.now()),
-        client_info: {
-            client_type: 1,
-            js_client_info: {}
-        },
-        log_source: SettingsService.getInstance().logSource,
-        log_event: log_event
-    };
-    /* eslint-enable camelcase */
-    sendEventsToFl(data, staged).catch(function () {
-        // If the request fails for some reason, add the events that were attempted
-        // back to the primary queue to retry later.
-        queue = tslib.__spreadArrays(staged, queue);
-        remainingTries--;
-        consoleLogger.info("Tries left: " + remainingTries + ".");
-        processQueue(DEFAULT_SEND_INTERVAL_MS);
-    });
-}
-function sendEventsToFl(data, staged) {
-    return postToFlEndpoint(data)
-        .then(function (res) {
-        if (!res.ok) {
-            consoleLogger.info('Call to Firebase backend failed.');
-        }
-        return res.json();
-    })
-        .then(function (res) {
-        // Find the next call wait time from the response.
-        var transportWait = Number(res.nextRequestWaitMillis);
-        var requestOffset = DEFAULT_SEND_INTERVAL_MS;
-        if (!isNaN(transportWait)) {
-            requestOffset = Math.max(transportWait, requestOffset);
-        }
-        // Delete request if response include RESPONSE_ACTION_UNKNOWN or DELETE_REQUEST action.
-        // Otherwise, retry request using normal scheduling if response include RETRY_REQUEST_LATER.
-        var logResponseDetails = res.logResponseDetails;
-        if (Array.isArray(logResponseDetails) &&
-            logResponseDetails.length > 0 &&
-            logResponseDetails[0].responseAction === 'RETRY_REQUEST_LATER') {
-            queue = tslib.__spreadArrays(staged, queue);
-            consoleLogger.info("Retry transport request later.");
-        }
-        remainingTries = DEFAULT_REMAINING_TRIES;
-        // Schedule the next process.
-        processQueue(requestOffset);
-    });
-}
-function postToFlEndpoint(data) {
-    var flTransportFullUrl = SettingsService.getInstance().getFlTransportFullUrl();
-    return fetch(flTransportFullUrl, {
-        method: 'POST',
-        body: JSON.stringify(data)
-    });
-}
-function addToQueue(evt) {
-    if (!evt.eventTime || !evt.message) {
-        throw ERROR_FACTORY.create("invalid cc log" /* INVALID_CC_LOG */);
-    }
-    // Add the new event to the queue.
-    queue = tslib.__spreadArrays(queue, [evt]);
-}
-/** Log handler for cc service to send the performance logs to the server. */
-function transportHandler(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-serializer) {
-    return function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        var message = serializer.apply(void 0, args);
-        addToQueue({
-            message: message,
-            eventTime: Date.now()
-        });
-    };
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/* eslint-enble camelcase */
-var logger;
-// This method is not called before initialization.
-function sendLog(resource, resourceType) {
-    if (!logger) {
-        logger = transportHandler(serializer);
-    }
-    logger(resource, resourceType);
-}
-function logTrace(trace) {
-    var settingsService = SettingsService.getInstance();
-    // Do not log if trace is auto generated and instrumentation is disabled.
-    if (!settingsService.instrumentationEnabled && trace.isAuto) {
-        return;
-    }
-    // Do not log if trace is custom and data collection is disabled.
-    if (!settingsService.dataCollectionEnabled && !trace.isAuto) {
-        return;
-    }
-    // Do not log if required apis are not available.
-    if (!Api.getInstance().requiredApisAvailable()) {
-        return;
-    }
-    // Only log the page load auto traces if page is visible.
-    if (trace.isAuto && getVisibilityState() !== VisibilityState.VISIBLE) {
-        return;
-    }
-    if (isPerfInitialized()) {
-        sendTraceLog(trace);
-    }
-    else {
-        // Custom traces can be used before the initialization but logging
-        // should wait until after.
-        getInitializationPromise().then(function () { return sendTraceLog(trace); }, function () { return sendTraceLog(trace); });
-    }
-}
-function sendTraceLog(trace) {
-    if (!getIid()) {
-        return;
-    }
-    var settingsService = SettingsService.getInstance();
-    if (!settingsService.loggingEnabled ||
-        !settingsService.logTraceAfterSampling) {
-        return;
-    }
-    setTimeout(function () { return sendLog(trace, 1 /* Trace */); }, 0);
-}
-function logNetworkRequest(networkRequest) {
-    var settingsService = SettingsService.getInstance();
-    // Do not log network requests if instrumentation is disabled.
-    if (!settingsService.instrumentationEnabled) {
-        return;
-    }
-    // Do not log the js sdk's call to transport service domain to avoid unnecessary cycle.
-    // Need to blacklist both old and new endpoints to avoid migration gap.
-    var networkRequestUrl = networkRequest.url;
-    // Blacklist old log endpoint and new transport endpoint.
-    // Because Performance SDK doesn't instrument requests sent from SDK itself.
-    var logEndpointUrl = settingsService.logEndPointUrl.split('?')[0];
-    var flEndpointUrl = settingsService.flTransportEndpointUrl.split('?')[0];
-    if (networkRequestUrl === logEndpointUrl ||
-        networkRequestUrl === flEndpointUrl) {
-        return;
-    }
-    if (!settingsService.loggingEnabled ||
-        !settingsService.logNetworkAfterSampling) {
-        return;
-    }
-    setTimeout(function () { return sendLog(networkRequest, 0 /* NetworkRequest */); }, 0);
-}
-function serializer(resource, resourceType) {
-    if (resourceType === 0 /* NetworkRequest */) {
-        return serializeNetworkRequest(resource);
-    }
-    return serializeTrace(resource);
-}
-function serializeNetworkRequest(networkRequest) {
-    var networkRequestMetric = {
-        url: networkRequest.url,
-        http_method: networkRequest.httpMethod || 0,
-        http_response_code: 200,
-        response_payload_bytes: networkRequest.responsePayloadBytes,
-        client_start_time_us: networkRequest.startTimeUs,
-        time_to_response_initiated_us: networkRequest.timeToResponseInitiatedUs,
-        time_to_response_completed_us: networkRequest.timeToResponseCompletedUs
-    };
-    var perfMetric = {
-        application_info: getApplicationInfo(),
-        network_request_metric: networkRequestMetric
-    };
-    return JSON.stringify(perfMetric);
-}
-function serializeTrace(trace) {
-    var traceMetric = {
-        name: trace.name,
-        is_auto: trace.isAuto,
-        client_start_time_us: trace.startTimeUs,
-        duration_us: trace.durationUs
-    };
-    if (Object.keys(trace.counters).length !== 0) {
-        traceMetric.counters = trace.counters;
-    }
-    var customAttributes = trace.getAttributes();
-    if (Object.keys(customAttributes).length !== 0) {
-        traceMetric.custom_attributes = customAttributes;
-    }
-    var perfMetric = {
-        application_info: getApplicationInfo(),
-        trace_metric: traceMetric
-    };
-    return JSON.stringify(perfMetric);
-}
-function getApplicationInfo() {
-    return {
-        google_app_id: SettingsService.getInstance().getAppId(),
-        app_instance_id: getIid(),
-        web_app_info: {
-            sdk_version: SDK_VERSION,
-            page_url: Api.getInstance().getUrl(),
-            service_worker_status: getServiceWorkerStatus(),
-            visibility_state: getVisibilityState(),
-            effective_connection_type: getEffectiveConnectionType()
-        },
-        application_process_state: 0
-    };
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var MAX_METRIC_NAME_LENGTH = 100;
-var RESERVED_AUTO_PREFIX = '_';
-var oobMetrics = [
-    FIRST_PAINT_COUNTER_NAME,
-    FIRST_CONTENTFUL_PAINT_COUNTER_NAME,
-    FIRST_INPUT_DELAY_COUNTER_NAME
-];
-/**
- * Returns true if the metric is custom and does not start with reserved prefix, or if
- * the metric is one of out of the box page load trace metrics.
- */
-function isValidMetricName(name, traceName) {
-    if (name.length === 0 || name.length > MAX_METRIC_NAME_LENGTH) {
-        return false;
-    }
-    return ((traceName &&
-        traceName.startsWith(OOB_TRACE_PAGE_LOAD_PREFIX) &&
-        oobMetrics.indexOf(name) > -1) ||
-        !name.startsWith(RESERVED_AUTO_PREFIX));
-}
-/**
- * Converts the provided value to an integer value to be used in case of a metric.
- * @param providedValue Provided number value of the metric that needs to be converted to an integer.
- *
- * @returns Converted integer number to be set for the metric.
- */
-function convertMetricValueToInteger(providedValue) {
-    var valueAsInteger = Math.floor(providedValue);
-    if (valueAsInteger < providedValue) {
-        consoleLogger.info("Metric value should be an Integer, setting the value as : " + valueAsInteger + ".");
-    }
-    return valueAsInteger;
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var Trace = /** @class */ (function () {
-    /**
-     * @param name The name of the trace.
-     * @param isAuto If the trace is auto-instrumented.
-     * @param traceMeasureName The name of the measure marker in user timing specification. This field
-     * is only set when the trace is built for logging when the user directly uses the user timing
-     * api (performance.mark and performance.measure).
-     */
-    function Trace(name, isAuto, traceMeasureName) {
-        if (isAuto === void 0) { isAuto = false; }
-        this.name = name;
-        this.isAuto = isAuto;
-        this.state = 1 /* UNINITIALIZED */;
-        this.customAttributes = {};
-        this.counters = {};
-        this.api = Api.getInstance();
-        this.randomId = Math.floor(Math.random() * 1000000);
-        if (!this.isAuto) {
-            this.traceStartMark = TRACE_START_MARK_PREFIX + "-" + this.randomId + "-" + this.name;
-            this.traceStopMark = TRACE_STOP_MARK_PREFIX + "-" + this.randomId + "-" + this.name;
-            this.traceMeasure =
-                traceMeasureName ||
-                    TRACE_MEASURE_PREFIX + "-" + this.randomId + "-" + this.name;
-            if (traceMeasureName) {
-                // For the case of direct user timing traces, no start stop will happen. The measure object
-                // is already available.
-                this.calculateTraceMetrics();
-            }
-        }
-    }
-    /**
-     * Starts a trace. The measurement of the duration starts at this point.
-     */
-    Trace.prototype.start = function () {
-        if (this.state !== 1 /* UNINITIALIZED */) {
-            throw ERROR_FACTORY.create("trace started" /* TRACE_STARTED_BEFORE */, {
-                traceName: this.name
-            });
-        }
-        this.api.mark(this.traceStartMark);
-        this.state = 2 /* RUNNING */;
-    };
-    /**
-     * Stops the trace. The measurement of the duration of the trace stops at this point and trace
-     * is logged.
-     */
-    Trace.prototype.stop = function () {
-        if (this.state !== 2 /* RUNNING */) {
-            throw ERROR_FACTORY.create("trace stopped" /* TRACE_STOPPED_BEFORE */, {
-                traceName: this.name
-            });
-        }
-        this.state = 3 /* TERMINATED */;
-        this.api.mark(this.traceStopMark);
-        this.api.measure(this.traceMeasure, this.traceStartMark, this.traceStopMark);
-        this.calculateTraceMetrics();
-        logTrace(this);
-    };
-    /**
-     * Records a trace with predetermined values. If this method is used a trace is created and logged
-     * directly. No need to use start and stop methods.
-     * @param startTime Trace start time since epoch in millisec
-     * @param duration The duraction of the trace in millisec
-     * @param options An object which can optionally hold maps of custom metrics and custom attributes
-     */
-    Trace.prototype.record = function (startTime, duration, options) {
-        if (startTime <= 0) {
-            throw ERROR_FACTORY.create("nonpositive trace startTime" /* NONPOSITIVE_TRACE_START_TIME */, {
-                traceName: this.name
-            });
-        }
-        if (duration <= 0) {
-            throw ERROR_FACTORY.create("nonpositive trace duration" /* NONPOSITIVE_TRACE_DURATION */, {
-                traceName: this.name
-            });
-        }
-        this.durationUs = Math.floor(duration * 1000);
-        this.startTimeUs = Math.floor(startTime * 1000);
-        if (options && options.attributes) {
-            this.customAttributes = tslib.__assign({}, options.attributes);
-        }
-        if (options && options.metrics) {
-            for (var _i = 0, _a = Object.keys(options.metrics); _i < _a.length; _i++) {
-                var metric = _a[_i];
-                if (!isNaN(Number(options.metrics[metric]))) {
-                    this.counters[metric] = Number(Math.floor(options.metrics[metric]));
-                }
-            }
-        }
-        logTrace(this);
-    };
-    /**
-     * Increments a custom metric by a certain number or 1 if number not specified. Will create a new
-     * custom metric if one with the given name does not exist. The value will be floored down to an
-     * integer.
-     * @param counter Name of the custom metric
-     * @param numAsInteger Increment by value
-     */
-    Trace.prototype.incrementMetric = function (counter, numAsInteger) {
-        if (numAsInteger === void 0) { numAsInteger = 1; }
-        if (this.counters[counter] === undefined) {
-            this.putMetric(counter, numAsInteger);
-        }
-        else {
-            this.putMetric(counter, this.counters[counter] + numAsInteger);
-        }
-    };
-    /**
-     * Sets a custom metric to a specified value. Will create a new custom metric if one with the
-     * given name does not exist. The value will be floored down to an integer.
-     * @param counter Name of the custom metric
-     * @param numAsInteger Set custom metric to this value
-     */
-    Trace.prototype.putMetric = function (counter, numAsInteger) {
-        if (isValidMetricName(counter, this.name)) {
-            this.counters[counter] = convertMetricValueToInteger(numAsInteger);
-        }
-        else {
-            throw ERROR_FACTORY.create("invalid custom metric name" /* INVALID_CUSTOM_METRIC_NAME */, {
-                customMetricName: counter
-            });
-        }
-    };
-    /**
-     * Returns the value of the custom metric by that name. If a custom metric with that name does
-     * not exist will return zero.
-     * @param counter
-     */
-    Trace.prototype.getMetric = function (counter) {
-        return this.counters[counter] || 0;
-    };
-    /**
-     * Sets a custom attribute of a trace to a certain value.
-     * @param attr
-     * @param value
-     */
-    Trace.prototype.putAttribute = function (attr, value) {
-        var isValidName = isValidCustomAttributeName(attr);
-        var isValidValue = isValidCustomAttributeValue(value);
-        if (isValidName && isValidValue) {
-            this.customAttributes[attr] = value;
-            return;
-        }
-        // Throw appropriate error when the attribute name or value is invalid.
-        if (!isValidName) {
-            throw ERROR_FACTORY.create("invalid attribute name" /* INVALID_ATTRIBUTE_NAME */, {
-                attributeName: attr
-            });
-        }
-        if (!isValidValue) {
-            throw ERROR_FACTORY.create("invalid attribute value" /* INVALID_ATTRIBUTE_VALUE */, {
-                attributeValue: value
-            });
-        }
-    };
-    /**
-     * Retrieves the value a custom attribute of a trace is set to.
-     * @param attr
-     */
-    Trace.prototype.getAttribute = function (attr) {
-        return this.customAttributes[attr];
-    };
-    Trace.prototype.removeAttribute = function (attr) {
-        if (this.customAttributes[attr] === undefined) {
-            return;
-        }
-        delete this.customAttributes[attr];
-    };
-    Trace.prototype.getAttributes = function () {
-        return tslib.__assign({}, this.customAttributes);
-    };
-    Trace.prototype.setStartTime = function (startTime) {
-        this.startTimeUs = startTime;
-    };
-    Trace.prototype.setDuration = function (duration) {
-        this.durationUs = duration;
-    };
-    /**
-     * Calculates and assigns the duration and start time of the trace using the measure performance
-     * entry.
-     */
-    Trace.prototype.calculateTraceMetrics = function () {
-        var perfMeasureEntries = this.api.getEntriesByName(this.traceMeasure);
-        var perfMeasureEntry = perfMeasureEntries && perfMeasureEntries[0];
-        if (perfMeasureEntry) {
-            this.durationUs = Math.floor(perfMeasureEntry.duration * 1000);
-            this.startTimeUs = Math.floor((perfMeasureEntry.startTime + this.api.getTimeOrigin()) * 1000);
-        }
-    };
-    /**
-     * @param navigationTimings A single element array which contains the navigationTIming object of
-     * the page load
-     * @param paintTimings A array which contains paintTiming object of the page load
-     * @param firstInputDelay First input delay in millisec
-     */
-    Trace.createOobTrace = function (navigationTimings, paintTimings, firstInputDelay) {
-        var route = Api.getInstance().getUrl();
-        if (!route) {
-            return;
-        }
-        var trace = new Trace(OOB_TRACE_PAGE_LOAD_PREFIX + route, true);
-        var timeOriginUs = Math.floor(Api.getInstance().getTimeOrigin() * 1000);
-        trace.setStartTime(timeOriginUs);
-        // navigationTimings includes only one element.
-        if (navigationTimings && navigationTimings[0]) {
-            trace.setDuration(Math.floor(navigationTimings[0].duration * 1000));
-            trace.putMetric('domInteractive', Math.floor(navigationTimings[0].domInteractive * 1000));
-            trace.putMetric('domContentLoadedEventEnd', Math.floor(navigationTimings[0].domContentLoadedEventEnd * 1000));
-            trace.putMetric('loadEventEnd', Math.floor(navigationTimings[0].loadEventEnd * 1000));
-        }
-        var FIRST_PAINT = 'first-paint';
-        var FIRST_CONTENTFUL_PAINT = 'first-contentful-paint';
-        if (paintTimings) {
-            var firstPaint = paintTimings.find(function (paintObject) { return paintObject.name === FIRST_PAINT; });
-            if (firstPaint && firstPaint.startTime) {
-                trace.putMetric(FIRST_PAINT_COUNTER_NAME, Math.floor(firstPaint.startTime * 1000));
-            }
-            var firstContentfulPaint = paintTimings.find(function (paintObject) { return paintObject.name === FIRST_CONTENTFUL_PAINT; });
-            if (firstContentfulPaint && firstContentfulPaint.startTime) {
-                trace.putMetric(FIRST_CONTENTFUL_PAINT_COUNTER_NAME, Math.floor(firstContentfulPaint.startTime * 1000));
-            }
-            if (firstInputDelay) {
-                trace.putMetric(FIRST_INPUT_DELAY_COUNTER_NAME, Math.floor(firstInputDelay * 1000));
-            }
-        }
-        logTrace(trace);
-    };
-    Trace.createUserTimingTrace = function (measureName) {
-        var trace = new Trace(measureName, false, measureName);
-        logTrace(trace);
-    };
-    return Trace;
-}());
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-function createNetworkRequestEntry(entry) {
-    var performanceEntry = entry;
-    if (!performanceEntry || performanceEntry.responseStart === undefined) {
-        return;
-    }
-    var timeOrigin = Api.getInstance().getTimeOrigin();
-    var startTimeUs = Math.floor((performanceEntry.startTime + timeOrigin) * 1000);
-    var timeToResponseInitiatedUs = performanceEntry.responseStart
-        ? Math.floor((performanceEntry.responseStart - performanceEntry.startTime) * 1000)
-        : undefined;
-    var timeToResponseCompletedUs = Math.floor((performanceEntry.responseEnd - performanceEntry.startTime) * 1000);
-    // Remove the query params from logged network request url.
-    var url = performanceEntry.name && performanceEntry.name.split('?')[0];
-    var networkRequest = {
-        url: url,
-        responsePayloadBytes: performanceEntry.transferSize,
-        startTimeUs: startTimeUs,
-        timeToResponseInitiatedUs: timeToResponseInitiatedUs,
-        timeToResponseCompletedUs: timeToResponseCompletedUs
-    };
-    logNetworkRequest(networkRequest);
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var FID_WAIT_TIME_MS = 5000;
-function setupOobResources() {
-    // Do not initialize unless iid is available.
-    if (!getIid()) {
-        return;
-    }
-    // The load event might not have fired yet, and that means performance navigation timing
-    // object has a duration of 0. The setup should run after all current tasks in js queue.
-    setTimeout(function () { return setupOobTraces(); }, 0);
-    setTimeout(function () { return setupNetworkRequests(); }, 0);
-    setTimeout(function () { return setupUserTimingTraces(); }, 0);
-}
-function setupNetworkRequests() {
-    var api = Api.getInstance();
-    var resources = api.getEntriesByType('resource');
-    for (var _i = 0, resources_1 = resources; _i < resources_1.length; _i++) {
-        var resource = resources_1[_i];
-        createNetworkRequestEntry(resource);
-    }
-    api.setupObserver('resource', createNetworkRequestEntry);
-}
-function setupOobTraces() {
-    var api = Api.getInstance();
-    var navigationTimings = api.getEntriesByType('navigation');
-    var paintTimings = api.getEntriesByType('paint');
-    // If First Input Desly polyfill is added to the page, report the fid value.
-    // https://github.com/GoogleChromeLabs/first-input-delay
-    if (api.onFirstInputDelay) {
-        // If the fid call back is not called for certain time, continue without it.
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        var timeoutId_1 = setTimeout(function () {
-            Trace.createOobTrace(navigationTimings, paintTimings);
-            timeoutId_1 = undefined;
-        }, FID_WAIT_TIME_MS);
-        api.onFirstInputDelay(function (fid) {
-            if (timeoutId_1) {
-                clearTimeout(timeoutId_1);
-                Trace.createOobTrace(navigationTimings, paintTimings, fid);
-            }
-        });
-    }
-    else {
-        Trace.createOobTrace(navigationTimings, paintTimings);
-    }
-}
-function setupUserTimingTraces() {
-    var api = Api.getInstance();
-    // Run through the measure performance entries collected up to this point.
-    var measures = api.getEntriesByType('measure');
-    for (var _i = 0, measures_1 = measures; _i < measures_1.length; _i++) {
-        var measure = measures_1[_i];
-        createUserTimingTrace(measure);
-    }
-    // Setup an observer to capture the measures from this point on.
-    api.setupObserver('measure', createUserTimingTrace);
-}
-function createUserTimingTrace(measure) {
-    var measureName = measure.name;
-    // Do not create a trace, if the user timing marks and measures are created by the sdk itself.
-    if (measureName.substring(0, TRACE_MEASURE_PREFIX.length) ===
-        TRACE_MEASURE_PREFIX) {
-        return;
-    }
-    Trace.createUserTimingTrace(measureName);
-}
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var PerformanceController = /** @class */ (function () {
-    function PerformanceController(app) {
-        this.app = app;
-        if (Api.getInstance().requiredApisAvailable()) {
-            util.validateIndexedDBOpenable()
-                .then(function (isAvailable) {
-                if (isAvailable) {
-                    setupTransportService();
-                    getInitializationPromise().then(setupOobResources, setupOobResources);
-                }
-            })
-                .catch(function (error) {
-                consoleLogger.info("Environment doesn't support IndexedDB: " + error);
-            });
-        }
-    }
-    PerformanceController.prototype.trace = function (name) {
-        return new Trace(name);
-    };
-    Object.defineProperty(PerformanceController.prototype, "instrumentationEnabled", {
-        get: function () {
-            return SettingsService.getInstance().instrumentationEnabled;
-        },
-        set: function (val) {
-            SettingsService.getInstance().instrumentationEnabled = val;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(PerformanceController.prototype, "dataCollectionEnabled", {
-        get: function () {
-            return SettingsService.getInstance().dataCollectionEnabled;
-        },
-        set: function (val) {
-            SettingsService.getInstance().dataCollectionEnabled = val;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    return PerformanceController;
-}());
-
-/**
- * @license
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var DEFAULT_ENTRY_NAME = '[DEFAULT]';
-function registerPerformance(instance) {
-    var factoryMethod = function (app, installations) {
-        if (app.name !== DEFAULT_ENTRY_NAME) {
-            throw ERROR_FACTORY.create("FB not default" /* FB_NOT_DEFAULT */);
-        }
-        if (typeof window === 'undefined') {
-            throw ERROR_FACTORY.create("no window" /* NO_WINDOW */);
-        }
-        setupApi(window);
-        SettingsService.getInstance().firebaseAppInstance = app;
-        SettingsService.getInstance().installationsService = installations;
-        return new PerformanceController(app);
-    };
-    // Register performance with firebase-app.
-    instance.INTERNAL.registerComponent(new component.Component('performance', function (container) {
-        /* Dependencies */
-        // getImmediate for FirebaseApp will always succeed
-        var app = container.getProvider('app').getImmediate();
-        // The following call will always succeed because perf has `import '@firebase/installations'`
-        var installations = container
-            .getProvider('installations')
-            .getImmediate();
-        return factoryMethod(app, installations);
-    }, "PUBLIC" /* PUBLIC */));
-    instance.registerVersion(name, version);
-}
-registerPerformance(firebase__default['default']);
-
-exports.registerPerformance = registerPerformance;
-//# sourceMappingURL=index.cjs.js.map
-
-
-/***/ }),
-
-/***/ "../node_modules/@firebase/remote-config/dist/index.cjs.js":
-/*!*****************************************************************!*\
-  !*** ../node_modules/@firebase/remote-config/dist/index.cjs.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/installations */ "../node_modules/@firebase/installations/dist/index.esm.js");
-var tslib = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-var util = __webpack_require__(/*! @firebase/util */ "../node_modules/@firebase/util/dist/index.cjs.js");
-var logger = __webpack_require__(/*! @firebase/logger */ "../node_modules/@firebase/logger/dist/index.esm.js");
-var component = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+var util = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.cjs.js");
+var logger = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/index.esm.js");
+var component = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -41002,20 +44857,20 @@ exports.registerRemoteConfig = registerRemoteConfig;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/storage/dist/index.esm.js":
-/*!***********************************************************!*\
-  !*** ../node_modules/@firebase/storage/dist/index.esm.js ***!
-  \***********************************************************/
+/***/ "./node_modules/@firebase/storage/dist/index.esm.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@firebase/storage/dist/index.esm.js ***!
+  \**********************************************************/
 /*! exports provided: registerStorage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerStorage", function() { return registerStorage; });
-/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 /* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_firebase_app__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/component */ "../node_modules/@firebase/component/dist/index.cjs.js");
+/* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/component */ "./node_modules/@firebase/component/dist/index.cjs.js");
 /* harmony import */ var _firebase_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_component__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -44521,10 +48376,10 @@ registerStorage(_firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a);
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/util/dist/index.cjs.js":
-/*!********************************************************!*\
-  !*** ../node_modules/@firebase/util/dist/index.cjs.js ***!
-  \********************************************************/
+/***/ "./node_modules/@firebase/util/dist/index.cjs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@firebase/util/dist/index.cjs.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46312,1430 +50167,17 @@ exports.validateNamespace = validateNamespace;
 
 /***/ }),
 
-/***/ "../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js":
-/*!**********************************************************************!*\
-  !*** ../node_modules/@firebase/webchannel-wrapper/dist/index.esm.js ***!
-  \**********************************************************************/
-/*! exports provided: default, ErrorCode, EventType, WebChannel, XhrIo, createWebChannelTransport */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorCode", function() { return ErrorCode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventType", function() { return EventType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebChannel", function() { return WebChannel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XhrIo", function() { return XhrIo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createWebChannelTransport", function() { return createWebChannelTransport; });
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-function __values(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-}
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-var g, goog = goog || {}, k = commonjsGlobal || self;
-function aa() { }
-function ba(a) { var b = typeof a; return "object" != b ? b : a ? Array.isArray(a) ? "array" : b : "null"; }
-function ca(a) { var b = ba(a); return "array" == b || "object" == b && "number" == typeof a.length; }
-function n(a) { var b = typeof a; return "object" == b && null != a || "function" == b; }
-function da(a) { return Object.prototype.hasOwnProperty.call(a, ea) && a[ea] || (a[ea] = ++fa); }
-var ea = "closure_uid_" + (1E9 * Math.random() >>> 0), fa = 0;
-function ha(a, b, c) { return a.call.apply(a.bind, arguments); }
-function ja(a, b, c) { if (!a)
-    throw Error(); if (2 < arguments.length) {
-    var d = Array.prototype.slice.call(arguments, 2);
-    return function () { var e = Array.prototype.slice.call(arguments); Array.prototype.unshift.apply(e, d); return a.apply(b, e); };
-} return function () { return a.apply(b, arguments); }; }
-function p(a, b, c) { Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf("native code") ? p = ha : p = ja; return p.apply(null, arguments); }
-function ka(a, b) { var c = Array.prototype.slice.call(arguments, 1); return function () { var d = c.slice(); d.push.apply(d, arguments); return a.apply(this, d); }; }
-var q = Date.now;
-function r(a, b) { function c() { } c.prototype = b.prototype; a.S = b.prototype; a.prototype = new c; a.prototype.constructor = a; }
-function u() { this.j = this.j; this.i = this.i; }
-var la = 0;
-u.prototype.j = !1;
-u.prototype.ja = function () { if (!this.j && (this.j = !0, this.G(), 0 != la)) {
-    var a = da(this);
-} };
-u.prototype.G = function () { if (this.i)
-    for (; this.i.length;)
-        this.i.shift()(); };
-var na = Array.prototype.indexOf ? function (a, b) { return Array.prototype.indexOf.call(a, b, void 0); } : function (a, b) { if ("string" === typeof a)
-    return "string" !== typeof b || 1 != b.length ? -1 : a.indexOf(b, 0); for (var c = 0; c < a.length; c++)
-    if (c in a && a[c] === b)
-        return c; return -1; }, oa = Array.prototype.forEach ? function (a, b, c) { Array.prototype.forEach.call(a, b, c); } : function (a, b, c) { for (var d = a.length, e = "string" === typeof a ? a.split("") : a, f = 0; f < d; f++)
-    f in e && b.call(c, e[f], f, a); };
-function pa(a) { a: {
-    var b = qa;
-    for (var c = a.length, d = "string" === typeof a ? a.split("") : a, e = 0; e < c; e++)
-        if (e in d && b.call(void 0, d[e], e, a)) {
-            b = e;
-            break a;
-        }
-    b = -1;
-} return 0 > b ? null : "string" === typeof a ? a.charAt(b) : a[b]; }
-function ra(a) { return Array.prototype.concat.apply([], arguments); }
-function sa(a) { var b = a.length; if (0 < b) {
-    for (var c = Array(b), d = 0; d < b; d++)
-        c[d] = a[d];
-    return c;
-} return []; }
-function ta(a) { return /^[\s\xa0]*$/.test(a); }
-var ua = String.prototype.trim ? function (a) { return a.trim(); } : function (a) { return /^[\s\xa0]*([\s\S]*?)[\s\xa0]*$/.exec(a)[1]; };
-function v(a, b) { return -1 != a.indexOf(b); }
-function xa(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
-var w;
-a: {
-    var ya = k.navigator;
-    if (ya) {
-        var za = ya.userAgent;
-        if (za) {
-            w = za;
-            break a;
-        }
-    }
-    w = "";
-}
-function Aa(a, b, c) { for (var d in a)
-    b.call(c, a[d], d, a); }
-function Ba(a) { var b = {}; for (var c in a)
-    b[c] = a[c]; return b; }
-var Ca = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function Da(a, b) { var c, d; for (var e = 1; e < arguments.length; e++) {
-    d = arguments[e];
-    for (c in d)
-        a[c] = d[c];
-    for (var f = 0; f < Ca.length; f++)
-        c = Ca[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
-} }
-function Ea(a) { Ea[" "](a); return a; }
-Ea[" "] = aa;
-function Fa(a, b) { var c = Ga; return Object.prototype.hasOwnProperty.call(c, a) ? c[a] : c[a] = b(a); }
-var Ha = v(w, "Opera"), x = v(w, "Trident") || v(w, "MSIE"), Ia = v(w, "Edge"), Ja = Ia || x, Ka = v(w, "Gecko") && !(v(w.toLowerCase(), "webkit") && !v(w, "Edge")) && !(v(w, "Trident") || v(w, "MSIE")) && !v(w, "Edge"), La = v(w.toLowerCase(), "webkit") && !v(w, "Edge");
-function Ma() { var a = k.document; return a ? a.documentMode : void 0; }
-var Na;
-a: {
-    var Oa = "", Pa = function () { var a = w; if (Ka)
-        return /rv:([^\);]+)(\)|;)/.exec(a); if (Ia)
-        return /Edge\/([\d\.]+)/.exec(a); if (x)
-        return /\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a); if (La)
-        return /WebKit\/(\S+)/.exec(a); if (Ha)
-        return /(?:Version)[ \/]?(\S+)/.exec(a); }();
-    Pa && (Oa = Pa ? Pa[1] : "");
-    if (x) {
-        var Qa = Ma();
-        if (null != Qa && Qa > parseFloat(Oa)) {
-            Na = String(Qa);
-            break a;
-        }
-    }
-    Na = Oa;
-}
-var Ga = {};
-function Ra(a) { return Fa(a, function () { {
-    var b = 0;
-    var e = ua(String(Na)).split("."), f = ua(String(a)).split("."), h = Math.max(e.length, f.length);
-    for (var m = 0; 0 == b && m < h; m++) {
-        var c = e[m] || "", d = f[m] || "";
-        do {
-            c = /(\d*)(\D*)(.*)/.exec(c) || ["", "", "", ""];
-            d = /(\d*)(\D*)(.*)/.exec(d) || ["", "", "", ""];
-            if (0 == c[0].length && 0 == d[0].length)
-                break;
-            b = xa(0 == c[1].length ? 0 : parseInt(c[1], 10), 0 == d[1].length ? 0 : parseInt(d[1], 10)) || xa(0 == c[2].length, 0 == d[2].length) || xa(c[2], d[2]);
-            c = c[3];
-            d = d[3];
-        } while (0 == b);
-    }
-} return 0 <= b; }); }
-var Sa;
-if (k.document && x) {
-    var Ta = Ma();
-    Sa = Ta ? Ta : parseInt(Na, 10) || void 0;
-}
-else
-    Sa = void 0;
-var Ua = Sa;
-var Va = !x || 9 <= Number(Ua), Wa = x && !Ra("9"), Xa = function () { if (!k.addEventListener || !Object.defineProperty)
-    return !1; var a = !1, b = Object.defineProperty({}, "passive", { get: function () { a = !0; } }); try {
-    k.addEventListener("test", aa, b), k.removeEventListener("test", aa, b);
-}
-catch (c) { } return a; }();
-function y(a, b) { this.type = a; this.a = this.target = b; this.defaultPrevented = !1; }
-y.prototype.b = function () { this.defaultPrevented = !0; };
-function A(a, b) {
-    y.call(this, a ? a.type : "");
-    this.relatedTarget = this.a = this.target = null;
-    this.button = this.screenY = this.screenX = this.clientY = this.clientX = 0;
-    this.key = "";
-    this.metaKey = this.shiftKey = this.altKey = this.ctrlKey = !1;
-    this.pointerId = 0;
-    this.pointerType = "";
-    this.c = null;
-    if (a) {
-        var c = this.type = a.type, d = a.changedTouches && a.changedTouches.length ? a.changedTouches[0] : null;
-        this.target = a.target || a.srcElement;
-        this.a = b;
-        if (b = a.relatedTarget) {
-            if (Ka) {
-                a: {
-                    try {
-                        Ea(b.nodeName);
-                        var e = !0;
-                        break a;
-                    }
-                    catch (f) { }
-                    e = !1;
-                }
-                e || (b = null);
-            }
-        }
-        else
-            "mouseover" ==
-                c ? b = a.fromElement : "mouseout" == c && (b = a.toElement);
-        this.relatedTarget = b;
-        d ? (this.clientX = void 0 !== d.clientX ? d.clientX : d.pageX, this.clientY = void 0 !== d.clientY ? d.clientY : d.pageY, this.screenX = d.screenX || 0, this.screenY = d.screenY || 0) : (this.clientX = void 0 !== a.clientX ? a.clientX : a.pageX, this.clientY = void 0 !== a.clientY ? a.clientY : a.pageY, this.screenX = a.screenX || 0, this.screenY = a.screenY || 0);
-        this.button = a.button;
-        this.key = a.key || "";
-        this.ctrlKey = a.ctrlKey;
-        this.altKey = a.altKey;
-        this.shiftKey = a.shiftKey;
-        this.metaKey =
-            a.metaKey;
-        this.pointerId = a.pointerId || 0;
-        this.pointerType = "string" === typeof a.pointerType ? a.pointerType : Ya[a.pointerType] || "";
-        this.c = a;
-        a.defaultPrevented && this.b();
-    }
-}
-r(A, y);
-var Ya = { 2: "touch", 3: "pen", 4: "mouse" };
-A.prototype.b = function () { A.S.b.call(this); var a = this.c; if (a.preventDefault)
-    a.preventDefault();
-else if (a.returnValue = !1, Wa)
-    try {
-        if (a.ctrlKey || 112 <= a.keyCode && 123 >= a.keyCode)
-            a.keyCode = -1;
-    }
-    catch (b) { } };
-var C = "closure_listenable_" + (1E6 * Math.random() | 0), Za = 0;
-function $a(a, b, c, d, e) { this.listener = a; this.proxy = null; this.src = b; this.type = c; this.capture = !!d; this.ca = e; this.key = ++Za; this.Y = this.Z = !1; }
-function ab(a) { a.Y = !0; a.listener = null; a.proxy = null; a.src = null; a.ca = null; }
-function bb(a) { this.src = a; this.a = {}; this.b = 0; }
-bb.prototype.add = function (a, b, c, d, e) { var f = a.toString(); a = this.a[f]; a || (a = this.a[f] = [], this.b++); var h = cb(a, b, d, e); -1 < h ? (b = a[h], c || (b.Z = !1)) : (b = new $a(b, this.src, f, !!d, e), b.Z = c, a.push(b)); return b; };
-function db(a, b) { var c = b.type; if (c in a.a) {
-    var d = a.a[c], e = na(d, b), f;
-    (f = 0 <= e) && Array.prototype.splice.call(d, e, 1);
-    f && (ab(b), 0 == a.a[c].length && (delete a.a[c], a.b--));
-} }
-function cb(a, b, c, d) { for (var e = 0; e < a.length; ++e) {
-    var f = a[e];
-    if (!f.Y && f.listener == b && f.capture == !!c && f.ca == d)
-        return e;
-} return -1; }
-var eb = "closure_lm_" + (1E6 * Math.random() | 0), fb = {};
-function hb(a, b, c, d, e) { if (d && d.once)
-    return ib(a, b, c, d, e); if (Array.isArray(b)) {
-    for (var f = 0; f < b.length; f++)
-        hb(a, b[f], c, d, e);
-    return null;
-} c = jb(c); return a && a[C] ? a.va(b, c, n(d) ? !!d.capture : !!d, e) : kb(a, b, c, !1, d, e); }
-function kb(a, b, c, d, e, f) {
-    if (!b)
-        throw Error("Invalid event type");
-    var h = n(e) ? !!e.capture : !!e;
-    if (h && !Va)
-        return null;
-    var m = lb(a);
-    m || (a[eb] = m = new bb(a));
-    c = m.add(b, c, d, h, f);
-    if (c.proxy)
-        return c;
-    d = mb();
-    c.proxy = d;
-    d.src = a;
-    d.listener = c;
-    if (a.addEventListener)
-        Xa || (e = h), void 0 === e && (e = !1), a.addEventListener(b.toString(), d, e);
-    else if (a.attachEvent)
-        a.attachEvent(nb(b.toString()), d);
-    else if (a.addListener && a.removeListener)
-        a.addListener(d);
-    else
-        throw Error("addEventListener and attachEvent are unavailable.");
-    return c;
-}
-function mb() { var a = ob, b = Va ? function (c) { return a.call(b.src, b.listener, c); } : function (c) { c = a.call(b.src, b.listener, c); if (!c)
-    return c; }; return b; }
-function ib(a, b, c, d, e) { if (Array.isArray(b)) {
-    for (var f = 0; f < b.length; f++)
-        ib(a, b[f], c, d, e);
-    return null;
-} c = jb(c); return a && a[C] ? a.wa(b, c, n(d) ? !!d.capture : !!d, e) : kb(a, b, c, !0, d, e); }
-function pb(a, b, c, d, e) { if (Array.isArray(b))
-    for (var f = 0; f < b.length; f++)
-        pb(a, b[f], c, d, e);
-else
-    (d = n(d) ? !!d.capture : !!d, c = jb(c), a && a[C]) ? (a = a.c, b = String(b).toString(), b in a.a && (f = a.a[b], c = cb(f, c, d, e), -1 < c && (ab(f[c]), Array.prototype.splice.call(f, c, 1), 0 == f.length && (delete a.a[b], a.b--)))) : a && (a = lb(a)) && (b = a.a[b.toString()], a = -1, b && (a = cb(b, c, d, e)), (c = -1 < a ? b[a] : null) && rb(c)); }
-function rb(a) { if ("number" !== typeof a && a && !a.Y) {
-    var b = a.src;
-    if (b && b[C])
-        db(b.c, a);
-    else {
-        var c = a.type, d = a.proxy;
-        b.removeEventListener ? b.removeEventListener(c, d, a.capture) : b.detachEvent ? b.detachEvent(nb(c), d) : b.addListener && b.removeListener && b.removeListener(d);
-        (c = lb(b)) ? (db(c, a), 0 == c.b && (c.src = null, b[eb] = null)) : ab(a);
-    }
-} }
-function nb(a) { return a in fb ? fb[a] : fb[a] = "on" + a; }
-function sb(a, b) { var c = a.listener, d = a.ca || a.src; a.Z && rb(a); return c.call(d, b); }
-function ob(a, b) { if (a.Y)
-    return !0; if (!Va) {
-    if (!b)
-        a: {
-            b = ["window", "event"];
-            for (var c = k, d = 0; d < b.length; d++)
-                if (c = c[b[d]], null == c) {
-                    b = null;
-                    break a;
-                }
-            b = c;
-        }
-    b = new A(b, this);
-    return sb(a, b);
-} return sb(a, new A(b, this)); }
-function lb(a) { a = a[eb]; return a instanceof bb ? a : null; }
-var tb = "__closure_events_fn_" + (1E9 * Math.random() >>> 0);
-function jb(a) { if ("function" == ba(a))
-    return a; a[tb] || (a[tb] = function (b) { return a.handleEvent(b); }); return a[tb]; }
-function D() { u.call(this); this.c = new bb(this); this.J = this; this.C = null; }
-r(D, u);
-D.prototype[C] = !0;
-g = D.prototype;
-g.addEventListener = function (a, b, c, d) { hb(this, a, b, c, d); };
-g.removeEventListener = function (a, b, c, d) { pb(this, a, b, c, d); };
-g.dispatchEvent = function (a) { var b, c = this.C; if (c)
-    for (b = []; c; c = c.C)
-        b.push(c); c = this.J; var d = a.type || a; if ("string" === typeof a)
-    a = new y(a, c);
-else if (a instanceof y)
-    a.target = a.target || c;
-else {
-    var e = a;
-    a = new y(d, c);
-    Da(a, e);
-} e = !0; if (b)
-    for (var f = b.length - 1; 0 <= f; f--) {
-        var h = a.a = b[f];
-        e = ub(h, d, !0, a) && e;
-    } h = a.a = c; e = ub(h, d, !0, a) && e; e = ub(h, d, !1, a) && e; if (b)
-    for (f = 0; f < b.length; f++)
-        h = a.a = b[f], e = ub(h, d, !1, a) && e; return e; };
-g.G = function () { D.S.G.call(this); if (this.c) {
-    var a = this.c, c;
-    for (c in a.a) {
-        for (var d = a.a[c], e = 0; e < d.length; e++)
-            ab(d[e]);
-        delete a.a[c];
-        a.b--;
-    }
-} this.C = null; };
-g.va = function (a, b, c, d) { return this.c.add(String(a), b, !1, c, d); };
-g.wa = function (a, b, c, d) { return this.c.add(String(a), b, !0, c, d); };
-function ub(a, b, c, d) { b = a.c.a[String(b)]; if (!b)
-    return !0; b = b.concat(); for (var e = !0, f = 0; f < b.length; ++f) {
-    var h = b[f];
-    if (h && !h.Y && h.capture == c) {
-        var m = h.listener, l = h.ca || h.src;
-        h.Z && db(a.c, h);
-        e = !1 !== m.call(l, d) && e;
-    }
-} return e && !d.defaultPrevented; }
-var vb = k.JSON.stringify;
-function wb() { this.b = this.a = null; }
-var yb = new /** @class */ (function () {
-    function class_1(a, b, c) {
-        this.f = c;
-        this.c = a;
-        this.g = b;
-        this.b = 0;
-        this.a = null;
-    }
-    class_1.prototype.get = function () { var a; 0 < this.b ? (this.b--, a = this.a, this.a = a.next, a.next = null) : a = this.c(); return a; };
-    return class_1;
-}())(function () { return new xb; }, function (a) { a.reset(); }, 100);
-wb.prototype.add = function (a, b) { var c = yb.get(); c.set(a, b); this.b ? this.b.next = c : this.a = c; this.b = c; };
-function zb() { var a = Ab, b = null; a.a && (b = a.a, a.a = a.a.next, a.a || (a.b = null), b.next = null); return b; }
-function xb() { this.next = this.b = this.a = null; }
-xb.prototype.set = function (a, b) { this.a = a; this.b = b; this.next = null; };
-xb.prototype.reset = function () { this.next = this.b = this.a = null; };
-function Bb(a) { k.setTimeout(function () { throw a; }, 0); }
-function Cb(a, b) { Db || Eb(); Fb || (Db(), Fb = !0); Ab.add(a, b); }
-var Db;
-function Eb() { var a = k.Promise.resolve(void 0); Db = function () { a.then(Gb); }; }
-var Fb = !1, Ab = new wb;
-function Gb() { for (var a; a = zb();) {
-    try {
-        a.a.call(a.b);
-    }
-    catch (c) {
-        Bb(c);
-    }
-    var b = yb;
-    b.g(a);
-    b.b < b.f && (b.b++, a.next = b.a, b.a = a);
-} Fb = !1; }
-function Hb(a, b) { D.call(this); this.b = a || 1; this.a = b || k; this.f = p(this.Ya, this); this.g = q(); }
-r(Hb, D);
-g = Hb.prototype;
-g.aa = !1;
-g.M = null;
-g.Ya = function () { if (this.aa) {
-    var a = q() - this.g;
-    0 < a && a < .8 * this.b ? this.M = this.a.setTimeout(this.f, this.b - a) : (this.M && (this.a.clearTimeout(this.M), this.M = null), this.dispatchEvent("tick"), this.aa && (Ib(this), this.start()));
-} };
-g.start = function () { this.aa = !0; this.M || (this.M = this.a.setTimeout(this.f, this.b), this.g = q()); };
-function Ib(a) { a.aa = !1; a.M && (a.a.clearTimeout(a.M), a.M = null); }
-g.G = function () { Hb.S.G.call(this); Ib(this); delete this.a; };
-function Jb(a, b, c) { if ("function" == ba(a))
-    c && (a = p(a, c));
-else if (a && "function" == typeof a.handleEvent)
-    a = p(a.handleEvent, a);
-else
-    throw Error("Invalid listener argument"); return 2147483647 < Number(b) ? -1 : k.setTimeout(a, b || 0); }
-function Kb(a) { a.a = Jb(function () { a.a = null; a.c && (a.c = !1, Kb(a)); }, a.h); var b = a.b; a.b = null; a.g.apply(null, b); }
-var Lb = /** @class */ (function (_super) {
-    __extends(Lb, _super);
-    function Lb(a, b, c) {
-        var _this = _super.call(this) || this;
-        _this.g = null != c ? a.bind(c) : a;
-        _this.h = b;
-        _this.b = null;
-        _this.c = !1;
-        _this.a = null;
-        return _this;
-    }
-    Lb.prototype.f = function (a) { this.b = arguments; this.a ? this.c = !0 : Kb(this); };
-    Lb.prototype.G = function () { _super.prototype.G.call(this); this.a && (k.clearTimeout(this.a), this.a = null, this.c = !1, this.b = null); };
-    return Lb;
-}(u));
-function E(a) { u.call(this); this.b = a; this.a = {}; }
-r(E, u);
-var Mb = [];
-function Nb(a, b, c, d) { Array.isArray(c) || (c && (Mb[0] = c.toString()), c = Mb); for (var e = 0; e < c.length; e++) {
-    var f = hb(b, c[e], d || a.handleEvent, !1, a.b || a);
-    if (!f)
-        break;
-    a.a[f.key] = f;
-} }
-function Ob(a) { Aa(a.a, function (b, c) { this.a.hasOwnProperty(c) && rb(b); }, a); a.a = {}; }
-E.prototype.G = function () { E.S.G.call(this); Ob(this); };
-E.prototype.handleEvent = function () { throw Error("EventHandler.handleEvent not implemented"); };
-function Pb() { this.a = !0; }
-function Qb(a, b, c, d, e, f) { a.info(function () { if (a.a)
-    if (f) {
-        var h = "";
-        for (var m = f.split("&"), l = 0; l < m.length; l++) {
-            var t = m[l].split("=");
-            if (1 < t.length) {
-                var B = t[0];
-                t = t[1];
-                var z = B.split("_");
-                h = 2 <= z.length && "type" == z[1] ? h + (B + "=" + t + "&") : h + (B + "=redacted&");
-            }
-        }
-    }
-    else
-        h = null;
-else
-    h = f; return "XMLHTTP REQ (" + d + ") [attempt " + e + "]: " + b + "\n" + c + "\n" + h; }); }
-function Rb(a, b, c, d, e, f, h) { a.info(function () { return "XMLHTTP RESP (" + d + ") [ attempt " + e + "]: " + b + "\n" + c + "\n" + f + " " + h; }); }
-function F(a, b, c, d) { a.info(function () { return "XMLHTTP TEXT (" + b + "): " + Sb(a, c) + (d ? " " + d : ""); }); }
-function Tb(a, b) { a.info(function () { return "TIMEOUT: " + b; }); }
-Pb.prototype.info = function () { };
-function Sb(a, b) { if (!a.a)
-    return b; if (!b)
-    return null; try {
-    var c = JSON.parse(b);
-    if (c)
-        for (a = 0; a < c.length; a++)
-            if (Array.isArray(c[a])) {
-                var d = c[a];
-                if (!(2 > d.length)) {
-                    var e = d[1];
-                    if (Array.isArray(e) && !(1 > e.length)) {
-                        var f = e[0];
-                        if ("noop" != f && "stop" != f && "close" != f)
-                            for (var h = 1; h < e.length; h++)
-                                e[h] = "";
-                    }
-                }
-            }
-    return vb(c);
-}
-catch (m) {
-    return b;
-} }
-var Ub = null;
-function Vb() { return Ub = Ub || new D; }
-function Wb(a) { y.call(this, "serverreachability", a); }
-r(Wb, y);
-function G(a) { var b = Vb(); b.dispatchEvent(new Wb(b, a)); }
-function Xb(a) { y.call(this, "statevent", a); }
-r(Xb, y);
-function H(a) { var b = Vb(); b.dispatchEvent(new Xb(b, a)); }
-function Yb(a) { y.call(this, "timingevent", a); }
-r(Yb, y);
-function I(a, b) { if ("function" != ba(a))
-    throw Error("Fn must not be null and must be a function"); return k.setTimeout(function () { a(); }, b); }
-var Zb = { NO_ERROR: 0, Za: 1, gb: 2, fb: 3, bb: 4, eb: 5, hb: 6, Da: 7, TIMEOUT: 8, kb: 9 };
-var $b = { ab: "complete", ob: "success", Ea: "error", Da: "abort", mb: "ready", nb: "readystatechange", TIMEOUT: "timeout", ib: "incrementaldata", lb: "progress", cb: "downloadprogress", pb: "uploadprogress" };
-function ac() { }
-ac.prototype.a = null;
-function bc(a) { var b; (b = a.a) || (b = a.a = {}); return b; }
-function cc() { }
-var J = { OPEN: "a", $a: "b", Ea: "c", jb: "d" };
-function dc() { y.call(this, "d"); }
-r(dc, y);
-function ec() { y.call(this, "c"); }
-r(ec, y);
-var fc;
-function gc() { }
-r(gc, ac);
-fc = new gc;
-function K(a, b, c, d) { this.g = a; this.c = b; this.f = c; this.T = d || 1; this.J = new E(this); this.P = hc; a = Ja ? 125 : void 0; this.R = new Hb(a); this.B = null; this.b = !1; this.j = this.l = this.i = this.H = this.u = this.U = this.o = null; this.s = []; this.a = null; this.D = 0; this.h = this.m = null; this.N = -1; this.A = !1; this.O = 0; this.F = null; this.W = this.C = this.V = this.I = !1; }
-var hc = 45E3, ic = {}, jc = {};
-g = K.prototype;
-g.setTimeout = function (a) { this.P = a; };
-function kc(a, b, c) { a.H = 1; a.i = lc(L(b)); a.j = c; a.I = !0; mc(a, null); }
-function mc(a, b) { a.u = q(); M(a); a.l = L(a.i); var c = a.l, d = a.T; Array.isArray(d) || (d = [String(d)]); nc(c.b, "t", d); a.D = 0; a.a = oc(a.g, a.g.C ? b : null); 0 < a.O && (a.F = new Lb(p(a.Ca, a, a.a), a.O)); Nb(a.J, a.a, "readystatechange", a.Wa); b = a.B ? Ba(a.B) : {}; a.j ? (a.m || (a.m = "POST"), b["Content-Type"] = "application/x-www-form-urlencoded", a.a.ba(a.l, a.m, a.j, b)) : (a.m = "GET", a.a.ba(a.l, a.m, null, b)); G(1); Qb(a.c, a.m, a.l, a.f, a.T, a.j); }
-g.Wa = function (a) { a = a.target; var b = this.F; b && 3 == N(a) ? b.f() : this.Ca(a); };
-g.Ca = function (a) {
-    try {
-        if (a == this.a)
-            a: {
-                var b = N(this.a), c = this.a.ua(), d = this.a.X();
-                if (!(3 > b || 3 == b && !Ja && !this.a.$())) {
-                    this.A || 4 != b || 7 == c || (8 == c || 0 >= d ? G(3) : G(2));
-                    pc(this);
-                    var e = this.a.X();
-                    this.N = e;
-                    var f = this.a.$();
-                    this.b = 200 == e;
-                    Rb(this.c, this.m, this.l, this.f, this.T, b, e);
-                    if (this.b) {
-                        if (this.V && !this.C) {
-                            b: {
-                                if (this.a) {
-                                    var h, m = this.a;
-                                    if ((h = m.a ? m.a.getResponseHeader("X-HTTP-Initial-Response") : null) && !ta(h)) {
-                                        var l = h;
-                                        break b;
-                                    }
-                                }
-                                l = null;
-                            }
-                            if (l)
-                                F(this.c, this.f, l, "Initial handshake response via X-HTTP-Initial-Response"),
-                                    this.C = !0, qc(this, l);
-                            else {
-                                this.b = !1;
-                                this.h = 3;
-                                H(12);
-                                O(this);
-                                rc(this);
-                                break a;
-                            }
-                        }
-                        this.I ? (tc(this, b, f), Ja && this.b && 3 == b && (Nb(this.J, this.R, "tick", this.Va), this.R.start())) : (F(this.c, this.f, f, null), qc(this, f));
-                        4 == b && O(this);
-                        this.b && !this.A && (4 == b ? uc(this.g, this) : (this.b = !1, M(this)));
-                    }
-                    else
-                        400 == e && 0 < f.indexOf("Unknown SID") ? (this.h = 3, H(12)) : (this.h = 0, H(13)), O(this), rc(this);
-                }
-            }
-    }
-    catch (t) { }
-    finally { }
-};
-function tc(a, b, c) { for (var d = !0; !a.A && a.D < c.length;) {
-    var e = vc(a, c);
-    if (e == jc) {
-        4 == b && (a.h = 4, H(14), d = !1);
-        F(a.c, a.f, null, "[Incomplete Response]");
-        break;
-    }
-    else if (e == ic) {
-        a.h = 4;
-        H(15);
-        F(a.c, a.f, c, "[Invalid Chunk]");
-        d = !1;
-        break;
-    }
-    else
-        F(a.c, a.f, e, null), qc(a, e);
-} 4 == b && 0 == c.length && (a.h = 1, H(16), d = !1); a.b = a.b && d; d ? 0 < c.length && !a.W && (a.W = !0, b = a.g, b.a == a && b.V && !b.F && (b.c.info("Great, no buffering proxy detected. Bytes received: " + c.length), xc(b), b.F = !0)) : (F(a.c, a.f, c, "[Invalid Chunked Response]"), O(a), rc(a)); }
-g.Va = function () { if (this.a) {
-    var a = N(this.a), b = this.a.$();
-    this.D < b.length && (pc(this), tc(this, a, b), this.b && 4 != a && M(this));
-} };
-function vc(a, b) { var c = a.D, d = b.indexOf("\n", c); if (-1 == d)
-    return jc; c = Number(b.substring(c, d)); if (isNaN(c))
-    return ic; d += 1; if (d + c > b.length)
-    return jc; b = b.substr(d, c); a.D = d + c; return b; }
-g.cancel = function () { this.A = !0; O(this); };
-function M(a) { a.U = q() + a.P; yc(a, a.P); }
-function yc(a, b) { if (null != a.o)
-    throw Error("WatchDog timer not null"); a.o = I(p(a.Ua, a), b); }
-function pc(a) { a.o && (k.clearTimeout(a.o), a.o = null); }
-g.Ua = function () { this.o = null; var a = q(); 0 <= a - this.U ? (Tb(this.c, this.l), 2 != this.H && (G(3), H(17)), O(this), this.h = 2, rc(this)) : yc(this, this.U - a); };
-function rc(a) { 0 == a.g.v || a.A || uc(a.g, a); }
-function O(a) { pc(a); var b = a.F; b && "function" == typeof b.ja && b.ja(); a.F = null; Ib(a.R); Ob(a.J); a.a && (b = a.a, a.a = null, b.abort(), b.ja()); }
-function qc(a, b) {
-    try {
-        var c = a.g;
-        if (0 != c.v && (c.a == a || zc(c.b, a)))
-            if (c.I = a.N, !a.C && zc(c.b, a) && 3 == c.v) {
-                try {
-                    var d = c.ka.a.parse(b);
-                }
-                catch (sc) {
-                    d = null;
-                }
-                if (Array.isArray(d) && 3 == d.length) {
-                    var e = d;
-                    if (0 == e[0])
-                        a: {
-                            if (!c.j) {
-                                if (c.a)
-                                    if (c.a.u + 3E3 < a.u)
-                                        Ac(c), Bc(c);
-                                    else
-                                        break a;
-                                Cc(c);
-                                H(18);
-                            }
-                        }
-                    else
-                        c.oa = e[1], 0 < c.oa - c.P && 37500 > e[2] && c.H && 0 == c.o && !c.m && (c.m = I(p(c.Ra, c), 6E3));
-                    if (1 >= Dc(c.b) && c.ea) {
-                        try {
-                            c.ea();
-                        }
-                        catch (sc) { }
-                        c.ea = void 0;
-                    }
-                }
-                else
-                    P(c, 11);
-            }
-            else if ((a.C || c.a == a) && Ac(c), !ta(b))
-                for (b = d = c.ka.a.parse(b), d = 0; d < b.length; d++)
-                    if (e =
-                        b[d], c.P = e[0], e = e[1], 2 == c.v)
-                        if ("c" == e[0]) {
-                            c.J = e[1];
-                            c.ga = e[2];
-                            var f = e[3];
-                            null != f && (c.ha = f, c.c.info("VER=" + c.ha));
-                            var h = e[4];
-                            null != h && (c.pa = h, c.c.info("SVER=" + c.pa));
-                            var m = e[5];
-                            if (null != m && "number" === typeof m && 0 < m) {
-                                var l = 1.5 * m;
-                                c.D = l;
-                                c.c.info("backChannelRequestTimeoutMs_=" + l);
-                            }
-                            l = c;
-                            var t = a.a;
-                            if (t) {
-                                var B = t.a ? t.a.getResponseHeader("X-Client-Wire-Protocol") : null;
-                                if (B) {
-                                    var z = l.b;
-                                    !z.a && (v(B, "spdy") || v(B, "quic") || v(B, "h2")) && (z.f = z.g, z.a = new Set, z.b && (Ec(z, z.b), z.b = null));
-                                }
-                                if (l.A) {
-                                    var qb = t.a ? t.a.getResponseHeader("X-HTTP-Session-Id") :
-                                        null;
-                                    qb && (l.na = qb, Q(l.B, l.A, qb));
-                                }
-                            }
-                            c.v = 3;
-                            c.f && c.f.ta();
-                            c.V && (c.N = q() - a.u, c.c.info("Handshake RTT: " + c.N + "ms"));
-                            l = c;
-                            var va = a;
-                            l.la = Fc(l, l.C ? l.ga : null, l.fa);
-                            if (va.C) {
-                                Gc(l.b, va);
-                                var wa = va, wc = l.D;
-                                wc && wa.setTimeout(wc);
-                                wa.o && (pc(wa), M(wa));
-                                l.a = va;
-                            }
-                            else
-                                Hc(l);
-                            0 < c.g.length && Ic(c);
-                        }
-                        else
-                            "stop" != e[0] && "close" != e[0] || P(c, 7);
-                    else
-                        3 == c.v && ("stop" == e[0] || "close" == e[0] ? "stop" == e[0] ? P(c, 7) : Jc(c) : "noop" != e[0] && c.f && c.f.sa(e), c.o = 0);
-        G(4);
-    }
-    catch (sc) { }
-}
-function Kc(a) { if (a.K && "function" == typeof a.K)
-    return a.K(); if ("string" === typeof a)
-    return a.split(""); if (ca(a)) {
-    for (var b = [], c = a.length, d = 0; d < c; d++)
-        b.push(a[d]);
-    return b;
-} b = []; c = 0; for (d in a)
-    b[c++] = a[d]; return a = b; }
-function Lc(a, b) { if (a.forEach && "function" == typeof a.forEach)
-    a.forEach(b, void 0);
-else if (ca(a) || "string" === typeof a)
-    oa(a, b, void 0);
-else {
-    if (a.L && "function" == typeof a.L)
-        var c = a.L();
-    else if (a.K && "function" == typeof a.K)
-        c = void 0;
-    else if (ca(a) || "string" === typeof a) {
-        c = [];
-        for (var d = a.length, e = 0; e < d; e++)
-            c.push(e);
-    }
-    else
-        for (e in c = [], d = 0, a)
-            c[d++] = e;
-    d = Kc(a);
-    e = d.length;
-    for (var f = 0; f < e; f++)
-        b.call(void 0, d[f], c && c[f], a);
-} }
-function R(a, b) { this.b = {}; this.a = []; this.c = 0; var c = arguments.length; if (1 < c) {
-    if (c % 2)
-        throw Error("Uneven number of arguments");
-    for (var d = 0; d < c; d += 2)
-        this.set(arguments[d], arguments[d + 1]);
-}
-else if (a)
-    if (a instanceof R)
-        for (c = a.L(), d = 0; d < c.length; d++)
-            this.set(c[d], a.get(c[d]));
-    else
-        for (d in a)
-            this.set(d, a[d]); }
-g = R.prototype;
-g.K = function () { Mc(this); for (var a = [], b = 0; b < this.a.length; b++)
-    a.push(this.b[this.a[b]]); return a; };
-g.L = function () { Mc(this); return this.a.concat(); };
-function Mc(a) { if (a.c != a.a.length) {
-    for (var b = 0, c = 0; b < a.a.length;) {
-        var d = a.a[b];
-        S(a.b, d) && (a.a[c++] = d);
-        b++;
-    }
-    a.a.length = c;
-} if (a.c != a.a.length) {
-    var e = {};
-    for (c = b = 0; b < a.a.length;)
-        d = a.a[b], S(e, d) || (a.a[c++] = d, e[d] = 1), b++;
-    a.a.length = c;
-} }
-g.get = function (a, b) { return S(this.b, a) ? this.b[a] : b; };
-g.set = function (a, b) { S(this.b, a) || (this.c++, this.a.push(a)); this.b[a] = b; };
-g.forEach = function (a, b) { for (var c = this.L(), d = 0; d < c.length; d++) {
-    var e = c[d], f = this.get(e);
-    a.call(b, f, e, this);
-} };
-function S(a, b) { return Object.prototype.hasOwnProperty.call(a, b); }
-var Nc = /^(?:([^:/?#.]+):)?(?:\/\/(?:([^\\/?#]*)@)?([^\\/?#]*?)(?::([0-9]+))?(?=[\\/?#]|$))?([^?#]+)?(?:\?([^#]*))?(?:#([\s\S]*))?$/;
-function Oc(a, b) { if (a) {
-    a = a.split("&");
-    for (var c = 0; c < a.length; c++) {
-        var d = a[c].indexOf("="), e = null;
-        if (0 <= d) {
-            var f = a[c].substring(0, d);
-            e = a[c].substring(d + 1);
-        }
-        else
-            f = a[c];
-        b(f, e ? decodeURIComponent(e.replace(/\+/g, " ")) : "");
-    }
-} }
-function T(a, b) { this.c = this.j = this.f = ""; this.h = null; this.i = this.g = ""; this.a = !1; if (a instanceof T) {
-    this.a = void 0 !== b ? b : a.a;
-    Pc(this, a.f);
-    this.j = a.j;
-    Qc(this, a.c);
-    Rc(this, a.h);
-    this.g = a.g;
-    b = a.b;
-    var c = new U;
-    c.c = b.c;
-    b.a && (c.a = new R(b.a), c.b = b.b);
-    Sc(this, c);
-    this.i = a.i;
-}
-else
-    a && (c = String(a).match(Nc)) ? (this.a = !!b, Pc(this, c[1] || "", !0), this.j = Tc(c[2] || ""), Qc(this, c[3] || "", !0), Rc(this, c[4]), this.g = Tc(c[5] || "", !0), Sc(this, c[6] || "", !0), this.i = Tc(c[7] || "")) : (this.a = !!b, this.b = new U(null, this.a)); }
-T.prototype.toString = function () { var a = [], b = this.f; b && a.push(Uc(b, Vc, !0), ":"); var c = this.c; if (c || "file" == b)
-    a.push("//"), (b = this.j) && a.push(Uc(b, Vc, !0), "@"), a.push(encodeURIComponent(String(c)).replace(/%25([0-9a-fA-F]{2})/g, "%$1")), c = this.h, null != c && a.push(":", String(c)); if (c = this.g)
-    this.c && "/" != c.charAt(0) && a.push("/"), a.push(Uc(c, "/" == c.charAt(0) ? Wc : Xc, !0)); (c = this.b.toString()) && a.push("?", c); (c = this.i) && a.push("#", Uc(c, Yc)); return a.join(""); };
-function L(a) { return new T(a); }
-function Pc(a, b, c) { a.f = c ? Tc(b, !0) : b; a.f && (a.f = a.f.replace(/:$/, "")); }
-function Qc(a, b, c) { a.c = c ? Tc(b, !0) : b; }
-function Rc(a, b) { if (b) {
-    b = Number(b);
-    if (isNaN(b) || 0 > b)
-        throw Error("Bad port number " + b);
-    a.h = b;
-}
-else
-    a.h = null; }
-function Sc(a, b, c) { b instanceof U ? (a.b = b, Zc(a.b, a.a)) : (c || (b = Uc(b, $c)), a.b = new U(b, a.a)); }
-function Q(a, b, c) { a.b.set(b, c); }
-function lc(a) { Q(a, "zx", Math.floor(2147483648 * Math.random()).toString(36) + Math.abs(Math.floor(2147483648 * Math.random()) ^ q()).toString(36)); return a; }
-function ad(a) { return a instanceof T ? L(a) : new T(a, void 0); }
-function bd(a, b, c, d) { var e = new T(null, void 0); a && Pc(e, a); b && Qc(e, b); c && Rc(e, c); d && (e.g = d); return e; }
-function Tc(a, b) { return a ? b ? decodeURI(a.replace(/%25/g, "%2525")) : decodeURIComponent(a) : ""; }
-function Uc(a, b, c) { return "string" === typeof a ? (a = encodeURI(a).replace(b, cd), c && (a = a.replace(/%25([0-9a-fA-F]{2})/g, "%$1")), a) : null; }
-function cd(a) { a = a.charCodeAt(0); return "%" + (a >> 4 & 15).toString(16) + (a & 15).toString(16); }
-var Vc = /[#\/\?@]/g, Xc = /[#\?:]/g, Wc = /[#\?]/g, $c = /[#\?@]/g, Yc = /#/g;
-function U(a, b) { this.b = this.a = null; this.c = a || null; this.f = !!b; }
-function V(a) { a.a || (a.a = new R, a.b = 0, a.c && Oc(a.c, function (b, c) { a.add(decodeURIComponent(b.replace(/\+/g, " ")), c); })); }
-g = U.prototype;
-g.add = function (a, b) { V(this); this.c = null; a = W(this, a); var c = this.a.get(a); c || this.a.set(a, c = []); c.push(b); this.b += 1; return this; };
-function dd(a, b) { V(a); b = W(a, b); S(a.a.b, b) && (a.c = null, a.b -= a.a.get(b).length, a = a.a, S(a.b, b) && (delete a.b[b], a.c--, a.a.length > 2 * a.c && Mc(a))); }
-function ed(a, b) { V(a); b = W(a, b); return S(a.a.b, b); }
-g.forEach = function (a, b) { V(this); this.a.forEach(function (c, d) { oa(c, function (e) { a.call(b, e, d, this); }, this); }, this); };
-g.L = function () { V(this); for (var a = this.a.K(), b = this.a.L(), c = [], d = 0; d < b.length; d++)
-    for (var e = a[d], f = 0; f < e.length; f++)
-        c.push(b[d]); return c; };
-g.K = function (a) { V(this); var b = []; if ("string" === typeof a)
-    ed(this, a) && (b = ra(b, this.a.get(W(this, a))));
-else {
-    a = this.a.K();
-    for (var c = 0; c < a.length; c++)
-        b = ra(b, a[c]);
-} return b; };
-g.set = function (a, b) { V(this); this.c = null; a = W(this, a); ed(this, a) && (this.b -= this.a.get(a).length); this.a.set(a, [b]); this.b += 1; return this; };
-g.get = function (a, b) { if (!a)
-    return b; a = this.K(a); return 0 < a.length ? String(a[0]) : b; };
-function nc(a, b, c) { dd(a, b); 0 < c.length && (a.c = null, a.a.set(W(a, b), sa(c)), a.b += c.length); }
-g.toString = function () { if (this.c)
-    return this.c; if (!this.a)
-    return ""; for (var a = [], b = this.a.L(), c = 0; c < b.length; c++) {
-    var d = b[c], e = encodeURIComponent(String(d));
-    d = this.K(d);
-    for (var f = 0; f < d.length; f++) {
-        var h = e;
-        "" !== d[f] && (h += "=" + encodeURIComponent(String(d[f])));
-        a.push(h);
-    }
-} return this.c = a.join("&"); };
-function W(a, b) { b = String(b); a.f && (b = b.toLowerCase()); return b; }
-function Zc(a, b) { b && !a.f && (V(a), a.c = null, a.a.forEach(function (c, d) { var e = d.toLowerCase(); d != e && (dd(this, d), nc(this, e, c)); }, a)); a.f = b; }
-function fd(a, b) { this.b = a; this.a = b; }
-function gd(a) { this.g = a || hd; k.PerformanceNavigationTiming ? (a = k.performance.getEntriesByType("navigation"), a = 0 < a.length && ("hq" == a[0].nextHopProtocol || "h2" == a[0].nextHopProtocol)) : a = !!(k.ia && k.ia.ya && k.ia.ya() && k.ia.ya().qb); this.f = a ? this.g : 1; this.a = null; 1 < this.f && (this.a = new Set); this.b = null; this.c = []; }
-var hd = 10;
-function id(a) { return a.b ? !0 : a.a ? a.a.size >= a.f : !1; }
-function Dc(a) { return a.b ? 1 : a.a ? a.a.size : 0; }
-function zc(a, b) { return a.b ? a.b == b : a.a ? a.a.has(b) : !1; }
-function Ec(a, b) { a.a ? a.a.add(b) : a.b = b; }
-function Gc(a, b) { a.b && a.b == b ? a.b = null : a.a && a.a.has(b) && a.a.delete(b); }
-gd.prototype.cancel = function () {
-    var e_1, _a;
-    this.c = jd(this);
-    if (this.b)
-        this.b.cancel(), this.b = null;
-    else if (this.a && 0 !== this.a.size) {
-        try {
-            for (var _b = __values(this.a.values()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var a = _c.value;
-                a.cancel();
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        this.a.clear();
-    }
-};
-function jd(a) {
-    var e_2, _a;
-    if (null != a.b)
-        return a.c.concat(a.b.s);
-    if (null != a.a && 0 !== a.a.size) {
-        var b = a.c;
-        try {
-            for (var _b = __values(a.a.values()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var c = _c.value;
-                b = b.concat(c.s);
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-        return b;
-    }
-    return sa(a.c);
-}
-function kd() { }
-kd.prototype.stringify = function (a) { return k.JSON.stringify(a, void 0); };
-kd.prototype.parse = function (a) { return k.JSON.parse(a, void 0); };
-function ld() { this.a = new kd; }
-function md(a, b, c) { var d = c || ""; try {
-    Lc(a, function (e, f) { var h = e; n(e) && (h = vb(e)); b.push(d + f + "=" + encodeURIComponent(h)); });
-}
-catch (e) {
-    throw b.push(d + "type=" + encodeURIComponent("_badmap")), e;
-} }
-function nd(a, b) { var c = new Pb; if (k.Image) {
-    var d = new Image;
-    d.onload = ka(od, c, d, "TestLoadImage: loaded", !0, b);
-    d.onerror = ka(od, c, d, "TestLoadImage: error", !1, b);
-    d.onabort = ka(od, c, d, "TestLoadImage: abort", !1, b);
-    d.ontimeout = ka(od, c, d, "TestLoadImage: timeout", !1, b);
-    k.setTimeout(function () { if (d.ontimeout)
-        d.ontimeout(); }, 1E4);
-    d.src = a;
-}
-else
-    b(!1); }
-function od(a, b, c, d, e) { try {
-    b.onload = null, b.onerror = null, b.onabort = null, b.ontimeout = null, e(d);
-}
-catch (f) { } }
-var pd = k.JSON.parse;
-function X(a) { D.call(this); this.headers = new R; this.H = a || null; this.b = !1; this.s = this.a = null; this.B = ""; this.h = 0; this.f = ""; this.g = this.A = this.l = this.u = !1; this.o = 0; this.m = null; this.I = qd; this.D = this.F = !1; }
-r(X, D);
-var qd = "", rd = /^https?$/i, sd = ["POST", "PUT"];
-g = X.prototype;
-g.ba = function (a, b, c, d) {
-    if (this.a)
-        throw Error("[goog.net.XhrIo] Object is active with another request=" + this.B + "; newUri=" + a);
-    b = b ? b.toUpperCase() : "GET";
-    this.B = a;
-    this.f = "";
-    this.h = 0;
-    this.u = !1;
-    this.b = !0;
-    this.a = new XMLHttpRequest;
-    this.s = this.H ? bc(this.H) : bc(fc);
-    this.a.onreadystatechange = p(this.za, this);
-    try {
-        this.A = !0, this.a.open(b, String(a), !0), this.A = !1;
-    }
-    catch (f) {
-        td(this, f);
-        return;
-    }
-    a = c || "";
-    var e = new R(this.headers);
-    d && Lc(d, function (f, h) { e.set(h, f); });
-    d = pa(e.L());
-    c = k.FormData && a instanceof k.FormData;
-    !(0 <=
-        na(sd, b)) || d || c || e.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-    e.forEach(function (f, h) { this.a.setRequestHeader(h, f); }, this);
-    this.I && (this.a.responseType = this.I);
-    "withCredentials" in this.a && this.a.withCredentials !== this.F && (this.a.withCredentials = this.F);
-    try {
-        ud(this), 0 < this.o && ((this.D = vd(this.a)) ? (this.a.timeout = this.o, this.a.ontimeout = p(this.xa, this)) : this.m = Jb(this.xa, this.o, this)), this.l = !0, this.a.send(a), this.l = !1;
-    }
-    catch (f) {
-        td(this, f);
-    }
-};
-function vd(a) { return x && Ra(9) && "number" === typeof a.timeout && void 0 !== a.ontimeout; }
-function qa(a) { return "content-type" == a.toLowerCase(); }
-g.xa = function () { "undefined" != typeof goog && this.a && (this.f = "Timed out after " + this.o + "ms, aborting", this.h = 8, this.dispatchEvent("timeout"), this.abort(8)); };
-function td(a, b) { a.b = !1; a.a && (a.g = !0, a.a.abort(), a.g = !1); a.f = b; a.h = 5; wd(a); xd(a); }
-function wd(a) { a.u || (a.u = !0, a.dispatchEvent("complete"), a.dispatchEvent("error")); }
-g.abort = function (a) { this.a && this.b && (this.b = !1, this.g = !0, this.a.abort(), this.g = !1, this.h = a || 7, this.dispatchEvent("complete"), this.dispatchEvent("abort"), xd(this)); };
-g.G = function () { this.a && (this.b && (this.b = !1, this.g = !0, this.a.abort(), this.g = !1), xd(this, !0)); X.S.G.call(this); };
-g.za = function () { this.j || (this.A || this.l || this.g ? yd(this) : this.Ta()); };
-g.Ta = function () { yd(this); };
-function yd(a) {
-    if (a.b && "undefined" != typeof goog && (!a.s[1] || 4 != N(a) || 2 != a.X()))
-        if (a.l && 4 == N(a))
-            Jb(a.za, 0, a);
-        else if (a.dispatchEvent("readystatechange"), 4 == N(a)) {
-            a.b = !1;
-            try {
-                var b = a.X();
-                a: switch (b) {
-                    case 200:
-                    case 201:
-                    case 202:
-                    case 204:
-                    case 206:
-                    case 304:
-                    case 1223:
-                        var c = !0;
-                        break a;
-                    default: c = !1;
-                }
-                var d;
-                if (!(d = c)) {
-                    var e;
-                    if (e = 0 === b) {
-                        var f = String(a.B).match(Nc)[1] || null;
-                        if (!f && k.self && k.self.location) {
-                            var h = k.self.location.protocol;
-                            f = h.substr(0, h.length - 1);
-                        }
-                        e = !rd.test(f ? f.toLowerCase() : "");
-                    }
-                    d = e;
-                }
-                if (d)
-                    a.dispatchEvent("complete"),
-                        a.dispatchEvent("success");
-                else {
-                    a.h = 6;
-                    try {
-                        var m = 2 < N(a) ? a.a.statusText : "";
-                    }
-                    catch (l) {
-                        m = "";
-                    }
-                    a.f = m + " [" + a.X() + "]";
-                    wd(a);
-                }
-            }
-            finally {
-                xd(a);
-            }
-        }
-}
-function xd(a, b) { if (a.a) {
-    ud(a);
-    var c = a.a, d = a.s[0] ? aa : null;
-    a.a = null;
-    a.s = null;
-    b || a.dispatchEvent("ready");
-    try {
-        c.onreadystatechange = d;
-    }
-    catch (e) { }
-} }
-function ud(a) { a.a && a.D && (a.a.ontimeout = null); a.m && (k.clearTimeout(a.m), a.m = null); }
-function N(a) { return a.a ? a.a.readyState : 0; }
-g.X = function () { try {
-    return 2 < N(this) ? this.a.status : -1;
-}
-catch (a) {
-    return -1;
-} };
-g.$ = function () { try {
-    return this.a ? this.a.responseText : "";
-}
-catch (a) {
-    return "";
-} };
-g.Na = function (a) { if (this.a) {
-    var b = this.a.responseText;
-    a && 0 == b.indexOf(a) && (b = b.substring(a.length));
-    return pd(b);
-} };
-g.ua = function () { return this.h; };
-g.Qa = function () { return "string" === typeof this.f ? this.f : String(this.f); };
-function zd(a) { var b = ""; Aa(a, function (c, d) { b += d; b += ":"; b += c; b += "\r\n"; }); return b; }
-function Ad(a, b, c) { a: {
-    for (d in c) {
-        var d = !1;
-        break a;
-    }
-    d = !0;
-} d || (c = zd(c), "string" === typeof a ? (null != c && encodeURIComponent(String(c))) : Q(a, b, c)); }
-function Bd(a, b, c) { return c && c.internalChannelParams ? c.internalChannelParams[a] || b : b; }
-function Cd(a) {
-    this.pa = 0;
-    this.g = [];
-    this.c = new Pb;
-    this.ga = this.la = this.B = this.fa = this.a = this.na = this.A = this.W = this.i = this.O = this.l = null;
-    this.La = this.R = 0;
-    this.Ia = Bd("failFast", !1, a);
-    this.H = this.m = this.j = this.h = this.f = null;
-    this.T = !0;
-    this.I = this.oa = this.P = -1;
-    this.U = this.o = this.u = 0;
-    this.Fa = Bd("baseRetryDelayMs", 5E3, a);
-    this.Ma = Bd("retryDelaySeedMs", 1E4, a);
-    this.Ja = Bd("forwardChannelMaxRetries", 2, a);
-    this.ma = Bd("forwardChannelRequestTimeoutMs", 2E4, a);
-    this.Ka = a && a.g || void 0;
-    this.D = void 0;
-    this.C = a && a.supportsCrossDomainXhr ||
-        !1;
-    this.J = "";
-    this.b = new gd(a && a.concurrentRequestLimit);
-    this.ka = new ld;
-    this.da = a && a.fastHandshake || !1;
-    this.Ga = a && a.b || !1;
-    a && a.f && (this.c.a = !1);
-    a && a.forceLongPolling && (this.T = !1);
-    this.V = !this.da && this.T && a && a.c || !1;
-    this.ea = void 0;
-    this.N = 0;
-    this.F = !1;
-    this.s = null;
-}
-g = Cd.prototype;
-g.ha = 8;
-g.v = 1;
-function Jc(a) { Dd(a); if (3 == a.v) {
-    var b = a.R++, c = L(a.B);
-    Q(c, "SID", a.J);
-    Q(c, "RID", b);
-    Q(c, "TYPE", "terminate");
-    Ed(a, c);
-    b = new K(a, a.c, b, void 0);
-    b.H = 2;
-    b.i = lc(L(c));
-    c = !1;
-    k.navigator && k.navigator.sendBeacon && (c = k.navigator.sendBeacon(b.i.toString(), ""));
-    !c && k.Image && ((new Image).src = b.i, c = !0);
-    c || (b.a = oc(b.g, null), b.a.ba(b.i));
-    b.u = q();
-    M(b);
-} Fd(a); }
-function Bc(a) { a.a && (xc(a), a.a.cancel(), a.a = null); }
-function Dd(a) { Bc(a); a.j && (k.clearTimeout(a.j), a.j = null); Ac(a); a.b.cancel(); a.h && ("number" === typeof a.h && k.clearTimeout(a.h), a.h = null); }
-function Gd(a, b) { a.g.push(new fd(a.La++, b)); 3 == a.v && Ic(a); }
-function Ic(a) { id(a.b) || a.h || (a.h = !0, Cb(a.Ba, a), a.u = 0); }
-function Hd(a, b) { if (Dc(a.b) >= a.b.f - (a.h ? 1 : 0))
-    return !1; if (a.h)
-    return a.g = b.s.concat(a.g), !0; if (1 == a.v || 2 == a.v || a.u >= (a.Ia ? 0 : a.Ja))
-    return !1; a.h = I(p(a.Ba, a, b), Id(a, a.u)); a.u++; return !0; }
-g.Ba = function (a) {
-    if (this.h)
-        if (this.h = null, 1 == this.v) {
-            if (!a) {
-                this.R = Math.floor(1E5 * Math.random());
-                a = this.R++;
-                var b = new K(this, this.c, a, void 0), c = this.l;
-                this.O && (c ? (c = Ba(c), Da(c, this.O)) : c = this.O);
-                null === this.i && (b.B = c);
-                var d;
-                if (this.da)
-                    a: {
-                        for (var e = d = 0; e < this.g.length; e++) {
-                            b: {
-                                var f = this.g[e];
-                                if ("__data__" in f.a && (f = f.a.__data__, "string" === typeof f)) {
-                                    f = f.length;
-                                    break b;
-                                }
-                                f = void 0;
-                            }
-                            if (void 0 === f)
-                                break;
-                            d += f;
-                            if (4096 < d) {
-                                d = e;
-                                break a;
-                            }
-                            if (4096 === d || e === this.g.length - 1) {
-                                d = e + 1;
-                                break a;
-                            }
-                        }
-                        d = 1E3;
-                    }
-                else
-                    d = 1E3;
-                d = Jd(this, b, d);
-                e = L(this.B);
-                Q(e, "RID", a);
-                Q(e, "CVER", 22);
-                this.A && Q(e, "X-HTTP-Session-Id", this.A);
-                Ed(this, e);
-                this.i && c && Ad(e, this.i, c);
-                Ec(this.b, b);
-                this.Ga && Q(e, "TYPE", "init");
-                this.da ? (Q(e, "$req", d), Q(e, "SID", "null"), b.V = !0, kc(b, e, null)) : kc(b, e, d);
-                this.v = 2;
-            }
-        }
-        else
-            3 == this.v && (a ? Kd(this, a) : 0 == this.g.length || id(this.b) || Kd(this));
-};
-function Kd(a, b) { var c; b ? c = b.f : c = a.R++; var d = L(a.B); Q(d, "SID", a.J); Q(d, "RID", c); Q(d, "AID", a.P); Ed(a, d); a.i && a.l && Ad(d, a.i, a.l); c = new K(a, a.c, c, a.u + 1); null === a.i && (c.B = a.l); b && (a.g = b.s.concat(a.g)); b = Jd(a, c, 1E3); c.setTimeout(Math.round(.5 * a.ma) + Math.round(.5 * a.ma * Math.random())); Ec(a.b, c); kc(c, d, b); }
-function Ed(a, b) { a.f && Lc({}, function (c, d) { Q(b, d, c); }); }
-function Jd(a, b, c) { c = Math.min(a.g.length, c); var d = a.f ? p(a.f.Ha, a.f, a) : null; a: for (var e = a.g, f = -1;;) {
-    var h = ["count=" + c];
-    -1 == f ? 0 < c ? (f = e[0].b, h.push("ofs=" + f)) : f = 0 : h.push("ofs=" + f);
-    for (var m = !0, l = 0; l < c; l++) {
-        var t = e[l].b, B = e[l].a;
-        t -= f;
-        if (0 > t)
-            f = Math.max(0, e[l].b - 100), m = !1;
-        else
-            try {
-                md(B, h, "req" + t + "_");
-            }
-            catch (z) {
-                d && d(B);
-            }
-    }
-    if (m) {
-        d = h.join("&");
-        break a;
-    }
-} a = a.g.splice(0, c); b.s = a; return d; }
-function Hc(a) { a.a || a.j || (a.U = 1, Cb(a.Aa, a), a.o = 0); }
-function Cc(a) { if (a.a || a.j || 3 <= a.o)
-    return !1; a.U++; a.j = I(p(a.Aa, a), Id(a, a.o)); a.o++; return !0; }
-g.Aa = function () { this.j = null; Ld(this); if (this.V && !(this.F || null == this.a || 0 >= this.N)) {
-    var a = 2 * this.N;
-    this.c.info("BP detection timer enabled: " + a);
-    this.s = I(p(this.Sa, this), a);
-} };
-g.Sa = function () { this.s && (this.s = null, this.c.info("BP detection timeout reached."), this.c.info("Buffering proxy detected and switch to long-polling!"), this.H = !1, this.F = !0, Bc(this), Ld(this)); };
-function xc(a) { null != a.s && (k.clearTimeout(a.s), a.s = null); }
-function Ld(a) { a.a = new K(a, a.c, "rpc", a.U); null === a.i && (a.a.B = a.l); a.a.O = 0; var b = L(a.la); Q(b, "RID", "rpc"); Q(b, "SID", a.J); Q(b, "CI", a.H ? "0" : "1"); Q(b, "AID", a.P); Ed(a, b); Q(b, "TYPE", "xmlhttp"); a.i && a.l && Ad(b, a.i, a.l); a.D && a.a.setTimeout(a.D); var c = a.a; a = a.ga; c.H = 1; c.i = lc(L(b)); c.j = null; c.I = !0; mc(c, a); }
-g.Ra = function () { null != this.m && (this.m = null, Bc(this), Cc(this), H(19)); };
-function Ac(a) { null != a.m && (k.clearTimeout(a.m), a.m = null); }
-function uc(a, b) { var c = null; if (a.a == b) {
-    Ac(a);
-    xc(a);
-    a.a = null;
-    var d = 2;
-}
-else if (zc(a.b, b))
-    c = b.s, Gc(a.b, b), d = 1;
-else
-    return; a.I = b.N; if (0 != a.v)
-    if (b.b)
-        if (1 == d) {
-            c = b.j ? b.j.length : 0;
-            b = q() - b.u;
-            var e = a.u;
-            d = Vb();
-            d.dispatchEvent(new Yb(d, c, b, e));
-            Ic(a);
-        }
-        else
-            Hc(a);
-    else if (e = b.h, 3 == e || 0 == e && 0 < a.I || !(1 == d && Hd(a, b) || 2 == d && Cc(a)))
-        switch (c && 0 < c.length && (b = a.b, b.c = b.c.concat(c)), e) {
-            case 1:
-                P(a, 5);
-                break;
-            case 4:
-                P(a, 10);
-                break;
-            case 3:
-                P(a, 6);
-                break;
-            default: P(a, 2);
-        } }
-function Id(a, b) { var c = a.Fa + Math.floor(Math.random() * a.Ma); a.f || (c *= 2); return c * b; }
-function P(a, b) { a.c.info("Error code " + b); if (2 == b) {
-    var c = null;
-    a.f && (c = null);
-    var d = p(a.Xa, a);
-    c || (c = new T("//www.google.com/images/cleardot.gif"), k.location && "http" == k.location.protocol || Pc(c, "https"), lc(c));
-    nd(c.toString(), d);
-}
-else
-    H(2); a.v = 0; a.f && a.f.ra(b); Fd(a); Dd(a); }
-g.Xa = function (a) { a ? (this.c.info("Successfully pinged google.com"), H(2)) : (this.c.info("Failed to ping google.com"), H(1)); };
-function Fd(a) { a.v = 0; a.I = -1; if (a.f) {
-    if (0 != jd(a.b).length || 0 != a.g.length)
-        a.b.c.length = 0, sa(a.g), a.g.length = 0;
-    a.f.qa();
-} }
-function Fc(a, b, c) { var d = ad(c); if ("" != d.c)
-    b && Qc(d, b + "." + d.c), Rc(d, d.h);
-else {
-    var e = k.location;
-    d = bd(e.protocol, b ? b + "." + e.hostname : e.hostname, +e.port, c);
-} a.W && Aa(a.W, function (f, h) { Q(d, h, f); }); b = a.A; c = a.na; b && c && Q(d, b, c); Q(d, "VER", a.ha); Ed(a, d); return d; }
-function oc(a, b) { if (b && !a.C)
-    throw Error("Can't create secondary domain capable XhrIo object."); b = new X(a.Ka); b.F = a.C; return b; }
-function Md() { }
-g = Md.prototype;
-g.ta = function () { };
-g.sa = function () { };
-g.ra = function () { };
-g.qa = function () { };
-g.Ha = function () { };
-function Nd() { if (x && !(10 <= Number(Ua)))
-    throw Error("Environmental error: no available transport."); }
-Nd.prototype.a = function (a, b) { return new Y(a, b); };
-function Y(a, b) {
-    D.call(this);
-    this.a = new Cd(b);
-    this.l = a;
-    this.b = b && b.messageUrlParams || null;
-    a = b && b.messageHeaders || null;
-    b && b.clientProtocolHeaderRequired && (a ? a["X-Client-Protocol"] = "webchannel" : a = { "X-Client-Protocol": "webchannel" });
-    this.a.l = a;
-    a = b && b.initMessageHeaders || null;
-    b && b.messageContentType && (a ? a["X-WebChannel-Content-Type"] = b.messageContentType : a = { "X-WebChannel-Content-Type": b.messageContentType });
-    b && b.a && (a ? a["X-WebChannel-Client-Profile"] = b.a : a = { "X-WebChannel-Client-Profile": b.a });
-    this.a.O =
-        a;
-    (a = b && b.httpHeadersOverwriteParam) && !ta(a) && (this.a.i = a);
-    this.h = b && b.supportsCrossDomainXhr || !1;
-    this.g = b && b.sendRawJson || !1;
-    (b = b && b.httpSessionIdParam) && !ta(b) && (this.a.A = b, a = this.b, null !== a && b in a && (a = this.b, b in a && delete a[b]));
-    this.f = new Z(this);
-}
-r(Y, D);
-g = Y.prototype;
-g.addEventListener = function (a, b, c, d) { Y.S.addEventListener.call(this, a, b, c, d); };
-g.removeEventListener = function (a, b, c, d) { Y.S.removeEventListener.call(this, a, b, c, d); };
-g.Oa = function () { this.a.f = this.f; this.h && (this.a.C = !0); var a = this.a, b = this.l, c = this.b || void 0; H(0); a.fa = b; a.W = c || {}; a.H = a.T; a.B = Fc(a, null, a.fa); Ic(a); };
-g.close = function () { Jc(this.a); };
-g.Pa = function (a) { if ("string" === typeof a) {
-    var b = {};
-    b.__data__ = a;
-    Gd(this.a, b);
-}
-else
-    this.g ? (b = {}, b.__data__ = vb(a), Gd(this.a, b)) : Gd(this.a, a); };
-g.G = function () { this.a.f = null; delete this.f; Jc(this.a); delete this.a; Y.S.G.call(this); };
-function Od(a) { dc.call(this); var b = a.__sm__; if (b) {
-    a: {
-        for (var c in b) {
-            a = c;
-            break a;
-        }
-        a = void 0;
-    }
-    (this.c = a) ? (a = this.c, this.data = null !== b && a in b ? b[a] : void 0) : this.data = b;
-}
-else
-    this.data = a; }
-r(Od, dc);
-function Pd() { ec.call(this); this.status = 1; }
-r(Pd, ec);
-function Z(a) { this.a = a; }
-r(Z, Md);
-Z.prototype.ta = function () { this.a.dispatchEvent("a"); };
-Z.prototype.sa = function (a) { this.a.dispatchEvent(new Od(a)); };
-Z.prototype.ra = function (a) { this.a.dispatchEvent(new Pd(a)); };
-Z.prototype.qa = function () { this.a.dispatchEvent("b"); }; /*
-
- Copyright 2017 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
-Nd.prototype.createWebChannel = Nd.prototype.a;
-Y.prototype.send = Y.prototype.Pa;
-Y.prototype.open = Y.prototype.Oa;
-Y.prototype.close = Y.prototype.close;
-Zb.NO_ERROR = 0;
-Zb.TIMEOUT = 8;
-Zb.HTTP_ERROR = 6;
-$b.COMPLETE = "complete";
-cc.EventType = J;
-J.OPEN = "a";
-J.CLOSE = "b";
-J.ERROR = "c";
-J.MESSAGE = "d";
-D.prototype.listen = D.prototype.va;
-X.prototype.listenOnce = X.prototype.wa;
-X.prototype.getLastError = X.prototype.Qa;
-X.prototype.getLastErrorCode = X.prototype.ua;
-X.prototype.getStatus = X.prototype.X;
-X.prototype.getResponseJson = X.prototype.Na;
-X.prototype.getResponseText = X.prototype.$;
-X.prototype.send = X.prototype.ba;
-var createWebChannelTransport = function () { return new Nd; };
-var ErrorCode = Zb;
-var EventType = $b;
-var WebChannel = cc;
-var XhrIo = X;
-
-var esm = {
-    createWebChannelTransport: createWebChannelTransport,
-    ErrorCode: ErrorCode,
-    EventType: EventType,
-    WebChannel: WebChannel,
-    XhrIo: XhrIo
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (esm);
-
-//# sourceMappingURL=index.esm.js.map
-
-
-/***/ }),
-
-/***/ "../node_modules/firebase/app/dist/index.cjs.js":
-/*!******************************************************!*\
-  !*** ../node_modules/firebase/app/dist/index.cjs.js ***!
-  \******************************************************/
+/***/ "./node_modules/firebase/app/dist/index.cjs.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/firebase/app/dist/index.cjs.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -47768,26 +50210,26 @@ module.exports = firebase__default['default'];
 
 /***/ }),
 
-/***/ "../node_modules/firebase/dist/index.cjs.js":
-/*!**************************************************!*\
-  !*** ../node_modules/firebase/dist/index.cjs.js ***!
-  \**************************************************/
+/***/ "./node_modules/firebase/dist/index.cjs.js":
+/*!*************************************************!*\
+  !*** ./node_modules/firebase/dist/index.cjs.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var firebase = __webpack_require__(/*! @firebase/app */ "../node_modules/@firebase/app/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/auth */ "../node_modules/@firebase/auth/dist/auth.js");
-__webpack_require__(/*! @firebase/database */ "../node_modules/@firebase/database/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/firestore */ "../node_modules/@firebase/firestore/dist/index.cjs.js");
+var firebase = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/auth.js");
+__webpack_require__(/*! @firebase/database */ "./node_modules/@firebase/database/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/firestore */ "./node_modules/@firebase/firestore/dist/index.cjs.js");
 __webpack_require__(/*! @firebase/functions */ "../node_modules/@firebase/functions/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/messaging */ "../node_modules/@firebase/messaging/dist/index.esm.js");
-__webpack_require__(/*! @firebase/storage */ "../node_modules/@firebase/storage/dist/index.esm.js");
+__webpack_require__(/*! @firebase/messaging */ "./node_modules/@firebase/messaging/dist/index.esm.js");
+__webpack_require__(/*! @firebase/storage */ "./node_modules/@firebase/storage/dist/index.esm.js");
 __webpack_require__(/*! @firebase/performance */ "../node_modules/@firebase/performance/dist/index.cjs.js");
-__webpack_require__(/*! @firebase/analytics */ "../node_modules/@firebase/analytics/dist/index.esm.js");
-__webpack_require__(/*! @firebase/remote-config */ "../node_modules/@firebase/remote-config/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/analytics */ "./node_modules/@firebase/analytics/dist/index.esm.js");
+__webpack_require__(/*! @firebase/remote-config */ "./node_modules/@firebase/remote-config/dist/index.cjs.js");
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -47842,10 +50284,10 @@ module.exports = firebase__default['default'];
 
 /***/ }),
 
-/***/ "../node_modules/idb/build/idb.js":
-/*!****************************************!*\
-  !*** ../node_modules/idb/build/idb.js ***!
-  \****************************************/
+/***/ "./node_modules/idb/build/idb.js":
+/*!***************************************!*\
+  !*** ./node_modules/idb/build/idb.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48168,2448 +50610,6 @@ module.exports = firebase__default['default'];
 
 /***/ }),
 
-/***/ "../node_modules/tslib/tslib.es6.js":
-/*!******************************************!*\
-  !*** ../node_modules/tslib/tslib.es6.js ***!
-  \******************************************/
-/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __createBinding, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__createBinding", function() { return __createBinding; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    }
-    return __assign.apply(this, arguments);
-}
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-}
-
-function __decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
-
-function __param(paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-}
-
-function __metadata(metadataKey, metadataValue) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
-}
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
-
-function __generator(thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-}
-
-function __createBinding(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}
-
-function __exportStar(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-
-function __values(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-}
-
-function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-}
-
-function __spread() {
-    for (var ar = [], i = 0; i < arguments.length; i++)
-        ar = ar.concat(__read(arguments[i]));
-    return ar;
-}
-
-function __spreadArrays() {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
-
-function __await(v) {
-    return this instanceof __await ? (this.v = v, this) : new __await(v);
-}
-
-function __asyncGenerator(thisArg, _arguments, generator) {
-    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-    var g = generator.apply(thisArg, _arguments || []), i, q = [];
-    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
-    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
-    function fulfill(value) { resume("next", value); }
-    function reject(value) { resume("throw", value); }
-    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
-}
-
-function __asyncDelegator(o) {
-    var i, p;
-    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
-}
-
-function __asyncValues(o) {
-    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-    var m = o[Symbol.asyncIterator], i;
-    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
-}
-
-function __makeTemplateObject(cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-
-function __importStar(mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result.default = mod;
-    return result;
-}
-
-function __importDefault(mod) {
-    return (mod && mod.__esModule) ? mod : { default: mod };
-}
-
-function __classPrivateFieldGet(receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-}
-
-function __classPrivateFieldSet(receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js ***!
-  \********************************************************************/
-/*! exports provided: HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HttpErrorResponse, HttpEventType, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpRequest, HttpResponse, HttpResponseBase, HttpUrlEncodingCodec, HttpXhrBackend, HttpXsrfTokenExtractor, JsonpClientBackend, JsonpInterceptor, XhrFactory, ɵHttpInterceptingHandler, ɵangular_packages_common_http_http_a, ɵangular_packages_common_http_http_b, ɵangular_packages_common_http_http_c, ɵangular_packages_common_http_http_d, ɵangular_packages_common_http_http_e, ɵangular_packages_common_http_http_f, ɵangular_packages_common_http_http_g, ɵangular_packages_common_http_http_h */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HTTP_INTERCEPTORS", function() { return HTTP_INTERCEPTORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpBackend", function() { return HttpBackend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClient", function() { return HttpClient; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientJsonpModule", function() { return HttpClientJsonpModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientModule", function() { return HttpClientModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientXsrfModule", function() { return HttpClientXsrfModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorResponse", function() { return HttpErrorResponse; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpEventType", function() { return HttpEventType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHandler", function() { return HttpHandler; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaderResponse", function() { return HttpHeaderResponse; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaders", function() { return HttpHeaders; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpParams", function() { return HttpParams; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpRequest", function() { return HttpRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponse", function() { return HttpResponse; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponseBase", function() { return HttpResponseBase; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpUrlEncodingCodec", function() { return HttpUrlEncodingCodec; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXhrBackend", function() { return HttpXhrBackend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXsrfTokenExtractor", function() { return HttpXsrfTokenExtractor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpClientBackend", function() { return JsonpClientBackend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpInterceptor", function() { return JsonpInterceptor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XhrFactory", function() { return XhrFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵHttpInterceptingHandler", function() { return HttpInterceptingHandler; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_a", function() { return NoopInterceptor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_b", function() { return JsonpCallbackContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_c", function() { return jsonpCallbackContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_d", function() { return BrowserXhr; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_e", function() { return XSRF_COOKIE_NAME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_f", function() { return XSRF_HEADER_NAME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_g", function() { return HttpXsrfCookieExtractor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_h", function() { return HttpXsrfInterceptor; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-/**
- * @license Angular v10.0.9
- * (c) 2010-2020 Google LLC. https://angular.io/
- * License: MIT
- */
-
-
-
-
-
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
- * `HttpResponse`.
- *
- * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
- * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
- * `HttpBackend`.
- *
- * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
- *
- * @publicApi
- */
-
-class HttpHandler {
-}
-/**
- * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
- *
- * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
- *
- * When injected, `HttpBackend` dispatches requests directly to the backend, without going
- * through the interceptor chain.
- *
- * @publicApi
- */
-class HttpBackend {
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Represents the header configuration options for an HTTP request.
- * Instances are immutable. Modifying methods return a cloned
- * instance with the change. The original object is never changed.
- *
- * @publicApi
- */
-class HttpHeaders {
-    /**  Constructs a new HTTP header object with the given values.*/
-    constructor(headers) {
-        /**
-         * Internal map of lowercased header names to the normalized
-         * form of the name (the form seen first).
-         */
-        this.normalizedNames = new Map();
-        /**
-         * Queued updates to be materialized the next initialization.
-         */
-        this.lazyUpdate = null;
-        if (!headers) {
-            this.headers = new Map();
-        }
-        else if (typeof headers === 'string') {
-            this.lazyInit = () => {
-                this.headers = new Map();
-                headers.split('\n').forEach(line => {
-                    const index = line.indexOf(':');
-                    if (index > 0) {
-                        const name = line.slice(0, index);
-                        const key = name.toLowerCase();
-                        const value = line.slice(index + 1).trim();
-                        this.maybeSetNormalizedName(name, key);
-                        if (this.headers.has(key)) {
-                            this.headers.get(key).push(value);
-                        }
-                        else {
-                            this.headers.set(key, [value]);
-                        }
-                    }
-                });
-            };
-        }
-        else {
-            this.lazyInit = () => {
-                this.headers = new Map();
-                Object.keys(headers).forEach(name => {
-                    let values = headers[name];
-                    const key = name.toLowerCase();
-                    if (typeof values === 'string') {
-                        values = [values];
-                    }
-                    if (values.length > 0) {
-                        this.headers.set(key, values);
-                        this.maybeSetNormalizedName(name, key);
-                    }
-                });
-            };
-        }
-    }
-    /**
-     * Checks for existence of a given header.
-     *
-     * @param name The header name to check for existence.
-     *
-     * @returns True if the header exists, false otherwise.
-     */
-    has(name) {
-        this.init();
-        return this.headers.has(name.toLowerCase());
-    }
-    /**
-     * Retrieves the first value of a given header.
-     *
-     * @param name The header name.
-     *
-     * @returns The value string if the header exists, null otherwise
-     */
-    get(name) {
-        this.init();
-        const values = this.headers.get(name.toLowerCase());
-        return values && values.length > 0 ? values[0] : null;
-    }
-    /**
-     * Retrieves the names of the headers.
-     *
-     * @returns A list of header names.
-     */
-    keys() {
-        this.init();
-        return Array.from(this.normalizedNames.values());
-    }
-    /**
-     * Retrieves a list of values for a given header.
-     *
-     * @param name The header name from which to retrieve values.
-     *
-     * @returns A string of values if the header exists, null otherwise.
-     */
-    getAll(name) {
-        this.init();
-        return this.headers.get(name.toLowerCase()) || null;
-    }
-    /**
-     * Appends a new value to the existing set of values for a header
-     * and returns them in a clone of the original instance.
-     *
-     * @param name The header name for which to append the values.
-     * @param value The value to append.
-     *
-     * @returns A clone of the HTTP headers object with the value appended to the given header.
-     */
-    append(name, value) {
-        return this.clone({ name, value, op: 'a' });
-    }
-    /**
-     * Sets or modifies a value for a given header in a clone of the original instance.
-     * If the header already exists, its value is replaced with the given value
-     * in the returned object.
-     *
-     * @param name The header name.
-     * @param value The value or values to set or overide for the given header.
-     *
-     * @returns A clone of the HTTP headers object with the newly set header value.
-     */
-    set(name, value) {
-        return this.clone({ name, value, op: 's' });
-    }
-    /**
-     * Deletes values for a given header in a clone of the original instance.
-     *
-     * @param name The header name.
-     * @param value The value or values to delete for the given header.
-     *
-     * @returns A clone of the HTTP headers object with the given value deleted.
-     */
-    delete(name, value) {
-        return this.clone({ name, value, op: 'd' });
-    }
-    maybeSetNormalizedName(name, lcName) {
-        if (!this.normalizedNames.has(lcName)) {
-            this.normalizedNames.set(lcName, name);
-        }
-    }
-    init() {
-        if (!!this.lazyInit) {
-            if (this.lazyInit instanceof HttpHeaders) {
-                this.copyFrom(this.lazyInit);
-            }
-            else {
-                this.lazyInit();
-            }
-            this.lazyInit = null;
-            if (!!this.lazyUpdate) {
-                this.lazyUpdate.forEach(update => this.applyUpdate(update));
-                this.lazyUpdate = null;
-            }
-        }
-    }
-    copyFrom(other) {
-        other.init();
-        Array.from(other.headers.keys()).forEach(key => {
-            this.headers.set(key, other.headers.get(key));
-            this.normalizedNames.set(key, other.normalizedNames.get(key));
-        });
-    }
-    clone(update) {
-        const clone = new HttpHeaders();
-        clone.lazyInit =
-            (!!this.lazyInit && this.lazyInit instanceof HttpHeaders) ? this.lazyInit : this;
-        clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
-        return clone;
-    }
-    applyUpdate(update) {
-        const key = update.name.toLowerCase();
-        switch (update.op) {
-            case 'a':
-            case 's':
-                let value = update.value;
-                if (typeof value === 'string') {
-                    value = [value];
-                }
-                if (value.length === 0) {
-                    return;
-                }
-                this.maybeSetNormalizedName(update.name, key);
-                const base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
-                base.push(...value);
-                this.headers.set(key, base);
-                break;
-            case 'd':
-                const toDelete = update.value;
-                if (!toDelete) {
-                    this.headers.delete(key);
-                    this.normalizedNames.delete(key);
-                }
-                else {
-                    let existing = this.headers.get(key);
-                    if (!existing) {
-                        return;
-                    }
-                    existing = existing.filter(value => toDelete.indexOf(value) === -1);
-                    if (existing.length === 0) {
-                        this.headers.delete(key);
-                        this.normalizedNames.delete(key);
-                    }
-                    else {
-                        this.headers.set(key, existing);
-                    }
-                }
-                break;
-        }
-    }
-    /**
-     * @internal
-     */
-    forEach(fn) {
-        this.init();
-        Array.from(this.normalizedNames.keys())
-            .forEach(key => fn(this.normalizedNames.get(key), this.headers.get(key)));
-    }
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Provides encoding and decoding of URL parameter and query-string values.
- *
- * Serializes and parses URL parameter keys and values to encode and decode them.
- * If you pass URL query parameters without encoding,
- * the query parameters can be misinterpreted at the receiving end.
- *
- *
- * @publicApi
- */
-class HttpUrlEncodingCodec {
-    /**
-     * Encodes a key name for a URL parameter or query-string.
-     * @param key The key name.
-     * @returns The encoded key name.
-     */
-    encodeKey(key) {
-        return standardEncoding(key);
-    }
-    /**
-     * Encodes the value of a URL parameter or query-string.
-     * @param value The value.
-     * @returns The encoded value.
-     */
-    encodeValue(value) {
-        return standardEncoding(value);
-    }
-    /**
-     * Decodes an encoded URL parameter or query-string key.
-     * @param key The encoded key name.
-     * @returns The decoded key name.
-     */
-    decodeKey(key) {
-        return decodeURIComponent(key);
-    }
-    /**
-     * Decodes an encoded URL parameter or query-string value.
-     * @param value The encoded value.
-     * @returns The decoded value.
-     */
-    decodeValue(value) {
-        return decodeURIComponent(value);
-    }
-}
-function paramParser(rawParams, codec) {
-    const map = new Map();
-    if (rawParams.length > 0) {
-        const params = rawParams.split('&');
-        params.forEach((param) => {
-            const eqIdx = param.indexOf('=');
-            const [key, val] = eqIdx == -1 ?
-                [codec.decodeKey(param), ''] :
-                [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))];
-            const list = map.get(key) || [];
-            list.push(val);
-            map.set(key, list);
-        });
-    }
-    return map;
-}
-function standardEncoding(v) {
-    return encodeURIComponent(v)
-        .replace(/%40/gi, '@')
-        .replace(/%3A/gi, ':')
-        .replace(/%24/gi, '$')
-        .replace(/%2C/gi, ',')
-        .replace(/%3B/gi, ';')
-        .replace(/%2B/gi, '+')
-        .replace(/%3D/gi, '=')
-        .replace(/%3F/gi, '?')
-        .replace(/%2F/gi, '/');
-}
-/**
- * An HTTP request/response body that represents serialized parameters,
- * per the MIME type `application/x-www-form-urlencoded`.
- *
- * This class is immutable; all mutation operations return a new instance.
- *
- * @publicApi
- */
-class HttpParams {
-    constructor(options = {}) {
-        this.updates = null;
-        this.cloneFrom = null;
-        this.encoder = options.encoder || new HttpUrlEncodingCodec();
-        if (!!options.fromString) {
-            if (!!options.fromObject) {
-                throw new Error(`Cannot specify both fromString and fromObject.`);
-            }
-            this.map = paramParser(options.fromString, this.encoder);
-        }
-        else if (!!options.fromObject) {
-            this.map = new Map();
-            Object.keys(options.fromObject).forEach(key => {
-                const value = options.fromObject[key];
-                this.map.set(key, Array.isArray(value) ? value : [value]);
-            });
-        }
-        else {
-            this.map = null;
-        }
-    }
-    /**
-     * Reports whether the body includes one or more values for a given parameter.
-     * @param param The parameter name.
-     * @returns True if the parameter has one or more values,
-     * false if it has no value or is not present.
-     */
-    has(param) {
-        this.init();
-        return this.map.has(param);
-    }
-    /**
-     * Retrieves the first value for a parameter.
-     * @param param The parameter name.
-     * @returns The first value of the given parameter,
-     * or `null` if the parameter is not present.
-     */
-    get(param) {
-        this.init();
-        const res = this.map.get(param);
-        return !!res ? res[0] : null;
-    }
-    /**
-     * Retrieves all values for a  parameter.
-     * @param param The parameter name.
-     * @returns All values in a string array,
-     * or `null` if the parameter not present.
-     */
-    getAll(param) {
-        this.init();
-        return this.map.get(param) || null;
-    }
-    /**
-     * Retrieves all the parameters for this body.
-     * @returns The parameter names in a string array.
-     */
-    keys() {
-        this.init();
-        return Array.from(this.map.keys());
-    }
-    /**
-     * Appends a new value to existing values for a parameter.
-     * @param param The parameter name.
-     * @param value The new value to add.
-     * @return A new body with the appended value.
-     */
-    append(param, value) {
-        return this.clone({ param, value, op: 'a' });
-    }
-    /**
-     * Replaces the value for a parameter.
-     * @param param The parameter name.
-     * @param value The new value.
-     * @return A new body with the new value.
-     */
-    set(param, value) {
-        return this.clone({ param, value, op: 's' });
-    }
-    /**
-     * Removes a given value or all values from a parameter.
-     * @param param The parameter name.
-     * @param value The value to remove, if provided.
-     * @return A new body with the given value removed, or with all values
-     * removed if no value is specified.
-     */
-    delete(param, value) {
-        return this.clone({ param, value, op: 'd' });
-    }
-    /**
-     * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
-     * separated by `&`s.
-     */
-    toString() {
-        this.init();
-        return this.keys()
-            .map(key => {
-            const eKey = this.encoder.encodeKey(key);
-            // `a: ['1']` produces `'a=1'`
-            // `b: []` produces `''`
-            // `c: ['1', '2']` produces `'c=1&c=2'`
-            return this.map.get(key).map(value => eKey + '=' + this.encoder.encodeValue(value))
-                .join('&');
-        })
-            // filter out empty values because `b: []` produces `''`
-            // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
-            .filter(param => param !== '')
-            .join('&');
-    }
-    clone(update) {
-        const clone = new HttpParams({ encoder: this.encoder });
-        clone.cloneFrom = this.cloneFrom || this;
-        clone.updates = (this.updates || []).concat([update]);
-        return clone;
-    }
-    init() {
-        if (this.map === null) {
-            this.map = new Map();
-        }
-        if (this.cloneFrom !== null) {
-            this.cloneFrom.init();
-            this.cloneFrom.keys().forEach(key => this.map.set(key, this.cloneFrom.map.get(key)));
-            this.updates.forEach(update => {
-                switch (update.op) {
-                    case 'a':
-                    case 's':
-                        const base = (update.op === 'a' ? this.map.get(update.param) : undefined) || [];
-                        base.push(update.value);
-                        this.map.set(update.param, base);
-                        break;
-                    case 'd':
-                        if (update.value !== undefined) {
-                            let base = this.map.get(update.param) || [];
-                            const idx = base.indexOf(update.value);
-                            if (idx !== -1) {
-                                base.splice(idx, 1);
-                            }
-                            if (base.length > 0) {
-                                this.map.set(update.param, base);
-                            }
-                            else {
-                                this.map.delete(update.param);
-                            }
-                        }
-                        else {
-                            this.map.delete(update.param);
-                            break;
-                        }
-                }
-            });
-            this.cloneFrom = this.updates = null;
-        }
-    }
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Determine whether the given HTTP method may include a body.
- */
-function mightHaveBody(method) {
-    switch (method) {
-        case 'DELETE':
-        case 'GET':
-        case 'HEAD':
-        case 'OPTIONS':
-        case 'JSONP':
-            return false;
-        default:
-            return true;
-    }
-}
-/**
- * Safely assert whether the given value is an ArrayBuffer.
- *
- * In some execution environments ArrayBuffer is not defined.
- */
-function isArrayBuffer(value) {
-    return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
-}
-/**
- * Safely assert whether the given value is a Blob.
- *
- * In some execution environments Blob is not defined.
- */
-function isBlob(value) {
-    return typeof Blob !== 'undefined' && value instanceof Blob;
-}
-/**
- * Safely assert whether the given value is a FormData instance.
- *
- * In some execution environments FormData is not defined.
- */
-function isFormData(value) {
-    return typeof FormData !== 'undefined' && value instanceof FormData;
-}
-/**
- * An outgoing HTTP request with an optional typed body.
- *
- * `HttpRequest` represents an outgoing request, including URL, method,
- * headers, body, and other request configuration options. Instances should be
- * assumed to be immutable. To modify a `HttpRequest`, the `clone`
- * method should be used.
- *
- * @publicApi
- */
-class HttpRequest {
-    constructor(method, url, third, fourth) {
-        this.url = url;
-        /**
-         * The request body, or `null` if one isn't set.
-         *
-         * Bodies are not enforced to be immutable, as they can include a reference to any
-         * user-defined data type. However, interceptors should take care to preserve
-         * idempotence by treating them as such.
-         */
-        this.body = null;
-        /**
-         * Whether this request should be made in a way that exposes progress events.
-         *
-         * Progress events are expensive (change detection runs on each event) and so
-         * they should only be requested if the consumer intends to monitor them.
-         */
-        this.reportProgress = false;
-        /**
-         * Whether this request should be sent with outgoing credentials (cookies).
-         */
-        this.withCredentials = false;
-        /**
-         * The expected response type of the server.
-         *
-         * This is used to parse the response appropriately before returning it to
-         * the requestee.
-         */
-        this.responseType = 'json';
-        this.method = method.toUpperCase();
-        // Next, need to figure out which argument holds the HttpRequestInit
-        // options, if any.
-        let options;
-        // Check whether a body argument is expected. The only valid way to omit
-        // the body argument is to use a known no-body method like GET.
-        if (mightHaveBody(this.method) || !!fourth) {
-            // Body is the third argument, options are the fourth.
-            this.body = (third !== undefined) ? third : null;
-            options = fourth;
-        }
-        else {
-            // No body required, options are the third argument. The body stays null.
-            options = third;
-        }
-        // If options have been passed, interpret them.
-        if (options) {
-            // Normalize reportProgress and withCredentials.
-            this.reportProgress = !!options.reportProgress;
-            this.withCredentials = !!options.withCredentials;
-            // Override default response type of 'json' if one is provided.
-            if (!!options.responseType) {
-                this.responseType = options.responseType;
-            }
-            // Override headers if they're provided.
-            if (!!options.headers) {
-                this.headers = options.headers;
-            }
-            if (!!options.params) {
-                this.params = options.params;
-            }
-        }
-        // If no headers have been passed in, construct a new HttpHeaders instance.
-        if (!this.headers) {
-            this.headers = new HttpHeaders();
-        }
-        // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
-        if (!this.params) {
-            this.params = new HttpParams();
-            this.urlWithParams = url;
-        }
-        else {
-            // Encode the parameters to a string in preparation for inclusion in the URL.
-            const params = this.params.toString();
-            if (params.length === 0) {
-                // No parameters, the visible URL is just the URL given at creation time.
-                this.urlWithParams = url;
-            }
-            else {
-                // Does the URL already have query parameters? Look for '?'.
-                const qIdx = url.indexOf('?');
-                // There are 3 cases to handle:
-                // 1) No existing parameters -> append '?' followed by params.
-                // 2) '?' exists and is followed by existing query string ->
-                //    append '&' followed by params.
-                // 3) '?' exists at the end of the url -> append params directly.
-                // This basically amounts to determining the character, if any, with
-                // which to join the URL and parameters.
-                const sep = qIdx === -1 ? '?' : (qIdx < url.length - 1 ? '&' : '');
-                this.urlWithParams = url + sep + params;
-            }
-        }
-    }
-    /**
-     * Transform the free-form body into a serialized format suitable for
-     * transmission to the server.
-     */
-    serializeBody() {
-        // If no body is present, no need to serialize it.
-        if (this.body === null) {
-            return null;
-        }
-        // Check whether the body is already in a serialized form. If so,
-        // it can just be returned directly.
-        if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) ||
-            typeof this.body === 'string') {
-            return this.body;
-        }
-        // Check whether the body is an instance of HttpUrlEncodedParams.
-        if (this.body instanceof HttpParams) {
-            return this.body.toString();
-        }
-        // Check whether the body is an object or array, and serialize with JSON if so.
-        if (typeof this.body === 'object' || typeof this.body === 'boolean' ||
-            Array.isArray(this.body)) {
-            return JSON.stringify(this.body);
-        }
-        // Fall back on toString() for everything else.
-        return this.body.toString();
-    }
-    /**
-     * Examine the body and attempt to infer an appropriate MIME type
-     * for it.
-     *
-     * If no such type can be inferred, this method will return `null`.
-     */
-    detectContentTypeHeader() {
-        // An empty body has no content type.
-        if (this.body === null) {
-            return null;
-        }
-        // FormData bodies rely on the browser's content type assignment.
-        if (isFormData(this.body)) {
-            return null;
-        }
-        // Blobs usually have their own content type. If it doesn't, then
-        // no type can be inferred.
-        if (isBlob(this.body)) {
-            return this.body.type || null;
-        }
-        // Array buffers have unknown contents and thus no type can be inferred.
-        if (isArrayBuffer(this.body)) {
-            return null;
-        }
-        // Technically, strings could be a form of JSON data, but it's safe enough
-        // to assume they're plain strings.
-        if (typeof this.body === 'string') {
-            return 'text/plain';
-        }
-        // `HttpUrlEncodedParams` has its own content-type.
-        if (this.body instanceof HttpParams) {
-            return 'application/x-www-form-urlencoded;charset=UTF-8';
-        }
-        // Arrays, objects, and numbers will be encoded as JSON.
-        if (typeof this.body === 'object' || typeof this.body === 'number' ||
-            Array.isArray(this.body)) {
-            return 'application/json';
-        }
-        // No type could be inferred.
-        return null;
-    }
-    clone(update = {}) {
-        // For method, url, and responseType, take the current value unless
-        // it is overridden in the update hash.
-        const method = update.method || this.method;
-        const url = update.url || this.url;
-        const responseType = update.responseType || this.responseType;
-        // The body is somewhat special - a `null` value in update.body means
-        // whatever current body is present is being overridden with an empty
-        // body, whereas an `undefined` value in update.body implies no
-        // override.
-        const body = (update.body !== undefined) ? update.body : this.body;
-        // Carefully handle the boolean options to differentiate between
-        // `false` and `undefined` in the update args.
-        const withCredentials = (update.withCredentials !== undefined) ? update.withCredentials : this.withCredentials;
-        const reportProgress = (update.reportProgress !== undefined) ? update.reportProgress : this.reportProgress;
-        // Headers and params may be appended to if `setHeaders` or
-        // `setParams` are used.
-        let headers = update.headers || this.headers;
-        let params = update.params || this.params;
-        // Check whether the caller has asked to add headers.
-        if (update.setHeaders !== undefined) {
-            // Set every requested header.
-            headers =
-                Object.keys(update.setHeaders)
-                    .reduce((headers, name) => headers.set(name, update.setHeaders[name]), headers);
-        }
-        // Check whether the caller has asked to set params.
-        if (update.setParams) {
-            // Set every requested param.
-            params = Object.keys(update.setParams)
-                .reduce((params, param) => params.set(param, update.setParams[param]), params);
-        }
-        // Finally, construct the new HttpRequest using the pieces from above.
-        return new HttpRequest(method, url, body, {
-            params,
-            headers,
-            reportProgress,
-            responseType,
-            withCredentials,
-        });
-    }
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Type enumeration for the different kinds of `HttpEvent`.
- *
- * @publicApi
- */
-var HttpEventType;
-(function (HttpEventType) {
-    /**
-     * The request was sent out over the wire.
-     */
-    HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
-    /**
-     * An upload progress event was received.
-     */
-    HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
-    /**
-     * The response status code and headers were received.
-     */
-    HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
-    /**
-     * A download progress event was received.
-     */
-    HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
-    /**
-     * The full response including the body was received.
-     */
-    HttpEventType[HttpEventType["Response"] = 4] = "Response";
-    /**
-     * A custom event from an interceptor or a backend.
-     */
-    HttpEventType[HttpEventType["User"] = 5] = "User";
-})(HttpEventType || (HttpEventType = {}));
-/**
- * Base class for both `HttpResponse` and `HttpHeaderResponse`.
- *
- * @publicApi
- */
-class HttpResponseBase {
-    /**
-     * Super-constructor for all responses.
-     *
-     * The single parameter accepted is an initialization hash. Any properties
-     * of the response passed there will override the default values.
-     */
-    constructor(init, defaultStatus = 200, defaultStatusText = 'OK') {
-        // If the hash has values passed, use them to initialize the response.
-        // Otherwise use the default values.
-        this.headers = init.headers || new HttpHeaders();
-        this.status = init.status !== undefined ? init.status : defaultStatus;
-        this.statusText = init.statusText || defaultStatusText;
-        this.url = init.url || null;
-        // Cache the ok value to avoid defining a getter.
-        this.ok = this.status >= 200 && this.status < 300;
-    }
-}
-/**
- * A partial HTTP response which only includes the status and header data,
- * but no response body.
- *
- * `HttpHeaderResponse` is a `HttpEvent` available on the response
- * event stream, only when progress events are requested.
- *
- * @publicApi
- */
-class HttpHeaderResponse extends HttpResponseBase {
-    /**
-     * Create a new `HttpHeaderResponse` with the given parameters.
-     */
-    constructor(init = {}) {
-        super(init);
-        this.type = HttpEventType.ResponseHeader;
-    }
-    /**
-     * Copy this `HttpHeaderResponse`, overriding its contents with the
-     * given parameter hash.
-     */
-    clone(update = {}) {
-        // Perform a straightforward initialization of the new HttpHeaderResponse,
-        // overriding the current parameters with new ones if given.
-        return new HttpHeaderResponse({
-            headers: update.headers || this.headers,
-            status: update.status !== undefined ? update.status : this.status,
-            statusText: update.statusText || this.statusText,
-            url: update.url || this.url || undefined,
-        });
-    }
-}
-/**
- * A full HTTP response, including a typed response body (which may be `null`
- * if one was not returned).
- *
- * `HttpResponse` is a `HttpEvent` available on the response event
- * stream.
- *
- * @publicApi
- */
-class HttpResponse extends HttpResponseBase {
-    /**
-     * Construct a new `HttpResponse`.
-     */
-    constructor(init = {}) {
-        super(init);
-        this.type = HttpEventType.Response;
-        this.body = init.body !== undefined ? init.body : null;
-    }
-    clone(update = {}) {
-        return new HttpResponse({
-            body: (update.body !== undefined) ? update.body : this.body,
-            headers: update.headers || this.headers,
-            status: (update.status !== undefined) ? update.status : this.status,
-            statusText: update.statusText || this.statusText,
-            url: update.url || this.url || undefined,
-        });
-    }
-}
-/**
- * A response that represents an error or failure, either from a
- * non-successful HTTP status, an error while executing the request,
- * or some other failure which occurred during the parsing of the response.
- *
- * Any error returned on the `Observable` response stream will be
- * wrapped in an `HttpErrorResponse` to provide additional context about
- * the state of the HTTP layer when the error occurred. The error property
- * will contain either a wrapped Error object or the error response returned
- * from the server.
- *
- * @publicApi
- */
-class HttpErrorResponse extends HttpResponseBase {
-    constructor(init) {
-        // Initialize with a default status of 0 / Unknown Error.
-        super(init, 0, 'Unknown Error');
-        this.name = 'HttpErrorResponse';
-        /**
-         * Errors are never okay, even when the status code is in the 2xx success range.
-         */
-        this.ok = false;
-        // If the response was successful, then this was a parse error. Otherwise, it was
-        // a protocol-level failure of some sort. Either the request failed in transit
-        // or the server returned an unsuccessful status code.
-        if (this.status >= 200 && this.status < 300) {
-            this.message = `Http failure during parsing for ${init.url || '(unknown url)'}`;
-        }
-        else {
-            this.message = `Http failure response for ${init.url || '(unknown url)'}: ${init.status} ${init.statusText}`;
-        }
-        this.error = init.error || null;
-    }
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
- * the given `body`. This function clones the object and adds the body.
- *
- * Note that the `responseType` *options* value is a String that identifies the
- * single data type of the response.
- * A single overload version of the method handles each response type.
- * The value of `responseType` cannot be a union, as the combined signature could imply.
- *
- */
-function addBody(options, body) {
-    return {
-        body,
-        headers: options.headers,
-        observe: options.observe,
-        params: options.params,
-        reportProgress: options.reportProgress,
-        responseType: options.responseType,
-        withCredentials: options.withCredentials,
-    };
-}
-/**
- * Performs HTTP requests.
- * This service is available as an injectable class, with methods to perform HTTP requests.
- * Each request method has multiple signatures, and the return type varies based on
- * the signature that is called (mainly the values of `observe` and `responseType`).
- *
- * Note that the `responseType` *options* value is a String that identifies the
- * single data type of the response.
- * A single overload version of the method handles each response type.
- * The value of `responseType` cannot be a union, as the combined signature could imply.
-
- *
- * @usageNotes
- * Sample HTTP requests for the [Tour of Heroes](/tutorial/toh-pt0) application.
- *
- * ### HTTP Request Example
- *
- * ```
- *  // GET heroes whose name contains search term
- * searchHeroes(term: string): observable<Hero[]>{
- *
- *  const params = new HttpParams({fromString: 'name=term'});
- *    return this.httpClient.request('GET', this.heroesUrl, {responseType:'json', params});
- * }
- * ```
- * ### JSONP Example
- * ```
- * requestJsonp(url, callback = 'callback') {
- *  return this.httpClient.jsonp(this.heroesURL, callback);
- * }
- * ```
- *
- * ### PATCH Example
- * ```
- * // PATCH one of the heroes' name
- * patchHero (id: number, heroName: string): Observable<{}> {
- * const url = `${this.heroesUrl}/${id}`;   // PATCH api/heroes/42
- *  return this.httpClient.patch(url, {name: heroName}, httpOptions)
- *    .pipe(catchError(this.handleError('patchHero')));
- * }
- * ```
- *
- * @see [HTTP Guide](guide/http)
- *
- * @publicApi
- */
-class HttpClient {
-    constructor(handler) {
-        this.handler = handler;
-    }
-    /**
-     * Constructs an observable for a generic HTTP request that, when subscribed,
-     * fires the request through the chain of registered interceptors and on to the
-     * server.
-     *
-     * You can pass an `HttpRequest` directly as the only parameter. In this case,
-     * the call returns an observable of the raw `HttpEvent` stream.
-     *
-     * Alternatively you can pass an HTTP method as the first parameter,
-     * a URL string as the second, and an options hash containing the request body as the third.
-     * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
-     * type of returned observable.
-     *   * The `responseType` value determines how a successful response body is parsed.
-     *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
-     * object as a type parameter to the call.
-     *
-     * The `observe` value determines the return type, according to what you are interested in
-     * observing.
-     *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
-     * progress events by default.
-     *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
-     * where the `T` parameter depends on the `responseType` and any optionally provided type
-     * parameter.
-     *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
-     *
-     */
-    request(first, url, options = {}) {
-        let req;
-        // First, check whether the primary argument is an instance of `HttpRequest`.
-        if (first instanceof HttpRequest) {
-            // It is. The other arguments must be undefined (per the signatures) and can be
-            // ignored.
-            req = first;
-        }
-        else {
-            // It's a string, so it represents a URL. Construct a request based on it,
-            // and incorporate the remaining arguments (assuming `GET` unless a method is
-            // provided.
-            // Figure out the headers.
-            let headers = undefined;
-            if (options.headers instanceof HttpHeaders) {
-                headers = options.headers;
-            }
-            else {
-                headers = new HttpHeaders(options.headers);
-            }
-            // Sort out parameters.
-            let params = undefined;
-            if (!!options.params) {
-                if (options.params instanceof HttpParams) {
-                    params = options.params;
-                }
-                else {
-                    params = new HttpParams({ fromObject: options.params });
-                }
-            }
-            // Construct the request.
-            req = new HttpRequest(first, url, (options.body !== undefined ? options.body : null), {
-                headers,
-                params,
-                reportProgress: options.reportProgress,
-                // By default, JSON is assumed to be returned for all calls.
-                responseType: options.responseType || 'json',
-                withCredentials: options.withCredentials,
-            });
-        }
-        // Start with an Observable.of() the initial request, and run the handler (which
-        // includes all interceptors) inside a concatMap(). This way, the handler runs
-        // inside an Observable chain, which causes interceptors to be re-run on every
-        // subscription (this also makes retries re-run the handler, including interceptors).
-        const events$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])((req) => this.handler.handle(req)));
-        // If coming via the API signature which accepts a previously constructed HttpRequest,
-        // the only option is to get the event stream. Otherwise, return the event stream if
-        // that is what was requested.
-        if (first instanceof HttpRequest || options.observe === 'events') {
-            return events$;
-        }
-        // The requested stream contains either the full response or the body. In either
-        // case, the first step is to filter the event stream to extract a stream of
-        // responses(s).
-        const res$ = events$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])((event) => event instanceof HttpResponse));
-        // Decide which stream to return.
-        switch (options.observe || 'body') {
-            case 'body':
-                // The requested stream is the body. Map the response stream to the response
-                // body. This could be done more simply, but a misbehaving interceptor might
-                // transform the response body into a different format and ignore the requested
-                // responseType. Guard against this by validating that the response is of the
-                // requested type.
-                switch (req.responseType) {
-                    case 'arraybuffer':
-                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
-                            // Validate that the body is an ArrayBuffer.
-                            if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
-                                throw new Error('Response is not an ArrayBuffer.');
-                            }
-                            return res.body;
-                        }));
-                    case 'blob':
-                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
-                            // Validate that the body is a Blob.
-                            if (res.body !== null && !(res.body instanceof Blob)) {
-                                throw new Error('Response is not a Blob.');
-                            }
-                            return res.body;
-                        }));
-                    case 'text':
-                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
-                            // Validate that the body is a string.
-                            if (res.body !== null && typeof res.body !== 'string') {
-                                throw new Error('Response is not a string.');
-                            }
-                            return res.body;
-                        }));
-                    case 'json':
-                    default:
-                        // No validation needed for JSON responses, as they can be of any type.
-                        return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => res.body));
-                }
-            case 'response':
-                // The response stream was requested directly, so return it.
-                return res$;
-            default:
-                // Guard against new future observe types being added.
-                throw new Error(`Unreachable: unhandled observe type ${options.observe}}`);
-        }
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `DELETE` request to execute on the server. See the individual overloads for
-     * details on the return type.
-     *
-     * @param url     The endpoint URL.
-     * @param options The HTTP options to send with the request.
-     *
-     */
-    delete(url, options = {}) {
-        return this.request('DELETE', url, options);
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `GET` request to execute on the server. See the individual overloads for
-     * details on the return type.
-     */
-    get(url, options = {}) {
-        return this.request('GET', url, options);
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `HEAD` request to execute on the server. The `HEAD` method returns
-     * meta information about the resource without transferring the
-     * resource itself. See the individual overloads for
-     * details on the return type.
-     */
-    head(url, options = {}) {
-        return this.request('HEAD', url, options);
-    }
-    /**
-     * Constructs an `Observable` that, when subscribed, causes a request with the special method
-     * `JSONP` to be dispatched via the interceptor pipeline.
-     * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
-     * API endpoints that don't support newer,
-     * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
-     * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
-     * requests even if the API endpoint is not located on the same domain (origin) as the client-side
-     * application making the request.
-     * The endpoint API must support JSONP callback for JSONP requests to work.
-     * The resource API returns the JSON response wrapped in a callback function.
-     * You can pass the callback function name as one of the query parameters.
-     * Note that JSONP requests can only be used with `GET` requests.
-     *
-     * @param url The resource URL.
-     * @param callbackParam The callback function name.
-     *
-     */
-    jsonp(url, callbackParam) {
-        return this.request('JSONP', url, {
-            params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
-            observe: 'body',
-            responseType: 'json',
-        });
-    }
-    /**
-     * Constructs an `Observable` that, when subscribed, causes the configured
-     * `OPTIONS` request to execute on the server. This method allows the client
-     * to determine the supported HTTP methods and other capabilites of an endpoint,
-     * without implying a resource action. See the individual overloads for
-     * details on the return type.
-     */
-    options(url, options = {}) {
-        return this.request('OPTIONS', url, options);
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `PATCH` request to execute on the server. See the individual overloads for
-     * details on the return type.
-     */
-    patch(url, body, options = {}) {
-        return this.request('PATCH', url, addBody(options, body));
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `POST` request to execute on the server. The server responds with the location of
-     * the replaced resource. See the individual overloads for
-     * details on the return type.
-     */
-    post(url, body, options = {}) {
-        return this.request('POST', url, addBody(options, body));
-    }
-    /**
-     * Constructs an observable that, when subscribed, causes the configured
-     * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
-     * with a new set of values.
-     * See the individual overloads for details on the return type.
-     */
-    put(url, body, options = {}) {
-        return this.request('PUT', url, addBody(options, body));
-    }
-}
-HttpClient.ɵfac = function HttpClient_Factory(t) { return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpHandler)); };
-HttpClient.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpClient, factory: HttpClient.ɵfac });
-HttpClient.ctorParameters = () => [
-    { type: HttpHandler }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClient, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: HttpHandler }]; }, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
- *
- *
- */
-class HttpInterceptorHandler {
-    constructor(next, interceptor) {
-        this.next = next;
-        this.interceptor = interceptor;
-    }
-    handle(req) {
-        return this.interceptor.intercept(req, this.next);
-    }
-}
-/**
- * A multi-provider token that represents the array of registered
- * `HttpInterceptor` objects.
- *
- * @publicApi
- */
-const HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HTTP_INTERCEPTORS');
-class NoopInterceptor {
-    intercept(req, next) {
-        return next.handle(req);
-    }
-}
-NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) { return new (t || NoopInterceptor)(); };
-NoopInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: NoopInterceptor, factory: NoopInterceptor.ɵfac });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NoopInterceptor, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], null, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-// Every request made through JSONP needs a callback name that's unique across the
-// whole page. Each request is assigned an id and the callback name is constructed
-// from that. The next id to be assigned is tracked in a global variable here that
-// is shared among all applications on the page.
-let nextRequestId = 0;
-// Error text given when a JSONP script is injected, but doesn't invoke the callback
-// passed in its URL.
-const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
-// Error text given when a request is passed to the JsonpClientBackend that doesn't
-// have a request method JSONP.
-const JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
-const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
-/**
- * DI token/abstract type representing a map of JSONP callbacks.
- *
- * In the browser, this should always be the `window` object.
- *
- *
- */
-class JsonpCallbackContext {
-}
-/**
- * Processes an `HttpRequest` with the JSONP method,
- * by performing JSONP style requests.
- * @see `HttpHandler`
- * @see `HttpXhrBackend`
- *
- * @publicApi
- */
-class JsonpClientBackend {
-    constructor(callbackMap, document) {
-        this.callbackMap = callbackMap;
-        this.document = document;
-    }
-    /**
-     * Get the name of the next callback method, by incrementing the global `nextRequestId`.
-     */
-    nextCallback() {
-        return `ng_jsonp_callback_${nextRequestId++}`;
-    }
-    /**
-     * Processes a JSONP request and returns an event stream of the results.
-     * @param req The request object.
-     * @returns An observable of the response events.
-     *
-     */
-    handle(req) {
-        // Firstly, check both the method and response type. If either doesn't match
-        // then the request was improperly routed here and cannot be handled.
-        if (req.method !== 'JSONP') {
-            throw new Error(JSONP_ERR_WRONG_METHOD);
-        }
-        else if (req.responseType !== 'json') {
-            throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
-        }
-        // Everything else happens inside the Observable boundary.
-        return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
-            // The first step to make a request is to generate the callback name, and replace the
-            // callback placeholder in the URL with the name. Care has to be taken here to ensure
-            // a trailing &, if matched, gets inserted back into the URL in the correct place.
-            const callback = this.nextCallback();
-            const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
-            // Construct the <script> tag and point it at the URL.
-            const node = this.document.createElement('script');
-            node.src = url;
-            // A JSONP request requires waiting for multiple callbacks. These variables
-            // are closed over and track state across those callbacks.
-            // The response object, if one has been received, or null otherwise.
-            let body = null;
-            // Whether the response callback has been called.
-            let finished = false;
-            // Whether the request has been cancelled (and thus any other callbacks)
-            // should be ignored.
-            let cancelled = false;
-            // Set the response callback in this.callbackMap (which will be the window
-            // object in the browser. The script being loaded via the <script> tag will
-            // eventually call this callback.
-            this.callbackMap[callback] = (data) => {
-                // Data has been received from the JSONP script. Firstly, delete this callback.
-                delete this.callbackMap[callback];
-                // Next, make sure the request wasn't cancelled in the meantime.
-                if (cancelled) {
-                    return;
-                }
-                // Set state to indicate data was received.
-                body = data;
-                finished = true;
-            };
-            // cleanup() is a utility closure that removes the <script> from the page and
-            // the response callback from the window. This logic is used in both the
-            // success, error, and cancellation paths, so it's extracted out for convenience.
-            const cleanup = () => {
-                // Remove the <script> tag if it's still on the page.
-                if (node.parentNode) {
-                    node.parentNode.removeChild(node);
-                }
-                // Remove the response callback from the callbackMap (window object in the
-                // browser).
-                delete this.callbackMap[callback];
-            };
-            // onLoad() is the success callback which runs after the response callback
-            // if the JSONP script loads successfully. The event itself is unimportant.
-            // If something went wrong, onLoad() may run without the response callback
-            // having been invoked.
-            const onLoad = (event) => {
-                // Do nothing if the request has been cancelled.
-                if (cancelled) {
-                    return;
-                }
-                // Cleanup the page.
-                cleanup();
-                // Check whether the response callback has run.
-                if (!finished) {
-                    // It hasn't, something went wrong with the request. Return an error via
-                    // the Observable error path. All JSONP errors have status 0.
-                    observer.error(new HttpErrorResponse({
-                        url,
-                        status: 0,
-                        statusText: 'JSONP Error',
-                        error: new Error(JSONP_ERR_NO_CALLBACK),
-                    }));
-                    return;
-                }
-                // Success. body either contains the response body or null if none was
-                // returned.
-                observer.next(new HttpResponse({
-                    body,
-                    status: 200,
-                    statusText: 'OK',
-                    url,
-                }));
-                // Complete the stream, the response is over.
-                observer.complete();
-            };
-            // onError() is the error callback, which runs if the script returned generates
-            // a Javascript error. It emits the error via the Observable error channel as
-            // a HttpErrorResponse.
-            const onError = (error) => {
-                // If the request was already cancelled, no need to emit anything.
-                if (cancelled) {
-                    return;
-                }
-                cleanup();
-                // Wrap the error in a HttpErrorResponse.
-                observer.error(new HttpErrorResponse({
-                    error,
-                    status: 0,
-                    statusText: 'JSONP Error',
-                    url,
-                }));
-            };
-            // Subscribe to both the success (load) and error events on the <script> tag,
-            // and add it to the page.
-            node.addEventListener('load', onLoad);
-            node.addEventListener('error', onError);
-            this.document.body.appendChild(node);
-            // The request has now been successfully sent.
-            observer.next({ type: HttpEventType.Sent });
-            // Cancellation handler.
-            return () => {
-                // Track the cancellation so event listeners won't do anything even if already scheduled.
-                cancelled = true;
-                // Remove the event listeners so they won't run if the events later fire.
-                node.removeEventListener('load', onLoad);
-                node.removeEventListener('error', onError);
-                // And finally, clean up the page.
-                cleanup();
-            };
-        });
-    }
-}
-JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) { return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])); };
-JsonpClientBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpClientBackend, factory: JsonpClientBackend.ɵfac });
-JsonpClientBackend.ctorParameters = () => [
-    { type: JsonpCallbackContext },
-    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"],] }] }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpClientBackend, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: JsonpCallbackContext }, { type: undefined, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-            }] }]; }, null); })();
-/**
- * Identifies requests with the method JSONP and
- * shifts them to the `JsonpClientBackend`.
- *
- * @see `HttpInterceptor`
- *
- * @publicApi
- */
-class JsonpInterceptor {
-    constructor(jsonp) {
-        this.jsonp = jsonp;
-    }
-    /**
-     * Identifies and handles a given JSONP request.
-     * @param req The outgoing request object to handle.
-     * @param next The next interceptor in the chain, or the backend
-     * if no interceptors remain in the chain.
-     * @returns An observable of the event stream.
-     */
-    intercept(req, next) {
-        if (req.method === 'JSONP') {
-            return this.jsonp.handle(req);
-        }
-        // Fall through for normal HTTP requests.
-        return next.handle(req);
-    }
-}
-JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) { return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpClientBackend)); };
-JsonpInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpInterceptor, factory: JsonpInterceptor.ɵfac });
-JsonpInterceptor.ctorParameters = () => [
-    { type: JsonpClientBackend }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonpInterceptor, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: JsonpClientBackend }]; }, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-const XSSI_PREFIX = /^\)\]\}',?\n/;
-/**
- * Determine an appropriate URL for the response, by checking either
- * XMLHttpRequest.responseURL or the X-Request-URL header.
- */
-function getResponseUrl(xhr) {
-    if ('responseURL' in xhr && xhr.responseURL) {
-        return xhr.responseURL;
-    }
-    if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
-        return xhr.getResponseHeader('X-Request-URL');
-    }
-    return null;
-}
-/**
- * A wrapper around the `XMLHttpRequest` constructor.
- *
- * @publicApi
- */
-class XhrFactory {
-}
-/**
- * A factory for `HttpXhrBackend` that uses the `XMLHttpRequest` browser API.
- *
- */
-class BrowserXhr {
-    constructor() { }
-    build() {
-        return (new XMLHttpRequest());
-    }
-}
-BrowserXhr.ɵfac = function BrowserXhr_Factory(t) { return new (t || BrowserXhr)(); };
-BrowserXhr.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BrowserXhr, factory: BrowserXhr.ɵfac });
-BrowserXhr.ctorParameters = () => [];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BrowserXhr, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return []; }, null); })();
-/**
- * Uses `XMLHttpRequest` to send requests to a backend server.
- * @see `HttpHandler`
- * @see `JsonpClientBackend`
- *
- * @publicApi
- */
-class HttpXhrBackend {
-    constructor(xhrFactory) {
-        this.xhrFactory = xhrFactory;
-    }
-    /**
-     * Processes a request and returns a stream of response events.
-     * @param req The request object.
-     * @returns An observable of the response events.
-     */
-    handle(req) {
-        // Quick check to give a better error message when a user attempts to use
-        // HttpClient.jsonp() without installing the JsonpClientModule
-        if (req.method === 'JSONP') {
-            throw new Error(`Attempted to construct Jsonp request without JsonpClientModule installed.`);
-        }
-        // Everything happens on Observable subscription.
-        return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
-            // Start by setting up the XHR object with request method, URL, and withCredentials flag.
-            const xhr = this.xhrFactory.build();
-            xhr.open(req.method, req.urlWithParams);
-            if (!!req.withCredentials) {
-                xhr.withCredentials = true;
-            }
-            // Add all the requested headers.
-            req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(',')));
-            // Add an Accept header if one isn't present already.
-            if (!req.headers.has('Accept')) {
-                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
-            }
-            // Auto-detect the Content-Type header if one isn't present already.
-            if (!req.headers.has('Content-Type')) {
-                const detectedType = req.detectContentTypeHeader();
-                // Sometimes Content-Type detection fails.
-                if (detectedType !== null) {
-                    xhr.setRequestHeader('Content-Type', detectedType);
-                }
-            }
-            // Set the responseType if one was requested.
-            if (req.responseType) {
-                const responseType = req.responseType.toLowerCase();
-                // JSON responses need to be processed as text. This is because if the server
-                // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
-                // xhr.response will be null, and xhr.responseText cannot be accessed to
-                // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
-                // is parsed by first requesting text and then applying JSON.parse.
-                xhr.responseType = ((responseType !== 'json') ? responseType : 'text');
-            }
-            // Serialize the request body if one is present. If not, this will be set to null.
-            const reqBody = req.serializeBody();
-            // If progress events are enabled, response headers will be delivered
-            // in two events - the HttpHeaderResponse event and the full HttpResponse
-            // event. However, since response headers don't change in between these
-            // two events, it doesn't make sense to parse them twice. So headerResponse
-            // caches the data extracted from the response whenever it's first parsed,
-            // to ensure parsing isn't duplicated.
-            let headerResponse = null;
-            // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
-            // state, and memoizes it into headerResponse.
-            const partialFromXhr = () => {
-                if (headerResponse !== null) {
-                    return headerResponse;
-                }
-                // Read status and normalize an IE9 bug (http://bugs.jquery.com/ticket/1450).
-                const status = xhr.status === 1223 ? 204 : xhr.status;
-                const statusText = xhr.statusText || 'OK';
-                // Parse headers from XMLHttpRequest - this step is lazy.
-                const headers = new HttpHeaders(xhr.getAllResponseHeaders());
-                // Read the response URL from the XMLHttpResponse instance and fall back on the
-                // request URL.
-                const url = getResponseUrl(xhr) || req.url;
-                // Construct the HttpHeaderResponse and memoize it.
-                headerResponse = new HttpHeaderResponse({ headers, status, statusText, url });
-                return headerResponse;
-            };
-            // Next, a few closures are defined for the various events which XMLHttpRequest can
-            // emit. This allows them to be unregistered as event listeners later.
-            // First up is the load event, which represents a response being fully available.
-            const onLoad = () => {
-                // Read response state from the memoized partial data.
-                let { headers, status, statusText, url } = partialFromXhr();
-                // The body will be read out if present.
-                let body = null;
-                if (status !== 204) {
-                    // Use XMLHttpRequest.response if set, responseText otherwise.
-                    body = (typeof xhr.response === 'undefined') ? xhr.responseText : xhr.response;
-                }
-                // Normalize another potential bug (this one comes from CORS).
-                if (status === 0) {
-                    status = !!body ? 200 : 0;
-                }
-                // ok determines whether the response will be transmitted on the event or
-                // error channel. Unsuccessful status codes (not 2xx) will always be errors,
-                // but a successful status code can still result in an error if the user
-                // asked for JSON data and the body cannot be parsed as such.
-                let ok = status >= 200 && status < 300;
-                // Check whether the body needs to be parsed as JSON (in many cases the browser
-                // will have done that already).
-                if (req.responseType === 'json' && typeof body === 'string') {
-                    // Save the original body, before attempting XSSI prefix stripping.
-                    const originalBody = body;
-                    body = body.replace(XSSI_PREFIX, '');
-                    try {
-                        // Attempt the parse. If it fails, a parse error should be delivered to the user.
-                        body = body !== '' ? JSON.parse(body) : null;
-                    }
-                    catch (error) {
-                        // Since the JSON.parse failed, it's reasonable to assume this might not have been a
-                        // JSON response. Restore the original body (including any XSSI prefix) to deliver
-                        // a better error response.
-                        body = originalBody;
-                        // If this was an error request to begin with, leave it as a string, it probably
-                        // just isn't JSON. Otherwise, deliver the parsing error to the user.
-                        if (ok) {
-                            // Even though the response status was 2xx, this is still an error.
-                            ok = false;
-                            // The parse error contains the text of the body that failed to parse.
-                            body = { error, text: body };
-                        }
-                    }
-                }
-                if (ok) {
-                    // A successful response is delivered on the event stream.
-                    observer.next(new HttpResponse({
-                        body,
-                        headers,
-                        status,
-                        statusText,
-                        url: url || undefined,
-                    }));
-                    // The full body has been received and delivered, no further events
-                    // are possible. This request is complete.
-                    observer.complete();
-                }
-                else {
-                    // An unsuccessful request is delivered on the error channel.
-                    observer.error(new HttpErrorResponse({
-                        // The error in this case is the response body (error from the server).
-                        error: body,
-                        headers,
-                        status,
-                        statusText,
-                        url: url || undefined,
-                    }));
-                }
-            };
-            // The onError callback is called when something goes wrong at the network level.
-            // Connection timeout, DNS error, offline, etc. These are actual errors, and are
-            // transmitted on the error channel.
-            const onError = (error) => {
-                const { url } = partialFromXhr();
-                const res = new HttpErrorResponse({
-                    error,
-                    status: xhr.status || 0,
-                    statusText: xhr.statusText || 'Unknown Error',
-                    url: url || undefined,
-                });
-                observer.error(res);
-            };
-            // The sentHeaders flag tracks whether the HttpResponseHeaders event
-            // has been sent on the stream. This is necessary to track if progress
-            // is enabled since the event will be sent on only the first download
-            // progerss event.
-            let sentHeaders = false;
-            // The download progress event handler, which is only registered if
-            // progress events are enabled.
-            const onDownProgress = (event) => {
-                // Send the HttpResponseHeaders event if it hasn't been sent already.
-                if (!sentHeaders) {
-                    observer.next(partialFromXhr());
-                    sentHeaders = true;
-                }
-                // Start building the download progress event to deliver on the response
-                // event stream.
-                let progressEvent = {
-                    type: HttpEventType.DownloadProgress,
-                    loaded: event.loaded,
-                };
-                // Set the total number of bytes in the event if it's available.
-                if (event.lengthComputable) {
-                    progressEvent.total = event.total;
-                }
-                // If the request was for text content and a partial response is
-                // available on XMLHttpRequest, include it in the progress event
-                // to allow for streaming reads.
-                if (req.responseType === 'text' && !!xhr.responseText) {
-                    progressEvent.partialText = xhr.responseText;
-                }
-                // Finally, fire the event.
-                observer.next(progressEvent);
-            };
-            // The upload progress event handler, which is only registered if
-            // progress events are enabled.
-            const onUpProgress = (event) => {
-                // Upload progress events are simpler. Begin building the progress
-                // event.
-                let progress = {
-                    type: HttpEventType.UploadProgress,
-                    loaded: event.loaded,
-                };
-                // If the total number of bytes being uploaded is available, include
-                // it.
-                if (event.lengthComputable) {
-                    progress.total = event.total;
-                }
-                // Send the event.
-                observer.next(progress);
-            };
-            // By default, register for load and error events.
-            xhr.addEventListener('load', onLoad);
-            xhr.addEventListener('error', onError);
-            // Progress events are only enabled if requested.
-            if (req.reportProgress) {
-                // Download progress is always enabled if requested.
-                xhr.addEventListener('progress', onDownProgress);
-                // Upload progress depends on whether there is a body to upload.
-                if (reqBody !== null && xhr.upload) {
-                    xhr.upload.addEventListener('progress', onUpProgress);
-                }
-            }
-            // Fire the request, and notify the event stream that it was fired.
-            xhr.send(reqBody);
-            observer.next({ type: HttpEventType.Sent });
-            // This is the return from the Observable function, which is the
-            // request cancellation handler.
-            return () => {
-                // On a cancellation, remove all registered event listeners.
-                xhr.removeEventListener('error', onError);
-                xhr.removeEventListener('load', onLoad);
-                if (req.reportProgress) {
-                    xhr.removeEventListener('progress', onDownProgress);
-                    if (reqBody !== null && xhr.upload) {
-                        xhr.upload.removeEventListener('progress', onUpProgress);
-                    }
-                }
-                // Finally, abort the in-flight request.
-                if (xhr.readyState !== xhr.DONE) {
-                    xhr.abort();
-                }
-            };
-        });
-    }
-}
-HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) { return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XhrFactory)); };
-HttpXhrBackend.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXhrBackend, factory: HttpXhrBackend.ɵfac });
-HttpXhrBackend.ctorParameters = () => [
-    { type: XhrFactory }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXhrBackend, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: XhrFactory }]; }, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-const XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_COOKIE_NAME');
-const XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_HEADER_NAME');
-/**
- * Retrieves the current XSRF token to use with the next outgoing request.
- *
- * @publicApi
- */
-class HttpXsrfTokenExtractor {
-}
-/**
- * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
- */
-class HttpXsrfCookieExtractor {
-    constructor(doc, platform, cookieName) {
-        this.doc = doc;
-        this.platform = platform;
-        this.cookieName = cookieName;
-        this.lastCookieString = '';
-        this.lastToken = null;
-        /**
-         * @internal for testing
-         */
-        this.parseCount = 0;
-    }
-    getToken() {
-        if (this.platform === 'server') {
-            return null;
-        }
-        const cookieString = this.doc.cookie || '';
-        if (cookieString !== this.lastCookieString) {
-            this.parseCount++;
-            this.lastToken = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["ɵparseCookieValue"])(cookieString, this.cookieName);
-            this.lastCookieString = cookieString;
-        }
-        return this.lastToken;
-    }
-}
-HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) { return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_COOKIE_NAME)); };
-HttpXsrfCookieExtractor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfCookieExtractor, factory: HttpXsrfCookieExtractor.ɵfac });
-HttpXsrfCookieExtractor.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"],] }] },
-    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"],] }] },
-    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [XSRF_COOKIE_NAME,] }] }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: undefined, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]]
-            }] }, { type: String, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
-            }] }, { type: String, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [XSRF_COOKIE_NAME]
-            }] }]; }, null); })();
-/**
- * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
- */
-class HttpXsrfInterceptor {
-    constructor(tokenService, headerName) {
-        this.tokenService = tokenService;
-        this.headerName = headerName;
-    }
-    intercept(req, next) {
-        const lcUrl = req.url.toLowerCase();
-        // Skip both non-mutating requests and absolute URLs.
-        // Non-mutating requests don't require a token, and absolute URLs require special handling
-        // anyway as the cookie set
-        // on our origin is not the same as the token expected by another origin.
-        if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') ||
-            lcUrl.startsWith('https://')) {
-            return next.handle(req);
-        }
-        const token = this.tokenService.getToken();
-        // Be careful not to overwrite an existing header of the same name.
-        if (token !== null && !req.headers.has(this.headerName)) {
-            req = req.clone({ headers: req.headers.set(this.headerName, token) });
-        }
-        return next.handle(req);
-    }
-}
-HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) { return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_HEADER_NAME)); };
-HttpXsrfInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfInterceptor, factory: HttpXsrfInterceptor.ɵfac });
-HttpXsrfInterceptor.ctorParameters = () => [
-    { type: HttpXsrfTokenExtractor },
-    { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [XSRF_HEADER_NAME,] }] }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: HttpXsrfTokenExtractor }, { type: String, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [XSRF_HEADER_NAME]
-            }] }]; }, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * An injectable `HttpHandler` that applies multiple interceptors
- * to a request before passing it to the given `HttpBackend`.
- *
- * The interceptors are loaded lazily from the injector, to allow
- * interceptors to themselves inject classes depending indirectly
- * on `HttpInterceptingHandler` itself.
- * @see `HttpInterceptor`
- */
-class HttpInterceptingHandler {
-    constructor(backend, injector) {
-        this.backend = backend;
-        this.injector = injector;
-        this.chain = null;
-    }
-    handle(req) {
-        if (this.chain === null) {
-            const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
-            this.chain = interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), this.backend);
-        }
-        return this.chain.handle(req);
-    }
-}
-HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) { return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"])); };
-HttpInterceptingHandler.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpInterceptingHandler, factory: HttpInterceptingHandler.ɵfac });
-HttpInterceptingHandler.ctorParameters = () => [
-    { type: HttpBackend },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"] }
-];
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: HttpBackend }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"] }]; }, null); })();
-/**
- * Constructs an `HttpHandler` that applies interceptors
- * to a request before passing it to the given `HttpBackend`.
- *
- * Use as a factory function within `HttpClientModule`.
- *
- *
- */
-function interceptingHandler(backend, interceptors = []) {
-    if (!interceptors) {
-        return backend;
-    }
-    return interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), backend);
-}
-/**
- * Factory function that determines where to store JSONP callbacks.
- *
- * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
- * in test environments. In that case, callbacks are stored on an anonymous object instead.
- *
- *
- */
-function jsonpCallbackContext() {
-    if (typeof window === 'object') {
-        return window;
-    }
-    return {};
-}
-/**
- * Configures XSRF protection support for outgoing requests.
- *
- * For a server that supports a cookie-based XSRF protection system,
- * use directly to configure XSRF protection with the correct
- * cookie and header names.
- *
- * If no names are supplied, the default cookie name is `XSRF-TOKEN`
- * and the default header name is `X-XSRF-TOKEN`.
- *
- * @publicApi
- */
-class HttpClientXsrfModule {
-    /**
-     * Disable the default XSRF protection.
-     */
-    static disable() {
-        return {
-            ngModule: HttpClientXsrfModule,
-            providers: [
-                { provide: HttpXsrfInterceptor, useClass: NoopInterceptor },
-            ],
-        };
-    }
-    /**
-     * Configure XSRF protection.
-     * @param options An object that can specify either or both
-     * cookie name or header name.
-     * - Cookie name default is `XSRF-TOKEN`.
-     * - Header name default is `X-XSRF-TOKEN`.
-     *
-     */
-    static withOptions(options = {}) {
-        return {
-            ngModule: HttpClientXsrfModule,
-            providers: [
-                options.cookieName ? { provide: XSRF_COOKIE_NAME, useValue: options.cookieName } : [],
-                options.headerName ? { provide: XSRF_HEADER_NAME, useValue: options.headerName } : [],
-            ],
-        };
-    }
-}
-HttpClientXsrfModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientXsrfModule });
-HttpClientXsrfModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientXsrfModule_Factory(t) { return new (t || HttpClientXsrfModule)(); }, providers: [
-        HttpXsrfInterceptor,
-        { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
-        { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
-        { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
-        { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
-    ] });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-        args: [{
-                providers: [
-                    HttpXsrfInterceptor,
-                    { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
-                    { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
-                    { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
-                    { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
-                ]
-            }]
-    }], null, null); })();
-/**
- * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
- * with supporting services for XSRF. Automatically imported by `HttpClientModule`.
- *
- * You can add interceptors to the chain behind `HttpClient` by binding them to the
- * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
- *
- * @publicApi
- */
-class HttpClientModule {
-}
-HttpClientModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientModule });
-HttpClientModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientModule_Factory(t) { return new (t || HttpClientModule)(); }, providers: [
-        HttpClient,
-        { provide: HttpHandler, useClass: HttpInterceptingHandler },
-        HttpXhrBackend,
-        { provide: HttpBackend, useExisting: HttpXhrBackend },
-        BrowserXhr,
-        { provide: XhrFactory, useExisting: BrowserXhr },
-    ], imports: [[
-            HttpClientXsrfModule.withOptions({
-                cookieName: 'XSRF-TOKEN',
-                headerName: 'X-XSRF-TOKEN'
-            }),
-        ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HttpClientModule, { imports: [HttpClientXsrfModule] }); })();
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientModule, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-        args: [{
-                /**
-                 * Optional configuration for XSRF protection.
-                 */
-                imports: [
-                    HttpClientXsrfModule.withOptions({
-                        cookieName: 'XSRF-TOKEN',
-                        headerName: 'X-XSRF-TOKEN'
-                    }),
-                ],
-                /**
-                 * Configures the [dependency injector](guide/glossary#injector) where it is imported
-                 * with supporting services for HTTP communications.
-                 */
-                providers: [
-                    HttpClient,
-                    { provide: HttpHandler, useClass: HttpInterceptingHandler },
-                    HttpXhrBackend,
-                    { provide: HttpBackend, useExisting: HttpXhrBackend },
-                    BrowserXhr,
-                    { provide: XhrFactory, useExisting: BrowserXhr },
-                ]
-            }]
-    }], null, null); })();
-/**
- * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
- * with supporting services for JSONP.
- * Without this module, Jsonp requests reach the backend
- * with method JSONP, where they are rejected.
- *
- * You can add interceptors to the chain behind `HttpClient` by binding them to the
- * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
- *
- * @publicApi
- */
-class HttpClientJsonpModule {
-}
-HttpClientJsonpModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientJsonpModule });
-HttpClientJsonpModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientJsonpModule_Factory(t) { return new (t || HttpClientJsonpModule)(); }, providers: [
-        JsonpClientBackend,
-        { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
-        { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
-    ] });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-        args: [{
-                providers: [
-                    JsonpClientBackend,
-                    { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
-                    { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
-                ]
-            }]
-    }], null, null); })();
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
-/**
- * Generated bundle index. Do not edit.
- */
-
-
-
-//# sourceMappingURL=http.js.map
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.page.html":
 /*!***************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.page.html ***!
@@ -50678,7 +50678,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home.page */ "./src/app/home/home.page.ts");
 /* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/home/home-routing.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! firebase */ "../node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
 /* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_8__);
 
 
@@ -50746,7 +50746,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/app */ "../node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_4__);
 
 
@@ -50812,16 +50812,18 @@ let HomePage = class HomePage {
     }
     finish() {
         let failedQuestions = [];
+        let failedQuestionsText = [];
         if (this.formValid) {
             if (this.fname && this.lname || !this.requireName) {
                 let t = true;
                 for (let val in this.answers) {
                     if (this.answers[val] === true) {
                         t = false;
+                        failedQuestionsText.push(this.questions[val]);
                         failedQuestions.push(val);
                     }
                 }
-                let result = { 'first_name': this.fname, 'last_name': this.lname, pass: t && this.maskPass && this.tempPass, session: this.session, failedQuestions: failedQuestions };
+                let result = { first_name: this.fname, last_name: this.lname, pass: t && this.maskPass && this.tempPass, session: this.session, failed_questions: [], failed_questions_index: failedQuestions };
                 console.log(result);
                 firebase_app__WEBPACK_IMPORTED_MODULE_4__["database"]().ref('results/' + this.regKey).set(JSON.stringify(result) + '*' + Date.now());
                 //todo output result

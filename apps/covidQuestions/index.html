@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Ionic App</title>
 
-  <base href="https://reveldigital.github.io/reveldigital-gadgets/apps/covidQuestions/" />
+  <base href="/" />
 
   <meta name="color-scheme" content="light" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -24,28 +24,26 @@
 <script src="runtime-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills-es2015.js" type="module"></script><script src="styles-es2015.js" type="module"></script><script src="styles-es5.js" nomodule defer></script><script src="vendor-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule defer></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule defer></script></body>
   <script>
 
+    let prefs=  {
+      getString: (val)=>{
+        switch (val) {
+          case 'ycolor':return 'green'
+          case 'ncolor':return 'red'
+          case 'bwidth':return '25px'
+          case 'bheight':return '50px'
+          case 'ypos':return '170px'
+          case 'npos':return '30px'
+          case 'bfontsize':return '50px'
+          case 'reqName':return 'true'
+          default: return Math.random();
+        }
+      }}
 
-    // let prefs=  {
-    //   getString: (val)=>{
-    //     switch (val) {
-    //       case 'ycolor':return 'green'
-    //       case 'ncolor':return 'red'
-    //       case 'bwidth':return '25px'
-    //       case 'bheight':return '50px'
-    //       case 'ypos':return '170px'
-    //       case 'npos':return '30px'
-    //       case 'bfontsize':return '50px'
-    //       case 'reqName':return 'true'
-    //       default: return Math.random();
-    //     }
-    //   }}
-    //
-    //
-    // let Client = {
-    //   callback:(input)=>{
-    //     console.log('Came from client:', input)
-    //   }
-    // }
 
+    let Client = {
+      callback:(input)=>{
+        console.log('Came from client:', input)
+      }
+    }
   </script>
 </html>
