@@ -29,12 +29,14 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 <script>
+    console.log('sender gadget');
     let flag = false;
     let flag2 = false;
     let prefs = new gadgets.Prefs();
     let reg = prefs.getString('rdKey');
     firebase.database().ref(reg).on('value', function(snapshot) {
         let temp = (snapshot.val() && snapshot.val().temp);
+        console.log(temp, 'here', reg);
         if(Client){
             if(flag){
                 Client.callback(temp.substring(0,temp.indexOf("_")));
