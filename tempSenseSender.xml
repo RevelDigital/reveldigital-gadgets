@@ -49,7 +49,9 @@
         let result = (snapshot.val() && snapshot.val());
         if(Client){
             if(flag2 && result){
-                Client.callback(result.substring(0,result.indexOf("*")));
+                result = JSON.parse(result.substring(0,result.indexOf("*")))
+                result.pass = result.failed_questions_index.length==0;
+                Client.callback(JSON.stringify(result));
             }
             flag2 = true;
         }
