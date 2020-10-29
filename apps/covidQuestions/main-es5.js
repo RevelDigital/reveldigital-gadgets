@@ -365,7 +365,7 @@
         }, {
           key: "toNext",
           value: function toNext(val) {
-            if (val) this.failedQuestions.push(val);
+            if (val != null) this.failedQuestions.push(val);
             this.slides.lockSwipeToNext(false);
             this.slides.lockSwipeToPrev(false);
             this.count++;
@@ -402,6 +402,8 @@
 
               this.slides.slideTo(0);
               this.count = 0;
+              this.lname = "";
+              this.fname = "";
               this.failedQuestions = [];
             } else {
               this.slides.slideNext();
@@ -656,7 +658,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */
+      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/main.ts */
       "./src/main.ts");
       /***/
     }

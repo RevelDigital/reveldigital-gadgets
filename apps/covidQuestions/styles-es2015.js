@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/theme/variables.scss */"./src/theme/variables.scss");
-module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/global.scss */"./src/global.scss");
+__webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/theme/variables.scss */"./src/theme/variables.scss");
+module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/global.scss */"./src/global.scss");
 
 
 /***/ })

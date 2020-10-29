@@ -419,7 +419,7 @@ let AppComponent = class AppComponent {
         }
     }
     toNext(val) {
-        if (val)
+        if (val != null)
             this.failedQuestions.push(val);
         this.slides.lockSwipeToNext(false);
         this.slides.lockSwipeToPrev(false);
@@ -436,6 +436,8 @@ let AppComponent = class AppComponent {
             }
             this.slides.slideTo(0);
             this.count = 0;
+            this.lname = "";
+            this.fname = "";
             this.failedQuestions = [];
         }
         else {
@@ -582,7 +584,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/main.ts */"./src/main.ts");
 
 
 /***/ })
