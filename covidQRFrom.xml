@@ -71,8 +71,8 @@
     }
     function genQRCode(temp,mask,session) {
         let base = 'https://api.qrserver.com/v1/create-qr-code/?size='+ prefs.getString('rdW')+'x'+prefs.getString('rdH')+'&data='
-        base+=encodeURIComponent('https://reveldigital.github.io/reveldigital-gadgets/apps/frontline/?')+
-            `temp=${encodeURIComponent(temp)}&mask=${encodeURIComponent(mask)}&session=${encodeURIComponent(session)}&passM=${encodeURIComponent(prefs.getString('passM'))}&failM=${encodeURIComponent(prefs.getString('failM'))}&reqName=${encodeURIComponent(prefs.getString('reqName'))}&regKey=${reg}`;
+        base+=encodeURIComponent('https://reveldigital.github.io/reveldigital-gadgets/apps/frontline/?'+
+            `temp=${encodeURIComponent(temp)}&mask=${encodeURIComponent(mask)}&session=${encodeURIComponent(session)}&passM=${encodeURIComponent(prefs.getString('passM'))}&failM=${encodeURIComponent(prefs.getString('failM'))}&reqName=${encodeURIComponent(prefs.getString('reqName'))}&regKey=${reg}`);
         document.getElementById("qr").src = base;
     }
 
