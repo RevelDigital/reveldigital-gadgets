@@ -10,16 +10,16 @@
         <UserPref display_name="Require Name" name="reqName" datatype="string" required="true" default_value="*|VAR.COLLECT_NAME|*"/>
         <UserPref display_name="Pass Message" name="passM" datatype="string" required="true" default_value=""/>
         <UserPref display_name="Fail Message" name="failM" datatype="string" required="true" default_value=""/>
-        <UserPref display_name="Question 1" name="q1" datatype="string" required="true"/>
-        <UserPref display_name="Question 2" name="q2" datatype="string" required="false"/>
-        <UserPref display_name="Question 3" name="q3" datatype="string" required="false"/>
-        <UserPref display_name="Question 4" name="q4" datatype="string" required="false"/>
-        <UserPref display_name="Question 5" name="q5" datatype="string" required="false"/>
-        <UserPref display_name="Question 6" name="q6" datatype="string" required="false"/>
-        <UserPref display_name="Question 7" name="q7" datatype="string" required="false"/>
-        <UserPref display_name="Question 8" name="q8" datatype="string" required="false"/>
-        <UserPref display_name="Question 9" name="q9" datatype="string" required="false"/>
-        <UserPref display_name="Question 10" name="q10" datatype="string" required="false"/>
+        <UserPref display_name="Question 1" name="q1" datatype="string" required="true" default_value="*|VAR.Question_One|*"/>
+        <UserPref display_name="Question 2" name="q2" datatype="string" required="false" default_value="*|VAR.Question_Two|*"/>
+        <UserPref display_name="Question 3" name="q3" datatype="string" required="false" default_value="*|VAR.Question_Three|*"/>
+        <UserPref display_name="Question 4" name="q4" datatype="string" required="false" default_value="*|VAR.Question_Four|*"/>
+        <UserPref display_name="Question 5" name="q5" datatype="string" required="false" default_value="*|VAR.Question_Five|*"/>
+        <UserPref display_name="Question 6" name="q6" datatype="string" required="false" default_value="*|VAR.Question_Six|*"/>
+        <UserPref display_name="Question 7" name="q7" datatype="string" required="false" default_value="*|VAR.Question_Seven|*"/>
+        <UserPref display_name="Question 8" name="q8" datatype="string" required="false" default_value="*|VAR.Question_Eight|*"/>
+        <UserPref display_name="Question 9" name="q9" datatype="string" required="false" default_value="*|VAR.Question_Nine|*"/>
+        <UserPref display_name="Question 10" name="q10" datatype="string" required="false" default_value="*|VAR.Question_Ten|*"/>
         <Require feature="offline"/>
     </ModulePrefs>
 
