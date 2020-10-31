@@ -48,12 +48,15 @@
     firebase.database().ref('results/'+reg).on('value', function(snapshot) {
         let result = (snapshot.val() && snapshot.val());
         if(Client) {
-            if (flag2 && result) {
-                if (result.hasOwnProperty('failed_questions_index')) {
+            if (flag2) {
+                if (result) {
                     result = JSON.parse(result.substring(0, result.indexOf("*")))
-                    result.pass = result.failed_questions_index.length == 0;
+                    if(result.hasOwnProperty('failed_questions_index')){
+                        result.pass = result.failed_questions_index.length == 0;
+                    }
+                    Client.callback(JSON.stringify(result));
                 }
-                Client.callback(JSON.stringify(result));
+            } else {
                 flag2 = true;
             }
         }
