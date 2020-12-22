@@ -72,7 +72,7 @@
                         cache: false,
                         success: function(data) {
                             var code = url + data.key;
-                            $("#QR").attr("src", "https://svc1.reveldigital.com/Render/QRCode?text=" + encodeURIComponent(code) + "&w=__UP_rdW__&h=__UP_rdH__&fg=__UP_ForeColor__&bg=");
+                            $("#QR").attr("src", "https://api.qrserver.com/v1/create-qr-code/?size=__UP_rdW__x__UP_rdH__&data=" + encodeURIComponent(code) + "&w=__UP_rdW__&h=__UP_rdH__&fg=__UP_ForeColor__&bg=");
                         }
                     });
 

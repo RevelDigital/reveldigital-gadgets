@@ -193,9 +193,9 @@ span.when
 <script id="postTemplate" type="text/x-jQuery-tmpl">
   <div class="item" style="border: none;">
     <div style="display:table;width:100%;">
-      {{if Entities.MediaEntities.length }}
+      {{if entities.media.length}}
       <div class="photo" data-objectid="${object_id}">
-        <img src="${Entities.MediaEntities[0].MediaUrlHttps}" />
+        <img src="${entities.media[0].mediaUrlHttps}" />
       </div>
       {{/if}}
       
@@ -203,24 +203,24 @@ span.when
         <div style="display:table;">
           <div class="detail">
             <div class="${getAvatarClass()} picture" style="display:table-cell;">
-              <img src="${profileIcon(User.ProfileImageUrlHttps)}"/>
+              <img src="${profileIcon(user.profileImageUrlHttps)}"/>
             </div>
             <div style="display:table-cell; vertical-align:top;">
-              <div class="name"><i class="fa fa-twitter fa-pull-left" aria-hidden="true"></i>${User.ScreenNameResponse}</div>
+              <div class="name"><i class="fa fa-twitter fa-pull-left" aria-hidden="true"></i>${user.screenNameResponse}</div>
               <div class="stats" style="display:table">
                 <div style="display:table-cell;">
-                  <span class="when" data-timestamp="${CreatedAt}">${timeAgo(CreatedAt)}</span>
+                  <span class="when" data-timestamp="${createdAt}">${timeAgo(createdAt)}</span>
                 </div>
                 <div style="display:table-cell;">
-                  <i class="fa fa-retweet" aria-hidden="true"></i> ${RetweetCount}
-                  <i class="fa fa-heart" aria-hidden="true"></i> ${FavoriteCount}
+                  <i class="fa fa-retweet" aria-hidden="true"></i> ${retweetCount}
+                  <i class="fa fa-heart" aria-hidden="true"></i> ${favoriteCount}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="body">
-          <p>${Text}</p>
+          <p>${text}</p>
         </div>
       </div>
     </div>
@@ -281,7 +281,7 @@ span.when
           $("div.postscontainer").slick("unslick");
         } catch (e) {}
         $("div.postscontainer").empty();
-        $("#postTemplate").tmpl(json.Statuses).appendTo("div.postscontainer");
+        $("#postTemplate").tmpl(json.statuses).appendTo("div.postscontainer");
         
         $('div.item').profanityFilter();
         

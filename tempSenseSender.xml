@@ -29,11 +29,15 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 <script>
+    
     let flag = false;
+    let flag2 = false;
     let prefs = new gadgets.Prefs();
-    let reg = prefs.getString('reciever');
+    let reg = prefs.getString('rdKey');
+    console.log('sender gadget', reg);
     firebase.database().ref(reg).on('value', function(snapshot) {
         let temp = (snapshot.val() && snapshot.val().temp);
+        console.log(temp, 'here', reg);
         if(Client){
             if(flag){
                 Client.callback(temp.substring(0,temp.indexOf("_")));
@@ -41,8 +45,24 @@
             flag = true;
         }
     });
+    firebase.database().ref('results/'+reg).on('value', function(snapshot) {
+        let result = (snapshot.val() && snapshot.val());
+        if(Client) {
+            if (flag2) {
+                if (result) {
+                    result = JSON.parse(result.substring(0, result.indexOf("*")))
+                    if(result.hasOwnProperty('failed_questions_index')){
+                        result.pass = result.failed_questions_index.length == 0;
+                    }
+                    Client.callback(JSON.stringify(result));
+                }
+            } else {
+                flag2 = true;
+            }
+        }
+    });
     function writeTemp(val) {
-        firebase.database().ref(reg).set({
+        firebase.database().ref(prefs.getString('reciever')).set({
             temp: JSON.stringify(val)+'_'+Date.now(),
         });
     }

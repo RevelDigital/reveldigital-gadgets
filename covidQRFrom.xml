@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNjAxOTEyNzk3MTQ5LCJsYXN0TW9kaWZpZWQiOjE2MDE5MTI3OTcxNDl9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+    <ModulePrefs title="questions" description="Covid Questions" preferred_width="1920" preferred_height="1080" author="Avery knight" background="Transparent">
+        <UserPref name="ForeColor" datatype="hidden" required="false"/>
+        <UserPref name="BackColor" datatype="hidden" required="false"/>
+        <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+        <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+        <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+        <UserPref display_name="Require Name" name="reqName" datatype="string" required="true" default_value="*|VAR.COLLECT_NAME|*"/>
+        <UserPref display_name="Pass Message" name="passM" datatype="string" required="true" default_value=""/>
+        <UserPref display_name="Fail Message" name="failM" datatype="string" required="true" default_value=""/>
+        <UserPref display_name="Question 1" name="q1" datatype="string" required="true" default_value="*|VAR.Q_1|*"/>
+        <UserPref display_name="Question 2" name="q2" datatype="string" required="false" default_value="*|VAR.Q_2|*"/>
+        <UserPref display_name="Question 3" name="q3" datatype="string" required="false" default_value="*|VAR.Q_3|*"/>
+        <UserPref display_name="Question 4" name="q4" datatype="string" required="false" default_value="*|VAR.Q_4|*"/>
+        <UserPref display_name="Question 5" name="q5" datatype="string" required="false" default_value="*|VAR.Q_5|*"/>
+        <UserPref display_name="Question 6" name="q6" datatype="string" required="false" default_value="*|VAR.Q_6|*"/>
+        <UserPref display_name="Question 7" name="q7" datatype="string" required="false" default_value="*|VAR.Q_7|*"/>
+        <UserPref display_name="Question 8" name="q8" datatype="string" required="false" default_value="*|VAR.Q_8|*"/>
+        <UserPref display_name="Question 9" name="q9" datatype="string" required="false" default_value="*|VAR.Q_9|*"/>
+        <UserPref display_name="Question 10" name="q10" datatype="string" required="false" default_value="*|VAR.Q_10|*"/>
+        <Require feature="offline"/>
+    </ModulePrefs>
+
+    <Content type="html">
+        <![CDATA[
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<img style="width: 100vw; height: 100vh; position:absolute;" id="qr" src="">
+
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAVUMkE5_alZSCL4AQtk27xhwHBctdWDA4",
+        authDomain: "ad-sight-a22d8.firebaseapp.com",
+        databaseURL: "https://ad-sight-a22d8.firebaseio.com",
+        projectId: "ad-sight-a22d8",
+        storageBucket: "ad-sight-a22d8.appspot.com",
+        messagingSenderId: "1043779075783",
+        appId: "1:1043779075783:web:bc33f75a8950d03bcb48e2"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    let questions = '';
+    let prefs = new gadgets.Prefs();
+    let reg = prefs.getString('rdKey');
+
+    for(let index = 0; index<10; index++){
+        console.log(prefs.getString('q'+(index+1)), 'q'+(index+1))
+        questions+=prefs.getString('q'+(index+1))+'\n';
+    }
+    writeQuestions(questions.trim());
+
+    function writeQuestions(val) {
+        firebase.database().ref('questions/'+reg).set(val);
+    }
+    function genQRCode(temp,mask,session) {
+        let base = 'https://api.qrserver.com/v1/create-qr-code/?size='+ prefs.getString('rdW')+'x'+prefs.getString('rdH')+'&data='
+        base+=encodeURIComponent('https://reveldigital.github.io/reveldigital-gadgets/apps/frontline/?'+
+            `temp=${encodeURIComponent(temp)}&mask=${encodeURIComponent(mask)}&session=${encodeURIComponent(session)}&passM=${encodeURIComponent(prefs.getString('passM'))}&failM=${encodeURIComponent(prefs.getString('failM'))}&reqName=${encodeURIComponent(prefs.getString('reqName'))}&regKey=${reg}`);
+        document.getElementById("qr").src = base;
+    }
+
+
+
+</script>
+
+</body>
+</html>
+
+]]>
+    </Content>
+</Module>
