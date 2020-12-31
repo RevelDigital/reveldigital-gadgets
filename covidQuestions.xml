@@ -84,6 +84,9 @@
     // }
   </script>
 <script>
+    function start(){
+      form.start();
+    }
   var prefs = new gadgets.Prefs();
 
   // This function is called after the gadget has been initialized.
