@@ -270,7 +270,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n    <ion-slides style=\"width: 100vw; height: 100vh\">\n        <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n            <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n                <ion-label >First Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n                <ion-label >Last Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n                <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n            </div>\n        </ion-slide>\n        <ion-slide *ngFor=\"let q of question; let i = index\">\n            <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n            <section>\n                <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n            </section>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n            <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n        </ion-slide>\n\n    </ion-slides>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngIf=\"requireName\">\n      <div  [style.font-size]=\"fontSize\" >\n        <ion-input #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\"></ion-input>\n        <ion-input [(ngModel)]=\"lname\" placeholder=\"Last Name\"></ion-input>\n        <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"50\" (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\" [innerHTML]=\"q\"></h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n");
 
 /***/ }),
 
@@ -344,16 +344,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @reveldigital/player-client */ "./node_modules/@reveldigital/player-client/__ivy_ngcc__/fesm2015/reveldigital-player-client.js");
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, client) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.client = client;
         this.fname = '';
         this.lname = '';
         this.fontSize = '30px';
@@ -367,15 +370,49 @@ let AppComponent = class AppComponent {
         this.bheight = '';
         this.bwidth = '';
         this.requireName = true;
+        this.voice = true;
         this.count = 0;
         this.title = "";
         this.failedQuestions = [];
         this.question = [];
+        this.retry = 0;
+        this.speak = false;
+        window['form'] = this;
+        this.client.onCommand$.subscribe((cmd) => {
+            console.log(`Got command: ${cmd.name}`);
+            switch (cmd.name) {
+                case 'ttsdone':
+                    this.currentId = Client.converse();
+                    break;
+                case 'dialogflow':
+                    console.log('got dialog result');
+                    if (JSON.parse(cmd.arg).converseId === this.currentId) {
+                        try {
+                            console.log(cmd.arg['intent'], typeof cmd.arg, cmd.arg);
+                            console.log(JSON.parse(cmd.arg).intent);
+                            if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.no') {
+                                this.toNext(null);
+                            }
+                            else {
+                                this.toNext(this.count);
+                            }
+                        }
+                        catch (e) {
+                            console.log(e, typeof cmd.arg);
+                        }
+                    }
+                    else {
+                        console.log('result ignored converseID not correct');
+                    }
+                    break;
+            }
+        });
         this.initializeApp();
         let tmpArray = [];
         tmpArray.push("");
         if (prefs) {
-            this.requireName = prefs.getString('reqName') === 'true';
+            this.requireName = prefs.getString('reqName') === 'false';
+            this.voice = prefs.getString('voiceEnabled') === 'true';
             this.title = prefs.getString('title');
             this.fontSize = prefs.getString('fontsize');
             this.tfontSize = prefs.getString('tfontsize');
@@ -387,15 +424,16 @@ let AppComponent = class AppComponent {
             this.bwidth = prefs.getString('bwidth');
             this.ncolor = prefs.getString('ncolor');
             this.npos = prefs.getString('npos');
+            this.speak = prefs.getString('speak');
             for (let index = 0; index < 10; index++) {
                 console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
-                tmpArray.push(prefs.getString('q' + (index + 1)));
+                tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))));
             }
         }
         else {
             console.log('prefs not valid');
         }
-        this.question = tmpArray.filter((a => { if (a)
+        this.question = tmpArray.filter((a => { if (a && a != 'undefined')
             return a; }));
         console.log(this.question);
     }
@@ -419,29 +457,24 @@ let AppComponent = class AppComponent {
         }
     }
     toNext(val) {
-        if (val != null)
+        console.log(val);
+        if (val)
             this.failedQuestions.push(val);
         this.slides.lockSwipeToNext(false);
         this.slides.lockSwipeToPrev(false);
         this.count++;
         if (this.count == this.question.length) {
             //output to client
-            let tmp = [];
-            for (let val of this.failedQuestions) {
-                tmp.push(this.question[val]);
-            }
-            if (typeof Client != 'undefined') {
-                let result = { first_name: this.fname, last_name: this.lname, pass: this.failedQuestions.length > 0, session: null, failed_questions: tmp, failed_questions_index: this.failedQuestions };
-                Client.callback(JSON.stringify(result));
-            }
+            let result = { 'first_name': this.fname, 'last_name': this.lname, pass: this.failedQuestions.length > 0, session: null, failedQuestions: this.failedQuestions };
+            this.client.callback(JSON.stringify(result));
+            console.log(JSON.stringify(result));
             this.slides.slideTo(0);
             this.count = 0;
-            this.lname = "";
-            this.fname = "";
             this.failedQuestions = [];
         }
         else {
             this.slides.slideNext();
+            this.speechHandler(this.question[this.count]);
         }
         this.slides.lockSwipeToNext(true);
         this.slides.lockSwipeToPrev(true);
@@ -452,11 +485,20 @@ let AppComponent = class AppComponent {
             this.slides.lockSwipeToPrev(true);
         });
     }
+    start() {
+        this.speechHandler("Please answer the following questions with only YES or No... " + this.question[0]);
+    }
+    speechHandler(question) {
+        if (this.speak) {
+            this.client.sendCommand("tts", question);
+        }
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"] }
 ];
 AppComponent.propDecorators = {
     slides: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"], args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonSlides"],] }]
@@ -584,7 +626,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */"./src/main.ts");
 
 
 /***/ })
