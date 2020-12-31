@@ -330,8 +330,10 @@
 
                     if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.no') {
                       _this.toNext(null);
-                    } else {
+                    } else if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.yes') {
                       _this.toNext(_this.count);
+                    } else {
+                      _this.speechHandler(_this.question[_this.count]);
                     }
                   } catch (e) {
                     console.log(e, typeof cmd.arg);
@@ -372,7 +374,7 @@
           }
 
           this.question = tmpArray.filter(function (a) {
-            if (a && a != 'undefined') return a;
+            if (a) return a;
           });
           console.log(this.question);
         }
@@ -418,7 +420,7 @@
                 'last_name': this.lname,
                 pass: this.failedQuestions.length > 0,
                 session: null,
-                failedQuestions: this.failedQuestions
+                failed_questions: this.failedQuestions
               };
               this.client.callback(JSON.stringify(result));
               console.log(JSON.stringify(result));

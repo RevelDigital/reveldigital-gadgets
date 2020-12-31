@@ -393,8 +393,11 @@ let AppComponent = class AppComponent {
                             if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.no') {
                                 this.toNext(null);
                             }
-                            else {
+                            else if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.yes') {
                                 this.toNext(this.count);
+                            }
+                            else {
+                                this.speechHandler(this.question[this.count]);
                             }
                         }
                         catch (e) {
@@ -433,7 +436,7 @@ let AppComponent = class AppComponent {
         else {
             console.log('prefs not valid');
         }
-        this.question = tmpArray.filter((a => { if (a && a != 'undefined')
+        this.question = tmpArray.filter((a => { if (a)
             return a; }));
         console.log(this.question);
     }
@@ -465,7 +468,7 @@ let AppComponent = class AppComponent {
         this.count++;
         if (this.count == this.question.length) {
             //output to client
-            let result = { 'first_name': this.fname, 'last_name': this.lname, pass: this.failedQuestions.length > 0, session: null, failedQuestions: this.failedQuestions };
+            let result = { 'first_name': this.fname, 'last_name': this.lname, pass: this.failedQuestions.length > 0, session: null, failed_questions: this.failedQuestions };
             this.client.callback(JSON.stringify(result));
             console.log(JSON.stringify(result));
             this.slides.slideTo(0);
