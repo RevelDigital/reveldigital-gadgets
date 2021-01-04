@@ -365,7 +365,7 @@
 
             for (var index = 0; index < 10; index++) {
               console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
-              tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))));
+              tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))).replace(/&#60;/gi, '<').replace(/&#62;/gi, '>'));
             }
           } else {
             console.log('prefs not valid');
@@ -693,7 +693,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */
+      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/kioskQuestions/src/main.ts */
       "./src/main.ts");
       /***/
     }

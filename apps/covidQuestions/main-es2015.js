@@ -428,7 +428,7 @@ let AppComponent = class AppComponent {
             this.npos = prefs.getString('npos');
             for (let index = 0; index < 10; index++) {
                 console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
-                tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))));
+                tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))).replace(/&#60;/gi, '<').replace(/&#62;/gi, '>'));
             }
         }
         else {
@@ -627,7 +627,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/kioskQuestions/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/kioskQuestions/src/main.ts */"./src/main.ts");
 
 
 /***/ })
