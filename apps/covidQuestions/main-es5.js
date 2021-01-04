@@ -303,7 +303,7 @@
           this.npos = '';
           this.bheight = '';
           this.bwidth = '';
-          this.requireName = true;
+          this.requireName = false;
           this.voice = false;
           this.count = 0;
           this.title = "";
@@ -349,7 +349,7 @@
           tmpArray.push("");
 
           if (prefs) {
-            this.requireName = prefs.getString('reqName') === 'false';
+            this.requireName = prefs.getString('reqName') === 'true';
             this.voice = prefs.getString('voiceEnabled') === 'true';
             this.title = prefs.getString('title');
             this.fontSize = prefs.getString('fontsize');
