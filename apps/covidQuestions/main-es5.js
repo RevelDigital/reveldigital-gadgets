@@ -304,13 +304,12 @@
           this.bheight = '';
           this.bwidth = '';
           this.requireName = true;
-          this.voice = true;
+          this.voice = false;
           this.count = 0;
           this.title = "";
           this.failedQuestions = [];
           this.question = [];
           this.retry = 0;
-          this.speak = false;
           window['form'] = this;
           this.client.onCommand$.subscribe(function (cmd) {
             console.log("Got command: ".concat(cmd.name));
@@ -363,7 +362,6 @@
             this.bwidth = prefs.getString('bwidth');
             this.ncolor = prefs.getString('ncolor');
             this.npos = prefs.getString('npos');
-            this.speak = prefs.getString('speak');
 
             for (var index = 0; index < 10; index++) {
               console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
@@ -462,7 +460,7 @@
         }, {
           key: "speechHandler",
           value: function speechHandler(question) {
-            if (this.speak) {
+            if (this.voice) {
               this.client.sendCommand("tts", question);
             }
           }

@@ -370,13 +370,12 @@ let AppComponent = class AppComponent {
         this.bheight = '';
         this.bwidth = '';
         this.requireName = true;
-        this.voice = true;
+        this.voice = false;
         this.count = 0;
         this.title = "";
         this.failedQuestions = [];
         this.question = [];
         this.retry = 0;
-        this.speak = false;
         window['form'] = this;
         this.client.onCommand$.subscribe((cmd) => {
             console.log(`Got command: ${cmd.name}`);
@@ -427,7 +426,6 @@ let AppComponent = class AppComponent {
             this.bwidth = prefs.getString('bwidth');
             this.ncolor = prefs.getString('ncolor');
             this.npos = prefs.getString('npos');
-            this.speak = prefs.getString('speak');
             for (let index = 0; index < 10; index++) {
                 console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
                 tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))));
@@ -492,7 +490,7 @@ let AppComponent = class AppComponent {
         this.speechHandler("Please answer the following questions with only YES or No... " + this.question[0]);
     }
     speechHandler(question) {
-        if (this.speak) {
+        if (this.voice) {
             this.client.sendCommand("tts", question);
         }
     }
