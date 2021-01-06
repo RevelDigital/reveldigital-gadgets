@@ -90,7 +90,7 @@ div.post
   margin-right: 10px;
 }
 
-.avatar-small img
+.avatar-small svg
 {
   width: 80px;
   height: 80px;
@@ -104,7 +104,7 @@ div.post
   margin-right: 10px;
 }
 
-.avatar-large img
+.avatar-large svg
 {
   width: 130px;
   height: 130px;
@@ -193,30 +193,34 @@ span.when
   <div class="item" style="border: none;">
     <div style="display:table;width:100%;">
       <div class="photo">
-        <img src="${Images.standard_resolution.Url}" />
+        <img src="${media_url}" />
       </div>
       
       <div style="display:table-cell; vertical-align:top; width: 100%;">
         <div style="display:table;">
           <div class="detail">
             <div class="${getAvatarClass()} picture" style="display:table-cell;">
-              <img src="${profileIcon(User.profile_picture)}"/>
+<svg style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st0{display:none;}
+	.st1{fill:none;stroke:#303030;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:#303030;}
+</style><g class="st0" id="Padding__x26__Artboard"/><g id="Icons"><g><circle class="st1" cx="24" cy="24" r="15.34377"/><g><path class="st1" d="M21.45114,11.57075c0.53679-0.09549,1.07644-0.1576,1.61342-0.18429"/><path class="st1" d="M15.02626,14.75953c1.44125-1.2413,3.22635-2.35482,5.10565-2.8855"/></g><g><circle class="st1" cx="24" cy="21.01823" r="4.46602"/><path class="st1" d="M16.33997,31.44779c0-2.39159,1.95675-4.34834,4.34834-4.34834h6.62337     c2.39159,0,4.34834,1.95675,4.34834,4.34834"/></g></g></g></svg>
             </div>
             <div style="display:table-cell; vertical-align:top;">
-              <div class="name"><i class="fa fa-instagram fa-pull-left" aria-hidden="true"></i>${User.Username}</div>
+              <div class="name"><i class="fa fa-instagram fa-pull-left" aria-hidden="true"></i>${username}</div>
               <div class="stats" style="display:table">
                 <div style="display:table-cell;">
-                  <span class="when" data-timestamp="${created_time}">${timeAgo(created_time)}</span>
+                  <span class="when" data-timestamp="${timestamp}">${timeAgo(timestamp)}</span>
                 </div>
                 <div style="display:table-cell;">
-                  <i class="fa fa-heart" aria-hidden="true"></i> ${Likes.Count}
+                  <i class="fa fa-heart" aria-hidden="true"></i> ${like_count}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="body">
-          <p>${Caption ? Caption.Text : ''}</p>
+          <p>${caption ? caption : ''}</p>
         </div>
       </div>
     </div>
@@ -269,14 +273,14 @@ span.when
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
     }
-    var url = "https://svc1.reveldigital.com/instagram/users/self/media/recent/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+    var url = "https://svc1.reveldigital.com/instagram/me/media/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
     $.getJSON(url, function(json){
       if (json) {
         try {
           $("div.postscontainer").slick("unslick");
         } catch (e) {}
         $("div.postscontainer").empty();
-        $("#postTemplate").tmpl(json.Data).appendTo("div.postscontainer");
+        $("#postTemplate").tmpl(json.data).appendTo("div.postscontainer");
         
         $('div.item').profanityFilter();
         
