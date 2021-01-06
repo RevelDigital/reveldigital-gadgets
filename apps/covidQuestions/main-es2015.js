@@ -459,7 +459,7 @@ let AppComponent = class AppComponent {
     }
     toNext(val) {
         console.log(val);
-        if (val)
+        if (val != null)
             this.failedQuestions.push(val);
         this.slides.lockSwipeToNext(false);
         this.slides.lockSwipeToPrev(false);

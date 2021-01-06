@@ -406,7 +406,7 @@
           key: "toNext",
           value: function toNext(val) {
             console.log(val);
-            if (val) this.failedQuestions.push(val);
+            if (val != null) this.failedQuestions.push(val);
             this.slides.lockSwipeToNext(false);
             this.slides.lockSwipeToPrev(false);
             this.count++;
