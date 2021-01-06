@@ -312,8 +312,8 @@ span.when
     return url.replace(/_normal\./, '_bigger.');
   }
   
-  var timeAgo = function (millis) {
-    return moment.duration(moment(new Date(millis * 1000)) - moment()).humanize(true);
+  var timeAgo = function (dateString) {
+    return moment.duration(moment(dateString) - moment()).humanize(true);
   }
 </script>
 ]]>
