@@ -7,7 +7,7 @@
 
   <base href="/" />
 
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
@@ -23,7 +23,11 @@
   <app-root></app-root>
 <script src="runtime-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills-es2015.js" type="module"></script><script src="styles-es2015.js" type="module"></script><script src="styles-es5.js" nomodule defer></script><script src="vendor-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule defer></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule defer></script></body>
   <script>
-
+  let questions = [
+          "Have you experienced a<br> cough in the last 24 hours",
+          "Have you experienced a fever of 100 or above in the last 24 hours",
+          "Have you experienced a loss of smell or taste in the last 72 hours"
+  ]
     let prefs=  {
       getString: (val)=>{
         switch (val) {
@@ -35,15 +39,25 @@
           case 'npos':return '30px'
           case 'bfontsize':return '50px'
           case 'reqName':return 'true'
-          default: return Math.random();
+          case 'title':return 'Speech Testing';
+          case 'q1':return questions[0];
+          case 'q2':return questions[1];
+          case 'q3':return questions[2];
+          case 'speak': return "true";
+          default: null;
         }
       }}
 
 
-    let Client = {
-      callback:(input)=>{
-        console.log('Came from client:', input)
-      }
+    function start(){
+      form.start();
     }
+
+    // let Client = {
+    //   callback:(input)=>{
+    //     console.log('Came from client:', input)
+    //   }
+    // }
+
   </script>
 </html>
