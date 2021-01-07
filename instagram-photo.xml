@@ -205,9 +205,11 @@ span.when
                 <div style="display:table-cell;">
                   <span class="when" data-timestamp="${timestamp}">${timeAgo(timestamp)}</span>
                 </div>
+				{{if like_count}}
                 <div style="display:table-cell;">
                   <i class="fa fa-heart" aria-hidden="true"></i> ${like_count}
                 </div>
+				{{/if}}
               </div>
             </div>
           </div>
