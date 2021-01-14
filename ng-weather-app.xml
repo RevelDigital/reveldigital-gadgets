@@ -32,22 +32,17 @@
 					height: __UP_rdH__px;
 					overflow: hidden;
 				}
-				
-				.container
-				{
-					__UP_font-style__;
-				}
             </style>
 			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.975f4380df99e9a71e3b.css"></head>
             <body>
             	<app-root></app-root>
-				
+			
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es2015.66c79b9d36e7169e27b0.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es5.6e1055b712d0b250b19e.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es2015.6022d6f28e0500e60d30.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.4571e348eacb94cd899e.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.4571e348eacb94cd899e.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.c8fabfb7735c40a21851.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.c8fabfb7735c40a21851.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
