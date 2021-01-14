@@ -50,9 +50,7 @@
 					function load() {
 						WebFont.load({
 							google: {
-							  families: [
-								  RevelDigital.getFamilyName(prefs.getString("font-style"))
-							  ]
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
 							}
 						});
 					}
