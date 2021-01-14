@@ -43,6 +43,22 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.4571e348eacb94cd899e.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.4571e348eacb94cd899e.js" nomodule defer></script>
 
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+							  families: [
+								  RevelDigital.getFamilyName(prefs.getString("font-style"))
+							  ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
 			</body>
         ]]>
     </Content>
