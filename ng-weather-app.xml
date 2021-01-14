@@ -32,6 +32,11 @@
 					height: __UP_rdH__px;
 					overflow: hidden;
 				}
+				
+				.container
+				{
+					__UP_font-style__;
+				}
             </style>
 			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.975f4380df99e9a71e3b.css"></head>
             <body>
