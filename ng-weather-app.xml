@@ -10,6 +10,7 @@
 		</UserPref>
 		<UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
 		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="interval" display_name="Delay in seconds between transitions" datatype="string" default_value="10" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
