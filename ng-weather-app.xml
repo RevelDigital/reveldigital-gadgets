@@ -33,7 +33,7 @@
 					overflow: hidden;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.975f4380df99e9a71e3b.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.ae9a8f9109440fdc54c7.css"></head>
             <body>
             	<app-root></app-root>
 			
@@ -41,8 +41,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es5.6e1055b712d0b250b19e.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es2015.6022d6f28e0500e60d30.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.a5ed91786dc1d8f38a21.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.a5ed91786dc1d8f38a21.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.84db264cd2ba84c9283d.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.84db264cd2ba84c9283d.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
