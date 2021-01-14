@@ -41,8 +41,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es5.6e1055b712d0b250b19e.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es2015.6022d6f28e0500e60d30.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.f40f83f2c148c224f6e9.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.f40f83f2c148c224f6e9.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.7ddc0177ef83f56a8cc5.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.7ddc0177ef83f56a8cc5.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
