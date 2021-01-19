@@ -36,6 +36,7 @@
 					width: __UP_rdW__px;
 					height: __UP_rdH__px;
 					overflow: hidden;
+					background-color: #__UP_BackColor__;
 				}
             </style>
 			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6b29e08ea47d3a79ce83.css"></head>
