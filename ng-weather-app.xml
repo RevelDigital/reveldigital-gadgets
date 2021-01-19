@@ -39,7 +39,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6b29e08ea47d3a79ce83.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6e112a690eca6a786acc.css"></head>
             <body>
             	<app-root></app-root>
 			
