@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
-    <ModulePrefs title="RevelDigital Weather App" description="" author="RevelDigital" background="transparent">
+    <ModulePrefs title="RevelDigital Weather App" description="Transitions between current conditions, daily and extended forecasts. Horizontal and vertical layout options." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
 		<Require feature="jquery" />
 		<Require feature="webfont" />
