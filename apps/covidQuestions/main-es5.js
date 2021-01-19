@@ -1,10 +1,4 @@
 (function () {
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -139,7 +133,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n    <ion-slides style=\"width: 100vw; height: 100vh\">\n        <ion-slide style=\"background: white\" *ngIf=\"requireName\">\n            <div style=\"width: 100%; padding: 10px; color: black\" [style.font-size]=\"fontSize\" >\n                <ion-label >First Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px; margin-bottom: 20px\" #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\">\n\n                <ion-label >Last Name</ion-label>\n                <input style=\"width: 100%; padding: 7px; margin-top: 11px;\" [(ngModel)]=\"lname\" placeholder=\"Last Name\">\n                <ion-button size=\"large\" style=\"position: absolute; left: 5px;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\"  (click)=\"finsihedName()\" >Confirm</ion-button>\n            </div>\n        </ion-slide>\n        <ion-slide *ngFor=\"let q of question; let i = index\">\n            <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\">{{title}}</div>\n            <section>\n                <h1 [style.font-size]=\"fontSize\">{{q}}</h1>\n            </section>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n            <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n            <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n        </ion-slide>\n\n    </ion-slides>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\n  <ion-slides style=\"width: 100vw; height: 100vh\">\n    <ion-slide *ngIf=\"requireName\">\n      <div  [style.font-size]=\"fontSize\" >\n        <ion-input #inputId autofocus=\"true\" [(ngModel)]=\"fname\" placeholder=\"First Name\"></ion-input>\n        <ion-input [(ngModel)]=\"lname\" placeholder=\"Last Name\"></ion-input>\n        <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"50\" (click)=\"finsihedName()\" >Confirm</ion-button>\n      </div>\n    </ion-slide>\n    <ion-slide *ngFor=\"let q of question; let i = index\">\n      <div [style.font-size]=\"tfontSize\" style=\"width: 100%; text-align: center;  position: absolute; top:0\" [innerHTML]=\"title\"></div>\n      <section>\n        <h1 [style.font-size]=\"fontSize\" [innerHTML]=\"q\"></h1>\n      </section>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ycolor\" [style.left]=\"ypos\" (click)=\"toNext(i)\" >Yes</ion-button>\n      <ion-button size=\"large\" style=\"position: absolute;  bottom:5px;\" [style.font-size]=\"bfontSize\"  [style.width]=\"bwidth\" [style.height]=\"bheight\" [style.background]=\"ncolor\" [style.left]=\"npos\" (click)=\"toNext(null)\" >No </ion-button>\n      <div [style.font-size]=\"pfontSize\" style=\"position: absolute; bottom:5px; right: 5px\">{{i+1}} of {{question.length}}</div>\n    </ion-slide>\n\n  </ion-slides>\n</ion-content>\n";
       /***/
     },
 
@@ -280,14 +274,23 @@
       var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @ionic-native/status-bar/ngx */
       "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+      /* harmony import */
+
+
+      var _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @reveldigital/player-client */
+      "./node_modules/@reveldigital/player-client/__ivy_ngcc__/fesm2015/reveldigital-player-client.js");
 
       var AppComponent = /*#__PURE__*/function () {
-        function AppComponent(platform, splashScreen, statusBar) {
+        function AppComponent(platform, splashScreen, statusBar, client) {
+          var _this = this;
+
           _classCallCheck(this, AppComponent);
 
           this.platform = platform;
           this.splashScreen = splashScreen;
           this.statusBar = statusBar;
+          this.client = client;
           this.fname = '';
           this.lname = '';
           this.fontSize = '30px';
@@ -300,18 +303,55 @@
           this.npos = '';
           this.bheight = '';
           this.bwidth = '';
-          this.requireName = true;
+          this.requireName = false;
+          this.voice = false;
           this.count = 0;
           this.title = "";
           this.failedQuestions = [];
           this.question = [];
+          this.retry = 0;
+          window['form'] = this;
+          this.client.onCommand$.subscribe(function (cmd) {
+            console.log("Got command: ".concat(cmd.name));
+
+            switch (cmd.name) {
+              case 'ttsdone':
+                _this.currentId = Client.converse();
+                break;
+
+              case 'dialogflow':
+                console.log('got dialog result');
+
+                if (JSON.parse(cmd.arg).converseId === _this.currentId) {
+                  try {
+                    console.log(cmd.arg['intent'], typeof cmd.arg, cmd.arg);
+                    console.log(JSON.parse(cmd.arg).intent);
+
+                    if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.no') {
+                      _this.toNext(null);
+                    } else if (JSON.parse(cmd.arg).intent == 'smalltalk.confirmation.yes') {
+                      _this.toNext(_this.count);
+                    } else {
+                      _this.speechHandler(_this.question[_this.count]);
+                    }
+                  } catch (e) {
+                    console.log(e, typeof cmd.arg);
+                  }
+                } else {
+                  console.log('result ignored converseID not correct');
+                }
+
+                break;
+            }
+          });
           this.initializeApp();
           var tmpArray = [];
           tmpArray.push("");
 
           if (prefs) {
             this.requireName = prefs.getString('reqName') === 'true';
-            this.title = prefs.getString('title');
+            this.voice = prefs.getString('voiceEnabled') === 'true';
+            this.title = decodeURIComponent(prefs.getString('title')).replace(/&#60;/gi, '<').replace(/&#62;/gi, '>');
             this.fontSize = prefs.getString('fontsize');
             this.tfontSize = prefs.getString('tfontsize');
             this.pfontSize = prefs.getString('pfontsize');
@@ -325,7 +365,7 @@
 
             for (var index = 0; index < 10; index++) {
               console.log(prefs.getString('q' + (index + 1)), 'q' + (index + 1));
-              tmpArray.push(prefs.getString('q' + (index + 1)));
+              tmpArray.push(decodeURIComponent(prefs.getString('q' + (index + 1))).replace(/&#60;/gi, '<').replace(/&#62;/gi, '>'));
             }
           } else {
             console.log('prefs not valid');
@@ -340,12 +380,12 @@
         _createClass(AppComponent, [{
           key: "initializeApp",
           value: function initializeApp() {
-            var _this = this;
+            var _this2 = this;
 
             this.platform.ready().then(function () {
-              _this.statusBar.styleDefault();
+              _this2.statusBar.styleDefault();
 
-              _this.splashScreen.hide();
+              _this2.splashScreen.hide();
             });
           }
         }, {
@@ -365,6 +405,7 @@
         }, {
           key: "toNext",
           value: function toNext(val) {
+            console.log(val);
             if (val != null) this.failedQuestions.push(val);
             this.slides.lockSwipeToNext(false);
             this.slides.lockSwipeToPrev(false);
@@ -372,41 +413,21 @@
 
             if (this.count == this.question.length) {
               //output to client
-              var tmp = [];
-
-              var _iterator = _createForOfIteratorHelper(this.failedQuestions),
-                  _step;
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  var _val = _step.value;
-                  tmp.push(this.question[_val]);
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
-              if (typeof Client != 'undefined') {
-                var result = {
-                  first_name: this.fname,
-                  last_name: this.lname,
-                  pass: this.failedQuestions.length > 0,
-                  session: null,
-                  failed_questions: tmp,
-                  failed_questions_index: this.failedQuestions
-                };
-                Client.callback(JSON.stringify(result));
-              }
-
+              var result = {
+                'first_name': this.fname,
+                'last_name': this.lname,
+                pass: this.failedQuestions.length > 0,
+                session: null,
+                failed_questions: this.failedQuestions
+              };
+              this.client.callback(JSON.stringify(result));
+              console.log(JSON.stringify(result));
               this.slides.slideTo(0);
               this.count = 0;
-              this.lname = "";
-              this.fname = "";
               this.failedQuestions = [];
             } else {
               this.slides.slideNext();
+              this.speechHandler(this.question[this.count]);
             }
 
             this.slides.lockSwipeToNext(true);
@@ -431,6 +452,18 @@
               }, _callee, this);
             }));
           }
+        }, {
+          key: "start",
+          value: function start() {
+            this.speechHandler("Please answer the following questions with only YES or No... " + this.question[0]);
+          }
+        }, {
+          key: "speechHandler",
+          value: function speechHandler(question) {
+            if (this.voice) {
+              this.client.sendCommand("tts", question);
+            }
+          }
         }]);
 
         return AppComponent;
@@ -443,6 +476,8 @@
           type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"]
         }, {
           type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
+        }, {
+          type: _reveldigital_player_client__WEBPACK_IMPORTED_MODULE_5__["PlayerClientService"]
         }];
       };
 
@@ -658,7 +693,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/averyknight/Documents/GitHub/qr-covid-questionnaire/on kisok questions/src/main.ts */
+      /*! /Users/averyknight/Documents/Projects/qr-covid-questionnaire/kioskQuestions/src/main.ts */
       "./src/main.ts");
       /***/
     }

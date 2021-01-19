@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Weather App" description="Transitions between current conditions, daily and extended forecasts. Horizontal and vertical layout options." author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
+			<EnumValue value="f" display_value="US" />
+			<EnumValue value="c" display_value="Metric" />
+		</UserPref>
+		<UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="interval" display_name="Delay in seconds between transitions" datatype="string" default_value="10" />
+		<UserPref name="show-location" display_name="Show Location" datatype="bool" default_value="true" />
+		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="column">
+			<EnumValue value="column" display_value="Vertical" />
+			<EnumValue value="row" display_value="Horizontal" />
+		</UserPref>
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6e112a690eca6a786acc.css"></head>
+            <body>
+            	<app-root></app-root>
+			
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es2015.66c79b9d36e7169e27b0.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/runtime-es5.66c79b9d36e7169e27b0.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es5.6e1055b712d0b250b19e.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/polyfills-es2015.6022d6f28e0500e60d30.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es2015.99dac3c674590bd31065.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/main-es5.99dac3c674590bd31065.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>

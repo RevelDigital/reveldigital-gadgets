@@ -200,20 +200,20 @@ span.when
       if(json) {
         $('div.tweetscontainer ul').empty();
         
-        $.each(json.statuses, function(i, tweet) {
+        $.each(json.Statuses, function(i, tweet) {
           var li = $('<li/>');
           var item = $('<div class="item"/>');
-          ttext = tweet.text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
+          ttext = tweet.Text.replace(urirex, '<a href="$1://$2" title="">$2</a>');
           ttext = ttext.replace(hashrex, '<a href="' + thashuri  + '$1" title="">#$1</a>');
           if (prefs.getBool("showProfileImage")) {
             var icon = $('<div class="avatar tweet' + i + '">');
-            icon.append($('<img/>').attr('src', tweet.user.profileImageUrlHttps.replace(/_normal\./, '_bigger.')));
+            icon.append($('<img/>').attr('src', tweet.User.ProfileImageUrlHttps.replace(/_normal\./, '_bigger.')));
             item.append(icon);
           }
           var body = $('<div class="text tweet' + i + '"/>');
-          body.append($('<a href="https://twitter.com/' + tweet.user.screenNameResponse + '" title="tweets by ' + tweet.user.screenNameResponse + '</a>'));
+          body.append($('<a href="https://twitter.com/' + tweet.User.ScreenNameResponse + '" title="tweets by ' + tweet.User.ScreenNameResponse + '</a>'));
           body.append($('<p/>').append(ttext));
-          body.append($('<span class="when" data-timestamp="' + tweet.createdAt + '">' + '@' + tweet.user.screenNameResponse + ' ' + timeAgo(tweet.createdAt) + '</span>'));
+          body.append($('<span class="when" data-timestamp="' + tweet.CreatedAt + '">' + '@' + tweet.User.ScreenNameResponse + ' ' + timeAgo(tweet.CreatedAt) + '</span>'));
           item.append(body);
           item.append($('<div style="clear.both;height:25px;"></div>'));
           li.append(item);

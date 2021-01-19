@@ -234,20 +234,20 @@ span.when
           var li = $('<li/>');
           var item = $('<div class="item"/>');
         
-          var desc = post.description;
+          var desc = post.message;
           if (desc == null) {
             desc = "";
           }
-          if (post.picture != null) {
+          if (post.full_picture != null) {
             var icon = $('<div class="' + imgClass + ' post' + i + '">');
-            icon.append($('<img/>').attr('src', post.picture));
+            icon.append($('<img/>').attr('src', post.full_picture));
             item.append(icon);
           }
           var body = $('<div/>').attr('class', txtClass + ' post' + i);
           if (post.name != null) {
-            body.append($('<a/>').attr('href', post.link).attr('title', 'post by ' + post.from.name).text(post.name));
+            body.append($('<a/>').attr('href', post.permalink_url).attr('title', 'post by ' + post.from.name).text(post.from.name));
           }
-          body.append($('<p/>').text(post.message));
+          //body.append($('<p/>').text(post.message));
           body.append($('<p/>').text(desc));
           body.append($('<span/>')
             .attr('class', 'when')

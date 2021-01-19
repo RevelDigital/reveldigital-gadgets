@@ -90,7 +90,7 @@ div.post
   margin-right: 10px;
 }
 
-.avatar-small img
+.avatar-small svg
 {
   width: 80px;
   height: 80px;
@@ -104,7 +104,7 @@ div.post
   margin-right: 10px;
 }
 
-.avatar-large img
+.avatar-large svg
 {
   width: 130px;
   height: 130px;
@@ -193,30 +193,29 @@ span.when
   <div class="item" style="border: none;">
     <div style="display:table;width:100%;">
       <div class="photo">
-        <img src="${Images.standard_resolution.Url}" />
+        <img src="${media_url}" />
       </div>
       
       <div style="display:table-cell; vertical-align:top; width: 100%;">
         <div style="display:table;">
           <div class="detail">
-            <div class="${getAvatarClass()} picture" style="display:table-cell;">
-              <img src="${profileIcon(User.profile_picture)}"/>
-            </div>
             <div style="display:table-cell; vertical-align:top;">
-              <div class="name"><i class="fa fa-instagram fa-pull-left" aria-hidden="true"></i>${User.Username}</div>
+              <div class="name"><i class="fa fa-instagram fa-pull-left" aria-hidden="true"></i>${username}</div>
               <div class="stats" style="display:table">
                 <div style="display:table-cell;">
-                  <span class="when" data-timestamp="${created_time}">${timeAgo(created_time)}</span>
+                  <span class="when" data-timestamp="${timestamp}">${timeAgo(timestamp)}</span>
                 </div>
+				{{if like_count}}
                 <div style="display:table-cell;">
-                  <i class="fa fa-heart" aria-hidden="true"></i> ${Likes.Count}
+                  <i class="fa fa-heart" aria-hidden="true"></i> ${like_count}
                 </div>
+				{{/if}}
               </div>
             </div>
           </div>
         </div>
         <div class="body">
-          <p>${Caption ? Caption.Text : ''}</p>
+          <p>${caption ? caption : ''}</p>
         </div>
       </div>
     </div>
@@ -269,14 +268,14 @@ span.when
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
     }
-    var url = "https://svc1.reveldigital.com/instagram/users/self/media/recent/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+    var url = "https://svc1.reveldigital.com/instagram/me/media/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
     $.getJSON(url, function(json){
       if (json) {
         try {
           $("div.postscontainer").slick("unslick");
         } catch (e) {}
         $("div.postscontainer").empty();
-        $("#postTemplate").tmpl(json.Data).appendTo("div.postscontainer");
+        $("#postTemplate").tmpl(json.data).appendTo("div.postscontainer");
         
         $('div.item').profanityFilter();
         
@@ -315,8 +314,8 @@ span.when
     return url.replace(/_normal\./, '_bigger.');
   }
   
-  var timeAgo = function (millis) {
-    return moment.duration(moment(new Date(millis * 1000)) - moment()).humanize(true);
+  var timeAgo = function (dateString) {
+    return moment.duration(moment(dateString) - moment()).humanize(true);
   }
 </script>
 ]]>
