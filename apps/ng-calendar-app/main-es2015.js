@@ -183,7 +183,7 @@ class BannerComponent {
         if (this.y >= this.max) {
             this.y = 0;
         }
-        gsap__WEBPACK_IMPORTED_MODULE_3__["gsap"].to(window, {
+        gsap__WEBPACK_IMPORTED_MODULE_3__["gsap"].to(this.containerEl.nativeElement, {
             duration: 1.2, ease: "power4.inOut", scrollTo: '#item-' + this.y
         });
     }
@@ -1034,7 +1034,7 @@ class TableComponent {
         if (this.y >= this.max) {
             this.y = 0;
         }
-        gsap__WEBPACK_IMPORTED_MODULE_1__["gsap"].to(window, {
+        gsap__WEBPACK_IMPORTED_MODULE_1__["gsap"].to(this.containerEl.nativeElement, {
             duration: 1.2, ease: "power4.inOut", scrollTo: '#item-' + this.y
         });
     }
@@ -1136,7 +1136,7 @@ class ICalService {
         this.http = http;
         this.client = client;
         this.DATEONLY_REGEX = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
-        this.futureEvents = '7';
+        this.futureEvents = '30';
         this.client.getDeviceTimeZoneName().then((res) => {
             if (res) {
                 moment_timezone__WEBPACK_IMPORTED_MODULE_1__["tz"].setDefault(res);
