@@ -8,7 +8,7 @@
   <Require feature="offline" />
   
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
-  <UserPref name="numItems" display_name="Number of tweets visible at the same time"  datatype="string" default_value="3" />
+  <UserPref name="numItems" display_name="Number of tweets visible at the same time" datatype="string" default_value="3" />
   <UserPref name="maxItems" display_name="Maximum number of tweets" datatype="string" default_value="10" />
   <UserPref name="pause" display_name="Delay in seconds between tweets" datatype="string" default_value="5" />
   <UserPref name="showSeparator" display_name="Show Separator" datatype="bool" default_value="true" />
