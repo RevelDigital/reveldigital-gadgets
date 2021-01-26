@@ -45,7 +45,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.dd5c480160ebdb334932.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.d037a2370f218ae9913d.css"></head>
             <body>
             	<app-root></app-root>
 			
@@ -54,8 +54,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es5.8139562032f54e8f194a.js" nomodule="" defer=""></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es2015.24ea368e110f7f07889e.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/scripts.06f4be5c744415b13213.js" defer=""></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es2015.6334fbe98cc291b5018d.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es5.6334fbe98cc291b5018d.js" nomodule="" defer=""></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es2015.7bd612e34a3435e0f46c.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es5.7bd612e34a3435e0f46c.js" nomodule="" defer=""></script>
 
 				<script type="text/javascript">
 
