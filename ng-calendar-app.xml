@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
-    <ModulePrefs title="RevelDigital Calendar App" description="Displays events from any iCal compliant calendar feed URL." author="RevelDigital" background="transparent">
+    <ModulePrefs title="RevelDigital Calendar App" title_url="https://support.reveldigital.com/hc/en-us/articles/360056082411-iCal-Calendar-Feed-HOWTO" description="Displays events from any iCal compliant calendar feed URL." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
 		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="banner">
 			<EnumValue value="banner" display_value="Banner" />
-			<EnumValue value="table" display_value="Table" />
+			<EnumValue value="table" display_value="Tabular" />
 		</UserPref>
 		<UserPref name="calendar-url" display_name="iCal Calendar URL" datatype="string" default_value="" />
 		<UserPref name="body-style" display_name="Body Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
