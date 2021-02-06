@@ -6,1944 +6,1944 @@
 		<Require feature="webfont" />
 		
 		<UserPref name="tz1" display_name="Timezone" datatype="enum" default_value="">
-			<EnumValue>Africa/Abidjan</EnumValue>
-			<EnumValue>Africa/Accra</EnumValue>
-			<EnumValue>Africa/Algiers</EnumValue>
-			<EnumValue>Africa/Bissau</EnumValue>
-			<EnumValue>Africa/Cairo</EnumValue>
-			<EnumValue>Africa/Casablanca</EnumValue>
-			<EnumValue>Africa/Ceuta</EnumValue>
-			<EnumValue>Africa/El_Aaiun</EnumValue>
-			<EnumValue>Africa/Johannesburg</EnumValue>
-			<EnumValue>Africa/Juba</EnumValue>
-			<EnumValue>Africa/Khartoum</EnumValue>
-			<EnumValue>Africa/Lagos</EnumValue>
-			<EnumValue>Africa/Maputo</EnumValue>
-			<EnumValue>Africa/Monrovia</EnumValue>
-			<EnumValue>Africa/Nairobi</EnumValue>
-			<EnumValue>Africa/Ndjamena</EnumValue>
-			<EnumValue>Africa/Sao_Tome</EnumValue>
-			<EnumValue>Africa/Tripoli</EnumValue>
-			<EnumValue>Africa/Tunis</EnumValue>
-			<EnumValue>Africa/Windhoek</EnumValue>
-			<EnumValue>America/Adak</EnumValue>
-			<EnumValue>America/Anchorage</EnumValue>
-			<EnumValue>America/Araguaina</EnumValue>
-			<EnumValue>America/Argentina/Buenos_Aires</EnumValue>
-			<EnumValue>America/Argentina/Catamarca</EnumValue>
-			<EnumValue>America/Argentina/Cordoba</EnumValue>
-			<EnumValue>America/Argentina/Jujuy</EnumValue>
-			<EnumValue>America/Argentina/La_Rioja</EnumValue>
-			<EnumValue>America/Argentina/Mendoza</EnumValue>
-			<EnumValue>America/Argentina/Rio_Gallegos</EnumValue>
-			<EnumValue>America/Argentina/Salta</EnumValue>
-			<EnumValue>America/Argentina/San_Juan</EnumValue>
-			<EnumValue>America/Argentina/San_Luis</EnumValue>
-			<EnumValue>America/Argentina/Tucuman</EnumValue>
-			<EnumValue>America/Argentina/Ushuaia</EnumValue>
-			<EnumValue>America/Asuncion</EnumValue>
-			<EnumValue>America/Atikokan</EnumValue>
-			<EnumValue>America/Bahia</EnumValue>
-			<EnumValue>America/Bahia_Banderas</EnumValue>
-			<EnumValue>America/Barbados</EnumValue>
-			<EnumValue>America/Belem</EnumValue>
-			<EnumValue>America/Belize</EnumValue>
-			<EnumValue>America/Blanc-Sablon</EnumValue>
-			<EnumValue>America/Boa_Vista</EnumValue>
-			<EnumValue>America/Bogota</EnumValue>
-			<EnumValue>America/Boise</EnumValue>
-			<EnumValue>America/Cambridge_Bay</EnumValue>
-			<EnumValue>America/Campo_Grande</EnumValue>
-			<EnumValue>America/Cancun</EnumValue>
-			<EnumValue>America/Caracas</EnumValue>
-			<EnumValue>America/Cayenne</EnumValue>
-			<EnumValue>America/Chicago</EnumValue>
-			<EnumValue>America/Chihuahua</EnumValue>
-			<EnumValue>America/Costa_Rica</EnumValue>
-			<EnumValue>America/Creston</EnumValue>
-			<EnumValue>America/Cuiaba</EnumValue>
-			<EnumValue>America/Curacao</EnumValue>
-			<EnumValue>America/Danmarkshavn</EnumValue>
-			<EnumValue>America/Dawson</EnumValue>
-			<EnumValue>America/Dawson_Creek</EnumValue>
-			<EnumValue>America/Denver</EnumValue>
-			<EnumValue>America/Detroit</EnumValue>
-			<EnumValue>America/Edmonton</EnumValue>
-			<EnumValue>America/Eirunepe</EnumValue>
-			<EnumValue>America/El_Salvador</EnumValue>
-			<EnumValue>America/Fort_Nelson</EnumValue>
-			<EnumValue>America/Fortaleza</EnumValue>
-			<EnumValue>America/Glace_Bay</EnumValue>
-			<EnumValue>America/Goose_Bay</EnumValue>
-			<EnumValue>America/Grand_Turk</EnumValue>
-			<EnumValue>America/Guatemala</EnumValue>
-			<EnumValue>America/Guayaquil</EnumValue>
-			<EnumValue>America/Guyana</EnumValue>
-			<EnumValue>America/Halifax</EnumValue>
-			<EnumValue>America/Havana</EnumValue>
-			<EnumValue>America/Hermosillo</EnumValue>
-			<EnumValue>America/Indiana/Indianapolis</EnumValue>
-			<EnumValue>America/Indiana/Knox</EnumValue>
-			<EnumValue>America/Indiana/Marengo</EnumValue>
-			<EnumValue>America/Indiana/Petersburg</EnumValue>
-			<EnumValue>America/Indiana/Tell_City</EnumValue>
-			<EnumValue>America/Indiana/Vevay</EnumValue>
-			<EnumValue>America/Indiana/Vincennes</EnumValue>
-			<EnumValue>America/Indiana/Winamac</EnumValue>
-			<EnumValue>America/Inuvik</EnumValue>
-			<EnumValue>America/Iqaluit</EnumValue>
-			<EnumValue>America/Jamaica</EnumValue>
-			<EnumValue>America/Juneau</EnumValue>
-			<EnumValue>America/Kentucky/Louisville</EnumValue>
-			<EnumValue>America/Kentucky/Monticello</EnumValue>
-			<EnumValue>America/La_Paz</EnumValue>
-			<EnumValue>America/Lima</EnumValue>
-			<EnumValue>America/Los_Angeles</EnumValue>
-			<EnumValue>America/Maceio</EnumValue>
-			<EnumValue>America/Managua</EnumValue>
-			<EnumValue>America/Manaus</EnumValue>
-			<EnumValue>America/Martinique</EnumValue>
-			<EnumValue>America/Matamoros</EnumValue>
-			<EnumValue>America/Mazatlan</EnumValue>
-			<EnumValue>America/Menominee</EnumValue>
-			<EnumValue>America/Merida</EnumValue>
-			<EnumValue>America/Metlakatla</EnumValue>
-			<EnumValue>America/Mexico_City</EnumValue>
-			<EnumValue>America/Miquelon</EnumValue>
-			<EnumValue>America/Moncton</EnumValue>
-			<EnumValue>America/Monterrey</EnumValue>
-			<EnumValue>America/Montevideo</EnumValue>
-			<EnumValue>America/Nassau</EnumValue>
-			<EnumValue>America/New_York</EnumValue>
-			<EnumValue>America/Nipigon</EnumValue>
-			<EnumValue>America/Nome</EnumValue>
-			<EnumValue>America/Noronha</EnumValue>
-			<EnumValue>America/North_Dakota/Beulah</EnumValue>
-			<EnumValue>America/North_Dakota/Center</EnumValue>
-			<EnumValue>America/North_Dakota/New_Salem</EnumValue>
-			<EnumValue>America/Nuuk</EnumValue>
-			<EnumValue>America/Ojinaga</EnumValue>
-			<EnumValue>America/Panama</EnumValue>
-			<EnumValue>America/Pangnirtung</EnumValue>
-			<EnumValue>America/Paramaribo</EnumValue>
-			<EnumValue>America/Phoenix</EnumValue>
-			<EnumValue>America/Port-au-Prince</EnumValue>
-			<EnumValue>America/Port_of_Spain</EnumValue>
-			<EnumValue>America/Porto_Velho</EnumValue>
-			<EnumValue>America/Puerto_Rico</EnumValue>
-			<EnumValue>America/Punta_Arenas</EnumValue>
-			<EnumValue>America/Rainy_River</EnumValue>
-			<EnumValue>America/Rankin_Inlet</EnumValue>
-			<EnumValue>America/Recife</EnumValue>
-			<EnumValue>America/Regina</EnumValue>
-			<EnumValue>America/Resolute</EnumValue>
-			<EnumValue>America/Rio_Branco</EnumValue>
-			<EnumValue>America/Santarem</EnumValue>
-			<EnumValue>America/Santiago</EnumValue>
-			<EnumValue>America/Santo_Domingo</EnumValue>
-			<EnumValue>America/Sao_Paulo</EnumValue>
-			<EnumValue>America/Scoresbysund</EnumValue>
-			<EnumValue>America/Sitka</EnumValue>
-			<EnumValue>America/St_Johns</EnumValue>
-			<EnumValue>America/Swift_Current</EnumValue>
-			<EnumValue>America/Tegucigalpa</EnumValue>
-			<EnumValue>America/Thule</EnumValue>
-			<EnumValue>America/Thunder_Bay</EnumValue>
-			<EnumValue>America/Tijuana</EnumValue>
-			<EnumValue>America/Toronto</EnumValue>
-			<EnumValue>America/Vancouver</EnumValue>
-			<EnumValue>America/Whitehorse</EnumValue>
-			<EnumValue>America/Winnipeg</EnumValue>
-			<EnumValue>America/Yakutat</EnumValue>
-			<EnumValue>America/Yellowknife</EnumValue>
-			<EnumValue>Antarctica/Casey</EnumValue>
-			<EnumValue>Antarctica/Davis</EnumValue>
-			<EnumValue>Antarctica/DumontDUrville</EnumValue>
-			<EnumValue>Antarctica/Macquarie</EnumValue>
-			<EnumValue>Antarctica/Mawson</EnumValue>
-			<EnumValue>Antarctica/Palmer</EnumValue>
-			<EnumValue>Antarctica/Rothera</EnumValue>
-			<EnumValue>Antarctica/Syowa</EnumValue>
-			<EnumValue>Antarctica/Troll</EnumValue>
-			<EnumValue>Antarctica/Vostok</EnumValue>
-			<EnumValue>Asia/Almaty</EnumValue>
-			<EnumValue>Asia/Amman</EnumValue>
-			<EnumValue>Asia/Anadyr</EnumValue>
-			<EnumValue>Asia/Aqtau</EnumValue>
-			<EnumValue>Asia/Aqtobe</EnumValue>
-			<EnumValue>Asia/Ashgabat</EnumValue>
-			<EnumValue>Asia/Atyrau</EnumValue>
-			<EnumValue>Asia/Baghdad</EnumValue>
-			<EnumValue>Asia/Baku</EnumValue>
-			<EnumValue>Asia/Bangkok</EnumValue>
-			<EnumValue>Asia/Barnaul</EnumValue>
-			<EnumValue>Asia/Beirut</EnumValue>
-			<EnumValue>Asia/Bishkek</EnumValue>
-			<EnumValue>Asia/Brunei</EnumValue>
-			<EnumValue>Asia/Chita</EnumValue>
-			<EnumValue>Asia/Choibalsan</EnumValue>
-			<EnumValue>Asia/Colombo</EnumValue>
-			<EnumValue>Asia/Damascus</EnumValue>
-			<EnumValue>Asia/Dhaka</EnumValue>
-			<EnumValue>Asia/Dili</EnumValue>
-			<EnumValue>Asia/Dubai</EnumValue>
-			<EnumValue>Asia/Dushanbe</EnumValue>
-			<EnumValue>Asia/Famagusta</EnumValue>
-			<EnumValue>Asia/Gaza</EnumValue>
-			<EnumValue>Asia/Hebron</EnumValue>
-			<EnumValue>Asia/Ho_Chi_Minh</EnumValue>
-			<EnumValue>Asia/Hong_Kong</EnumValue>
-			<EnumValue>Asia/Hovd</EnumValue>
-			<EnumValue>Asia/Irkutsk</EnumValue>
-			<EnumValue>Asia/Jakarta</EnumValue>
-			<EnumValue>Asia/Jayapura</EnumValue>
-			<EnumValue>Asia/Jerusalem</EnumValue>
-			<EnumValue>Asia/Kabul</EnumValue>
-			<EnumValue>Asia/Kamchatka</EnumValue>
-			<EnumValue>Asia/Karachi</EnumValue>
-			<EnumValue>Asia/Kathmandu</EnumValue>
-			<EnumValue>Asia/Khandyga</EnumValue>
-			<EnumValue>Asia/Kolkata</EnumValue>
-			<EnumValue>Asia/Krasnoyarsk</EnumValue>
-			<EnumValue>Asia/Kuala_Lumpur</EnumValue>
-			<EnumValue>Asia/Kuching</EnumValue>
-			<EnumValue>Asia/Macau</EnumValue>
-			<EnumValue>Asia/Magadan</EnumValue>
-			<EnumValue>Asia/Makassar</EnumValue>
-			<EnumValue>Asia/Manila</EnumValue>
-			<EnumValue>Asia/Nicosia</EnumValue>
-			<EnumValue>Asia/Novokuznetsk</EnumValue>
-			<EnumValue>Asia/Novosibirsk</EnumValue>
-			<EnumValue>Asia/Omsk</EnumValue>
-			<EnumValue>Asia/Oral</EnumValue>
-			<EnumValue>Asia/Pontianak</EnumValue>
-			<EnumValue>Asia/Pyongyang</EnumValue>
-			<EnumValue>Asia/Qatar</EnumValue>
-			<EnumValue>Asia/Qostanay</EnumValue>
-			<EnumValue>Asia/Qyzylorda</EnumValue>
-			<EnumValue>Asia/Riyadh</EnumValue>
-			<EnumValue>Asia/Sakhalin</EnumValue>
-			<EnumValue>Asia/Samarkand</EnumValue>
-			<EnumValue>Asia/Seoul</EnumValue>
-			<EnumValue>Asia/Shanghai</EnumValue>
-			<EnumValue>Asia/Singapore</EnumValue>
-			<EnumValue>Asia/Srednekolymsk</EnumValue>
-			<EnumValue>Asia/Taipei</EnumValue>
-			<EnumValue>Asia/Tashkent</EnumValue>
-			<EnumValue>Asia/Tbilisi</EnumValue>
-			<EnumValue>Asia/Tehran</EnumValue>
-			<EnumValue>Asia/Thimphu</EnumValue>
-			<EnumValue>Asia/Tokyo</EnumValue>
-			<EnumValue>Asia/Tomsk</EnumValue>
-			<EnumValue>Asia/Ulaanbaatar</EnumValue>
-			<EnumValue>Asia/Urumqi</EnumValue>
-			<EnumValue>Asia/Ust-Nera</EnumValue>
-			<EnumValue>Asia/Vladivostok</EnumValue>
-			<EnumValue>Asia/Yakutsk</EnumValue>
-			<EnumValue>Asia/Yangon</EnumValue>
-			<EnumValue>Asia/Yekaterinburg</EnumValue>
-			<EnumValue>Asia/Yerevan</EnumValue>
-			<EnumValue>Atlantic/Azores</EnumValue>
-			<EnumValue>Atlantic/Bermuda</EnumValue>
-			<EnumValue>Atlantic/Canary</EnumValue>
-			<EnumValue>Atlantic/Cape_Verde</EnumValue>
-			<EnumValue>Atlantic/Faroe</EnumValue>
-			<EnumValue>Atlantic/Madeira</EnumValue>
-			<EnumValue>Atlantic/Reykjavik</EnumValue>
-			<EnumValue>Atlantic/South_Georgia</EnumValue>
-			<EnumValue>Atlantic/Stanley</EnumValue>
-			<EnumValue>Australia/Adelaide</EnumValue>
-			<EnumValue>Australia/Brisbane</EnumValue>
-			<EnumValue>Australia/Broken_Hill</EnumValue>
-			<EnumValue>Australia/Darwin</EnumValue>
-			<EnumValue>Australia/Eucla</EnumValue>
-			<EnumValue>Australia/Hobart</EnumValue>
-			<EnumValue>Australia/Lindeman</EnumValue>
-			<EnumValue>Australia/Lord_Howe</EnumValue>
-			<EnumValue>Australia/Melbourne</EnumValue>
-			<EnumValue>Australia/Perth</EnumValue>
-			<EnumValue>Australia/Sydney</EnumValue>
-			<EnumValue>CET</EnumValue>
-			<EnumValue>CST6CDT</EnumValue>
-			<EnumValue>EET</EnumValue>
-			<EnumValue>EST</EnumValue>
-			<EnumValue>EST5EDT</EnumValue>
-			<EnumValue>Etc/GMT</EnumValue>
-			<EnumValue>Etc/GMT+1</EnumValue>
-			<EnumValue>Etc/GMT+10</EnumValue>
-			<EnumValue>Etc/GMT+11</EnumValue>
-			<EnumValue>Etc/GMT+12</EnumValue>
-			<EnumValue>Etc/GMT+2</EnumValue>
-			<EnumValue>Etc/GMT+3</EnumValue>
-			<EnumValue>Etc/GMT+4</EnumValue>
-			<EnumValue>Etc/GMT+5</EnumValue>
-			<EnumValue>Etc/GMT+6</EnumValue>
-			<EnumValue>Etc/GMT+7</EnumValue>
-			<EnumValue>Etc/GMT+8</EnumValue>
-			<EnumValue>Etc/GMT+9</EnumValue>
-			<EnumValue>Etc/GMT-1</EnumValue>
-			<EnumValue>Etc/GMT-10</EnumValue>
-			<EnumValue>Etc/GMT-11</EnumValue>
-			<EnumValue>Etc/GMT-12</EnumValue>
-			<EnumValue>Etc/GMT-13</EnumValue>
-			<EnumValue>Etc/GMT-14</EnumValue>
-			<EnumValue>Etc/GMT-2</EnumValue>
-			<EnumValue>Etc/GMT-3</EnumValue>
-			<EnumValue>Etc/GMT-4</EnumValue>
-			<EnumValue>Etc/GMT-5</EnumValue>
-			<EnumValue>Etc/GMT-6</EnumValue>
-			<EnumValue>Etc/GMT-7</EnumValue>
-			<EnumValue>Etc/GMT-8</EnumValue>
-			<EnumValue>Etc/GMT-9</EnumValue>
-			<EnumValue>Etc/UTC</EnumValue>
-			<EnumValue>Europe/Amsterdam</EnumValue>
-			<EnumValue>Europe/Andorra</EnumValue>
-			<EnumValue>Europe/Astrakhan</EnumValue>
-			<EnumValue>Europe/Athens</EnumValue>
-			<EnumValue>Europe/Belgrade</EnumValue>
-			<EnumValue>Europe/Berlin</EnumValue>
-			<EnumValue>Europe/Brussels</EnumValue>
-			<EnumValue>Europe/Bucharest</EnumValue>
-			<EnumValue>Europe/Budapest</EnumValue>
-			<EnumValue>Europe/Chisinau</EnumValue>
-			<EnumValue>Europe/Copenhagen</EnumValue>
-			<EnumValue>Europe/Dublin</EnumValue>
-			<EnumValue>Europe/Gibraltar</EnumValue>
-			<EnumValue>Europe/Helsinki</EnumValue>
-			<EnumValue>Europe/Istanbul</EnumValue>
-			<EnumValue>Europe/Kaliningrad</EnumValue>
-			<EnumValue>Europe/Kiev</EnumValue>
-			<EnumValue>Europe/Kirov</EnumValue>
-			<EnumValue>Europe/Lisbon</EnumValue>
-			<EnumValue>Europe/London</EnumValue>
-			<EnumValue>Europe/Luxembourg</EnumValue>
-			<EnumValue>Europe/Madrid</EnumValue>
-			<EnumValue>Europe/Malta</EnumValue>
-			<EnumValue>Europe/Minsk</EnumValue>
-			<EnumValue>Europe/Monaco</EnumValue>
-			<EnumValue>Europe/Moscow</EnumValue>
-			<EnumValue>Europe/Oslo</EnumValue>
-			<EnumValue>Europe/Paris</EnumValue>
-			<EnumValue>Europe/Prague</EnumValue>
-			<EnumValue>Europe/Riga</EnumValue>
-			<EnumValue>Europe/Rome</EnumValue>
-			<EnumValue>Europe/Samara</EnumValue>
-			<EnumValue>Europe/Saratov</EnumValue>
-			<EnumValue>Europe/Simferopol</EnumValue>
-			<EnumValue>Europe/Sofia</EnumValue>
-			<EnumValue>Europe/Stockholm</EnumValue>
-			<EnumValue>Europe/Tallinn</EnumValue>
-			<EnumValue>Europe/Tirane</EnumValue>
-			<EnumValue>Europe/Ulyanovsk</EnumValue>
-			<EnumValue>Europe/Uzhgorod</EnumValue>
-			<EnumValue>Europe/Vienna</EnumValue>
-			<EnumValue>Europe/Vilnius</EnumValue>
-			<EnumValue>Europe/Volgograd</EnumValue>
-			<EnumValue>Europe/Warsaw</EnumValue>
-			<EnumValue>Europe/Zaporozhye</EnumValue>
-			<EnumValue>Europe/Zurich</EnumValue>
-			<EnumValue>HST</EnumValue>
-			<EnumValue>Indian/Chagos</EnumValue>
-			<EnumValue>Indian/Christmas</EnumValue>
-			<EnumValue>Indian/Cocos</EnumValue>
-			<EnumValue>Indian/Kerguelen</EnumValue>
-			<EnumValue>Indian/Mahe</EnumValue>
-			<EnumValue>Indian/Maldives</EnumValue>
-			<EnumValue>Indian/Mauritius</EnumValue>
-			<EnumValue>Indian/Reunion</EnumValue>
-			<EnumValue>MET</EnumValue>
-			<EnumValue>MST</EnumValue>
-			<EnumValue>MST7MDT</EnumValue>
-			<EnumValue>PST8PDT</EnumValue>
-			<EnumValue>Pacific/Apia</EnumValue>
-			<EnumValue>Pacific/Auckland</EnumValue>
-			<EnumValue>Pacific/Bougainville</EnumValue>
-			<EnumValue>Pacific/Chatham</EnumValue>
-			<EnumValue>Pacific/Chuuk</EnumValue>
-			<EnumValue>Pacific/Easter</EnumValue>
-			<EnumValue>Pacific/Efate</EnumValue>
-			<EnumValue>Pacific/Enderbury</EnumValue>
-			<EnumValue>Pacific/Fakaofo</EnumValue>
-			<EnumValue>Pacific/Fiji</EnumValue>
-			<EnumValue>Pacific/Funafuti</EnumValue>
-			<EnumValue>Pacific/Galapagos</EnumValue>
-			<EnumValue>Pacific/Gambier</EnumValue>
-			<EnumValue>Pacific/Guadalcanal</EnumValue>
-			<EnumValue>Pacific/Guam</EnumValue>
-			<EnumValue>Pacific/Honolulu</EnumValue>
-			<EnumValue>Pacific/Kiritimati</EnumValue>
-			<EnumValue>Pacific/Kosrae</EnumValue>
-			<EnumValue>Pacific/Kwajalein</EnumValue>
-			<EnumValue>Pacific/Majuro</EnumValue>
-			<EnumValue>Pacific/Marquesas</EnumValue>
-			<EnumValue>Pacific/Nauru</EnumValue>
-			<EnumValue>Pacific/Niue</EnumValue>
-			<EnumValue>Pacific/Norfolk</EnumValue>
-			<EnumValue>Pacific/Noumea</EnumValue>
-			<EnumValue>Pacific/Pago_Pago</EnumValue>
-			<EnumValue>Pacific/Palau</EnumValue>
-			<EnumValue>Pacific/Pitcairn</EnumValue>
-			<EnumValue>Pacific/Pohnpei</EnumValue>
-			<EnumValue>Pacific/Port_Moresby</EnumValue>
-			<EnumValue>Pacific/Rarotonga</EnumValue>
-			<EnumValue>Pacific/Tahiti</EnumValue>
-			<EnumValue>Pacific/Tarawa</EnumValue>
-			<EnumValue>Pacific/Tongatapu</EnumValue>
-			<EnumValue>Pacific/Wake</EnumValue>
-			<EnumValue>Pacific/Wallis</EnumValue>
-			<EnumValue>WET</EnumValue>
+			<EnumValue value="Africa/Abidjan" />
+			<EnumValue value="Africa/Accra" />
+			<EnumValue value="Africa/Algiers" />
+			<EnumValue value="Africa/Bissau" />
+			<EnumValue value="Africa/Cairo" />
+			<EnumValue value="Africa/Casablanca" />
+			<EnumValue value="Africa/Ceuta" />
+			<EnumValue value="Africa/El_Aaiun" />
+			<EnumValue value="Africa/Johannesburg" />
+			<EnumValue value="Africa/Juba" />
+			<EnumValue value="Africa/Khartoum" />
+			<EnumValue value="Africa/Lagos" />
+			<EnumValue value="Africa/Maputo" />
+			<EnumValue value="Africa/Monrovia" />
+			<EnumValue value="Africa/Nairobi" />
+			<EnumValue value="Africa/Ndjamena" />
+			<EnumValue value="Africa/Sao_Tome" />
+			<EnumValue value="Africa/Tripoli" />
+			<EnumValue value="Africa/Tunis" />
+			<EnumValue value="Africa/Windhoek" />
+			<EnumValue value="America/Adak" />
+			<EnumValue value="America/Anchorage" />
+			<EnumValue value="America/Araguaina" />
+			<EnumValue value="America/Argentina/Buenos_Aires" />
+			<EnumValue value="America/Argentina/Catamarca" />
+			<EnumValue value="America/Argentina/Cordoba" />
+			<EnumValue value="America/Argentina/Jujuy" />
+			<EnumValue value="America/Argentina/La_Rioja" />
+			<EnumValue value="America/Argentina/Mendoza" />
+			<EnumValue value="America/Argentina/Rio_Gallegos" />
+			<EnumValue value="America/Argentina/Salta" />
+			<EnumValue value="America/Argentina/San_Juan" />
+			<EnumValue value="America/Argentina/San_Luis" />
+			<EnumValue value="America/Argentina/Tucuman" />
+			<EnumValue value="America/Argentina/Ushuaia" />
+			<EnumValue value="America/Asuncion" />
+			<EnumValue value="America/Atikokan" />
+			<EnumValue value="America/Bahia" />
+			<EnumValue value="America/Bahia_Banderas" />
+			<EnumValue value="America/Barbados" />
+			<EnumValue value="America/Belem" />
+			<EnumValue value="America/Belize" />
+			<EnumValue value="America/Blanc-Sablon" />
+			<EnumValue value="America/Boa_Vista" />
+			<EnumValue value="America/Bogota" />
+			<EnumValue value="America/Boise" />
+			<EnumValue value="America/Cambridge_Bay" />
+			<EnumValue value="America/Campo_Grande" />
+			<EnumValue value="America/Cancun" />
+			<EnumValue value="America/Caracas" />
+			<EnumValue value="America/Cayenne" />
+			<EnumValue value="America/Chicago" />
+			<EnumValue value="America/Chihuahua" />
+			<EnumValue value="America/Costa_Rica" />
+			<EnumValue value="America/Creston" />
+			<EnumValue value="America/Cuiaba" />
+			<EnumValue value="America/Curacao" />
+			<EnumValue value="America/Danmarkshavn" />
+			<EnumValue value="America/Dawson" />
+			<EnumValue value="America/Dawson_Creek" />
+			<EnumValue value="America/Denver" />
+			<EnumValue value="America/Detroit" />
+			<EnumValue value="America/Edmonton" />
+			<EnumValue value="America/Eirunepe" />
+			<EnumValue value="America/El_Salvador" />
+			<EnumValue value="America/Fort_Nelson" />
+			<EnumValue value="America/Fortaleza" />
+			<EnumValue value="America/Glace_Bay" />
+			<EnumValue value="America/Goose_Bay" />
+			<EnumValue value="America/Grand_Turk" />
+			<EnumValue value="America/Guatemala" />
+			<EnumValue value="America/Guayaquil" />
+			<EnumValue value="America/Guyana" />
+			<EnumValue value="America/Halifax" />
+			<EnumValue value="America/Havana" />
+			<EnumValue value="America/Hermosillo" />
+			<EnumValue value="America/Indiana/Indianapolis" />
+			<EnumValue value="America/Indiana/Knox" />
+			<EnumValue value="America/Indiana/Marengo" />
+			<EnumValue value="America/Indiana/Petersburg" />
+			<EnumValue value="America/Indiana/Tell_City" />
+			<EnumValue value="America/Indiana/Vevay" />
+			<EnumValue value="America/Indiana/Vincennes" />
+			<EnumValue value="America/Indiana/Winamac" />
+			<EnumValue value="America/Inuvik" />
+			<EnumValue value="America/Iqaluit" />
+			<EnumValue value="America/Jamaica" />
+			<EnumValue value="America/Juneau" />
+			<EnumValue value="America/Kentucky/Louisville" />
+			<EnumValue value="America/Kentucky/Monticello" />
+			<EnumValue value="America/La_Paz" />
+			<EnumValue value="America/Lima" />
+			<EnumValue value="America/Los_Angeles" />
+			<EnumValue value="America/Maceio" />
+			<EnumValue value="America/Managua" />
+			<EnumValue value="America/Manaus" />
+			<EnumValue value="America/Martinique" />
+			<EnumValue value="America/Matamoros" />
+			<EnumValue value="America/Mazatlan" />
+			<EnumValue value="America/Menominee" />
+			<EnumValue value="America/Merida" />
+			<EnumValue value="America/Metlakatla" />
+			<EnumValue value="America/Mexico_City" />
+			<EnumValue value="America/Miquelon" />
+			<EnumValue value="America/Moncton" />
+			<EnumValue value="America/Monterrey" />
+			<EnumValue value="America/Montevideo" />
+			<EnumValue value="America/Nassau" />
+			<EnumValue value="America/New_York" />
+			<EnumValue value="America/Nipigon" />
+			<EnumValue value="America/Nome" />
+			<EnumValue value="America/Noronha" />
+			<EnumValue value="America/North_Dakota/Beulah" />
+			<EnumValue value="America/North_Dakota/Center" />
+			<EnumValue value="America/North_Dakota/New_Salem" />
+			<EnumValue value="America/Nuuk" />
+			<EnumValue value="America/Ojinaga" />
+			<EnumValue value="America/Panama" />
+			<EnumValue value="America/Pangnirtung" />
+			<EnumValue value="America/Paramaribo" />
+			<EnumValue value="America/Phoenix" />
+			<EnumValue value="America/Port-au-Prince" />
+			<EnumValue value="America/Port_of_Spain" />
+			<EnumValue value="America/Porto_Velho" />
+			<EnumValue value="America/Puerto_Rico" />
+			<EnumValue value="America/Punta_Arenas" />
+			<EnumValue value="America/Rainy_River" />
+			<EnumValue value="America/Rankin_Inlet" />
+			<EnumValue value="America/Recife" />
+			<EnumValue value="America/Regina" />
+			<EnumValue value="America/Resolute" />
+			<EnumValue value="America/Rio_Branco" />
+			<EnumValue value="America/Santarem" />
+			<EnumValue value="America/Santiago" />
+			<EnumValue value="America/Santo_Domingo" />
+			<EnumValue value="America/Sao_Paulo" />
+			<EnumValue value="America/Scoresbysund" />
+			<EnumValue value="America/Sitka" />
+			<EnumValue value="America/St_Johns" />
+			<EnumValue value="America/Swift_Current" />
+			<EnumValue value="America/Tegucigalpa" />
+			<EnumValue value="America/Thule" />
+			<EnumValue value="America/Thunder_Bay" />
+			<EnumValue value="America/Tijuana" />
+			<EnumValue value="America/Toronto" />
+			<EnumValue value="America/Vancouver" />
+			<EnumValue value="America/Whitehorse" />
+			<EnumValue value="America/Winnipeg" />
+			<EnumValue value="America/Yakutat" />
+			<EnumValue value="America/Yellowknife" />
+			<EnumValue value="Antarctica/Casey" />
+			<EnumValue value="Antarctica/Davis" />
+			<EnumValue value="Antarctica/DumontDUrville" />
+			<EnumValue value="Antarctica/Macquarie" />
+			<EnumValue value="Antarctica/Mawson" />
+			<EnumValue value="Antarctica/Palmer" />
+			<EnumValue value="Antarctica/Rothera" />
+			<EnumValue value="Antarctica/Syowa" />
+			<EnumValue value="Antarctica/Troll" />
+			<EnumValue value="Antarctica/Vostok" />
+			<EnumValue value="Asia/Almaty" />
+			<EnumValue value="Asia/Amman" />
+			<EnumValue value="Asia/Anadyr" />
+			<EnumValue value="Asia/Aqtau" />
+			<EnumValue value="Asia/Aqtobe" />
+			<EnumValue value="Asia/Ashgabat" />
+			<EnumValue value="Asia/Atyrau" />
+			<EnumValue value="Asia/Baghdad" />
+			<EnumValue value="Asia/Baku" />
+			<EnumValue value="Asia/Bangkok" />
+			<EnumValue value="Asia/Barnaul" />
+			<EnumValue value="Asia/Beirut" />
+			<EnumValue value="Asia/Bishkek" />
+			<EnumValue value="Asia/Brunei" />
+			<EnumValue value="Asia/Chita" />
+			<EnumValue value="Asia/Choibalsan" />
+			<EnumValue value="Asia/Colombo" />
+			<EnumValue value="Asia/Damascus" />
+			<EnumValue value="Asia/Dhaka" />
+			<EnumValue value="Asia/Dili" />
+			<EnumValue value="Asia/Dubai" />
+			<EnumValue value="Asia/Dushanbe" />
+			<EnumValue value="Asia/Famagusta" />
+			<EnumValue value="Asia/Gaza" />
+			<EnumValue value="Asia/Hebron" />
+			<EnumValue value="Asia/Ho_Chi_Minh" />
+			<EnumValue value="Asia/Hong_Kong" />
+			<EnumValue value="Asia/Hovd" />
+			<EnumValue value="Asia/Irkutsk" />
+			<EnumValue value="Asia/Jakarta" />
+			<EnumValue value="Asia/Jayapura" />
+			<EnumValue value="Asia/Jerusalem" />
+			<EnumValue value="Asia/Kabul" />
+			<EnumValue value="Asia/Kamchatka" />
+			<EnumValue value="Asia/Karachi" />
+			<EnumValue value="Asia/Kathmandu" />
+			<EnumValue value="Asia/Khandyga" />
+			<EnumValue value="Asia/Kolkata" />
+			<EnumValue value="Asia/Krasnoyarsk" />
+			<EnumValue value="Asia/Kuala_Lumpur" />
+			<EnumValue value="Asia/Kuching" />
+			<EnumValue value="Asia/Macau" />
+			<EnumValue value="Asia/Magadan" />
+			<EnumValue value="Asia/Makassar" />
+			<EnumValue value="Asia/Manila" />
+			<EnumValue value="Asia/Nicosia" />
+			<EnumValue value="Asia/Novokuznetsk" />
+			<EnumValue value="Asia/Novosibirsk" />
+			<EnumValue value="Asia/Omsk" />
+			<EnumValue value="Asia/Oral" />
+			<EnumValue value="Asia/Pontianak" />
+			<EnumValue value="Asia/Pyongyang" />
+			<EnumValue value="Asia/Qatar" />
+			<EnumValue value="Asia/Qostanay" />
+			<EnumValue value="Asia/Qyzylorda" />
+			<EnumValue value="Asia/Riyadh" />
+			<EnumValue value="Asia/Sakhalin" />
+			<EnumValue value="Asia/Samarkand" />
+			<EnumValue value="Asia/Seoul" />
+			<EnumValue value="Asia/Shanghai" />
+			<EnumValue value="Asia/Singapore" />
+			<EnumValue value="Asia/Srednekolymsk" />
+			<EnumValue value="Asia/Taipei" />
+			<EnumValue value="Asia/Tashkent" />
+			<EnumValue value="Asia/Tbilisi" />
+			<EnumValue value="Asia/Tehran" />
+			<EnumValue value="Asia/Thimphu" />
+			<EnumValue value="Asia/Tokyo" />
+			<EnumValue value="Asia/Tomsk" />
+			<EnumValue value="Asia/Ulaanbaatar" />
+			<EnumValue value="Asia/Urumqi" />
+			<EnumValue value="Asia/Ust-Nera" />
+			<EnumValue value="Asia/Vladivostok" />
+			<EnumValue value="Asia/Yakutsk" />
+			<EnumValue value="Asia/Yangon" />
+			<EnumValue value="Asia/Yekaterinburg" />
+			<EnumValue value="Asia/Yerevan" />
+			<EnumValue value="Atlantic/Azores" />
+			<EnumValue value="Atlantic/Bermuda" />
+			<EnumValue value="Atlantic/Canary" />
+			<EnumValue value="Atlantic/Cape_Verde" />
+			<EnumValue value="Atlantic/Faroe" />
+			<EnumValue value="Atlantic/Madeira" />
+			<EnumValue value="Atlantic/Reykjavik" />
+			<EnumValue value="Atlantic/South_Georgia" />
+			<EnumValue value="Atlantic/Stanley" />
+			<EnumValue value="Australia/Adelaide" />
+			<EnumValue value="Australia/Brisbane" />
+			<EnumValue value="Australia/Broken_Hill" />
+			<EnumValue value="Australia/Darwin" />
+			<EnumValue value="Australia/Eucla" />
+			<EnumValue value="Australia/Hobart" />
+			<EnumValue value="Australia/Lindeman" />
+			<EnumValue value="Australia/Lord_Howe" />
+			<EnumValue value="Australia/Melbourne" />
+			<EnumValue value="Australia/Perth" />
+			<EnumValue value="Australia/Sydney" />
+			<EnumValue value="CET" />
+			<EnumValue value="CST6CDT" />
+			<EnumValue value="EET" />
+			<EnumValue value="EST" />
+			<EnumValue value="EST5EDT" />
+			<EnumValue value="Etc/GMT" />
+			<EnumValue value="Etc/GMT+1" />
+			<EnumValue value="Etc/GMT+10" />
+			<EnumValue value="Etc/GMT+11" />
+			<EnumValue value="Etc/GMT+12" />
+			<EnumValue value="Etc/GMT+2" />
+			<EnumValue value="Etc/GMT+3" />
+			<EnumValue value="Etc/GMT+4" />
+			<EnumValue value="Etc/GMT+5" />
+			<EnumValue value="Etc/GMT+6" />
+			<EnumValue value="Etc/GMT+7" />
+			<EnumValue value="Etc/GMT+8" />
+			<EnumValue value="Etc/GMT+9" />
+			<EnumValue value="Etc/GMT-1" />
+			<EnumValue value="Etc/GMT-10" />
+			<EnumValue value="Etc/GMT-11" />
+			<EnumValue value="Etc/GMT-12" />
+			<EnumValue value="Etc/GMT-13" />
+			<EnumValue value="Etc/GMT-14" />
+			<EnumValue value="Etc/GMT-2" />
+			<EnumValue value="Etc/GMT-3" />
+			<EnumValue value="Etc/GMT-4" />
+			<EnumValue value="Etc/GMT-5" />
+			<EnumValue value="Etc/GMT-6" />
+			<EnumValue value="Etc/GMT-7" />
+			<EnumValue value="Etc/GMT-8" />
+			<EnumValue value="Etc/GMT-9" />
+			<EnumValue value="Etc/UTC" />
+			<EnumValue value="Europe/Amsterdam" />
+			<EnumValue value="Europe/Andorra" />
+			<EnumValue value="Europe/Astrakhan" />
+			<EnumValue value="Europe/Athens" />
+			<EnumValue value="Europe/Belgrade" />
+			<EnumValue value="Europe/Berlin" />
+			<EnumValue value="Europe/Brussels" />
+			<EnumValue value="Europe/Bucharest" />
+			<EnumValue value="Europe/Budapest" />
+			<EnumValue value="Europe/Chisinau" />
+			<EnumValue value="Europe/Copenhagen" />
+			<EnumValue value="Europe/Dublin" />
+			<EnumValue value="Europe/Gibraltar" />
+			<EnumValue value="Europe/Helsinki" />
+			<EnumValue value="Europe/Istanbul" />
+			<EnumValue value="Europe/Kaliningrad" />
+			<EnumValue value="Europe/Kiev" />
+			<EnumValue value="Europe/Kirov" />
+			<EnumValue value="Europe/Lisbon" />
+			<EnumValue value="Europe/London" />
+			<EnumValue value="Europe/Luxembourg" />
+			<EnumValue value="Europe/Madrid" />
+			<EnumValue value="Europe/Malta" />
+			<EnumValue value="Europe/Minsk" />
+			<EnumValue value="Europe/Monaco" />
+			<EnumValue value="Europe/Moscow" />
+			<EnumValue value="Europe/Oslo" />
+			<EnumValue value="Europe/Paris" />
+			<EnumValue value="Europe/Prague" />
+			<EnumValue value="Europe/Riga" />
+			<EnumValue value="Europe/Rome" />
+			<EnumValue value="Europe/Samara" />
+			<EnumValue value="Europe/Saratov" />
+			<EnumValue value="Europe/Simferopol" />
+			<EnumValue value="Europe/Sofia" />
+			<EnumValue value="Europe/Stockholm" />
+			<EnumValue value="Europe/Tallinn" />
+			<EnumValue value="Europe/Tirane" />
+			<EnumValue value="Europe/Ulyanovsk" />
+			<EnumValue value="Europe/Uzhgorod" />
+			<EnumValue value="Europe/Vienna" />
+			<EnumValue value="Europe/Vilnius" />
+			<EnumValue value="Europe/Volgograd" />
+			<EnumValue value="Europe/Warsaw" />
+			<EnumValue value="Europe/Zaporozhye" />
+			<EnumValue value="Europe/Zurich" />
+			<EnumValue value="HST" />
+			<EnumValue value="Indian/Chagos" />
+			<EnumValue value="Indian/Christmas" />
+			<EnumValue value="Indian/Cocos" />
+			<EnumValue value="Indian/Kerguelen" />
+			<EnumValue value="Indian/Mahe" />
+			<EnumValue value="Indian/Maldives" />
+			<EnumValue value="Indian/Mauritius" />
+			<EnumValue value="Indian/Reunion" />
+			<EnumValue value="MET" />
+			<EnumValue value="MST" />
+			<EnumValue value="MST7MDT" />
+			<EnumValue value="PST8PDT" />
+			<EnumValue value="Pacific/Apia" />
+			<EnumValue value="Pacific/Auckland" />
+			<EnumValue value="Pacific/Bougainville" />
+			<EnumValue value="Pacific/Chatham" />
+			<EnumValue value="Pacific/Chuuk" />
+			<EnumValue value="Pacific/Easter" />
+			<EnumValue value="Pacific/Efate" />
+			<EnumValue value="Pacific/Enderbury" />
+			<EnumValue value="Pacific/Fakaofo" />
+			<EnumValue value="Pacific/Fiji" />
+			<EnumValue value="Pacific/Funafuti" />
+			<EnumValue value="Pacific/Galapagos" />
+			<EnumValue value="Pacific/Gambier" />
+			<EnumValue value="Pacific/Guadalcanal" />
+			<EnumValue value="Pacific/Guam" />
+			<EnumValue value="Pacific/Honolulu" />
+			<EnumValue value="Pacific/Kiritimati" />
+			<EnumValue value="Pacific/Kosrae" />
+			<EnumValue value="Pacific/Kwajalein" />
+			<EnumValue value="Pacific/Majuro" />
+			<EnumValue value="Pacific/Marquesas" />
+			<EnumValue value="Pacific/Nauru" />
+			<EnumValue value="Pacific/Niue" />
+			<EnumValue value="Pacific/Norfolk" />
+			<EnumValue value="Pacific/Noumea" />
+			<EnumValue value="Pacific/Pago_Pago" />
+			<EnumValue value="Pacific/Palau" />
+			<EnumValue value="Pacific/Pitcairn" />
+			<EnumValue value="Pacific/Pohnpei" />
+			<EnumValue value="Pacific/Port_Moresby" />
+			<EnumValue value="Pacific/Rarotonga" />
+			<EnumValue value="Pacific/Tahiti" />
+			<EnumValue value="Pacific/Tarawa" />
+			<EnumValue value="Pacific/Tongatapu" />
+			<EnumValue value="Pacific/Wake" />
+			<EnumValue value="Pacific/Wallis" />
+			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz2" display_name="Timezone" datatype="enum" default_value="">
-			<EnumValue>Africa/Abidjan</EnumValue>
-			<EnumValue>Africa/Accra</EnumValue>
-			<EnumValue>Africa/Algiers</EnumValue>
-			<EnumValue>Africa/Bissau</EnumValue>
-			<EnumValue>Africa/Cairo</EnumValue>
-			<EnumValue>Africa/Casablanca</EnumValue>
-			<EnumValue>Africa/Ceuta</EnumValue>
-			<EnumValue>Africa/El_Aaiun</EnumValue>
-			<EnumValue>Africa/Johannesburg</EnumValue>
-			<EnumValue>Africa/Juba</EnumValue>
-			<EnumValue>Africa/Khartoum</EnumValue>
-			<EnumValue>Africa/Lagos</EnumValue>
-			<EnumValue>Africa/Maputo</EnumValue>
-			<EnumValue>Africa/Monrovia</EnumValue>
-			<EnumValue>Africa/Nairobi</EnumValue>
-			<EnumValue>Africa/Ndjamena</EnumValue>
-			<EnumValue>Africa/Sao_Tome</EnumValue>
-			<EnumValue>Africa/Tripoli</EnumValue>
-			<EnumValue>Africa/Tunis</EnumValue>
-			<EnumValue>Africa/Windhoek</EnumValue>
-			<EnumValue>America/Adak</EnumValue>
-			<EnumValue>America/Anchorage</EnumValue>
-			<EnumValue>America/Araguaina</EnumValue>
-			<EnumValue>America/Argentina/Buenos_Aires</EnumValue>
-			<EnumValue>America/Argentina/Catamarca</EnumValue>
-			<EnumValue>America/Argentina/Cordoba</EnumValue>
-			<EnumValue>America/Argentina/Jujuy</EnumValue>
-			<EnumValue>America/Argentina/La_Rioja</EnumValue>
-			<EnumValue>America/Argentina/Mendoza</EnumValue>
-			<EnumValue>America/Argentina/Rio_Gallegos</EnumValue>
-			<EnumValue>America/Argentina/Salta</EnumValue>
-			<EnumValue>America/Argentina/San_Juan</EnumValue>
-			<EnumValue>America/Argentina/San_Luis</EnumValue>
-			<EnumValue>America/Argentina/Tucuman</EnumValue>
-			<EnumValue>America/Argentina/Ushuaia</EnumValue>
-			<EnumValue>America/Asuncion</EnumValue>
-			<EnumValue>America/Atikokan</EnumValue>
-			<EnumValue>America/Bahia</EnumValue>
-			<EnumValue>America/Bahia_Banderas</EnumValue>
-			<EnumValue>America/Barbados</EnumValue>
-			<EnumValue>America/Belem</EnumValue>
-			<EnumValue>America/Belize</EnumValue>
-			<EnumValue>America/Blanc-Sablon</EnumValue>
-			<EnumValue>America/Boa_Vista</EnumValue>
-			<EnumValue>America/Bogota</EnumValue>
-			<EnumValue>America/Boise</EnumValue>
-			<EnumValue>America/Cambridge_Bay</EnumValue>
-			<EnumValue>America/Campo_Grande</EnumValue>
-			<EnumValue>America/Cancun</EnumValue>
-			<EnumValue>America/Caracas</EnumValue>
-			<EnumValue>America/Cayenne</EnumValue>
-			<EnumValue>America/Chicago</EnumValue>
-			<EnumValue>America/Chihuahua</EnumValue>
-			<EnumValue>America/Costa_Rica</EnumValue>
-			<EnumValue>America/Creston</EnumValue>
-			<EnumValue>America/Cuiaba</EnumValue>
-			<EnumValue>America/Curacao</EnumValue>
-			<EnumValue>America/Danmarkshavn</EnumValue>
-			<EnumValue>America/Dawson</EnumValue>
-			<EnumValue>America/Dawson_Creek</EnumValue>
-			<EnumValue>America/Denver</EnumValue>
-			<EnumValue>America/Detroit</EnumValue>
-			<EnumValue>America/Edmonton</EnumValue>
-			<EnumValue>America/Eirunepe</EnumValue>
-			<EnumValue>America/El_Salvador</EnumValue>
-			<EnumValue>America/Fort_Nelson</EnumValue>
-			<EnumValue>America/Fortaleza</EnumValue>
-			<EnumValue>America/Glace_Bay</EnumValue>
-			<EnumValue>America/Goose_Bay</EnumValue>
-			<EnumValue>America/Grand_Turk</EnumValue>
-			<EnumValue>America/Guatemala</EnumValue>
-			<EnumValue>America/Guayaquil</EnumValue>
-			<EnumValue>America/Guyana</EnumValue>
-			<EnumValue>America/Halifax</EnumValue>
-			<EnumValue>America/Havana</EnumValue>
-			<EnumValue>America/Hermosillo</EnumValue>
-			<EnumValue>America/Indiana/Indianapolis</EnumValue>
-			<EnumValue>America/Indiana/Knox</EnumValue>
-			<EnumValue>America/Indiana/Marengo</EnumValue>
-			<EnumValue>America/Indiana/Petersburg</EnumValue>
-			<EnumValue>America/Indiana/Tell_City</EnumValue>
-			<EnumValue>America/Indiana/Vevay</EnumValue>
-			<EnumValue>America/Indiana/Vincennes</EnumValue>
-			<EnumValue>America/Indiana/Winamac</EnumValue>
-			<EnumValue>America/Inuvik</EnumValue>
-			<EnumValue>America/Iqaluit</EnumValue>
-			<EnumValue>America/Jamaica</EnumValue>
-			<EnumValue>America/Juneau</EnumValue>
-			<EnumValue>America/Kentucky/Louisville</EnumValue>
-			<EnumValue>America/Kentucky/Monticello</EnumValue>
-			<EnumValue>America/La_Paz</EnumValue>
-			<EnumValue>America/Lima</EnumValue>
-			<EnumValue>America/Los_Angeles</EnumValue>
-			<EnumValue>America/Maceio</EnumValue>
-			<EnumValue>America/Managua</EnumValue>
-			<EnumValue>America/Manaus</EnumValue>
-			<EnumValue>America/Martinique</EnumValue>
-			<EnumValue>America/Matamoros</EnumValue>
-			<EnumValue>America/Mazatlan</EnumValue>
-			<EnumValue>America/Menominee</EnumValue>
-			<EnumValue>America/Merida</EnumValue>
-			<EnumValue>America/Metlakatla</EnumValue>
-			<EnumValue>America/Mexico_City</EnumValue>
-			<EnumValue>America/Miquelon</EnumValue>
-			<EnumValue>America/Moncton</EnumValue>
-			<EnumValue>America/Monterrey</EnumValue>
-			<EnumValue>America/Montevideo</EnumValue>
-			<EnumValue>America/Nassau</EnumValue>
-			<EnumValue>America/New_York</EnumValue>
-			<EnumValue>America/Nipigon</EnumValue>
-			<EnumValue>America/Nome</EnumValue>
-			<EnumValue>America/Noronha</EnumValue>
-			<EnumValue>America/North_Dakota/Beulah</EnumValue>
-			<EnumValue>America/North_Dakota/Center</EnumValue>
-			<EnumValue>America/North_Dakota/New_Salem</EnumValue>
-			<EnumValue>America/Nuuk</EnumValue>
-			<EnumValue>America/Ojinaga</EnumValue>
-			<EnumValue>America/Panama</EnumValue>
-			<EnumValue>America/Pangnirtung</EnumValue>
-			<EnumValue>America/Paramaribo</EnumValue>
-			<EnumValue>America/Phoenix</EnumValue>
-			<EnumValue>America/Port-au-Prince</EnumValue>
-			<EnumValue>America/Port_of_Spain</EnumValue>
-			<EnumValue>America/Porto_Velho</EnumValue>
-			<EnumValue>America/Puerto_Rico</EnumValue>
-			<EnumValue>America/Punta_Arenas</EnumValue>
-			<EnumValue>America/Rainy_River</EnumValue>
-			<EnumValue>America/Rankin_Inlet</EnumValue>
-			<EnumValue>America/Recife</EnumValue>
-			<EnumValue>America/Regina</EnumValue>
-			<EnumValue>America/Resolute</EnumValue>
-			<EnumValue>America/Rio_Branco</EnumValue>
-			<EnumValue>America/Santarem</EnumValue>
-			<EnumValue>America/Santiago</EnumValue>
-			<EnumValue>America/Santo_Domingo</EnumValue>
-			<EnumValue>America/Sao_Paulo</EnumValue>
-			<EnumValue>America/Scoresbysund</EnumValue>
-			<EnumValue>America/Sitka</EnumValue>
-			<EnumValue>America/St_Johns</EnumValue>
-			<EnumValue>America/Swift_Current</EnumValue>
-			<EnumValue>America/Tegucigalpa</EnumValue>
-			<EnumValue>America/Thule</EnumValue>
-			<EnumValue>America/Thunder_Bay</EnumValue>
-			<EnumValue>America/Tijuana</EnumValue>
-			<EnumValue>America/Toronto</EnumValue>
-			<EnumValue>America/Vancouver</EnumValue>
-			<EnumValue>America/Whitehorse</EnumValue>
-			<EnumValue>America/Winnipeg</EnumValue>
-			<EnumValue>America/Yakutat</EnumValue>
-			<EnumValue>America/Yellowknife</EnumValue>
-			<EnumValue>Antarctica/Casey</EnumValue>
-			<EnumValue>Antarctica/Davis</EnumValue>
-			<EnumValue>Antarctica/DumontDUrville</EnumValue>
-			<EnumValue>Antarctica/Macquarie</EnumValue>
-			<EnumValue>Antarctica/Mawson</EnumValue>
-			<EnumValue>Antarctica/Palmer</EnumValue>
-			<EnumValue>Antarctica/Rothera</EnumValue>
-			<EnumValue>Antarctica/Syowa</EnumValue>
-			<EnumValue>Antarctica/Troll</EnumValue>
-			<EnumValue>Antarctica/Vostok</EnumValue>
-			<EnumValue>Asia/Almaty</EnumValue>
-			<EnumValue>Asia/Amman</EnumValue>
-			<EnumValue>Asia/Anadyr</EnumValue>
-			<EnumValue>Asia/Aqtau</EnumValue>
-			<EnumValue>Asia/Aqtobe</EnumValue>
-			<EnumValue>Asia/Ashgabat</EnumValue>
-			<EnumValue>Asia/Atyrau</EnumValue>
-			<EnumValue>Asia/Baghdad</EnumValue>
-			<EnumValue>Asia/Baku</EnumValue>
-			<EnumValue>Asia/Bangkok</EnumValue>
-			<EnumValue>Asia/Barnaul</EnumValue>
-			<EnumValue>Asia/Beirut</EnumValue>
-			<EnumValue>Asia/Bishkek</EnumValue>
-			<EnumValue>Asia/Brunei</EnumValue>
-			<EnumValue>Asia/Chita</EnumValue>
-			<EnumValue>Asia/Choibalsan</EnumValue>
-			<EnumValue>Asia/Colombo</EnumValue>
-			<EnumValue>Asia/Damascus</EnumValue>
-			<EnumValue>Asia/Dhaka</EnumValue>
-			<EnumValue>Asia/Dili</EnumValue>
-			<EnumValue>Asia/Dubai</EnumValue>
-			<EnumValue>Asia/Dushanbe</EnumValue>
-			<EnumValue>Asia/Famagusta</EnumValue>
-			<EnumValue>Asia/Gaza</EnumValue>
-			<EnumValue>Asia/Hebron</EnumValue>
-			<EnumValue>Asia/Ho_Chi_Minh</EnumValue>
-			<EnumValue>Asia/Hong_Kong</EnumValue>
-			<EnumValue>Asia/Hovd</EnumValue>
-			<EnumValue>Asia/Irkutsk</EnumValue>
-			<EnumValue>Asia/Jakarta</EnumValue>
-			<EnumValue>Asia/Jayapura</EnumValue>
-			<EnumValue>Asia/Jerusalem</EnumValue>
-			<EnumValue>Asia/Kabul</EnumValue>
-			<EnumValue>Asia/Kamchatka</EnumValue>
-			<EnumValue>Asia/Karachi</EnumValue>
-			<EnumValue>Asia/Kathmandu</EnumValue>
-			<EnumValue>Asia/Khandyga</EnumValue>
-			<EnumValue>Asia/Kolkata</EnumValue>
-			<EnumValue>Asia/Krasnoyarsk</EnumValue>
-			<EnumValue>Asia/Kuala_Lumpur</EnumValue>
-			<EnumValue>Asia/Kuching</EnumValue>
-			<EnumValue>Asia/Macau</EnumValue>
-			<EnumValue>Asia/Magadan</EnumValue>
-			<EnumValue>Asia/Makassar</EnumValue>
-			<EnumValue>Asia/Manila</EnumValue>
-			<EnumValue>Asia/Nicosia</EnumValue>
-			<EnumValue>Asia/Novokuznetsk</EnumValue>
-			<EnumValue>Asia/Novosibirsk</EnumValue>
-			<EnumValue>Asia/Omsk</EnumValue>
-			<EnumValue>Asia/Oral</EnumValue>
-			<EnumValue>Asia/Pontianak</EnumValue>
-			<EnumValue>Asia/Pyongyang</EnumValue>
-			<EnumValue>Asia/Qatar</EnumValue>
-			<EnumValue>Asia/Qostanay</EnumValue>
-			<EnumValue>Asia/Qyzylorda</EnumValue>
-			<EnumValue>Asia/Riyadh</EnumValue>
-			<EnumValue>Asia/Sakhalin</EnumValue>
-			<EnumValue>Asia/Samarkand</EnumValue>
-			<EnumValue>Asia/Seoul</EnumValue>
-			<EnumValue>Asia/Shanghai</EnumValue>
-			<EnumValue>Asia/Singapore</EnumValue>
-			<EnumValue>Asia/Srednekolymsk</EnumValue>
-			<EnumValue>Asia/Taipei</EnumValue>
-			<EnumValue>Asia/Tashkent</EnumValue>
-			<EnumValue>Asia/Tbilisi</EnumValue>
-			<EnumValue>Asia/Tehran</EnumValue>
-			<EnumValue>Asia/Thimphu</EnumValue>
-			<EnumValue>Asia/Tokyo</EnumValue>
-			<EnumValue>Asia/Tomsk</EnumValue>
-			<EnumValue>Asia/Ulaanbaatar</EnumValue>
-			<EnumValue>Asia/Urumqi</EnumValue>
-			<EnumValue>Asia/Ust-Nera</EnumValue>
-			<EnumValue>Asia/Vladivostok</EnumValue>
-			<EnumValue>Asia/Yakutsk</EnumValue>
-			<EnumValue>Asia/Yangon</EnumValue>
-			<EnumValue>Asia/Yekaterinburg</EnumValue>
-			<EnumValue>Asia/Yerevan</EnumValue>
-			<EnumValue>Atlantic/Azores</EnumValue>
-			<EnumValue>Atlantic/Bermuda</EnumValue>
-			<EnumValue>Atlantic/Canary</EnumValue>
-			<EnumValue>Atlantic/Cape_Verde</EnumValue>
-			<EnumValue>Atlantic/Faroe</EnumValue>
-			<EnumValue>Atlantic/Madeira</EnumValue>
-			<EnumValue>Atlantic/Reykjavik</EnumValue>
-			<EnumValue>Atlantic/South_Georgia</EnumValue>
-			<EnumValue>Atlantic/Stanley</EnumValue>
-			<EnumValue>Australia/Adelaide</EnumValue>
-			<EnumValue>Australia/Brisbane</EnumValue>
-			<EnumValue>Australia/Broken_Hill</EnumValue>
-			<EnumValue>Australia/Darwin</EnumValue>
-			<EnumValue>Australia/Eucla</EnumValue>
-			<EnumValue>Australia/Hobart</EnumValue>
-			<EnumValue>Australia/Lindeman</EnumValue>
-			<EnumValue>Australia/Lord_Howe</EnumValue>
-			<EnumValue>Australia/Melbourne</EnumValue>
-			<EnumValue>Australia/Perth</EnumValue>
-			<EnumValue>Australia/Sydney</EnumValue>
-			<EnumValue>CET</EnumValue>
-			<EnumValue>CST6CDT</EnumValue>
-			<EnumValue>EET</EnumValue>
-			<EnumValue>EST</EnumValue>
-			<EnumValue>EST5EDT</EnumValue>
-			<EnumValue>Etc/GMT</EnumValue>
-			<EnumValue>Etc/GMT+1</EnumValue>
-			<EnumValue>Etc/GMT+10</EnumValue>
-			<EnumValue>Etc/GMT+11</EnumValue>
-			<EnumValue>Etc/GMT+12</EnumValue>
-			<EnumValue>Etc/GMT+2</EnumValue>
-			<EnumValue>Etc/GMT+3</EnumValue>
-			<EnumValue>Etc/GMT+4</EnumValue>
-			<EnumValue>Etc/GMT+5</EnumValue>
-			<EnumValue>Etc/GMT+6</EnumValue>
-			<EnumValue>Etc/GMT+7</EnumValue>
-			<EnumValue>Etc/GMT+8</EnumValue>
-			<EnumValue>Etc/GMT+9</EnumValue>
-			<EnumValue>Etc/GMT-1</EnumValue>
-			<EnumValue>Etc/GMT-10</EnumValue>
-			<EnumValue>Etc/GMT-11</EnumValue>
-			<EnumValue>Etc/GMT-12</EnumValue>
-			<EnumValue>Etc/GMT-13</EnumValue>
-			<EnumValue>Etc/GMT-14</EnumValue>
-			<EnumValue>Etc/GMT-2</EnumValue>
-			<EnumValue>Etc/GMT-3</EnumValue>
-			<EnumValue>Etc/GMT-4</EnumValue>
-			<EnumValue>Etc/GMT-5</EnumValue>
-			<EnumValue>Etc/GMT-6</EnumValue>
-			<EnumValue>Etc/GMT-7</EnumValue>
-			<EnumValue>Etc/GMT-8</EnumValue>
-			<EnumValue>Etc/GMT-9</EnumValue>
-			<EnumValue>Etc/UTC</EnumValue>
-			<EnumValue>Europe/Amsterdam</EnumValue>
-			<EnumValue>Europe/Andorra</EnumValue>
-			<EnumValue>Europe/Astrakhan</EnumValue>
-			<EnumValue>Europe/Athens</EnumValue>
-			<EnumValue>Europe/Belgrade</EnumValue>
-			<EnumValue>Europe/Berlin</EnumValue>
-			<EnumValue>Europe/Brussels</EnumValue>
-			<EnumValue>Europe/Bucharest</EnumValue>
-			<EnumValue>Europe/Budapest</EnumValue>
-			<EnumValue>Europe/Chisinau</EnumValue>
-			<EnumValue>Europe/Copenhagen</EnumValue>
-			<EnumValue>Europe/Dublin</EnumValue>
-			<EnumValue>Europe/Gibraltar</EnumValue>
-			<EnumValue>Europe/Helsinki</EnumValue>
-			<EnumValue>Europe/Istanbul</EnumValue>
-			<EnumValue>Europe/Kaliningrad</EnumValue>
-			<EnumValue>Europe/Kiev</EnumValue>
-			<EnumValue>Europe/Kirov</EnumValue>
-			<EnumValue>Europe/Lisbon</EnumValue>
-			<EnumValue>Europe/London</EnumValue>
-			<EnumValue>Europe/Luxembourg</EnumValue>
-			<EnumValue>Europe/Madrid</EnumValue>
-			<EnumValue>Europe/Malta</EnumValue>
-			<EnumValue>Europe/Minsk</EnumValue>
-			<EnumValue>Europe/Monaco</EnumValue>
-			<EnumValue>Europe/Moscow</EnumValue>
-			<EnumValue>Europe/Oslo</EnumValue>
-			<EnumValue>Europe/Paris</EnumValue>
-			<EnumValue>Europe/Prague</EnumValue>
-			<EnumValue>Europe/Riga</EnumValue>
-			<EnumValue>Europe/Rome</EnumValue>
-			<EnumValue>Europe/Samara</EnumValue>
-			<EnumValue>Europe/Saratov</EnumValue>
-			<EnumValue>Europe/Simferopol</EnumValue>
-			<EnumValue>Europe/Sofia</EnumValue>
-			<EnumValue>Europe/Stockholm</EnumValue>
-			<EnumValue>Europe/Tallinn</EnumValue>
-			<EnumValue>Europe/Tirane</EnumValue>
-			<EnumValue>Europe/Ulyanovsk</EnumValue>
-			<EnumValue>Europe/Uzhgorod</EnumValue>
-			<EnumValue>Europe/Vienna</EnumValue>
-			<EnumValue>Europe/Vilnius</EnumValue>
-			<EnumValue>Europe/Volgograd</EnumValue>
-			<EnumValue>Europe/Warsaw</EnumValue>
-			<EnumValue>Europe/Zaporozhye</EnumValue>
-			<EnumValue>Europe/Zurich</EnumValue>
-			<EnumValue>HST</EnumValue>
-			<EnumValue>Indian/Chagos</EnumValue>
-			<EnumValue>Indian/Christmas</EnumValue>
-			<EnumValue>Indian/Cocos</EnumValue>
-			<EnumValue>Indian/Kerguelen</EnumValue>
-			<EnumValue>Indian/Mahe</EnumValue>
-			<EnumValue>Indian/Maldives</EnumValue>
-			<EnumValue>Indian/Mauritius</EnumValue>
-			<EnumValue>Indian/Reunion</EnumValue>
-			<EnumValue>MET</EnumValue>
-			<EnumValue>MST</EnumValue>
-			<EnumValue>MST7MDT</EnumValue>
-			<EnumValue>PST8PDT</EnumValue>
-			<EnumValue>Pacific/Apia</EnumValue>
-			<EnumValue>Pacific/Auckland</EnumValue>
-			<EnumValue>Pacific/Bougainville</EnumValue>
-			<EnumValue>Pacific/Chatham</EnumValue>
-			<EnumValue>Pacific/Chuuk</EnumValue>
-			<EnumValue>Pacific/Easter</EnumValue>
-			<EnumValue>Pacific/Efate</EnumValue>
-			<EnumValue>Pacific/Enderbury</EnumValue>
-			<EnumValue>Pacific/Fakaofo</EnumValue>
-			<EnumValue>Pacific/Fiji</EnumValue>
-			<EnumValue>Pacific/Funafuti</EnumValue>
-			<EnumValue>Pacific/Galapagos</EnumValue>
-			<EnumValue>Pacific/Gambier</EnumValue>
-			<EnumValue>Pacific/Guadalcanal</EnumValue>
-			<EnumValue>Pacific/Guam</EnumValue>
-			<EnumValue>Pacific/Honolulu</EnumValue>
-			<EnumValue>Pacific/Kiritimati</EnumValue>
-			<EnumValue>Pacific/Kosrae</EnumValue>
-			<EnumValue>Pacific/Kwajalein</EnumValue>
-			<EnumValue>Pacific/Majuro</EnumValue>
-			<EnumValue>Pacific/Marquesas</EnumValue>
-			<EnumValue>Pacific/Nauru</EnumValue>
-			<EnumValue>Pacific/Niue</EnumValue>
-			<EnumValue>Pacific/Norfolk</EnumValue>
-			<EnumValue>Pacific/Noumea</EnumValue>
-			<EnumValue>Pacific/Pago_Pago</EnumValue>
-			<EnumValue>Pacific/Palau</EnumValue>
-			<EnumValue>Pacific/Pitcairn</EnumValue>
-			<EnumValue>Pacific/Pohnpei</EnumValue>
-			<EnumValue>Pacific/Port_Moresby</EnumValue>
-			<EnumValue>Pacific/Rarotonga</EnumValue>
-			<EnumValue>Pacific/Tahiti</EnumValue>
-			<EnumValue>Pacific/Tarawa</EnumValue>
-			<EnumValue>Pacific/Tongatapu</EnumValue>
-			<EnumValue>Pacific/Wake</EnumValue>
-			<EnumValue>Pacific/Wallis</EnumValue>
-			<EnumValue>WET</EnumValue>
+			<EnumValue value="Africa/Abidjan" />
+			<EnumValue value="Africa/Accra" />
+			<EnumValue value="Africa/Algiers" />
+			<EnumValue value="Africa/Bissau" />
+			<EnumValue value="Africa/Cairo" />
+			<EnumValue value="Africa/Casablanca" />
+			<EnumValue value="Africa/Ceuta" />
+			<EnumValue value="Africa/El_Aaiun" />
+			<EnumValue value="Africa/Johannesburg" />
+			<EnumValue value="Africa/Juba" />
+			<EnumValue value="Africa/Khartoum" />
+			<EnumValue value="Africa/Lagos" />
+			<EnumValue value="Africa/Maputo" />
+			<EnumValue value="Africa/Monrovia" />
+			<EnumValue value="Africa/Nairobi" />
+			<EnumValue value="Africa/Ndjamena" />
+			<EnumValue value="Africa/Sao_Tome" />
+			<EnumValue value="Africa/Tripoli" />
+			<EnumValue value="Africa/Tunis" />
+			<EnumValue value="Africa/Windhoek" />
+			<EnumValue value="America/Adak" />
+			<EnumValue value="America/Anchorage" />
+			<EnumValue value="America/Araguaina" />
+			<EnumValue value="America/Argentina/Buenos_Aires" />
+			<EnumValue value="America/Argentina/Catamarca" />
+			<EnumValue value="America/Argentina/Cordoba" />
+			<EnumValue value="America/Argentina/Jujuy" />
+			<EnumValue value="America/Argentina/La_Rioja" />
+			<EnumValue value="America/Argentina/Mendoza" />
+			<EnumValue value="America/Argentina/Rio_Gallegos" />
+			<EnumValue value="America/Argentina/Salta" />
+			<EnumValue value="America/Argentina/San_Juan" />
+			<EnumValue value="America/Argentina/San_Luis" />
+			<EnumValue value="America/Argentina/Tucuman" />
+			<EnumValue value="America/Argentina/Ushuaia" />
+			<EnumValue value="America/Asuncion" />
+			<EnumValue value="America/Atikokan" />
+			<EnumValue value="America/Bahia" />
+			<EnumValue value="America/Bahia_Banderas" />
+			<EnumValue value="America/Barbados" />
+			<EnumValue value="America/Belem" />
+			<EnumValue value="America/Belize" />
+			<EnumValue value="America/Blanc-Sablon" />
+			<EnumValue value="America/Boa_Vista" />
+			<EnumValue value="America/Bogota" />
+			<EnumValue value="America/Boise" />
+			<EnumValue value="America/Cambridge_Bay" />
+			<EnumValue value="America/Campo_Grande" />
+			<EnumValue value="America/Cancun" />
+			<EnumValue value="America/Caracas" />
+			<EnumValue value="America/Cayenne" />
+			<EnumValue value="America/Chicago" />
+			<EnumValue value="America/Chihuahua" />
+			<EnumValue value="America/Costa_Rica" />
+			<EnumValue value="America/Creston" />
+			<EnumValue value="America/Cuiaba" />
+			<EnumValue value="America/Curacao" />
+			<EnumValue value="America/Danmarkshavn" />
+			<EnumValue value="America/Dawson" />
+			<EnumValue value="America/Dawson_Creek" />
+			<EnumValue value="America/Denver" />
+			<EnumValue value="America/Detroit" />
+			<EnumValue value="America/Edmonton" />
+			<EnumValue value="America/Eirunepe" />
+			<EnumValue value="America/El_Salvador" />
+			<EnumValue value="America/Fort_Nelson" />
+			<EnumValue value="America/Fortaleza" />
+			<EnumValue value="America/Glace_Bay" />
+			<EnumValue value="America/Goose_Bay" />
+			<EnumValue value="America/Grand_Turk" />
+			<EnumValue value="America/Guatemala" />
+			<EnumValue value="America/Guayaquil" />
+			<EnumValue value="America/Guyana" />
+			<EnumValue value="America/Halifax" />
+			<EnumValue value="America/Havana" />
+			<EnumValue value="America/Hermosillo" />
+			<EnumValue value="America/Indiana/Indianapolis" />
+			<EnumValue value="America/Indiana/Knox" />
+			<EnumValue value="America/Indiana/Marengo" />
+			<EnumValue value="America/Indiana/Petersburg" />
+			<EnumValue value="America/Indiana/Tell_City" />
+			<EnumValue value="America/Indiana/Vevay" />
+			<EnumValue value="America/Indiana/Vincennes" />
+			<EnumValue value="America/Indiana/Winamac" />
+			<EnumValue value="America/Inuvik" />
+			<EnumValue value="America/Iqaluit" />
+			<EnumValue value="America/Jamaica" />
+			<EnumValue value="America/Juneau" />
+			<EnumValue value="America/Kentucky/Louisville" />
+			<EnumValue value="America/Kentucky/Monticello" />
+			<EnumValue value="America/La_Paz" />
+			<EnumValue value="America/Lima" />
+			<EnumValue value="America/Los_Angeles" />
+			<EnumValue value="America/Maceio" />
+			<EnumValue value="America/Managua" />
+			<EnumValue value="America/Manaus" />
+			<EnumValue value="America/Martinique" />
+			<EnumValue value="America/Matamoros" />
+			<EnumValue value="America/Mazatlan" />
+			<EnumValue value="America/Menominee" />
+			<EnumValue value="America/Merida" />
+			<EnumValue value="America/Metlakatla" />
+			<EnumValue value="America/Mexico_City" />
+			<EnumValue value="America/Miquelon" />
+			<EnumValue value="America/Moncton" />
+			<EnumValue value="America/Monterrey" />
+			<EnumValue value="America/Montevideo" />
+			<EnumValue value="America/Nassau" />
+			<EnumValue value="America/New_York" />
+			<EnumValue value="America/Nipigon" />
+			<EnumValue value="America/Nome" />
+			<EnumValue value="America/Noronha" />
+			<EnumValue value="America/North_Dakota/Beulah" />
+			<EnumValue value="America/North_Dakota/Center" />
+			<EnumValue value="America/North_Dakota/New_Salem" />
+			<EnumValue value="America/Nuuk" />
+			<EnumValue value="America/Ojinaga" />
+			<EnumValue value="America/Panama" />
+			<EnumValue value="America/Pangnirtung" />
+			<EnumValue value="America/Paramaribo" />
+			<EnumValue value="America/Phoenix" />
+			<EnumValue value="America/Port-au-Prince" />
+			<EnumValue value="America/Port_of_Spain" />
+			<EnumValue value="America/Porto_Velho" />
+			<EnumValue value="America/Puerto_Rico" />
+			<EnumValue value="America/Punta_Arenas" />
+			<EnumValue value="America/Rainy_River" />
+			<EnumValue value="America/Rankin_Inlet" />
+			<EnumValue value="America/Recife" />
+			<EnumValue value="America/Regina" />
+			<EnumValue value="America/Resolute" />
+			<EnumValue value="America/Rio_Branco" />
+			<EnumValue value="America/Santarem" />
+			<EnumValue value="America/Santiago" />
+			<EnumValue value="America/Santo_Domingo" />
+			<EnumValue value="America/Sao_Paulo" />
+			<EnumValue value="America/Scoresbysund" />
+			<EnumValue value="America/Sitka" />
+			<EnumValue value="America/St_Johns" />
+			<EnumValue value="America/Swift_Current" />
+			<EnumValue value="America/Tegucigalpa" />
+			<EnumValue value="America/Thule" />
+			<EnumValue value="America/Thunder_Bay" />
+			<EnumValue value="America/Tijuana" />
+			<EnumValue value="America/Toronto" />
+			<EnumValue value="America/Vancouver" />
+			<EnumValue value="America/Whitehorse" />
+			<EnumValue value="America/Winnipeg" />
+			<EnumValue value="America/Yakutat" />
+			<EnumValue value="America/Yellowknife" />
+			<EnumValue value="Antarctica/Casey" />
+			<EnumValue value="Antarctica/Davis" />
+			<EnumValue value="Antarctica/DumontDUrville" />
+			<EnumValue value="Antarctica/Macquarie" />
+			<EnumValue value="Antarctica/Mawson" />
+			<EnumValue value="Antarctica/Palmer" />
+			<EnumValue value="Antarctica/Rothera" />
+			<EnumValue value="Antarctica/Syowa" />
+			<EnumValue value="Antarctica/Troll" />
+			<EnumValue value="Antarctica/Vostok" />
+			<EnumValue value="Asia/Almaty" />
+			<EnumValue value="Asia/Amman" />
+			<EnumValue value="Asia/Anadyr" />
+			<EnumValue value="Asia/Aqtau" />
+			<EnumValue value="Asia/Aqtobe" />
+			<EnumValue value="Asia/Ashgabat" />
+			<EnumValue value="Asia/Atyrau" />
+			<EnumValue value="Asia/Baghdad" />
+			<EnumValue value="Asia/Baku" />
+			<EnumValue value="Asia/Bangkok" />
+			<EnumValue value="Asia/Barnaul" />
+			<EnumValue value="Asia/Beirut" />
+			<EnumValue value="Asia/Bishkek" />
+			<EnumValue value="Asia/Brunei" />
+			<EnumValue value="Asia/Chita" />
+			<EnumValue value="Asia/Choibalsan" />
+			<EnumValue value="Asia/Colombo" />
+			<EnumValue value="Asia/Damascus" />
+			<EnumValue value="Asia/Dhaka" />
+			<EnumValue value="Asia/Dili" />
+			<EnumValue value="Asia/Dubai" />
+			<EnumValue value="Asia/Dushanbe" />
+			<EnumValue value="Asia/Famagusta" />
+			<EnumValue value="Asia/Gaza" />
+			<EnumValue value="Asia/Hebron" />
+			<EnumValue value="Asia/Ho_Chi_Minh" />
+			<EnumValue value="Asia/Hong_Kong" />
+			<EnumValue value="Asia/Hovd" />
+			<EnumValue value="Asia/Irkutsk" />
+			<EnumValue value="Asia/Jakarta" />
+			<EnumValue value="Asia/Jayapura" />
+			<EnumValue value="Asia/Jerusalem" />
+			<EnumValue value="Asia/Kabul" />
+			<EnumValue value="Asia/Kamchatka" />
+			<EnumValue value="Asia/Karachi" />
+			<EnumValue value="Asia/Kathmandu" />
+			<EnumValue value="Asia/Khandyga" />
+			<EnumValue value="Asia/Kolkata" />
+			<EnumValue value="Asia/Krasnoyarsk" />
+			<EnumValue value="Asia/Kuala_Lumpur" />
+			<EnumValue value="Asia/Kuching" />
+			<EnumValue value="Asia/Macau" />
+			<EnumValue value="Asia/Magadan" />
+			<EnumValue value="Asia/Makassar" />
+			<EnumValue value="Asia/Manila" />
+			<EnumValue value="Asia/Nicosia" />
+			<EnumValue value="Asia/Novokuznetsk" />
+			<EnumValue value="Asia/Novosibirsk" />
+			<EnumValue value="Asia/Omsk" />
+			<EnumValue value="Asia/Oral" />
+			<EnumValue value="Asia/Pontianak" />
+			<EnumValue value="Asia/Pyongyang" />
+			<EnumValue value="Asia/Qatar" />
+			<EnumValue value="Asia/Qostanay" />
+			<EnumValue value="Asia/Qyzylorda" />
+			<EnumValue value="Asia/Riyadh" />
+			<EnumValue value="Asia/Sakhalin" />
+			<EnumValue value="Asia/Samarkand" />
+			<EnumValue value="Asia/Seoul" />
+			<EnumValue value="Asia/Shanghai" />
+			<EnumValue value="Asia/Singapore" />
+			<EnumValue value="Asia/Srednekolymsk" />
+			<EnumValue value="Asia/Taipei" />
+			<EnumValue value="Asia/Tashkent" />
+			<EnumValue value="Asia/Tbilisi" />
+			<EnumValue value="Asia/Tehran" />
+			<EnumValue value="Asia/Thimphu" />
+			<EnumValue value="Asia/Tokyo" />
+			<EnumValue value="Asia/Tomsk" />
+			<EnumValue value="Asia/Ulaanbaatar" />
+			<EnumValue value="Asia/Urumqi" />
+			<EnumValue value="Asia/Ust-Nera" />
+			<EnumValue value="Asia/Vladivostok" />
+			<EnumValue value="Asia/Yakutsk" />
+			<EnumValue value="Asia/Yangon" />
+			<EnumValue value="Asia/Yekaterinburg" />
+			<EnumValue value="Asia/Yerevan" />
+			<EnumValue value="Atlantic/Azores" />
+			<EnumValue value="Atlantic/Bermuda" />
+			<EnumValue value="Atlantic/Canary" />
+			<EnumValue value="Atlantic/Cape_Verde" />
+			<EnumValue value="Atlantic/Faroe" />
+			<EnumValue value="Atlantic/Madeira" />
+			<EnumValue value="Atlantic/Reykjavik" />
+			<EnumValue value="Atlantic/South_Georgia" />
+			<EnumValue value="Atlantic/Stanley" />
+			<EnumValue value="Australia/Adelaide" />
+			<EnumValue value="Australia/Brisbane" />
+			<EnumValue value="Australia/Broken_Hill" />
+			<EnumValue value="Australia/Darwin" />
+			<EnumValue value="Australia/Eucla" />
+			<EnumValue value="Australia/Hobart" />
+			<EnumValue value="Australia/Lindeman" />
+			<EnumValue value="Australia/Lord_Howe" />
+			<EnumValue value="Australia/Melbourne" />
+			<EnumValue value="Australia/Perth" />
+			<EnumValue value="Australia/Sydney" />
+			<EnumValue value="CET" />
+			<EnumValue value="CST6CDT" />
+			<EnumValue value="EET" />
+			<EnumValue value="EST" />
+			<EnumValue value="EST5EDT" />
+			<EnumValue value="Etc/GMT" />
+			<EnumValue value="Etc/GMT+1" />
+			<EnumValue value="Etc/GMT+10" />
+			<EnumValue value="Etc/GMT+11" />
+			<EnumValue value="Etc/GMT+12" />
+			<EnumValue value="Etc/GMT+2" />
+			<EnumValue value="Etc/GMT+3" />
+			<EnumValue value="Etc/GMT+4" />
+			<EnumValue value="Etc/GMT+5" />
+			<EnumValue value="Etc/GMT+6" />
+			<EnumValue value="Etc/GMT+7" />
+			<EnumValue value="Etc/GMT+8" />
+			<EnumValue value="Etc/GMT+9" />
+			<EnumValue value="Etc/GMT-1" />
+			<EnumValue value="Etc/GMT-10" />
+			<EnumValue value="Etc/GMT-11" />
+			<EnumValue value="Etc/GMT-12" />
+			<EnumValue value="Etc/GMT-13" />
+			<EnumValue value="Etc/GMT-14" />
+			<EnumValue value="Etc/GMT-2" />
+			<EnumValue value="Etc/GMT-3" />
+			<EnumValue value="Etc/GMT-4" />
+			<EnumValue value="Etc/GMT-5" />
+			<EnumValue value="Etc/GMT-6" />
+			<EnumValue value="Etc/GMT-7" />
+			<EnumValue value="Etc/GMT-8" />
+			<EnumValue value="Etc/GMT-9" />
+			<EnumValue value="Etc/UTC" />
+			<EnumValue value="Europe/Amsterdam" />
+			<EnumValue value="Europe/Andorra" />
+			<EnumValue value="Europe/Astrakhan" />
+			<EnumValue value="Europe/Athens" />
+			<EnumValue value="Europe/Belgrade" />
+			<EnumValue value="Europe/Berlin" />
+			<EnumValue value="Europe/Brussels" />
+			<EnumValue value="Europe/Bucharest" />
+			<EnumValue value="Europe/Budapest" />
+			<EnumValue value="Europe/Chisinau" />
+			<EnumValue value="Europe/Copenhagen" />
+			<EnumValue value="Europe/Dublin" />
+			<EnumValue value="Europe/Gibraltar" />
+			<EnumValue value="Europe/Helsinki" />
+			<EnumValue value="Europe/Istanbul" />
+			<EnumValue value="Europe/Kaliningrad" />
+			<EnumValue value="Europe/Kiev" />
+			<EnumValue value="Europe/Kirov" />
+			<EnumValue value="Europe/Lisbon" />
+			<EnumValue value="Europe/London" />
+			<EnumValue value="Europe/Luxembourg" />
+			<EnumValue value="Europe/Madrid" />
+			<EnumValue value="Europe/Malta" />
+			<EnumValue value="Europe/Minsk" />
+			<EnumValue value="Europe/Monaco" />
+			<EnumValue value="Europe/Moscow" />
+			<EnumValue value="Europe/Oslo" />
+			<EnumValue value="Europe/Paris" />
+			<EnumValue value="Europe/Prague" />
+			<EnumValue value="Europe/Riga" />
+			<EnumValue value="Europe/Rome" />
+			<EnumValue value="Europe/Samara" />
+			<EnumValue value="Europe/Saratov" />
+			<EnumValue value="Europe/Simferopol" />
+			<EnumValue value="Europe/Sofia" />
+			<EnumValue value="Europe/Stockholm" />
+			<EnumValue value="Europe/Tallinn" />
+			<EnumValue value="Europe/Tirane" />
+			<EnumValue value="Europe/Ulyanovsk" />
+			<EnumValue value="Europe/Uzhgorod" />
+			<EnumValue value="Europe/Vienna" />
+			<EnumValue value="Europe/Vilnius" />
+			<EnumValue value="Europe/Volgograd" />
+			<EnumValue value="Europe/Warsaw" />
+			<EnumValue value="Europe/Zaporozhye" />
+			<EnumValue value="Europe/Zurich" />
+			<EnumValue value="HST" />
+			<EnumValue value="Indian/Chagos" />
+			<EnumValue value="Indian/Christmas" />
+			<EnumValue value="Indian/Cocos" />
+			<EnumValue value="Indian/Kerguelen" />
+			<EnumValue value="Indian/Mahe" />
+			<EnumValue value="Indian/Maldives" />
+			<EnumValue value="Indian/Mauritius" />
+			<EnumValue value="Indian/Reunion" />
+			<EnumValue value="MET" />
+			<EnumValue value="MST" />
+			<EnumValue value="MST7MDT" />
+			<EnumValue value="PST8PDT" />
+			<EnumValue value="Pacific/Apia" />
+			<EnumValue value="Pacific/Auckland" />
+			<EnumValue value="Pacific/Bougainville" />
+			<EnumValue value="Pacific/Chatham" />
+			<EnumValue value="Pacific/Chuuk" />
+			<EnumValue value="Pacific/Easter" />
+			<EnumValue value="Pacific/Efate" />
+			<EnumValue value="Pacific/Enderbury" />
+			<EnumValue value="Pacific/Fakaofo" />
+			<EnumValue value="Pacific/Fiji" />
+			<EnumValue value="Pacific/Funafuti" />
+			<EnumValue value="Pacific/Galapagos" />
+			<EnumValue value="Pacific/Gambier" />
+			<EnumValue value="Pacific/Guadalcanal" />
+			<EnumValue value="Pacific/Guam" />
+			<EnumValue value="Pacific/Honolulu" />
+			<EnumValue value="Pacific/Kiritimati" />
+			<EnumValue value="Pacific/Kosrae" />
+			<EnumValue value="Pacific/Kwajalein" />
+			<EnumValue value="Pacific/Majuro" />
+			<EnumValue value="Pacific/Marquesas" />
+			<EnumValue value="Pacific/Nauru" />
+			<EnumValue value="Pacific/Niue" />
+			<EnumValue value="Pacific/Norfolk" />
+			<EnumValue value="Pacific/Noumea" />
+			<EnumValue value="Pacific/Pago_Pago" />
+			<EnumValue value="Pacific/Palau" />
+			<EnumValue value="Pacific/Pitcairn" />
+			<EnumValue value="Pacific/Pohnpei" />
+			<EnumValue value="Pacific/Port_Moresby" />
+			<EnumValue value="Pacific/Rarotonga" />
+			<EnumValue value="Pacific/Tahiti" />
+			<EnumValue value="Pacific/Tarawa" />
+			<EnumValue value="Pacific/Tongatapu" />
+			<EnumValue value="Pacific/Wake" />
+			<EnumValue value="Pacific/Wallis" />
+			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz3" display_name="Timezone" datatype="enum" default_value="">
-			<EnumValue>Africa/Abidjan</EnumValue>
-			<EnumValue>Africa/Accra</EnumValue>
-			<EnumValue>Africa/Algiers</EnumValue>
-			<EnumValue>Africa/Bissau</EnumValue>
-			<EnumValue>Africa/Cairo</EnumValue>
-			<EnumValue>Africa/Casablanca</EnumValue>
-			<EnumValue>Africa/Ceuta</EnumValue>
-			<EnumValue>Africa/El_Aaiun</EnumValue>
-			<EnumValue>Africa/Johannesburg</EnumValue>
-			<EnumValue>Africa/Juba</EnumValue>
-			<EnumValue>Africa/Khartoum</EnumValue>
-			<EnumValue>Africa/Lagos</EnumValue>
-			<EnumValue>Africa/Maputo</EnumValue>
-			<EnumValue>Africa/Monrovia</EnumValue>
-			<EnumValue>Africa/Nairobi</EnumValue>
-			<EnumValue>Africa/Ndjamena</EnumValue>
-			<EnumValue>Africa/Sao_Tome</EnumValue>
-			<EnumValue>Africa/Tripoli</EnumValue>
-			<EnumValue>Africa/Tunis</EnumValue>
-			<EnumValue>Africa/Windhoek</EnumValue>
-			<EnumValue>America/Adak</EnumValue>
-			<EnumValue>America/Anchorage</EnumValue>
-			<EnumValue>America/Araguaina</EnumValue>
-			<EnumValue>America/Argentina/Buenos_Aires</EnumValue>
-			<EnumValue>America/Argentina/Catamarca</EnumValue>
-			<EnumValue>America/Argentina/Cordoba</EnumValue>
-			<EnumValue>America/Argentina/Jujuy</EnumValue>
-			<EnumValue>America/Argentina/La_Rioja</EnumValue>
-			<EnumValue>America/Argentina/Mendoza</EnumValue>
-			<EnumValue>America/Argentina/Rio_Gallegos</EnumValue>
-			<EnumValue>America/Argentina/Salta</EnumValue>
-			<EnumValue>America/Argentina/San_Juan</EnumValue>
-			<EnumValue>America/Argentina/San_Luis</EnumValue>
-			<EnumValue>America/Argentina/Tucuman</EnumValue>
-			<EnumValue>America/Argentina/Ushuaia</EnumValue>
-			<EnumValue>America/Asuncion</EnumValue>
-			<EnumValue>America/Atikokan</EnumValue>
-			<EnumValue>America/Bahia</EnumValue>
-			<EnumValue>America/Bahia_Banderas</EnumValue>
-			<EnumValue>America/Barbados</EnumValue>
-			<EnumValue>America/Belem</EnumValue>
-			<EnumValue>America/Belize</EnumValue>
-			<EnumValue>America/Blanc-Sablon</EnumValue>
-			<EnumValue>America/Boa_Vista</EnumValue>
-			<EnumValue>America/Bogota</EnumValue>
-			<EnumValue>America/Boise</EnumValue>
-			<EnumValue>America/Cambridge_Bay</EnumValue>
-			<EnumValue>America/Campo_Grande</EnumValue>
-			<EnumValue>America/Cancun</EnumValue>
-			<EnumValue>America/Caracas</EnumValue>
-			<EnumValue>America/Cayenne</EnumValue>
-			<EnumValue>America/Chicago</EnumValue>
-			<EnumValue>America/Chihuahua</EnumValue>
-			<EnumValue>America/Costa_Rica</EnumValue>
-			<EnumValue>America/Creston</EnumValue>
-			<EnumValue>America/Cuiaba</EnumValue>
-			<EnumValue>America/Curacao</EnumValue>
-			<EnumValue>America/Danmarkshavn</EnumValue>
-			<EnumValue>America/Dawson</EnumValue>
-			<EnumValue>America/Dawson_Creek</EnumValue>
-			<EnumValue>America/Denver</EnumValue>
-			<EnumValue>America/Detroit</EnumValue>
-			<EnumValue>America/Edmonton</EnumValue>
-			<EnumValue>America/Eirunepe</EnumValue>
-			<EnumValue>America/El_Salvador</EnumValue>
-			<EnumValue>America/Fort_Nelson</EnumValue>
-			<EnumValue>America/Fortaleza</EnumValue>
-			<EnumValue>America/Glace_Bay</EnumValue>
-			<EnumValue>America/Goose_Bay</EnumValue>
-			<EnumValue>America/Grand_Turk</EnumValue>
-			<EnumValue>America/Guatemala</EnumValue>
-			<EnumValue>America/Guayaquil</EnumValue>
-			<EnumValue>America/Guyana</EnumValue>
-			<EnumValue>America/Halifax</EnumValue>
-			<EnumValue>America/Havana</EnumValue>
-			<EnumValue>America/Hermosillo</EnumValue>
-			<EnumValue>America/Indiana/Indianapolis</EnumValue>
-			<EnumValue>America/Indiana/Knox</EnumValue>
-			<EnumValue>America/Indiana/Marengo</EnumValue>
-			<EnumValue>America/Indiana/Petersburg</EnumValue>
-			<EnumValue>America/Indiana/Tell_City</EnumValue>
-			<EnumValue>America/Indiana/Vevay</EnumValue>
-			<EnumValue>America/Indiana/Vincennes</EnumValue>
-			<EnumValue>America/Indiana/Winamac</EnumValue>
-			<EnumValue>America/Inuvik</EnumValue>
-			<EnumValue>America/Iqaluit</EnumValue>
-			<EnumValue>America/Jamaica</EnumValue>
-			<EnumValue>America/Juneau</EnumValue>
-			<EnumValue>America/Kentucky/Louisville</EnumValue>
-			<EnumValue>America/Kentucky/Monticello</EnumValue>
-			<EnumValue>America/La_Paz</EnumValue>
-			<EnumValue>America/Lima</EnumValue>
-			<EnumValue>America/Los_Angeles</EnumValue>
-			<EnumValue>America/Maceio</EnumValue>
-			<EnumValue>America/Managua</EnumValue>
-			<EnumValue>America/Manaus</EnumValue>
-			<EnumValue>America/Martinique</EnumValue>
-			<EnumValue>America/Matamoros</EnumValue>
-			<EnumValue>America/Mazatlan</EnumValue>
-			<EnumValue>America/Menominee</EnumValue>
-			<EnumValue>America/Merida</EnumValue>
-			<EnumValue>America/Metlakatla</EnumValue>
-			<EnumValue>America/Mexico_City</EnumValue>
-			<EnumValue>America/Miquelon</EnumValue>
-			<EnumValue>America/Moncton</EnumValue>
-			<EnumValue>America/Monterrey</EnumValue>
-			<EnumValue>America/Montevideo</EnumValue>
-			<EnumValue>America/Nassau</EnumValue>
-			<EnumValue>America/New_York</EnumValue>
-			<EnumValue>America/Nipigon</EnumValue>
-			<EnumValue>America/Nome</EnumValue>
-			<EnumValue>America/Noronha</EnumValue>
-			<EnumValue>America/North_Dakota/Beulah</EnumValue>
-			<EnumValue>America/North_Dakota/Center</EnumValue>
-			<EnumValue>America/North_Dakota/New_Salem</EnumValue>
-			<EnumValue>America/Nuuk</EnumValue>
-			<EnumValue>America/Ojinaga</EnumValue>
-			<EnumValue>America/Panama</EnumValue>
-			<EnumValue>America/Pangnirtung</EnumValue>
-			<EnumValue>America/Paramaribo</EnumValue>
-			<EnumValue>America/Phoenix</EnumValue>
-			<EnumValue>America/Port-au-Prince</EnumValue>
-			<EnumValue>America/Port_of_Spain</EnumValue>
-			<EnumValue>America/Porto_Velho</EnumValue>
-			<EnumValue>America/Puerto_Rico</EnumValue>
-			<EnumValue>America/Punta_Arenas</EnumValue>
-			<EnumValue>America/Rainy_River</EnumValue>
-			<EnumValue>America/Rankin_Inlet</EnumValue>
-			<EnumValue>America/Recife</EnumValue>
-			<EnumValue>America/Regina</EnumValue>
-			<EnumValue>America/Resolute</EnumValue>
-			<EnumValue>America/Rio_Branco</EnumValue>
-			<EnumValue>America/Santarem</EnumValue>
-			<EnumValue>America/Santiago</EnumValue>
-			<EnumValue>America/Santo_Domingo</EnumValue>
-			<EnumValue>America/Sao_Paulo</EnumValue>
-			<EnumValue>America/Scoresbysund</EnumValue>
-			<EnumValue>America/Sitka</EnumValue>
-			<EnumValue>America/St_Johns</EnumValue>
-			<EnumValue>America/Swift_Current</EnumValue>
-			<EnumValue>America/Tegucigalpa</EnumValue>
-			<EnumValue>America/Thule</EnumValue>
-			<EnumValue>America/Thunder_Bay</EnumValue>
-			<EnumValue>America/Tijuana</EnumValue>
-			<EnumValue>America/Toronto</EnumValue>
-			<EnumValue>America/Vancouver</EnumValue>
-			<EnumValue>America/Whitehorse</EnumValue>
-			<EnumValue>America/Winnipeg</EnumValue>
-			<EnumValue>America/Yakutat</EnumValue>
-			<EnumValue>America/Yellowknife</EnumValue>
-			<EnumValue>Antarctica/Casey</EnumValue>
-			<EnumValue>Antarctica/Davis</EnumValue>
-			<EnumValue>Antarctica/DumontDUrville</EnumValue>
-			<EnumValue>Antarctica/Macquarie</EnumValue>
-			<EnumValue>Antarctica/Mawson</EnumValue>
-			<EnumValue>Antarctica/Palmer</EnumValue>
-			<EnumValue>Antarctica/Rothera</EnumValue>
-			<EnumValue>Antarctica/Syowa</EnumValue>
-			<EnumValue>Antarctica/Troll</EnumValue>
-			<EnumValue>Antarctica/Vostok</EnumValue>
-			<EnumValue>Asia/Almaty</EnumValue>
-			<EnumValue>Asia/Amman</EnumValue>
-			<EnumValue>Asia/Anadyr</EnumValue>
-			<EnumValue>Asia/Aqtau</EnumValue>
-			<EnumValue>Asia/Aqtobe</EnumValue>
-			<EnumValue>Asia/Ashgabat</EnumValue>
-			<EnumValue>Asia/Atyrau</EnumValue>
-			<EnumValue>Asia/Baghdad</EnumValue>
-			<EnumValue>Asia/Baku</EnumValue>
-			<EnumValue>Asia/Bangkok</EnumValue>
-			<EnumValue>Asia/Barnaul</EnumValue>
-			<EnumValue>Asia/Beirut</EnumValue>
-			<EnumValue>Asia/Bishkek</EnumValue>
-			<EnumValue>Asia/Brunei</EnumValue>
-			<EnumValue>Asia/Chita</EnumValue>
-			<EnumValue>Asia/Choibalsan</EnumValue>
-			<EnumValue>Asia/Colombo</EnumValue>
-			<EnumValue>Asia/Damascus</EnumValue>
-			<EnumValue>Asia/Dhaka</EnumValue>
-			<EnumValue>Asia/Dili</EnumValue>
-			<EnumValue>Asia/Dubai</EnumValue>
-			<EnumValue>Asia/Dushanbe</EnumValue>
-			<EnumValue>Asia/Famagusta</EnumValue>
-			<EnumValue>Asia/Gaza</EnumValue>
-			<EnumValue>Asia/Hebron</EnumValue>
-			<EnumValue>Asia/Ho_Chi_Minh</EnumValue>
-			<EnumValue>Asia/Hong_Kong</EnumValue>
-			<EnumValue>Asia/Hovd</EnumValue>
-			<EnumValue>Asia/Irkutsk</EnumValue>
-			<EnumValue>Asia/Jakarta</EnumValue>
-			<EnumValue>Asia/Jayapura</EnumValue>
-			<EnumValue>Asia/Jerusalem</EnumValue>
-			<EnumValue>Asia/Kabul</EnumValue>
-			<EnumValue>Asia/Kamchatka</EnumValue>
-			<EnumValue>Asia/Karachi</EnumValue>
-			<EnumValue>Asia/Kathmandu</EnumValue>
-			<EnumValue>Asia/Khandyga</EnumValue>
-			<EnumValue>Asia/Kolkata</EnumValue>
-			<EnumValue>Asia/Krasnoyarsk</EnumValue>
-			<EnumValue>Asia/Kuala_Lumpur</EnumValue>
-			<EnumValue>Asia/Kuching</EnumValue>
-			<EnumValue>Asia/Macau</EnumValue>
-			<EnumValue>Asia/Magadan</EnumValue>
-			<EnumValue>Asia/Makassar</EnumValue>
-			<EnumValue>Asia/Manila</EnumValue>
-			<EnumValue>Asia/Nicosia</EnumValue>
-			<EnumValue>Asia/Novokuznetsk</EnumValue>
-			<EnumValue>Asia/Novosibirsk</EnumValue>
-			<EnumValue>Asia/Omsk</EnumValue>
-			<EnumValue>Asia/Oral</EnumValue>
-			<EnumValue>Asia/Pontianak</EnumValue>
-			<EnumValue>Asia/Pyongyang</EnumValue>
-			<EnumValue>Asia/Qatar</EnumValue>
-			<EnumValue>Asia/Qostanay</EnumValue>
-			<EnumValue>Asia/Qyzylorda</EnumValue>
-			<EnumValue>Asia/Riyadh</EnumValue>
-			<EnumValue>Asia/Sakhalin</EnumValue>
-			<EnumValue>Asia/Samarkand</EnumValue>
-			<EnumValue>Asia/Seoul</EnumValue>
-			<EnumValue>Asia/Shanghai</EnumValue>
-			<EnumValue>Asia/Singapore</EnumValue>
-			<EnumValue>Asia/Srednekolymsk</EnumValue>
-			<EnumValue>Asia/Taipei</EnumValue>
-			<EnumValue>Asia/Tashkent</EnumValue>
-			<EnumValue>Asia/Tbilisi</EnumValue>
-			<EnumValue>Asia/Tehran</EnumValue>
-			<EnumValue>Asia/Thimphu</EnumValue>
-			<EnumValue>Asia/Tokyo</EnumValue>
-			<EnumValue>Asia/Tomsk</EnumValue>
-			<EnumValue>Asia/Ulaanbaatar</EnumValue>
-			<EnumValue>Asia/Urumqi</EnumValue>
-			<EnumValue>Asia/Ust-Nera</EnumValue>
-			<EnumValue>Asia/Vladivostok</EnumValue>
-			<EnumValue>Asia/Yakutsk</EnumValue>
-			<EnumValue>Asia/Yangon</EnumValue>
-			<EnumValue>Asia/Yekaterinburg</EnumValue>
-			<EnumValue>Asia/Yerevan</EnumValue>
-			<EnumValue>Atlantic/Azores</EnumValue>
-			<EnumValue>Atlantic/Bermuda</EnumValue>
-			<EnumValue>Atlantic/Canary</EnumValue>
-			<EnumValue>Atlantic/Cape_Verde</EnumValue>
-			<EnumValue>Atlantic/Faroe</EnumValue>
-			<EnumValue>Atlantic/Madeira</EnumValue>
-			<EnumValue>Atlantic/Reykjavik</EnumValue>
-			<EnumValue>Atlantic/South_Georgia</EnumValue>
-			<EnumValue>Atlantic/Stanley</EnumValue>
-			<EnumValue>Australia/Adelaide</EnumValue>
-			<EnumValue>Australia/Brisbane</EnumValue>
-			<EnumValue>Australia/Broken_Hill</EnumValue>
-			<EnumValue>Australia/Darwin</EnumValue>
-			<EnumValue>Australia/Eucla</EnumValue>
-			<EnumValue>Australia/Hobart</EnumValue>
-			<EnumValue>Australia/Lindeman</EnumValue>
-			<EnumValue>Australia/Lord_Howe</EnumValue>
-			<EnumValue>Australia/Melbourne</EnumValue>
-			<EnumValue>Australia/Perth</EnumValue>
-			<EnumValue>Australia/Sydney</EnumValue>
-			<EnumValue>CET</EnumValue>
-			<EnumValue>CST6CDT</EnumValue>
-			<EnumValue>EET</EnumValue>
-			<EnumValue>EST</EnumValue>
-			<EnumValue>EST5EDT</EnumValue>
-			<EnumValue>Etc/GMT</EnumValue>
-			<EnumValue>Etc/GMT+1</EnumValue>
-			<EnumValue>Etc/GMT+10</EnumValue>
-			<EnumValue>Etc/GMT+11</EnumValue>
-			<EnumValue>Etc/GMT+12</EnumValue>
-			<EnumValue>Etc/GMT+2</EnumValue>
-			<EnumValue>Etc/GMT+3</EnumValue>
-			<EnumValue>Etc/GMT+4</EnumValue>
-			<EnumValue>Etc/GMT+5</EnumValue>
-			<EnumValue>Etc/GMT+6</EnumValue>
-			<EnumValue>Etc/GMT+7</EnumValue>
-			<EnumValue>Etc/GMT+8</EnumValue>
-			<EnumValue>Etc/GMT+9</EnumValue>
-			<EnumValue>Etc/GMT-1</EnumValue>
-			<EnumValue>Etc/GMT-10</EnumValue>
-			<EnumValue>Etc/GMT-11</EnumValue>
-			<EnumValue>Etc/GMT-12</EnumValue>
-			<EnumValue>Etc/GMT-13</EnumValue>
-			<EnumValue>Etc/GMT-14</EnumValue>
-			<EnumValue>Etc/GMT-2</EnumValue>
-			<EnumValue>Etc/GMT-3</EnumValue>
-			<EnumValue>Etc/GMT-4</EnumValue>
-			<EnumValue>Etc/GMT-5</EnumValue>
-			<EnumValue>Etc/GMT-6</EnumValue>
-			<EnumValue>Etc/GMT-7</EnumValue>
-			<EnumValue>Etc/GMT-8</EnumValue>
-			<EnumValue>Etc/GMT-9</EnumValue>
-			<EnumValue>Etc/UTC</EnumValue>
-			<EnumValue>Europe/Amsterdam</EnumValue>
-			<EnumValue>Europe/Andorra</EnumValue>
-			<EnumValue>Europe/Astrakhan</EnumValue>
-			<EnumValue>Europe/Athens</EnumValue>
-			<EnumValue>Europe/Belgrade</EnumValue>
-			<EnumValue>Europe/Berlin</EnumValue>
-			<EnumValue>Europe/Brussels</EnumValue>
-			<EnumValue>Europe/Bucharest</EnumValue>
-			<EnumValue>Europe/Budapest</EnumValue>
-			<EnumValue>Europe/Chisinau</EnumValue>
-			<EnumValue>Europe/Copenhagen</EnumValue>
-			<EnumValue>Europe/Dublin</EnumValue>
-			<EnumValue>Europe/Gibraltar</EnumValue>
-			<EnumValue>Europe/Helsinki</EnumValue>
-			<EnumValue>Europe/Istanbul</EnumValue>
-			<EnumValue>Europe/Kaliningrad</EnumValue>
-			<EnumValue>Europe/Kiev</EnumValue>
-			<EnumValue>Europe/Kirov</EnumValue>
-			<EnumValue>Europe/Lisbon</EnumValue>
-			<EnumValue>Europe/London</EnumValue>
-			<EnumValue>Europe/Luxembourg</EnumValue>
-			<EnumValue>Europe/Madrid</EnumValue>
-			<EnumValue>Europe/Malta</EnumValue>
-			<EnumValue>Europe/Minsk</EnumValue>
-			<EnumValue>Europe/Monaco</EnumValue>
-			<EnumValue>Europe/Moscow</EnumValue>
-			<EnumValue>Europe/Oslo</EnumValue>
-			<EnumValue>Europe/Paris</EnumValue>
-			<EnumValue>Europe/Prague</EnumValue>
-			<EnumValue>Europe/Riga</EnumValue>
-			<EnumValue>Europe/Rome</EnumValue>
-			<EnumValue>Europe/Samara</EnumValue>
-			<EnumValue>Europe/Saratov</EnumValue>
-			<EnumValue>Europe/Simferopol</EnumValue>
-			<EnumValue>Europe/Sofia</EnumValue>
-			<EnumValue>Europe/Stockholm</EnumValue>
-			<EnumValue>Europe/Tallinn</EnumValue>
-			<EnumValue>Europe/Tirane</EnumValue>
-			<EnumValue>Europe/Ulyanovsk</EnumValue>
-			<EnumValue>Europe/Uzhgorod</EnumValue>
-			<EnumValue>Europe/Vienna</EnumValue>
-			<EnumValue>Europe/Vilnius</EnumValue>
-			<EnumValue>Europe/Volgograd</EnumValue>
-			<EnumValue>Europe/Warsaw</EnumValue>
-			<EnumValue>Europe/Zaporozhye</EnumValue>
-			<EnumValue>Europe/Zurich</EnumValue>
-			<EnumValue>HST</EnumValue>
-			<EnumValue>Indian/Chagos</EnumValue>
-			<EnumValue>Indian/Christmas</EnumValue>
-			<EnumValue>Indian/Cocos</EnumValue>
-			<EnumValue>Indian/Kerguelen</EnumValue>
-			<EnumValue>Indian/Mahe</EnumValue>
-			<EnumValue>Indian/Maldives</EnumValue>
-			<EnumValue>Indian/Mauritius</EnumValue>
-			<EnumValue>Indian/Reunion</EnumValue>
-			<EnumValue>MET</EnumValue>
-			<EnumValue>MST</EnumValue>
-			<EnumValue>MST7MDT</EnumValue>
-			<EnumValue>PST8PDT</EnumValue>
-			<EnumValue>Pacific/Apia</EnumValue>
-			<EnumValue>Pacific/Auckland</EnumValue>
-			<EnumValue>Pacific/Bougainville</EnumValue>
-			<EnumValue>Pacific/Chatham</EnumValue>
-			<EnumValue>Pacific/Chuuk</EnumValue>
-			<EnumValue>Pacific/Easter</EnumValue>
-			<EnumValue>Pacific/Efate</EnumValue>
-			<EnumValue>Pacific/Enderbury</EnumValue>
-			<EnumValue>Pacific/Fakaofo</EnumValue>
-			<EnumValue>Pacific/Fiji</EnumValue>
-			<EnumValue>Pacific/Funafuti</EnumValue>
-			<EnumValue>Pacific/Galapagos</EnumValue>
-			<EnumValue>Pacific/Gambier</EnumValue>
-			<EnumValue>Pacific/Guadalcanal</EnumValue>
-			<EnumValue>Pacific/Guam</EnumValue>
-			<EnumValue>Pacific/Honolulu</EnumValue>
-			<EnumValue>Pacific/Kiritimati</EnumValue>
-			<EnumValue>Pacific/Kosrae</EnumValue>
-			<EnumValue>Pacific/Kwajalein</EnumValue>
-			<EnumValue>Pacific/Majuro</EnumValue>
-			<EnumValue>Pacific/Marquesas</EnumValue>
-			<EnumValue>Pacific/Nauru</EnumValue>
-			<EnumValue>Pacific/Niue</EnumValue>
-			<EnumValue>Pacific/Norfolk</EnumValue>
-			<EnumValue>Pacific/Noumea</EnumValue>
-			<EnumValue>Pacific/Pago_Pago</EnumValue>
-			<EnumValue>Pacific/Palau</EnumValue>
-			<EnumValue>Pacific/Pitcairn</EnumValue>
-			<EnumValue>Pacific/Pohnpei</EnumValue>
-			<EnumValue>Pacific/Port_Moresby</EnumValue>
-			<EnumValue>Pacific/Rarotonga</EnumValue>
-			<EnumValue>Pacific/Tahiti</EnumValue>
-			<EnumValue>Pacific/Tarawa</EnumValue>
-			<EnumValue>Pacific/Tongatapu</EnumValue>
-			<EnumValue>Pacific/Wake</EnumValue>
-			<EnumValue>Pacific/Wallis</EnumValue>
-			<EnumValue>WET</EnumValue>
+			<EnumValue value="Africa/Abidjan" />
+			<EnumValue value="Africa/Accra" />
+			<EnumValue value="Africa/Algiers" />
+			<EnumValue value="Africa/Bissau" />
+			<EnumValue value="Africa/Cairo" />
+			<EnumValue value="Africa/Casablanca" />
+			<EnumValue value="Africa/Ceuta" />
+			<EnumValue value="Africa/El_Aaiun" />
+			<EnumValue value="Africa/Johannesburg" />
+			<EnumValue value="Africa/Juba" />
+			<EnumValue value="Africa/Khartoum" />
+			<EnumValue value="Africa/Lagos" />
+			<EnumValue value="Africa/Maputo" />
+			<EnumValue value="Africa/Monrovia" />
+			<EnumValue value="Africa/Nairobi" />
+			<EnumValue value="Africa/Ndjamena" />
+			<EnumValue value="Africa/Sao_Tome" />
+			<EnumValue value="Africa/Tripoli" />
+			<EnumValue value="Africa/Tunis" />
+			<EnumValue value="Africa/Windhoek" />
+			<EnumValue value="America/Adak" />
+			<EnumValue value="America/Anchorage" />
+			<EnumValue value="America/Araguaina" />
+			<EnumValue value="America/Argentina/Buenos_Aires" />
+			<EnumValue value="America/Argentina/Catamarca" />
+			<EnumValue value="America/Argentina/Cordoba" />
+			<EnumValue value="America/Argentina/Jujuy" />
+			<EnumValue value="America/Argentina/La_Rioja" />
+			<EnumValue value="America/Argentina/Mendoza" />
+			<EnumValue value="America/Argentina/Rio_Gallegos" />
+			<EnumValue value="America/Argentina/Salta" />
+			<EnumValue value="America/Argentina/San_Juan" />
+			<EnumValue value="America/Argentina/San_Luis" />
+			<EnumValue value="America/Argentina/Tucuman" />
+			<EnumValue value="America/Argentina/Ushuaia" />
+			<EnumValue value="America/Asuncion" />
+			<EnumValue value="America/Atikokan" />
+			<EnumValue value="America/Bahia" />
+			<EnumValue value="America/Bahia_Banderas" />
+			<EnumValue value="America/Barbados" />
+			<EnumValue value="America/Belem" />
+			<EnumValue value="America/Belize" />
+			<EnumValue value="America/Blanc-Sablon" />
+			<EnumValue value="America/Boa_Vista" />
+			<EnumValue value="America/Bogota" />
+			<EnumValue value="America/Boise" />
+			<EnumValue value="America/Cambridge_Bay" />
+			<EnumValue value="America/Campo_Grande" />
+			<EnumValue value="America/Cancun" />
+			<EnumValue value="America/Caracas" />
+			<EnumValue value="America/Cayenne" />
+			<EnumValue value="America/Chicago" />
+			<EnumValue value="America/Chihuahua" />
+			<EnumValue value="America/Costa_Rica" />
+			<EnumValue value="America/Creston" />
+			<EnumValue value="America/Cuiaba" />
+			<EnumValue value="America/Curacao" />
+			<EnumValue value="America/Danmarkshavn" />
+			<EnumValue value="America/Dawson" />
+			<EnumValue value="America/Dawson_Creek" />
+			<EnumValue value="America/Denver" />
+			<EnumValue value="America/Detroit" />
+			<EnumValue value="America/Edmonton" />
+			<EnumValue value="America/Eirunepe" />
+			<EnumValue value="America/El_Salvador" />
+			<EnumValue value="America/Fort_Nelson" />
+			<EnumValue value="America/Fortaleza" />
+			<EnumValue value="America/Glace_Bay" />
+			<EnumValue value="America/Goose_Bay" />
+			<EnumValue value="America/Grand_Turk" />
+			<EnumValue value="America/Guatemala" />
+			<EnumValue value="America/Guayaquil" />
+			<EnumValue value="America/Guyana" />
+			<EnumValue value="America/Halifax" />
+			<EnumValue value="America/Havana" />
+			<EnumValue value="America/Hermosillo" />
+			<EnumValue value="America/Indiana/Indianapolis" />
+			<EnumValue value="America/Indiana/Knox" />
+			<EnumValue value="America/Indiana/Marengo" />
+			<EnumValue value="America/Indiana/Petersburg" />
+			<EnumValue value="America/Indiana/Tell_City" />
+			<EnumValue value="America/Indiana/Vevay" />
+			<EnumValue value="America/Indiana/Vincennes" />
+			<EnumValue value="America/Indiana/Winamac" />
+			<EnumValue value="America/Inuvik" />
+			<EnumValue value="America/Iqaluit" />
+			<EnumValue value="America/Jamaica" />
+			<EnumValue value="America/Juneau" />
+			<EnumValue value="America/Kentucky/Louisville" />
+			<EnumValue value="America/Kentucky/Monticello" />
+			<EnumValue value="America/La_Paz" />
+			<EnumValue value="America/Lima" />
+			<EnumValue value="America/Los_Angeles" />
+			<EnumValue value="America/Maceio" />
+			<EnumValue value="America/Managua" />
+			<EnumValue value="America/Manaus" />
+			<EnumValue value="America/Martinique" />
+			<EnumValue value="America/Matamoros" />
+			<EnumValue value="America/Mazatlan" />
+			<EnumValue value="America/Menominee" />
+			<EnumValue value="America/Merida" />
+			<EnumValue value="America/Metlakatla" />
+			<EnumValue value="America/Mexico_City" />
+			<EnumValue value="America/Miquelon" />
+			<EnumValue value="America/Moncton" />
+			<EnumValue value="America/Monterrey" />
+			<EnumValue value="America/Montevideo" />
+			<EnumValue value="America/Nassau" />
+			<EnumValue value="America/New_York" />
+			<EnumValue value="America/Nipigon" />
+			<EnumValue value="America/Nome" />
+			<EnumValue value="America/Noronha" />
+			<EnumValue value="America/North_Dakota/Beulah" />
+			<EnumValue value="America/North_Dakota/Center" />
+			<EnumValue value="America/North_Dakota/New_Salem" />
+			<EnumValue value="America/Nuuk" />
+			<EnumValue value="America/Ojinaga" />
+			<EnumValue value="America/Panama" />
+			<EnumValue value="America/Pangnirtung" />
+			<EnumValue value="America/Paramaribo" />
+			<EnumValue value="America/Phoenix" />
+			<EnumValue value="America/Port-au-Prince" />
+			<EnumValue value="America/Port_of_Spain" />
+			<EnumValue value="America/Porto_Velho" />
+			<EnumValue value="America/Puerto_Rico" />
+			<EnumValue value="America/Punta_Arenas" />
+			<EnumValue value="America/Rainy_River" />
+			<EnumValue value="America/Rankin_Inlet" />
+			<EnumValue value="America/Recife" />
+			<EnumValue value="America/Regina" />
+			<EnumValue value="America/Resolute" />
+			<EnumValue value="America/Rio_Branco" />
+			<EnumValue value="America/Santarem" />
+			<EnumValue value="America/Santiago" />
+			<EnumValue value="America/Santo_Domingo" />
+			<EnumValue value="America/Sao_Paulo" />
+			<EnumValue value="America/Scoresbysund" />
+			<EnumValue value="America/Sitka" />
+			<EnumValue value="America/St_Johns" />
+			<EnumValue value="America/Swift_Current" />
+			<EnumValue value="America/Tegucigalpa" />
+			<EnumValue value="America/Thule" />
+			<EnumValue value="America/Thunder_Bay" />
+			<EnumValue value="America/Tijuana" />
+			<EnumValue value="America/Toronto" />
+			<EnumValue value="America/Vancouver" />
+			<EnumValue value="America/Whitehorse" />
+			<EnumValue value="America/Winnipeg" />
+			<EnumValue value="America/Yakutat" />
+			<EnumValue value="America/Yellowknife" />
+			<EnumValue value="Antarctica/Casey" />
+			<EnumValue value="Antarctica/Davis" />
+			<EnumValue value="Antarctica/DumontDUrville" />
+			<EnumValue value="Antarctica/Macquarie" />
+			<EnumValue value="Antarctica/Mawson" />
+			<EnumValue value="Antarctica/Palmer" />
+			<EnumValue value="Antarctica/Rothera" />
+			<EnumValue value="Antarctica/Syowa" />
+			<EnumValue value="Antarctica/Troll" />
+			<EnumValue value="Antarctica/Vostok" />
+			<EnumValue value="Asia/Almaty" />
+			<EnumValue value="Asia/Amman" />
+			<EnumValue value="Asia/Anadyr" />
+			<EnumValue value="Asia/Aqtau" />
+			<EnumValue value="Asia/Aqtobe" />
+			<EnumValue value="Asia/Ashgabat" />
+			<EnumValue value="Asia/Atyrau" />
+			<EnumValue value="Asia/Baghdad" />
+			<EnumValue value="Asia/Baku" />
+			<EnumValue value="Asia/Bangkok" />
+			<EnumValue value="Asia/Barnaul" />
+			<EnumValue value="Asia/Beirut" />
+			<EnumValue value="Asia/Bishkek" />
+			<EnumValue value="Asia/Brunei" />
+			<EnumValue value="Asia/Chita" />
+			<EnumValue value="Asia/Choibalsan" />
+			<EnumValue value="Asia/Colombo" />
+			<EnumValue value="Asia/Damascus" />
+			<EnumValue value="Asia/Dhaka" />
+			<EnumValue value="Asia/Dili" />
+			<EnumValue value="Asia/Dubai" />
+			<EnumValue value="Asia/Dushanbe" />
+			<EnumValue value="Asia/Famagusta" />
+			<EnumValue value="Asia/Gaza" />
+			<EnumValue value="Asia/Hebron" />
+			<EnumValue value="Asia/Ho_Chi_Minh" />
+			<EnumValue value="Asia/Hong_Kong" />
+			<EnumValue value="Asia/Hovd" />
+			<EnumValue value="Asia/Irkutsk" />
+			<EnumValue value="Asia/Jakarta" />
+			<EnumValue value="Asia/Jayapura" />
+			<EnumValue value="Asia/Jerusalem" />
+			<EnumValue value="Asia/Kabul" />
+			<EnumValue value="Asia/Kamchatka" />
+			<EnumValue value="Asia/Karachi" />
+			<EnumValue value="Asia/Kathmandu" />
+			<EnumValue value="Asia/Khandyga" />
+			<EnumValue value="Asia/Kolkata" />
+			<EnumValue value="Asia/Krasnoyarsk" />
+			<EnumValue value="Asia/Kuala_Lumpur" />
+			<EnumValue value="Asia/Kuching" />
+			<EnumValue value="Asia/Macau" />
+			<EnumValue value="Asia/Magadan" />
+			<EnumValue value="Asia/Makassar" />
+			<EnumValue value="Asia/Manila" />
+			<EnumValue value="Asia/Nicosia" />
+			<EnumValue value="Asia/Novokuznetsk" />
+			<EnumValue value="Asia/Novosibirsk" />
+			<EnumValue value="Asia/Omsk" />
+			<EnumValue value="Asia/Oral" />
+			<EnumValue value="Asia/Pontianak" />
+			<EnumValue value="Asia/Pyongyang" />
+			<EnumValue value="Asia/Qatar" />
+			<EnumValue value="Asia/Qostanay" />
+			<EnumValue value="Asia/Qyzylorda" />
+			<EnumValue value="Asia/Riyadh" />
+			<EnumValue value="Asia/Sakhalin" />
+			<EnumValue value="Asia/Samarkand" />
+			<EnumValue value="Asia/Seoul" />
+			<EnumValue value="Asia/Shanghai" />
+			<EnumValue value="Asia/Singapore" />
+			<EnumValue value="Asia/Srednekolymsk" />
+			<EnumValue value="Asia/Taipei" />
+			<EnumValue value="Asia/Tashkent" />
+			<EnumValue value="Asia/Tbilisi" />
+			<EnumValue value="Asia/Tehran" />
+			<EnumValue value="Asia/Thimphu" />
+			<EnumValue value="Asia/Tokyo" />
+			<EnumValue value="Asia/Tomsk" />
+			<EnumValue value="Asia/Ulaanbaatar" />
+			<EnumValue value="Asia/Urumqi" />
+			<EnumValue value="Asia/Ust-Nera" />
+			<EnumValue value="Asia/Vladivostok" />
+			<EnumValue value="Asia/Yakutsk" />
+			<EnumValue value="Asia/Yangon" />
+			<EnumValue value="Asia/Yekaterinburg" />
+			<EnumValue value="Asia/Yerevan" />
+			<EnumValue value="Atlantic/Azores" />
+			<EnumValue value="Atlantic/Bermuda" />
+			<EnumValue value="Atlantic/Canary" />
+			<EnumValue value="Atlantic/Cape_Verde" />
+			<EnumValue value="Atlantic/Faroe" />
+			<EnumValue value="Atlantic/Madeira" />
+			<EnumValue value="Atlantic/Reykjavik" />
+			<EnumValue value="Atlantic/South_Georgia" />
+			<EnumValue value="Atlantic/Stanley" />
+			<EnumValue value="Australia/Adelaide" />
+			<EnumValue value="Australia/Brisbane" />
+			<EnumValue value="Australia/Broken_Hill" />
+			<EnumValue value="Australia/Darwin" />
+			<EnumValue value="Australia/Eucla" />
+			<EnumValue value="Australia/Hobart" />
+			<EnumValue value="Australia/Lindeman" />
+			<EnumValue value="Australia/Lord_Howe" />
+			<EnumValue value="Australia/Melbourne" />
+			<EnumValue value="Australia/Perth" />
+			<EnumValue value="Australia/Sydney" />
+			<EnumValue value="CET" />
+			<EnumValue value="CST6CDT" />
+			<EnumValue value="EET" />
+			<EnumValue value="EST" />
+			<EnumValue value="EST5EDT" />
+			<EnumValue value="Etc/GMT" />
+			<EnumValue value="Etc/GMT+1" />
+			<EnumValue value="Etc/GMT+10" />
+			<EnumValue value="Etc/GMT+11" />
+			<EnumValue value="Etc/GMT+12" />
+			<EnumValue value="Etc/GMT+2" />
+			<EnumValue value="Etc/GMT+3" />
+			<EnumValue value="Etc/GMT+4" />
+			<EnumValue value="Etc/GMT+5" />
+			<EnumValue value="Etc/GMT+6" />
+			<EnumValue value="Etc/GMT+7" />
+			<EnumValue value="Etc/GMT+8" />
+			<EnumValue value="Etc/GMT+9" />
+			<EnumValue value="Etc/GMT-1" />
+			<EnumValue value="Etc/GMT-10" />
+			<EnumValue value="Etc/GMT-11" />
+			<EnumValue value="Etc/GMT-12" />
+			<EnumValue value="Etc/GMT-13" />
+			<EnumValue value="Etc/GMT-14" />
+			<EnumValue value="Etc/GMT-2" />
+			<EnumValue value="Etc/GMT-3" />
+			<EnumValue value="Etc/GMT-4" />
+			<EnumValue value="Etc/GMT-5" />
+			<EnumValue value="Etc/GMT-6" />
+			<EnumValue value="Etc/GMT-7" />
+			<EnumValue value="Etc/GMT-8" />
+			<EnumValue value="Etc/GMT-9" />
+			<EnumValue value="Etc/UTC" />
+			<EnumValue value="Europe/Amsterdam" />
+			<EnumValue value="Europe/Andorra" />
+			<EnumValue value="Europe/Astrakhan" />
+			<EnumValue value="Europe/Athens" />
+			<EnumValue value="Europe/Belgrade" />
+			<EnumValue value="Europe/Berlin" />
+			<EnumValue value="Europe/Brussels" />
+			<EnumValue value="Europe/Bucharest" />
+			<EnumValue value="Europe/Budapest" />
+			<EnumValue value="Europe/Chisinau" />
+			<EnumValue value="Europe/Copenhagen" />
+			<EnumValue value="Europe/Dublin" />
+			<EnumValue value="Europe/Gibraltar" />
+			<EnumValue value="Europe/Helsinki" />
+			<EnumValue value="Europe/Istanbul" />
+			<EnumValue value="Europe/Kaliningrad" />
+			<EnumValue value="Europe/Kiev" />
+			<EnumValue value="Europe/Kirov" />
+			<EnumValue value="Europe/Lisbon" />
+			<EnumValue value="Europe/London" />
+			<EnumValue value="Europe/Luxembourg" />
+			<EnumValue value="Europe/Madrid" />
+			<EnumValue value="Europe/Malta" />
+			<EnumValue value="Europe/Minsk" />
+			<EnumValue value="Europe/Monaco" />
+			<EnumValue value="Europe/Moscow" />
+			<EnumValue value="Europe/Oslo" />
+			<EnumValue value="Europe/Paris" />
+			<EnumValue value="Europe/Prague" />
+			<EnumValue value="Europe/Riga" />
+			<EnumValue value="Europe/Rome" />
+			<EnumValue value="Europe/Samara" />
+			<EnumValue value="Europe/Saratov" />
+			<EnumValue value="Europe/Simferopol" />
+			<EnumValue value="Europe/Sofia" />
+			<EnumValue value="Europe/Stockholm" />
+			<EnumValue value="Europe/Tallinn" />
+			<EnumValue value="Europe/Tirane" />
+			<EnumValue value="Europe/Ulyanovsk" />
+			<EnumValue value="Europe/Uzhgorod" />
+			<EnumValue value="Europe/Vienna" />
+			<EnumValue value="Europe/Vilnius" />
+			<EnumValue value="Europe/Volgograd" />
+			<EnumValue value="Europe/Warsaw" />
+			<EnumValue value="Europe/Zaporozhye" />
+			<EnumValue value="Europe/Zurich" />
+			<EnumValue value="HST" />
+			<EnumValue value="Indian/Chagos" />
+			<EnumValue value="Indian/Christmas" />
+			<EnumValue value="Indian/Cocos" />
+			<EnumValue value="Indian/Kerguelen" />
+			<EnumValue value="Indian/Mahe" />
+			<EnumValue value="Indian/Maldives" />
+			<EnumValue value="Indian/Mauritius" />
+			<EnumValue value="Indian/Reunion" />
+			<EnumValue value="MET" />
+			<EnumValue value="MST" />
+			<EnumValue value="MST7MDT" />
+			<EnumValue value="PST8PDT" />
+			<EnumValue value="Pacific/Apia" />
+			<EnumValue value="Pacific/Auckland" />
+			<EnumValue value="Pacific/Bougainville" />
+			<EnumValue value="Pacific/Chatham" />
+			<EnumValue value="Pacific/Chuuk" />
+			<EnumValue value="Pacific/Easter" />
+			<EnumValue value="Pacific/Efate" />
+			<EnumValue value="Pacific/Enderbury" />
+			<EnumValue value="Pacific/Fakaofo" />
+			<EnumValue value="Pacific/Fiji" />
+			<EnumValue value="Pacific/Funafuti" />
+			<EnumValue value="Pacific/Galapagos" />
+			<EnumValue value="Pacific/Gambier" />
+			<EnumValue value="Pacific/Guadalcanal" />
+			<EnumValue value="Pacific/Guam" />
+			<EnumValue value="Pacific/Honolulu" />
+			<EnumValue value="Pacific/Kiritimati" />
+			<EnumValue value="Pacific/Kosrae" />
+			<EnumValue value="Pacific/Kwajalein" />
+			<EnumValue value="Pacific/Majuro" />
+			<EnumValue value="Pacific/Marquesas" />
+			<EnumValue value="Pacific/Nauru" />
+			<EnumValue value="Pacific/Niue" />
+			<EnumValue value="Pacific/Norfolk" />
+			<EnumValue value="Pacific/Noumea" />
+			<EnumValue value="Pacific/Pago_Pago" />
+			<EnumValue value="Pacific/Palau" />
+			<EnumValue value="Pacific/Pitcairn" />
+			<EnumValue value="Pacific/Pohnpei" />
+			<EnumValue value="Pacific/Port_Moresby" />
+			<EnumValue value="Pacific/Rarotonga" />
+			<EnumValue value="Pacific/Tahiti" />
+			<EnumValue value="Pacific/Tarawa" />
+			<EnumValue value="Pacific/Tongatapu" />
+			<EnumValue value="Pacific/Wake" />
+			<EnumValue value="Pacific/Wallis" />
+			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz4" display_name="Timezone" datatype="enum" default_value="">
-			<EnumValue>Africa/Abidjan</EnumValue>
-			<EnumValue>Africa/Accra</EnumValue>
-			<EnumValue>Africa/Algiers</EnumValue>
-			<EnumValue>Africa/Bissau</EnumValue>
-			<EnumValue>Africa/Cairo</EnumValue>
-			<EnumValue>Africa/Casablanca</EnumValue>
-			<EnumValue>Africa/Ceuta</EnumValue>
-			<EnumValue>Africa/El_Aaiun</EnumValue>
-			<EnumValue>Africa/Johannesburg</EnumValue>
-			<EnumValue>Africa/Juba</EnumValue>
-			<EnumValue>Africa/Khartoum</EnumValue>
-			<EnumValue>Africa/Lagos</EnumValue>
-			<EnumValue>Africa/Maputo</EnumValue>
-			<EnumValue>Africa/Monrovia</EnumValue>
-			<EnumValue>Africa/Nairobi</EnumValue>
-			<EnumValue>Africa/Ndjamena</EnumValue>
-			<EnumValue>Africa/Sao_Tome</EnumValue>
-			<EnumValue>Africa/Tripoli</EnumValue>
-			<EnumValue>Africa/Tunis</EnumValue>
-			<EnumValue>Africa/Windhoek</EnumValue>
-			<EnumValue>America/Adak</EnumValue>
-			<EnumValue>America/Anchorage</EnumValue>
-			<EnumValue>America/Araguaina</EnumValue>
-			<EnumValue>America/Argentina/Buenos_Aires</EnumValue>
-			<EnumValue>America/Argentina/Catamarca</EnumValue>
-			<EnumValue>America/Argentina/Cordoba</EnumValue>
-			<EnumValue>America/Argentina/Jujuy</EnumValue>
-			<EnumValue>America/Argentina/La_Rioja</EnumValue>
-			<EnumValue>America/Argentina/Mendoza</EnumValue>
-			<EnumValue>America/Argentina/Rio_Gallegos</EnumValue>
-			<EnumValue>America/Argentina/Salta</EnumValue>
-			<EnumValue>America/Argentina/San_Juan</EnumValue>
-			<EnumValue>America/Argentina/San_Luis</EnumValue>
-			<EnumValue>America/Argentina/Tucuman</EnumValue>
-			<EnumValue>America/Argentina/Ushuaia</EnumValue>
-			<EnumValue>America/Asuncion</EnumValue>
-			<EnumValue>America/Atikokan</EnumValue>
-			<EnumValue>America/Bahia</EnumValue>
-			<EnumValue>America/Bahia_Banderas</EnumValue>
-			<EnumValue>America/Barbados</EnumValue>
-			<EnumValue>America/Belem</EnumValue>
-			<EnumValue>America/Belize</EnumValue>
-			<EnumValue>America/Blanc-Sablon</EnumValue>
-			<EnumValue>America/Boa_Vista</EnumValue>
-			<EnumValue>America/Bogota</EnumValue>
-			<EnumValue>America/Boise</EnumValue>
-			<EnumValue>America/Cambridge_Bay</EnumValue>
-			<EnumValue>America/Campo_Grande</EnumValue>
-			<EnumValue>America/Cancun</EnumValue>
-			<EnumValue>America/Caracas</EnumValue>
-			<EnumValue>America/Cayenne</EnumValue>
-			<EnumValue>America/Chicago</EnumValue>
-			<EnumValue>America/Chihuahua</EnumValue>
-			<EnumValue>America/Costa_Rica</EnumValue>
-			<EnumValue>America/Creston</EnumValue>
-			<EnumValue>America/Cuiaba</EnumValue>
-			<EnumValue>America/Curacao</EnumValue>
-			<EnumValue>America/Danmarkshavn</EnumValue>
-			<EnumValue>America/Dawson</EnumValue>
-			<EnumValue>America/Dawson_Creek</EnumValue>
-			<EnumValue>America/Denver</EnumValue>
-			<EnumValue>America/Detroit</EnumValue>
-			<EnumValue>America/Edmonton</EnumValue>
-			<EnumValue>America/Eirunepe</EnumValue>
-			<EnumValue>America/El_Salvador</EnumValue>
-			<EnumValue>America/Fort_Nelson</EnumValue>
-			<EnumValue>America/Fortaleza</EnumValue>
-			<EnumValue>America/Glace_Bay</EnumValue>
-			<EnumValue>America/Goose_Bay</EnumValue>
-			<EnumValue>America/Grand_Turk</EnumValue>
-			<EnumValue>America/Guatemala</EnumValue>
-			<EnumValue>America/Guayaquil</EnumValue>
-			<EnumValue>America/Guyana</EnumValue>
-			<EnumValue>America/Halifax</EnumValue>
-			<EnumValue>America/Havana</EnumValue>
-			<EnumValue>America/Hermosillo</EnumValue>
-			<EnumValue>America/Indiana/Indianapolis</EnumValue>
-			<EnumValue>America/Indiana/Knox</EnumValue>
-			<EnumValue>America/Indiana/Marengo</EnumValue>
-			<EnumValue>America/Indiana/Petersburg</EnumValue>
-			<EnumValue>America/Indiana/Tell_City</EnumValue>
-			<EnumValue>America/Indiana/Vevay</EnumValue>
-			<EnumValue>America/Indiana/Vincennes</EnumValue>
-			<EnumValue>America/Indiana/Winamac</EnumValue>
-			<EnumValue>America/Inuvik</EnumValue>
-			<EnumValue>America/Iqaluit</EnumValue>
-			<EnumValue>America/Jamaica</EnumValue>
-			<EnumValue>America/Juneau</EnumValue>
-			<EnumValue>America/Kentucky/Louisville</EnumValue>
-			<EnumValue>America/Kentucky/Monticello</EnumValue>
-			<EnumValue>America/La_Paz</EnumValue>
-			<EnumValue>America/Lima</EnumValue>
-			<EnumValue>America/Los_Angeles</EnumValue>
-			<EnumValue>America/Maceio</EnumValue>
-			<EnumValue>America/Managua</EnumValue>
-			<EnumValue>America/Manaus</EnumValue>
-			<EnumValue>America/Martinique</EnumValue>
-			<EnumValue>America/Matamoros</EnumValue>
-			<EnumValue>America/Mazatlan</EnumValue>
-			<EnumValue>America/Menominee</EnumValue>
-			<EnumValue>America/Merida</EnumValue>
-			<EnumValue>America/Metlakatla</EnumValue>
-			<EnumValue>America/Mexico_City</EnumValue>
-			<EnumValue>America/Miquelon</EnumValue>
-			<EnumValue>America/Moncton</EnumValue>
-			<EnumValue>America/Monterrey</EnumValue>
-			<EnumValue>America/Montevideo</EnumValue>
-			<EnumValue>America/Nassau</EnumValue>
-			<EnumValue>America/New_York</EnumValue>
-			<EnumValue>America/Nipigon</EnumValue>
-			<EnumValue>America/Nome</EnumValue>
-			<EnumValue>America/Noronha</EnumValue>
-			<EnumValue>America/North_Dakota/Beulah</EnumValue>
-			<EnumValue>America/North_Dakota/Center</EnumValue>
-			<EnumValue>America/North_Dakota/New_Salem</EnumValue>
-			<EnumValue>America/Nuuk</EnumValue>
-			<EnumValue>America/Ojinaga</EnumValue>
-			<EnumValue>America/Panama</EnumValue>
-			<EnumValue>America/Pangnirtung</EnumValue>
-			<EnumValue>America/Paramaribo</EnumValue>
-			<EnumValue>America/Phoenix</EnumValue>
-			<EnumValue>America/Port-au-Prince</EnumValue>
-			<EnumValue>America/Port_of_Spain</EnumValue>
-			<EnumValue>America/Porto_Velho</EnumValue>
-			<EnumValue>America/Puerto_Rico</EnumValue>
-			<EnumValue>America/Punta_Arenas</EnumValue>
-			<EnumValue>America/Rainy_River</EnumValue>
-			<EnumValue>America/Rankin_Inlet</EnumValue>
-			<EnumValue>America/Recife</EnumValue>
-			<EnumValue>America/Regina</EnumValue>
-			<EnumValue>America/Resolute</EnumValue>
-			<EnumValue>America/Rio_Branco</EnumValue>
-			<EnumValue>America/Santarem</EnumValue>
-			<EnumValue>America/Santiago</EnumValue>
-			<EnumValue>America/Santo_Domingo</EnumValue>
-			<EnumValue>America/Sao_Paulo</EnumValue>
-			<EnumValue>America/Scoresbysund</EnumValue>
-			<EnumValue>America/Sitka</EnumValue>
-			<EnumValue>America/St_Johns</EnumValue>
-			<EnumValue>America/Swift_Current</EnumValue>
-			<EnumValue>America/Tegucigalpa</EnumValue>
-			<EnumValue>America/Thule</EnumValue>
-			<EnumValue>America/Thunder_Bay</EnumValue>
-			<EnumValue>America/Tijuana</EnumValue>
-			<EnumValue>America/Toronto</EnumValue>
-			<EnumValue>America/Vancouver</EnumValue>
-			<EnumValue>America/Whitehorse</EnumValue>
-			<EnumValue>America/Winnipeg</EnumValue>
-			<EnumValue>America/Yakutat</EnumValue>
-			<EnumValue>America/Yellowknife</EnumValue>
-			<EnumValue>Antarctica/Casey</EnumValue>
-			<EnumValue>Antarctica/Davis</EnumValue>
-			<EnumValue>Antarctica/DumontDUrville</EnumValue>
-			<EnumValue>Antarctica/Macquarie</EnumValue>
-			<EnumValue>Antarctica/Mawson</EnumValue>
-			<EnumValue>Antarctica/Palmer</EnumValue>
-			<EnumValue>Antarctica/Rothera</EnumValue>
-			<EnumValue>Antarctica/Syowa</EnumValue>
-			<EnumValue>Antarctica/Troll</EnumValue>
-			<EnumValue>Antarctica/Vostok</EnumValue>
-			<EnumValue>Asia/Almaty</EnumValue>
-			<EnumValue>Asia/Amman</EnumValue>
-			<EnumValue>Asia/Anadyr</EnumValue>
-			<EnumValue>Asia/Aqtau</EnumValue>
-			<EnumValue>Asia/Aqtobe</EnumValue>
-			<EnumValue>Asia/Ashgabat</EnumValue>
-			<EnumValue>Asia/Atyrau</EnumValue>
-			<EnumValue>Asia/Baghdad</EnumValue>
-			<EnumValue>Asia/Baku</EnumValue>
-			<EnumValue>Asia/Bangkok</EnumValue>
-			<EnumValue>Asia/Barnaul</EnumValue>
-			<EnumValue>Asia/Beirut</EnumValue>
-			<EnumValue>Asia/Bishkek</EnumValue>
-			<EnumValue>Asia/Brunei</EnumValue>
-			<EnumValue>Asia/Chita</EnumValue>
-			<EnumValue>Asia/Choibalsan</EnumValue>
-			<EnumValue>Asia/Colombo</EnumValue>
-			<EnumValue>Asia/Damascus</EnumValue>
-			<EnumValue>Asia/Dhaka</EnumValue>
-			<EnumValue>Asia/Dili</EnumValue>
-			<EnumValue>Asia/Dubai</EnumValue>
-			<EnumValue>Asia/Dushanbe</EnumValue>
-			<EnumValue>Asia/Famagusta</EnumValue>
-			<EnumValue>Asia/Gaza</EnumValue>
-			<EnumValue>Asia/Hebron</EnumValue>
-			<EnumValue>Asia/Ho_Chi_Minh</EnumValue>
-			<EnumValue>Asia/Hong_Kong</EnumValue>
-			<EnumValue>Asia/Hovd</EnumValue>
-			<EnumValue>Asia/Irkutsk</EnumValue>
-			<EnumValue>Asia/Jakarta</EnumValue>
-			<EnumValue>Asia/Jayapura</EnumValue>
-			<EnumValue>Asia/Jerusalem</EnumValue>
-			<EnumValue>Asia/Kabul</EnumValue>
-			<EnumValue>Asia/Kamchatka</EnumValue>
-			<EnumValue>Asia/Karachi</EnumValue>
-			<EnumValue>Asia/Kathmandu</EnumValue>
-			<EnumValue>Asia/Khandyga</EnumValue>
-			<EnumValue>Asia/Kolkata</EnumValue>
-			<EnumValue>Asia/Krasnoyarsk</EnumValue>
-			<EnumValue>Asia/Kuala_Lumpur</EnumValue>
-			<EnumValue>Asia/Kuching</EnumValue>
-			<EnumValue>Asia/Macau</EnumValue>
-			<EnumValue>Asia/Magadan</EnumValue>
-			<EnumValue>Asia/Makassar</EnumValue>
-			<EnumValue>Asia/Manila</EnumValue>
-			<EnumValue>Asia/Nicosia</EnumValue>
-			<EnumValue>Asia/Novokuznetsk</EnumValue>
-			<EnumValue>Asia/Novosibirsk</EnumValue>
-			<EnumValue>Asia/Omsk</EnumValue>
-			<EnumValue>Asia/Oral</EnumValue>
-			<EnumValue>Asia/Pontianak</EnumValue>
-			<EnumValue>Asia/Pyongyang</EnumValue>
-			<EnumValue>Asia/Qatar</EnumValue>
-			<EnumValue>Asia/Qostanay</EnumValue>
-			<EnumValue>Asia/Qyzylorda</EnumValue>
-			<EnumValue>Asia/Riyadh</EnumValue>
-			<EnumValue>Asia/Sakhalin</EnumValue>
-			<EnumValue>Asia/Samarkand</EnumValue>
-			<EnumValue>Asia/Seoul</EnumValue>
-			<EnumValue>Asia/Shanghai</EnumValue>
-			<EnumValue>Asia/Singapore</EnumValue>
-			<EnumValue>Asia/Srednekolymsk</EnumValue>
-			<EnumValue>Asia/Taipei</EnumValue>
-			<EnumValue>Asia/Tashkent</EnumValue>
-			<EnumValue>Asia/Tbilisi</EnumValue>
-			<EnumValue>Asia/Tehran</EnumValue>
-			<EnumValue>Asia/Thimphu</EnumValue>
-			<EnumValue>Asia/Tokyo</EnumValue>
-			<EnumValue>Asia/Tomsk</EnumValue>
-			<EnumValue>Asia/Ulaanbaatar</EnumValue>
-			<EnumValue>Asia/Urumqi</EnumValue>
-			<EnumValue>Asia/Ust-Nera</EnumValue>
-			<EnumValue>Asia/Vladivostok</EnumValue>
-			<EnumValue>Asia/Yakutsk</EnumValue>
-			<EnumValue>Asia/Yangon</EnumValue>
-			<EnumValue>Asia/Yekaterinburg</EnumValue>
-			<EnumValue>Asia/Yerevan</EnumValue>
-			<EnumValue>Atlantic/Azores</EnumValue>
-			<EnumValue>Atlantic/Bermuda</EnumValue>
-			<EnumValue>Atlantic/Canary</EnumValue>
-			<EnumValue>Atlantic/Cape_Verde</EnumValue>
-			<EnumValue>Atlantic/Faroe</EnumValue>
-			<EnumValue>Atlantic/Madeira</EnumValue>
-			<EnumValue>Atlantic/Reykjavik</EnumValue>
-			<EnumValue>Atlantic/South_Georgia</EnumValue>
-			<EnumValue>Atlantic/Stanley</EnumValue>
-			<EnumValue>Australia/Adelaide</EnumValue>
-			<EnumValue>Australia/Brisbane</EnumValue>
-			<EnumValue>Australia/Broken_Hill</EnumValue>
-			<EnumValue>Australia/Darwin</EnumValue>
-			<EnumValue>Australia/Eucla</EnumValue>
-			<EnumValue>Australia/Hobart</EnumValue>
-			<EnumValue>Australia/Lindeman</EnumValue>
-			<EnumValue>Australia/Lord_Howe</EnumValue>
-			<EnumValue>Australia/Melbourne</EnumValue>
-			<EnumValue>Australia/Perth</EnumValue>
-			<EnumValue>Australia/Sydney</EnumValue>
-			<EnumValue>CET</EnumValue>
-			<EnumValue>CST6CDT</EnumValue>
-			<EnumValue>EET</EnumValue>
-			<EnumValue>EST</EnumValue>
-			<EnumValue>EST5EDT</EnumValue>
-			<EnumValue>Etc/GMT</EnumValue>
-			<EnumValue>Etc/GMT+1</EnumValue>
-			<EnumValue>Etc/GMT+10</EnumValue>
-			<EnumValue>Etc/GMT+11</EnumValue>
-			<EnumValue>Etc/GMT+12</EnumValue>
-			<EnumValue>Etc/GMT+2</EnumValue>
-			<EnumValue>Etc/GMT+3</EnumValue>
-			<EnumValue>Etc/GMT+4</EnumValue>
-			<EnumValue>Etc/GMT+5</EnumValue>
-			<EnumValue>Etc/GMT+6</EnumValue>
-			<EnumValue>Etc/GMT+7</EnumValue>
-			<EnumValue>Etc/GMT+8</EnumValue>
-			<EnumValue>Etc/GMT+9</EnumValue>
-			<EnumValue>Etc/GMT-1</EnumValue>
-			<EnumValue>Etc/GMT-10</EnumValue>
-			<EnumValue>Etc/GMT-11</EnumValue>
-			<EnumValue>Etc/GMT-12</EnumValue>
-			<EnumValue>Etc/GMT-13</EnumValue>
-			<EnumValue>Etc/GMT-14</EnumValue>
-			<EnumValue>Etc/GMT-2</EnumValue>
-			<EnumValue>Etc/GMT-3</EnumValue>
-			<EnumValue>Etc/GMT-4</EnumValue>
-			<EnumValue>Etc/GMT-5</EnumValue>
-			<EnumValue>Etc/GMT-6</EnumValue>
-			<EnumValue>Etc/GMT-7</EnumValue>
-			<EnumValue>Etc/GMT-8</EnumValue>
-			<EnumValue>Etc/GMT-9</EnumValue>
-			<EnumValue>Etc/UTC</EnumValue>
-			<EnumValue>Europe/Amsterdam</EnumValue>
-			<EnumValue>Europe/Andorra</EnumValue>
-			<EnumValue>Europe/Astrakhan</EnumValue>
-			<EnumValue>Europe/Athens</EnumValue>
-			<EnumValue>Europe/Belgrade</EnumValue>
-			<EnumValue>Europe/Berlin</EnumValue>
-			<EnumValue>Europe/Brussels</EnumValue>
-			<EnumValue>Europe/Bucharest</EnumValue>
-			<EnumValue>Europe/Budapest</EnumValue>
-			<EnumValue>Europe/Chisinau</EnumValue>
-			<EnumValue>Europe/Copenhagen</EnumValue>
-			<EnumValue>Europe/Dublin</EnumValue>
-			<EnumValue>Europe/Gibraltar</EnumValue>
-			<EnumValue>Europe/Helsinki</EnumValue>
-			<EnumValue>Europe/Istanbul</EnumValue>
-			<EnumValue>Europe/Kaliningrad</EnumValue>
-			<EnumValue>Europe/Kiev</EnumValue>
-			<EnumValue>Europe/Kirov</EnumValue>
-			<EnumValue>Europe/Lisbon</EnumValue>
-			<EnumValue>Europe/London</EnumValue>
-			<EnumValue>Europe/Luxembourg</EnumValue>
-			<EnumValue>Europe/Madrid</EnumValue>
-			<EnumValue>Europe/Malta</EnumValue>
-			<EnumValue>Europe/Minsk</EnumValue>
-			<EnumValue>Europe/Monaco</EnumValue>
-			<EnumValue>Europe/Moscow</EnumValue>
-			<EnumValue>Europe/Oslo</EnumValue>
-			<EnumValue>Europe/Paris</EnumValue>
-			<EnumValue>Europe/Prague</EnumValue>
-			<EnumValue>Europe/Riga</EnumValue>
-			<EnumValue>Europe/Rome</EnumValue>
-			<EnumValue>Europe/Samara</EnumValue>
-			<EnumValue>Europe/Saratov</EnumValue>
-			<EnumValue>Europe/Simferopol</EnumValue>
-			<EnumValue>Europe/Sofia</EnumValue>
-			<EnumValue>Europe/Stockholm</EnumValue>
-			<EnumValue>Europe/Tallinn</EnumValue>
-			<EnumValue>Europe/Tirane</EnumValue>
-			<EnumValue>Europe/Ulyanovsk</EnumValue>
-			<EnumValue>Europe/Uzhgorod</EnumValue>
-			<EnumValue>Europe/Vienna</EnumValue>
-			<EnumValue>Europe/Vilnius</EnumValue>
-			<EnumValue>Europe/Volgograd</EnumValue>
-			<EnumValue>Europe/Warsaw</EnumValue>
-			<EnumValue>Europe/Zaporozhye</EnumValue>
-			<EnumValue>Europe/Zurich</EnumValue>
-			<EnumValue>HST</EnumValue>
-			<EnumValue>Indian/Chagos</EnumValue>
-			<EnumValue>Indian/Christmas</EnumValue>
-			<EnumValue>Indian/Cocos</EnumValue>
-			<EnumValue>Indian/Kerguelen</EnumValue>
-			<EnumValue>Indian/Mahe</EnumValue>
-			<EnumValue>Indian/Maldives</EnumValue>
-			<EnumValue>Indian/Mauritius</EnumValue>
-			<EnumValue>Indian/Reunion</EnumValue>
-			<EnumValue>MET</EnumValue>
-			<EnumValue>MST</EnumValue>
-			<EnumValue>MST7MDT</EnumValue>
-			<EnumValue>PST8PDT</EnumValue>
-			<EnumValue>Pacific/Apia</EnumValue>
-			<EnumValue>Pacific/Auckland</EnumValue>
-			<EnumValue>Pacific/Bougainville</EnumValue>
-			<EnumValue>Pacific/Chatham</EnumValue>
-			<EnumValue>Pacific/Chuuk</EnumValue>
-			<EnumValue>Pacific/Easter</EnumValue>
-			<EnumValue>Pacific/Efate</EnumValue>
-			<EnumValue>Pacific/Enderbury</EnumValue>
-			<EnumValue>Pacific/Fakaofo</EnumValue>
-			<EnumValue>Pacific/Fiji</EnumValue>
-			<EnumValue>Pacific/Funafuti</EnumValue>
-			<EnumValue>Pacific/Galapagos</EnumValue>
-			<EnumValue>Pacific/Gambier</EnumValue>
-			<EnumValue>Pacific/Guadalcanal</EnumValue>
-			<EnumValue>Pacific/Guam</EnumValue>
-			<EnumValue>Pacific/Honolulu</EnumValue>
-			<EnumValue>Pacific/Kiritimati</EnumValue>
-			<EnumValue>Pacific/Kosrae</EnumValue>
-			<EnumValue>Pacific/Kwajalein</EnumValue>
-			<EnumValue>Pacific/Majuro</EnumValue>
-			<EnumValue>Pacific/Marquesas</EnumValue>
-			<EnumValue>Pacific/Nauru</EnumValue>
-			<EnumValue>Pacific/Niue</EnumValue>
-			<EnumValue>Pacific/Norfolk</EnumValue>
-			<EnumValue>Pacific/Noumea</EnumValue>
-			<EnumValue>Pacific/Pago_Pago</EnumValue>
-			<EnumValue>Pacific/Palau</EnumValue>
-			<EnumValue>Pacific/Pitcairn</EnumValue>
-			<EnumValue>Pacific/Pohnpei</EnumValue>
-			<EnumValue>Pacific/Port_Moresby</EnumValue>
-			<EnumValue>Pacific/Rarotonga</EnumValue>
-			<EnumValue>Pacific/Tahiti</EnumValue>
-			<EnumValue>Pacific/Tarawa</EnumValue>
-			<EnumValue>Pacific/Tongatapu</EnumValue>
-			<EnumValue>Pacific/Wake</EnumValue>
-			<EnumValue>Pacific/Wallis</EnumValue>
-			<EnumValue>WET</EnumValue>
+			<EnumValue value="Africa/Abidjan" />
+			<EnumValue value="Africa/Accra" />
+			<EnumValue value="Africa/Algiers" />
+			<EnumValue value="Africa/Bissau" />
+			<EnumValue value="Africa/Cairo" />
+			<EnumValue value="Africa/Casablanca" />
+			<EnumValue value="Africa/Ceuta" />
+			<EnumValue value="Africa/El_Aaiun" />
+			<EnumValue value="Africa/Johannesburg" />
+			<EnumValue value="Africa/Juba" />
+			<EnumValue value="Africa/Khartoum" />
+			<EnumValue value="Africa/Lagos" />
+			<EnumValue value="Africa/Maputo" />
+			<EnumValue value="Africa/Monrovia" />
+			<EnumValue value="Africa/Nairobi" />
+			<EnumValue value="Africa/Ndjamena" />
+			<EnumValue value="Africa/Sao_Tome" />
+			<EnumValue value="Africa/Tripoli" />
+			<EnumValue value="Africa/Tunis" />
+			<EnumValue value="Africa/Windhoek" />
+			<EnumValue value="America/Adak" />
+			<EnumValue value="America/Anchorage" />
+			<EnumValue value="America/Araguaina" />
+			<EnumValue value="America/Argentina/Buenos_Aires" />
+			<EnumValue value="America/Argentina/Catamarca" />
+			<EnumValue value="America/Argentina/Cordoba" />
+			<EnumValue value="America/Argentina/Jujuy" />
+			<EnumValue value="America/Argentina/La_Rioja" />
+			<EnumValue value="America/Argentina/Mendoza" />
+			<EnumValue value="America/Argentina/Rio_Gallegos" />
+			<EnumValue value="America/Argentina/Salta" />
+			<EnumValue value="America/Argentina/San_Juan" />
+			<EnumValue value="America/Argentina/San_Luis" />
+			<EnumValue value="America/Argentina/Tucuman" />
+			<EnumValue value="America/Argentina/Ushuaia" />
+			<EnumValue value="America/Asuncion" />
+			<EnumValue value="America/Atikokan" />
+			<EnumValue value="America/Bahia" />
+			<EnumValue value="America/Bahia_Banderas" />
+			<EnumValue value="America/Barbados" />
+			<EnumValue value="America/Belem" />
+			<EnumValue value="America/Belize" />
+			<EnumValue value="America/Blanc-Sablon" />
+			<EnumValue value="America/Boa_Vista" />
+			<EnumValue value="America/Bogota" />
+			<EnumValue value="America/Boise" />
+			<EnumValue value="America/Cambridge_Bay" />
+			<EnumValue value="America/Campo_Grande" />
+			<EnumValue value="America/Cancun" />
+			<EnumValue value="America/Caracas" />
+			<EnumValue value="America/Cayenne" />
+			<EnumValue value="America/Chicago" />
+			<EnumValue value="America/Chihuahua" />
+			<EnumValue value="America/Costa_Rica" />
+			<EnumValue value="America/Creston" />
+			<EnumValue value="America/Cuiaba" />
+			<EnumValue value="America/Curacao" />
+			<EnumValue value="America/Danmarkshavn" />
+			<EnumValue value="America/Dawson" />
+			<EnumValue value="America/Dawson_Creek" />
+			<EnumValue value="America/Denver" />
+			<EnumValue value="America/Detroit" />
+			<EnumValue value="America/Edmonton" />
+			<EnumValue value="America/Eirunepe" />
+			<EnumValue value="America/El_Salvador" />
+			<EnumValue value="America/Fort_Nelson" />
+			<EnumValue value="America/Fortaleza" />
+			<EnumValue value="America/Glace_Bay" />
+			<EnumValue value="America/Goose_Bay" />
+			<EnumValue value="America/Grand_Turk" />
+			<EnumValue value="America/Guatemala" />
+			<EnumValue value="America/Guayaquil" />
+			<EnumValue value="America/Guyana" />
+			<EnumValue value="America/Halifax" />
+			<EnumValue value="America/Havana" />
+			<EnumValue value="America/Hermosillo" />
+			<EnumValue value="America/Indiana/Indianapolis" />
+			<EnumValue value="America/Indiana/Knox" />
+			<EnumValue value="America/Indiana/Marengo" />
+			<EnumValue value="America/Indiana/Petersburg" />
+			<EnumValue value="America/Indiana/Tell_City" />
+			<EnumValue value="America/Indiana/Vevay" />
+			<EnumValue value="America/Indiana/Vincennes" />
+			<EnumValue value="America/Indiana/Winamac" />
+			<EnumValue value="America/Inuvik" />
+			<EnumValue value="America/Iqaluit" />
+			<EnumValue value="America/Jamaica" />
+			<EnumValue value="America/Juneau" />
+			<EnumValue value="America/Kentucky/Louisville" />
+			<EnumValue value="America/Kentucky/Monticello" />
+			<EnumValue value="America/La_Paz" />
+			<EnumValue value="America/Lima" />
+			<EnumValue value="America/Los_Angeles" />
+			<EnumValue value="America/Maceio" />
+			<EnumValue value="America/Managua" />
+			<EnumValue value="America/Manaus" />
+			<EnumValue value="America/Martinique" />
+			<EnumValue value="America/Matamoros" />
+			<EnumValue value="America/Mazatlan" />
+			<EnumValue value="America/Menominee" />
+			<EnumValue value="America/Merida" />
+			<EnumValue value="America/Metlakatla" />
+			<EnumValue value="America/Mexico_City" />
+			<EnumValue value="America/Miquelon" />
+			<EnumValue value="America/Moncton" />
+			<EnumValue value="America/Monterrey" />
+			<EnumValue value="America/Montevideo" />
+			<EnumValue value="America/Nassau" />
+			<EnumValue value="America/New_York" />
+			<EnumValue value="America/Nipigon" />
+			<EnumValue value="America/Nome" />
+			<EnumValue value="America/Noronha" />
+			<EnumValue value="America/North_Dakota/Beulah" />
+			<EnumValue value="America/North_Dakota/Center" />
+			<EnumValue value="America/North_Dakota/New_Salem" />
+			<EnumValue value="America/Nuuk" />
+			<EnumValue value="America/Ojinaga" />
+			<EnumValue value="America/Panama" />
+			<EnumValue value="America/Pangnirtung" />
+			<EnumValue value="America/Paramaribo" />
+			<EnumValue value="America/Phoenix" />
+			<EnumValue value="America/Port-au-Prince" />
+			<EnumValue value="America/Port_of_Spain" />
+			<EnumValue value="America/Porto_Velho" />
+			<EnumValue value="America/Puerto_Rico" />
+			<EnumValue value="America/Punta_Arenas" />
+			<EnumValue value="America/Rainy_River" />
+			<EnumValue value="America/Rankin_Inlet" />
+			<EnumValue value="America/Recife" />
+			<EnumValue value="America/Regina" />
+			<EnumValue value="America/Resolute" />
+			<EnumValue value="America/Rio_Branco" />
+			<EnumValue value="America/Santarem" />
+			<EnumValue value="America/Santiago" />
+			<EnumValue value="America/Santo_Domingo" />
+			<EnumValue value="America/Sao_Paulo" />
+			<EnumValue value="America/Scoresbysund" />
+			<EnumValue value="America/Sitka" />
+			<EnumValue value="America/St_Johns" />
+			<EnumValue value="America/Swift_Current" />
+			<EnumValue value="America/Tegucigalpa" />
+			<EnumValue value="America/Thule" />
+			<EnumValue value="America/Thunder_Bay" />
+			<EnumValue value="America/Tijuana" />
+			<EnumValue value="America/Toronto" />
+			<EnumValue value="America/Vancouver" />
+			<EnumValue value="America/Whitehorse" />
+			<EnumValue value="America/Winnipeg" />
+			<EnumValue value="America/Yakutat" />
+			<EnumValue value="America/Yellowknife" />
+			<EnumValue value="Antarctica/Casey" />
+			<EnumValue value="Antarctica/Davis" />
+			<EnumValue value="Antarctica/DumontDUrville" />
+			<EnumValue value="Antarctica/Macquarie" />
+			<EnumValue value="Antarctica/Mawson" />
+			<EnumValue value="Antarctica/Palmer" />
+			<EnumValue value="Antarctica/Rothera" />
+			<EnumValue value="Antarctica/Syowa" />
+			<EnumValue value="Antarctica/Troll" />
+			<EnumValue value="Antarctica/Vostok" />
+			<EnumValue value="Asia/Almaty" />
+			<EnumValue value="Asia/Amman" />
+			<EnumValue value="Asia/Anadyr" />
+			<EnumValue value="Asia/Aqtau" />
+			<EnumValue value="Asia/Aqtobe" />
+			<EnumValue value="Asia/Ashgabat" />
+			<EnumValue value="Asia/Atyrau" />
+			<EnumValue value="Asia/Baghdad" />
+			<EnumValue value="Asia/Baku" />
+			<EnumValue value="Asia/Bangkok" />
+			<EnumValue value="Asia/Barnaul" />
+			<EnumValue value="Asia/Beirut" />
+			<EnumValue value="Asia/Bishkek" />
+			<EnumValue value="Asia/Brunei" />
+			<EnumValue value="Asia/Chita" />
+			<EnumValue value="Asia/Choibalsan" />
+			<EnumValue value="Asia/Colombo" />
+			<EnumValue value="Asia/Damascus" />
+			<EnumValue value="Asia/Dhaka" />
+			<EnumValue value="Asia/Dili" />
+			<EnumValue value="Asia/Dubai" />
+			<EnumValue value="Asia/Dushanbe" />
+			<EnumValue value="Asia/Famagusta" />
+			<EnumValue value="Asia/Gaza" />
+			<EnumValue value="Asia/Hebron" />
+			<EnumValue value="Asia/Ho_Chi_Minh" />
+			<EnumValue value="Asia/Hong_Kong" />
+			<EnumValue value="Asia/Hovd" />
+			<EnumValue value="Asia/Irkutsk" />
+			<EnumValue value="Asia/Jakarta" />
+			<EnumValue value="Asia/Jayapura" />
+			<EnumValue value="Asia/Jerusalem" />
+			<EnumValue value="Asia/Kabul" />
+			<EnumValue value="Asia/Kamchatka" />
+			<EnumValue value="Asia/Karachi" />
+			<EnumValue value="Asia/Kathmandu" />
+			<EnumValue value="Asia/Khandyga" />
+			<EnumValue value="Asia/Kolkata" />
+			<EnumValue value="Asia/Krasnoyarsk" />
+			<EnumValue value="Asia/Kuala_Lumpur" />
+			<EnumValue value="Asia/Kuching" />
+			<EnumValue value="Asia/Macau" />
+			<EnumValue value="Asia/Magadan" />
+			<EnumValue value="Asia/Makassar" />
+			<EnumValue value="Asia/Manila" />
+			<EnumValue value="Asia/Nicosia" />
+			<EnumValue value="Asia/Novokuznetsk" />
+			<EnumValue value="Asia/Novosibirsk" />
+			<EnumValue value="Asia/Omsk" />
+			<EnumValue value="Asia/Oral" />
+			<EnumValue value="Asia/Pontianak" />
+			<EnumValue value="Asia/Pyongyang" />
+			<EnumValue value="Asia/Qatar" />
+			<EnumValue value="Asia/Qostanay" />
+			<EnumValue value="Asia/Qyzylorda" />
+			<EnumValue value="Asia/Riyadh" />
+			<EnumValue value="Asia/Sakhalin" />
+			<EnumValue value="Asia/Samarkand" />
+			<EnumValue value="Asia/Seoul" />
+			<EnumValue value="Asia/Shanghai" />
+			<EnumValue value="Asia/Singapore" />
+			<EnumValue value="Asia/Srednekolymsk" />
+			<EnumValue value="Asia/Taipei" />
+			<EnumValue value="Asia/Tashkent" />
+			<EnumValue value="Asia/Tbilisi" />
+			<EnumValue value="Asia/Tehran" />
+			<EnumValue value="Asia/Thimphu" />
+			<EnumValue value="Asia/Tokyo" />
+			<EnumValue value="Asia/Tomsk" />
+			<EnumValue value="Asia/Ulaanbaatar" />
+			<EnumValue value="Asia/Urumqi" />
+			<EnumValue value="Asia/Ust-Nera" />
+			<EnumValue value="Asia/Vladivostok" />
+			<EnumValue value="Asia/Yakutsk" />
+			<EnumValue value="Asia/Yangon" />
+			<EnumValue value="Asia/Yekaterinburg" />
+			<EnumValue value="Asia/Yerevan" />
+			<EnumValue value="Atlantic/Azores" />
+			<EnumValue value="Atlantic/Bermuda" />
+			<EnumValue value="Atlantic/Canary" />
+			<EnumValue value="Atlantic/Cape_Verde" />
+			<EnumValue value="Atlantic/Faroe" />
+			<EnumValue value="Atlantic/Madeira" />
+			<EnumValue value="Atlantic/Reykjavik" />
+			<EnumValue value="Atlantic/South_Georgia" />
+			<EnumValue value="Atlantic/Stanley" />
+			<EnumValue value="Australia/Adelaide" />
+			<EnumValue value="Australia/Brisbane" />
+			<EnumValue value="Australia/Broken_Hill" />
+			<EnumValue value="Australia/Darwin" />
+			<EnumValue value="Australia/Eucla" />
+			<EnumValue value="Australia/Hobart" />
+			<EnumValue value="Australia/Lindeman" />
+			<EnumValue value="Australia/Lord_Howe" />
+			<EnumValue value="Australia/Melbourne" />
+			<EnumValue value="Australia/Perth" />
+			<EnumValue value="Australia/Sydney" />
+			<EnumValue value="CET" />
+			<EnumValue value="CST6CDT" />
+			<EnumValue value="EET" />
+			<EnumValue value="EST" />
+			<EnumValue value="EST5EDT" />
+			<EnumValue value="Etc/GMT" />
+			<EnumValue value="Etc/GMT+1" />
+			<EnumValue value="Etc/GMT+10" />
+			<EnumValue value="Etc/GMT+11" />
+			<EnumValue value="Etc/GMT+12" />
+			<EnumValue value="Etc/GMT+2" />
+			<EnumValue value="Etc/GMT+3" />
+			<EnumValue value="Etc/GMT+4" />
+			<EnumValue value="Etc/GMT+5" />
+			<EnumValue value="Etc/GMT+6" />
+			<EnumValue value="Etc/GMT+7" />
+			<EnumValue value="Etc/GMT+8" />
+			<EnumValue value="Etc/GMT+9" />
+			<EnumValue value="Etc/GMT-1" />
+			<EnumValue value="Etc/GMT-10" />
+			<EnumValue value="Etc/GMT-11" />
+			<EnumValue value="Etc/GMT-12" />
+			<EnumValue value="Etc/GMT-13" />
+			<EnumValue value="Etc/GMT-14" />
+			<EnumValue value="Etc/GMT-2" />
+			<EnumValue value="Etc/GMT-3" />
+			<EnumValue value="Etc/GMT-4" />
+			<EnumValue value="Etc/GMT-5" />
+			<EnumValue value="Etc/GMT-6" />
+			<EnumValue value="Etc/GMT-7" />
+			<EnumValue value="Etc/GMT-8" />
+			<EnumValue value="Etc/GMT-9" />
+			<EnumValue value="Etc/UTC" />
+			<EnumValue value="Europe/Amsterdam" />
+			<EnumValue value="Europe/Andorra" />
+			<EnumValue value="Europe/Astrakhan" />
+			<EnumValue value="Europe/Athens" />
+			<EnumValue value="Europe/Belgrade" />
+			<EnumValue value="Europe/Berlin" />
+			<EnumValue value="Europe/Brussels" />
+			<EnumValue value="Europe/Bucharest" />
+			<EnumValue value="Europe/Budapest" />
+			<EnumValue value="Europe/Chisinau" />
+			<EnumValue value="Europe/Copenhagen" />
+			<EnumValue value="Europe/Dublin" />
+			<EnumValue value="Europe/Gibraltar" />
+			<EnumValue value="Europe/Helsinki" />
+			<EnumValue value="Europe/Istanbul" />
+			<EnumValue value="Europe/Kaliningrad" />
+			<EnumValue value="Europe/Kiev" />
+			<EnumValue value="Europe/Kirov" />
+			<EnumValue value="Europe/Lisbon" />
+			<EnumValue value="Europe/London" />
+			<EnumValue value="Europe/Luxembourg" />
+			<EnumValue value="Europe/Madrid" />
+			<EnumValue value="Europe/Malta" />
+			<EnumValue value="Europe/Minsk" />
+			<EnumValue value="Europe/Monaco" />
+			<EnumValue value="Europe/Moscow" />
+			<EnumValue value="Europe/Oslo" />
+			<EnumValue value="Europe/Paris" />
+			<EnumValue value="Europe/Prague" />
+			<EnumValue value="Europe/Riga" />
+			<EnumValue value="Europe/Rome" />
+			<EnumValue value="Europe/Samara" />
+			<EnumValue value="Europe/Saratov" />
+			<EnumValue value="Europe/Simferopol" />
+			<EnumValue value="Europe/Sofia" />
+			<EnumValue value="Europe/Stockholm" />
+			<EnumValue value="Europe/Tallinn" />
+			<EnumValue value="Europe/Tirane" />
+			<EnumValue value="Europe/Ulyanovsk" />
+			<EnumValue value="Europe/Uzhgorod" />
+			<EnumValue value="Europe/Vienna" />
+			<EnumValue value="Europe/Vilnius" />
+			<EnumValue value="Europe/Volgograd" />
+			<EnumValue value="Europe/Warsaw" />
+			<EnumValue value="Europe/Zaporozhye" />
+			<EnumValue value="Europe/Zurich" />
+			<EnumValue value="HST" />
+			<EnumValue value="Indian/Chagos" />
+			<EnumValue value="Indian/Christmas" />
+			<EnumValue value="Indian/Cocos" />
+			<EnumValue value="Indian/Kerguelen" />
+			<EnumValue value="Indian/Mahe" />
+			<EnumValue value="Indian/Maldives" />
+			<EnumValue value="Indian/Mauritius" />
+			<EnumValue value="Indian/Reunion" />
+			<EnumValue value="MET" />
+			<EnumValue value="MST" />
+			<EnumValue value="MST7MDT" />
+			<EnumValue value="PST8PDT" />
+			<EnumValue value="Pacific/Apia" />
+			<EnumValue value="Pacific/Auckland" />
+			<EnumValue value="Pacific/Bougainville" />
+			<EnumValue value="Pacific/Chatham" />
+			<EnumValue value="Pacific/Chuuk" />
+			<EnumValue value="Pacific/Easter" />
+			<EnumValue value="Pacific/Efate" />
+			<EnumValue value="Pacific/Enderbury" />
+			<EnumValue value="Pacific/Fakaofo" />
+			<EnumValue value="Pacific/Fiji" />
+			<EnumValue value="Pacific/Funafuti" />
+			<EnumValue value="Pacific/Galapagos" />
+			<EnumValue value="Pacific/Gambier" />
+			<EnumValue value="Pacific/Guadalcanal" />
+			<EnumValue value="Pacific/Guam" />
+			<EnumValue value="Pacific/Honolulu" />
+			<EnumValue value="Pacific/Kiritimati" />
+			<EnumValue value="Pacific/Kosrae" />
+			<EnumValue value="Pacific/Kwajalein" />
+			<EnumValue value="Pacific/Majuro" />
+			<EnumValue value="Pacific/Marquesas" />
+			<EnumValue value="Pacific/Nauru" />
+			<EnumValue value="Pacific/Niue" />
+			<EnumValue value="Pacific/Norfolk" />
+			<EnumValue value="Pacific/Noumea" />
+			<EnumValue value="Pacific/Pago_Pago" />
+			<EnumValue value="Pacific/Palau" />
+			<EnumValue value="Pacific/Pitcairn" />
+			<EnumValue value="Pacific/Pohnpei" />
+			<EnumValue value="Pacific/Port_Moresby" />
+			<EnumValue value="Pacific/Rarotonga" />
+			<EnumValue value="Pacific/Tahiti" />
+			<EnumValue value="Pacific/Tarawa" />
+			<EnumValue value="Pacific/Tongatapu" />
+			<EnumValue value="Pacific/Wake" />
+			<EnumValue value="Pacific/Wallis" />
+			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz5" display_name="Timezone" datatype="enum" default_value="">
-			<EnumValue>Africa/Abidjan</EnumValue>
-			<EnumValue>Africa/Accra</EnumValue>
-			<EnumValue>Africa/Algiers</EnumValue>
-			<EnumValue>Africa/Bissau</EnumValue>
-			<EnumValue>Africa/Cairo</EnumValue>
-			<EnumValue>Africa/Casablanca</EnumValue>
-			<EnumValue>Africa/Ceuta</EnumValue>
-			<EnumValue>Africa/El_Aaiun</EnumValue>
-			<EnumValue>Africa/Johannesburg</EnumValue>
-			<EnumValue>Africa/Juba</EnumValue>
-			<EnumValue>Africa/Khartoum</EnumValue>
-			<EnumValue>Africa/Lagos</EnumValue>
-			<EnumValue>Africa/Maputo</EnumValue>
-			<EnumValue>Africa/Monrovia</EnumValue>
-			<EnumValue>Africa/Nairobi</EnumValue>
-			<EnumValue>Africa/Ndjamena</EnumValue>
-			<EnumValue>Africa/Sao_Tome</EnumValue>
-			<EnumValue>Africa/Tripoli</EnumValue>
-			<EnumValue>Africa/Tunis</EnumValue>
-			<EnumValue>Africa/Windhoek</EnumValue>
-			<EnumValue>America/Adak</EnumValue>
-			<EnumValue>America/Anchorage</EnumValue>
-			<EnumValue>America/Araguaina</EnumValue>
-			<EnumValue>America/Argentina/Buenos_Aires</EnumValue>
-			<EnumValue>America/Argentina/Catamarca</EnumValue>
-			<EnumValue>America/Argentina/Cordoba</EnumValue>
-			<EnumValue>America/Argentina/Jujuy</EnumValue>
-			<EnumValue>America/Argentina/La_Rioja</EnumValue>
-			<EnumValue>America/Argentina/Mendoza</EnumValue>
-			<EnumValue>America/Argentina/Rio_Gallegos</EnumValue>
-			<EnumValue>America/Argentina/Salta</EnumValue>
-			<EnumValue>America/Argentina/San_Juan</EnumValue>
-			<EnumValue>America/Argentina/San_Luis</EnumValue>
-			<EnumValue>America/Argentina/Tucuman</EnumValue>
-			<EnumValue>America/Argentina/Ushuaia</EnumValue>
-			<EnumValue>America/Asuncion</EnumValue>
-			<EnumValue>America/Atikokan</EnumValue>
-			<EnumValue>America/Bahia</EnumValue>
-			<EnumValue>America/Bahia_Banderas</EnumValue>
-			<EnumValue>America/Barbados</EnumValue>
-			<EnumValue>America/Belem</EnumValue>
-			<EnumValue>America/Belize</EnumValue>
-			<EnumValue>America/Blanc-Sablon</EnumValue>
-			<EnumValue>America/Boa_Vista</EnumValue>
-			<EnumValue>America/Bogota</EnumValue>
-			<EnumValue>America/Boise</EnumValue>
-			<EnumValue>America/Cambridge_Bay</EnumValue>
-			<EnumValue>America/Campo_Grande</EnumValue>
-			<EnumValue>America/Cancun</EnumValue>
-			<EnumValue>America/Caracas</EnumValue>
-			<EnumValue>America/Cayenne</EnumValue>
-			<EnumValue>America/Chicago</EnumValue>
-			<EnumValue>America/Chihuahua</EnumValue>
-			<EnumValue>America/Costa_Rica</EnumValue>
-			<EnumValue>America/Creston</EnumValue>
-			<EnumValue>America/Cuiaba</EnumValue>
-			<EnumValue>America/Curacao</EnumValue>
-			<EnumValue>America/Danmarkshavn</EnumValue>
-			<EnumValue>America/Dawson</EnumValue>
-			<EnumValue>America/Dawson_Creek</EnumValue>
-			<EnumValue>America/Denver</EnumValue>
-			<EnumValue>America/Detroit</EnumValue>
-			<EnumValue>America/Edmonton</EnumValue>
-			<EnumValue>America/Eirunepe</EnumValue>
-			<EnumValue>America/El_Salvador</EnumValue>
-			<EnumValue>America/Fort_Nelson</EnumValue>
-			<EnumValue>America/Fortaleza</EnumValue>
-			<EnumValue>America/Glace_Bay</EnumValue>
-			<EnumValue>America/Goose_Bay</EnumValue>
-			<EnumValue>America/Grand_Turk</EnumValue>
-			<EnumValue>America/Guatemala</EnumValue>
-			<EnumValue>America/Guayaquil</EnumValue>
-			<EnumValue>America/Guyana</EnumValue>
-			<EnumValue>America/Halifax</EnumValue>
-			<EnumValue>America/Havana</EnumValue>
-			<EnumValue>America/Hermosillo</EnumValue>
-			<EnumValue>America/Indiana/Indianapolis</EnumValue>
-			<EnumValue>America/Indiana/Knox</EnumValue>
-			<EnumValue>America/Indiana/Marengo</EnumValue>
-			<EnumValue>America/Indiana/Petersburg</EnumValue>
-			<EnumValue>America/Indiana/Tell_City</EnumValue>
-			<EnumValue>America/Indiana/Vevay</EnumValue>
-			<EnumValue>America/Indiana/Vincennes</EnumValue>
-			<EnumValue>America/Indiana/Winamac</EnumValue>
-			<EnumValue>America/Inuvik</EnumValue>
-			<EnumValue>America/Iqaluit</EnumValue>
-			<EnumValue>America/Jamaica</EnumValue>
-			<EnumValue>America/Juneau</EnumValue>
-			<EnumValue>America/Kentucky/Louisville</EnumValue>
-			<EnumValue>America/Kentucky/Monticello</EnumValue>
-			<EnumValue>America/La_Paz</EnumValue>
-			<EnumValue>America/Lima</EnumValue>
-			<EnumValue>America/Los_Angeles</EnumValue>
-			<EnumValue>America/Maceio</EnumValue>
-			<EnumValue>America/Managua</EnumValue>
-			<EnumValue>America/Manaus</EnumValue>
-			<EnumValue>America/Martinique</EnumValue>
-			<EnumValue>America/Matamoros</EnumValue>
-			<EnumValue>America/Mazatlan</EnumValue>
-			<EnumValue>America/Menominee</EnumValue>
-			<EnumValue>America/Merida</EnumValue>
-			<EnumValue>America/Metlakatla</EnumValue>
-			<EnumValue>America/Mexico_City</EnumValue>
-			<EnumValue>America/Miquelon</EnumValue>
-			<EnumValue>America/Moncton</EnumValue>
-			<EnumValue>America/Monterrey</EnumValue>
-			<EnumValue>America/Montevideo</EnumValue>
-			<EnumValue>America/Nassau</EnumValue>
-			<EnumValue>America/New_York</EnumValue>
-			<EnumValue>America/Nipigon</EnumValue>
-			<EnumValue>America/Nome</EnumValue>
-			<EnumValue>America/Noronha</EnumValue>
-			<EnumValue>America/North_Dakota/Beulah</EnumValue>
-			<EnumValue>America/North_Dakota/Center</EnumValue>
-			<EnumValue>America/North_Dakota/New_Salem</EnumValue>
-			<EnumValue>America/Nuuk</EnumValue>
-			<EnumValue>America/Ojinaga</EnumValue>
-			<EnumValue>America/Panama</EnumValue>
-			<EnumValue>America/Pangnirtung</EnumValue>
-			<EnumValue>America/Paramaribo</EnumValue>
-			<EnumValue>America/Phoenix</EnumValue>
-			<EnumValue>America/Port-au-Prince</EnumValue>
-			<EnumValue>America/Port_of_Spain</EnumValue>
-			<EnumValue>America/Porto_Velho</EnumValue>
-			<EnumValue>America/Puerto_Rico</EnumValue>
-			<EnumValue>America/Punta_Arenas</EnumValue>
-			<EnumValue>America/Rainy_River</EnumValue>
-			<EnumValue>America/Rankin_Inlet</EnumValue>
-			<EnumValue>America/Recife</EnumValue>
-			<EnumValue>America/Regina</EnumValue>
-			<EnumValue>America/Resolute</EnumValue>
-			<EnumValue>America/Rio_Branco</EnumValue>
-			<EnumValue>America/Santarem</EnumValue>
-			<EnumValue>America/Santiago</EnumValue>
-			<EnumValue>America/Santo_Domingo</EnumValue>
-			<EnumValue>America/Sao_Paulo</EnumValue>
-			<EnumValue>America/Scoresbysund</EnumValue>
-			<EnumValue>America/Sitka</EnumValue>
-			<EnumValue>America/St_Johns</EnumValue>
-			<EnumValue>America/Swift_Current</EnumValue>
-			<EnumValue>America/Tegucigalpa</EnumValue>
-			<EnumValue>America/Thule</EnumValue>
-			<EnumValue>America/Thunder_Bay</EnumValue>
-			<EnumValue>America/Tijuana</EnumValue>
-			<EnumValue>America/Toronto</EnumValue>
-			<EnumValue>America/Vancouver</EnumValue>
-			<EnumValue>America/Whitehorse</EnumValue>
-			<EnumValue>America/Winnipeg</EnumValue>
-			<EnumValue>America/Yakutat</EnumValue>
-			<EnumValue>America/Yellowknife</EnumValue>
-			<EnumValue>Antarctica/Casey</EnumValue>
-			<EnumValue>Antarctica/Davis</EnumValue>
-			<EnumValue>Antarctica/DumontDUrville</EnumValue>
-			<EnumValue>Antarctica/Macquarie</EnumValue>
-			<EnumValue>Antarctica/Mawson</EnumValue>
-			<EnumValue>Antarctica/Palmer</EnumValue>
-			<EnumValue>Antarctica/Rothera</EnumValue>
-			<EnumValue>Antarctica/Syowa</EnumValue>
-			<EnumValue>Antarctica/Troll</EnumValue>
-			<EnumValue>Antarctica/Vostok</EnumValue>
-			<EnumValue>Asia/Almaty</EnumValue>
-			<EnumValue>Asia/Amman</EnumValue>
-			<EnumValue>Asia/Anadyr</EnumValue>
-			<EnumValue>Asia/Aqtau</EnumValue>
-			<EnumValue>Asia/Aqtobe</EnumValue>
-			<EnumValue>Asia/Ashgabat</EnumValue>
-			<EnumValue>Asia/Atyrau</EnumValue>
-			<EnumValue>Asia/Baghdad</EnumValue>
-			<EnumValue>Asia/Baku</EnumValue>
-			<EnumValue>Asia/Bangkok</EnumValue>
-			<EnumValue>Asia/Barnaul</EnumValue>
-			<EnumValue>Asia/Beirut</EnumValue>
-			<EnumValue>Asia/Bishkek</EnumValue>
-			<EnumValue>Asia/Brunei</EnumValue>
-			<EnumValue>Asia/Chita</EnumValue>
-			<EnumValue>Asia/Choibalsan</EnumValue>
-			<EnumValue>Asia/Colombo</EnumValue>
-			<EnumValue>Asia/Damascus</EnumValue>
-			<EnumValue>Asia/Dhaka</EnumValue>
-			<EnumValue>Asia/Dili</EnumValue>
-			<EnumValue>Asia/Dubai</EnumValue>
-			<EnumValue>Asia/Dushanbe</EnumValue>
-			<EnumValue>Asia/Famagusta</EnumValue>
-			<EnumValue>Asia/Gaza</EnumValue>
-			<EnumValue>Asia/Hebron</EnumValue>
-			<EnumValue>Asia/Ho_Chi_Minh</EnumValue>
-			<EnumValue>Asia/Hong_Kong</EnumValue>
-			<EnumValue>Asia/Hovd</EnumValue>
-			<EnumValue>Asia/Irkutsk</EnumValue>
-			<EnumValue>Asia/Jakarta</EnumValue>
-			<EnumValue>Asia/Jayapura</EnumValue>
-			<EnumValue>Asia/Jerusalem</EnumValue>
-			<EnumValue>Asia/Kabul</EnumValue>
-			<EnumValue>Asia/Kamchatka</EnumValue>
-			<EnumValue>Asia/Karachi</EnumValue>
-			<EnumValue>Asia/Kathmandu</EnumValue>
-			<EnumValue>Asia/Khandyga</EnumValue>
-			<EnumValue>Asia/Kolkata</EnumValue>
-			<EnumValue>Asia/Krasnoyarsk</EnumValue>
-			<EnumValue>Asia/Kuala_Lumpur</EnumValue>
-			<EnumValue>Asia/Kuching</EnumValue>
-			<EnumValue>Asia/Macau</EnumValue>
-			<EnumValue>Asia/Magadan</EnumValue>
-			<EnumValue>Asia/Makassar</EnumValue>
-			<EnumValue>Asia/Manila</EnumValue>
-			<EnumValue>Asia/Nicosia</EnumValue>
-			<EnumValue>Asia/Novokuznetsk</EnumValue>
-			<EnumValue>Asia/Novosibirsk</EnumValue>
-			<EnumValue>Asia/Omsk</EnumValue>
-			<EnumValue>Asia/Oral</EnumValue>
-			<EnumValue>Asia/Pontianak</EnumValue>
-			<EnumValue>Asia/Pyongyang</EnumValue>
-			<EnumValue>Asia/Qatar</EnumValue>
-			<EnumValue>Asia/Qostanay</EnumValue>
-			<EnumValue>Asia/Qyzylorda</EnumValue>
-			<EnumValue>Asia/Riyadh</EnumValue>
-			<EnumValue>Asia/Sakhalin</EnumValue>
-			<EnumValue>Asia/Samarkand</EnumValue>
-			<EnumValue>Asia/Seoul</EnumValue>
-			<EnumValue>Asia/Shanghai</EnumValue>
-			<EnumValue>Asia/Singapore</EnumValue>
-			<EnumValue>Asia/Srednekolymsk</EnumValue>
-			<EnumValue>Asia/Taipei</EnumValue>
-			<EnumValue>Asia/Tashkent</EnumValue>
-			<EnumValue>Asia/Tbilisi</EnumValue>
-			<EnumValue>Asia/Tehran</EnumValue>
-			<EnumValue>Asia/Thimphu</EnumValue>
-			<EnumValue>Asia/Tokyo</EnumValue>
-			<EnumValue>Asia/Tomsk</EnumValue>
-			<EnumValue>Asia/Ulaanbaatar</EnumValue>
-			<EnumValue>Asia/Urumqi</EnumValue>
-			<EnumValue>Asia/Ust-Nera</EnumValue>
-			<EnumValue>Asia/Vladivostok</EnumValue>
-			<EnumValue>Asia/Yakutsk</EnumValue>
-			<EnumValue>Asia/Yangon</EnumValue>
-			<EnumValue>Asia/Yekaterinburg</EnumValue>
-			<EnumValue>Asia/Yerevan</EnumValue>
-			<EnumValue>Atlantic/Azores</EnumValue>
-			<EnumValue>Atlantic/Bermuda</EnumValue>
-			<EnumValue>Atlantic/Canary</EnumValue>
-			<EnumValue>Atlantic/Cape_Verde</EnumValue>
-			<EnumValue>Atlantic/Faroe</EnumValue>
-			<EnumValue>Atlantic/Madeira</EnumValue>
-			<EnumValue>Atlantic/Reykjavik</EnumValue>
-			<EnumValue>Atlantic/South_Georgia</EnumValue>
-			<EnumValue>Atlantic/Stanley</EnumValue>
-			<EnumValue>Australia/Adelaide</EnumValue>
-			<EnumValue>Australia/Brisbane</EnumValue>
-			<EnumValue>Australia/Broken_Hill</EnumValue>
-			<EnumValue>Australia/Darwin</EnumValue>
-			<EnumValue>Australia/Eucla</EnumValue>
-			<EnumValue>Australia/Hobart</EnumValue>
-			<EnumValue>Australia/Lindeman</EnumValue>
-			<EnumValue>Australia/Lord_Howe</EnumValue>
-			<EnumValue>Australia/Melbourne</EnumValue>
-			<EnumValue>Australia/Perth</EnumValue>
-			<EnumValue>Australia/Sydney</EnumValue>
-			<EnumValue>CET</EnumValue>
-			<EnumValue>CST6CDT</EnumValue>
-			<EnumValue>EET</EnumValue>
-			<EnumValue>EST</EnumValue>
-			<EnumValue>EST5EDT</EnumValue>
-			<EnumValue>Etc/GMT</EnumValue>
-			<EnumValue>Etc/GMT+1</EnumValue>
-			<EnumValue>Etc/GMT+10</EnumValue>
-			<EnumValue>Etc/GMT+11</EnumValue>
-			<EnumValue>Etc/GMT+12</EnumValue>
-			<EnumValue>Etc/GMT+2</EnumValue>
-			<EnumValue>Etc/GMT+3</EnumValue>
-			<EnumValue>Etc/GMT+4</EnumValue>
-			<EnumValue>Etc/GMT+5</EnumValue>
-			<EnumValue>Etc/GMT+6</EnumValue>
-			<EnumValue>Etc/GMT+7</EnumValue>
-			<EnumValue>Etc/GMT+8</EnumValue>
-			<EnumValue>Etc/GMT+9</EnumValue>
-			<EnumValue>Etc/GMT-1</EnumValue>
-			<EnumValue>Etc/GMT-10</EnumValue>
-			<EnumValue>Etc/GMT-11</EnumValue>
-			<EnumValue>Etc/GMT-12</EnumValue>
-			<EnumValue>Etc/GMT-13</EnumValue>
-			<EnumValue>Etc/GMT-14</EnumValue>
-			<EnumValue>Etc/GMT-2</EnumValue>
-			<EnumValue>Etc/GMT-3</EnumValue>
-			<EnumValue>Etc/GMT-4</EnumValue>
-			<EnumValue>Etc/GMT-5</EnumValue>
-			<EnumValue>Etc/GMT-6</EnumValue>
-			<EnumValue>Etc/GMT-7</EnumValue>
-			<EnumValue>Etc/GMT-8</EnumValue>
-			<EnumValue>Etc/GMT-9</EnumValue>
-			<EnumValue>Etc/UTC</EnumValue>
-			<EnumValue>Europe/Amsterdam</EnumValue>
-			<EnumValue>Europe/Andorra</EnumValue>
-			<EnumValue>Europe/Astrakhan</EnumValue>
-			<EnumValue>Europe/Athens</EnumValue>
-			<EnumValue>Europe/Belgrade</EnumValue>
-			<EnumValue>Europe/Berlin</EnumValue>
-			<EnumValue>Europe/Brussels</EnumValue>
-			<EnumValue>Europe/Bucharest</EnumValue>
-			<EnumValue>Europe/Budapest</EnumValue>
-			<EnumValue>Europe/Chisinau</EnumValue>
-			<EnumValue>Europe/Copenhagen</EnumValue>
-			<EnumValue>Europe/Dublin</EnumValue>
-			<EnumValue>Europe/Gibraltar</EnumValue>
-			<EnumValue>Europe/Helsinki</EnumValue>
-			<EnumValue>Europe/Istanbul</EnumValue>
-			<EnumValue>Europe/Kaliningrad</EnumValue>
-			<EnumValue>Europe/Kiev</EnumValue>
-			<EnumValue>Europe/Kirov</EnumValue>
-			<EnumValue>Europe/Lisbon</EnumValue>
-			<EnumValue>Europe/London</EnumValue>
-			<EnumValue>Europe/Luxembourg</EnumValue>
-			<EnumValue>Europe/Madrid</EnumValue>
-			<EnumValue>Europe/Malta</EnumValue>
-			<EnumValue>Europe/Minsk</EnumValue>
-			<EnumValue>Europe/Monaco</EnumValue>
-			<EnumValue>Europe/Moscow</EnumValue>
-			<EnumValue>Europe/Oslo</EnumValue>
-			<EnumValue>Europe/Paris</EnumValue>
-			<EnumValue>Europe/Prague</EnumValue>
-			<EnumValue>Europe/Riga</EnumValue>
-			<EnumValue>Europe/Rome</EnumValue>
-			<EnumValue>Europe/Samara</EnumValue>
-			<EnumValue>Europe/Saratov</EnumValue>
-			<EnumValue>Europe/Simferopol</EnumValue>
-			<EnumValue>Europe/Sofia</EnumValue>
-			<EnumValue>Europe/Stockholm</EnumValue>
-			<EnumValue>Europe/Tallinn</EnumValue>
-			<EnumValue>Europe/Tirane</EnumValue>
-			<EnumValue>Europe/Ulyanovsk</EnumValue>
-			<EnumValue>Europe/Uzhgorod</EnumValue>
-			<EnumValue>Europe/Vienna</EnumValue>
-			<EnumValue>Europe/Vilnius</EnumValue>
-			<EnumValue>Europe/Volgograd</EnumValue>
-			<EnumValue>Europe/Warsaw</EnumValue>
-			<EnumValue>Europe/Zaporozhye</EnumValue>
-			<EnumValue>Europe/Zurich</EnumValue>
-			<EnumValue>HST</EnumValue>
-			<EnumValue>Indian/Chagos</EnumValue>
-			<EnumValue>Indian/Christmas</EnumValue>
-			<EnumValue>Indian/Cocos</EnumValue>
-			<EnumValue>Indian/Kerguelen</EnumValue>
-			<EnumValue>Indian/Mahe</EnumValue>
-			<EnumValue>Indian/Maldives</EnumValue>
-			<EnumValue>Indian/Mauritius</EnumValue>
-			<EnumValue>Indian/Reunion</EnumValue>
-			<EnumValue>MET</EnumValue>
-			<EnumValue>MST</EnumValue>
-			<EnumValue>MST7MDT</EnumValue>
-			<EnumValue>PST8PDT</EnumValue>
-			<EnumValue>Pacific/Apia</EnumValue>
-			<EnumValue>Pacific/Auckland</EnumValue>
-			<EnumValue>Pacific/Bougainville</EnumValue>
-			<EnumValue>Pacific/Chatham</EnumValue>
-			<EnumValue>Pacific/Chuuk</EnumValue>
-			<EnumValue>Pacific/Easter</EnumValue>
-			<EnumValue>Pacific/Efate</EnumValue>
-			<EnumValue>Pacific/Enderbury</EnumValue>
-			<EnumValue>Pacific/Fakaofo</EnumValue>
-			<EnumValue>Pacific/Fiji</EnumValue>
-			<EnumValue>Pacific/Funafuti</EnumValue>
-			<EnumValue>Pacific/Galapagos</EnumValue>
-			<EnumValue>Pacific/Gambier</EnumValue>
-			<EnumValue>Pacific/Guadalcanal</EnumValue>
-			<EnumValue>Pacific/Guam</EnumValue>
-			<EnumValue>Pacific/Honolulu</EnumValue>
-			<EnumValue>Pacific/Kiritimati</EnumValue>
-			<EnumValue>Pacific/Kosrae</EnumValue>
-			<EnumValue>Pacific/Kwajalein</EnumValue>
-			<EnumValue>Pacific/Majuro</EnumValue>
-			<EnumValue>Pacific/Marquesas</EnumValue>
-			<EnumValue>Pacific/Nauru</EnumValue>
-			<EnumValue>Pacific/Niue</EnumValue>
-			<EnumValue>Pacific/Norfolk</EnumValue>
-			<EnumValue>Pacific/Noumea</EnumValue>
-			<EnumValue>Pacific/Pago_Pago</EnumValue>
-			<EnumValue>Pacific/Palau</EnumValue>
-			<EnumValue>Pacific/Pitcairn</EnumValue>
-			<EnumValue>Pacific/Pohnpei</EnumValue>
-			<EnumValue>Pacific/Port_Moresby</EnumValue>
-			<EnumValue>Pacific/Rarotonga</EnumValue>
-			<EnumValue>Pacific/Tahiti</EnumValue>
-			<EnumValue>Pacific/Tarawa</EnumValue>
-			<EnumValue>Pacific/Tongatapu</EnumValue>
-			<EnumValue>Pacific/Wake</EnumValue>
-			<EnumValue>Pacific/Wallis</EnumValue>
-			<EnumValue>WET</EnumValue>
+			<EnumValue value="Africa/Abidjan" />
+			<EnumValue value="Africa/Accra" />
+			<EnumValue value="Africa/Algiers" />
+			<EnumValue value="Africa/Bissau" />
+			<EnumValue value="Africa/Cairo" />
+			<EnumValue value="Africa/Casablanca" />
+			<EnumValue value="Africa/Ceuta" />
+			<EnumValue value="Africa/El_Aaiun" />
+			<EnumValue value="Africa/Johannesburg" />
+			<EnumValue value="Africa/Juba" />
+			<EnumValue value="Africa/Khartoum" />
+			<EnumValue value="Africa/Lagos" />
+			<EnumValue value="Africa/Maputo" />
+			<EnumValue value="Africa/Monrovia" />
+			<EnumValue value="Africa/Nairobi" />
+			<EnumValue value="Africa/Ndjamena" />
+			<EnumValue value="Africa/Sao_Tome" />
+			<EnumValue value="Africa/Tripoli" />
+			<EnumValue value="Africa/Tunis" />
+			<EnumValue value="Africa/Windhoek" />
+			<EnumValue value="America/Adak" />
+			<EnumValue value="America/Anchorage" />
+			<EnumValue value="America/Araguaina" />
+			<EnumValue value="America/Argentina/Buenos_Aires" />
+			<EnumValue value="America/Argentina/Catamarca" />
+			<EnumValue value="America/Argentina/Cordoba" />
+			<EnumValue value="America/Argentina/Jujuy" />
+			<EnumValue value="America/Argentina/La_Rioja" />
+			<EnumValue value="America/Argentina/Mendoza" />
+			<EnumValue value="America/Argentina/Rio_Gallegos" />
+			<EnumValue value="America/Argentina/Salta" />
+			<EnumValue value="America/Argentina/San_Juan" />
+			<EnumValue value="America/Argentina/San_Luis" />
+			<EnumValue value="America/Argentina/Tucuman" />
+			<EnumValue value="America/Argentina/Ushuaia" />
+			<EnumValue value="America/Asuncion" />
+			<EnumValue value="America/Atikokan" />
+			<EnumValue value="America/Bahia" />
+			<EnumValue value="America/Bahia_Banderas" />
+			<EnumValue value="America/Barbados" />
+			<EnumValue value="America/Belem" />
+			<EnumValue value="America/Belize" />
+			<EnumValue value="America/Blanc-Sablon" />
+			<EnumValue value="America/Boa_Vista" />
+			<EnumValue value="America/Bogota" />
+			<EnumValue value="America/Boise" />
+			<EnumValue value="America/Cambridge_Bay" />
+			<EnumValue value="America/Campo_Grande" />
+			<EnumValue value="America/Cancun" />
+			<EnumValue value="America/Caracas" />
+			<EnumValue value="America/Cayenne" />
+			<EnumValue value="America/Chicago" />
+			<EnumValue value="America/Chihuahua" />
+			<EnumValue value="America/Costa_Rica" />
+			<EnumValue value="America/Creston" />
+			<EnumValue value="America/Cuiaba" />
+			<EnumValue value="America/Curacao" />
+			<EnumValue value="America/Danmarkshavn" />
+			<EnumValue value="America/Dawson" />
+			<EnumValue value="America/Dawson_Creek" />
+			<EnumValue value="America/Denver" />
+			<EnumValue value="America/Detroit" />
+			<EnumValue value="America/Edmonton" />
+			<EnumValue value="America/Eirunepe" />
+			<EnumValue value="America/El_Salvador" />
+			<EnumValue value="America/Fort_Nelson" />
+			<EnumValue value="America/Fortaleza" />
+			<EnumValue value="America/Glace_Bay" />
+			<EnumValue value="America/Goose_Bay" />
+			<EnumValue value="America/Grand_Turk" />
+			<EnumValue value="America/Guatemala" />
+			<EnumValue value="America/Guayaquil" />
+			<EnumValue value="America/Guyana" />
+			<EnumValue value="America/Halifax" />
+			<EnumValue value="America/Havana" />
+			<EnumValue value="America/Hermosillo" />
+			<EnumValue value="America/Indiana/Indianapolis" />
+			<EnumValue value="America/Indiana/Knox" />
+			<EnumValue value="America/Indiana/Marengo" />
+			<EnumValue value="America/Indiana/Petersburg" />
+			<EnumValue value="America/Indiana/Tell_City" />
+			<EnumValue value="America/Indiana/Vevay" />
+			<EnumValue value="America/Indiana/Vincennes" />
+			<EnumValue value="America/Indiana/Winamac" />
+			<EnumValue value="America/Inuvik" />
+			<EnumValue value="America/Iqaluit" />
+			<EnumValue value="America/Jamaica" />
+			<EnumValue value="America/Juneau" />
+			<EnumValue value="America/Kentucky/Louisville" />
+			<EnumValue value="America/Kentucky/Monticello" />
+			<EnumValue value="America/La_Paz" />
+			<EnumValue value="America/Lima" />
+			<EnumValue value="America/Los_Angeles" />
+			<EnumValue value="America/Maceio" />
+			<EnumValue value="America/Managua" />
+			<EnumValue value="America/Manaus" />
+			<EnumValue value="America/Martinique" />
+			<EnumValue value="America/Matamoros" />
+			<EnumValue value="America/Mazatlan" />
+			<EnumValue value="America/Menominee" />
+			<EnumValue value="America/Merida" />
+			<EnumValue value="America/Metlakatla" />
+			<EnumValue value="America/Mexico_City" />
+			<EnumValue value="America/Miquelon" />
+			<EnumValue value="America/Moncton" />
+			<EnumValue value="America/Monterrey" />
+			<EnumValue value="America/Montevideo" />
+			<EnumValue value="America/Nassau" />
+			<EnumValue value="America/New_York" />
+			<EnumValue value="America/Nipigon" />
+			<EnumValue value="America/Nome" />
+			<EnumValue value="America/Noronha" />
+			<EnumValue value="America/North_Dakota/Beulah" />
+			<EnumValue value="America/North_Dakota/Center" />
+			<EnumValue value="America/North_Dakota/New_Salem" />
+			<EnumValue value="America/Nuuk" />
+			<EnumValue value="America/Ojinaga" />
+			<EnumValue value="America/Panama" />
+			<EnumValue value="America/Pangnirtung" />
+			<EnumValue value="America/Paramaribo" />
+			<EnumValue value="America/Phoenix" />
+			<EnumValue value="America/Port-au-Prince" />
+			<EnumValue value="America/Port_of_Spain" />
+			<EnumValue value="America/Porto_Velho" />
+			<EnumValue value="America/Puerto_Rico" />
+			<EnumValue value="America/Punta_Arenas" />
+			<EnumValue value="America/Rainy_River" />
+			<EnumValue value="America/Rankin_Inlet" />
+			<EnumValue value="America/Recife" />
+			<EnumValue value="America/Regina" />
+			<EnumValue value="America/Resolute" />
+			<EnumValue value="America/Rio_Branco" />
+			<EnumValue value="America/Santarem" />
+			<EnumValue value="America/Santiago" />
+			<EnumValue value="America/Santo_Domingo" />
+			<EnumValue value="America/Sao_Paulo" />
+			<EnumValue value="America/Scoresbysund" />
+			<EnumValue value="America/Sitka" />
+			<EnumValue value="America/St_Johns" />
+			<EnumValue value="America/Swift_Current" />
+			<EnumValue value="America/Tegucigalpa" />
+			<EnumValue value="America/Thule" />
+			<EnumValue value="America/Thunder_Bay" />
+			<EnumValue value="America/Tijuana" />
+			<EnumValue value="America/Toronto" />
+			<EnumValue value="America/Vancouver" />
+			<EnumValue value="America/Whitehorse" />
+			<EnumValue value="America/Winnipeg" />
+			<EnumValue value="America/Yakutat" />
+			<EnumValue value="America/Yellowknife" />
+			<EnumValue value="Antarctica/Casey" />
+			<EnumValue value="Antarctica/Davis" />
+			<EnumValue value="Antarctica/DumontDUrville" />
+			<EnumValue value="Antarctica/Macquarie" />
+			<EnumValue value="Antarctica/Mawson" />
+			<EnumValue value="Antarctica/Palmer" />
+			<EnumValue value="Antarctica/Rothera" />
+			<EnumValue value="Antarctica/Syowa" />
+			<EnumValue value="Antarctica/Troll" />
+			<EnumValue value="Antarctica/Vostok" />
+			<EnumValue value="Asia/Almaty" />
+			<EnumValue value="Asia/Amman" />
+			<EnumValue value="Asia/Anadyr" />
+			<EnumValue value="Asia/Aqtau" />
+			<EnumValue value="Asia/Aqtobe" />
+			<EnumValue value="Asia/Ashgabat" />
+			<EnumValue value="Asia/Atyrau" />
+			<EnumValue value="Asia/Baghdad" />
+			<EnumValue value="Asia/Baku" />
+			<EnumValue value="Asia/Bangkok" />
+			<EnumValue value="Asia/Barnaul" />
+			<EnumValue value="Asia/Beirut" />
+			<EnumValue value="Asia/Bishkek" />
+			<EnumValue value="Asia/Brunei" />
+			<EnumValue value="Asia/Chita" />
+			<EnumValue value="Asia/Choibalsan" />
+			<EnumValue value="Asia/Colombo" />
+			<EnumValue value="Asia/Damascus" />
+			<EnumValue value="Asia/Dhaka" />
+			<EnumValue value="Asia/Dili" />
+			<EnumValue value="Asia/Dubai" />
+			<EnumValue value="Asia/Dushanbe" />
+			<EnumValue value="Asia/Famagusta" />
+			<EnumValue value="Asia/Gaza" />
+			<EnumValue value="Asia/Hebron" />
+			<EnumValue value="Asia/Ho_Chi_Minh" />
+			<EnumValue value="Asia/Hong_Kong" />
+			<EnumValue value="Asia/Hovd" />
+			<EnumValue value="Asia/Irkutsk" />
+			<EnumValue value="Asia/Jakarta" />
+			<EnumValue value="Asia/Jayapura" />
+			<EnumValue value="Asia/Jerusalem" />
+			<EnumValue value="Asia/Kabul" />
+			<EnumValue value="Asia/Kamchatka" />
+			<EnumValue value="Asia/Karachi" />
+			<EnumValue value="Asia/Kathmandu" />
+			<EnumValue value="Asia/Khandyga" />
+			<EnumValue value="Asia/Kolkata" />
+			<EnumValue value="Asia/Krasnoyarsk" />
+			<EnumValue value="Asia/Kuala_Lumpur" />
+			<EnumValue value="Asia/Kuching" />
+			<EnumValue value="Asia/Macau" />
+			<EnumValue value="Asia/Magadan" />
+			<EnumValue value="Asia/Makassar" />
+			<EnumValue value="Asia/Manila" />
+			<EnumValue value="Asia/Nicosia" />
+			<EnumValue value="Asia/Novokuznetsk" />
+			<EnumValue value="Asia/Novosibirsk" />
+			<EnumValue value="Asia/Omsk" />
+			<EnumValue value="Asia/Oral" />
+			<EnumValue value="Asia/Pontianak" />
+			<EnumValue value="Asia/Pyongyang" />
+			<EnumValue value="Asia/Qatar" />
+			<EnumValue value="Asia/Qostanay" />
+			<EnumValue value="Asia/Qyzylorda" />
+			<EnumValue value="Asia/Riyadh" />
+			<EnumValue value="Asia/Sakhalin" />
+			<EnumValue value="Asia/Samarkand" />
+			<EnumValue value="Asia/Seoul" />
+			<EnumValue value="Asia/Shanghai" />
+			<EnumValue value="Asia/Singapore" />
+			<EnumValue value="Asia/Srednekolymsk" />
+			<EnumValue value="Asia/Taipei" />
+			<EnumValue value="Asia/Tashkent" />
+			<EnumValue value="Asia/Tbilisi" />
+			<EnumValue value="Asia/Tehran" />
+			<EnumValue value="Asia/Thimphu" />
+			<EnumValue value="Asia/Tokyo" />
+			<EnumValue value="Asia/Tomsk" />
+			<EnumValue value="Asia/Ulaanbaatar" />
+			<EnumValue value="Asia/Urumqi" />
+			<EnumValue value="Asia/Ust-Nera" />
+			<EnumValue value="Asia/Vladivostok" />
+			<EnumValue value="Asia/Yakutsk" />
+			<EnumValue value="Asia/Yangon" />
+			<EnumValue value="Asia/Yekaterinburg" />
+			<EnumValue value="Asia/Yerevan" />
+			<EnumValue value="Atlantic/Azores" />
+			<EnumValue value="Atlantic/Bermuda" />
+			<EnumValue value="Atlantic/Canary" />
+			<EnumValue value="Atlantic/Cape_Verde" />
+			<EnumValue value="Atlantic/Faroe" />
+			<EnumValue value="Atlantic/Madeira" />
+			<EnumValue value="Atlantic/Reykjavik" />
+			<EnumValue value="Atlantic/South_Georgia" />
+			<EnumValue value="Atlantic/Stanley" />
+			<EnumValue value="Australia/Adelaide" />
+			<EnumValue value="Australia/Brisbane" />
+			<EnumValue value="Australia/Broken_Hill" />
+			<EnumValue value="Australia/Darwin" />
+			<EnumValue value="Australia/Eucla" />
+			<EnumValue value="Australia/Hobart" />
+			<EnumValue value="Australia/Lindeman" />
+			<EnumValue value="Australia/Lord_Howe" />
+			<EnumValue value="Australia/Melbourne" />
+			<EnumValue value="Australia/Perth" />
+			<EnumValue value="Australia/Sydney" />
+			<EnumValue value="CET" />
+			<EnumValue value="CST6CDT" />
+			<EnumValue value="EET" />
+			<EnumValue value="EST" />
+			<EnumValue value="EST5EDT" />
+			<EnumValue value="Etc/GMT" />
+			<EnumValue value="Etc/GMT+1" />
+			<EnumValue value="Etc/GMT+10" />
+			<EnumValue value="Etc/GMT+11" />
+			<EnumValue value="Etc/GMT+12" />
+			<EnumValue value="Etc/GMT+2" />
+			<EnumValue value="Etc/GMT+3" />
+			<EnumValue value="Etc/GMT+4" />
+			<EnumValue value="Etc/GMT+5" />
+			<EnumValue value="Etc/GMT+6" />
+			<EnumValue value="Etc/GMT+7" />
+			<EnumValue value="Etc/GMT+8" />
+			<EnumValue value="Etc/GMT+9" />
+			<EnumValue value="Etc/GMT-1" />
+			<EnumValue value="Etc/GMT-10" />
+			<EnumValue value="Etc/GMT-11" />
+			<EnumValue value="Etc/GMT-12" />
+			<EnumValue value="Etc/GMT-13" />
+			<EnumValue value="Etc/GMT-14" />
+			<EnumValue value="Etc/GMT-2" />
+			<EnumValue value="Etc/GMT-3" />
+			<EnumValue value="Etc/GMT-4" />
+			<EnumValue value="Etc/GMT-5" />
+			<EnumValue value="Etc/GMT-6" />
+			<EnumValue value="Etc/GMT-7" />
+			<EnumValue value="Etc/GMT-8" />
+			<EnumValue value="Etc/GMT-9" />
+			<EnumValue value="Etc/UTC" />
+			<EnumValue value="Europe/Amsterdam" />
+			<EnumValue value="Europe/Andorra" />
+			<EnumValue value="Europe/Astrakhan" />
+			<EnumValue value="Europe/Athens" />
+			<EnumValue value="Europe/Belgrade" />
+			<EnumValue value="Europe/Berlin" />
+			<EnumValue value="Europe/Brussels" />
+			<EnumValue value="Europe/Bucharest" />
+			<EnumValue value="Europe/Budapest" />
+			<EnumValue value="Europe/Chisinau" />
+			<EnumValue value="Europe/Copenhagen" />
+			<EnumValue value="Europe/Dublin" />
+			<EnumValue value="Europe/Gibraltar" />
+			<EnumValue value="Europe/Helsinki" />
+			<EnumValue value="Europe/Istanbul" />
+			<EnumValue value="Europe/Kaliningrad" />
+			<EnumValue value="Europe/Kiev" />
+			<EnumValue value="Europe/Kirov" />
+			<EnumValue value="Europe/Lisbon" />
+			<EnumValue value="Europe/London" />
+			<EnumValue value="Europe/Luxembourg" />
+			<EnumValue value="Europe/Madrid" />
+			<EnumValue value="Europe/Malta" />
+			<EnumValue value="Europe/Minsk" />
+			<EnumValue value="Europe/Monaco" />
+			<EnumValue value="Europe/Moscow" />
+			<EnumValue value="Europe/Oslo" />
+			<EnumValue value="Europe/Paris" />
+			<EnumValue value="Europe/Prague" />
+			<EnumValue value="Europe/Riga" />
+			<EnumValue value="Europe/Rome" />
+			<EnumValue value="Europe/Samara" />
+			<EnumValue value="Europe/Saratov" />
+			<EnumValue value="Europe/Simferopol" />
+			<EnumValue value="Europe/Sofia" />
+			<EnumValue value="Europe/Stockholm" />
+			<EnumValue value="Europe/Tallinn" />
+			<EnumValue value="Europe/Tirane" />
+			<EnumValue value="Europe/Ulyanovsk" />
+			<EnumValue value="Europe/Uzhgorod" />
+			<EnumValue value="Europe/Vienna" />
+			<EnumValue value="Europe/Vilnius" />
+			<EnumValue value="Europe/Volgograd" />
+			<EnumValue value="Europe/Warsaw" />
+			<EnumValue value="Europe/Zaporozhye" />
+			<EnumValue value="Europe/Zurich" />
+			<EnumValue value="HST" />
+			<EnumValue value="Indian/Chagos" />
+			<EnumValue value="Indian/Christmas" />
+			<EnumValue value="Indian/Cocos" />
+			<EnumValue value="Indian/Kerguelen" />
+			<EnumValue value="Indian/Mahe" />
+			<EnumValue value="Indian/Maldives" />
+			<EnumValue value="Indian/Mauritius" />
+			<EnumValue value="Indian/Reunion" />
+			<EnumValue value="MET" />
+			<EnumValue value="MST" />
+			<EnumValue value="MST7MDT" />
+			<EnumValue value="PST8PDT" />
+			<EnumValue value="Pacific/Apia" />
+			<EnumValue value="Pacific/Auckland" />
+			<EnumValue value="Pacific/Bougainville" />
+			<EnumValue value="Pacific/Chatham" />
+			<EnumValue value="Pacific/Chuuk" />
+			<EnumValue value="Pacific/Easter" />
+			<EnumValue value="Pacific/Efate" />
+			<EnumValue value="Pacific/Enderbury" />
+			<EnumValue value="Pacific/Fakaofo" />
+			<EnumValue value="Pacific/Fiji" />
+			<EnumValue value="Pacific/Funafuti" />
+			<EnumValue value="Pacific/Galapagos" />
+			<EnumValue value="Pacific/Gambier" />
+			<EnumValue value="Pacific/Guadalcanal" />
+			<EnumValue value="Pacific/Guam" />
+			<EnumValue value="Pacific/Honolulu" />
+			<EnumValue value="Pacific/Kiritimati" />
+			<EnumValue value="Pacific/Kosrae" />
+			<EnumValue value="Pacific/Kwajalein" />
+			<EnumValue value="Pacific/Majuro" />
+			<EnumValue value="Pacific/Marquesas" />
+			<EnumValue value="Pacific/Nauru" />
+			<EnumValue value="Pacific/Niue" />
+			<EnumValue value="Pacific/Norfolk" />
+			<EnumValue value="Pacific/Noumea" />
+			<EnumValue value="Pacific/Pago_Pago" />
+			<EnumValue value="Pacific/Palau" />
+			<EnumValue value="Pacific/Pitcairn" />
+			<EnumValue value="Pacific/Pohnpei" />
+			<EnumValue value="Pacific/Port_Moresby" />
+			<EnumValue value="Pacific/Rarotonga" />
+			<EnumValue value="Pacific/Tahiti" />
+			<EnumValue value="Pacific/Tarawa" />
+			<EnumValue value="Pacific/Tongatapu" />
+			<EnumValue value="Pacific/Wake" />
+			<EnumValue value="Pacific/Wallis" />
+			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="body-style" display_name="Body Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
 		<UserPref name="time-format" display_name="Time Format" datatype="enum" default_value="shortTime">
