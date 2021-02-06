@@ -6,6 +6,7 @@
 		<Require feature="webfont" />
 		
 		<UserPref name="tz1" display_name="Timezone 1" datatype="enum" default_value="">
+			<EnumValue value="" />
 			<EnumValue value="Africa/Abidjan" />
 			<EnumValue value="Africa/Accra" />
 			<EnumValue value="Africa/Algiers" />
@@ -394,6 +395,7 @@
 			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz2" display_name="Timezone 2" datatype="enum" default_value="">
+			<EnumValue value="" />
 			<EnumValue value="Africa/Abidjan" />
 			<EnumValue value="Africa/Accra" />
 			<EnumValue value="Africa/Algiers" />
@@ -782,6 +784,7 @@
 			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz3" display_name="Timezone 3" datatype="enum" default_value="">
+			<EnumValue value="" />
 			<EnumValue value="Africa/Abidjan" />
 			<EnumValue value="Africa/Accra" />
 			<EnumValue value="Africa/Algiers" />
@@ -1170,6 +1173,7 @@
 			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz4" display_name="Timezone 4" datatype="enum" default_value="">
+			<EnumValue value="" />
 			<EnumValue value="Africa/Abidjan" />
 			<EnumValue value="Africa/Accra" />
 			<EnumValue value="Africa/Algiers" />
@@ -1558,6 +1562,7 @@
 			<EnumValue value="WET" />
 		</UserPref>
 		<UserPref name="tz5" display_name="Timezone 5" datatype="enum" default_value="">
+			<EnumValue value="" />
 			<EnumValue value="Africa/Abidjan" />
 			<EnumValue value="Africa/Accra" />
 			<EnumValue value="Africa/Algiers" />
