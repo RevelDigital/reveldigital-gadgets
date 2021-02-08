@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Instagram App" description="Instagram image collage with multiple layout options." author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="interval" display_name="Delay in seconds between transitions" datatype="string" default_value="10" />
+		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="6">
+			<EnumValue value="1" display_value="1 Image Collage" />
+			<EnumValue value="2" display_value="2 Image Collage" />
+			<EnumValue value="3" display_value="3 Image Collage" />
+			<EnumValue value="4" display_value="4 Image Collage" />
+			<EnumValue value="5" display_value="5 Image Collage" />
+			<EnumValue value="6" display_value="6 Image Collage" />
+		</UserPref>
+		<UserPref name="max-items" display_name="Show Location" datatype="bool" default_value="true" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/styles.c49969040eff638ff123.css"></head>
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.9c369514c548b2ed6658.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.ada8afcc436e62dfe911.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.ada8afcc436e62dfe911.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
