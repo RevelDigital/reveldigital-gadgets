@@ -15,7 +15,7 @@
 			<EnumValue value="5" display_value="5 Image Collage" />
 			<EnumValue value="6" display_value="6 Image Collage" />
 		</UserPref>
-		<UserPref name="max-items" display_name="Show Location" datatype="bool" default_value="true" />
+		<UserPref name="max-items" display_name="Max Items" datatype="int" default_value="15" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
