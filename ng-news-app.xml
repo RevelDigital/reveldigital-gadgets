@@ -68,8 +68,8 @@
 			<EnumValue display_value="WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 		</UserPref>
 		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
-		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
-		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
+		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
+		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
 		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:22px;" required="true" />
 		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:28px;" required="true" />
 		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
@@ -111,34 +111,36 @@
 
 					var prefs = new gadgets.Prefs();
 					
-					WebFont.load({
-						google: {
-						  families: [
-							  RevelDigital.getFamilyName(prefs.getString("header-style"))
-						  ]
-						}
-					});
-					WebFont.load({
-						google: {
-						  families: [
-							  RevelDigital.getFamilyName(prefs.getString("title-style"))
-						  ]
-						}
-					});
-					WebFont.load({
-						google: {
-							families: [
-								RevelDigital.getFamilyName(prefs.getString("body-style"))
-							]
-						}
-					});
-					WebFont.load({
-						google: {
-							families: [
-								RevelDigital.getFamilyName(prefs.getString("date-style"))
-							]
-						}
-					});
+					function load() {
+						WebFont.load({
+							google: {
+							  families: [
+								  RevelDigital.getFamilyName(prefs.getString("header-style"))
+							  ]
+							}
+						});
+						WebFont.load({
+							google: {
+							  families: [
+								  RevelDigital.getFamilyName(prefs.getString("title-style"))
+							  ]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [
+									RevelDigital.getFamilyName(prefs.getString("body-style"))
+								]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [
+									RevelDigital.getFamilyName(prefs.getString("date-style"))
+								]
+							}
+						});
+					}
 					gadgets.util.registerOnLoadHandler(load);
 					
 				</script>
