@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital News App" description="RSS based news supporting portrait and landscape orientation" author="RevelDigital" background="transparent">
+		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
+			<EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
+			<EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
+			<EnumValue display_value="CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
+			<EnumValue display_value="CNN Business (CNNMoney.com)" value="http://rss.cnn.com/rss/money_latest.rss" />
+			<EnumValue display_value="CNN Politics" value="http://rss.cnn.com/rss/cnn_allpolitics.rss" />
+			<EnumValue display_value="CNN Technology" value="http://rss.cnn.com/rss/cnn_tech.rss" />
+			<EnumValue display_value="CNN Health" value="http://rss.cnn.com/rss/cnn_health.rss" />
+			<EnumValue display_value="CNN Entertainment" value="http://rss.cnn.com/rss/cnn_showbiz.rss" />
+			<EnumValue display_value="CNN Travel" value="http://rss.cnn.com/rss/cnn_travel.rss" />
+			<EnumValue display_value="CNN 10" value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
+			<EnumValue display_value="CNN Most Recent" value="http://rss.cnn.com/rss/cnn_latest.rss" />
+			<EnumValue display_value="CNN Underscored" value="http://rss.cnn.com/cnn-underscored" />
+																	
+			<EnumValue display_value="BBC Top Stories" value="http://feeds.bbci.co.uk/news/rss.xml" />
+			<EnumValue display_value="BBC World" value="http://feeds.bbci.co.uk/news/world/rss.xml" />
+			<EnumValue display_value="BBC UK" value="http://feeds.bbci.co.uk/news/uk/rss.xml" />
+			<EnumValue display_value="BBC Business" value="http://feeds.bbci.co.uk/news/business/rss.xml" />
+			<EnumValue display_value="BBC Politics" value="http://feeds.bbci.co.uk/news/politics/rss.xml" />
+			<EnumValue display_value="BBC Health" value="http://feeds.bbci.co.uk/news/health/rss.xml" />
+			<EnumValue display_value="BBC Education &amp; Family" value="http://feeds.bbci.co.uk/news/education/rss.xml" />
+			<EnumValue display_value="BBC Science &amp; Environment" value="http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" />
+			<EnumValue display_value="BBC Technology" value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
+			<EnumValue display_value="BBC Entertainment &amp; Arts" value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
+			
+			<EnumValue display_value="ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
+			<EnumValue display_value="ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
+			<EnumValue display_value="ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
+			<EnumValue display_value="ESPN MLB Headlines" value="https://www.espn.com/espn/rss/mlb/news" />
+			<EnumValue display_value="ESPN NHL Headlines" value="https://www.espn.com/espn/rss/nhl/news" />
+			<EnumValue display_value="ESPN Motorsports Headlines" value="https://www.espn.com/espn/rss/rpm/news" />
+			<EnumValue display_value="ESPN Soccer Headlines" value="http://soccernet.espn.com/rss/news" />
+			<EnumValue display_value="ESPNU" value="https://www.espn.com/espn/rss/espnu/news" />
+			<EnumValue display_value="ESPN College Basketball" value="https://www.espn.com/espn/rss/ncb/news" />
+			<EnumValue display_value="ESPN College Football" value="https://www.espn.com/espn/rss/ncf/news" />
+			
+			<EnumValue display_value="Fox News, Latest" value="http://feeds.foxnews.com/foxnews/latest" />
+			<EnumValue display_value="Fox News, Politics" value="http://feeds.foxnews.com/foxnews/politics" />
+			<EnumValue display_value="Fox News, Sports" value="http://feeds.foxnews.com/foxnews/sports" />
+			<EnumValue display_value="Fox News, World" value="http://feeds.foxnews.com/foxnews/world" />
+
+			<EnumValue display_value="Funny Or Die" value="http://www.funnyordie.com/videos.rss" />
+			<EnumValue display_value="Gizmodo" value="https://gizmodo.com/excerpts.xml" />
+			<EnumValue display_value="Huffington Post" value="https://www.huffingtonpost.com/section/front-page/feed" />
+			<EnumValue display_value="Kotaku Gamer News" value="http://kotaku.com/vip.xml" />
+			<EnumValue display_value="NASA Image Of The Day" value="http://www.nasa.gov/rss/dyn/image_of_the_day.rss" />
+			<EnumValue display_value="New York Times, Home Page" value="http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" />
+			<EnumValue display_value="Smithsonian, History" value="https://www.smithsonianmag.com/rss/history/" />
+			<EnumValue display_value="Smithsonian Top Stories" value="https://www.smithsonianmag.com/rss/articles/" />
+			<EnumValue display_value="TechCrunch" value="http://feeds.feedburner.com/TechCrunch/" />
+			<EnumValue display_value="The Shade Room Gossip" value="http://theshaderoom.com/feed/" />
+			<EnumValue display_value="The Onion" value="https://www.theonion.com/rss" />
+			<EnumValue display_value="Vox" value="https://www.vox.com/rss/index.xml" />
+			<EnumValue display_value="Wall Street Journal, World News" value="https://feeds.a.dj.com/rss/RSSWorldNews.xml" />
+			<EnumValue display_value="WIRED Backchannel" value="https://www.wired.com/feed/category/backchannel/latest/rss" />
+			<EnumValue display_value="WIRED Business" value="https://www.wired.com/feed/category/business/latest/rss" />
+			<EnumValue display_value="WIRED Culture" value="https://www.wired.com/feed/category/culture/latest/rss" />
+			<EnumValue display_value="WIRED Gear" value="https://www.wired.com/feed/category/gear/latest/rss" />
+			<EnumValue display_value="WIRED Guides" value="https://www.wired.com/feed/tag/wired-guide/latest/rss" />
+			<EnumValue display_value="WIRED Ideas" value="https://www.wired.com/feed/category/ideas/latest/rss" />
+			<EnumValue display_value="WIRED Photo" value="https://www.wired.com/feed/category/photo/latest/rss" />
+			<EnumValue display_value="WIRED Science" value="https://www.wired.com/feed/category/science/latest/rss" />
+			<EnumValue display_value="WIRED Security" value="https://www.wired.com/feed/category/security/latest/rss" />
+			<EnumValue display_value="WIRED Top Stories" value="https://www.wired.com/feed/rss" />
+			<EnumValue display_value="WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
+		</UserPref>
+		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
+		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
+		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:28px;" required="true" />
+		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
+		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.904b098f77a7da2ac593.css"></head>
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.9c369514c548b2ed6658.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.eb20a9dc6a7ead38b766.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.eb20a9dc6a7ead38b766.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					WebFont.load({
+						google: {
+						  families: [
+							  RevelDigital.getFamilyName(prefs.getString("header-style"))
+						  ]
+						}
+					});
+					WebFont.load({
+						google: {
+						  families: [
+							  RevelDigital.getFamilyName(prefs.getString("title-style"))
+						  ]
+						}
+					});
+					WebFont.load({
+						google: {
+							families: [
+								RevelDigital.getFamilyName(prefs.getString("body-style"))
+							]
+						}
+					});
+					WebFont.load({
+						google: {
+							families: [
+								RevelDigital.getFamilyName(prefs.getString("date-style"))
+							]
+						}
+					});
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
