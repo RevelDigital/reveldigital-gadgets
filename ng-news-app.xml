@@ -72,8 +72,8 @@
 		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
 		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:22px;" required="true" />
 		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Noto Serif;color:rgb(255, 255, 255);font-size:28px;" required="true" />
-		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:18px;font-weight:bold" required="true" />
-		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Open Sans;color:#A6A6A6;font-size:14px;font-weight:bold" required="true" />
+		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:14px;" required="true" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
@@ -104,8 +104,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.9c369514c548b2ed6658.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.ba8a263396a33e6502a6.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.ba8a263396a33e6502a6.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.18cd7fc45438e6543e35.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.18cd7fc45438e6543e35.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
