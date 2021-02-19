@@ -215,7 +215,9 @@ span.when
           </div>
         </div>
         <div class="body">
-          <p>${caption ? caption : ''}</p>
+		{{if caption}}
+          <p>${caption}</p>
+		{{/if}}
         </div>
       </div>
     </div>
