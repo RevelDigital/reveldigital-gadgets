@@ -108,8 +108,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.9c369514c548b2ed6658.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.23d81e5c592597f9918a.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.23d81e5c592597f9918a.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.213e14dac366ed8143ce.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.213e14dac366ed8143ce.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
