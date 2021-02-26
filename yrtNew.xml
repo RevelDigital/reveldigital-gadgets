@@ -139,7 +139,7 @@
     function getStops(){
         //const Url=`https://revel-gtfs.herokuapp.com/batch?stops=${stopID}&timezone=America/Toronto`;
         $.ajax({
-            url: `http://localhost:5001/batch?stops=${prefs.getString("stopID")}&timezone=America/Toronto&maxMins=15&max=15`,
+            url: `http://localhost:5001/batch?stops=${prefs.getString("stopID")}&timezone=America/Toronto&maxMins=99&max=15`,
             type: "GET",
             success: function(result){
                 pages = [];
