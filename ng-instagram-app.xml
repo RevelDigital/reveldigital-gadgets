@@ -46,8 +46,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.d6e6a6bb4e53f1f422fb.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.748c7e3462f8d8089a20.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.748c7e3462f8d8089a20.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.4ee7aac054dfd69697fd.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.4ee7aac054dfd69697fd.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
