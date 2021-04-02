@@ -278,7 +278,7 @@ span.when
 	
 	var url;
 	if (prefs.getString("hashtag").length > 0) {
-		url = "https://svc1.reveldigital.com/instagram/me/" + prefs.getString("searchType") + "/" + key + "?hashtag=" + encodeURIComponent(prefs.getString("hashtag")) + "format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+		url = "https://svc1.reveldigital.com/instagram/me/" + prefs.getString("searchType") + "/" + key + "?hashtag=" + encodeURIComponent(prefs.getString("hashtag")) + "&format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
 	} else {
 		url = "https://svc1.reveldigital.com/instagram/me/media/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
 	}
