@@ -15,7 +15,19 @@
 			<EnumValue value="5" display_value="5 Image Collage" />
 			<EnumValue value="6" display_value="6 Image Collage" />
 		</UserPref>
-		<UserPref name="max-items" display_name="Max Items" datatype="string" default_value="15" />
+		<UserPref name="hashtag" display_name="Hashtag Search (Requires business Instagram account)" datatype="string" default_value="" />
+		<UserPref name="search-type" display_name="Hashtag Search Type" datatype="enum" default_value="recent_media">
+		  <EnumValue value="recent_media" display_value="Recent Media" />
+		  <EnumValue value="top_media" display_value="Top Media" />
+		</UserPref>
+		<UserPref name="max-age" display_name="Max Age of Post" datatype="enum" default_value="0">
+		  <EnumValue value="0" display_value="No Limit" />
+		  <EnumValue value="365" display_value="Last Year" />
+		  <EnumValue value="30" display_value="Last Month" />
+		  <EnumValue value="7" display_value="Last Week" />
+		  <EnumValue value="1" display_value="Last 24 Hours" />
+		</UserPref>
+		<UserPref name="max-items" display_name="Max Posts" datatype="string" default_value="15" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
@@ -46,8 +58,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.d6e6a6bb4e53f1f422fb.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.4ee7aac054dfd69697fd.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.4ee7aac054dfd69697fd.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.7a8276b8cc8a1b12a932.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.a8276b8cc8a1b12a932.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
