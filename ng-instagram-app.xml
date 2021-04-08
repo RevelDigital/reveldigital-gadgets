@@ -14,7 +14,8 @@
 			<EnumValue value="4" display_value="4 Image Collage" />
 			<EnumValue value="5" display_value="5 Image Collage" />
 			<EnumValue value="6" display_value="6 Image Collage" />
-			<EnumValue value="7" display_value="4 Image grid" />
+			<EnumValue value="7" display_value="4 Image Grid" />
+			<EnumValue value="8" display_value="8 Image Grid" />
 		</UserPref>
 	    	<UserPref name="showCaption" display_name="Show Caption" datatype="bool" default_value="true" />
 		<UserPref name="hashtag" display_name="Hashtag Search (Requires business Instagram account)" datatype="string" default_value="" />
