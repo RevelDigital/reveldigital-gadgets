@@ -14,7 +14,10 @@
 			<EnumValue value="4" display_value="4 Image Collage" />
 			<EnumValue value="5" display_value="5 Image Collage" />
 			<EnumValue value="6" display_value="6 Image Collage" />
+			<EnumValue value="7" display_value="4 Image Grid" />
+			<EnumValue value="8" display_value="8 Image Grid" />
 		</UserPref>
+	    	<UserPref name="showCaption" display_name="Show Caption" datatype="bool" default_value="true" />
 		<UserPref name="hashtag" display_name="Hashtag Search (Requires business Instagram account)" datatype="string" default_value="" />
 		<UserPref name="search-type" display_name="Hashtag Search Type" datatype="enum" default_value="recent_media">
 		  <EnumValue value="recent_media" display_value="Recent Media" />
@@ -58,8 +61,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.d6e6a6bb4e53f1f422fb.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.7a8276b8cc8a1b12a932.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.a8276b8cc8a1b12a932.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.0257fc7732ccb2f891db.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.0257fc7732ccb2f891db.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
