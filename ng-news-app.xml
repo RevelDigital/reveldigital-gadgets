@@ -2,7 +2,6 @@
 <Module> 
     <ModulePrefs title="RevelDigital News App" description="RSS based news supporting portrait and landscape orientations" author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
-		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
@@ -100,7 +99,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.904b098f77a7da2ac593.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.904b098f77a7da2ac593.css">
             <body>
             	<app-root></app-root>
 		

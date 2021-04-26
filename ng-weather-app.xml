@@ -2,7 +2,6 @@
 <Module> 
     <ModulePrefs title="RevelDigital Weather App" description="Transitions between current conditions, daily and extended forecasts. Horizontal and vertical layout options." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
-		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
@@ -39,7 +38,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6e112a690eca6a786acc.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-weather-app/styles.6e112a690eca6a786acc.css">
             <body>
             	<app-root></app-root>
 			

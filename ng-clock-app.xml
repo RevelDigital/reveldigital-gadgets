@@ -2,7 +2,6 @@
 <Module> 
     <ModulePrefs title="RevelDigital Clock App" description="Clock with options for multiple time zones and automatic localization." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
-		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="tz1" display_name="Timezone 1" datatype="enum" default_value="">
@@ -1978,7 +1977,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/styles.c2eb1795d96e76b203c2.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/styles.c2eb1795d96e76b203c2.css">
             <body>
             	<app-root></app-root>
 			

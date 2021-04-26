@@ -2,7 +2,6 @@
 <Module> 
     <ModulePrefs title="RevelDigital Instagram App" description="Instagram image collage with multiple layout options." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
-		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -53,7 +52,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/styles.fbe16737e9751805ab32.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/styles.fbe16737e9751805ab32.css">
             <body>
             	<app-root></app-root>
 		

@@ -2,7 +2,6 @@
 <Module> 
     <ModulePrefs title="RevelDigital Calendar App" title_url="https://support.reveldigital.com/hc/en-us/articles/360056082411-iCal-Calendar-Feed-HOWTO" description="Displays events from any iCal compliant calendar feed URL." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
-		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="banner">
@@ -47,7 +46,7 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.9b8ab34575177bbfaf4f.css"></head>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.9b8ab34575177bbfaf4f.css">
             <body>
             	<app-root></app-root>
 			
