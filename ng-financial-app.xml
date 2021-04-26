@@ -4,7 +4,7 @@
 		<Require feature="reveldigital" />
 		<Require feature="webfont" />
 		
-		<UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" default="MSFT" datatype="string" />
+		<UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" default_value="MSFT" datatype="string" />
 		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
 		<UserPref name="tile-color" display_name="Tile Color" datatype="color" default_value="#00000033" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
