@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!--'**|eyJwcm9qZWN0SW5mbyI6eyJjcmVhdGVkIjoxNTU0MTMxMDM0OTI0LCJsYXN0TW9kaWZpZWQiOjE1NTQxMzEwMzQ5MjR9LCJnYWRnZXRWaWV3Ijp7ImNvbG9yIjoiI2ZmZmZmZiIsIndpZHRoIjoiMTkyMCIsImhlaWdodCI6IjEwODAiLCJpc1BvcnRyYWl0IjpmYWxzZSwic2NhbGUiOjEwMH0sInByb2ZpbGVzIjpbXX0=|**-->
+<Module>
+<ModulePrefs title="YRT-Real Time" description="Real Time Bus Route" preferred_width="1920" preferred_height="1080" author="Shaun Harmon" background="Transparent">
+    <UserPref name="ForeColor" datatype="hidden" required="false"/>
+    <UserPref name="BackColor" datatype="hidden" required="false"/>
+    <UserPref display_name="Height" name="rdH" datatype="hidden" required="true" default_value="1080"/>
+    <UserPref display_name="Width" name="rdW" datatype="hidden" required="true" default_value="1920"/>
+    <UserPref display_name="Device Registration Key" name="rdKey" datatype="hidden" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*"/>
+    <UserPref display_name="Stop Id's" name="stopID" datatype="string" required="true" default_value="7199, 7196, 7195"/>
+    <UserPref name="interval" display_name="Schedule Display Interval(sec)" datatype="string" required="true" default_value="20"/>
+    <Require feature="reveldigital"/>
+    <Require feature="jquery"/>
+    <Require feature="moment"/>
+    <Require feature="offline"/>
+    <Require feature="webfont"/>
+  </ModulePrefs>
+  
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+    table{
+
+        text-align: center;
+        border-collapse: collapse;
+        width:100%;
+        border-bottom: 2px solid #93d1ef;
+
+    }
+
+    .larger{
+        font-weight: 600;
+    }
+
+    th{
+        font-weight: bold;
+        font-size: 35px;
+        font-family: Arial;
+        background-color: white;
+        color: #006ec7;
+        border-bottom: 2px solid #93d1ef;
+        padding: 10px 0;
+    }
+
+    tr{
+        font-weight: bold;
+        font-size: 50px;
+        color: #141414;
+        font-family: Arial;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+
+    td{
+        padding: 40px 0;
+        height: 58px;
+    }
+
+    tr:nth-child(odd){
+        background-color: #f0f0f0;
+    }
+
+</style>
+
+
+<table id="schedule" class="table table-dark">
+    <thead>
+    <th scope="col">Route</th>
+    <th style="text-align:left" scope="col">Destination</th>
+    <th style="text-align:right" scope="col">Departure</th>
+    <th scope="col">Platform</th>
+    </thead>
+    <tbody id="table_data">
+
+    </tbody>
+</table>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+<script>
+    // let prefs=  {
+    //     getString: (val)=>{
+    //         switch (val) {
+    //             case 'stopID':return '1656'
+    //             case 'interval':return '5'
+    //             default: null;
+    //         }
+    //     }}
+
+
+    //
+    // let Client = {
+    //   callback:(input)=>{
+    //     console.log('Came from client:', input)
+    //   }
+    // }
+    var prefs = new gadgets.Prefs();
+    let pages = [];
+    let index = 0;
+    let resultsReady = false;
+
+    function onLoad() {
+        getStops();
+        setInterval(getStops, 45*1000);
+        //playStops();
+    }
+
+    function playStops(){
+        drawRow(pages[index++]);
+        let t = setInterval(()=>{
+            drawRow(pages[index++]);
+            if(typeof Client!='undefined') Client.callback(index, pages.length)
+            if(index===pages.length) clearInterval(t);
+        },parseInt(prefs.getString("interval"))*1000)
+    }
+
+    function drawRow(rowData) {
+        if(pages.length) {
+            $('#table_data').empty()
+            $.each(rowData, function (i, item) {
+                var row = $("<tr/>")
+                $("#table_data").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+                row.append($("<td>" + rowData[i].route.route_short_name + "</td>").addClass("larger"));
+                row.append($("<td>" + removeDirection(rowData[i].tripinfo.trip_headsign) + "</td>").css('text-align', 'left').addClass("larger"));
+                row.append($("<td>" + rowData[i].due_time + "</td>").css('text-align', 'right').addClass("larger"));
+                row.append($("<td>" + rowData[i].platform + "</td>").addClass("larger"));
+            });
+        }
+    }
+
+    function removeDirection(name){
+        if(name.indexOf('-')>-1) name = name.substring(0,name.indexOf('-')).trim()
+        return name
+    }
+
+    function getStops(){
+        //const Url=`https://revel-gtfs.herokuapp.com/batch?stops=${stopID}&timezone=America/Toronto`;
+        $.ajax({
+            url: `https://gtfs.reveldigital.com/batch?stops=${prefs.getString("stopID")}&timezone=America/Toronto&maxMins=99&max=15`,
+            type: "GET",
+            success: function(result){
+                pages = [];
+                while(result.results.length) {
+                    pages.push(result.results.splice(0,5));
+                    if(!resultsReady){
+                        resultsReady = true;
+                        playStops()
+                    }
+                }
+                console.log(pages)
+            }
+        })
+    }
+
+    function reset(){
+        index = 0;
+        playStops();
+    }
+    //onLoad()
+    gadgets.util.registerOnLoadHandler(onLoad);
+</script>
+
+]]>
+</Content>
+</Module>

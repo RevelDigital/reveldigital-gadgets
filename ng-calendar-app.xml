@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Calendar App" title_url="https://support.reveldigital.com/hc/en-us/articles/360056082411-iCal-Calendar-Feed-HOWTO" description="Displays events from any iCal compliant calendar feed URL." author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="webfont" />
+		
+		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="banner">
+			<EnumValue value="banner" display_value="Banner" />
+			<EnumValue value="table" display_value="Tabular" />
+			<EnumValue value="month" display_value="Monthly" />
+			<EnumValue value="week" display_value="Weekly" />
+		</UserPref>
+		<UserPref name="calendar-url" display_name="iCal Calendar URL" datatype="string" default_value="" />
+		<UserPref name="body-style" display_name="Body Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="header-style" display_name="Header Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:20px;" required="true" />
+		<UserPref name="row-color" display_name="Row Background Color" datatype="color" default_value="" required="false" />
+		<UserPref name="alt-color" display_name="Alternate Row Background Color" datatype="color" default_value="" required="false" />
+		<UserPref name="show-header" display_name="Show Table Header" datatype="bool" default_value="true" />
+		<UserPref name="future-events" display_name="Limit Future Events" datatype="enum" default_value="365">
+			<EnumValue value="365" display_value="No Limit" />
+			<EnumValue value="0" display_value="Today" />
+			<EnumValue value="7" display_value="Next 7 Days" />
+			<EnumValue value="30" display_value="Next 30 Days" />
+		</UserPref>
+		<UserPref name="enable-scrolling" display_name="Enable Scrolling" datatype="bool" default_value="true" />
+		<UserPref name="scroll-interval" display_name="Delay in seconds between transitions" datatype="string" default_value="3" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/styles.9b8ab34575177bbfaf4f.css">
+            <body>
+            	<app-root></app-root>
+			
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/runtime-es5.a4dadbc03350107420a4.js" nomodule="" defer=""></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es5.eb354d32a0144701d4ec.js" nomodule="" defer=""></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/polyfills-es2015.fc172460e3792d8fa8da.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/scripts.06f4be5c744415b13213.js" defer=""></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es2015.8fb4279ad48e59598b8c.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-calendar-app/main-es5.8fb4279ad48e59598b8c.js" nomodule="" defer=""></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("body-style")) ]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("header-style")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>

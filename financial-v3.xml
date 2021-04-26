@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols.  Data provided for free by IEX." author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Financial Gadget" description="Basic financials for a user defined list of stock symbols." author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />

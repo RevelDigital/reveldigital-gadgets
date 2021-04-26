@@ -564,7 +564,7 @@
             cycles: 0.5,
             persist: true,
             power_on: true,
-            peak: "0.5",
+            peak:0.5
           });
         }
 
@@ -576,7 +576,7 @@
             cycles:1000000,
             persist:false,
             power: "on",
-            peak:0.5,
+            peak:0.5
           });
         }
 

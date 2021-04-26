@@ -11,6 +11,11 @@
     <EnumValue value="fade" display_value="Fade" />
     <EnumValue value="slide" display_value="Slide" />
   </UserPref>
+  <UserPref name="hashtag" display_name="Hashtag Search (Requires business Instagram account)" datatype="string" default_value="" />
+  <UserPref name="searchType" display_name="Hashtag Search Type" datatype="enum" default_value="recent_media">
+    <EnumValue value="recent_media" display_value="Recent Media" />
+    <EnumValue value="top_media" display_value="Top Media" />
+  </UserPref>
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:#FFFFFF;font-size:24px;" required="true" />
   <UserPref name="name-style" display_name="Username Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="stats-style" display_name="Stats Style" datatype="style" default_value="font-family:Verdana;color:#0A5DC3;font-size:18px;" required="true" />
@@ -215,7 +220,9 @@ span.when
           </div>
         </div>
         <div class="body">
-          <p>${caption ? caption : ''}</p>
+		{{if caption}}
+          <p>${caption}</p>
+		{{/if}}
         </div>
       </div>
     </div>
@@ -268,7 +275,13 @@ span.when
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
       key = "68f45389-0213-441b-b69d-4e35ef94bb20";
     }
-    var url = "https://svc1.reveldigital.com/instagram/me/media/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+	
+	var url;
+	if (prefs.getString("hashtag").length > 0) {
+		url = "https://svc1.reveldigital.com/instagram/me/" + prefs.getString("searchType") + "/" + key + "?hashtag=" + encodeURIComponent(prefs.getString("hashtag")) + "&format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+	} else {
+		url = "https://svc1.reveldigital.com/instagram/me/media/" + key + "?format=json&limit=" + prefs.getInt("maxItems") + "&callback=?";
+	}
     $.getJSON(url, function(json){
       if (json) {
         try {

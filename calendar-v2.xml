@@ -4,13 +4,13 @@
   <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
   <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
   <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
-  <UserPref name="displayFormat" display_name="Display Format"  datatype="enum" default_value="div">
+  <UserPref name="displayFormat" display_name="Display Format" datatype="enum" default_value="div">
     <EnumValue value="div" display_value="Consolidated" />
     <EnumValue value="table" display_value="Tabular" />
   </UserPref>
   <UserPref name="showHeader" display_name="Show Table Header" datatype="bool" default_value="true" />
   <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
-  <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
+  <UserPref name="futureEvents" display_name="Limit Future Events" datatype="enum" default_value="365">
     <EnumValue value="365" display_value="No Limit" />
     <EnumValue value="0" display_value="Today" />
     <EnumValue value="7" display_value="Next 7 Days" />
@@ -19,14 +19,14 @@
   <UserPref name="searchQuery" display_name="Search Query" datatype="string" />
   <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
-  <UserPref name="scrollSpeed" display_name="Scroll Speed"  datatype="enum" default_value="none">
+  <UserPref name="scrollSpeed" display_name="Scroll Speed" datatype="enum" default_value="none">
     <EnumValue value="fastest" display_value="Fastest" />
     <EnumValue value="fast" display_value="Fast" />
     <EnumValue value="medium" display_value="Medium" />
     <EnumValue value="slow" display_value="Slow" />
     <EnumValue value="none" display_value="None" />
   </UserPref>
-  <UserPref name="scrollBy" display_name="Scroll By"  datatype="enum" default_value="continuous">
+  <UserPref name="scrollBy" display_name="Scroll By" datatype="enum" default_value="continuous">
     <EnumValue value="continuous" display_value="Continuous" />
     <EnumValue value="page" display_value="Page" />
   </UserPref>
