@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Financial App" description="Stock prices with intraday chart." author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="webfont" />
+		
+		<UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" default="MSFT" datatype="string" />
+		<UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="tile-color" display_name="Tile Color" datatype="color" default_value="#00000033" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/styles.43086f6cc92b78390d56.css">
+
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es5.7081b27e9b303821f94d.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es2015.387d40c09b6078570d9c.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es2015.c2237525118a6e97a0eb.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es5.c2237525118a6e97a0eb.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
