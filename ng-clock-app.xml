@@ -2,6 +2,7 @@
 <Module> 
     <ModulePrefs title="RevelDigital Clock App" description="Clock with options for multiple time zones and automatic localization." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
+		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="tz1" display_name="Timezone 1" datatype="enum" default_value="">

@@ -2,6 +2,7 @@
 <Module> 
     <ModulePrefs title="RevelDigital News App" description="RSS based news supporting portrait and landscape orientations" author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
+		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
