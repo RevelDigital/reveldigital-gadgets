@@ -39,8 +39,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es5.7081b27e9b303821f94d.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es2015.387d40c09b6078570d9c.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es2015.29737448ce154c940e63.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es5.29737448ce154c940e63.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es2015.e02995b618204f5b6fde.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es5.e02995b618204f5b6fde.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
