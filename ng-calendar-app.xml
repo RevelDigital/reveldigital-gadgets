@@ -2,6 +2,7 @@
 <Module> 
     <ModulePrefs title="RevelDigital Calendar App" title_url="https://support.reveldigital.com/hc/en-us/articles/360056082411-iCal-Calendar-Feed-HOWTO" description="Displays events from any iCal compliant calendar feed URL." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
+		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="layout" display_name="Layout" datatype="enum" default_value="banner">

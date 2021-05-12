@@ -2,6 +2,7 @@
 <Module> 
     <ModulePrefs title="RevelDigital Financial App" description="Stock prices with intraday chart." author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
+		<Require feature="jquery" />
 		<Require feature="webfont" />
 		
 		<UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" default_value="MSFT" datatype="string" />
@@ -36,10 +37,10 @@
 		
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es5.7081b27e9b303821f94d.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es5.c537509ba127bea450b9.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/polyfills-es2015.387d40c09b6078570d9c.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es2015.47721b0d73c090236db5.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es5.47721b0d73c090236db5.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es2015.b7acb26da37675e1da0a.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-financial-app/main-es5.b7acb26da37675e1da0a.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
