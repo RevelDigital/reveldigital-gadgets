@@ -36,6 +36,13 @@
 			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.135157af5869039fd42c.js" type="module"></script>
 			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.135157af5869039fd42c.js" nomodule defer></script>
 
+			<script type="text/javascript">
+
+				function load() {
+				}
+				gadgets.util.registerOnLoadHandler(load);
+				
+			</script>
         ]]>
     </Content>
 </Module>
