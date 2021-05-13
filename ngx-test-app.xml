@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
     <ModulePrefs title="RevelDigital Angular Gadget Demo" description="Angular Gadget Demo" author="RevelDigital" background="transparent">
-	        <Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="reveldigital" />
+		
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="rdKey" display_name="Device Registration Key" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
