@@ -64,8 +64,8 @@ div#container
     });
     if(prefs.getBool("horizontal"))
     {
-      $("div#container").css("text-orientation", "upright");
-      $("div#container").css("writing-mode", "vertical-lr");
+      $("#container").css("text-orientation", "upright");
+      $("#container").css("writing-mode", "vertical-lr");
     }
     
     $("#container").text(prefs.getString("text"));
