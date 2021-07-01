@@ -50,7 +50,7 @@
             });
         }
     };
-    xhr.open('GET', 'https://sony-kiosk-remote.herokuapp.com/session/'+prefs.getString('regKey'))+'?na=true';
+    xhr.open('GET', encodeURI('https://sony-kiosk-remote.herokuapp.com/session/'+prefs.getString('regKey'))+'?na=true');
     xhr.send();
 
 }
