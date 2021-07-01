@@ -13,7 +13,7 @@
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="string" />
-  <UserPref name="rotationp2" display_name="Rotation pt2" required="true" default_value="0" datatype="string" />
+  <UserPref name="horizontal" display_name="Horizontal Text" required="true" default_value="" datatype="bool" />
 
 
 </ModulePrefs>
@@ -71,7 +71,7 @@ div#container
     $("#container").text(text);
   }
 
-  if(rotationp2 != "0")
+  if(horizontal)
   {
     document.getElementById("container").style.writing-mode = "vertical-lr";
     document.getElementById("container").style.text-orientation = "upright";
