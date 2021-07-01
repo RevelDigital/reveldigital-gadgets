@@ -16,6 +16,7 @@
   <UserPref name="horizontal" display_name="Horizontal Text" default_value="false" datatype="bool" />
 
 
+
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -64,7 +65,9 @@ div#container
     if(prefs.getBool("horizontal"))
     {
       $("div#container").css("text-orientation", "upright");
+      $("div#container").css("writing-mode", "vertical-lr");
     }
+    
     $("#container").text(prefs.getString("text"));
   }
 
