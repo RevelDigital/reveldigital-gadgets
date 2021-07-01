@@ -73,7 +73,7 @@ div#container
 
   if(prefs.getBool("horizontal"))
   {
-    document.getElementByClassName("#container").style.text-orientation = "upright";
+    $("div#container").css("text-orientation", "upright");
   }
   
 </script>
