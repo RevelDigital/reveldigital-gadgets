@@ -61,7 +61,10 @@ div#container
         ]
       }
     });
-    
+    if(prefs.getBool("horizontal"))
+    {
+      $("div#container").css("text-orientation", "upright");
+    }
     $("#container").text(prefs.getString("text"));
   }
 
@@ -69,11 +72,6 @@ div#container
   
   function setText(text) {
     $("#container").text(text);
-  }
-
-  if(prefs.getBool("horizontal"))
-  {
-    $("div#container").css("text-orientation", "upright");
   }
   
 </script>
