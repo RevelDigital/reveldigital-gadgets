@@ -13,6 +13,8 @@
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="string" />
+  <UserPref name="ltrSpacing" display_name="Letter Spacing" required="true" default_value="0" datatype="string" />
+  <UserPref name="lineHeight" display_name="Line Spacing" required="true" default_value="1" datatype="string" />
   <UserPref name="horizontal" display_name="Horizontal Text" default_value="false" datatype="bool" />
 
 
@@ -43,6 +45,8 @@ div#container
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   transform: rotate(__UP_rotation__deg);
+  letter-spacing: __UP_ltrSpacing__px;
+  line-height: __UP_lineHeight__;
 }
 </style>
 
