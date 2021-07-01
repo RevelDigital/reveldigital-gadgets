@@ -13,8 +13,6 @@
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="string" />
-  <UserPref name="horizontal" display_name="Horizontal Text" required="true" default_value="" datatype="bool" />
-
 
 </ModulePrefs>
 <Content type="html">
@@ -61,12 +59,6 @@ div#container
         ]
       }
     });
-
-    if(horizontal)
-    {
-    document.getElementById("container").style.writing-mode = "vertical-lr";
-    document.getElementById("container").style.text-orientation = "upright";
-    }
     
     $("#container").text(prefs.getString("text"));
   }
