@@ -12,7 +12,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="deg" />
+  <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="string" />
 
 </ModulePrefs>
 <Content type="html">
