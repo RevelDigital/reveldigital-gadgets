@@ -73,8 +73,7 @@ div#container
 
   if(horizontal)
   {
-    document.getElementByClassName("container").style.writing-mode = "vertical-lr"
-    document.getElementByClassName("container").style.text-orientation = "upright";
+    document.getElementByClassName("#container").style.text-orientation = "upright";
   }
   
 </script>
