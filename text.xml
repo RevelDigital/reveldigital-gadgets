@@ -61,6 +61,12 @@ div#container
         ]
       }
     });
+
+    if(horizontal)
+    {
+    document.getElementById("container").style.writing-mode = "vertical-lr";
+    document.getElementById("container").style.text-orientation = "upright";
+    }
     
     $("#container").text(prefs.getString("text"));
   }
@@ -69,12 +75,6 @@ div#container
   
   function setText(text) {
     $("#container").text(text);
-  }
-
-  if(horizontal)
-  {
-    document.getElementById("container").style.writing-mode = "vertical-lr";
-    document.getElementById("container").style.text-orientation = "upright";
   }
   
 </script>
