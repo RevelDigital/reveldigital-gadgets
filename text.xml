@@ -12,6 +12,8 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rotation" display_name="Rotation" required="true" default_value="0" datatype="deg" />
+
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -37,6 +39,7 @@ div#container
   __UP_font-style__;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
+  transform: rotate(__UP_rotation__deg);
 }
 </style>
 
