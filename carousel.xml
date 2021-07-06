@@ -5,6 +5,7 @@
   <UserPref name="api_key" display_name="API Key" datatype="string" required="true" />
   <UserPref name="reg_key" display_name="REG Key" datatype="string" required="true" default_value="*|DEVICE.REGISTRATIONKEY|*" />
   <UserPref name="playlist_name" display_name="Playlist name to display images from" datatype="string" required="true" />
+  <UserPref name="rotation" display_name="Rotate" datatype="string" default_value="0" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -46,6 +47,8 @@ li span {
 }
 
 img {
+  transform: rotate(__UP_rotation__deg);
+  transform-origin: 50% 50%;
   -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(rgba(255,255,255,.50)));
 }
 </style>
