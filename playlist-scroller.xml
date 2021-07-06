@@ -11,7 +11,8 @@
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="apikey" display_name="RevelDigital API Key" required="true" />
   <UserPref name="playlistId" display_name="Playlist ID" required="true" />
-  
+  <UserPref name="rotation" display_name="Rotate" datatype="string" default_value="0" />
+
   <Content type="html"><![CDATA[
 <style type="text/css">
 body * {
@@ -54,6 +55,10 @@ body {
 }
 .scroll-img ul li img {
   height: __UP_rdH__px;
+}
+#demo5 {
+  transform: rotate(__UP_rotation__deg);
+  transform-origin: 50% 50%;
 }
 #demo5.scroll-img ul {
   width: 1500px;
