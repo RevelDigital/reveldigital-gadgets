@@ -3,6 +3,7 @@
 <ModulePrefs title="RevelDigital Slideshow Gadget" description="Transitions between images from the specified playlist" author="RevelDigital" background="transparent">
   <UserPref name="apikey" display_name="RevelDigital API Key" datatype="string" />
   <UserPref name="playlist" display_name="Playlist" datatype="string" />
+  <UserPref name="rotation" display_name="Rotate" datatype="string" default_value="0" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -16,6 +17,8 @@
   }
   #sequence {
     width: 600px;
+    transform: rotate(__UP_rotation__deg);
+    transform-origin: 50% 50%;
   }
   #sequence img {
     width: 300px;
