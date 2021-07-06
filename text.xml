@@ -76,7 +76,7 @@ div#container
       $("#container").css("width", "0px");
       $("#container").css("height", "0px");
       $("#container").css("float", "right");
-      $("#container").css("right", "-23px");
+      $("#container").css("right", "0px");
       $("#container").css("transform", "rotate(90deg)");
     }
     if(prefs.getBool("textwrap"))
