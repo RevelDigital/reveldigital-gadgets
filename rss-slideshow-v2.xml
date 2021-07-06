@@ -47,6 +47,7 @@
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rotation" display_name="Rotate" datatype="string" default_value="0" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -82,6 +83,8 @@
     }
 
     #container {
+        transform: rotate(__UP_rotationimg__deg);
+        transform-origin: 50% 50%;
         width: __UP_rdW__px;
         height: __UP_rdH__px;
         -webkit-user-select: none;
