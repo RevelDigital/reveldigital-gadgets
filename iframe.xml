@@ -51,9 +51,11 @@ div#container
     if(prefs.getBool("portrait"))
     {
       $("body").css("flex-direction", "row");
-      $("#container").css("-webkit-transform", "rotate(-90deg)");
-      $("#container").css("-moz-transform", "rotate(-90deg)");
-      $("#container").css("transform", "rotate(-90deg)");
+      $("#container").css("-webkit-transform", "rotate(90deg)");
+      $("#container").css("-moz-transform", "rotate(90deg)");
+      $("#container").css("transform", "rotate(90deg)");
+      $("#container").css("width", "__UP_rdH__px");
+      $("#container").css("height", "__UP_rdW__px");
     }else{
       $("body").css("flex-direction", "column");
     }
