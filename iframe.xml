@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Text Gadget" description="Basic gadget for displaying text" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <UserPref name="text" display_name="Source Link" datatype="string" default_value="https://webplayer.reveldigital.com/" />
+  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
+  
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+body
+{
+	display: flex;
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  __UP_font-style__;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  letter-spacing: __UP_ltrSpacing__px;
+  line-height: __UP_lineHeight__;
+}
+</style>
+<div id="container">
+	<iframe id="inlineFrameExample"
+    title="Inline Frame Example"
+    width="__UP_rdW__"
+    height="__UP_rdH__"
+    src="__UP_text__">
+	</iframe>
+</div>
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    if(prefs.getBool("portrait"))
+    {
+      $("body").css("flex-direction", "row");
+    }else{
+			$("body").css("flex-direction", "column");
+		}
+  }
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+]]>
+</Content>
+</Module>
