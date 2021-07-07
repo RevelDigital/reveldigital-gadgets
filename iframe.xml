@@ -6,8 +6,7 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="text" display_name="Source Link" datatype="string" default_value="https://webplayer.reveldigital.com/" />
-  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="text" display_name="IFrame Source Link" datatype="string" default_value="https://webplayer.reveldigital.com/" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -26,7 +25,7 @@ body *
 }
 body
 {
-	display: flex;
+  display: flex;
   background: transparent;
   width: __UP_rdW__px;
   height: __UP_rdH__px;
@@ -42,12 +41,12 @@ div#container
 }
 </style>
 <div id="container">
-	<iframe id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="__UP_rdW__"
-    height="__UP_rdH__"
-    src="__UP_text__">
-	</iframe>
+    <iframe id="inlineFrameExample"
+	    title="Inline Frame Example"
+	    width="__UP_rdW__"
+	    height="__UP_rdH__"
+	    src="__UP_text__">
+    </iframe>
 </div>
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
@@ -56,8 +55,8 @@ div#container
     {
       $("body").css("flex-direction", "row");
     }else{
-			$("body").css("flex-direction", "column");
-		}
+      $("body").css("flex-direction", "column");
+    }
   }
   gadgets.util.registerOnLoadHandler(load);
   
