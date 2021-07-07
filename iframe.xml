@@ -51,6 +51,9 @@ div#container
     if(prefs.getBool("portrait"))
     {
       $("body").css("flex-direction", "row");
+      $("#container").css("-webkit-transform", "rotate(-90deg)");
+      $("#container").css("-moz-transform", "rotate(-90deg)");
+      $("#container").css("transform", "rotate(-90deg)");
     }else{
       $("body").css("flex-direction", "column");
     }
