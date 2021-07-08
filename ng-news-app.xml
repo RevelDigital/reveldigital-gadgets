@@ -73,7 +73,7 @@
 			<EnumValue display_value="WIRED Top Stories" value="https://www.wired.com/feed/rss" />
 			<EnumValue display_value="WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 		</UserPref>
-		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
+		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL (use with ''Custom RSS Option'' from dropdown)" datatype="string" />
 		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
 		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
 		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
