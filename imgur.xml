@@ -6,7 +6,6 @@
   <Require feature="webfont" />
   
   <UserPref name="text" display_name="Imgur Source Link" datatype="string" default_value="//imgur.com/a/PPOZM" />
-  <UserPref name="title" display_name="IFrame Source Link" datatype="string" default_value="https://webplayer.reveldigital.com/" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
@@ -40,7 +39,7 @@ div#container
 </style>
 <div id="container">
   <blockquote class="imgur-embed-pub" lang="en" data-id="a/PPOZM"  >
-    <a href="__UP_text__">__UP_title__</a>
+    <a href="__UP_text__"></a>
   </blockquote>
   <script async src="//s.imgur.com/min/embed.js" charset="utf-8">
   </script>
