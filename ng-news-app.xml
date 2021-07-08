@@ -6,6 +6,8 @@
 		<Require feature="webfont" />
 		
 		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
+			<EnumValue display_value="Custom RSS Option" value="" />
+			
 			<EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
 			<EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
 			<EnumValue display_value="CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
