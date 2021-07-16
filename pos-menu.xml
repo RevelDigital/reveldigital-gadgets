@@ -10,7 +10,6 @@
   <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
   <UserPref name="menu-id" display_name="Menu Type ID" default_value="3" datatype="string"/>
   
-  <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
     <EnumValue value="classic-template" display_value="Classic" />
     <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
