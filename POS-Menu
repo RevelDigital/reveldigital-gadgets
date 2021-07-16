@@ -6,6 +6,10 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
+  <UserPref name="reference-key" display_name="Reference Key" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
+  <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
+  <UserPref name="menu-id" display_name="Menu Type ID" default_value="3" datatype="string"/>
+  
   <UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
     <EnumValue value="classic-template" display_value="Classic" />
@@ -14,6 +18,7 @@
     <EnumValue value="centered-template" display_value="Centered" />
     <EnumValue value="modern-template" display_value="Modern" />
   </UserPref>
+  
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
   <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
@@ -252,7 +257,8 @@ td.price table td {
 <script type="text/javascript">
   var prefs = new gadgets.Prefs();
   var currentTemplate = Handlebars.compile(document.getElementById(prefs.getString('template')).innerHTML);
-  
+  //https://jsonbin.io/api-reference/v3/bins/read
+  //https://howtocreateapps.com/fetch-and-display-json-html-javascript/
   function load() {
   
     WebFont.load({
