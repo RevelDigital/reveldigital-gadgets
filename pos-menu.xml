@@ -132,216 +132,44 @@ td.price table td {
   clear: both;
 }
 </style>
-<div id="container"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script id="classic-template" type="text/x-handlebars-template">
-  <table cellpadding="0" cellspacing="0" class="classic">
-  {{#each items}}
-    <tr>
-      <td colspan="2" class="name">{{name}}</td>
-      <td rowspan="2" class="price">
-        <div class="price-wrapper">
-        {{#each prices}}
-          <div class="price-container">
-            <div class="price-label">{{label}}</div>
-            <div class="price-price">{{price}}</div>
-          </div>
-        {{/each}}
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-      <td class="filler"><div></div></td>
-    </tr>
-    <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
-  {{/each}}
-  </table>
-</script>
-<script id="classic-name-only-template" type="text/x-handlebars-template">
-  <table cellpadding="0" cellspacing="0" class="classic-name-only">
-  {{#each items}}
-    <tr>
-      <td class="name">{{name}}</td>
-      <td class="filler"><div></div></td>
-      <td class="price">
-        <div class="price-wrapper">
-        {{#each prices}}
-          <div class="price-container">
-            <div class="price-label">{{label}}</div>
-            <div class="price-price">{{price}}</div>
-          </div>
-        {{/each}}
-        </div>
-      </td>
-    </tr>
-    <tr class="spacer"><td colspan="3">&nbsp;</td></tr>
-  {{/each}}
-  </table>
-</script>
-<script id="classic-no-dots-template" type="text/x-handlebars-template">
-  <table cellpadding="0" cellspacing="0" class="classic-no-dots">
-  {{#each items}}
-    <tr>
-      <td class="name">{{name}}</td>
-      <td rowspan="2" class="price">
-        <div class="price-wrapper">
-        {{#each prices}}
-          <div class="price-container">
-            <div class="price-label">{{label}}</div>
-            <div class="price-price">{{price}}</div>
-          </div>
-        {{/each}}
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-    </tr>
-    <tr class="spacer"><td>&nbsp;</td></tr>
-  {{/each}}
-  </table>
-</script>
-<script id="centered-template" type="text/x-handlebars-template">
-  <table cellpadding="0" cellspacing="0" class="centered">
-  {{#each items}}
-    <tr>
-      <td class="name">{{name}}</td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-    </tr>
-    <tr>
-      <td class="price">
-        <div class="price-wrapper">
-        {{#each prices}}
-          <div class="price-container">
-            <div class="price-label">{{label}}</div>
-            <div class="price-price">{{price}}</div>
-          </div>
-        {{/each}}
-        </div>
-      </td>
-    </tr>
-    <tr class="spacer"><td>&nbsp;</td></tr>
-  {{/each}}
-  </table>
-</script>
-<script id="modern-template" type="text/x-handlebars-template">
-  <table cellpadding="0" cellspacing="0" class="modern">
-  {{#each items}}
-    <tr>
-      <td class="name">{{name}}</td>
-    </tr>
-    <tr>
-      <td class="description">{{description}}</td>
-    </tr>
-    <tr>
-      <td class="price">
-        <div class="price-wrapper">
-        {{#each prices}}
-          <div class="price-container">
-            <div class="price-label">{{label}}</div>
-            <div class="price-price">{{price}}</div>
-          </div>
-        {{/each}}
-        </div>
-      </td>
-    </tr>
-    <tr class="spacer"><td>&nbsp;</td></tr>
-  {{/each}}
-  </table>
-</script>
-<script type="text/javascript">
-  var prefs = new gadgets.Prefs();
-  var currentTemplate = Handlebars.compile(document.getElementById(prefs.getString('template')).innerHTML);
-  //https://jsonbin.io/api-reference/v3/bins/read
-  //https://howtocreateapps.com/fetch-and-display-json-html-javascript/
-  function load() {
-    
-    WebFont.load({
-      google: {
-        families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("name-style"))
-        ]
-      }
-    });
-    WebFont.load({
-      google: {
-        families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("description-style"))
-        ]
-      }
-    });
-    WebFont.load({
-      google: {
-        families: [
-          gadgets.reveldigital.getFamilyName(prefs.getString("price-style"))
-        ]
-      }
-    });
+<div id="myData"></div>
+<script>
 
-    //Gets the JSON data from JSONBIN.io
-    let req = new XMLHttpRequest();
+  //GET DICTIONARY
+  let req = new XMLHttpRequest();
+  req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+      console.log(req.responseText);
+    }
+  };
+  req.open("GET", "https://api.jsonbin.io/v3/b/__UP_referenceKey__", true);
+  req.setRequestHeader("X-Master-Key", "__UP_masterKey__");
+  var dictionary = req.send();
 
-    req.onreadystatechange = () => {
-      if (req.readyState == XMLHttpRequest.DONE) {
-        console.log(req.responseText);
-      }
-    };
+  //PARSE DICTIONARY AS JSON OBJECT
+  var bgjson = {{dictionary|tojson|safe}};
+  console.log(jQuery.type(bgjson));
+  console.log(JSON.parse(bgjson)[4]);
 
-    req.open("GET", "https://api.jsonbin.io/v3/b/__UP_referenceKey__", true);
-    req.setRequestHeader("X-Master-Key", "__UP_masterKey__");
-    req.send();
-    
-    //
-    google.load('visualization', '1', {'packages': ['table']});
-    google.setOnLoadCallback(initialize);
-  }
-  function initialize() {
-    var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
-    query.setRefreshInterval(300);
-    query.send(draw);
-  }
-  
-  function draw(response) {
-    if (response.isError()) {
-      return;
+  //DISPLAY JSON OBJECT
+  fetch(bgjson)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      appendData(data);
+    })
+    .catch(function (err) {
+      console.log('error: ' + err);
+    });
+  function appendData(data) {
+    var mainContainer = document.getElementById("myData");
+    for (var i = 0; i < data.length; i++) {
+      var div = document.createElement("div");
+      div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
+      mainContainer.appendChild(div);
     }
-    var dt = response.getDataTable();
-    var items = [];
-    for (var i=0; i<dt.getNumberOfRows(); i++) {
-      var prices = [];
-      for (var j=2; j<dt.getNumberOfColumns(); j++) {
-        prices.push({ label: dt.getColumnLabel(j), price: dt.getFormattedValue(i, j) });
-      }
-      items.push({ name: dt.getFormattedValue(i,0), description: dt.getFormattedValue(i, 1), prices: prices });
-    }
-    $('#container').empty().append(currentTemplate({ items: items }));
   }
-  
-  function googleUrl(sourceIdentifier) {
-    console.log("Spreadsheet: " + sourceIdentifier);
-    var url, key;
-    if (sourceIdentifier.match(/http(s)*:/)) {
-      url = sourceIdentifier;
-      try {
-        key = url.match(/spreadsheets\/d\/(?:e\/)*(.*?)\//)[1];
-      } catch (error) {
-      }
-    } else {
-      key = sourceIdentifier;
-    }
-    var ret = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?ph=0"; // ph = placeholder
-    if (prefs.getString("sheet") != null) {
-      ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
-    }
-    return ret;
-  }
-  
-  gadgets.util.registerOnLoadHandler(load);
-  
 </script>
 ]]>
 </Content>
