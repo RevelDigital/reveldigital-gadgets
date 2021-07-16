@@ -260,7 +260,7 @@ td.price table td {
   //https://jsonbin.io/api-reference/v3/bins/read
   //https://howtocreateapps.com/fetch-and-display-json-html-javascript/
   function load() {
-  
+    
     WebFont.load({
       google: {
         families: [
@@ -282,7 +282,21 @@ td.price table td {
         ]
       }
     });
+
+    //Gets the JSON data from JSONBIN.io
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+      if (req.readyState == XMLHttpRequest.DONE) {
+        console.log(req.responseText);
+      }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/v3/b/__UP_referenceKey__", true);
+    req.setRequestHeader("X-Master-Key", "__UP_masterKey__");
+    req.send();
     
+    //
     google.load('visualization', '1', {'packages': ['table']});
     google.setOnLoadCallback(initialize);
   }
@@ -307,6 +321,7 @@ td.price table td {
     }
     $('#container').empty().append(currentTemplate({ items: items }));
   }
+  
   function googleUrl(sourceIdentifier) {
     console.log("Spreadsheet: " + sourceIdentifier);
     var url, key;
