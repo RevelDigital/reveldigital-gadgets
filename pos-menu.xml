@@ -134,42 +134,72 @@ td.price table td {
 </style>
 <div id="myData"></div>
 <script>
-
   //GET DICTIONARY
   let req = new XMLHttpRequest();
+
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
-      console.log(req.responseText);
+
+      let num = "5.0"
+
+      dict = JSON.parse(req.responseText)
+      console.log(dict);
+      let dictionaryString = JSON.stringify(dict);
+      //document.getElementById("myData").innerHTML = dictionaryString;
+
+      //DISPLAY DICT AS TABLE
+      let table = document.createElement("table");
+      let tableBody = document.createElement("tbody");
+      let tableRow = document.createElement("tr");
+      let tableColumn = document.createElement("td");
+      let tableColumn2 = document.createElement("td");
+      let tableColumn3 = document.createElement("td");
+
+      table.setAttribute("class", "table table-bordered");
+      table.setAttribute("id", "myTable");
+      table.setAttribute("style", "width:100%");
+      tableBody.setAttribute("class", "table-body");
+      tableRow.setAttribute("class", "table-row");
+      tableColumn.setAttribute("class", "table-column");
+      tableColumn2.setAttribute("class", "table-column");
+      tableColumn3.setAttribute("class", "table-column");
+      tableColumn.innerHTML = "Type";
+      tableColumn2.innerHTML = "Name";
+      tableColumn3.innerHTML = "Price";
+      tableRow.appendChild(tableColumn);
+      tableRow.appendChild(tableColumn2);
+      tableRow.appendChild(tableColumn3);
+      tableBody.appendChild(tableRow);
+      table.appendChild(tableBody);
+      document.getElementById("myData").appendChild(table);
+      for (let i = 0; i < dict.record[num].data.length; i++) {//dict.record["2.0"].data.length
+          let tableRow = document.createElement("tr");
+          let tableColumn = document.createElement("td");
+          let tableColumn2 = document.createElement("td");
+          let tableColumn3 = document.createElement("td");
+          tableColumn.innerHTML = dict.record[num].name;
+          tableColumn2.innerHTML = dict.record[num].data[i].name;
+          tableColumn3.innerHTML = dict.record[num].data[i].price;
+          tableRow.appendChild(tableColumn);
+          tableRow.appendChild(tableColumn2);
+          tableRow.appendChild(tableColumn3);
+          tableBody.appendChild(tableRow);
+      }
+
+      //DISPLAY ABOVE TABLE IN HTML
+      document.getElementById("myData").innerHTML = table.outerHTML;
+
+
     }
   };
-  req.open("GET", "https://api.jsonbin.io/v3/b/__UP_referenceKey__", true);
-  req.setRequestHeader("X-Master-Key", "__UP_masterKey__");
-  var dictionary = req.send();
 
-  //PARSE DICTIONARY AS JSON OBJECT
-  var bgjson = {{dictionary|tojson|safe}};
-  console.log(jQuery.type(bgjson));
-  console.log(JSON.parse(bgjson)[4]);
-
-  //DISPLAY JSON OBJECT
-  fetch(bgjson)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      appendData(data);
-    })
-    .catch(function (err) {
-      console.log('error: ' + err);
-    });
-  function appendData(data) {
-    var mainContainer = document.getElementById("myData");
-    for (var i = 0; i < data.length; i++) {
-      var div = document.createElement("div");
-      div.innerHTML = 'Name: ' + data[i].name + ', Price: ' + data[i].price;
-      mainContainer.appendChild(div);
-    }
-  }
+  req.open("GET", "https://api.jsonbin.io/v3/b/__UP_reference-key__", true);
+  req.setRequestHeader("X-Master-Key", "__UP_master-key__");
+  req.send();
+  //CONVERT DICTIONARY TO STRING
+  //let dictionaryString = JSON.stringify(dictionary);
+  //DISPLAY DICTIONARYSTRING IN HTML MYDATA
+  //document.getElementById("myData").innerHTML = dictionaryString;
 </script>
 ]]>
 </Content>
