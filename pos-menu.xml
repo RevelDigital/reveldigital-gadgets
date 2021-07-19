@@ -140,7 +140,7 @@ td.price table td {
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
 
-      let num = "5.0"
+      let num = "__UP_menu-id__"
 
       dict = JSON.parse(req.responseText)
       console.log(dict);
