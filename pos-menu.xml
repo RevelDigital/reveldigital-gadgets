@@ -6,7 +6,7 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="active-update" display_name="Update" default_value="false" datatype="bool" />
+  <UserPref name="active-update" display_name="Update" datatype="bool"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
   <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
   <UserPref name="menu-id" display_name="Menu Type ID" default_value="3" datatype="string"/>
