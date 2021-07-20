@@ -132,9 +132,7 @@ td.price table td {
   clear: both;
 }
 </style>
-<div class="container">
-  <div id="myData" class="table"></div>
-</div>
+<div id="myData" class="container"></div>
 <script>
   //GET DICTIONARY
   let req = new XMLHttpRequest();
