@@ -19,7 +19,7 @@
     <EnumValue value="modern-template" display_value="Modern" />
   </UserPref>
   
-  <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
+  <UserPref name="lineHeight" display_name="Line Spacing" required="true" default_value="1" datatype="string" />
   <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
@@ -32,7 +32,6 @@
 <![CDATA[
 <style type="text/css">
 body *
-{
   line-height: 1.2em;
   letter-spacing: 0;
   word-spacing: normal;
@@ -49,6 +48,7 @@ div#container
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   color: #000;
+  line-height: __UP_lineHeight__;
 }
 table {
   width:100%;
