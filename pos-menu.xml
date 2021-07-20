@@ -6,7 +6,7 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="active-update" display_name="Update" default_value="0" datatype="string" />
+  <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
   <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
   <UserPref name="menu-id" display_name="Menu Type ID" default_value="3" datatype="string"/>
@@ -43,10 +43,6 @@ body
   width: __UP_rdW__px;
   height: __UP_rdH__px;
   overflow: hidden;
-}
-column-styles
-{
-  line-height: __UP_row-spacing__px;
 }
 div#container
 {
@@ -164,17 +160,15 @@ td.price table td {
 
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
-      table.setAttribute("style", "width:100%");
+      table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
       tableBody.setAttribute("class", "table-body");
       tableRow.setAttribute("class", "table-row");
       tableColumn.setAttribute("class", "table-column");
       tableColumn2.setAttribute("class", "table-column");
       tableColumn3.setAttribute("class", "table-column");
-      
       tableColumn.innerHTML = "Type";
       tableColumn2.innerHTML = "Name";
       tableColumn3.innerHTML = "Price";
-      
       tableRow.appendChild(tableColumn);
       tableRow.appendChild(tableColumn2);
       tableRow.appendChild(tableColumn3);
