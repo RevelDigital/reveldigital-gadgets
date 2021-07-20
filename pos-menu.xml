@@ -19,6 +19,7 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
+  <UserPref name="active-update" display_name="Update" default_value="false" datatype="bool" />
   <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
@@ -159,7 +160,7 @@ td.price table td {
 
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
-      table.setAttribute("style", "width:100%");
+      table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
       tableBody.setAttribute("class", "table-body");
       tableRow.setAttribute("class", "table-row");
       tableColumn.setAttribute("class", "table-column");
@@ -194,10 +195,10 @@ td.price table td {
 
     }
   };
-
-  req.open("GET", "https://api.jsonbin.io/v3/b/__UP_reference-key__", true);
-  req.setRequestHeader("X-Master-Key", "__UP_master-key__");
-  req.send();
+  if(__UP_active-update__)
+    req.open("GET", "https://api.jsonbin.io/v3/b/__UP_reference-key__", true);
+    req.setRequestHeader("X-Master-Key", "__UP_master-key__");
+    req.send();
   //CONVERT DICTIONARY TO STRING
   //let dictionaryString = JSON.stringify(dictionary);
   //DISPLAY DICTIONARYSTRING IN HTML MYDATA
