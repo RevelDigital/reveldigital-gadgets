@@ -160,12 +160,15 @@ td.price table td {
 
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
-      table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
+      table.setAttribute("style", "width:100%");
       tableBody.setAttribute("class", "table-body");
       tableRow.setAttribute("class", "table-row");
       tableColumn.setAttribute("class", "table-column");
       tableColumn2.setAttribute("class", "table-column");
       tableColumn3.setAttribute("class", "table-column");
+      tableColumn.setAttribute("style", "line-height: __UP_row-spacing__px");
+      tableColumn2.setAttribute("style", "line-height: __UP_row-spacing__px");
+      tableColumn3.setAttribute("style", "line-height: __UP_row-spacing__px");
       tableColumn.innerHTML = "Type";
       tableColumn2.innerHTML = "Name";
       tableColumn3.innerHTML = "Price";
