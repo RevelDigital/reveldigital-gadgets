@@ -170,11 +170,11 @@ td.price table td {
       tableColumn.setAttribute("class", "table-column");
       tableColumn2.setAttribute("class", "table-column");
       tableColumn3.setAttribute("class", "table-column");
-      <div class="column-styles">
-        tableColumn.innerHTML = "Type";
-        tableColumn2.innerHTML = "Name";
-        tableColumn3.innerHTML = "Price";
-      </div>
+      
+      tableColumn.innerHTML = "<div class="column-styles">Type</div>";
+      tableColumn2.innerHTML = "<div class="column-styles">Name</div>";
+      tableColumn3.innerHTML = "<div class="column-styles">Price</div>";
+      
       tableRow.appendChild(tableColumn);
       tableRow.appendChild(tableColumn2);
       tableRow.appendChild(tableColumn3);
