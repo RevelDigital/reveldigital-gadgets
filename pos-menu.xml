@@ -72,39 +72,39 @@ tr.Type {
 tr.Name {
   __UP_description-style__;
 }
-td.Price, td.Price div {
+tr.Price, tr.Price div {
   __UP_price-style__;
 }
-td.filler {
+tr.filler {
   width: 100%;
   position: relative;
 }
-td.filler div {
+tr.filler div {
   position: absolute;
   left: 0;
   right: 0;
   bottom: .3em;
   border-bottom: .1em dotted #__UP_ForeColor__;
 }
-table.classic-name-only td.name {
+table.classic-name-only tr.Type {
   white-space: nowrap;
 }
-table.classic td.description {
+table.classic tr.Name {
   width: 80%;
 }
-table.classic td.price {
+table.classic tr.Price {
   vertical-align: bottom;
 }
-table.classic-no-dots td.price {
+table.classic-no-dots tr.Price {
   vertical-align: top;
 }
-table.centered td.name {
+table.centered tr.Type {
   text-align: center;
 }
-table.centered td.description {
+table.centered tr.Name {
   text-align: center;
 }
-table.centered td.price {
+table.centered tr.Price {
   text-align: center;
 }
 table.centered .price-wrapper {
@@ -113,7 +113,7 @@ table.centered .price-wrapper {
 table.modern .price-wrapper {
   float: right;
 }
-tr.price table tr {
+tr.Price table tr {
   text-align: center;
 }
 .price-container {
