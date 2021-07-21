@@ -60,16 +60,16 @@ table td {
   padding: 2px
   margin: 0;
 }
-table tr.spacer, table tr.spacer td {
+table tr.spacer, table tr.spacer tr {
   line-height: __UP_row-spacing__px;
   height: __UP_row-spacing__px;
   padding: 0;
   margin: 0;
 }
-td.name {
+tr.name {
   __UP_name-style__;
 }
-td.description {
+tr.description {
   __UP_description-style__;
 }
 td.price, td.price div {
@@ -113,7 +113,7 @@ table.centered .price-wrapper {
 table.modern .price-wrapper {
   float: right;
 }
-td.price table td {
+tr.price table tr {
   text-align: center;
 }
 .price-container {
