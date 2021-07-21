@@ -20,7 +20,7 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
-  <UserPref name="type-style" display_name="Item Type Style hey" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
+  <UserPref name="type-style" display_name="Item Type Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="name-style" display_name="Item Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
