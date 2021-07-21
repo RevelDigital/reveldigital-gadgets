@@ -153,7 +153,7 @@ tr.Price table tr {
       //DISPLAY DICT AS TABLE
       let table = document.createElement("table");
       let tableBody = document.createElement("tbody");
-      let tableRow = document.createElement("td");
+      let tableRow = document.createElement("tr");
       let tableColumn = document.createElement("td");
       let tableColumn2 = document.createElement("td");
       let tableColumn3 = document.createElement("td");
