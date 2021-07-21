@@ -66,13 +66,13 @@ table tr.spacer, table tr.spacer tr {
   padding: 0;
   margin: 0;
 }
-td#type {
+td.type {
   __UP_type-style__;
 }
-td#name {
+td.name {
   __UP_name-style__;
 }
-td#price, td#price div {
+td.price, td.price div {
   __UP_price-style__;
 }
 td.filler {
