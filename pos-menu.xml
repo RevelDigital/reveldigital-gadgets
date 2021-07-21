@@ -82,25 +82,19 @@ td.filler div {
   bottom: .3em;
   border-bottom: .1em dotted #__UP_ForeColor__;
 }
-table.classic-name-only td#type {
-  white-space: nowrap;
-}
-table.classic td#name {
+table.classic td.name {
   width: 80%;
 }
-table.classic td#price {
+table.classic td.price {
   vertical-align: bottom;
 }
-table.classic-no-dots td#price {
+table.classic-no-dots td.price {
   vertical-align: top;
 }
-table.centered td#type {
+table.centered td.name {
   text-align: center;
 }
-table.centered td#name {
-  text-align: center;
-}
-table.centered td#price {
+table.centered td.price {
   text-align: center;
 }
 table.centered .price-wrapper {
@@ -152,17 +146,16 @@ td#price table td {
       let tableRow = document.createElement("tr");
       let tableColumn2 = document.createElement("td");
       let tableColumn3 = document.createElement("td");
+
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
       table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
       tableBody.setAttribute("class", "table-body");
       tableRow.setAttribute("class", "table-row");
-      tableColumn.setAttribute("class", "table-column");
       tableColumn2.setAttribute("class", "table-column");
       tableColumn3.setAttribute("class", "table-column");
       tableColumn2.innerHTML = "Name";
       tableColumn3.innerHTML = "Price";
-      tableRow.appendChild(tableColumn);
       tableRow.appendChild(tableColumn2);
       tableRow.appendChild(tableColumn3);
       tableBody.appendChild(tableRow);
@@ -176,7 +169,6 @@ td#price table td {
           tableColumn3.className = "price";
           tableColumn2.innerHTML = dict.record[num].data[i].name; //Name of product
           tableColumn3.innerHTML = dict.record[num].data[i].price;//Price of product
-          tableRow.appendChild(tableColumn);
           tableRow.appendChild(tableColumn2);
           tableRow.appendChild(tableColumn3);
           tableBody.appendChild(tableRow);
