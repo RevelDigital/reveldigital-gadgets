@@ -20,7 +20,6 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
-  <UserPref name="type-style" display_name="Item Type Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="name-style" display_name="Item Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
@@ -65,9 +64,6 @@ table tr.spacer, table tr.spacer tr {
   height: __UP_row-spacing__px;
   padding: 0;
   margin: 0;
-}
-td.type {
-  __UP_type-style__;
 }
 td.name {
   __UP_name-style__;
@@ -154,10 +150,8 @@ td#price table td {
       let table = document.createElement("table");
       let tableBody = document.createElement("tbody");
       let tableRow = document.createElement("tr");
-      let tableColumn = document.createElement("td");
       let tableColumn2 = document.createElement("td");
       let tableColumn3 = document.createElement("td");
-
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
       table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
@@ -166,7 +160,6 @@ td#price table td {
       tableColumn.setAttribute("class", "table-column");
       tableColumn2.setAttribute("class", "table-column");
       tableColumn3.setAttribute("class", "table-column");
-      tableColumn.innerHTML = "Type";
       tableColumn2.innerHTML = "Name";
       tableColumn3.innerHTML = "Price";
       tableRow.appendChild(tableColumn);
@@ -177,13 +170,10 @@ td#price table td {
       document.getElementById("myData").appendChild(table);
       for (let i = 0; i < dict.record[num].data.length; i++) {//dict.record["2.0"].data.length
           let tableRow = document.createElement("tr");
-          let tableColumn = document.createElement("td");
-          tableColumn.className = "type";
           let tableColumn2 = document.createElement("td");
           tableColumn2.className = "name";
           let tableColumn3 = document.createElement("td");
           tableColumn3.className = "price";
-          tableColumn.innerHTML = dict.record[num].name;          //Name of type
           tableColumn2.innerHTML = dict.record[num].data[i].name; //Name of product
           tableColumn3.innerHTML = dict.record[num].data[i].price;//Price of product
           tableRow.appendChild(tableColumn);
