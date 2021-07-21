@@ -20,7 +20,7 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
-  <UserPref name="type-style" display_name="Item Type Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
+  <UserPref name="type-style" display_name="Item Type Style hey" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
   <UserPref name="name-style" display_name="Item Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
@@ -153,10 +153,10 @@ tr.Price table tr {
       //DISPLAY DICT AS TABLE
       let table = document.createElement("table");
       let tableBody = document.createElement("tbody");
-      let tableRow = document.createElement("tr");
-      let tableColumn = document.createElement("tr");
-      let tableColumn2 = document.createElement("tr");
-      let tableColumn3 = document.createElement("tr");
+      let tableRow = document.createElement("td");
+      let tableColumn = document.createElement("td");
+      let tableColumn2 = document.createElement("td");
+      let tableColumn3 = document.createElement("td");
 
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
@@ -177,9 +177,9 @@ tr.Price table tr {
       document.getElementById("myData").appendChild(table);
       for (let i = 0; i < dict.record[num].data.length; i++) {//dict.record["2.0"].data.length
           let tableRow = document.createElement("tr");
-          let tableColumn = document.createElement("tr");
-          let tableColumn2 = document.createElement("tr");
-          let tableColumn3 = document.createElement("tr");
+          let tableColumn = document.createElement("td");
+          let tableColumn2 = document.createElement("td");
+          let tableColumn3 = document.createElement("td");
           tableColumn.innerHTML = dict.record[num].name;
           tableColumn2.innerHTML = dict.record[num].data[i].name;
           tableColumn3.innerHTML = dict.record[num].data[i].price;
