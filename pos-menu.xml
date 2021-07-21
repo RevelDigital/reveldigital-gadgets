@@ -20,8 +20,8 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
-  <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
-  <UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="type-style" display_name="Item type style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
+  <UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
   <UserPref name="BackColor" datatype="hidden" />
@@ -66,11 +66,11 @@ table tr.spacer, table tr.spacer tr {
   padding: 0;
   margin: 0;
 }
-tr.name {
-  __UP_name-style__;
+td.type {
+  __UP_type-style__;
 }
-tr.description {
-  __UP_description-style__;
+td.name {
+  __UP_name-style__;
 }
 td.price, td.price div {
   __UP_price-style__;
@@ -98,10 +98,10 @@ table.classic td.price {
 table.classic-no-dots td.price {
   vertical-align: top;
 }
-table.centered td.name {
+table.centered td.type {
   text-align: center;
 }
-table.centered td.description {
+table.centered td.name {
   text-align: center;
 }
 table.centered td.price {
@@ -113,7 +113,7 @@ table.centered .price-wrapper {
 table.modern .price-wrapper {
   float: right;
 }
-tr.price table tr {
+td.price table td {
   text-align: center;
 }
 .price-container {
@@ -178,11 +178,14 @@ tr.price table tr {
       for (let i = 0; i < dict.record[num].data.length; i++) {//dict.record["2.0"].data.length
           let tableRow = document.createElement("tr");
           let tableColumn = document.createElement("td");
+          tableColumn.id = "type";
           let tableColumn2 = document.createElement("td");
+          tableColumn.id = "name";
           let tableColumn3 = document.createElement("td");
-          tableColumn.innerHTML = dict.record[num].name;
-          tableColumn2.innerHTML = dict.record[num].data[i].name;
-          tableColumn3.innerHTML = dict.record[num].data[i].price;
+          tableColumn.id = "price";
+          tableColumn.innerHTML = dict.record[num].name;          //Name of type
+          tableColumn2.innerHTML = dict.record[num].data[i].name; //Name of product
+          tableColumn3.innerHTML = dict.record[num].data[i].price;//Price of product
           tableRow.appendChild(tableColumn);
           tableRow.appendChild(tableColumn2);
           tableRow.appendChild(tableColumn3);
