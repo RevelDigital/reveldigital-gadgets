@@ -167,8 +167,9 @@ td#price table td {
           tableColumn2.className = "name";
           let tableColumn3 = document.createElement("td");
           tableColumn3.className = "price";
+          resultprice = new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(tableColumn3.innerHTML = dict.record[num].data[i].price);
           tableColumn2.innerHTML = dict.record[num].data[i].name; //Name of product
-          tableColumn3.innerHTML = dict.record[num].data[i].price;//Price of product
+          tableColumn3.innerHTML = resultprice;//Price of product
           tableRow.appendChild(tableColumn2);
           tableRow.appendChild(tableColumn3);
           tableBody.appendChild(tableRow);
