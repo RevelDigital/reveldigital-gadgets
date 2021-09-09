@@ -10,7 +10,7 @@
 			<EnumValue display_value="Daily Statistics" value="stats" />
 			<EnumValue display_value="Timeseries Chart" value="timeseries" />
 		</UserPref>
-		<UserPref name="fillColor" display_name="Chart Fill Color" datatype="color" default_value="" required="false" />
+		<UserPref name="fillColor" display_name="Chart Fill Color" datatype="color" default_value="#3385fd" required="false" />
 		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;" required="true" />
 		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:14px;" required="true" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
