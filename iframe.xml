@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Iframe Gadget" description="Basic gadget for displaying iframes" author="RevelDigital - Vincent C." background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
+  <UserPref name="text" display_name="IFrame Source Link" datatype="string" default_value="https://webplayer.reveldigital.com/" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
+  
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+body
+{
+  display: flex;
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  __UP_font-style__;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  letter-spacing: __UP_ltrSpacing__px;
+  line-height: __UP_lineHeight__;
+}
+</style>
+<div id="container">
+    <iframe id="inlineFrameExample"
+	    title="Inline Frame Example"
+	    width="__UP_rdW__"
+	    height="__UP_rdH__"
+	    src="__UP_text__">
+    </iframe>
+</div>
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    if(prefs.getBool("portrait"))
+    {
+      $("body").css("flex-direction", "row");
+      $("#container").css("-webkit-transform", "rotate(90deg)");
+      $("#container").css("-moz-transform", "rotate(90deg)");
+      $("#container").css("transform", "rotate(90deg)");
+      $("#container").css("width", "__UP_rdH__px");
+      $("#container").css("height", "__UP_rdW__px");
+    }else{
+      $("body").css("flex-direction", "column");
+    }
+  }
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+]]>
+</Content>
+</Module>
