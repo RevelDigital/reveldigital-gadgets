@@ -11,7 +11,6 @@
 			<EnumValue display_value="Timeseries Chart" value="timeseries" />
 		</UserPref>
 		<UserPref name="fillColor" display_name="Chart Fill Color" datatype="color" default_value="" required="false" />
-		<UserPref name="labelColor" display_name="Chart Label Color" datatype="color" default_value="" required="false" />
 		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;" required="true" />
 		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:14px;" required="true" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -44,8 +43,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/polyfills-es5.c537509ba127bea450b9.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/polyfills-es2015.387d40c09b6078570d9c.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/main-es2015.2496e15c130161ac5bc0.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/main-es5.2496e15c130161ac5bc0.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/main-es2015.683fcc613560d2682f83.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-covid-tracker/main-es5.683fcc613560d2682f83.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
