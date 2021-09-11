@@ -145,8 +145,11 @@ table.google-visualization-table-table,
 <script type="text/javascript">
   var container;
   var table;
-
+  var dataTable;
+  
+  
   function initialize() {
+  
     container = document.getElementById("table");
     table = new google.visualization.Table(container);
     
@@ -156,9 +159,10 @@ table.google-visualization-table-table,
   }
   
   function draw(response) {
+  
     if (response.isError()) {
     }
-    var dt = response.getDataTable();
+    dataTable = response.getDataTable();
     
     google.visualization.events.addListener(table, "ready",
       function (event) {
@@ -185,7 +189,7 @@ table.google-visualization-table-table,
     
     //var sort = prefs.getBool("hasTitle") ? "enable" : "disable";
     
-    table.draw(dt, { allowHtml:false, sort:'disable', cssClassNames: {
+    table.draw(dataTable, { allowHtml:false, sort:'disable', cssClassNames: {
       headerRow: 'header-style',
       headerCell: 'header-style',
       tableRow: 'body-style',
@@ -198,6 +202,7 @@ table.google-visualization-table-table,
   }
   
   function googleUrl(sourceIdentifier) {
+  
     console.log("Spreadsheet: " + sourceIdentifier);
     var url, key;
     if (sourceIdentifier.match(/http(s)*:/)) {
@@ -221,6 +226,25 @@ table.google-visualization-table-table,
       ret = ret + "&sheet=" + encodeURIComponent(prefs.getString("sheet"));
     }
     return ret;
+  }
+  
+  filter(json) {
+  
+	// json = [{column: 1, minValue: new Date(2007, 0, 1)}];
+	
+    var view = new google.visualization.DataView(dataTable);
+    view.setRows(view.getFilteredRows(json));
+	
+	table.draw(view, { allowHtml:false, sort:'disable', cssClassNames: {
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style'
+    } });
   }
   
   $(document).on('click', 'table tr', function (e) {
