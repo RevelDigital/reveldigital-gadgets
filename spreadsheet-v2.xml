@@ -228,7 +228,7 @@ table.google-visualization-table-table,
     return ret;
   }
   
-  filter(json) {
+  function filter(json) {
   
 	// json = [{column: 1, minValue: new Date(2007, 0, 1)}];
 	
