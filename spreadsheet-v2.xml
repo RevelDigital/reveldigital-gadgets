@@ -228,6 +228,30 @@ table.google-visualization-table-table,
     return ret;
   }
   
+  function filterRegex(column, value) {
+	  
+	const regex = new RegExp(value);
+	
+	var view = new google.visualization.DataView(dataTable);
+    view.setRows(view.getFilteredRows([{
+		column: column,
+		test: function (testval) {
+			return regex.test(testval);
+		}
+	}]));
+	
+	table.draw(view, { allowHtml:false, sort:'disable', cssClassNames: {
+      headerRow: 'header-style',
+      headerCell: 'header-style',
+      tableRow: 'body-style',
+      tableCell: 'body-style',
+      selectedTableRow: 'body-style',
+      oddTableRow: 'body-style',
+      hoverTableRow: 'body-style',
+      rowNumberCell: 'body-style'
+    } });
+  }
+  
   function filter(json) {
   
 	// json = [{column: 1, minValue: new Date(2007, 0, 1)}];
