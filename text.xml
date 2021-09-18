@@ -14,7 +14,7 @@
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ltrSpacing" display_name="Letter Spacing" required="true" default_value="0" datatype="string" />
   <UserPref name="lineHeight" display_name="Line Spacing" required="true" default_value="1" datatype="string" />
-  <UserPref name="horizontal" display_name="Horizontal Text" default_value="false" datatype="bool" />
+  <UserPref name="horizontal" display_name="Vertical Text" default_value="false" datatype="bool" />
   <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
   <UserPref name="textwrap" display_name="Word Wrap" default_value="false" datatype="bool" />
 
