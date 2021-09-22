@@ -46,12 +46,12 @@
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es2015.c1379ef50cb3f587c169.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es5.c1379ef50cb3f587c169.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es2015.5a677b55b72869ec6d4b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es5.5a677b55b72869ec6d4b.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es5.c4e093cfa2298c61c960.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es2015.a2379c6c7018c26dd81b.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es2015.c55cab20766c2ab72704.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es5.c55cab20766c2ab72704.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es2015.c1379ef50cb3f587c169.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es5.c1379ef50cb3f587c169.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
