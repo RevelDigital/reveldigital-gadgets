@@ -17,7 +17,7 @@
 		<UserPref name="showAirline" display_name="Show Airline" datatype="bool" default_value="true" />
 		<UserPref name="pageDelay" display_name="Delay between page animations (seconds)" datatype="string" default_value="10" />
 		<UserPref name="maxFutureHours" display_name="Max hours to show in advance" datatype="string" default_value="4" />
-		<UserPref name="headerStyle" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;" required="true" />
+		<UserPref name="headerStyle" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:32px;" required="true" />
 		<UserPref name="rowStyle" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;" required="true" />
 		<UserPref name="headerBackground" display_name="Header background color" datatype="color" default_value="#ffffff" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
