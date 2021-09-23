@@ -33,8 +33,8 @@
 			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.6fe7838290a3a19381db.js" nomodule defer></script>
 			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.9f559202583473228b4e.js" nomodule defer></script>
 			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.c20ce1797339124c85d3.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.ce5c38fb23da1b89d7af.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.ce5c38fb23da1b89d7af.js" nomodule defer></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.24cc0fccd006516dadca.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.24cc0fccd006516dadca.js" nomodule defer></script>
 
 			<script type="text/javascript">
 
