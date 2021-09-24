@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
     <ModulePrefs title="RevelDigital Angular Gadget Demo" description="Angular Gadget Demo" author="RevelDigital" background="transparent">
-	        <Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="reveldigital" />
+		
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="rdKey" display_name="Device Registration Key" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
@@ -22,18 +24,25 @@
 					overflow: hidden;
 				}
             </style>
-            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.3ff695c00d717f2d2a11.css">
+            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.31d6cfe0d16ae931b73c.css">
 
-            <body>
-            	<app-root></app-root>
+
+			<app-root></app-root>
+			
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es2015.6fe7838290a3a19381db.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.6fe7838290a3a19381db.js" nomodule defer></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.9f559202583473228b4e.js" nomodule defer></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.c20ce1797339124c85d3.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.045e428512fc9346c390.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.045e428512fc9346c390.js" nomodule defer></script>
+
+			<script type="text/javascript">
+
+				function load() {
+				}
+				gadgets.util.registerOnLoadHandler(load);
 				
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.5ea45e10053f0b7d82b7.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.61907dbe52a96d0c7c6e.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.135157af5869039fd42c.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.135157af5869039fd42c.js" nomodule defer></script>
-			</body>
+			</script>
         ]]>
     </Content>
 </Module>

@@ -6,6 +6,8 @@
 		<Require feature="webfont" />
 		
 		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
+			<EnumValue display_value="Custom RSS Option" value="" />
+			
 			<EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
 			<EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
 			<EnumValue display_value="CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
@@ -71,7 +73,7 @@
 			<EnumValue display_value="WIRED Top Stories" value="https://www.wired.com/feed/rss" />
 			<EnumValue display_value="WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 		</UserPref>
-		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL" datatype="string" />
+		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL (use with ''Custom RSS Option'' from dropdown)" datatype="string" />
 		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
 		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
 		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
@@ -100,16 +102,16 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.904b098f77a7da2ac593.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.f2fff9540a9e1291d2f0.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.d6e6a6bb4e53f1f422fb.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.0edddc625a307becc767.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.0edddc625a307becc767.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es2015.eab4b434a9ed924d1eed.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.eab4b434a9ed924d1eed.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.318c4f01057ff3718732.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.26738760f0df155c91b8.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.67ca354876430c1faaf7.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.67ca354876430c1faaf7.js" nomodule defer></script>
 
 				<script type="text/javascript">
 

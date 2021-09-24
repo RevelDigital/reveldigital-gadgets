@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Imgur Gadget" description="Basic gadget for displaying images from imgur" author="RevelDigital - Vincent C." background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
+  <UserPref name="text" display_name="Imgur Source Link" datatype="string" default_value="//imgur.com/a/PPOZM" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
+  
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+body
+{
+  display: flex;
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  __UP_font-style__;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  letter-spacing: __UP_ltrSpacing__px;
+  line-height: __UP_lineHeight__;
+}
+</style>
+<div id="container">
+  <blockquote class="imgur-embed-pub" lang="en" data-id="a/PPOZM"  >
+    <a href="__UP_text__"></a>
+  </blockquote>
+  <script async src="//s.imgur.com/min/embed.js" charset="utf-8">
+  </script>
+</div>
+<script type="text/javascript">
+  var prefs = new gadgets.Prefs();
+  function load() {
+    if(prefs.getBool("portrait"))
+    {
+      $("body").css("flex-direction", "row");
+      $("#container").css("-webkit-transform", "rotate(90deg)");
+      $("#container").css("-moz-transform", "rotate(90deg)");
+      $("#container").css("transform", "rotate(90deg)");
+      $("#container").css("width", "__UP_rdH__px");
+      $("#container").css("height", "__UP_rdW__px");
+    }else{
+      $("body").css("flex-direction", "column");
+    }
+  }
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+]]>
+</Content>
+</Module>

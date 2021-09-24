@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital FIDS App" description="Flight Information Display App by Revel Digital" author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="airportCode" display_name="Airport Code" datatype="string" />
+		<UserPref name="mode" display_name="Display Mode" datatype="enum" default_value="departure">
+			<EnumValue display_value="Departures" value="departure" />
+			<EnumValue display_value="Arrivals" value="arrival" />
+		</UserPref>
+		<UserPref name="showTerminal" display_name="Show Terminal" datatype="bool" default_value="true" />
+		<UserPref name="showGate" display_name="Show Gate" datatype="bool" default_value="true" />
+		<UserPref name="showBaggage" display_name="Show Baggage" datatype="bool" default_value="true" />
+		<UserPref name="showLogo" display_name="Show Logo" datatype="bool" default_value="true" />
+		<UserPref name="showAirline" display_name="Show Airline" datatype="bool" default_value="true" />
+		<UserPref name="pageDelay" display_name="Delay between page animations (seconds)" datatype="string" default_value="10" />
+		<UserPref name="maxFutureHours" display_name="Max hours to show in advance" datatype="string" default_value="4" />
+		<UserPref name="headerStyle" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:32px;" required="true" />
+		<UserPref name="rowStyle" display_name="Row Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;" required="true" />
+		<UserPref name="headerBackground" display_name="Header background color" datatype="color" default_value="#ffffff" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/styles.263b6fa8b8569581201d.css">
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es2015.5a677b55b72869ec6d4b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es5.5a677b55b72869ec6d4b.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es5.c4e093cfa2298c61c960.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es2015.a2379c6c7018c26dd81b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es2015.c2e1c581fd3f3fa95155.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es5.c2e1c581fd3f3fa95155.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					
+					function load() {
+					
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("headerStyle")) ]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("rowStyle")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>

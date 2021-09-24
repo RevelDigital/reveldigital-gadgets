@@ -7,6 +7,7 @@
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rotation" display_name="Rotate" datatype="string" default_value="0" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -59,6 +60,11 @@ body
 {
 	margin: 0;
 	width: __UP_rdW__px;
+}
+
+#ticker {
+  transform: rotate(__UP_rotation__deg);
+  transform-origin: 50% 50%;	
 }
 
 #ticker1 .odd { background-color: #fff; }
