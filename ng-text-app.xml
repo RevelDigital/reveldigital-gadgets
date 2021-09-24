@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="Text App" description="Basic app for displaying text. Supports markdown and Emoji" author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="text" display_name="Text to Display" datatype="string" default_value="" />
+		<UserPref name="style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+		<UserPref name="ltrSpacing" display_name="Letter Spacing" required="true" default_value="0" datatype="string" />
+		<UserPref name="lineHeight" display_name="Line Spacing" required="true" default_value="1" datatype="string" />
+		<UserPref name="orientation" display_name="Orientation" datatype="enum" default_value="landscape">
+			<EnumValue display_value="Horizontal" value="horizontal" />
+			<EnumValue display_value="Vertical" value="vertical" />
+		</UserPref>
+		<UserPref name="wrap" display_name="Word Wrap" default_value="false" datatype="bool" />
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/styles.4fd3f7aba87e798cd276.css">
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es2015.ec85f614fb027b3060f0.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es5.ec85f614fb027b3060f0.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es5.a6becf2cfa6946dc65a0.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es2015.04019e1fcbcaa5269a86.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.97a130dd5bb122cb5ae4.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.97a130dd5bb122cb5ae4.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					
+					function load() {
+					
+						WebFont.load({
+							google: {
+								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("style")) ]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
