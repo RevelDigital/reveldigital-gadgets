@@ -60,6 +60,13 @@
 							}
 						});
 					}
+					
+					function setText(val) {
+						window.angularComponentReference.zone.run(function () {
+							window.angularComponentReference.setText(val);
+						});
+					}
+  
 					gadgets.util.registerOnLoadHandler(load);
 					
 				</script>
