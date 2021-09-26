@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
-    <ModulePrefs title="Text App" description="Basic app for displaying text. Supports markdown and Emoji" author="RevelDigital" background="transparent">
+    <ModulePrefs title="Text App" description="Text zone with support for markdown, emoji, and animations" author="RevelDigital" background="transparent">
 		<Require feature="reveldigital" />
 		<Require feature="jquery" />
 		<Require feature="webfont" />
@@ -51,6 +51,7 @@
 			<EnumValue display_value="Slide In Right" value="animate__slideInRight" />
 			<EnumValue display_value="Slide In Up" value="animate__slideInUp" />
 		</UserPref>
+		<UserPref name="commandName" display_name="Command name to use for triggered updates" required="false" datatype="string" />
 		<UserPref name="ForeColor" datatype="hidden" />
 		<UserPref name="BackColor" datatype="hidden" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -81,8 +82,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es5.ec85f614fb027b3060f0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es5.a6becf2cfa6946dc65a0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es2015.04019e1fcbcaa5269a86.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.0770f3ecfd5490f9465f.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.0770f3ecfd5490f9465f.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.2b52dc8a6061fd29676f.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.2b52dc8a6061fd29676f.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
