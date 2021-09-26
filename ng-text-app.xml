@@ -14,6 +14,43 @@
 			<EnumValue display_value="Vertical" value="vertical" />
 		</UserPref>
 		<UserPref name="wrap" display_name="Word Wrap" default_value="false" datatype="bool" />
+		<UserPref name="animation" display_name="Animation" datatype="enum" default_value="animate__bounceIn">
+			<EnumValue display_value="Bounce In" value="animate__bounceIn" />
+			<EnumValue display_value="Bounce In Down" value="animate__bounceInDown" />
+			<EnumValue display_value="Bounce In Left" value="animate__bounceInLeft" />
+			<EnumValue display_value="Bounce In Right" value="animate__bounceInRight" />
+			<EnumValue display_value="Bounce In Up" value="animate__bounceInUp" />
+			<EnumValue display_value="Fade In" value="animate__fadeIn" />
+			<EnumValue display_value="Fade In Down" value="animate__fadeInDown" />
+			<EnumValue display_value="Fade In Left" value="animate__fadeInLeft" />
+			<EnumValue display_value="Fade In Right" value="animate__fadeInRight" />
+			<EnumValue display_value="Fade In Up" value="animate__fadeInUp" />
+			<EnumValue display_value="Fade In Top Left" value="animate__fadeInTopLeft" />
+			<EnumValue display_value="Fade In Top Right" value="animate__fadeInTopRight" />
+			<EnumValue display_value="Fade In Bottom Left" value="animate__fadeInBottomLeft" />
+			<EnumValue display_value="Fade In Bottom Right" value="animate__fadeInBottomRight" />
+			<EnumValue display_value="Flip In X" value="animate__flipInX" />
+			<EnumValue display_value="Flip In Y" value="animate__flipInY" />
+			<EnumValue display_value="Light Speed In Right" value="animate__lightSpeedInRight" />
+			<EnumValue display_value="Light Speed In Left" value="animate__lightSpeedInLeft" />
+			<EnumValue display_value="Rotate In" value="animate__rotateIn" />
+			<EnumValue display_value="Rotate In Down Left" value="animate__rotateInDownLeft" />
+			<EnumValue display_value="Rotate In Down Right" value="animate__rotateInDownRight" />
+			<EnumValue display_value="Rotate In Up Left" value="animate__rotateInUpLeft" />
+			<EnumValue display_value="Rotate In Up Right" value="animate__rotateInUpRight" />
+			<EnumValue display_value="Jack In The Box" value="animate__jackInTheBox" />
+			<EnumValue display_value="Roll In" value="animate__rollIn" />
+			<EnumValue display_value="Zoom In" value="animate__zoomIn" />
+			<EnumValue display_value="Zoom In Down" value="animate__zoomInDown" />
+			<EnumValue display_value="Zoom In Left" value="animate__zoomInLeft" />
+			<EnumValue display_value="Zoom In Right" value="animate__zoomInRight" />
+			<EnumValue display_value="Zoom In Up" value="animate__zoomInUp" />
+			<EnumValue display_value="Slide In Down" value="animate__slideInDown" />
+			<EnumValue display_value="Slide In Down" value="animate__slideInDown" />
+			<EnumValue display_value="Slide In Left" value="animate__slideInLeft" />
+			<EnumValue display_value="Slide In Right" value="animate__slideInRight" />
+			<EnumValue display_value="Slide In Up" value="animate__slideInUp" />
+		</UserPref>
 		<UserPref name="ForeColor" datatype="hidden" />
 		<UserPref name="BackColor" datatype="hidden" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -44,8 +81,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es5.ec85f614fb027b3060f0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es5.a6becf2cfa6946dc65a0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es2015.04019e1fcbcaa5269a86.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.2f7a64eb5a9f852254f2.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.2f7a64eb5a9f852254f2.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.837225785415c758a0da.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.837225785415c758a0da.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
