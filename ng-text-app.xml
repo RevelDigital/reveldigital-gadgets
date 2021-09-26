@@ -81,8 +81,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es5.ec85f614fb027b3060f0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es5.a6becf2cfa6946dc65a0.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es2015.04019e1fcbcaa5269a86.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.837225785415c758a0da.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.837225785415c758a0da.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.0770f3ecfd5490f9465f.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.0770f3ecfd5490f9465f.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
