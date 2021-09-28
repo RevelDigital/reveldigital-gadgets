@@ -33,8 +33,21 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
+				
+			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.9/css/bootstrap.css" />
+			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.9/css/react-select.css" />
 			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/styles.1f17ae7cab69a763e657.css">
             <body>
+				<!-- import ZoomMtg dependencies -->
+				<script src="https://source.zoom.us/1.9.9/lib/vendor/react.min.js"></script>
+				<script src="https://source.zoom.us/1.9.9/lib/vendor/react-dom.min.js"></script>
+				<script src="https://source.zoom.us/1.9.9/lib/vendor/redux.min.js"></script>
+				<script src="https://source.zoom.us/1.9.9/lib/vendor/redux-thunk.min.js"></script>
+				<script src="https://source.zoom.us/1.9.9/lib/vendor/lodash.min.js"></script>
+
+				<!-- import ZoomMtg -->
+				<script src="https://source.zoom.us/zoom-meeting-1.9.9.min.js"></script>
+  
             	<app-root></app-root>
 		
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/runtime-es2015.77fcd9cc57f99d316544.js" type="module"></script>
