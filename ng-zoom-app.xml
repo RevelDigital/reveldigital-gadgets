@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="Zoom App" description="Embed zoom meetings or webinars" author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="meetingNumber" display_name="Meeting Number" datatype="string" default_value="" />
+		<UserPref name="userName" display_name="Username" datatype="string" default_value="" />
+		<UserPref name="userEmail" display_name="User Email" datatype="string" default_value="" />
+		<UserPref name="passWord" display_name="Password" datatype="string" default_value="" />
+		<UserPref name="registrantToken" display_name="Registrant Token" datatype="string" default_value="" />
+
+		<UserPref name="ForeColor" datatype="hidden" />
+		<UserPref name="BackColor" datatype="hidden" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/styles.1f17ae7cab69a763e657.css">
+            <body>
+            	<app-root></app-root>
+		
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/runtime-es2015.93f1fbe93a68c1037030.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/runtime-es5.93f1fbe93a68c1037030.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/polyfills-es5.8702768702f19880778e.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/polyfills-es2015.929ddb2176f23f83509f.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es2015.8b5d0361ff20da671e03.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es5.8b5d0361ff20da671e03.js" nomodule defer></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();	
+					
+					function load() {
+					
+					}
+  
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
