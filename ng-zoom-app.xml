@@ -68,6 +68,16 @@
 					gadgets.util.registerOnLoadHandler(load);
 					
 				</script>
+				
+				<script>
+
+					function startMeeting(val) {
+						window.angularComponentReference.zone.run(function () {
+							window.angularComponentReference.startMeeting(val);
+						});
+					}
+
+				</script>
 			</body>
         ]]>
     </Content>
