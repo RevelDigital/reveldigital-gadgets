@@ -76,7 +76,7 @@ body
 	}
 	
 	function onPlayerReady(event) {
-		document.getElementById('player').style.borderColor = '#FF6D00';
+		event.target.playVideo();
 	}
 	
 	var done = false;
