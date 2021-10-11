@@ -38,14 +38,10 @@ body
 }
 </style>
 
-// <iframe id="player" type="text/html" width="__UP_rdW__px" height="__UP_rdH__px"
-	// frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
-	// src="https://www.youtube.com/embed/?enablejsapi=1&origin=https://shindig.reveldigital.com"></iframe>
   
-<iframe id="player" width="__UP_rdW__" height="__UP_rdH__" src="https://www.youtube.com/embed/__UP_videoId__" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
-
-// <div id="player"></div>
+<iframe id="player" width="__UP_rdW__" height="__UP_rdH__" src="https://www.youtube.com/embed/__UP_videoId__?enablejsapi=1"
+	frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
+	title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 
 <script type="text/javascript">
 
@@ -62,7 +58,11 @@ body
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
-			playerVars: { 'autoplay': 1, 'controls': 0 },
+			playerVars: {
+				'autoplay': 1,
+				'controls': 0,
+				'origin': 'https://shindig.reveldigital.com'
+			},
 			events: {
 				'onReady': onPlayerReady,
 				'onStateChange': onPlayerStateChange
