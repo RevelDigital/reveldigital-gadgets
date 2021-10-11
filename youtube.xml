@@ -63,10 +63,11 @@ body
 			width: '__UP_rdW__px',
 			videoId: '__UP_videoId__',
 			playerVars: {
-				'autoplay': 1,
-				'controls': 0,
-				'autohide': 1,
-				'origin': 'https://shindig.reveldigital.com' 
+				autoplay: 1,
+				controls: 0,
+				autohide: 1,
+				modestbranding: 1,
+				origin: 'https://shindig.reveldigital.com' 
 			},
 			events: {
 			  'onReady': onPlayerReady,
