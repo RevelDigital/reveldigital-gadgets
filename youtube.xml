@@ -42,8 +42,10 @@ body
 	// frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
 	// src="https://www.youtube.com/embed/?enablejsapi=1&origin=https://shindig.reveldigital.com"></iframe>
   
+<iframe id="player" width="__UP_rdW__" height="__UP_rdH__" src="https://www.youtube.com/embed/__UP_videoId__" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
 
-<div id="player"></div>
+// <div id="player"></div>
 
 <script type="text/javascript">
 
@@ -56,25 +58,38 @@ body
 	var firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
-			height: '__UP_rdH__px',
-			width: '__UP_rdW__px',
-			videoId: '__UP_videoId__',
-			playerVars: {
-				autoplay: 1,
-				controls: 0,
-				autohide: 1,
-				modestbranding: 1,
-				origin: 'https://shindig.reveldigital.com' 
-			},
+			playerVars: { 'autoplay': 1, 'controls': 0 },
 			events: {
-			  'onReady': onPlayerReady,
-			  'onStateChange': onPlayerStateChange
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
 			}
 		});
 	}
+  
+  
+	// var player;
+	// function onYouTubeIframeAPIReady() {
+		// player = new YT.Player('player', {
+			// height: '__UP_rdH__px',
+			// width: '__UP_rdW__px',
+			// videoId: '__UP_videoId__',
+			// playerVars: {
+				// autoplay: 1,
+				// controls: 0,
+				// autohide: 1,
+				// modestbranding: 1,
+				// origin: 'https://shindig.reveldigital.com' 
+			// },
+			// events: {
+			  // 'onReady': onPlayerReady,
+			  // 'onStateChange': onPlayerStateChange
+			// }
+		// });
+	// }
 	
 	function onPlayerReady(event) {
 		event.target.playVideo();
