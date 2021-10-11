@@ -38,10 +38,12 @@ body
 }
 </style>
 
-<iframe id="player" type="text/html" width="__UP_rdW__px" height="__UP_rdH__px"
-	frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
-	src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=https://shindig.reveldigital.com"></iframe>
+// <iframe id="player" type="text/html" width="__UP_rdW__px" height="__UP_rdH__px"
+	// frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
+	// src="https://www.youtube.com/embed/?enablejsapi=1&origin=https://shindig.reveldigital.com"></iframe>
   
+
+<div id="player"></div>
 
 <script type="text/javascript">
 
@@ -57,39 +59,33 @@ body
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
+			height: '__UP_rdH__px',
+			width: '__UP_rdW__px',
 			videoId: '__UP_videoId__',
-			playerVars: { 'autoplay': 1, 'controls': 0 },
+			playerVars: {
+				'autoplay': 1,
+				'controls': 0,
+				'autohide': 1,
+				'origin': 'https://shindig.reveldigital.com' 
+			},
 			events: {
 			  'onReady': onPlayerReady,
 			  'onStateChange': onPlayerStateChange
 			}
 		});
 	}
+	
 	function onPlayerReady(event) {
 		document.getElementById('player').style.borderColor = '#FF6D00';
 	}
-	function changeBorderColor(playerStatus) {
-		var color;
-		if (playerStatus == -1) {
-			color = "#37474F"; // unstarted = gray
-		} else if (playerStatus == 0) {
-			color = "#FFFF00"; // ended = yellow
-		} else if (playerStatus == 1) {
-			color = "#33691E"; // playing = green
-		} else if (playerStatus == 2) {
-			color = "#DD2C00"; // paused = red
-		} else if (playerStatus == 3) {
-			color = "#AA00FF"; // buffering = purple
-		} else if (playerStatus == 5) {
-			color = "#FF6DOO"; // video cued = orange
-		}
-		if (color) {
-			document.getElementById('player').style.borderColor = color;
-		}
 	
-	}
+	var done = false;
 	function onPlayerStateChange(event) {
-		changeBorderColor(event.data);
+		if (event.data == YT.PlayerState.PLAYING && !done) {
+			//setTimeout(stopVideo, 6000);
+			Client.callback('done');
+			done = true;
+        }
 	}
   
 	function load() {
