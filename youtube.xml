@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="YouTube Player" description="Plays YouTube videos" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="offline" />
+  
+  <UserPref name="videoId" display_name="Video Id" datatype="string" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+#player
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  border: 0;
+}
+</style>
+
+<iframe id="player" type="text/html" width="__UP_rdW__px" height="__UP_rdH__px"
+	frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" 
+	src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"></iframe>
+  
+
+<script type="text/javascript">
+
+	var prefs = new gadgets.Prefs();
+  
+  
+	var tag = document.createElement('script');
+	tag.id = 'iframe-demo';
+	tag.src = 'https://www.youtube.com/iframe_api';
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			videoId: 'M7lc1UVf-VE',
+			playerVars: { 'autoplay': 1, 'controls': 0 },
+			events: {
+			  'onReady': onPlayerReady,
+			  'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+	function onPlayerReady(event) {
+		document.getElementById('player').style.borderColor = '#FF6D00';
+	}
+	function changeBorderColor(playerStatus) {
+		var color;
+		if (playerStatus == -1) {
+			color = "#37474F"; // unstarted = gray
+		} else if (playerStatus == 0) {
+			color = "#FFFF00"; // ended = yellow
+		} else if (playerStatus == 1) {
+			color = "#33691E"; // playing = green
+		} else if (playerStatus == 2) {
+			color = "#DD2C00"; // paused = red
+		} else if (playerStatus == 3) {
+			color = "#AA00FF"; // buffering = purple
+		} else if (playerStatus == 5) {
+			color = "#FF6DOO"; // video cued = orange
+		}
+		if (color) {
+			document.getElementById('player').style.borderColor = color;
+		}
+	
+	}
+	function onPlayerStateChange(event) {
+		changeBorderColor(event.data);
+	}
+  
+	function load() {
+	}
+
+	gadgets.util.registerOnLoadHandler(load);
+  
+  
+	// window.addEventListener("message", receiveMessage, false);
+
+	// function receiveMessage(event) {
+  
+    // //if (event.origin !== "http://example.org:8080")
+	// //  return;
+	  
+	  // Client.callback(event.data);
+	// }
+
+</script>
+
+]]>
+</Content>
+</Module>
