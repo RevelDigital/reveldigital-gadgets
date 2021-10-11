@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="YouTube Player" description="Plays YouTube videos" author="RevelDigital" background="transparent">
+<ModulePrefs title="YouTube Player" description="Play YouTube videos or live stream events" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="offline" />
