@@ -3013,8 +3013,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/runtime-es5.9219b05665a619368e7c.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/polyfills-es5.1f01a50a971faa09a15c.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/polyfills-es2015.f4a08c628b0668fa8677.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/main-es2015.e985657871d862b6ad52.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/main-es5.e985657871d862b6ad52.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/main-es2015.dc1b016375a1c11becad.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-clock-app/main-es5.dc1b016375a1c11becad.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
