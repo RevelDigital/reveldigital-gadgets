@@ -2982,7 +2982,7 @@
 			<EnumValue value="mediumTime" display_value="Medium" />
 			<EnumValue value="longTime" display_value="Long" />
 		</UserPref>
-		<UserPref name="time-only" display_value="Show Time Only" datatype="bool" default_value="false" />
+		<UserPref name="time-only" display_name="Show Time Only" datatype="bool" default_value="false" />
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
