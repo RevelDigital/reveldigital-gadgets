@@ -109,9 +109,13 @@ body
 	
 	function onPlayerStateChange(event) {
 		if (event.data == YT.PlayerState.PLAYING && !done) {
-			Client.callback('playing');
-        } else if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.UNSTARTED) {
-			Client.callback('ended');
+			if (Client !== undefined) {
+				Client.callback('playing');
+			}
+        } else if (event.data == YT.PlayerState.ENDED) {
+			if (Client !== undefined) {
+				Client.callback('ended');
+			}
 		}
 	}
   
