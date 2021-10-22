@@ -101,7 +101,7 @@ body
 	
 	function onPlayerReady(event) {
 		
-		player.cueVideoById(extractVideoID(prefs.getString('videoid')), undefined);
+		player.cueVideoById(extractVideoID(prefs.getString('videoId')), undefined);
 		
 		//event.target.playVideo();
 	}
