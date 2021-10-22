@@ -72,6 +72,7 @@ body
 					'playsinline': 1
 				},
 				'autoplay': 1,
+				'mute': 1,
 				'controls': 0,
 				'origin': 'https://shindig.reveldigital.com'
 			},
