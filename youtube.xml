@@ -64,21 +64,16 @@ body
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
+			height: __UP_rdH__,
+			width: __UP_rdW__,
 			playerVars: {
-				'height': '__UP_rdH__',
-				'width': '__UP_rdW__',
-				'videoId': extractVideoID(prefs.getString('videoId')),
-				'playerVars': {
-					'playsinline': 1
-				},
-				'autoplay': 1,
-				'mute': 1,
-				'controls': 0,
-				'origin': 'https://shindig.reveldigital.com'
+				playsinline: 1,
+				controls: 0,
+				origin: 'https://shindig.reveldigital.com',
 			},
 			events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
+				onReady: onPlayerReady,
+				onStateChange: onPlayerStateChange
 			}
 		});
 	}
@@ -105,7 +100,10 @@ body
 	// }
 	
 	function onPlayerReady(event) {
-		event.target.playVideo();
+		
+		player.cueVideoById(extractVideoID(prefs.getString('videoid')), undefined);
+		
+		//event.target.playVideo();
 	}
 	
 	function onPlayerStateChange(event) {
@@ -117,6 +115,8 @@ body
 			if (Client !== undefined) {
 				Client.callback('ended');
 			}
+		} else if (event.data == YT.PlayerState.CUED) {
+			player.playVideo();
 		}
 	}
   
