@@ -34,19 +34,19 @@
 				}
             </style>
 				
-			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.9/css/bootstrap.css" />
-			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.9/css/react-select.css" />
+			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.0.1/css/bootstrap.css" />
+			<link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.0.1/css/react-select.css" />
 			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/styles.152f858a7469b6b4f6fc.css">
             <body>
 				<!-- import ZoomMtg dependencies -->
-				<script src="https://source.zoom.us/1.9.9/lib/vendor/react.min.js"></script>
-				<script src="https://source.zoom.us/1.9.9/lib/vendor/react-dom.min.js"></script>
-				<script src="https://source.zoom.us/1.9.9/lib/vendor/redux.min.js"></script>
-				<script src="https://source.zoom.us/1.9.9/lib/vendor/redux-thunk.min.js"></script>
-				<script src="https://source.zoom.us/1.9.9/lib/vendor/lodash.min.js"></script>
+				<script src="https://source.zoom.us/2.0.1/lib/vendor/react.min.js"></script>
+				<script src="https://source.zoom.us/2.0.1/lib/vendor/react-dom.min.js"></script>
+				<script src="https://source.zoom.us/2.0.1/lib/vendor/redux.min.js"></script>
+				<script src="https://source.zoom.us/2.0.1/lib/vendor/redux-thunk.min.js"></script>
+				<script src="https://source.zoom.us/2.0.1/lib/vendor/lodash.min.js"></script>
 
 				<!-- import ZoomMtg -->
-				<script src="https://source.zoom.us/zoom-meeting-1.9.9.min.js"></script>
+				<script src="https://source.zoom.us/zoom-meeting-2.0.1.min.js"></script>
   
             	<app-root></app-root>
 		
@@ -54,8 +54,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/runtime-es5.77fcd9cc57f99d316544.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/polyfills-es5.8702768702f19880778e.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/polyfills-es2015.929ddb2176f23f83509f.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es2015.0cadd1729a73925dc372.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es5.0cadd1729a73925dc372.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es2015.5991ec91cd8c2d75f07d.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-zoom-app/main-es5.5991ec91cd8c2d75f07d.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
@@ -70,13 +70,23 @@
 				</script>
 				
 				<script>
-
-					function startMeeting(val) {
-						window.angularComponentReference.zone.run(function () {
-							window.angularComponentReference.startMeeting(val);
-						});
+					function startMeeting(meetingNumber, passWord) {
+					  window.angularComponentReference.zone.run(function () {
+						window.angularComponentReference.startMeeting(meetingNumber, passWord);
+					  });
 					}
 
+					function startWebinar(meetingNumber, passWord, userEmail) {
+					  window.angularComponentReference.zone.run(function () {
+						window.angularComponentReference.startWebinar(meetingNumber, passWord, userEmail);
+					  });
+					}
+
+					function leaveMeeting() {
+					  window.angularComponentReference.zone.run(function () {
+						window.angularComponentReference.leaveMeeting();
+					  });
+					}
 				</script>
 			</body>
         ]]>
