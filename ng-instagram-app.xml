@@ -53,16 +53,16 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/styles.fbe16737e9751805ab32.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/styles.d9c7b2aca0434edf3473.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es2015.a4dadbc03350107420a4.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.a4dadbc03350107420a4.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.d6e6a6bb4e53f1f422fb.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7bc94901d24187fe7e78.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.0257fc7732ccb2f891db.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.0257fc7732ccb2f891db.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es2015.66dd63bfb4f456b4de57.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/runtime-es5.66dd63bfb4f456b4de57.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es5.6a213591d4d34efe1f32.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/polyfills-es2015.7e350474fdafe957e5c6.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es2015.382c06cf71ccdbf0bdcd.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-instagram-app/main-es5.382c06cf71ccdbf0bdcd.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
