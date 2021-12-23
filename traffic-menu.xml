@@ -158,16 +158,16 @@ td#price table td {
       document.getElementById("myData").appendChild(table);
       
       //DISPLAY DICT VARIABLES
-      let tableRow = document.createElement("tr");
+      let tableRow2 = document.createElement("tr");
       let tableColumn2 = document.createElement("td");
       tableColumn2.className = "People";
       let tableColumn3 = document.createElement("td");
       tableColumn3.className = "Vehicles";
       tableColumn2.innerHTML = dict.data.people;
       tableColumn3.innerHTML = dict.data.vehicles;
-      tableRow.appendChild(tableColumn2);
-      tableRow.appendChild(tableColumn3);
-      tableBody.appendChild(tableRow);
+      tableRow2.appendChild(tableColumn2);
+      tableRow2.appendChild(tableColumn3);
+      tableBody.appendChild(tableRow2);
       //DISPLAY ABOVE TABLE IN HTML
       document.getElementById("myData").innerHTML = table.outerHTML;
     }
