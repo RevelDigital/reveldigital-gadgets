@@ -7,7 +7,7 @@
   <Require feature="offline" />
   
   <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
-  <UserPref name="reference-key" display_name="Reference Key" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
+  <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
   <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
   <UserPref name="menu-id" display_name="Menu Type ID" default_value="3.0" datatype="string"/>
   
