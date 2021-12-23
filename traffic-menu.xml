@@ -8,8 +8,6 @@
   
   <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
-  <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
-  <UserPref name="menu-id" display_name="Menu Type ID" default_value="3.0" datatype="string"/>
   
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
     <EnumValue value="classic-template" display_value="Classic" />
@@ -20,8 +18,8 @@
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
-  <UserPref name="name-style" display_name="Item Name Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
-  <UserPref name="price-style" display_name="Item Price Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
+  <UserPref name="people-style" display_name="Item People Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="vehicle-style" display_name="Item Vehicle Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -65,11 +63,11 @@ table tr.spacer, table tr.spacer tr {
   padding: 0;
   margin: 0;
 }
-td.name {
-  __UP_name-style__;
+td.people {
+  __UP_people-style__;
 }
-td.price, td.price div {
-  __UP_price-style__;
+td.vehicle, td.vehicle div {
+  __UP_vehicle-style__;
 }
 td.filler {
   width: 100%;
@@ -82,42 +80,42 @@ td.filler div {
   bottom: .3em;
   border-bottom: .1em dotted #__UP_ForeColor__;
 }
-table.classic td.name {
+table.classic td.people {
   width: 80%;
 }
-table.classic td.price {
+table.classic td.vehicle {
   vertical-align: bottom;
 }
-table.classic-no-dots td.price {
+table.classic-no-dots td.vehicle {
   vertical-align: top;
 }
-table.centered td.name {
+table.centered td.people {
   text-align: center;
 }
-table.centered td.price {
+table.centered td.vehicle {
   text-align: center;
 }
-table.centered .price-wrapper {
+table.centered .vehicle-wrapper {
   margin: 0 auto;
 }
-table.modern .price-wrapper {
+table.modern .vehicle-wrapper {
   float: right;
 }
-td#price table td {
+td#vehicle table td {
   text-align: center;
 }
-#price-container {
+#vehicle-container {
   white-space: nowrap;
   display: table-cell;
   padding-right: 10px;
 }
-#price-label {
+#vehicle-label {
   text-align: center;
 }
-#price-wrapper {
+#vehicle-wrapper {
   display: table;
 }
-#price-wrapper:after {
+#vehicle-wrapper:after {
   content: " ";
   display: block;
   clear: both;
@@ -131,7 +129,6 @@ td#price table td {
   let req = new XMLHttpRequest();
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
-      let num = "__UP_menu-id__"
       dict = JSON.parse(req.responseText)
       console.log(dict);
       let dictionaryString = JSON.stringify(dict);
@@ -174,7 +171,6 @@ td#price table td {
   };
   if(__UP_active-update__ == "1")
     req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_json?cam_id=__UP_reference-key__", true);
-    req.setRequestHeader("X-Master-Key", "__UP_master-key__");
     req.send();
   //CONVERT DICTIONARY TO STRING
   //let dictionaryString = JSON.stringify(dictionary);
