@@ -127,6 +127,9 @@ td#vehicle table td {
 <script>
   //GET DICTIONARY
   let req = new XMLHttpRequest();
+  setInterval(function() {
+  
+  
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
       dict = JSON.parse(req.responseText)
@@ -172,6 +175,9 @@ td#vehicle table td {
   if(__UP_active-update__ == "1")
     req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_json?cam_id=__UP_reference-key__", true);
     req.send();
+  
+
+  }, 1000*60*5);
   //CONVERT DICTIONARY TO STRING
   //let dictionaryString = JSON.stringify(dictionary);
   //DISPLAY DICTIONARYSTRING IN HTML MYDATA
