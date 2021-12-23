@@ -162,7 +162,7 @@ td#vehicle table td {
       let tableColumn2b = document.createElement("td");
       tableColumn2b.className = "people";
       let tableColumn3b = document.createElement("td");
-      tableColumn3b.className = "vehicles";
+      tableColumn3b.className = "vehicle";
       tableColumn2b.innerHTML = dict.people;
       tableColumn3b.innerHTML = dict.vehicles;
       tableRow2.appendChild(tableColumn2b);
