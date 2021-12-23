@@ -168,8 +168,6 @@ td#price table td {
       tableRow.appendChild(tableColumn2);
       tableRow.appendChild(tableColumn3);
       tableBody.appendChild(tableRow);
-
-
       //DISPLAY ABOVE TABLE IN HTML
       document.getElementById("myData").innerHTML = table.outerHTML;
     }
