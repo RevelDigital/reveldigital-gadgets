@@ -163,8 +163,8 @@ td#price table td {
       tableColumn2b.className = "People";
       let tableColumn3b = document.createElement("td");
       tableColumn3b.className = "Vehicles";
-      tableColumn2b.innerHTML = dict.data.people;
-      tableColumn3b.innerHTML = dict.data.vehicles;
+      tableColumn2b.innerHTML = dict.people;
+      tableColumn3b.innerHTML = dict.vehicles;
       tableRow2.appendChild(tableColumn2b);
       tableRow2.appendChild(tableColumn3b);
       tableBody.appendChild(tableRow2);
