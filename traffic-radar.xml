@@ -9,12 +9,9 @@
   <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
   
-  <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
-    <EnumValue value="classic-template" display_value="Classic" />
-    <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
-    <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
-    <EnumValue value="centered-template" display_value="Centered" />
-    <EnumValue value="modern-template" display_value="Modern" />
+  <UserPref name="template" display_name="Graph template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Radar" />
+    <EnumValue value="bar-template" display_value="Bar" />
   </UserPref>
   
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
@@ -60,29 +57,34 @@ img {
   let req = new XMLHttpRequest();
   
   function displayOne(){
-  
-  req.onreadystatechange = () => {
-    if (req.readyState == XMLHttpRequest.DONE) {
-      dict = JSON.parse(req.responseText)
-      console.log(dict);
-      let dictionaryString = JSON.stringify(dict);
-      //document.getElementById("myData").innerHTML = dictionaryString;
-      //DISPLAY DICT AS IMG
-      let img = document.createElement("img");
-      img.setAttribute("class", "img");
-      img.setAttribute("id", "myImg");
-      img.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
-      
-      //DISPLAY DICT VARIABLES
-      img.src = dict.link;
-      
-      //DISPLAY ABOVE IMG IN HTML
-      document.getElementById("myData").innerHTML = img.outerHTML;
+    req.onreadystatechange = () => {
+      if (req.readyState == XMLHttpRequest.DONE) {
+        dict = JSON.parse(req.responseText)
+        console.log(dict);
+        let dictionaryString = JSON.stringify(dict);
+        //document.getElementById("myData").innerHTML = dictionaryString;
+        //DISPLAY DICT AS IMG
+        let img = document.createElement("img");
+        img.setAttribute("class", "img");
+        img.setAttribute("id", "myImg");
+        img.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
+        
+        //DISPLAY DICT VARIABLES
+        img.src = dict.link;
+        
+        //DISPLAY ABOVE IMG IN HTML
+        document.getElementById("myData").innerHTML = img.outerHTML;
+      }
+    };
+    if(__UP_active-update__ == "1"){
+      if(__UP_template__ == "bar-template"){
+        req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+      }
+      else {
+        req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+      }
+      req.send();
     }
-  };
-  if(__UP_active-update__ == "1")
-    req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
-    req.send();
   }
   
   //RUN EVERY 5 MINS
