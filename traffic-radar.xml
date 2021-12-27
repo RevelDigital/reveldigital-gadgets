@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Traffic Menu" description="Gadget for easily showing traffic data" title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
+  <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
+  
+  <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Classic" />
+    <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
+    <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
+    <EnumValue value="centered-template" display_value="Centered" />
+    <EnumValue value="modern-template" display_value="Modern" />
+  </UserPref>
+  
+  <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
+  <UserPref name="people-style" display_name="Item People Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="vehicle-style" display_name="Item Vehicle Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
+  <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  color: #000;
+}
+img {
+  width:100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+</style>
+<div class="container">
+  <div id="myData" class="table"></div>
+</div>
+<script>
+  //GET DICTIONARY
+  let req = new XMLHttpRequest();
+  
+  function displayOne(){
+  
+  req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+      dict = JSON.parse(req.responseText)
+      console.log(dict);
+      let dictionaryString = JSON.stringify(dict);
+      //document.getElementById("myData").innerHTML = dictionaryString;
+      //DISPLAY DICT AS IMG
+      let img = document.createElement("img");
+      img.setAttribute("class", "img");
+      img.setAttribute("id", "myImg");
+      img.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
+      
+      //DISPLAY DICT VARIABLES
+      img.src = dict.link;
+      
+      //DISPLAY ABOVE TABLE IN HTML
+      document.getElementById("myData").innerHTML = table.outerHTML;
+    }
+  };
+  if(__UP_active-update__ == "1")
+    req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+    req.send();
+  }
+  
+  //RUN EVERY 5 MINS
+  displayOne()//so you don't habe to wait five minutes the first time
+  setInterval(displayOne, 1000*60*5);
+  
+  //CONVERT DICTIONARY TO STRING
+  //let dictionaryString = JSON.stringify(dictionary);
+  //DISPLAY DICTIONARYSTRING IN HTML MYDATA
+  //document.getElementById("myData").innerHTML = dictionaryString;
+</script>
+]]>
+</Content>
+</Module>
