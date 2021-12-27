@@ -53,7 +53,7 @@ img {
 
 </style>
 <div class="container">
-  <div id="myData" class="table"></div>
+  <div id="myData" class="img"></div>
 </div>
 <script>
   //GET DICTIONARY
@@ -76,8 +76,8 @@ img {
       //DISPLAY DICT VARIABLES
       img.src = dict.link;
       
-      //DISPLAY ABOVE TABLE IN HTML
-      document.getElementById("myData").innerHTML = table.outerHTML;
+      //DISPLAY ABOVE IMG IN HTML
+      document.getElementById("myData").innerHTML = img.outerHTML;
     }
   };
   if(__UP_active-update__ == "1")
