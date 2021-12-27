@@ -77,12 +77,12 @@ img {
       }
     };
     if(__UP_active-update__ == "1"){
-      if(__UP_template__ == "bar-template"){
-        req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
-      }
-      else {
-        req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
-      }
+      //if(__UP_template__ == "bar-template"){
+      //  req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+      //}
+      //else {
+      req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+      //}
       req.send();
     }
   }
