@@ -6,7 +6,6 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
   
   <UserPref name="template" display_name="Graph template" datatype="enum" default_value="classic-template">
@@ -76,14 +75,8 @@ img {
         document.getElementById("myData").innerHTML = img.outerHTML;
       }
     };
-    if(__UP_active-update__ == "1"){
-      //if(__UP_template__ == "bar-template"){
-      //  req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
-      //}
-      //else {
-      req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
-      //}
-      req.send();
+    req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_radar_link?cam_id=__UP_reference-key__", true);
+    req.send();
     }
   }
   
