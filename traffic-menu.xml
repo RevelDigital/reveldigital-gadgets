@@ -132,6 +132,15 @@ td#vehicle table td {
   
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
+      //GET CURRENT TIME
+      let now = new Date();
+      let current = new Date();
+      let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+      let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+      let dateTime = cDate + ' ' + cTime;
+      let lastUpdated = document.createElement('p');
+      lastUpdated.innerHTML = 'Last updated: ' + dateTime;
+      //GET DATA
       dict = JSON.parse(req.responseText)
       console.log(dict);
       let dictionaryString = JSON.stringify(dict);
@@ -170,6 +179,7 @@ td#vehicle table td {
       tableBody.appendChild(tableRow2);
       //DISPLAY ABOVE TABLE IN HTML
       document.getElementById("myData").innerHTML = table.outerHTML;
+      document.getElementById("myData").appendChild(lastUpdated);
     }
   };
   if(__UP_active-update__ == "1")
