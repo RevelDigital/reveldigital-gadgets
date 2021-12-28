@@ -197,6 +197,9 @@ td#vehicle table td {
           tableRow2.appendChild(tableColumn3b);
         }
         tableBody.appendChild(tableRow2);
+        if (showTitle != true) {
+          table.appendChild(tableBody);
+        }
       }
       //DISPLAY ABOVE TABLE IN HTML
       document.getElementById("myData").innerHTML = table.outerHTML;
