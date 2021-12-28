@@ -6,7 +6,6 @@
   <Require feature="webfont" />
   <Require feature="offline" />
   
-  <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
   <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
   
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
@@ -21,7 +20,6 @@
     <EnumValue value="people-data-type" display_value="People Only" />
   </UserPref>
   
-  <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
   <UserPref name="people-style" display_name="Item People Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
   <UserPref name="vehicle-style" display_name="Item Vehicle Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
   <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
@@ -62,8 +60,8 @@ table td {
   margin: 0;
 }
 table tr.spacer, table tr.spacer tr {
-  line-height: __UP_row-spacing__px;
-  height: __UP_row-spacing__px;
+  line-height: 1px;
+  height: 1px;
   padding: 0;
   margin: 0;
 }
@@ -162,7 +160,7 @@ td#vehicle table td {
       let tableColumn3 = document.createElement("td");
       table.setAttribute("class", "table table-bordered");
       table.setAttribute("id", "myTable");
-      table.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
+      table.setAttribute("style", "width:100%", "line-height: 1px");
       tableBody.setAttribute("class", "table-body");
       tableRow.setAttribute("class", "table-row");
       tableColumn2.setAttribute("class", "table-column");
@@ -207,9 +205,8 @@ td#vehicle table td {
       document.getElementById("myData").appendChild(lastUpdated);
     }
   };
-  if(__UP_active-update__ == "1")
-    req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_json?cam_id=__UP_reference-key__", true);
-    req.send();
+  req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_json?cam_id=__UP_reference-key__", true);
+  req.send();
   }
   
   //RUN EVERY 5 MINS
