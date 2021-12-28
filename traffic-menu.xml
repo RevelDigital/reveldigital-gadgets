@@ -11,10 +11,14 @@
   
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
     <EnumValue value="classic-template" display_value="Classic" />
-    <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
-    <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
-    <EnumValue value="centered-template" display_value="Centered" />
-    <EnumValue value="modern-template" display_value="Modern" />
+    <EnumValue value="classic-name-only-template" display_value="Name Only" />
+    <EnumValue value="classic-data-only-template" display_value="Data Only" />
+  </UserPref>
+  
+  <UserPref name="data-type" display_name="Data to show" datatype="enum" default_value="both-data-type">
+    <EnumValue value="both-data-type" display_value="Both" />
+    <EnumValue value="vehicles-data-type" display_value="Vehicles Only" />
+    <EnumValue value="people-data-type" display_value="People Only" />
   </UserPref>
   
   <UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
