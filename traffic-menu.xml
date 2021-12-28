@@ -144,6 +144,11 @@ td#vehicle table td {
       let dateTime = cDate + ' ' + cTime;
       let lastUpdated = document.createElement('p');
       lastUpdated.innerHTML = 'Last updated: ' + dateTime;
+      //GET SETTINGS
+      let showVehicles = ("__UP_data-type__" == "both-data-type") || ("__UP_data-type__" == "vehicles-data-type");
+      let showPeople = ("__UP_data-type__" == "both-data-type") || ("__UP_data-type__" == "people-data-type");
+      let showTitle = ("__UP_template__"=="classic-template") || ("__UP_template__"=="classic-name-only-template");
+      let showData = ("__UP_template__"=="classic-template") || ("__UP_template__"=="classic-data-only-template");
       //GET DATA
       dict = JSON.parse(req.responseText)
       console.log(dict);
@@ -164,10 +169,16 @@ td#vehicle table td {
       tableColumn3.setAttribute("class", "table-column");
       tableColumn2.innerHTML = "People";
       tableColumn3.innerHTML = "Vehicles";
-      tableRow.appendChild(tableColumn2);
-      tableRow.appendChild(tableColumn3);
-      tableBody.appendChild(tableRow);
-      table.appendChild(tableBody);
+      if (showTitle) {
+        if (showPeople) {
+          tableRow.appendChild(tableColumn2);
+        }
+        if (showVehicles) {
+          tableRow.appendChild(tableColumn3);
+        }
+        tableBody.appendChild(tableRow);
+        table.appendChild(tableBody);
+      }
       document.getElementById("myData").appendChild(table);
       
       //DISPLAY DICT VARIABLES
@@ -178,9 +189,15 @@ td#vehicle table td {
       tableColumn3b.className = "vehicle";
       tableColumn2b.innerHTML = dict.people;
       tableColumn3b.innerHTML = dict.vehicles;
-      tableRow2.appendChild(tableColumn2b);
-      tableRow2.appendChild(tableColumn3b);
-      tableBody.appendChild(tableRow2);
+      if (showData) {
+        if (showPeople) {
+          tableRow2.appendChild(tableColumn2b);
+        }
+        if (showVehicles) {
+          tableRow2.appendChild(tableColumn3b);
+        }
+        tableBody.appendChild(tableRow2);
+      }
       //DISPLAY ABOVE TABLE IN HTML
       document.getElementById("myData").innerHTML = table.outerHTML;
       document.getElementById("myData").appendChild(lastUpdated);
