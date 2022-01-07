@@ -10,7 +10,7 @@
   
   <UserPref name="template" display_name="Graph template" datatype="enum" default_value="classic-template">
     <EnumValue value="classic-template" display_value="Radar" />
-    <EnumValue value="bar-24-template" display_value="Bar Last 24" />
+    <EnumValue value="bar-24-template" display_value="Bar-Timeline" />
     <EnumValue value="bar-template" display_value="Bar" />
   </UserPref>
   
