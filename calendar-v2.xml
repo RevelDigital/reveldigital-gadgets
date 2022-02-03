@@ -261,6 +261,10 @@
     .fail(function(xhr, err) {
       console.log(url);
       console.log('get calendar failed: ' + xhr.responseText);
+	  
+	  setTimeout(function() {
+		  update();
+	  }, 30000);
     });
   }
 
