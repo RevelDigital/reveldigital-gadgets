@@ -73,7 +73,7 @@ body
 				playsinline: 1,
 				controls: 0,
 				origin: 'https://shindig.reveldigital.com',
-				loop: prefs.getBool('looping'),
+				loop: prefs.getBool('looping') ? 1 : 0,
 				iv_load_policy: prefs.getBool('captions') ? 1 : 3
 			},
 			events: {
@@ -119,6 +119,9 @@ body
         } else if (event.data == YT.PlayerState.ENDED) {
 			if (Client !== undefined) {
 				Client.callback('ended');
+			}
+			if (prefs.getBool('looping')) {
+				player.playVideo();
 			}
 		} else if (event.data == YT.PlayerState.CUED) {
 			player.playVideo();
