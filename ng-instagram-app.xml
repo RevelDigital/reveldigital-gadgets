@@ -17,7 +17,7 @@
 			<EnumValue value="7" display_value="4 Image Grid" />
 			<EnumValue value="8" display_value="8 Image Grid" />
 		</UserPref>
-	    	<UserPref name="showCaption" display_name="Show Caption" datatype="bool" default_value="true" />
+		<UserPref name="showCaption" display_name="Show Caption" datatype="bool" default_value="true" />
 		<UserPref name="hashtag" display_name="Hashtag Search (Requires business Instagram account)" datatype="string" default_value="" />
 		<UserPref name="search-type" display_name="Hashtag Search Type" datatype="enum" default_value="recent_media">
 		  <EnumValue value="recent_media" display_value="Recent Media" />

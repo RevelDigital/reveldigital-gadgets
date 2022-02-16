@@ -6,6 +6,9 @@
   <Require feature="offline" />
   
   <UserPref name="videoId" display_name="Video Id" datatype="string" />
+  <UserPref name="looping" display_name="Looping" datatype="bool" default_value="true" />
+  <UserPref name="captions" display_name="Show Captions" datatype="bool" default_value="false" />
+  
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -70,6 +73,8 @@ body
 				playsinline: 1,
 				controls: 0,
 				origin: 'https://shindig.reveldigital.com',
+				loop: prefs.getBool('looping'),
+				iv_load_policy: prefs.getBool('captions') ? 1 : 3
 			},
 			events: {
 				onReady: onPlayerReady,
