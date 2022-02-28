@@ -37,7 +37,7 @@ body
 </style>
 
 <div id="container">
-  <video style="width: 100vw" muted loop autoplay ></video>
+  <video id="video" style="width: 100vw" muted loop autoplay ></video>
 </div>
 
 
