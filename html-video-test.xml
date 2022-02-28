@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
 <ModulePrefs title="HTML video test Gadget" description="Gadget to test html video compatibility" author="RevelDigital" background="transparent">
-  <UserPref name="resolution" display_name="Resolution" datatype="enum" default_value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4">
-    <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4" display_value="1080@24fps" />
+  <UserPref name="resolution" display_name="Resolution" datatype="enum" default_value="https://reveldigital-common.s3.amazonaws.com/html-video-tests/bbb_sunflower_1080p_30fps_normal.mp4">
+    <EnumValue value="https://reveldigital-common.s3.amazonaws.com/html-video-tests/bbb_sunflower_1080p_30fps_normal.mp4" display_value="1080@24fps" />
     <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4" display_value="1080@60fps" />
     <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_2160p_30fps_normal.mp4" display_value="4k@24fps" />
     <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_2160p_60fps_normal.mp4" display_value="4k@60fps" />
