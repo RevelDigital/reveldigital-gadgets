@@ -210,7 +210,7 @@
   
   function update() {
   
-    var key = 'AIzaSyCs7MZxulSNLyV9SeBbzpAg7D8PXscaUKA';
+    var key = 'AIzaSyAc6aobwSC-WqVktOx_mTY-gSkmfTp1dBo';
     var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
     
     var min = moment().format('YYYY-MM-DDTHH:mm:ssZ');
