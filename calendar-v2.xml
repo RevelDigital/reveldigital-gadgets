@@ -207,7 +207,7 @@
 </script>
 
 <script type="text/javascript">
-  
+    
   function update() {
   
     var key = 'AIzaSyAc6aobwSC-WqVktOx_mTY-gSkmfTp1dBo';
@@ -261,10 +261,6 @@
     .fail(function(xhr, err) {
       console.log(url);
       console.log('get calendar failed: ' + xhr.responseText);
-	  
-	  setTimeout(function() {
-		  update();
-	  }, 120000);
     });
   }
 
