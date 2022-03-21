@@ -235,8 +235,8 @@
       console.log(result);
     },
     {
-      gadgets.io.RequestParameters.AUTHORIZATION: gadgets.io.AuthorizationType.NONE,
-      gadgets.io.RequestParameters.CONTENT_TYPE: gadgets.io.ContentType.JSON
+      'AUTHORIZATION': gadgets.io.AuthorizationType.NONE,
+      'CONTENT_TYPE': gadgets.io.ContentType.JSON
     });
 	
 	
