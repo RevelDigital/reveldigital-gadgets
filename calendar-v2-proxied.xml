@@ -210,7 +210,7 @@
   
   function update() {
   
-    var key = 'AIzaSyAc6aobwSC-WqVktOx_mTY-gSkmfTp1dBo';
+    var key = 'AIzaSyDSzqkLwhGTsMJN9ixlBlPJhsa08w5qgAo';
     var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
     
     var min = moment().format('YYYY-MM-DDTHH:mm:ssZ');
@@ -232,7 +232,36 @@
     }
     
 	gadgets.io.makeRequest(url, function(result) {
-      console.log(result);
+      if (result.rc === 200) {
+		var response = result.data;
+		
+		if (response.timeZone) {
+        //moment.tz.setDefault(response.timeZone);
+		}
+		for (var i = 0; i < response.items.length; i++) {
+			if (prefs.getString("displayFormat") == "table") {
+			  formatTable(response.items[i]);
+			} else {
+			  formatDiv(response.items[i]);
+			}
+		}  
+		if (prefs.getString("scrollSpeed") != "none") {
+			$("#data").autoScroll({
+			  speed: prefs.getString("scrollSpeed"),
+			  by: prefs.getString("scrollBy")
+			}).on("done", function() {
+			  $("#data").data("plugin_autoScroll").play();
+			});
+			$("#data").data("plugin_autoScroll").play();
+		}
+	  } else {
+		console.log(url);
+		console.log('get calendar failed: ' + result.errors[0]);
+	  
+		setTimeout(function() {
+		  update();
+		}, 120000);
+	  }
     },
     {
       'AUTHORIZATION': gadgets.io.AuthorizationType.NONE,
@@ -240,41 +269,41 @@
     });
 	
 	
-    $.ajax({
-      type: 'GET',
-      url: url,
-      dataType: 'json'
-    })
-    .done(function(response) {
-      if (response.timeZone) {
-        //moment.tz.setDefault(response.timeZone);
-      }
-      for (var i = 0; i < response.items.length; i++) {
-        if (prefs.getString("displayFormat") == "table") {
-          formatTable(response.items[i]);
-        } else {
-          formatDiv(response.items[i]);
-        }
-      }
+    // $.ajax({
+      // type: 'GET',
+      // url: url,
+      // dataType: 'json'
+    // })
+    // .done(function(response) {
+      // if (response.timeZone) {
+        // //moment.tz.setDefault(response.timeZone);
+      // }
+      // for (var i = 0; i < response.items.length; i++) {
+        // if (prefs.getString("displayFormat") == "table") {
+          // formatTable(response.items[i]);
+        // } else {
+          // formatDiv(response.items[i]);
+        // }
+      // }
       
-      if (prefs.getString("scrollSpeed") != "none") {
-        $("#data").autoScroll({
-          speed: prefs.getString("scrollSpeed"),
-          by: prefs.getString("scrollBy")
-        }).on("done", function() {
-          $("#data").data("plugin_autoScroll").play();
-        });
-        $("#data").data("plugin_autoScroll").play();
-      }
-    })
-    .fail(function(xhr, err) {
-      console.log(url);
-      console.log('get calendar failed: ' + xhr.responseText);
+      // if (prefs.getString("scrollSpeed") != "none") {
+        // $("#data").autoScroll({
+          // speed: prefs.getString("scrollSpeed"),
+          // by: prefs.getString("scrollBy")
+        // }).on("done", function() {
+          // $("#data").data("plugin_autoScroll").play();
+        // });
+        // $("#data").data("plugin_autoScroll").play();
+      // }
+    // })
+    // .fail(function(xhr, err) {
+      // console.log(url);
+      // console.log('get calendar failed: ' + xhr.responseText);
 	  
-	  setTimeout(function() {
-		  update();
-	  }, 120000);
-    });
+	  // setTimeout(function() {
+		  // update();
+	  // }, 120000);
+    // });
   }
 
   function formatDiv(event) {
