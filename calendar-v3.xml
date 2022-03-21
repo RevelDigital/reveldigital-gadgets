@@ -191,7 +191,7 @@
   
   function update() {
   
-    var key = 'AIzaSyCs7MZxulSNLyV9SeBbzpAg7D8PXscaUKA';
+    var key = 'AIzaSyA81iXX6sp42fP7fIuSOL1QfLParlMdkXc';
     var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
     
     var min = moment().format('YYYY-MM-DDTHH:mm:ssZ');
