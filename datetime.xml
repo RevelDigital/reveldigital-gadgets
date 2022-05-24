@@ -13,10 +13,14 @@
     <EnumValue value="LTS" display_value="8:30:25 PM" />
     <EnumValue value="L" display_value="06/09/2014" />
     <EnumValue value="l" display_value="6/9/2014" />
-    <EnumValue value="LL" display_value="June 9 2014" />
-    <EnumValue value="ll" display_value="Jun 9 2014" />
-    <EnumValue value="LLL" display_value="June 9 2014 9:32 PM" />
-    <EnumValue value="lll" display_value="Jun 9 2014 9:32 PM" />
+    <EnumValue value="LL" display_value="June 9, 2014" />
+    <EnumValue value="ll" display_value="Jun 9, 2014" />
+    <EnumValue value="LLL" display_value="June 9, 2014 9:32 PM" />
+    <EnumValue value="lll" display_value="Jun 9, 2014 9:32 PM" />
+	<EnumValue value="ddd" display_value="Mon" />
+	<EnumValue value="dddd" display_value="Monday" />
+	<EnumValue value="ddd, MMM Do" display_value="Mon, Jun 9th" />
+	<EnumValue value="ddd, MMM Do YYYY" display_value="Mon, Jun 9th 2014" />
     <EnumValue value="LLLL" display_value="Monday, June 9 2014 9:32 PM" />
     <EnumValue value="llll" display_value="Mon, Jun 9 2014 9:32 PM" />
   </UserPref>

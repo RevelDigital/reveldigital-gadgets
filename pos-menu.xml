@@ -7,8 +7,7 @@
   <Require feature="offline" />
   
   <UserPref name="active-update" display_name="Update" default_value="0" datatype="string"/>
-  <UserPref name="reference-key" display_name="Reference Key" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
-  <UserPref name="master-key" display_name="Master Key" default_value="$2b$10$G34xAArLTFBgbDpGdFP2KOZAkLhURIxfx1ngNkjGbuM1wu3QkG0v2" datatype="string"/>
+  <UserPref name="reference-key" display_name="Camera ID" default_value="60f1a1e8a917050205c8dc93" datatype="string"/>
   <UserPref name="menu-id" display_name="Menu Type ID" default_value="3.0" datatype="string"/>
   
   <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
@@ -183,7 +182,6 @@ td#price table td {
   };
   if(__UP_active-update__ == "1")
     req.open("GET", "https://api.jsonbin.io/v3/b/__UP_reference-key__", true);
-    req.setRequestHeader("X-Master-Key", "__UP_master-key__");
     req.send();
   //CONVERT DICTIONARY TO STRING
   //let dictionaryString = JSON.stringify(dictionary);

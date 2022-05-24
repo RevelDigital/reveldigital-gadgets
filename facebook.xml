@@ -16,7 +16,7 @@
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-  <UserPref name="regkey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
+  <UserPref name="rdKey" display_name="Device Registration Key" datatype="hidden" default_value="*|DEVICE.REGISTRATIONKEY|*" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -209,7 +209,7 @@ span.when
   
   var update = function () {
   
-    key = prefs.getString("regkey");
+    key = prefs.getString("rdKey");
     userId = prefs.getString("userId");
     
     if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview

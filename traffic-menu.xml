@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Traffic Menu" description="Gadget for easily showing traffic data" title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <UserPref name="reference-key" display_name="Reference Key" default_value="76ed6e540ed388f0232806dc938f88010496a28b00c7078f62b53336cd35f4c8" datatype="string"/>
+  
+  <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Classic" />
+    <EnumValue value="classic-name-only-template" display_value="Name Only" />
+    <EnumValue value="classic-data-only-template" display_value="Data Only" />
+  </UserPref>
+  
+  <UserPref name="data-type" display_name="Data to show" datatype="enum" default_value="both-data-type">
+    <EnumValue value="both-data-type" display_value="Both" />
+    <EnumValue value="vehicles-data-type" display_value="Vehicles Only" />
+    <EnumValue value="people-data-type" display_value="People Only" />
+  </UserPref>
+  
+  <UserPref name="people-style" display_name="Item People Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+  <UserPref name="vehicle-style" display_name="Item Vehicle Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
+  <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  color: #000;
+}
+table {
+  width:100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+table td {
+  padding: 2px
+  margin: 0;
+}
+table tr.spacer, table tr.spacer tr {
+  line-height: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+}
+td.people {
+  __UP_people-style__;
+}
+td.vehicle, td.vehicle div {
+  __UP_vehicle-style__;
+}
+td.filler {
+  width: 100%;
+  position: relative;
+}
+td.filler div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .3em;
+  border-bottom: .1em dotted #__UP_ForeColor__;
+}
+table.classic td.people {
+  width: 80%;
+}
+table.classic td.vehicle {
+  vertical-align: bottom;
+}
+table.classic-no-dots td.vehicle {
+  vertical-align: top;
+}
+table.centered td.people {
+  text-align: center;
+}
+table.centered td.vehicle {
+  text-align: center;
+}
+table.centered .vehicle-wrapper {
+  margin: 0 auto;
+}
+table.modern .vehicle-wrapper {
+  float: right;
+}
+td#vehicle table td {
+  text-align: center;
+}
+#vehicle-container {
+  white-space: nowrap;
+  display: table-cell;
+  padding-right: 10px;
+}
+#vehicle-label {
+  text-align: center;
+}
+#vehicle-wrapper {
+  display: table;
+}
+#vehicle-wrapper:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+</style>
+<div class="container">
+  <div id="myData" class="table"></div>
+</div>
+<script>
+  //GET DICTIONARY
+  let req = new XMLHttpRequest();
+  
+  function displayOne(){
+  
+  req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+      //GET CURRENT TIME
+      let now = new Date();
+      let current = new Date();
+      let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+      let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+      let dateTime = cDate + ' ' + cTime;
+      let lastUpdated = document.createElement('p');
+      lastUpdated.innerHTML = 'Last updated: ' + dateTime;
+      //GET SETTINGS
+      let showVehicles = ("__UP_data-type__" == "both-data-type") || ("__UP_data-type__" == "vehicles-data-type");
+      let showPeople = ("__UP_data-type__" == "both-data-type") || ("__UP_data-type__" == "people-data-type");
+      let showTitle = ("__UP_template__"=="classic-template") || ("__UP_template__"=="classic-name-only-template");
+      let showData = ("__UP_template__"=="classic-template") || ("__UP_template__"=="classic-data-only-template");
+      //GET DATA
+      dict = JSON.parse(req.responseText)
+      console.log(dict);
+      let dictionaryString = JSON.stringify(dict);
+      //document.getElementById("myData").innerHTML = dictionaryString;
+      //DISPLAY DICT AS TABLE
+      let table = document.createElement("table");
+      let tableBody = document.createElement("tbody");
+      let tableRow = document.createElement("tr");
+      let tableColumn2 = document.createElement("td");
+      let tableColumn3 = document.createElement("td");
+      table.setAttribute("class", "table table-bordered");
+      table.setAttribute("id", "myTable");
+      table.setAttribute("style", "width:100%", "line-height: 1px");
+      tableBody.setAttribute("class", "table-body");
+      tableRow.setAttribute("class", "table-row");
+      tableColumn2.setAttribute("class", "table-column");
+      tableColumn3.setAttribute("class", "table-column");
+      tableColumn2.innerHTML = "People";
+      tableColumn3.innerHTML = "Vehicles";
+      if (showTitle) {
+        if (showPeople) {
+          tableRow.appendChild(tableColumn2);
+        }
+        if (showVehicles) {
+          tableRow.appendChild(tableColumn3);
+        }
+        tableBody.appendChild(tableRow);
+        table.appendChild(tableBody);
+      }
+      document.getElementById("myData").appendChild(table);
+      
+      //DISPLAY DICT VARIABLES
+      let tableRow2 = document.createElement("tr");
+      let tableColumn2b = document.createElement("td");
+      tableColumn2b.className = "people";
+      let tableColumn3b = document.createElement("td");
+      tableColumn3b.className = "vehicle";
+      tableColumn2b.innerHTML = dict.people;
+      tableColumn3b.innerHTML = dict.vehicles;
+      if (showData) {
+        if (showPeople) {
+          tableRow2.appendChild(tableColumn2b);
+        }
+        if (showVehicles) {
+          tableRow2.appendChild(tableColumn3b);
+        }
+        tableBody.appendChild(tableRow2);
+        if (showTitle != true) {
+          table.appendChild(tableBody);
+          document.getElementById("myData").appendChild(table);
+        }
+      }
+      //DISPLAY ABOVE TABLE IN HTML
+      document.getElementById("myData").innerHTML = table.outerHTML;
+      document.getElementById("myData").appendChild(lastUpdated);
+    }
+  };
+  req.open("GET", "https://revel.pythonanywhere.com/api/most_recent_data_for_cam_json?cam_id=__UP_reference-key__", true);
+  req.send();
+  }
+  
+  //RUN EVERY 5 MINS
+  displayOne()//so you don't habe to wait five minutes the first time
+  setInterval(displayOne, 1000*60*5);
+  
+  //CONVERT DICTIONARY TO STRING
+  //let dictionaryString = JSON.stringify(dictionary);
+  //DISPLAY DICTIONARYSTRING IN HTML MYDATA
+  //document.getElementById("myData").innerHTML = dictionaryString;
+</script>
+]]>
+</Content>
+</Module>

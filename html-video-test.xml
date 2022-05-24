@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="HTML video test Gadget" description="Gadget to test html video compatibility" author="RevelDigital" background="transparent">
+  <UserPref name="resolution" display_name="Resolution" datatype="enum" default_value="https://reveldigital-common.s3.amazonaws.com/html-video-tests/bbb_sunflower_1080p_30fps_normal.mp4">
+    <EnumValue value="https://reveldigital-common.s3.amazonaws.com/html-video-tests/bbb_sunflower_1080p_30fps_normal.mp4" display_value="1080@24fps" />
+    <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4" display_value="1080@60fps" />
+    <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_2160p_30fps_normal.mp4" display_value="4k@24fps" />
+    <EnumValue value="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_2160p_60fps_normal.mp4" display_value="4k@60fps" />
+  </UserPref>
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal; 
+  overflow: hidden;
+}
+
+body
+{
+  background: transparent;
+}
+
+#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+}
+</style>
+
+<div id="container">
+  <video id="video" style="width: 100vw" muted loop autoplay ></video>
+</div>
+
+
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+  
+  function load() {
+    let video = document.getElementById('video');
+    video.setAttribute('src', prefs.getString('resolution'));
+    video.setAttribute('type', 'video/mp4');
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+]]>
+</Content>
+</Module>
