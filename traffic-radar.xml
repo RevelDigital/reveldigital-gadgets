@@ -87,8 +87,8 @@ img {
   }
   
   //RUN EVERY 5 MINS
-  displayOne()//so you don't habe to wait five minutes the first time
-  setInterval(displayOne, 1000*60*5);
+  displayOne()//so you don't habe to wait fifteen minutes the first time
+  setInterval(displayOne, 1000*60*15);
   
   //CONVERT DICTIONARY TO STRING
   //let dictionaryString = JSON.stringify(dictionary);
