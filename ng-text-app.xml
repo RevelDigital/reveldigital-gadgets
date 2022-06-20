@@ -14,7 +14,8 @@
 			<EnumValue display_value="Vertical" value="vertical" />
 		</UserPref>
 		<UserPref name="wrap" display_name="Word Wrap" default_value="false" datatype="bool" />
-		<UserPref name="animation" display_name="Animation" datatype="enum" default_value="animate__bounceIn">
+		<UserPref name="animation" display_name="Animation" datatype="enum" default_value="">
+			<EnumValue display_value="None" value="" />
 			<EnumValue display_value="Bounce In" value="animate__bounceIn" />
 			<EnumValue display_value="Bounce In Down" value="animate__bounceInDown" />
 			<EnumValue display_value="Bounce In Left" value="animate__bounceInLeft" />
