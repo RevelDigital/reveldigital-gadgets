@@ -30,6 +30,9 @@
 <style type="text/css">
 body {
         background-color: powderblue;
+        width: __UP_rdW__px;
+        height: __UP_rdH__px;
+        overflow: hidden;
     }
 
     .header {
@@ -46,7 +49,7 @@ body {
     </div>
     <h3 id="priceStock"></h3>
     <h4 id="coffeeList"></h4>
-<script>
+<script type="text/javascript">
   var formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
