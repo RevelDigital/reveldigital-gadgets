@@ -18,6 +18,12 @@
   
   <UserPref name="itemID" display_name="Item ID" default_value="WNX9ME55QPDPE" />
   <UserPref name="merchID" display_name="Merchant ID" default_value="F9C033BGWQGZ1" required="true" />
+  
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
