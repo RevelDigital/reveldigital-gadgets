@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Clover POS Gadget" description="Menu gadget for displaying data from a Clover POS device" title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <UserPref name="reference-key" display_name="API Token" default_value="86260191-7049-15c9-9173-338d9784f65d" datatype="string"/>
+  
+  <UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Classic" />
+    <EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
+    <EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
+    <EnumValue value="centered-template" display_value="Centered" />
+    <EnumValue value="modern-template" display_value="Modern" />
+  </UserPref>
+  
+  <UserPref name="itemID" display_name="Item ID" default_value="WNX9ME55QPDPE" />
+  <UserPref name="merchID" display_name="Merchant ID" default_value="F9C033BGWQGZ1" required="true" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body {
+        background-color: powderblue;
+    }
+
+    .header {
+        padding: 30px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 20px;
+    }
+</style>
+<div class="header">
+        <h1>Clover Menu via API</h1>
+        <p id="IDvalues"></p>
+    </div>
+    <h3 id="priceStock"></h3>
+    <h4 id="coffeeList"></h4>
+<script>
+  var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
+    const options = {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + __UP_reference-key__ }
+    };
+
+    let merchID = __UP_merchID__;
+    let itemID = __UP_itemID__;
+    let orderID = "1HHEJ8WXKADY4";
+    let espressoID = "78TBJX18YSNJ2";
+
+    let allMerch = ("Merchant ID: " + merchID);
+    let allItem = ("Item ID: " + itemID);
+    let allOrder = ("Order ID: " + orderID);
+    let allID = (allMerch + " - " + allItem + " - " + allOrder);
+    document.getElementById("IDvalues").innerHTML = allID;
+
+    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID, options)
+        .then(response => response.json())
+        .then(response => document.getElementById("priceStock").innerHTML = response.name)
+        .catch(err => console.error(err));
+</script>
+]]>
+</Content>
+</Module>
