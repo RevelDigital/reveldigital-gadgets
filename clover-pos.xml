@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Clover Menu" description="A menu gadget for displaying information from a Clover POS machine" author="" background="transparent">
+  <UserPref name="myMerchPref" display_name="Merchant ID" datatype="string" default_value="F9C033BGWQGZ1" required="true" />
+  <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
+  <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+  </UserPref>
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+
+  body
+  {
+    background-color: powderblue;
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    overflow: hidden;
+  }
+  .header 
+  {
+    padding: 30px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 20px;
+   }
+  .my-style
+  {
+    __UP_myStylePref__;
+  }
+</style>
+
+<div class="header">
+        <h1>Clover Menu via API</h1>
+        <p id="IDvalues"></p>
+</div>
+<h3 id="priceStock"></h3>
+<h4 id="coffeeList"></h4>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+
+  var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
+    function onLoad() {
+
+      let apiID = myAPIPref;
+
+      const options = {
+          method: 'GET',
+          headers: { Authorization: 'Bearer' + myAPIPref }
+      };
+
+      let merchID = myMerchPref;
+      let itemID = myItemPref;
+      let orderID = "1HHEJ8WXKADY4";
+      let espressoID = "78TBJX18YSNJ2";
+
+      let allMerch = ("Merchant ID: " + merchID);
+      let allItem = ("Item ID: " + itemID);
+      let allOrder = ("Order ID: " + orderID);
+      let allID = (allMerch + " - " + allItem + " - " + allOrder);
+      document.getElementById("IDvalues").innerHTML = allID;
+
+      fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+          .then(response => response.json())
+          .then(response => document.getElementById("priceStock").innerHTML = response.name)
+          .catch(err => console.error(err));
+
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+
+</script>
+
+]]>
+</Content>
+</Module>
