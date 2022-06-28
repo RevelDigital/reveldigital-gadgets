@@ -81,10 +81,10 @@
 
     th,
     td {
-        padding-bottom: __UP_tableSpacingTop__ px;
-        padding-top: __UP_tableSpacingTop__ px;
-        padding-left: __UP_tableSpacingSide__ px;
-        padding-right: __UP_tableSpacingSide__ px;
+        padding-bottom: __UP_tableSpacingTop__px;
+        padding-top: __UP_tableSpacingTop__px;
+        padding-left: __UP_tableSpacingSide__px;
+        padding-right: __UP_tableSpacingSide__px;
         border-bottom: 1pt solid __UP_myBorderColorPref__;
     }
 
