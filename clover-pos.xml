@@ -102,24 +102,10 @@
   console.log("IDs for testing: F9C033BGWQGZ1 - DWVC59FKB13SR(0 stock) - 4M39025RE40RM");
   console.log("More IDs YQ3216M55WGCM - F0T4KR8Q2FR64");
 
-  let merchID = __UP_myMerchPref__; //default values for testing
-  let itemID = __UP_myItemPref__;
-  let espressoID = __UP_myCatPref__;
-  let myAPIToken = __UP_myAPIPref__;
-
-  function setIDs() {
-      if (document.getElementById("merch").value != null) {
-          merchID = document.getElementById("merch").value;
-      }
-      if (document.getElementById("item").value != null) {
-          itemID = document.getElementById("item").value;
-      }
-      if (document.getElementById("cat").value != null) {
-          espressoID = document.getElementById("cat").value;
-      }
-      sleep(2000);
-      getInv();
-  }
+  let merchID = "__UP_myMerchPref__"; //default values for testing
+  let itemID = "__UP_myItemPref__";
+  let espressoID = "__UP_myCatPref__";
+  let myAPIToken = "__UP_myAPIPref__";
 
   function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
