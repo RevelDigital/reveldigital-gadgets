@@ -120,7 +120,7 @@
   if (__UP_myBoolIDPref__){
         document.getElementById("IDvalues").innerHTML = allID;
       }
-  if (__UP_myBoolHeadPref__){
+  if (__UP_myBoolHeadPref__ == false){
         document.getElementById("headerID").innerHTML = "";
       }
 
