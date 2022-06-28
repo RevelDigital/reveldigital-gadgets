@@ -7,6 +7,8 @@
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
   <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
   <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
+  <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
+  <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
   <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
   <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="true" />
   <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
@@ -34,20 +36,22 @@
     .header {
         padding: 30px;
         text-align: center;
-        background: __UP_myBackColorPref__;
-        color: white;
+        background: __UP_myHeadColorPref__;
+        color: __UP_myHeadTextColorPref__;
         font-size: 20px;
     }
 
     #priceStock {
         font-size: 25px;
         text-align: center;
+        color: __UP_myBackTextColorPref__;
     }
 
     #coffee {
         font-size: 25px;
         text-align: center;
         border: 1px solid black;
+        color: __UP_myBackTextColorPref__;
     }
 
     #IDvalues {
