@@ -8,12 +8,14 @@
   <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" default_value="8" datatype="enum" >
     <EnumValue value="4" display_value="Smaller" />
     <EnumValue value="2" display_value="Smallest" />
+    <EnumValue value="8" display_value="Default" />
     <EnumValue value="10" display_value="Bigger" />
     <EnumValue value="12" display_value="Biggest" />
   </UserPref>
   <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" default_value="30" datatype="enum" >
     <EnumValue value="20" display_value="Smaller" />
     <EnumValue value="10" display_value="Smallest" />
+    <EnumValue value="30" display_value="Default" />
     <EnumValue value="40" display_value="Bigger" />
     <EnumValue value="50" display_value="Biggest" />
   </UserPref>
