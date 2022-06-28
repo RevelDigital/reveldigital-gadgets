@@ -127,7 +127,8 @@
       }
   if (__UP_myBoolHeadPref__ == false){
         document.getElementById("headerID").innerHTML = null;
-        document.getElementById("headerID").style.background = transparent;
+        document.getElementById("headerID").style.background = null;
+        document.getElementById("headerID").style.background-color = null;
         document.getElementById("headerID").removeAttribute("style");
       }
 
