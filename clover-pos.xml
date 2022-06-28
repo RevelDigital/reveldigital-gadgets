@@ -98,13 +98,15 @@
 
 <script type="text/javascript">
 
+  var prefs = new gadgets.Prefs();
+
   console.log("IDs for testing: F9C033BGWQGZ1 - DWVC59FKB13SR(0 stock) - 4M39025RE40RM");
   console.log("More IDs YQ3216M55WGCM - F0T4KR8Q2FR64");
 
   let merchID = myMerchPref; //default values for testing
   let itemID = myItemPref;
-  let orderID = "1HHEJ8WXKADY4";
   let espressoID = myCatPref;
+  let myAPIToken = myAPIPref;
 
   function setIDs() {
       if (document.getElementById("merch").value != null) {
