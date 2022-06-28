@@ -115,12 +115,11 @@
 
   const options = {
       method: 'GET',
-      headers: { Authorization: 'Bearer 86260191-7049-15c9-9173-338d9784f65d' }
+      headers: { Authorization: 'Bearer ' + myAPIToken }
   };
 
   let allMerch = ("Merchant ID: " + merchID);
   let allItem = ("Item ID: " + itemID);
-  let allOrder = ("Order ID: " + orderID);
   let allCat = ("Category ID: " + espressoID);
   let allID = (allMerch + " - " + allItem + " - " + allCat);
   document.getElementById("IDvalues").innerHTML = allID;
