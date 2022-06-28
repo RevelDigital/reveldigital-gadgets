@@ -5,10 +5,23 @@
   <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
   <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+  <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" default_value="8" datatype="enum" >
+    <EnumValue value="4" display_value="Smaller" />
+    <EnumValue value="2" display_value="Smallest" />
+    <EnumValue value="10" display_value="Bigger" />
+    <EnumValue value="12" display_value="Biggest" />
+  </UserPref>
+  <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" default_value="30" datatype="enum" >
+    <EnumValue value="20" display_value="Smaller" />
+    <EnumValue value="10" display_value="Smallest" />
+    <EnumValue value="40" display_value="Bigger" />
+    <EnumValue value="50" display_value="Biggest" />
+  </UserPref>
   <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
   <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
   <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
   <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
+  <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
   <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
   <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="true" />
   <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
@@ -50,7 +63,7 @@
     #coffee {
         font-size: 25px;
         text-align: center;
-        border: 1px solid black;
+        border: 1px solid __UP_myBorderColorPref__;
         color: __UP_myBackTextColorPref__;
     }
 
@@ -66,16 +79,18 @@
 
     th,
     td {
-        padding-bottom: 8px;
-        padding-top: 8px;
-        padding-left: 30px;
-        padding-right: 30px;
-        border-bottom: 1pt solid black;
+        padding-bottom: __UP_tableSpacingTop__ px;
+        padding-top: __UP_tableSpacingTop__ px;
+        padding-left: __UP_tableSpacingSide__ px;
+        padding-right: __UP_tableSpacingSide__ px;
+        border-bottom: 1pt solid __UP_myBorderColorPref__;
     }
+
   .my-style
   {
     __UP_myStylePref__;
   }
+
 </style>
 
 <body>
