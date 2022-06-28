@@ -5,6 +5,8 @@
   <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
   <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+  <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
+  <UserPref name="myBoolIDPref" display_name="Display ID in Header" datatype="bool" default_value="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -81,7 +83,7 @@
 
 <body>
     <div class="header">
-        <h1>Customizable Clover Menu via API</h1>
+        <h1>__UP_myTitlePref__</h1>
         <p id="IDvalues"></p>
     </div>
     <h3 id="priceStock"></h3>
@@ -151,6 +153,13 @@
       .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - " + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
       .catch(err => console.error(err));
 
+  sleep(800);
+
+  fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID, options)
+          .then(response => response.json())
+          .then(response => document.getElementById("coffeeTitle").innerHTML = ("View our Wide Selection of " + response.name))
+          .catch(err => console.error(err));
+
   function getInv() {
       fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
           .then(response => response.json())
@@ -164,26 +173,12 @@
           .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - " + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
           .catch(err => console.error(err));
 
-      document.getElementById("coffeeList").innerHTML = "";
-      fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID + '/items', options)
-          .then(response => response.json())
-          .then((response) => {
-              for (let i = 0; i < response.elements.length; i++) {
-                  (document.getElementById("coffeeList").innerHTML += "<tr><td>" + response.elements[i].name + "</td><td>" + formatter.format((response.elements[i].price) / 100) + "</td></tr>");
-              }
-          });
-
       sleep(800);
 
-      fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID, options)
-          .then(response => response.json())
-          .then(response => document.getElementById("coffeeTitle").innerHTML = ("View our Wide Selection of " + response.name))
-          .catch(err => console.error(err));
-
-      sleep(1000);
-
-      allIDs = ("Merchant ID: " + merchID + " - " + "Item ID: " + itemID + " - " + "Category ID: " + espressoID);
-      document.getElementById("IDvalues").innerHTML = allIDs;
+      if (__UP_myBoolIDPref__){
+        allIDs = ("Merchant ID: " + merchID + " - " + "Item ID: " + itemID + " - " + "Category ID: " + espressoID);
+        document.getElementById("IDvalues").innerHTML = allIDs;
+      }
   }
   var date = new Date();
   var current_hour = date.getHours();
@@ -193,8 +188,6 @@
       getInv();
       console.log("Page has been updated, item count is up to date");
   }, 300000);
-
-  gadgets.util.registerOnLoadHandler(onLoad);
 
 </script>
 
