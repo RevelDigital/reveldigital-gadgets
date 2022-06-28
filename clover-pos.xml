@@ -126,10 +126,8 @@
         document.getElementById("IDvalues").innerHTML = allID;
       }
   if (__UP_myBoolHeadPref__ == false){
-        document.getElementById("headerID").innerHTML = null;
-        document.getElementById("headerID").style.background = null;
-        document.getElementById("headerID").style.color = null;
-        document.getElementById("headerID").removeAttribute("style");
+        const element = document.getElementById('headerID');
+        element.remove();
       }
 
   fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID + '/items', options)
