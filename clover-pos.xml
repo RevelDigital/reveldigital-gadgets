@@ -6,8 +6,9 @@
   <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
   <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
+  <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
   <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
-  <UserPref name="myBoolIDPref" display_name="Display ID in Header" datatype="bool" default_value="true" />
+  <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="true" />
   <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
@@ -33,7 +34,7 @@
     .header {
         padding: 30px;
         text-align: center;
-        background: #1abc9c;
+        background: __UP_myBackColorPref__;
         color: white;
         font-size: 20px;
     }
@@ -122,6 +123,7 @@
       }
   if (__UP_myBoolHeadPref__ == false){
         document.getElementById("headerID").innerHTML = "";
+        document.getElementById("headerID").removeAttribute("style");
       }
 
   fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID + '/items', options)
