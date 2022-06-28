@@ -74,7 +74,7 @@
 </style>
 
 <body>
-    <div class="header">
+    <div class="header" id="headerID">
         <h1>__UP_myTitlePref__</h1>
         <p id="IDvalues"></p>
     </div>
@@ -116,13 +116,12 @@
   let allItem = ("Item ID: " + itemID);
   let allCat = ("Category ID: " + espressoID);
   let allID = (allMerch + " - " + allItem + " - " + allCat);
-  document.getElementById("IDvalues").innerHTML = allID;
 
   if (__UP_myBoolIDPref__){
         document.getElementById("IDvalues").innerHTML = allID;
       }
   if (__UP_myBoolHeadPref__){
-        document.getElementById("IDvalues").innerHTML = "";
+        document.getElementById("headerID").innerHTML = "";
       }
 
   fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + espressoID + '/items', options)
@@ -136,13 +135,7 @@
   let countStock;
   fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
       .then(response => response.json())
-      .then(response => {
-          if (response.stockCount == null) {
-              console.error("stockCount returned undefined, refresh and confirm ItemID/MerchantID")
-              alert("Could not get stock count at this time, please try again");
-          }
-          countStock = response.stockCount;
-      })
+      .then(response => countStock = response.stockCount)
       .catch(err => console.error(err));
 
   sleep(1000);
@@ -172,7 +165,6 @@
           .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - " + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
           .catch(err => console.error(err));
       }
-  }
 
   setInterval(function () { 
       getInv();
