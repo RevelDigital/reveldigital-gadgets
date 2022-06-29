@@ -5,27 +5,15 @@
   <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
   <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
-  <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" default_value="8" datatype="enum" >
-    <EnumValue value="4" display_value="Smaller" />
-    <EnumValue value="2" display_value="Smallest" />
-    <EnumValue value="8" display_value="Default" />
-    <EnumValue value="10" display_value="Bigger" />
-    <EnumValue value="12" display_value="Biggest" />
-  </UserPref>
-  <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" default_value="30" datatype="enum" >
-    <EnumValue value="20" display_value="Smaller" />
-    <EnumValue value="10" display_value="Smallest" />
-    <EnumValue value="30" display_value="Default" />
-    <EnumValue value="40" display_value="Bigger" />
-    <EnumValue value="50" display_value="Biggest" />
-  </UserPref>
+  <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
+  <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
   <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
   <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
   <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
   <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
   <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
   <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
-  <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="true" />
+  <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="false" />
   <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
