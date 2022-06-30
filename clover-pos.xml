@@ -7,6 +7,8 @@
   <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
   <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
   <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
+  <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
+  <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
   <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
   <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
   <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
@@ -48,6 +50,7 @@
         font-size: 25px;
         text-align: center;
         color: __UP_myBackTextColorPref__;
+        font-size: __UP_stockFontSize__em;
     }
 
     #coffee {
@@ -65,6 +68,7 @@
         margin-left: auto;
         margin-right: auto;
         padding-bottom: 1rem;
+        font-size: __UP_tableFontSize__em;
     }
 
     th,
