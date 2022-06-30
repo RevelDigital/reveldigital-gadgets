@@ -17,6 +17,7 @@
   <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
   <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="false" />
   <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+  <UserPref name="myBoolTablePref" display_name="Display Table Header" datatype="bool" default_value="true" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -136,6 +137,10 @@
       }
   if (__UP_myBoolHeadPref__ == false){
         const element = document.getElementById('headerID');
+        element.remove();
+      }
+  if (__UP_myBoolTablePref__ == false){
+        const element = document.getElementById('coffeeTitle');
         element.remove();
       }
 
