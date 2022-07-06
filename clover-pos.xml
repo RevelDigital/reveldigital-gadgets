@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Clover Menu" description="A menu gadget for displaying information from a Clover POS machine" author="" background="transparent">
+
         <UserPref name="myMerchPref" display_name="Merchant ID" datatype="string" default_value="F9C033BGWQGZ1" required="true" />
         <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
         <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
         <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
         <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
@@ -16,10 +18,12 @@
         <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
         <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
         <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
+
         <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="false" />
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolTablePref" display_name="Display Table Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolSpecialPref" display_name="Display Special Item" datatype="bool" default_value="true" />
+
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -131,23 +135,18 @@
         headers: { Authorization: 'Bearer ' + myAPIToken }
     };
     
-    let allMerch = ("Merchant ID: " + merchID);
-    let allItem = ("Item ID: " + itemID);
-    let allCat = ("Category ID: " + myCatID);
-    let allID = (allMerch + " - " + allItem + " - " + allCat);
-    
     if (__UP_myBoolIDPref__) {
-        document.getElementById("IDvalues").innerHTML = allID;
+        document.getElementById("IDvalues").innerHTML = ("Merchant ID: " + merchID + " - Item ID: " + itemID + " - Category ID: " + myCatID);
     }
-    if (__UP_myBoolHeadPref__ == false) {
+    if (__UP_myBoolHeadPref__ === false) {
         const element = document.getElementById('headerID');
         element.remove();
     }
-    if (__UP_myBoolTablePref__ == false) {
+    if (__UP_myBoolTablePref__ === false) {
         const element = document.getElementById('itemListTable');
         element.remove();
     }
-    if (__UP_myBoolSpecialPref__ == false) {
+    if (__UP_myBoolSpecialPref__ === false) {
         const element = document.getElementById('priceStock');
         element.remove();
     }
@@ -157,10 +156,8 @@
         .then((response) => {
             for (let i = 0; i < response.elements.length; i++) {
                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.elements[i].name + "</td><td>"
-                    + formatter.format((response.elements[i].price) / 100) + "</td></tr>");
-            }
-        })
-        .catch (err => console.error(err));
+                    + formatter.format((response.elements[i].price) / 100) + "</td></tr>");}})
+        .catch(err => console.error(err));
     
     let countStock;
     fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
@@ -200,7 +197,7 @@
     
     setInterval(function () {
         getInv();
-        console.log("Page has been updated, item count is up to date");
+        console.log("Item count has been automatically updated");
     }, myUpdateInterval);
 
 </script>
