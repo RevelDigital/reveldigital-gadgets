@@ -27,17 +27,19 @@
         <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
     </ModulePrefs>
     <Content type="html">
-        <![CDATA[
+
+<![CDATA[
 
 <style type="text/css">
-  body *
-  {
-    line-height: 1.2em; 
-    letter-spacing: 0; 
-    word-spacing: normal;
-  }
 
-  body {
+    body *
+    {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body {
         background-color: __UP_myBackColorPref__;
     }
 
@@ -83,10 +85,10 @@
         border-bottom: 1pt solid __UP_myBorderColorPref__;
     }
 
-  .my-style
-  {
-    __UP_myStylePref__;
-  }
+    .my-style
+    {
+        __UP_myStylePref__;
+    }
 
 </style>
 
