@@ -107,98 +107,99 @@
 
 <script type="text/javascript">
 
-  var prefs = new gadgets.Prefs();
+    var prefs = new gadgets.Prefs();
 
-  let merchID = "__UP_myMerchPref__";
-  let itemID = "__UP_myItemPref__";
-  let myCatID = "__UP_myCatPref__";
-  let myAPIToken = "__UP_myAPIPref__";
-  let myUpdateInterval = (__UP_updateInterval__ * 60000);
-
-  function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  var formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-  });
-
-  const options = {
-      method: 'GET',
-      headers: { Authorization: 'Bearer ' + myAPIToken }
-  };
-
-  let allMerch = ("Merchant ID: " + merchID);
-  let allItem = ("Item ID: " + itemID);
-  let allCat = ("Category ID: " + myCatID);
-  let allID = (allMerch + " - " + allItem + " - " + allCat);
-
-  if (__UP_myBoolIDPref__){
+    let merchID = "__UP_myMerchPref__";
+    let itemID = "__UP_myItemPref__";
+    let myCatID = "__UP_myCatPref__";
+    let myAPIToken = "__UP_myAPIPref__";
+    let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    const options = {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + myAPIToken }
+    };
+    
+    let allMerch = ("Merchant ID: " + merchID);
+    let allItem = ("Item ID: " + itemID);
+    let allCat = ("Category ID: " + myCatID);
+    let allID = (allMerch + " - " + allItem + " - " + allCat);
+    
+    if (__UP_myBoolIDPref__) {
         document.getElementById("IDvalues").innerHTML = allID;
-      }
-  if (__UP_myBoolHeadPref__ == false){
+    }
+    if (__UP_myBoolHeadPref__ == false) {
         const element = document.getElementById('headerID');
         element.remove();
-      }
-  if (__UP_myBoolTablePref__ == false){
+    }
+    if (__UP_myBoolTablePref__ == false) {
         const element = document.getElementById('itemListTable');
         element.remove();
-      }
-  if (__UP_myBoolSpecialPref__ == false){
+    }
+    if (__UP_myBoolSpecialPref__ == false) {
         const element = document.getElementById('priceStock');
         element.remove();
-      }
-
-  fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID + '/items', options)
-      .then(response => response.json())
-      .then((response) => {
-          for (let i = 0; i < response.elements.length; i++) {
-              (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.elements[i].name + "</td><td>" 
-                                                + formatter.format((response.elements[i].price) / 100) + "</td></tr>");
-          }
-      });
-
-  let countStock;
-  fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
-      .then(response => response.json())
-      .then(response => countStock = response.stockCount)
-      .catch(err => console.error(err));
-
-  sleep(1000);
-
-  fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
-      .then(response => response.json())
-      .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - " 
-                                            + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
-      .catch(err => console.error(err));
-
-  sleep(1000);
-
-  fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
-          .then(response => response.json())
-          .then(response => document.getElementById("itemListTable").innerHTML = ("View our Wide Selection of " + response.name))
-          .catch(err => console.error(err));
-
-  function getInv() {
-      fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
-          .then(response => response.json())
-          .then(response => countStock = response.stockCount)
-          .catch(err => console.error(err));
-
-      sleep(1000);
-
-      fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
-          .then(response => response.json())
-          .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - " 
-                                                + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
-          .catch(err => console.error(err));
-      }
-
-  setInterval(function () { 
-      getInv();
-      console.log("Page has been updated, item count is up to date");
-  }, myUpdateInterval);
+    }
+    
+    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID + '/items', options)
+        .then(response => response.json())
+        .then((response) => {
+            for (let i = 0; i < response.elements.length; i++) {
+                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.elements[i].name + "</td><td>"
+                    + formatter.format((response.elements[i].price) / 100) + "</td></tr>");
+            }
+        })
+        .catch (err => console.error(err));
+    
+    let countStock;
+    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
+        .then(response => response.json())
+        .then(response => countStock = response.stockCount)
+        .catch(err => console.error(err));
+    
+    sleep(1000);
+    
+    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+        .then(response => response.json())
+        .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
+            + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
+        .catch(err => console.error(err));
+    
+    sleep(1000);
+    
+    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
+        .then(response => response.json())
+        .then(response => document.getElementById("itemListTable").innerHTML = ("View our Wide Selection of " + response.name))
+        .catch(err => console.error(err));
+    
+    function getInv() {
+        fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
+            .then(response => response.json())
+            .then(response => countStock = response.stockCount)
+            .catch(err => console.error(err));
+    
+        sleep(1000);
+    
+        fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+            .then(response => response.json())
+            .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
+                + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
+            .catch(err => console.error(err));
+    }
+    
+    setInterval(function () {
+        getInv();
+        console.log("Page has been updated, item count is up to date");
+    }, myUpdateInterval);
 
 </script>
 
