@@ -15,6 +15,7 @@
         <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
         <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
         <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
+        <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
         <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
 
         <UserPref name="myBoolIDPref" display_name="Display IDs in Header" datatype="bool" default_value="false" />
