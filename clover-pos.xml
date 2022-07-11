@@ -158,19 +158,21 @@
                     + formatter.format((response.elements[i].price) / 100) + "</td></tr>");}})
         .catch(err => console.error(err));
     
-    let countStock;
-    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
-        .then(response => response.json())
-        .then(response => countStock = response.stockCount)
-        .catch(err => console.error(err));
-    
-    sleep(1000);
-    
-    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
-        .then(response => response.json())
-        .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
-            + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
-        .catch(err => console.error(err));
+    if (__UP_myBoolSpecialPref__) { 
+        let countStock;
+        fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
+            .then(response => response.json())
+            .then(response => countStock = response.stockCount)
+            .catch(err => console.error(err));
+        
+        sleep(1000);
+        
+        fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+            .then(response => response.json())
+            .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
+                + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
+            .catch(err => console.error(err));
+    }
     
     sleep(1000);
     
