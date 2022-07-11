@@ -22,6 +22,7 @@
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolTablePref" display_name="Display Table Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolSpecialPref" display_name="Display Special Item" datatype="bool" default_value="true" />
+        <UserPref name="myBoolCorsPref" display_name="Enable CORS Proxy" datatype="bool" default_value="false" />
         
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
@@ -114,6 +115,7 @@
     let myCatID = "__UP_myCatPref__";
     let myAPIToken = "__UP_myAPIPref__";
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    let cors = "https://corsanywhere.herokuapp.com/";
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -128,7 +130,10 @@
         method: 'GET',
         headers: { Authorization: 'Bearer ' + myAPIToken }
     };
-    
+
+    if (__UP_myBoolCorsPref__ === false) {
+        cors = '';
+    }
     if (__UP_myBoolIDPref__) {
         document.getElementById("IDvalues").innerHTML = ("Merchant ID: " + merchID + " - Item ID: " + itemID + " - Category ID: " + myCatID);
     }
@@ -145,7 +150,7 @@
         element.remove();
     }
     
-    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID + '/items', options)
+    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID + '/items', options)
         .then(response => response.json())
         .then((response) => {
             for (let i = 0; i < response.elements.length; i++) {
@@ -154,14 +159,14 @@
         .catch(err => console.error(err));
     
     let countStock;
-    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
+    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
         .then(response => response.json())
         .then(response => countStock = response.stockCount)
         .catch(err => console.error(err));
     
     sleep(1000);
     
-    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
         .then(response => response.json())
         .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
             + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
@@ -169,20 +174,20 @@
     
     sleep(1000);
     
-    fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
+    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
         .then(response => response.json())
         .then(response => document.getElementById("itemListTable").innerHTML = ("View our Wide Selection of " + response.name))
         .catch(err => console.error(err));
     
     function getInv() {
-        fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
+        fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
             .then(response => response.json())
             .then(response => countStock = response.stockCount)
             .catch(err => console.error(err));
     
         sleep(1000);
     
-        fetch('https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
+        fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/items/' + itemID + '', options)
             .then(response => response.json())
             .then(response => document.getElementById("priceStock").innerHTML = "Get them while you can!<br>" + response.name + " - "
                 + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
