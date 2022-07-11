@@ -193,11 +193,12 @@
                 + formatter.format((response.price) / 100) + "<br>" + countStock + " left in stock")
             .catch(err => console.error(err));
     }
-    
-    setInterval(function () {
-        getInv();
-        console.log("Item count has been automatically updated");
-    }, myUpdateInterval);
+    if (__UP_myBoolSpecialPref__) { 
+        setInterval(function () {
+            getInv();
+            console.log("Item count has been automatically updated");
+        }, myUpdateInterval);
+    }
 
 </script>]]></Content>
 </Module>
