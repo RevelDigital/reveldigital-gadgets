@@ -140,7 +140,7 @@
         const element = document.getElementById('priceStock');
         element.remove();
     }
-    else if (__UP_myBoolSpecialPref__ && itemID === null) {
+    else if (__UP_myBoolSpecialPref__ === true && itemID == "") {
         const element = document.getElementById('priceStock');
         element.remove();
     }
