@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Clover Menu" description="A menu gadget for displaying information from a Clover POS machine" author="" background="transparent">
-        <UserPref name="myMerchPref" display_name="Merchant ID" datatype="string" default_value="F9C033BGWQGZ1" required="true" />
-        <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="WNX9ME55QPDPE" required="true" />
-        <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
-        <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+        <UserPref name="myMerchPref" display_name="Merchant ID*" datatype="string" default_value="" required="true" />
+        <UserPref name="myItemPref" display_name="Item ID*" datatype="string" default_value="" required="false" />
+        <UserPref name="myCatPref" display_name="Category ID*" datatype="string" default_value="" required="true" />
+        <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
