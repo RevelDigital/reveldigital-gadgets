@@ -63,10 +63,6 @@
         color: __UP_myBackTextColorPref__;
     }
 
-    #IDvalues {
-        text-decoration: underline;
-    }
-
     .centerTable {
         margin-left: auto;
         margin-right: auto;
@@ -93,7 +89,6 @@
 <body>
     <div class="header" id="headerID">
         <h1>__UP_myTitlePref__</h1>
-        <p id="IDvalues"></p>
     </div>
     <h3 id="priceStock"></h3>
     <div id="itemList">
@@ -145,7 +140,7 @@
         const element = document.getElementById('priceStock');
         element.remove();
     }
-    else if (__UP_myBoolSpecialPref__ && __UP_myBoolSpecialPref__ === null) {
+    else if (__UP_myBoolSpecialPref__ && itemID === null) {
         const element = document.getElementById('priceStock');
         element.remove();
     }
