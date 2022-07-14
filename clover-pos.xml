@@ -170,11 +170,13 @@
     }
     
     sleep(1000);
-    
-    fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
-        .then(response => response.json())
-        .then(response => document.getElementById("itemListTable").innerHTML = ("View our Wide Selection of " + response.name))
-        .catch(err => console.error(err));
+
+    if (__UP_myBoolTablePref__) {
+        fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/categories/' + myCatID, options)
+            .then(response => response.json())
+            .then(response => document.getElementById("itemListTable").innerHTML = ("View our Wide Selection of " + response.name))
+            .catch(err => console.error(err));
+    }
     
     function getInv() {
         fetch(cors + 'https://sandbox.dev.clover.com/v3/merchants/' + merchID + '/item_stocks/' + itemID, options)
