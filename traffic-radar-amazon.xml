@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Traffic Menu" description="Gadget for easily showing traffic data" title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <UserPref name="reference-key" display_name="Reference Key" default_value="f85f026c-4879-4aea-b714-4a4b73029051" datatype="string"/>
+  
+  <UserPref name="template" display_name="Graph template" datatype="enum" default_value="classic-template">
+    <EnumValue value="classic-template" display_value="Radar" />
+    <EnumValue value="bar-24-template" display_value="Bar-Timeline" />
+    <EnumValue value="bar-template" display_value="Bar" />
+  </UserPref>
+  
+  <UserPref name="ForeColor" datatype="hidden" default_value="000000" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+body *
+{
+  line-height: 1.2em;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+div#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  color: #000;
+}
+img {
+  width:100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+</style>
+<div class="container">
+  <div id="myData" class="img"></div>
+</div>
+<script>
+  //GET DICTIONARY
+  let req = new XMLHttpRequest();
+  
+  function displayOne(){
+    req.onreadystatechange = () => {
+      if (req.readyState == XMLHttpRequest.DONE) {
+        dict = JSON.parse(req.responseText)
+        console.log(dict);
+        let dictionaryString = JSON.stringify(dict);
+        //document.getElementById("myData").innerHTML = dictionaryString;
+        //DISPLAY DICT AS IMG
+        let img = document.createElement("img");
+        img.setAttribute("class", "img");
+        img.setAttribute("id", "myImg");
+        img.setAttribute("style", "width:100%", "line-height: __UP_row-spacing__px");
+        
+        //DISPLAY DICT VARIABLES
+        img.src = dict.link;
+        
+        //DISPLAY ABOVE IMG IN HTML
+        document.getElementById("myData").innerHTML = img.outerHTML;
+      }
+    };
+    if("__UP_template__"=="classic-template"){
+      req.open("GET", "https://revel.pythonanywhere.com/api/aws_cam_radar_link?cam_id=__UP_reference-key__", true);
+    }else if("__UP_template__"=="bar-24-template"){
+      req.open("GET", "https://revel.pythonanywhere.com/api/aws_last_data_bar?cam_id=__UP_reference-key__", true);
+    }else{
+      req.open("GET", "https://revel.pythonanywhere.com/api/aws_last_data_bar?cam_id=__UP_reference-key__", true);
+    }
+    req.send();
+  }
+  
+  //RUN EVERY 5 MINS
+  displayOne()//so you don't habe to wait fifteen minutes the first time
+  setInterval(displayOne, 1000*60*15);
+  
+  //CONVERT DICTIONARY TO STRING
+  //let dictionaryString = JSON.stringify(dictionary);
+  //DISPLAY DICTIONARYSTRING IN HTML MYDATA
+  //document.getElementById("myData").innerHTML = dictionaryString;
+</script>
+]]>
+</Content>
+</Module>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Toast Menu" description="A menu gadget for displaying information from a Toast POS machine" author="" background="transparent">
+        <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
+        <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="12783thadsAPI" required="true" />
+        <UserPref name="myExtIDPref" display_name="Restaurant External ID" datatype="string" default_value="testing123" required="true" />
+
+        <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
+        <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
+        <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
+        <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
+        <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
+        <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
+
+        <UserPref name="myBoolTablePref" display_name="Display Table Header" datatype="bool" default_value="true" />
+        <UserPref name="myBoolCorsPref" display_name="Enable CORS Proxy" datatype="bool" default_value="false" />
+        
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html"><![CDATA[<style type="text/css">
+
+    body *
+    {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body {
+        background-color: __UP_myBackColorPref__;
+    }
+
+    .header {
+        padding: 30px;
+        text-align: center;
+        background: __UP_myHeadColorPref__;
+        color: __UP_myHeadTextColorPref__;
+        font-size: 20px;
+    }
+
+    #itemList {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+    }
+
+    #IDvalues {
+        text-decoration: underline;
+    }
+
+    .centerTable {
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1rem;
+        font-size: __UP_tableFontSize__em;
+    }
+
+    th,
+    td {
+        padding-bottom: __UP_tableSpacingTop__px;
+        padding-top: __UP_tableSpacingTop__px;
+        padding-left: __UP_tableSpacingSide__px;
+        padding-right: __UP_tableSpacingSide__px;
+        border-bottom: 1pt solid __UP_myBorderColorPref__;
+    }
+
+    .my-style
+    {
+        __UP_myStylePref__;
+    }
+
+</style>
+
+<body>
+    <div class="header" id="headerID">
+        <h1></h1>
+        <p id="IDvalues"></p>
+    </div>
+    <div id="itemList">
+        <div>
+            <table id="itemListList" class="centerTable">
+            </table>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+
+    let myCatID = "__UP_myCatPref__";
+    let myAPIToken = "__UP_myAPIPref__";
+    let myExternalID = "__UP_myExtIDPref__";
+    let cors = "https://corsanywhere.herokuapp.com/";
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            "Toast-Restaurant-External-ID": + ref, 
+            Authorization: 'Bearer ' + myAPIToken
+        }
+    };
+
+    if (__UP_myBoolCorsPref__ === false) {
+        cors = '';
+    }
+    
+    fetch(cors + "https://toast-api-server/config/v2/menuGroups/" + myCatID, options)
+        .then(response => response.json())
+        .then((response) => {
+            for (let i = 0; i < response.items.length; i++) {
+                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.items[i].name + "</td><td>"
+                    + formatter.format((response.items[i].price) / 100) + "</td></tr>");}})
+        .catch(err => console.error(err));
+
+</script>]]></Content>
+</Module>
