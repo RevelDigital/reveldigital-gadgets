@@ -2,7 +2,8 @@
 <Module>
     <ModulePrefs title="Toast Menu" description="A menu gadget for displaying information from a Toast POS machine" author="" background="transparent">
         <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
-        <UserPref name="myAPIPref" display_name="Restaurant External ID" datatype="string" default_value="86260191-7049-15c9-9173-338d9784f65d" required="true" />
+        <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="12783thadsAPI" required="true" />
+        <UserPref name="myExtIDPref" display_name="Restaurant External ID" datatype="string" default_value="testing123" required="true" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -95,6 +96,7 @@
 
     let myCatID = "__UP_myCatPref__";
     let myAPIToken = "__UP_myAPIPref__";
+    let myExternalID = "__UP_myExtIDPref__";
     let cors = "https://corsanywhere.herokuapp.com/";
     
     function sleep(ms) {
@@ -108,7 +110,10 @@
     
     const options = {
         method: 'GET',
-        headers: {"Toast-Restaurant-External-ID": + myAPIToken }
+        headers: {
+            "Toast-Restaurant-External-ID": + ref, 
+            Authorization: 'Bearer ' + myAPIToken
+        }
     };
 
     if (__UP_myBoolCorsPref__ === false) {
@@ -118,9 +123,9 @@
     fetch(cors + "https://toast-api-server/config/v2/menuGroups/" + myCatID, options)
         .then(response => response.json())
         .then((response) => {
-            for (let i = 0; i < response.menus.length; i++) {
-                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.menus[i].name + "</td><td>"
-                    + formatter.format((response.elements[i].price) / 100) + "</td></tr>");}})
+            for (let i = 0; i < response.items.length; i++) {
+                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.items[i].name + "</td><td>"
+                    + formatter.format((response.items[i].price) / 100) + "</td></tr>");}})
         .catch(err => console.error(err));
 
 </script>]]></Content>
