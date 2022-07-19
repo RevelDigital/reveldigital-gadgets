@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Menu App" description="Menu gadget for easily formatting menu board items and pricing." title_url="https://support.reveldigital.com/hc/en-us/articles/360024922291-Menu-Gadget" author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="spreadsheetUrl" display_name="Published spreadsheet URL" datatype="string" />
+		<UserPref name="template" display_name="Menu template" datatype="enum" default_value="classic-template">
+			<EnumValue value="classic-template" display_value="Classic" />
+			<EnumValue value="classic-name-only-template" display_value="Classic (Name only)" />
+			<EnumValue value="classic-no-dots-template" display_value="Classic (No dots)" />
+			<EnumValue value="centered-template" display_value="Centered" />
+			<EnumValue value="modern-template" display_value="Modern" />
+		</UserPref>
+		<UserPref name="row-spacing" display_name="Row spacing" default_value="8" />
+		<UserPref name="name-style" display_name="Item name style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:32px;font-weight:bold;" required="true" />
+		<UserPref name="description-style" display_name="Item description style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+		<UserPref name="price-style" display_name="Item price style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:26px;font-weight:bold;" required="true" />
+		<UserPref name="ForeColor" datatype="hidden" default_value="000000" />
+		<UserPref name="BackColor" datatype="hidden" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/styles.c2d42b5b0a5e42aa.css">
+            <body>
+            	<app-root></app-root>
+			
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/runtime.12793db48a1175bd.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/polyfills.3967f365a754b68b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/main.583159ef939b6c84.js" type="module"></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [
+									gadgets.reveldigital.getFamilyName(prefs.getString("name-style")),
+									gadgets.reveldigital.getFamilyName(prefs.getString("description-style")),
+									gadgets.reveldigital.getFamilyName(prefs.getString("price-style"))
+								]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
