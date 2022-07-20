@@ -43,13 +43,13 @@
 
 			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/styles.d43d2f0df7e4cd00.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/styles.d72c07b43bfcfa4e.css">
             <body>
             	<app-root></app-root>
 			
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/runtime.12793db48a1175bd.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/polyfills.3967f365a754b68b.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/main.f8daa244a3084ecf.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-menu-app/main.35ec6a14885e7cc2.js" type="module"></script>
 
 				<script type="text/javascript">
 
