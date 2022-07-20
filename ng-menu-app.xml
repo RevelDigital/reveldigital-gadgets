@@ -59,8 +59,20 @@
 						WebFont.load({
 							google: {
 								families: [
-									gadgets.reveldigital.getFamilyName(prefs.getString("name-style")),
-									gadgets.reveldigital.getFamilyName(prefs.getString("description-style")),
+									gadgets.reveldigital.getFamilyName(prefs.getString("name-style"))
+								]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [
+									gadgets.reveldigital.getFamilyName(prefs.getString("description-style"))
+								]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [
 									gadgets.reveldigital.getFamilyName(prefs.getString("price-style"))
 								]
 							}
