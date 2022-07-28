@@ -2717,7 +2717,7 @@
     <EnumValue value="44" display_value="44" />
     <EnumValue value="50" display_value="50" />
   </UserPref>
-  <UserPref name="revenueCenterIds1" display_name="Revenue Center 1" datatype="enum" default_value="None">
+  <UserPref name="revenueCenterIds" display_name="Revenue Center 1 new" datatype="enum" default_value="None">
     <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
@@ -2860,12 +2860,15 @@ td.price
   var loadItems = function() {
     const saleItemIds = prefs.getString('saleItemIds').split();
     const divisionIds = prefs.getString('divisionIds').split();
-    let allRev = (__UP_revenueCenterIds1__+__UP_revenueCenterIds2__+__UP_revenueCenterIds3__+__UP_revenueCenterIds4__);
+
+    <!-- let allRev = (__UP_revenueCenterIds1__+__UP_revenueCenterIds2__+__UP_revenueCenterIds3__+__UP_revenueCenterIds4__);
     while (allRev[allRev.length-1] == ",") {
         allRev = allRev.substring(0, allRev.length-1);
     }
     allRev=allRev.replace(",", ", ");
-    const revenueCenterIds = allRev.split();
+    const revenueCenterIds = allRev.split(); -->
+
+    const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     const modeIds = prefs.getString('modeIds').split();
     const filter = {
       saleItemIds,
