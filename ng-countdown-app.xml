@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+    <ModulePrefs title="RevelDigital Count Down/Up App" description="Count down/up from a specified date" author="RevelDigital" background="transparent">
+		<Require feature="reveldigital" />
+		<Require feature="jquery" />
+		<Require feature="webfont" />
+		
+		<UserPref name="startDate" display_name="Start Date" datatype="string" />
+		<UserPref name="direction" display_name="Count Direction" datatype="enum" default_value="up">
+			<EnumValue value="up" display_value="Count up from the specified date" />
+			<EnumValue value="down" display_value="Count down to the specified date" />
+		</UserPref>
+		<UserPref name="separator" display_name="Separator Type" datatype="enum" default_value="alpha">
+			<EnumValue value="alpha" display_value="Single character separator (ie. S, M, H)" />
+			<EnumValue value="colon" display_value="Traditional colon separator" />
+			<EnumValue value="none" display_value="No separator" />
+		</UserPref>
+		<UserPref name="message" display_name="Completion Message" datatype="string" />
+		<UserPref name="body-style" display_name="Counter Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="message-style" display_name="Completion Message Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+
+        <![CDATA[
+            <style type="text/css">
+                html
+				{
+                    width: __UP_rdW__px;
+                    height: __UP_rdH__px;
+                }
+				body, app-root
+				{
+					background: transparent;
+					width: __UP_rdW__px;
+					height: __UP_rdH__px;
+					overflow: hidden;
+					background-color: #__UP_BackColor__;
+				}
+            </style>
+
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/styles.a01ab63538cdfe23.css">
+            <body>
+            	<app-root></app-root>
+			
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/runtime.0d2c8ae9625aae65.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/polyfills.9efcb93f11d23700.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/main.0455c0db05e4287b.js" type="module"></script>
+
+				<script type="text/javascript">
+
+					var prefs = new gadgets.Prefs();
+					
+					function load() {
+						WebFont.load({
+							google: {
+								families: [
+									gadgets.reveldigital.getFamilyName(prefs.getString("body-style"))
+								]
+							}
+						});
+						WebFont.load({
+							google: {
+								families: [
+									gadgets.reveldigital.getFamilyName(prefs.getString("message-style"))
+								]
+							}
+						});
+					}
+					gadgets.util.registerOnLoadHandler(load);
+					
+				</script>
+			</body>
+        ]]>
+    </Content>
+</Module>
