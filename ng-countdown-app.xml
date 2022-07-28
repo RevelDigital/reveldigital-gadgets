@@ -12,8 +12,8 @@
 		</UserPref>
 		<UserPref name="separator" display_name="Separator Type" datatype="enum" default_value="alpha">
 			<EnumValue value="alpha" display_value="Single character separator (ie. S, M, H)" />
-			<EnumValue value="colon" display_value="Traditional colon separator" />
-			<EnumValue value="none" display_value="No separator" />
+			<EnumValue value="colon" display_value="Colon separator" />
+			<EnumValue value="space" display_value="No separator" />
 		</UserPref>
 		<UserPref name="message" display_name="Completion Message" datatype="string" />
 		<UserPref name="body-style" display_name="Counter Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -48,7 +48,7 @@
 			
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/runtime.0d2c8ae9625aae65.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/polyfills.9efcb93f11d23700.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/main.0455c0db05e4287b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/main.8bb3360007f84fd6.js" type="module"></script>
 
 				<script type="text/javascript">
 
