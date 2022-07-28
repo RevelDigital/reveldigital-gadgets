@@ -2669,7 +2669,8 @@
     <EnumValue value='2663' display_value='2663' />
     <EnumValue value='2664' display_value='2664' />
   </UserPref>
-  <UserPref name="divisionIds" display_name="Divsions" datatype="enum">
+  <UserPref name="divisionIds" display_name="Divsions" datatype="enum" default_value="None">
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -2716,7 +2717,8 @@
     <EnumValue value="44" display_value="44" />
     <EnumValue value="50" display_value="50" />
   </UserPref>
-  <UserPref name="revenueCenterIds1" display_name="Revenue Center 1" datatype="enum">
+  <UserPref name="revenueCenterIds1" display_name="Revenue Center 1" datatype="enum" default_value="None">
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -2725,7 +2727,8 @@
     <EnumValue value="6" display_value="6" />
     <EnumValue value="7" display_value="7" />
   </UserPref>
-  <UserPref name="revenueCenterIds2" display_name="Revenue Center 2" datatype="enum">
+  <UserPref name="revenueCenterIds2" display_name="Revenue Center 2" datatype="enum" default_value="None">
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -2734,7 +2737,8 @@
     <EnumValue value="6" display_value="6" />
     <EnumValue value="7" display_value="7" />
   </UserPref>
-  <UserPref name="revenueCenterIds3" display_name="Revenue Center 3" datatype="enum">
+  <UserPref name="revenueCenterIds3" display_name="Revenue Center 3" datatype="enum" default_value="None">
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -2743,7 +2747,8 @@
     <EnumValue value="6" display_value="6" />
     <EnumValue value="7" display_value="7" />
   </UserPref>
-  <UserPref name="revenueCenterIds4" display_name="Revenue Center 4" datatype="enum">
+  <UserPref name="revenueCenterIds4" display_name="Revenue Center 4" datatype="enum" default_value="None">
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
