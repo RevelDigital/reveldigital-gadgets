@@ -5336,7 +5336,7 @@
     <EnumValue value='2664' display_value='2664' />
   </UserPref>
   <UserPref name="divisionIds" display_name="Divsions" datatype="enum" default_value="None">
-    <EnumValue value="" display_value="None" />
+    <EnumValue value="null" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -5384,7 +5384,7 @@
     <EnumValue value="50" display_value="50" />
   </UserPref>
   <UserPref name="revenueCenterIds" display_name="Revenue Center" datatype="enum" default_value="None">
-    <EnumValue value="" display_value="None" />
+    <EnumValue value="null" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -5394,7 +5394,7 @@
     <EnumValue value="7" display_value="7" />
   </UserPref>
   <UserPref name="modeIds" display_name="Modes" datatype="enum" default_value="None">
-    <EnumValue value="" display_value="None" />
+    <EnumValue value="null" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
