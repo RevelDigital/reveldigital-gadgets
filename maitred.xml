@@ -5336,7 +5336,7 @@
     <EnumValue value='2664' display_value='2664' />
   </UserPref>
   <UserPref name="divisionIds" display_name="Divsions" datatype="enum" default_value="None">
-    <EnumValue value="null" display_value="None" />
+    <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
     <EnumValue value="2" display_value="2" />
     <EnumValue value="3" display_value="3" />
@@ -5507,7 +5507,8 @@ td.price
     allSale = allSale.replace(",", ", ");
     console.log(allSale);
     const saleItemIds = allSale.split();
-    const divisionIds = __UP_divisionIds__;
+    const divisionIds = __UP_divisionIds__.split();
+    console.log(__UP_divisionIds__.split());
     const revenueCenterIds = __UP_revenueCenterIds__;
     const modeIds = __UP_modeIds__;
     const filter = {
