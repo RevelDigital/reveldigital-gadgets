@@ -5502,8 +5502,8 @@ td.price
     $('#tableContainer').html(tableTemplate({ array: items }));
   }
   var loadItems = function() {
-    let sale1 = __UP_saleItemIds__.toString() + ",";
-    let sale2 = __UP_saleItemIds1__.toString() + ",";
+    let sale1 = "__UP_saleItemIds__" + ",";
+    let sale2 = "__UP_saleItemIds1__" + ",";
     let allSale = (sale1 + sale2);
     while (allSale[allSale.length - 1] == ",") {
        allSale = allSale.substring(0, allSale.length - 1);
