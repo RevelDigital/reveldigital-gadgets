@@ -5507,10 +5507,12 @@ td.price
     allSale = allSale.replace(",", ", ");
     console.log(allSale);
     const saleItemIds = allSale.split();
-    const divisionIds = __UP_divisionIds__.split();
-    console.log(__UP_divisionIds__.split());
-    const revenueCenterIds = __UP_revenueCenterIds__;
-    const modeIds = __UP_modeIds__;
+    const divisionIds = prefs.getString('divisionIds').split();
+    console.log(divisionIds);
+    const revenueCenterIds = prefs.getString('revenueCenterIds').split();
+    console.log(revenueCenterIds);
+    const modeIds = prefs.getString('modeIds').split();
+    console.log(modeIds);
     const filter = {
       saleItemIds,
       divisionIds,
