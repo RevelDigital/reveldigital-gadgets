@@ -5500,7 +5500,9 @@ td.price
     $('#tableContainer').html(tableTemplate({ array: items }));
   }
   var loadItems = function() {
-    let allSale = (__UP_saleItemIds__ + __UP_saleItemIds1__);
+    let sale1 = str(__UP_saleItemIds__) + ",";
+    let sale2 = str(__UP_saleItemIds1__) + ",";
+    let allSale = (sale1 + sale2);
     while (allSale[allSale.length - 1] == ",") {
        allSale = allSale.substring(0, allSale.length - 1);
     }
