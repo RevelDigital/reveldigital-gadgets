@@ -5582,7 +5582,7 @@ td.price
 
     const saleItemIds = getSaleItems().toString().split();
     console.log(saleItemIds);
-    const divisionIds = getDiv()toString().split();
+    const divisionIds = getDiv().toString().split();
     console.log(divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     console.log(revenueCenterIds);
