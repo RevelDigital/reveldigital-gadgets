@@ -5552,7 +5552,7 @@ td.price
   }
   var loadItems = function() {
     
-    function onSuccess() {
+    function getSaleItems() {
       if ("__UP_saleItemIds1__".length === 0) {
         let allSale = "__UP_saleItemIds__";
         return allSale;
@@ -5566,18 +5566,23 @@ td.price
       }
     }
 
-    let div1 = "__UP_divisionIds__" + ",";
-    let div2 = "__UP_divisionIds2__" + ",";
-    let allDiv = (div1 + div2);
-    while (allDiv[allDiv.length - 1] == ",") {
-       allDiv = allDiv.substring(0, allDiv.length - 1);
+    function getDiv() {
+      if ("__UP_saleItemIds1__".length === 0) {
+        let allDiv = "__UP_divisionIds__";
+        return allDiv;
+      }
+      else if ("__UP_saleItemIds__".length === 0) {
+        let allDiv = "__UP_divisionIds2__";
+        return allDiv;
+      } else {
+        let allDiv = "__UP_divisionIds__".concat(", ", "__UP_divisionIds2__");
+        return allDiv;
+      }
     }
-    allDiv = allDiv.replace(",", ", ");
 
-    console.log(onSuccess());
-    const saleItemIds = onSuccess().split();
+    const saleItemIds = getSaleItems();
     console.log(saleItemIds);
-    const divisionIds = allDiv.split();
+    const divisionIds = getDiv();
     console.log(divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     console.log(revenueCenterIds);
