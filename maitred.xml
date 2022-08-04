@@ -5559,7 +5559,7 @@ td.price
   var loadItems = function() {
     
     let sale1 = "__UP_saleItemIds__";
-    if ("__UP_saleItemIds1__" == "") {
+    if ("__UP_saleItemIds1__".length === 0) {
       let allSale = sale1;
     } else {
       let allSale = sale1.concat(", ", "__UP_saleItemIds1__");
