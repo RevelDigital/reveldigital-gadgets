@@ -5580,9 +5580,9 @@ td.price
       }
     }
 
-    const saleItemIds = getSaleItems();
+    const saleItemIds = getSaleItems().split();
     console.log(saleItemIds);
-    const divisionIds = getDiv();
+    const divisionIds = getDiv().split();
     console.log(divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     console.log(revenueCenterIds);
