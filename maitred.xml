@@ -5521,10 +5521,14 @@ td.price
   }
   gadgets.util.registerOnLoadHandler(load);
 
+  if (__UP_myBoolHeadPref__ === false) {
+    let table = document.querySelector('table');
+    table.deleteTHead();
+}
 </script>
 <script type="text/x-handlebars-template" id="tableTemplate">
-  <table>
-    <thead id="itemTable">
+  <table id="itemTable">
+    <thead>
       <tr>
         <td>Description</td>
         <td>Price ($)</td>
@@ -5542,11 +5546,6 @@ td.price
 </script>
 <script type="text/javascript">
 
-  if (__UP_myBoolHeadPref__ === false) {
-    const element = document.getElementById('itemTable');
-    element.remove();
-}
-
   var generateTable = function(items) {
   
     $('#tableContainer').empty();
@@ -5558,10 +5557,13 @@ td.price
     $('#tableContainer').html(tableTemplate({ array: items }));
   }
   var loadItems = function() {
-    let sale1 = "__UP_saleItemIds__";
-    if (__UP_saleItemIds1__ == "") {
-      let allSale = sale1.concat(", ", "__UP_saleItemIds1__");
+    let sale1 = "__UP_saleItemIds__" + ",";
+    let sale2 = "__UP_saleItemIds1__" + ",";
+    let allSale = (sale1 + sale2);
+    while (allSale[allSale.length - 1] == ",") {
+       allSale = allSale.substring(0, allSale.length - 1);
     }
+    allSale = allSale.replace(",", ", ");
 
     let div1 = "__UP_divisionIds__" + ",";
     let div2 = "__UP_divisionIds2__" + ",";
