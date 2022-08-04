@@ -5385,6 +5385,54 @@
     <EnumValue value="44" display_value="44" />
     <EnumValue value="50" display_value="50" />
   </UserPref>
+  <UserPref name="divisionIds2" display_name="Divsions 2" datatype="enum" default_value="">
+    <EnumValue value="" display_value="None" />
+    <EnumValue value="1" display_value="1" />
+    <EnumValue value="2" display_value="2" />
+    <EnumValue value="3" display_value="3" />
+    <EnumValue value="4" display_value="4" />
+    <EnumValue value="5" display_value="5" />
+    <EnumValue value="6" display_value="6" />
+    <EnumValue value="7" display_value="7" />
+    <EnumValue value="8" display_value="8" />
+    <EnumValue value="9" display_value="9" />
+    <EnumValue value="10" display_value="10" />
+    <EnumValue value="11" display_value="11" />
+    <EnumValue value="12" display_value="12" />
+    <EnumValue value="13" display_value="13" />
+    <EnumValue value="14" display_value="14" />
+    <EnumValue value="15" display_value="15" />
+    <EnumValue value="16" display_value="16" />
+    <EnumValue value="17" display_value="17" />
+    <EnumValue value="18" display_value="18" />
+    <EnumValue value="19" display_value="19" />
+    <EnumValue value="20" display_value="20" />
+    <EnumValue value="21" display_value="21" />
+    <EnumValue value="22" display_value="22" />
+    <EnumValue value="23" display_value="23" />
+    <EnumValue value="24" display_value="24" />
+    <EnumValue value="25" display_value="25" />
+    <EnumValue value="26" display_value="26" />
+    <EnumValue value="27" display_value="27" />
+    <EnumValue value="28" display_value="28" />
+    <EnumValue value="29" display_value="29" />
+    <EnumValue value="30" display_value="30" />
+    <EnumValue value="31" display_value="31" />
+    <EnumValue value="32" display_value="32" />
+    <EnumValue value="33" display_value="33" />
+    <EnumValue value="34" display_value="34" />
+    <EnumValue value="35" display_value="35" />
+    <EnumValue value="36" display_value="36" />
+    <EnumValue value="37" display_value="37" />
+    <EnumValue value="38" display_value="38" />
+    <EnumValue value="39" display_value="39" />
+    <EnumValue value="40" display_value="40" />
+    <EnumValue value="41" display_value="41" />
+    <EnumValue value="42" display_value="42" />
+    <EnumValue value="43" display_value="43" />
+    <EnumValue value="44" display_value="44" />
+    <EnumValue value="50" display_value="50" />
+  </UserPref>
   <UserPref name="revenueCenterIds" display_name="Revenue Center" datatype="enum" default_value="">
     <EnumValue value="" display_value="None" />
     <EnumValue value="1" display_value="1" />
@@ -5509,9 +5557,19 @@ td.price
        allSale = allSale.substring(0, allSale.length - 1);
     }
     allSale = allSale.replace(",", ", ");
+
+    let div1 = "__UP_divisionIds__" + ",";
+    let div2 = "__UP_divisionIds2__" + ",";
+    let allDiv = (div1 + div2);
+    while (allDiv[allDiv.length - 1] == ",") {
+       allDiv = allDiv.substring(0, allDiv.length - 1);
+    }
+    allDiv = allDiv.replace(",", ", ");
+
     console.log(allSale);
     const saleItemIds = allSale.split();
-    const divisionIds = prefs.getString('divisionIds').split();
+    console.log(saleItemIds);
+    const divisionIds = allDiv.split();
     console.log(divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     console.log(revenueCenterIds);
