@@ -5522,9 +5522,9 @@ td.price
   gadgets.util.registerOnLoadHandler(load);
 </script>
 <script type="text/x-handlebars-template" id="tableTemplate">
-  <table>
+  <table id="itemTable">
     <thead>
-      <tr id="desPrice">
+      <tr>
         <td>Description</td>
         <td>Price ($)</td>
       </tr>
@@ -5542,8 +5542,7 @@ td.price
 <script type="text/javascript">
 
   if (__UP_myBoolHeadPref__ === false) {
-    const element = document.getElementById('desPrice');
-    element.remove();
+    document.getElementById("itemTable").deleteTHead();
 }
 
   var generateTable = function(items) {
