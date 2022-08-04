@@ -5567,11 +5567,11 @@ td.price
     }
 
     function getDiv() {
-      if ("__UP_saleItemIds1__".length === 0) {
+      if ("__UP_divisionIds2__".length === 0) {
         let allDiv = "__UP_divisionIds__";
         return allDiv;
       }
-      else if ("__UP_saleItemIds__".length === 0) {
+      else if ("__UP_divisionIds__".length === 0) {
         let allDiv = "__UP_divisionIds2__";
         return allDiv;
       } else {
