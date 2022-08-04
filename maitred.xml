@@ -5520,6 +5520,11 @@ td.price
     setInterval(loadItems, parseInt(prefs.getString("updateInterval")) * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
+
+  if (__UP_myBoolHeadPref__ === false) {
+    let table = document.querySelector('table');
+    table.deleteTHead();
+}
 </script>
 <script type="text/x-handlebars-template" id="tableTemplate">
   <table id="itemTable">
@@ -5540,10 +5545,6 @@ td.price
   </table>
 </script>
 <script type="text/javascript">
-
-  if (__UP_myBoolHeadPref__ === false) {
-    document.getElementById("itemTable").deleteTHead();
-}
 
   var generateTable = function(items) {
   
