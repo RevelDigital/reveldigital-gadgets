@@ -5558,11 +5558,15 @@ td.price
   }
   var loadItems = function() {
     
-    let sale1 = "__UP_saleItemIds__";
-    if ("__UP_saleItemIds1__".length === 0) {
-      let allSale = sale1;
-    } else {
-      let allSale = sale1.concat(", ", "__UP_saleItemIds1__");
+    function onSuccess() {
+      let sale1 = "__UP_saleItemIds__";
+      if ("__UP_saleItemIds1__".length === 0) {
+        let allSale = sale1;
+        return allSale;
+      } else {
+        let allSale = sale1.concat(", ", "__UP_saleItemIds1__");
+        return allSale;
+      }
     }
 
     let div1 = "__UP_divisionIds__" + ",";
@@ -5573,8 +5577,8 @@ td.price
     }
     allDiv = allDiv.replace(",", ", ");
 
-    console.log(allSale);
-    const saleItemIds = allSale.split();
+    console.log(onSuccess());
+    const saleItemIds = onSuccess().split();
     console.log(saleItemIds);
     const divisionIds = allDiv.split();
     console.log(divisionIds);
