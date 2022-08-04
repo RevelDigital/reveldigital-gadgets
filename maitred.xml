@@ -5450,7 +5450,6 @@
     <EnumValue value="3" display_value="3" />
     <EnumValue value="4" display_value="4" />
   </UserPref>
-  <UserPref name="myBoolHeadPref" display_name="Display Headers" datatype="bool" default_value="false" />
   <UserPref name="updateInterval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -5520,14 +5519,9 @@ td.price
     setInterval(loadItems, parseInt(prefs.getString("updateInterval")) * 1000);
   }
   gadgets.util.registerOnLoadHandler(load);
-
-  if (__UP_myBoolHeadPref__ === false) {
-    let table = document.querySelector('table');
-    table.deleteTHead();
-}
 </script>
 <script type="text/x-handlebars-template" id="tableTemplate">
-  <table id="itemTable">
+  <table>
     <thead>
       <tr>
         <td>Description</td>
@@ -5559,12 +5553,15 @@ td.price
   var loadItems = function() {
     
     function onSuccess() {
-      let sale1 = "__UP_saleItemIds__";
       if ("__UP_saleItemIds1__".length === 0) {
-        let allSale = sale1;
+        let allSale = "__UP_saleItemIds__";
+        return allSale;
+      }
+      else if ("__UP_saleItemIds__".length === 0) {
+        let allSale = "__UP_saleItemIds1__";
         return allSale;
       } else {
-        let allSale = sale1.concat(", ", "__UP_saleItemIds1__");
+        let allSale = "__UP_saleItemIds__".concat(", ", "__UP_saleItemIds1__");
         return allSale;
       }
     }
