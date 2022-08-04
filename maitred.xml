@@ -5450,6 +5450,7 @@
     <EnumValue value="3" display_value="3" />
     <EnumValue value="4" display_value="4" />
   </UserPref>
+  <UserPref name="myBoolHeadPref" display_name="Display Headers" datatype="bool" default_value="true" />
   <UserPref name="updateInterval" display_name="Interval between data checks (seconds)" datatype="string" default_value="300" />
   <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -5524,8 +5525,8 @@ td.price
   <table>
     <thead>
       <tr>
-        <td>Description</td>
-        <td>Price ($)</td>
+        <td id="desHead">Description</td>
+        <td id="priHead">Price ($)</td>
       </tr>
     </thead>
     <tbody>
@@ -5539,6 +5540,13 @@ td.price
   </table>
 </script>
 <script type="text/javascript">
+
+  if (__UP_myBoolHeadPref__ === false) {
+    const element = document.getElementById('desHead');
+    const element2 = document.getElementById('priHead');
+    element.innerHTML = "";
+    element2.innerHTML = "";
+}
 
   var generateTable = function(items) {
   
