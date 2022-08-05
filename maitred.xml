@@ -5554,7 +5554,9 @@ td.price
           "<td>{{this.desc}}</td>" +
           "<td>${{this.price}}</td>" +
         "</tr>" +
-      "</tbody>" +;
+        "{{/each}}" +
+      "</tbody>" +
+    "</table>";
     document.getElementById("tableTemplate").innerHTML = HTML;
   }
 
@@ -5598,7 +5600,9 @@ td.price
       }
     }
 
-    const saleItemIds = getSaleItems().split();
+
+    let temp = "5, 4";
+    const saleItemIds = temp;
     console.log(saleItemIds);
     const divisionIds = getDiv().split();
     console.log(divisionIds);
