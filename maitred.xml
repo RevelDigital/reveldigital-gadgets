@@ -5524,9 +5524,9 @@ td.price
 <script type="text/x-handlebars-template" id="tableTemplate">
   <table>
     <thead>
-      <tr>
-        <td id="desHead">Description</td>
-        <td id="priHead">Price ($)</td>
+      <tr id="thead">
+        <td>Description</td>
+        <td>Price ($)</td>
       </tr>
     </thead>
     <tbody>
@@ -5542,10 +5542,8 @@ td.price
 <script type="text/javascript">
 
   if (__UP_myBoolHeadPref__ === false) {
-    const element = document.getElementById('desHead');
-    const element2 = document.getElementById('priHead');
-    element.innerHTML = "";
-    element2.innerHTML = "";
+    var tb = document.getElementById("thead");
+    tb.style.display = "none";
 }
 
   var generateTable = function(items) {
