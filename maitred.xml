@@ -5521,13 +5521,12 @@ td.price
   }
   gadgets.util.registerOnLoadHandler(load);
 </script>
-<script type="text/x-handlebars-template" id="tableTemplate">
-  <script language="JavaScript">    
-    if (__UP_myBoolHeadPref__ === false) {
-      var tb = document.getElementsByClassName("thead");
-      tb.style.display = "none";
-    }    
-</script> 
+<script type="text/x-handlebars-template" id="tableTemplate">  
+  if (__UP_myBoolHeadPref__ === false) {
+    var tb = document.getElementsByClassName("thead");
+    tb.style.display = "none";
+  }    
+
   <table>
     <thead>
       <tr class="thead">
