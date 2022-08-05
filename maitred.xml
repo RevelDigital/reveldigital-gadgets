@@ -5550,12 +5550,13 @@ td.price
         "</tr>" +
       "</thead>" +
       "<tbody>" +
+        "{{#each array}}" +
         "<tr>" +
           "<td>{{this.desc}}</td>" +
           "<td>${{this.price}}</td>" +
         "</tr>" +
-        "{{/each}}" +
-      "</tbody>" +
+      "{{/each}}" +
+    "</tbody>" +
     "</table>";
     document.getElementById("tableTemplate").innerHTML = HTML;
   }
@@ -5601,8 +5602,7 @@ td.price
     }
 
 
-    let temp = "5, 4";
-    const saleItemIds = temp;
+    const saleItemIds = getSaleItems().split();
     console.log(saleItemIds);
     const divisionIds = getDiv().split();
     console.log(divisionIds);
