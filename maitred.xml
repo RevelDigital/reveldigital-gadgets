@@ -5582,7 +5582,7 @@ td.price
         let allSale = "__UP_saleItemIds1__";
         return allSale;
       } else {
-        let allSale = "__UP_saleItemIds__".concat(", ", "__UP_saleItemIds1__");
+        let allSale = "__UP_saleItemIds__".concat(",", "__UP_saleItemIds1__");
         return allSale;
       }
     }
@@ -5596,7 +5596,7 @@ td.price
         let allDiv = "__UP_divisionIds2__";
         return allDiv;
       } else {
-        let allDiv = "__UP_divisionIds__".concat(", ", "__UP_divisionIds2__");
+        let allDiv = "__UP_divisionIds__".concat(",", "__UP_divisionIds2__");
         return allDiv;
       }
     }
