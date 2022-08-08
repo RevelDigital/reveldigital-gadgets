@@ -5571,7 +5571,7 @@ td.price
     
     $('#tableContainer').html(tableTemplate({ array: items }));
   }
-  
+
   var loadItems = function() {
     
     function getSaleItems() {
@@ -5602,9 +5602,11 @@ td.price
       }
     }
 
-    const saleItemIds = getSaleItems().split(',');
+    console.log("Sale item(s) selected: " + allSale);
+    console.log("Division(s) selected: " + allDiv);
+    const saleItemIds = getSaleItems();
     console.log(saleItemIds);
-    const divisionIds = getDiv().split(',');
+    const divisionIds = getDiv();
     console.log(divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
     console.log(revenueCenterIds);
