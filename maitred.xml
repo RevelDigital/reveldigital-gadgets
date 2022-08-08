@@ -5602,8 +5602,8 @@ td.price
       }
     }
 
-    console.log("Sale item(s) selected: " + allSale);
-    console.log("Division(s) selected: " + allDiv);
+    console.log("Sale item(s) selected: " + getSaleItems());
+    console.log("Division(s) selected: " + getDiv());
     const saleItemIds = getSaleItems();
     console.log(saleItemIds);
     const divisionIds = getDiv();
