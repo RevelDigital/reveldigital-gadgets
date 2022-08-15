@@ -119,8 +119,9 @@
 			<EnumValue display_value="Science &amp; Technology - WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 			<EnumValue display_value="Science &amp; Technology - NASA Image Of The Day" value="http://www.nasa.gov/rss/dyn/image_of_the_day.rss" />
 
-			<EnumValue display_value="Miscellaneous - WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
-			<EnumValue display_value="Miscellaneous - Funny Or Die" value="http://www.funnyordie.com/videos.rss" />
+			<EnumValue display_value="Miscellaneous - Cracked" value="http://feeds.feedburner.com/CrackedRSS" />
+			<EnumValue display_value="Miscellaneous - The Chive" value="https://thechive.com/feed/" />
+			<EnumValue display_value="Miscellaneous - Love This Pic" value="https://www.lovethispic.com/rss/Humor" />
 			<EnumValue display_value="Miscellaneous - Kotaku Gamer News" value="http://kotaku.com/vip.xml" />
 			<EnumValue display_value="Miscellaneous - Smithsonian, History" value="https://www.smithsonianmag.com/rss/history/" />
 			<EnumValue display_value="Miscellaneous - Smithsonian Top Stories" value="https://www.smithsonianmag.com/rss/articles/" />
@@ -130,6 +131,7 @@
 			<EnumValue display_value="Miscellaneous - CNN 10" value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
 			<EnumValue display_value="Miscellaneous - CNN Most Recent" value="http://rss.cnn.com/rss/cnn_latest.rss" />
 			<EnumValue display_value="Miscellaneous - CNN Underscored" value="http://rss.cnn.com/cnn-underscored" />
+			<EnumValue display_value="Miscellaneous - WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 		</UserPref>
 		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL (use with ''Custom RSS Option'' from dropdown)" datatype="string" />
 		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
