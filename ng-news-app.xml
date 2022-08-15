@@ -41,7 +41,6 @@
 			<EnumValue display_value="Sports - BuzzFeed Sports" value="http://www.buzzfeed.com/sports.xml" />
 			<EnumValue display_value="Sports - Fox News - Sports" value="http://feeds.foxnews.com/foxnews/sports" />
 			<EnumValue display_value="Sports - SB Nation" value="http://feeds.sbnation.com/rss/streams" />
-			<EnumValue display_value="Sports - SB Nation" value="http://feeds.sbnation.com/rss/streams" />
 			<EnumValue display_value="Sports - ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
 			<EnumValue display_value="Sports - ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
 			<EnumValue display_value="Sports - ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
