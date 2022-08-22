@@ -5502,8 +5502,8 @@ td.price
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script>
   // compile the template
-  var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
-  // execute the compiled template and print the output to the console
+  var template = Handlebars.compile("Handlebars {{doesWhat}} (and has compiled successfully)");
+  // execute the compiled template
   console.log(template({ doesWhat: "rocks!" }));
 </script>
 <div id="container">
