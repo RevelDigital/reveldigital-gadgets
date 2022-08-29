@@ -5503,7 +5503,6 @@ td.price
 <script>
   // compile the template
   var template = Handlebars.compile("Handlebars {{doesWhat}} (and has compiled successfully)");
-  // execute the compiled template
   console.log(template({ doesWhat: "rocks!" }));
 </script>
 <div id="container">
@@ -5542,7 +5541,7 @@ td.price
 <script type="text/javascript">
 
   if (__UP_myBoolHeadPref__ === false) {
-    var HTML = "<table>" +
+    var updateHTML = "<table>" +
       "<thead>" +
         "<tr class=\"thead\">" +
           "<td></td>" +
@@ -5558,7 +5557,7 @@ td.price
       "{{/each}}" +
     "</tbody>" +
     "</table>";
-    document.getElementById("tableTemplate").innerHTML = HTML;
+    document.getElementById("tableTemplate").innerHTML = updateHTML;
   }
 
   var generateTable = function(items) {
@@ -5603,13 +5602,13 @@ td.price
     }
 
     const saleItemIds = getSaleItems();
-    console.log(saleItemIds);
+    console.log("Sale items selected: " + saleItemIds);
     const divisionIds = getDiv();
-    console.log(divisionIds);
+    console.log("Divisions selected: " + divisionIds);
     const revenueCenterIds = prefs.getString('revenueCenterIds').split();
-    console.log(revenueCenterIds);
+    console.log("Revenue Centers selected: " + revenueCenterIds);
     const modeIds = prefs.getString('modeIds').split();
-    console.log(modeIds);
+    console.log("Modes selected: " + modeIds);
     const filter = {
       saleItemIds,
       divisionIds,
