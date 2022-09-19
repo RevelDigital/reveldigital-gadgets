@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Veloce POS software" author="" background="transparent">
+        <UserPref name="myItemPref" display_name="Item ID*" datatype="string" default_value="" required="false" />
+        <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
+
+        <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
+        <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
+        <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="updateInterval" display_name="Update Interval (in minutes)" datatype="string" default_value="5" required="true" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
+        <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
+        <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
+        <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
+        <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
+        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
+
+        <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+        
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html"><![CDATA[<style type="text/css">
+
+    body *
+    {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body {
+        background-color: __UP_myBackColorPref__;
+    }
+
+    .header {
+        padding: 30px;
+        text-align: center;
+        background: __UP_myHeadColorPref__;
+        color: __UP_myHeadTextColorPref__;
+        font-size: 20px;
+    }
+
+    #priceStock {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+        font-size: __UP_stockFontSize__em;
+    }
+
+    #itemList {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+    }
+
+    .centerTable {
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1rem;
+        font-size: __UP_tableFontSize__em;
+    }
+
+    th,
+    td {
+        padding-bottom: __UP_tableSpacingTop__px;
+        padding-top: __UP_tableSpacingTop__px;
+        padding-left: __UP_tableSpacingSide__px;
+        padding-right: __UP_tableSpacingSide__px;
+        border-bottom: 1pt solid __UP_myBorderColorPref__;
+    }
+
+    .my-style
+    {
+        __UP_myStylePref__;
+    }
+
+</style>
+
+<body>
+    <div class="header" id="headerID">
+        <h1>__UP_myTitlePref__</h1>
+    </div>
+    <div id="itemList">
+        <div>
+            <table id="itemListList" class="centerTable">
+            </table>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+
+    let itemID = "__UP_myItemPref__";
+    let myAPIToken = "__UP_myAPIPref__";
+    let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    const optionsItems = {
+        headers: { Authorization: 'Bearer ' + myAPIToken }
+    };
+
+    if (__UP_myBoolHeadPref__ === false) {
+        const element = document.getElementById('headerID');
+        element.remove();
+    }
+    
+    axios.get('https://api.posveloce.com/items', optionsItems)
+        .then((response) => {
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " ") {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                        + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+        .catch(err => console.error(err));
+    
+    sleep(1000);
+    
+    function getInv() {
+    
+        axios.get('https://api.posveloce.com/items', optionsItems)
+        .then((response) => {
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " ") {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                        + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+        .catch(err => console.error(err));
+
+    }
+
+    if (__UP_myBoolSpecialPref__) { 
+        setInterval(function () {
+            getInv();
+            console.log("Item count has been automatically updated");
+        }, myUpdateInterval);
+    }
+
+</script>]]></Content>
+</Module>
