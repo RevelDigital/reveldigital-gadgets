@@ -130,19 +130,19 @@
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
     
-    sleep(1000);
+    sleep(2000);
 
-    var arr = $("#itemListList tr");
-
-    $.each(arr, function(i, item) {
-        var currIndex = $("#itemListList tr").eq(i);
-        var matchText = currIndex.children("td").first().text();
-        $(this).nextAll().each(function(i, inItem) {
-            if(matchText===$(this).children("td").first().text()) {
-                $(this).remove();
-            }
-        });
-    });
+    var seen = {};
+    table = document.getElementById("itemListList");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (seen[td.textContent]) {
+            tr[i].style.display = "none";
+        } else {
+            seen[td.textContent]=true;
+        }
+    }
     
     function getInv() {
     
@@ -153,6 +153,20 @@
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
+
+        sleep(2000);
+
+        var seen = {};
+        table = document.getElementById("itemListList");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (seen[td.textContent]) {
+                tr[i].style.display = "none";
+            } else {
+                seen[td.textContent]=true;
+            }
+        }
 
     }
 
