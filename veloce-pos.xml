@@ -129,7 +129,7 @@
     axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " " && containsAnyLetters(response.data[i].name) == true) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
@@ -153,7 +153,7 @@
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " ") {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
