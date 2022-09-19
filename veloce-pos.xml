@@ -14,7 +14,7 @@
         <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
         <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
         <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
-        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Clover Menu via API!" required="true" />
+        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Veloce Menu via API!" required="true" />
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         
@@ -130,6 +130,18 @@
         .catch(err => console.error(err));
     
     sleep(1000);
+
+    var arr = $("#itemListList tr");
+
+    $.each(arr, function(i, item) {
+        var currIndex = $("#itemListList tr").eq(i);
+        var matchText = currIndex.children("td").first().text();
+        $(this).nextAll().each(function(i, inItem) {
+            if(matchText===$(this).children("td").first().text()) {
+                $(this).remove();
+            }
+        });
+    });
     
     function getInv() {
     
@@ -143,7 +155,7 @@
 
     }
 
-    if (__UP_myBoolSpecialPref__) { 
+    if (myUpdateInterval > 1000) { 
         setInterval(function () {
             getInv();
             console.log("Item count has been automatically updated");
