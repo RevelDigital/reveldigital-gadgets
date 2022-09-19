@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Veloce POS software" author="" background="transparent">
-        <UserPref name="myItemPref" display_name="Item ID*" datatype="string" default_value="" required="false" />
+        <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="" required="false" />
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
@@ -121,16 +121,20 @@
         const element = document.getElementById('headerID');
         element.remove();
     }
+
+    function containsAnyLetters(str) {
+        return /[a-zA-Z]/.test(str);
+      }
     
     axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " ") {
+                if (response.data[i].name != "" && response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && response.data[i].name != " " && containsAnyLetters(response.data[i].name) == true) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
     
-    sleep(2000);
+    sleep(5000);
 
     var seen = {};
     table = document.getElementById("itemListList");
