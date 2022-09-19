@@ -17,6 +17,7 @@
         <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Veloce Menu via API!" required="true" />
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+        <UserPref name="myBoolZeroPref" display_name="Hide $0 Items" datatype="bool" default_value="true" />
         
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
@@ -147,6 +148,18 @@
             seen[td.textContent]=true;
         }
     }
+
+    sleep(2000);
+
+    if (__UP_myBoolZeroPref__) {
+        $('#itemListList tr').each(function() {
+            $(this).find('td')..each(function() {
+               if (this.textContent.includes('$0.00')) {
+                   $(this).parent().hide();
+               }
+            });
+        });
+    }
     
     function getInv() {
     
@@ -172,7 +185,19 @@
             }
         }
 
+        if (__UP_myBoolZeroPref__) {
+            $('#itemListList tr').each(function() {
+                $(this).find('td')..each(function() {
+                   if (this.textContent.includes('$0.00')) {
+                       $(this).parent().hide();
+                   }
+                });
+            });
+        }
+
     }
+
+    
 
     if (myUpdateInterval > 1000) { 
         setInterval(function () {
