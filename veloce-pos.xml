@@ -106,7 +106,7 @@
     let itemID = "__UP_myItemPref__";
     let myAPIToken = "__UP_myAPIPref__";
     let myItemType = "__UP_itemType__";
-    let myListCount = "__UP_itemListCount__";
+    let myListCount = __UP_itemListCount__;
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     
     function sleep(ms) {
@@ -131,12 +131,12 @@
         return /[a-zA-Z]/.test(str);
       }
     
-    if (myItemType != "") {
+    if (isNaN(parseInt(myItemType)) == false) {
 
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i <= myListCount; i++) {
-                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == myItemType) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == parseInt(myItemType)) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
@@ -182,12 +182,12 @@
     
     function getInv() {
     
-        if (myItemType != "") {
+        if (isNaN(parseInt(myItemType)) == false) {
 
             axios.get('https://api.posveloce.com/items', optionsItems)
             .then((response) => {
                 for (let i = 0; i <= myListCount; i++) {
-                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == myItemType) {
+                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == parseInt(myItemType)) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                             + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
             .catch(err => console.error(err));
