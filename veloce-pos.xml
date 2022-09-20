@@ -18,14 +18,15 @@
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolZeroPref" display_name="Hide $0 Items" datatype="bool" default_value="true" />
-        
+
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
         <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
     </ModulePrefs>
-    <Content type="html"><![CDATA[<style type="text/css">
+    <Content type="html">
+        <![CDATA[<style type="text/css">
 
     body *
     {
@@ -132,7 +133,7 @@
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].bigDivision.id == myItemType) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
@@ -183,7 +184,7 @@
             axios.get('https://api.posveloce.com/items', optionsItems)
             .then((response) => {
                 for (let i = 0; i < response.data.length; i++) {
-                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].bigDivision.id == myItemType) {
+                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                             + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
             .catch(err => console.error(err));
@@ -236,5 +237,6 @@
         }, myUpdateInterval);
     }
 
-</script>]]></Content>
+</script>]]>
+    </Content>
 </Module>
