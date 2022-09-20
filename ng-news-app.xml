@@ -8,78 +8,145 @@
 		<UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
 			<EnumValue display_value="Custom RSS Option" value="" />
 			
-			<EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
-			<EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
-			<EnumValue display_value="CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
-			<EnumValue display_value="CNN Business (CNNMoney.com)" value="http://rss.cnn.com/rss/money_latest.rss" />
-			<EnumValue display_value="CNN Politics" value="http://rss.cnn.com/rss/cnn_allpolitics.rss" />
-			<EnumValue display_value="CNN Technology" value="http://rss.cnn.com/rss/cnn_tech.rss" />
-			<EnumValue display_value="CNN Health" value="http://rss.cnn.com/rss/cnn_health.rss" />
-			<EnumValue display_value="CNN Entertainment" value="http://rss.cnn.com/rss/cnn_showbiz.rss" />
-			<EnumValue display_value="CNN Travel" value="http://rss.cnn.com/rss/cnn_travel.rss" />
-			<EnumValue display_value="CNN 10" value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
-			<EnumValue display_value="CNN Most Recent" value="http://rss.cnn.com/rss/cnn_latest.rss" />
-			<EnumValue display_value="CNN Underscored" value="http://rss.cnn.com/cnn-underscored" />
-																	
-			<EnumValue display_value="BBC Top Stories" value="http://feeds.bbci.co.uk/news/rss.xml" />
-			<EnumValue display_value="BBC World" value="http://feeds.bbci.co.uk/news/world/rss.xml" />
-			<EnumValue display_value="BBC UK" value="http://feeds.bbci.co.uk/news/uk/rss.xml" />
-			<EnumValue display_value="BBC Business" value="http://feeds.bbci.co.uk/news/business/rss.xml" />
-			<EnumValue display_value="BBC Politics" value="http://feeds.bbci.co.uk/news/politics/rss.xml" />
-			<EnumValue display_value="BBC Health" value="http://feeds.bbci.co.uk/news/health/rss.xml" />
-			<EnumValue display_value="BBC Education &amp; Family" value="http://feeds.bbci.co.uk/news/education/rss.xml" />
-			<EnumValue display_value="BBC Science &amp; Environment" value="http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" />
-			<EnumValue display_value="BBC Technology" value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
-			<EnumValue display_value="BBC Entertainment &amp; Arts" value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
-			
-			<EnumValue display_value="ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
-			<EnumValue display_value="ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
-			<EnumValue display_value="ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
-			<EnumValue display_value="ESPN MLB Headlines" value="https://www.espn.com/espn/rss/mlb/news" />
-			<EnumValue display_value="ESPN NHL Headlines" value="https://www.espn.com/espn/rss/nhl/news" />
-			<EnumValue display_value="ESPN Motorsports Headlines" value="https://www.espn.com/espn/rss/rpm/news" />
-			<EnumValue display_value="ESPN Soccer Headlines" value="http://soccernet.espn.com/rss/news" />
-			<EnumValue display_value="ESPNU" value="https://www.espn.com/espn/rss/espnu/news" />
-			<EnumValue display_value="ESPN College Basketball" value="https://www.espn.com/espn/rss/ncb/news" />
-			<EnumValue display_value="ESPN College Football" value="https://www.espn.com/espn/rss/ncf/news" />
-			
-			<EnumValue display_value="Fox News, Latest" value="http://feeds.foxnews.com/foxnews/latest" />
-			<EnumValue display_value="Fox News, Politics" value="http://feeds.foxnews.com/foxnews/politics" />
-			<EnumValue display_value="Fox News, Sports" value="http://feeds.foxnews.com/foxnews/sports" />
-			<EnumValue display_value="Fox News, World" value="http://feeds.foxnews.com/foxnews/world" />
+			<EnumValue display_value="News - ABC News U.S. Headlines" value="http://feeds.abcnews.com/abcnews/usheadlines" />
+			<EnumValue display_value="News - Wall Street Journal" value="https://feeds.a.dj.com/rss/RSSWorldNews.xml" />
+			<EnumValue display_value="News - Christian Science Monitor" value="https://rss.csmonitor.com/feeds/usa" />
+			<EnumValue display_value="News - NBC News Top Stories" value="http://feeds.nbcnews.com/feeds/topstories" />
+			<EnumValue display_value="News - NBC News World News" value="http://feeds.nbcnews.com/feeds/worldnews" />
+			<EnumValue display_value="News - Huffington Post - World News" value="http://www.huffingtonpost.com/feeds/verticals/world/index.xml" />
+			<EnumValue display_value="News - CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
+			<EnumValue display_value="News - CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />
+			<EnumValue display_value="News - CNN U.S" value="http://rss.cnn.com/rss/cnn_us.rss" />
+			<EnumValue display_value="News - CNN Business (CNNMoney.com)" value="http://rss.cnn.com/rss/money_latest.rss" />
+			<EnumValue display_value="News - CNN Politics" value="http://rss.cnn.com/rss/cnn_allpolitics.rss" />
+			<EnumValue display_value="News - BBC News - U.S. and Canada" value="http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" />
+			<EnumValue display_value="News - BBC Top Stories" value="http://feeds.bbci.co.uk/news/rss.xml" />
+			<EnumValue display_value="News - BBC World" value="http://feeds.bbci.co.uk/news/world/rss.xml" />
+			<EnumValue display_value="News - BBC UK" value="http://feeds.bbci.co.uk/news/uk/rss.xml" />
+			<EnumValue display_value="News - BBC Business" value="http://feeds.bbci.co.uk/news/business/rss.xml" />
+			<EnumValue display_value="News - BBC Politics" value="http://feeds.bbci.co.uk/news/politics/rss.xml" />
+			<EnumValue display_value="News - Newsweek" value="http://www.newsweek.com/rss" />
+			<EnumValue display_value="News - The Guardian" value="http://www.theguardian.com/world/usa/rss" />
+			<EnumValue display_value="News - Politico" value="http://www.politico.com/rss/politicopicks.xml" />
+			<EnumValue display_value="News - New Yorker" value="http://www.newyorker.com/feed/news" />
+			<EnumValue display_value="News - NPR National News" value="http://www.npr.org/rss/rss.php?id=1003" />
+			<EnumValue display_value="News - NPR World News" value="http://www.npr.org/rss/rss.php?id=1004" />
+			<EnumValue display_value="News - L.A. Times - National News" value="http://www.latimes.com/nation/rss2.0.xml" />
+			<EnumValue display_value="News - L.A. Times - World News" value="http://www.latimes.com/world/rss2.0.xml" />
+			<EnumValue display_value="News - Fox News - Latest" value="http://feeds.foxnews.com/foxnews/latest" />
+			<EnumValue display_value="News - Fox News - Politics" value="http://feeds.foxnews.com/foxnews/politics" />
+			<EnumValue display_value="News - Fox News - World" value="http://feeds.foxnews.com/foxnews/world" />
 
-			<EnumValue display_value="Funny Or Die" value="http://www.funnyordie.com/videos.rss" />
-			<EnumValue display_value="Gizmodo" value="https://gizmodo.com/excerpts.xml" />
-			<EnumValue display_value="Huffington Post" value="https://www.huffingtonpost.com/section/front-page/feed" />
-			<EnumValue display_value="Kotaku Gamer News" value="http://kotaku.com/vip.xml" />
-			<EnumValue display_value="NASA Image Of The Day" value="http://www.nasa.gov/rss/dyn/image_of_the_day.rss" />
-			<EnumValue display_value="New York Times, Home Page" value="http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" />
-			<EnumValue display_value="Smithsonian, History" value="https://www.smithsonianmag.com/rss/history/" />
-			<EnumValue display_value="Smithsonian Top Stories" value="https://www.smithsonianmag.com/rss/articles/" />
-			<EnumValue display_value="TechCrunch" value="http://feeds.feedburner.com/TechCrunch/" />
-			<EnumValue display_value="The Shade Room Gossip" value="http://theshaderoom.com/feed/" />
-			<EnumValue display_value="The Onion" value="https://www.theonion.com/rss" />
-			<EnumValue display_value="Vox" value="https://www.vox.com/rss/index.xml" />
-			<EnumValue display_value="Wall Street Journal, World News" value="https://feeds.a.dj.com/rss/RSSWorldNews.xml" />
-			<EnumValue display_value="WIRED Backchannel" value="https://www.wired.com/feed/category/backchannel/latest/rss" />
-			<EnumValue display_value="WIRED Business" value="https://www.wired.com/feed/category/business/latest/rss" />
-			<EnumValue display_value="WIRED Culture" value="https://www.wired.com/feed/category/culture/latest/rss" />
-			<EnumValue display_value="WIRED Gear" value="https://www.wired.com/feed/category/gear/latest/rss" />
-			<EnumValue display_value="WIRED Guides" value="https://www.wired.com/feed/tag/wired-guide/latest/rss" />
-			<EnumValue display_value="WIRED Ideas" value="https://www.wired.com/feed/category/ideas/latest/rss" />
-			<EnumValue display_value="WIRED Photo" value="https://www.wired.com/feed/category/photo/latest/rss" />
-			<EnumValue display_value="WIRED Science" value="https://www.wired.com/feed/category/science/latest/rss" />
-			<EnumValue display_value="WIRED Security" value="https://www.wired.com/feed/category/security/latest/rss" />
-			<EnumValue display_value="WIRED Top Stories" value="https://www.wired.com/feed/rss" />
-			<EnumValue display_value="WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
+			<EnumValue display_value="Sports - New York Times Sports" value="http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml" />
+			<EnumValue display_value="Sports - BuzzFeed Sports" value="http://www.buzzfeed.com/sports.xml" />
+			<EnumValue display_value="Sports - Fox News - Sports" value="http://feeds.foxnews.com/foxnews/sports" />
+			<EnumValue display_value="Sports - SB Nation" value="http://feeds.sbnation.com/rss/streams" />
+			<EnumValue display_value="Sports - ESPN Top Headlines" value="https://www.espn.com/espn/rss/news" />
+			<EnumValue display_value="Sports - ESPN NFL Headlines" value="https://www.espn.com/espn/rss/nfl/news" />
+			<EnumValue display_value="Sports - ESPN NBA Headlines" value="https://www.espn.com/espn/rss/nba/news" />
+			<EnumValue display_value="Sports - ESPN MLB Headlines" value="https://www.espn.com/espn/rss/mlb/news" />
+			<EnumValue display_value="Sports - ESPN NHL Headlines" value="https://www.espn.com/espn/rss/nhl/news" />
+			<EnumValue display_value="Sports - ESPN Motorsports Headlines" value="https://www.espn.com/espn/rss/rpm/news" />
+			<EnumValue display_value="Sports - ESPN Soccer Headlines" value="http://soccernet.espn.com/rss/news" />
+			<EnumValue display_value="Sports - ESPNU" value="https://www.espn.com/espn/rss/espnu/news" />
+			<EnumValue display_value="Sports - ESPN College Basketball" value="https://www.espn.com/espn/rss/ncb/news" />
+			<EnumValue display_value="Sports - ESPN College Football" value="https://www.espn.com/espn/rss/ncf/news" />
+			<EnumValue display_value="Sports - LA Times Sports" value="http://www.latimes.com/sports/rss2.0.xml" />
+			<EnumValue display_value="Sports - Yahoo Sports" value="https://sports.yahoo.com/top/rss.xml" />
+			<EnumValue display_value="Sports - The Guardian - U.S. Sports" value="https://sports.yahoo.com/top/rss.xml" />
+
+			<EnumValue display_value="Business - Wall Street Journal - U.S. Business" value="https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml" />
+			<EnumValue display_value="Business - CNN Business (CNNMoney.com)" value="http://rss.cnn.com/rss/money_latest.rss" />
+			<EnumValue display_value="Business - CNN World Business News" value="http://rss.cnn.com/rss/edition_business.rss" />
+			<EnumValue display_value="Business - Dow Jones" value="https://feeds.a.dj.com/rss/RSSMarketsMain.xml" />
+			<EnumValue display_value="Business - New York Times - Business" value="http://rss.nytimes.com/services/xml/rss/nyt/Business.xml" />
+			<EnumValue display_value="Business - The Economist" value="http://www.economist.com/feeds/print-sections/77/business.xml" />
+			<EnumValue display_value="Business - Business Standard" value="http://www.business-standard.com/rss/latest.rss" />
+			<EnumValue display_value="Business - Harvard Business" value="http://feeds.harvardbusiness.org/harvardbusiness?format=xml" />
+			<EnumValue display_value="Business - Huffington Post - Business News" value="http://www.huffingtonpost.com/feeds/verticals/business/news.xml" />
+			<EnumValue display_value="Business - BBC Business" value="http://feeds.bbci.co.uk/news/business/rss.xml" />
+
+			<EnumValue display_value="Health - CNN Health" value="http://rss.cnn.com/rss/cnn_health.rss" />
+			<EnumValue display_value="Health - New York Times Health" value="http://www.nytimes.com/services/xml/rss/nyt/Health.xml" />
+			<EnumValue display_value="Health - BBC Health News" value="http://feeds.bbci.co.uk/news/health/rss.xml?edition=us" />
+			<EnumValue display_value="Health - ABC News - Health" value="http://feeds.abcnews.com/abcnews/healthheadlines" />
+			<EnumValue display_value="Health - NBC News - Health" value="http://feeds.nbcnews.com/feeds/health" />
+			<EnumValue display_value="Health - Chicago Tribune - Health" value="http://www.chicagotribune.com/lifestyles/health/rss2.0.xml" />
+			<EnumValue display_value="Health - The Guardian - Health" value="http://www.theguardian.com/society/health/rss" />
+			<EnumValue display_value="Health - NY Daily News - Health" value="http://www.nydailynews.com/lifestyle/health/index_rss.xml" />
+			<EnumValue display_value="Health - Men's Health" value="https://www.menshealth.com/rss/all.xml/" />
+			<EnumValue display_value="Health - New Scientist - Health" value="http://feeds.newscientist.com/health" />
+			<EnumValue display_value="Health - Time - Health" value="http://time.com/health/feed/" />
+			<EnumValue display_value="Health - U.S. News - Health" value="http://www.usnews.com/rss/health?int=a7fe09" />
+			<EnumValue display_value="Health - Mayo Clinic Health Information" value="http://www.mayoclinic.org/rss/all-health-information-topics" />
+			<EnumValue display_value="Health - BuzzFeed News - Health" value="http://www.buzzfeed.com/health.xml" />
+			<EnumValue display_value="Health - Lifehacker" value="http://vitals.lifehacker.com/rss" />
+			<EnumValue display_value="Health - Consumer Product Safety Commission (CPSC)" value="http://www.cpsc.gov/en/Newsroom/CPSC-RSS-Feed/Recalls-RSS/" />
+			<EnumValue display_value="Health - The Guardian - Health and Well-Being" value="http://www.theguardian.com/lifeandstyle/health-and-wellbeing/rss" />
+			<EnumValue display_value="Health - NPR" value="http://www.npr.org/rss/rss.php?id=1128" />
+
+			<EnumValue display_value="Entertainment - Variety" value="http://variety.com/feed/" />
+			<EnumValue display_value="Entertainment - L.A. Times - Entertainment" value="http://www.latimes.com/entertainment/rss2.0.xml" />
+			<EnumValue display_value="Entertainment - Vulture" value="http://feeds.feedburner.com/nymag/vulture" />
+			<EnumValue display_value="Entertainment - New Yorker - Culture" value="http://www.newyorker.com/feed/culture" />
+			<EnumValue display_value="Entertainment - BuzzFeed - TV and Movies" value="http://www.buzzfeed.com/tvandmovies.xml" />
+			<EnumValue display_value="Entertainment - TMZ" value="http://www.tmz.com/rss.xml" />
+			<EnumValue display_value="Entertainment - CBS News - Entertainment" value="http://www.cbsnews.com/latest/rss/entertainment" />
+			<EnumValue display_value="Entertainment - ABC News - Entertainment" value="http://feeds.abcnews.com/abcnews/entertainmentheadlines" />
+			<EnumValue display_value="Entertainment - Huffington Post - Entertainment" value="https://www.huffpost.com/dept/entertainment/feed" />
+			<EnumValue display_value="Entertainment - Deadline" value="http://deadline.com/feed/" />
+			<EnumValue display_value="Entertainment - NBC News - Entertainment" value="http://feeds.nbcnews.com/feeds/todayentertainment" />
+			<EnumValue display_value="Entertainment - CNN Entertainment News" value="http://rss.cnn.com/rss/cnn_showbiz.rss" />
+			<EnumValue display_value="Entertainment - Esquire - Culture" value="http://www.esquire.com/blogs/culture/culture-rss" />
+			<EnumValue display_value="Entertainment - Yahoo News - Entertainment" value="http://news.yahoo.com/rss/entertainment" />
+			<EnumValue display_value="Entertainment - BBC Entertainment &amp; Arts" value="http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" />
+
+			<EnumValue display_value="Science &amp; Technology - CNN Technology" value="http://rss.cnn.com/rss/cnn_tech.rss" />
+			<EnumValue display_value="Science &amp; Technology - BBC Technology" value="http://feeds.bbci.co.uk/news/technology/rss.xml" />
+			<EnumValue display_value="Science &amp; Technology - BBC Science &amp; Environment" value="http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" />
+			<EnumValue display_value="Science &amp; Technology - Gizmodo" value="https://gizmodo.com/excerpts.xml" />
+			<EnumValue display_value="Science &amp; Technology - TechCrunch" value="http://feeds.feedburner.com/TechCrunch/" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Backchannel" value="https://www.wired.com/feed/category/backchannel/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Business" value="https://www.wired.com/feed/category/business/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Culture" value="https://www.wired.com/feed/category/culture/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Gear" value="https://www.wired.com/feed/category/gear/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Guides" value="https://www.wired.com/feed/tag/wired-guide/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Ideas" value="https://www.wired.com/feed/category/ideas/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Photo" value="https://www.wired.com/feed/category/photo/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Science" value="https://www.wired.com/feed/category/science/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Security" value="https://www.wired.com/feed/category/security/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Top Stories" value="https://www.wired.com/feed/rss" />
+			<EnumValue display_value="Science &amp; Technology - WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
+			<EnumValue display_value="Science &amp; Technology - NASA Image Of The Day" value="http://www.nasa.gov/rss/dyn/image_of_the_day.rss" />
+
+			<EnumValue display_value="Miscellaneous - Cracked" value="http://feeds.feedburner.com/CrackedRSS" />
+			<EnumValue display_value="Miscellaneous - The Chive" value="https://thechive.com/feed/" />
+			<EnumValue display_value="Miscellaneous - Love This Pic" value="https://www.lovethispic.com/rss/Humor" />
+			<EnumValue display_value="Miscellaneous - Kotaku Gamer News" value="http://kotaku.com/vip.xml" />
+			<EnumValue display_value="Miscellaneous - Smithsonian, History" value="https://www.smithsonianmag.com/rss/history/" />
+			<EnumValue display_value="Miscellaneous - Smithsonian Top Stories" value="https://www.smithsonianmag.com/rss/articles/" />
+			<EnumValue display_value="Miscellaneous - The Shade Room Gossip" value="http://theshaderoom.com/feed/" />
+			<EnumValue display_value="Miscellaneous - The Onion" value="https://www.theonion.com/rss" />
+			<EnumValue display_value="Miscellaneous - CNN Travel" value="http://rss.cnn.com/rss/cnn_travel.rss" />
+			<EnumValue display_value="Miscellaneous - CNN 10" value="http://rss.cnn.com/services/podcasting/cnn10/rss.xml" />
+			<EnumValue display_value="Miscellaneous - CNN Most Recent" value="http://rss.cnn.com/rss/cnn_latest.rss" />
+			<EnumValue display_value="Miscellaneous - CNN Underscored" value="http://rss.cnn.com/cnn-underscored" />
+			<EnumValue display_value="Miscellaneous - WIRED Transportation" value="https://www.wired.com/feed/category/transportation/latest/rss" />
 		</UserPref>
 		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL (use with ''Custom RSS Option'' from dropdown)" datatype="string" />
 		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
+		<UserPref name="showHeader" display_name="Show Heading" datatype="bool" default_value="true" />
+		<UserPref name="showDate" display_name="Show Date/Time" datatype="bool" default_value="true" />
+		<UserPref name="showLogo" display_name="Show Feed Source Logo" datatype="bool" default_value="true" />
 		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
-		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:22px;" required="true" />
+		<UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:40px;" required="true" />
 		<UserPref name="title-style" display_name="Title Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:28px;" required="true" />
-		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:#A6A6A6;font-size:14px;font-weight:bold" required="true" />
-		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:14px;" required="true" />
+		<UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:#A6A6A6;font-size:20px;font-weight:bold" required="true" />
+		<UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:25px;" required="true" />
+		<UserPref name="imageStyle" display_name="Image Display Style" datatype="enum" default_value="blur">
+			<EnumValue display_value="Fade" value="fade" />
+			<EnumValue display_value="Blur" value="blur" />
+		</UserPref>
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 		<UserPref name="ForeColor" datatype="hidden" />
@@ -110,8 +177,8 @@
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.eab4b434a9ed924d1eed.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.318c4f01057ff3718732.js" nomodule defer></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.26738760f0df155c91b8.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.67ca354876430c1faaf7.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.67ca354876430c1faaf7.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.f6a10b3b452422dd1295.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.f6a10b3b452422dd1295.js" nomodule defer></script>
 
 				<script type="text/javascript">
 
