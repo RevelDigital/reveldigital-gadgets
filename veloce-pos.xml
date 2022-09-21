@@ -3,6 +3,7 @@
     <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Veloce POS software" author="" background="transparent">
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="itemType" display_name="Division ID" datatype="string" default_value="" required="false" />
+        <UserPref name="itemID" display_name="Item ID" datatype="string" default_value="" required="false" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -105,6 +106,7 @@
     let myAPIToken = "__UP_myAPIPref__";
     let myItemType = "__UP_itemType__";
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    let myItemID = "__UP_itemID__";
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -128,12 +130,23 @@
         return /[a-zA-Z]/.test(str);
       }
     
-    if (myItemType != "") {
+    if (myItemType != "" && myItemID == "") {
 
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
                 if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                        + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+        .catch(err => console.error(err));
+
+    }
+    else if (myItemID != "") {
+
+        axios.get('https://api.posveloce.com/items', optionsItems)
+        .then((response) => {
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemId == myItemID) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
@@ -179,12 +192,23 @@
     
     function getInv() {
     
-        if (myItemType != "") {
+        if (myItemType != "" && myItemID == "") {
 
             axios.get('https://api.posveloce.com/items', optionsItems)
             .then((response) => {
                 for (let i = 0; i < response.data.length; i++) {
                     if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                            + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+            .catch(err => console.error(err));
+    
+        }
+        else if (myItemID != "") {
+    
+            axios.get('https://api.posveloce.com/items', optionsItems)
+            .then((response) => {
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemId == myItemID) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                             + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
             .catch(err => console.error(err));
