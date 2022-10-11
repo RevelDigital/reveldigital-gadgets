@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Korona POS software" author="" background="transparent">
+        <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
+        <UserPref name="orgUnitID" display_name="Organizational Unit ID " datatype="string" default_value="" required="true" />
+        <UserPref name="accID" display_name="Account ID" datatype="string" default_value="" required="true" />
+        <UserPref name="itemID" display_name="Item ID" datatype="string" default_value="" required="false" />
+
+        <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
+        <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
+        <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="updateInterval" display_name="Update Interval (in minutes)" datatype="string" default_value="5" required="true" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
+        <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
+        <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
+        <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
+        <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
+        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Korona Menu via API!" required="true" />
+
+        <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[<style type="text/css">
+
+    body *
+    {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body {
+        background-color: __UP_myBackColorPref__;
+    }
+
+    .header {
+        padding: 30px;
+        text-align: center;
+        background: __UP_myHeadColorPref__;
+        color: __UP_myHeadTextColorPref__;
+        font-size: 20px;
+    }
+
+    #priceStock {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+        font-size: __UP_stockFontSize__em;
+    }
+
+    #itemList {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+    }
+
+    .centerTable {
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1rem;
+        font-size: __UP_tableFontSize__em;
+    }
+
+    th,
+    td {
+        padding-bottom: __UP_tableSpacingTop__px;
+        padding-top: __UP_tableSpacingTop__px;
+        padding-left: __UP_tableSpacingSide__px;
+        padding-right: __UP_tableSpacingSide__px;
+        border-bottom: 1pt solid __UP_myBorderColorPref__;
+    }
+
+    .my-style
+    {
+        __UP_myStylePref__;
+    }
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<body>
+    <div class="header" id="headerID">
+        <h1>__UP_myTitlePref__</h1>
+    </div>
+    <div id="itemList">
+        <div>
+            <table id="itemListList" class="centerTable">
+            </table>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+
+    let myAPIToken = "__UP_myAPIPref__";
+    let accID = "__UP_accID__";
+    let orgUnitID = "__UP_orgUnitID__";
+    let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    let myItemID = "__UP_itemID__";
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    const options = {
+        headers: { authorization: 'Basic ' + myAPIToken }
+    };
+
+    if (__UP_myBoolHeadPref__ === false) {
+        const element = document.getElementById('headerID');
+        element.remove();
+    }
+ 
+    axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+        .then((response) => {
+            for (let i = 0; i < response.data.results.length; i++) {
+                if (response.data.results[i].product.name != "") {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                        + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
+        .catch(err => console.error(err));
+    
+    sleep(5000);
+    
+    function getInv() {
+    
+        axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            .then((response) => {
+                for (let i = 0; i < response.data.results.length; i++) {
+                    if (response.data.results[i].product.name != "") {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                            + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                            + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
+            .catch(err => console.error(err));
+
+        sleep(2000);
+
+    if (myUpdateInterval > 1000) { 
+        setInterval(function () {
+            getInv();
+            console.log("Item count has been automatically updated");
+        }, myUpdateInterval);
+    }
+
+</script>]]>
+    </Content>
+</Module>
