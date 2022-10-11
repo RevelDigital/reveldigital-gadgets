@@ -3,6 +3,7 @@
     <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Korona POS software" author="" background="transparent">
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
+        <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
         <UserPref name="orgUnitID" display_name="Organizational Unit ID " datatype="string" default_value="" required="true" />
         <!--<UserPref name="itemID" display_name="Item ID" datatype="string" default_value="" required="false" />-->
 
@@ -108,6 +109,7 @@
     let orgUnitID = "__UP_orgUnitID__";
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     let myItemID = "__UP_itemID__";
+    let myMinQty = __UP_minQty__;
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -130,7 +132,7 @@
     axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
         .then((response) => {
             for (let i = 0; i < response.data.results.length; i++) {
-                if (response.data.results[i].product.name != "") {
+                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
                         + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
                         + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
@@ -143,7 +145,7 @@
         axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
             .then((response) => {
                 for (let i = 0; i < response.data.results.length; i++) {
-                    if (response.data.results[i].product.name != "") {
+                    if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
                             + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
                             + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
