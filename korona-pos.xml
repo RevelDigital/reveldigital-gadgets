@@ -5,7 +5,7 @@
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
         <UserPref name="orgUnitID" display_name="Organizational Unit ID " datatype="string" default_value="" required="true" />
-        <!--<UserPref name="itemID" display_name="Item ID" datatype="string" default_value="" required="false" />-->
+        <UserPref name="itemID" display_name="Product ID" datatype="string" default_value="" required="false" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -128,28 +128,52 @@
         const element = document.getElementById('headerID');
         element.remove();
     }
- 
-    axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-        .then((response) => {
-            for (let i = 0; i < response.data.results.length; i++) {
-                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                        + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
-        .catch(err => console.error(err));
-    
-    sleep(2000);
-    
-    function getInv() {
-    
+
+    if (myItemID !== "") {
+        axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            .then((response) => {
+                for (let i = 0; i < response.data.results.length; i++) {
+                    if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                            + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                            + response.data.results[i].amount.actual + "</td></tr>");}}})
+            .catch(err => console.error(err));
+    }
+    else {
         axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
             .then((response) => {
                 for (let i = 0; i < response.data.results.length; i++) {
                     if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
                             + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                            + "qty: " + response.data.results[i].amount.actual + "</td></tr>");}}})
+                            + response.data.results[i].amount.actual + "</td></tr>");}}})
             .catch(err => console.error(err));
+    }
+    
+    sleep(2000);
+    
+    function getInv() {
+    
+        if (myItemID !== "") {
+            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                .then((response) => {
+                    for (let i = 0; i < response.data.results.length; i++) {
+                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                                + response.data.results[i].amount.actual + "</td></tr>");}}})
+                .catch(err => console.error(err));
+        }
+        else {
+            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                .then((response) => {
+                    for (let i = 0; i < response.data.results.length; i++) {
+                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                                + response.data.results[i].amount.actual + "</td></tr>");}}})
+                .catch(err => console.error(err));
+        }
 
         sleep(2000);
 
