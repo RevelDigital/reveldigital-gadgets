@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Korona POS software" author="" background="transparent">
+    <ModulePrefs title="Korona Menu" description="A menu gadget for displaying product information from Korona POS software" author="" background="transparent">
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
-        <UserPref name="orgUnitID" display_name="Organizational Unit ID " datatype="string" default_value="" required="true" />
-        <UserPref name="itemID" display_name="Product ID" datatype="string" default_value="" required="false" />
+        <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="true" />
+        <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -17,7 +17,7 @@
         <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
         <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
         <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
-        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Korona Menu via API!" required="true" />
+        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Korona Menu via API!" required="false" />
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" />
@@ -102,7 +102,6 @@
 </body>
 
 <script type="text/javascript">
-
     var prefs = new gadgets.Prefs();
 
     let myAPIToken = "__UP_myAPIPref__";
@@ -172,12 +171,8 @@
                 .catch(err => console.error(err));
         }
     }
-    
-    
-    sleep(2000);
-    
+        
     function getInv() {
-    
         if (__UP_myBoolQTYPref__) {
             if (myItemID !== "") {
                 axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
@@ -220,15 +215,12 @@
                     .catch(err => console.error(err));
             }
         }
-
-        sleep(2000);
-
     }
 
     if (myUpdateInterval > 1000) { 
         setInterval(function () {
             getInv();
-            console.log("Item count has been automatically updated");
+            console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " seconds.");
         }, myUpdateInterval);
     }
 
