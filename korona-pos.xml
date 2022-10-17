@@ -223,14 +223,14 @@
     async function brandBool() {
         console.log("Testing : Slept, Attempt Running brandBool now");
         if (__UP_myBoolBrandPref__ === false) {
+            var brandTable = document.getElementById("itemListList");
             if ((brandTable.rows.length) > 0) {
-                var brandTable = document.getElementById("itemListList");
+                console.log("Testing : Attempt Remove Brand Name");
                 for (var i = 0; i < brandTable.rows.length; i++) {
                     var firstCol = brandTable.rows[i].cells[0];
                     arr = firstCol.innerHTML.split(" - ");
                     arr.shift();
                     firstCol.innerHTML = arr.join(" - ");
-                    console.log("Testing : Attempt Remove Brand Name");
                 }
             }
             else {
