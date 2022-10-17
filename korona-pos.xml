@@ -219,7 +219,11 @@
         }
     }
 
+    sleep(5000);
+
     function brandBool() {
+        sleep(5000);
+        console.log("Testing : Slept, Running brandBool");
         if (__UP_myBoolBrandPref__ === false) {
             var table = document.getElementById('itemListList');
             for (var i = 0; i < table.rows.length; i++) {
@@ -227,6 +231,7 @@
                 arr = firstCol.innerHTML.split(" - ");
                 arr.shift();
                 firstCol.innerHTML = arr.join(" - ");
+                console.log("Testing : Attempt Remove Brand Name");
             }
         }
     }
@@ -236,7 +241,7 @@
         setInterval(function () {
             getInv();
             brandBool();
-            console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " seconds.");
+            console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " minutes.");
         }, myUpdateInterval);
     }
 
