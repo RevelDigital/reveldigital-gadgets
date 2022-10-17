@@ -111,6 +111,7 @@
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     let myItemID = "__UP_itemID__";
     let myMinQty = __UP_minQty__;
+    let endPoint = "https://167.koronacloud.com/web/api/v3";
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -132,7 +133,7 @@
 
     if (__UP_myBoolQTYPref__) {
         if (myItemID !== "") {
-            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
@@ -142,7 +143,7 @@
                 .catch(err => console.error(err));
         }
         else {
-            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
@@ -154,7 +155,7 @@
     }
     else {
         if (myItemID !== "") {
-            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
@@ -163,7 +164,7 @@
                 .catch(err => console.error(err));
         }
         else {
-            axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
@@ -177,7 +178,7 @@
         document.getElementById("itemListList").innerHTML = "";
         if (__UP_myBoolQTYPref__) {
             if (myItemID !== "") {
-                axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
@@ -187,7 +188,7 @@
                     .catch(err => console.error(err));
             }
             else {
-                axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
@@ -199,7 +200,7 @@
         }
         else {
             if (myItemID !== "") {
-                axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
@@ -208,7 +209,7 @@
                     .catch(err => console.error(err));
             }
             else {
-                axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
@@ -222,8 +223,6 @@
     async function brandBool() {
         console.log("Testing : Slept, Attempt Running brandBool now");
         if (__UP_myBoolBrandPref__ === false) {
-            console.log("# of rows: ");
-            console.log(brandTable.rows.length);
             if ((brandTable.rows.length) > 0) {
                 var brandTable = document.getElementById("itemListList");
                 for (var i = 0; i < brandTable.rows.length; i++) {
@@ -236,6 +235,7 @@
             }
             else {
                 await sleep(2000);
+                console.log("Testing : Trying to Remove Again");
                 brandBool();
             }
         }
