@@ -21,6 +21,7 @@
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" />
+        <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
 
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
@@ -173,6 +174,7 @@
     }
         
     function getInv() {
+        document.getElementById("itemListList").innerHTML = "";
         if (__UP_myBoolQTYPref__) {
             if (myItemID !== "") {
                 axios.get('https://167.koronacloud.com/web/api/v3/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
@@ -217,9 +219,23 @@
         }
     }
 
+    function brandBool() {
+        if (__UP_myBoolBrandPref__ === false) {
+            var table = document.getElementById('itemListList');
+            for (var i = 0; i < table.rows.length; i++) {
+                var firstCol = table.rows[i].cells[0];
+                arr = firstCol.innerHTML.split(" - ");
+                arr.shift();
+                firstCol.innerHTML = arr.join(" - ");
+            }
+        }
+    }
+    brandBool();
+
     if (myUpdateInterval > 1000) { 
         setInterval(function () {
             getInv();
+            brandBool();
             console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " seconds.");
         }, myUpdateInterval);
     }
