@@ -222,12 +222,13 @@
     sleep(5000);
 
     function brandBool() {
-        sleep(5000);
-        console.log("Testing : Slept, Running brandBool");
+        console.log("Testing : Slept, Attempt Running brandBool now");
         if (__UP_myBoolBrandPref__ === false) {
-            var table = document.getElementById('itemListList');
-            for (var i = 0; i < table.rows.length; i++) {
-                var firstCol = table.rows[i].cells[0];
+            var brandTable = document.getElementById('itemListList');
+            console.log("# of rows: ");
+            console.log(brandTable.rows.length);
+            for (var i = 0; i < brandTable.rows.length; i++) {
+                var firstCol = brandTable.rows[i].cells[0];
                 arr = firstCol.innerHTML.split(" - ");
                 arr.shift();
                 firstCol.innerHTML = arr.join(" - ");
@@ -241,7 +242,7 @@
         setInterval(function () {
             getInv();
             brandBool();
-            console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " minutes.");
+            console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " minute(s).");
         }, myUpdateInterval);
     }
 
