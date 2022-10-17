@@ -19,6 +19,11 @@
         <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
         <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Korona Menu via API!" required="false" />
 
+        <UserPref name="currencyTick" display_name="Currency Symbol" datatype="enum" default_value="USD">
+            <EnumValue value="USD" display_value="US Dollar" />
+            <EnumValue value="EUR" display_value="Euro" />
+            <EnumValue value="PND" display_value="British Pound" />
+        </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" />
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
@@ -116,11 +121,25 @@
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    
-    var formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
+
+    if (__UP_currencyTick__ == "USD") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+    }
+    else if (__UP_currencyTick__ == "EUR") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'EUR',
+        });
+    }
+    else if (__UP_currencyTick__ == "PND") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'GBP',
+        });
+    }
     
     const options = {
         headers: { authorization: 'Basic ' + myAPIToken }
