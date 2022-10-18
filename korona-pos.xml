@@ -4,8 +4,9 @@
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
-        <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="true" />
+        <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" />
         <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
+        <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="string" default_value="" required="false" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -115,6 +116,7 @@
     let orgUnitID = "__UP_orgUnitID__";
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     let myItemID = "__UP_itemID__";
+    let myGroupID = "__UP_groupID__";
     let myMinQty = __UP_minQty__;
     let endPoint = "https://167.koronacloud.com/web/api/v3";
     
@@ -150,51 +152,16 @@
         element.remove();
     }
 
-    if (__UP_myBoolQTYPref__) {
-        if (myItemID !== "") {
-            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+    if (myGroupID != "") {
+        axios.get(endPoint + '/accounts/' + accID + '/products', options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                + response.data.results[i].amount.actual + "</td></tr>");}}})
+                        if (response.data.results[i].product.name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
+                                + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
                 .catch(err => console.error(err));
-        }
-        else {
-            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                .then((response) => {
-                    for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                + response.data.results[i].amount.actual + "</td></tr>");}}})
-                .catch(err => console.error(err));
-        }
     }
     else {
-        if (myItemID !== "") {
-            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                .then((response) => {
-                    for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                .catch(err => console.error(err));
-        }
-        else {
-            axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                .then((response) => {
-                    for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                .catch(err => console.error(err));
-        }
-    }
-        
-    function getInv() {
-        document.getElementById("itemListList").innerHTML = "";
         if (__UP_myBoolQTYPref__) {
             if (myItemID !== "") {
                 axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
@@ -235,6 +202,63 @@
                                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
                                     + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
                     .catch(err => console.error(err));
+            }
+        }
+    }
+        
+    function getInv() {
+        document.getElementById("itemListList").innerHTML = "";
+        if (myGroupID != "") {
+            axios.get(endPoint + '/accounts/' + accID + '/products', options)
+                    .then((response) => {
+                        for (let i = 0; i < response.data.results.length; i++) {
+                            if (response.data.results[i].product.name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
+                                    + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
+                    .catch(err => console.error(err));
+        }
+        else {
+            if (__UP_myBoolQTYPref__) {
+                if (myItemID !== "") {
+                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                        .then((response) => {
+                            for (let i = 0; i < response.data.results.length; i++) {
+                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
+                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                                        + response.data.results[i].amount.actual + "</td></tr>");}}})
+                        .catch(err => console.error(err));
+                }
+                else {
+                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                        .then((response) => {
+                            for (let i = 0; i < response.data.results.length; i++) {
+                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
+                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
+                                        + response.data.results[i].amount.actual + "</td></tr>");}}})
+                        .catch(err => console.error(err));
+                }
+            }
+            else {
+                if (myItemID !== "") {
+                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                        .then((response) => {
+                            for (let i = 0; i < response.data.results.length; i++) {
+                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
+                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
+                        .catch(err => console.error(err));
+                }
+                else {
+                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
+                        .then((response) => {
+                            for (let i = 0; i < response.data.results.length; i++) {
+                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
+                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
+                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
+                        .catch(err => console.error(err));
+                }
             }
         }
     }
