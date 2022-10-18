@@ -122,19 +122,19 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    if (__UP_currencyTick__ == "USD") {
+    if ("__UP_currencyTick__" == "USD") {
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
         });
     }
-    else if (__UP_currencyTick__ == "EUR") {
+    else if ("__UP_currencyTick__" == "EUR") {
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'EUR',
         });
     }
-    else if (__UP_currencyTick__ == "PND") {
+    else if ("__UP_currencyTick__" == "PND") {
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'GBP',
@@ -240,11 +240,10 @@
     }
 
     async function brandBool() {
-        console.log("Testing : Slept, Attempt Running brandBool now");
         if (__UP_myBoolBrandPref__ === false) {
             var brandTable = document.getElementById("itemListList");
             if ((brandTable.rows.length) > 0) {
-                console.log("Testing : Attempt Remove Brand Name");
+                console.log("Attempt Remove Brand Name");
                 for (var i = 0; i < brandTable.rows.length; i++) {
                     var firstCol = brandTable.rows[i].cells[0];
                     arr = firstCol.innerHTML.split(" - ");
@@ -254,7 +253,7 @@
             }
             else {
                 await sleep(2000);
-                console.log("Testing : Trying to Remove Again");
+                console.log("Failed to remove brand. Trying again in 2 seconds.");
                 brandBool();
             }
         }
