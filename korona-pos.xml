@@ -6,7 +6,16 @@
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
         <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" />
         <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
-        <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="string" default_value="" required="false" />
+        <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="enum" default_value="">
+            <EnumValue value="" display_value="None" />
+            <EnumValue value="Pre-Rolls" display_value="Pre-Rolls" />
+            <EnumValue value="Flower" display_value="Flower" />
+            <EnumValue value="Beverages" display_value="Beverages" />
+            <EnumValue value="Vape" display_value="Vape" />
+            <EnumValue value="Edibles" display_value="Edibles" />
+            <EnumValue value="Concentrates" display_value="Concentrates" />
+            <EnumValue value="Infused PreRolls" display_value="Infused PreRolls" />
+        </UserPref>
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -156,7 +165,7 @@
         axios.get(endPoint + '/accounts/' + accID + '/products', options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].product.name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                        if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                 + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
                 .catch(err => console.error(err));
@@ -212,7 +221,7 @@
             axios.get(endPoint + '/accounts/' + accID + '/products', options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].product.name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                            if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
                                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                     + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
                     .catch(err => console.error(err));
