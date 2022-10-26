@@ -33,6 +33,7 @@
             <EnumValue value="USD" display_value="US Dollar" />
             <EnumValue value="EUR" display_value="Euro" />
             <EnumValue value="PND" display_value="British Pound" />
+            <EnumValue value="THB" display_value="Thai Baht" />
         </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" />
@@ -149,6 +150,12 @@
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'GBP',
+        });
+    }
+    else if ("__UP_currencyTick__" == "THB") {
+        var formatter = new Intl.NumberFormat('th-TH', {
+            style: 'currency',
+            currency: 'THB',
         });
     }
     
@@ -279,13 +286,13 @@
                 console.log("Attempting to Remove Brand Name");
                 for (var i = 0; i < brandTable.rows.length; i++) {
                     var firstCol = brandTable.rows[i].cells[0];
-                    if (firstCol.includes(" - ")) {
+                    if (firstCol.innerHTML.includes(" - ")) {
                         arr = firstCol.innerHTML.split(" - ");
                         arr.shift();
                         firstCol.innerHTML = arr.join(" - ");
                     }
                     else {
-                        console.log(firstCol + " does NOT have a noticeable brand name. Continuing");
+                        console.log(firstCol.innerHTML + " does NOT have a noticeable brand name. Continuing");
                     }
                 }
             }
