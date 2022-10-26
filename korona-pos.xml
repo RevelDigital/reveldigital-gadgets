@@ -279,10 +279,14 @@
                 console.log("Attempting to Remove Brand Name");
                 for (var i = 0; i < brandTable.rows.length; i++) {
                     var firstCol = brandTable.rows[i].cells[0];
-                    arr = firstCol.innerHTML.split(" - ");
-                    arr.shift();
-                    firstCol.innerHTML = arr.join(" - ");
-                    console.log("Removal Success");
+                    if (firstCol.includes(" - ")) {
+                        arr = firstCol.innerHTML.split(" - ");
+                        arr.shift();
+                        firstCol.innerHTML = arr.join(" - ");
+                    }
+                    else {
+                        console.log(firstCol + " does NOT have a noticeable brand name. Continuing");
+                    }
                 }
             }
             else {
