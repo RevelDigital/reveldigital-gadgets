@@ -13,8 +13,10 @@
             <EnumValue value="Flower" display_value="Flower" />
             <EnumValue value="Beverages" display_value="Beverages" />
             <EnumValue value="Vape" display_value="Vape" />
-            <EnumValue value="Edibles" display_value="Edibles" />
+            <EnumValue value="Edible" display_value="Edible" />
             <EnumValue value="Concentrates" display_value="Concentrates" />
+            <EnumValue value="Topical" display_value="Topical" />
+            <EnumValue value="Spray" display_value="Spray" />
             <EnumValue value="Infused PreRolls" display_value="Infused PreRolls" />
         </UserPref>
 
@@ -277,7 +279,7 @@
             else {
                 await sleep(800);
                 console.log("Failed to remove dash. Trying again shortly");
-                DashBool();
+                dashBool();
             }
         }
     }
