@@ -4,7 +4,7 @@
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
-        <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" />
+        <!-- <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" /> -->
         <UserPref name="tagID" display_name="Filter by Tag" datatype="string" default_value="" required="false" />
         <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
         <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="enum" default_value="">
@@ -37,7 +37,7 @@
             <EnumValue value="THB" display_value="Thai Baht" />
         </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
-        <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" />
+        <!-- <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" /> -->
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
 
         <UserPref name="ForeColor" datatype="hidden" />
@@ -184,51 +184,26 @@
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
-                                + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
+                                + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                 .catch(err => console.error(err));
     }
     else {
-        if (__UP_myBoolQTYPref__) {
-            if (myItemID !== "") {
-                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                    .then((response) => {
-                        for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                    + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                    + response.data.results[i].amount.actual + "</td></tr>");}}})
-                    .catch(err => console.error(err));
-            }
-            else {
-                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                    .then((response) => {
-                        for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                    + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                    + response.data.results[i].amount.actual + "</td></tr>");}}})
-                    .catch(err => console.error(err));
-            }
+        if (myItemID !== "") {
+            axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
+                .then((response) => {
+                    if (response.data.name != "") {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
+                            + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
+            .catch(err => console.error(err));
         }
         else {
-            if (myItemID !== "") {
-                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                    .then((response) => {
-                        for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                    + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                    .catch(err => console.error(err));
-            }
-            else {
-                axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                    .then((response) => {
-                        for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                    + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                    .catch(err => console.error(err));
-            }
+            axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
+                .then((response) => {
+                    for (let i = 0; i < response.data.results.length; i++) {
+                        if (response.data.results[i].name != "") {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
+                                + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
+                .catch(err => console.error(err));
         }
     }
         
@@ -240,51 +215,26 @@
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
                                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
-                                    + formatter.format(response.data.results[i].lastPurchasePrice) + "</td></tr>");}}})
+                                    + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                     .catch(err => console.error(err));
         }
         else {
-            if (__UP_myBoolQTYPref__) {
-                if (myItemID !== "") {
-                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                        .then((response) => {
-                            for (let i = 0; i < response.data.results.length; i++) {
-                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                        + response.data.results[i].amount.actual + "</td></tr>");}}})
-                        .catch(err => console.error(err));
-                }
-                else {
-                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                        .then((response) => {
-                            for (let i = 0; i < response.data.results.length; i++) {
-                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td><td>"
-                                        + response.data.results[i].amount.actual + "</td></tr>");}}})
-                        .catch(err => console.error(err));
-                }
+            if (myItemID !== "") {
+                axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
+                    .then((response) => {
+                        if (response.data.name != "") {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
+                                + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
+                .catch(err => console.error(err));
             }
             else {
-                if (myItemID !== "") {
-                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                        .then((response) => {
-                            for (let i = 0; i < response.data.results.length; i++) {
-                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty && response.data.results[i].product.id == myItemID) {
-                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                        .catch(err => console.error(err));
-                }
-                else {
-                    axios.get(endPoint + '/accounts/' + accID + '/organizationalUnits/' + orgUnitID + "/productStocks", options)
-                        .then((response) => {
-                            for (let i = 0; i < response.data.results.length; i++) {
-                                if (response.data.results[i].product.name != "" && response.data.results[i].amount.actual > myMinQty) {
-                                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].product.name + "</td><td>"
-                                        + formatter.format(response.data.results[i].averagePurchasePrice) + "</td></tr>");}}})
-                        .catch(err => console.error(err));
-                }
+                axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
+                    .then((response) => {
+                        for (let i = 0; i < response.data.results.length; i++) {
+                            if (response.data.results[i].name != "") {
+                                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
+                                    + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
+                    .catch(err => console.error(err));
             }
         }
     }
