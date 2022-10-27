@@ -37,6 +37,7 @@
             <EnumValue value="THB" display_value="Thai Baht" />
         </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+        <UserPref name="myBoolDashPref" display_name="Display Dash in Name" datatype="bool" default_value="true" />
         <!-- <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" /> -->
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
 
@@ -265,10 +266,30 @@
     }
     brandBool();
 
+    async function dashBool() {
+        if (__UP_myBoolDashPref__ === false && accID != "") {
+            var brandTable = document.getElementById("itemListList");
+            if ((brandTable.rows.length) > 0) {
+                console.log("Attempting to Remove Dash from Name");
+                $('table.centerTable:contains("-")').each(function(){
+                    $(this).html($(this).html().split("-").join(""));});
+                }
+                console.log("Dash Removed from Names");
+            }
+            else {
+                await sleep(800);
+                console.log("Failed to remove dash. Trying again shortly");
+                DashBool();
+            }
+        }
+    }
+    dashBool();
+
     if (myUpdateInterval > 10000) { 
         setInterval(function () {
             getInv();
             brandBool();
+            dashBool();
             console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " minute(s).");
         }, myUpdateInterval);
     }
