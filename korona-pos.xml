@@ -273,8 +273,6 @@
                 console.log("Attempting to Remove Dash from Name");
                 $('table.centerTable:contains("-")').each(function(){
                     $(this).html($(this).html().split("-").join(""));});
-                }
-                console.log("Dash Removed from Names");
             }
             else {
                 await sleep(800);
