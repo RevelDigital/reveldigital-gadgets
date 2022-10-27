@@ -5,6 +5,7 @@
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
         <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
         <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" />
+        <UserPref name="tagID" display_name="Filter by Tag" datatype="string" default_value="" required="false" />
         <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
         <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="enum" default_value="">
             <EnumValue value="" display_value="None" />
@@ -129,6 +130,7 @@
     let myGroupID = "__UP_groupID__";
     let myMinQty = __UP_minQty__;
     let endPoint = "https://167.koronacloud.com/web/api/v3";
+    let tagID = "__UP_tagID__";
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -168,8 +170,16 @@
         element.remove();
     }
 
+    let tagEnd = "";
+    if (tagID != "") {
+        tagEnd = "?tag=" + tagID;
+    }
+    else {
+        tagEnd = "";
+    }
+
     if (myGroupID != "") {
-        axios.get(endPoint + '/accounts/' + accID + '/products', options)
+        axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
@@ -225,7 +235,7 @@
     function getInv() {
         document.getElementById("itemListList").innerHTML = "";
         if (myGroupID != "") {
-            axios.get(endPoint + '/accounts/' + accID + '/products', options)
+            axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
                             if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
