@@ -131,13 +131,18 @@
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     let myItemID = "__UP_itemID__";
     let myGroupID = "__UP_groupID__";
-    let myMinQty = __UP_minQty__;
+    
+    if ("__UP_minQty__" != "") { 
+        let myMinQty = __UP_minQty__;
+    }
+    else {
+        let myMinQty = 0;
+    }
+
     let endPoint = "https://167.koronacloud.com/web/api/v3";
     let tagID = "__UP_tagID__";
     
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
     if ("__UP_currencyTick__" == "USD") {
         var formatter = new Intl.NumberFormat('en-US', {
@@ -164,9 +169,7 @@
         });
     }
     
-    const options = {
-        headers: { authorization: 'Basic ' + myAPIToken }
-    };
+    const options = { headers: { authorization: 'Basic ' + myAPIToken }};
 
     if (__UP_myBoolHeadPref__ === false) {
         const element = document.getElementById('headerID');
@@ -260,7 +263,7 @@
                 }
             }
             else {
-                await sleep(800);
+                await sleep(500);
                 console.log("Failed to remove brand. Trying again shortly");
                 brandBool();
             }
@@ -277,7 +280,7 @@
                     $(this).html($(this).html().split("-").join(""));});
             }
             else {
-                await sleep(800);
+                await sleep(500);
                 console.log("Failed to remove dash. Trying again shortly");
                 dashBool();
             }
