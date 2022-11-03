@@ -38,7 +38,7 @@
             <EnumValue value="PND" display_value="British Pound" />
             <EnumValue value="THB" display_value="Thai Baht" />
         </UserPref>
-        <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
+        <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="false" />
         <UserPref name="myBoolDashPref" display_name="Display Dash in Name" datatype="bool" default_value="true" />
         <!-- <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" /> -->
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
@@ -131,16 +131,14 @@
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
     let myItemID = "__UP_itemID__";
     let myGroupID = "__UP_groupID__";
-    
-    if ("__UP_minQty__" != "") { 
-        let myMinQty = __UP_minQty__;
-    }
-    else {
-        let myMinQty = 0;
-    }
-
     let endPoint = "https://167.koronacloud.com/web/api/v3";
     let tagID = "__UP_tagID__";
+    if ("__UP_minQty__" == "") { 
+        let myMinQty = 0;
+    }
+    else {
+        let myMinQty = __UP_minQty__;
+    }
     
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
@@ -184,7 +182,7 @@
         tagEnd = "";
     }
 
-    if (myGroupID != "") {
+    if (myGroupID != "" && accID != "") {
         axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
@@ -194,7 +192,7 @@
                 .catch(err => console.error(err));
     }
     else {
-        if (myItemID !== "") {
+        if (myItemID != "" && accID != "") {
             axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                 .then((response) => {
                     if (response.data.name != "") {
@@ -215,7 +213,7 @@
         
     function getInv() {
         document.getElementById("itemListList").innerHTML = "";
-        if (myGroupID != "") {
+        if (myGroupID != "" && accID != "") {
             axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
@@ -225,7 +223,7 @@
                     .catch(err => console.error(err));
         }
         else {
-            if (myItemID !== "") {
+            if (myItemID != "" && accID != "") {
                 axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                     .then((response) => {
                         if (response.data.name != "") {
