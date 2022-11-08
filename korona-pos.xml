@@ -3,8 +3,8 @@
     <ModulePrefs title="Korona Menu" description="A menu gadget for displaying product information from Korona POS software" author="" background="transparent">
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
         <UserPref name="accID" display_name="Account ID*" datatype="string" default_value="" required="true" />
-        <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="2" required="true" />
-        <!-- <UserPref name="orgUnitID" display_name="Organizational Unit ID" datatype="string" default_value="" required="false" /> -->
+        <UserPref name="minQty" display_name="Minimum Quantity for Removal*" datatype="string" default_value="0" required="true" />
+        <UserPref name="orgUnitID" display_name="Organizational Unit ID (only required for quantity)" datatype="string" default_value="" required="false" />
         <UserPref name="tagID" display_name="Filter by Tag" datatype="string" default_value="" required="false" />
         <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
         <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="enum" default_value="">
@@ -40,7 +40,6 @@
         </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="false" />
         <UserPref name="myBoolDashPref" display_name="Display Dash in Name" datatype="bool" default_value="true" />
-        <!-- <UserPref name="myBoolQTYPref" display_name="Display Quantity" datatype="bool" default_value="false" /> -->
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
 
         <UserPref name="ForeColor" datatype="hidden" />
@@ -286,11 +285,50 @@
     }
     dashBool();
 
+    let stockList = [];
+    async function removeMinStock() {
+        if (orgUnitID != "" && myMinQty > 0) {
+            await axios.get(endPoint + "accounts/" + accID + "/organizationalUnits/" + orgUnitID + "/productStocks", options)
+                .then((response) => {
+                    for (let i = 0; i < response.data.results.length; i++) {
+                        (stockList.push([response.data.results[i].product.name, response.data.results[i].amount.actual]));
+                    }
+                })
+                .catch(err => console.error(err));
+
+            var numRows = document.getElementById("itemListList").rows.length;
+            const rows = Array.from(document.getElementsByTagName('td'));
+            if (numRows > 0) {
+                for (i = 0; i <= numRows; i++) {
+                    console.log("attemping to remove row");
+                    rows.forEach(rowItem => {
+                        if (rowItem.innerHTML.includes(stockList[i][0].slice(stockList[i][0].indexOf('-') + 2, stockList[i][0].lastIndexOf('-'))) && stockList[i][1] <= myMinQty) {
+                            rowItem.closest('tr').remove();
+                            console.log((i + 1) + " row removed");
+                        }
+                    })
+                }
+            }
+            else {
+                await sleep(500);
+                console.log("Table not full yet. Trying again.")
+                removeMinStock();
+            }
+            console.log(stockList.length + " rows searched for removal.");
+            console.log("Testing: " + stockList[1][0].slice(stockList[1][0].indexOf('-') + 2, stockList[1][0].lastIndexOf('-')))
+        }
+        else {
+            console.log("Organizational Unit ID is blank or Min quantity is 0, will not remove items.")
+        }
+    }
+    removeMinStock();
+
     if (myUpdateInterval > 10000) { 
         setInterval(function () {
             getInv();
             brandBool();
             dashBool();
+            removeMinStock();
             console.log("Stock count updated. Will update again in: " + __UP_updateInterval__ + " minute(s).");
         }, myUpdateInterval);
     }
