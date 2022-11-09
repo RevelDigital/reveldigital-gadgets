@@ -11,10 +11,14 @@
 			<EnumValue value="down" display_value="Count down to the specified date" />
 		</UserPref>
 		<UserPref name="separator" display_name="Separator Type" datatype="enum" default_value="alpha">
-			<EnumValue value="alpha" display_value="Single character separator (ie. S, M, H)" />
-			<EnumValue value="colon" display_value="Colon separator" />
-			<EnumValue value="space" display_value="No separator" />
+			<EnumValue value="alpha" display_value="Single character separator (20h 31m 27s)" />
+			<EnumValue value="colon" display_value="Colon separator (20 : 31 : 27)" />
+			<EnumValue value="space" display_value="No separator (20 31 27)" />
+			<EnumValue value="daysOnly" display_value="Days only (3 Days)" />
 		</UserPref>
+		<UserPref name="includeSeconds" display_name="Include Seconds" datatype="bool" default_value="true" />
+		<UserPref name="includeMinutes" display_name="Include Minutes" datatype="bool" default_value="true" />
+		<UserPref name="includeHours" display_name="Include Hours" datatype="bool" default_value="true" />
 		<UserPref name="message" display_name="Completion Message" datatype="string" />
 		<UserPref name="body-style" display_name="Counter Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
 		<UserPref name="message-style" display_name="Completion Message Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
@@ -48,7 +52,7 @@
 			
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/runtime.0d2c8ae9625aae65.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/polyfills.9efcb93f11d23700.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/main.8bb3360007f84fd6.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-countdown-app/main.20bd18d88a14799e.js" type="module"></script>
 
 				<script type="text/javascript">
 
