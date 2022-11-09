@@ -283,7 +283,7 @@
     let stockList = [];
     async function removeMinStock() {
         if (orgUnitID != "") {
-            await axios.get(endPoint + "accounts/" + accID + "/organizationalUnits/" + orgUnitID + "/productStocks", options)
+            await axios.get(endPoint + "/accounts/" + accID + "/organizationalUnits/" + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
                         (stockList.push([response.data.results[i].product.name, response.data.results[i].amount.actual]));
@@ -297,7 +297,7 @@
                 for (i = 0; i <= numRows; i++) {
                     console.log("attemping to remove row");
                     rows.forEach(rowItem => {
-                        if (rowItem.innerHTML.includes(stockList[i][0].slice(stockList[i][0].indexOf('-') + 2, stockList[i][0].lastIndexOf('-'))) && stockList[i][1] <= myMinQty) {
+                        if (rowItem.innerHTML.includes((stockList[i][0]).slice((stockList[i][0]).indexOf('-') + 2, (stockList[i][0]).lastIndexOf('-'))) && (stockList[i][1]) <= myMinQty) {
                             rowItem.closest('tr').remove();
                             console.log((i + 1) + " row removed");
                         }
