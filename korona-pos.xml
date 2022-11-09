@@ -132,12 +132,7 @@
     let myGroupID = "__UP_groupID__";
     let endPoint = "https://167.koronacloud.com/web/api/v3";
     let tagID = "__UP_tagID__";
-    if ("__UP_minQty__" == "") { 
-        let myMinQty = 0;
-    }
-    else {
-        let myMinQty = __UP_minQty__;
-    }
+    let myMinQty = __UP_minQty__;
     
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
@@ -287,7 +282,7 @@
 
     let stockList = [];
     async function removeMinStock() {
-        if (orgUnitID != "" && myMinQty > 0) {
+        if (orgUnitID != "") {
             await axios.get(endPoint + "accounts/" + accID + "/organizationalUnits/" + orgUnitID + "/productStocks", options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
@@ -310,15 +305,15 @@
                 }
             }
             else {
+                console.log("Table not full. Trying again shortly.")
                 await sleep(500);
-                console.log("Table not full yet. Trying again.")
                 removeMinStock();
             }
             console.log(stockList.length + " rows searched for removal.");
-            console.log("Testing: " + stockList[1][0].slice(stockList[1][0].indexOf('-') + 2, stockList[1][0].lastIndexOf('-')))
+            console.log("Testing, Should say PAPAYA: " + stockList[1][0].slice(stockList[1][0].indexOf('-') + 2, stockList[1][0].lastIndexOf('-')))
         }
         else {
-            console.log("Organizational Unit ID is blank or Min quantity is 0, will not remove items.")
+            console.log("Organizational Unit ID is blank, will not remove items.")
         }
     }
     removeMinStock();
