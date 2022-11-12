@@ -136,6 +136,7 @@
 		<UserPref name="customFeedUrl" display_name="Custom RSS feed URL (use with ''Custom RSS Option'' from dropdown)" datatype="string" />
 		<UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="15" />
 		<UserPref name="showHeader" display_name="Show Heading" datatype="bool" default_value="true" />
+		<UserPref name="showSummary" display_name="Show Summary" datatype="bool" default_value="true" />
 		<UserPref name="showDate" display_name="Show Date/Time" datatype="bool" default_value="true" />
 		<UserPref name="showLogo" display_name="Show Feed Source Logo" datatype="bool" default_value="true" />
 		<UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="10" />
@@ -169,16 +170,13 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.f2fff9540a9e1291d2f0.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/styles.f982a116fcfad8b9.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es2015.eab4b434a9ed924d1eed.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime-es5.eab4b434a9ed924d1eed.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es5.318c4f01057ff3718732.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills-es2015.26738760f0df155c91b8.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es2015.f6a10b3b452422dd1295.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main-es5.f6a10b3b452422dd1295.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime.6e902dccf2146ee0.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills.d37cf2c34d0dab73.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main.208d09abaf403b32.js" type="module"></script>
 
 				<script type="text/javascript">
 
