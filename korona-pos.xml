@@ -180,7 +180,7 @@
         axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                        if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID && typeof response.data.results[i].prices != 'undefined') {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                 + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                 .catch(err => console.error(err));
@@ -189,7 +189,7 @@
         if (myItemID != "" && accID != "") {
             axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                 .then((response) => {
-                    if (response.data.name != "") {
+                    if (response.data.name != "" && typeof response.data.results[i].prices != 'undefined') {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
                             + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
             .catch(err => console.error(err));
@@ -198,7 +198,7 @@
             axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                 .then((response) => {
                     for (let i = 0; i < response.data.results.length; i++) {
-                        if (response.data.results[i].name != "") {
+                        if (response.data.results[i].name != "" && typeof response.data.results[i].prices != 'undefined') {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                 + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                 .catch(err => console.error(err));
@@ -211,7 +211,7 @@
             axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID) {
+                            if (response.data.results[i].name != "" && response.data.results[i].commodityGroup.name == myGroupID && typeof response.data.results[i].prices != 'undefined') {
                                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                     + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                     .catch(err => console.error(err));
@@ -220,7 +220,7 @@
             if (myItemID != "" && accID != "") {
                 axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                     .then((response) => {
-                        if (response.data.name != "") {
+                        if (response.data.name != "" && typeof response.data.results[i].prices != 'undefined') {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
                                 + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
                 .catch(err => console.error(err));
@@ -229,7 +229,7 @@
                 axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
                     .then((response) => {
                         for (let i = 0; i < response.data.results.length; i++) {
-                            if (response.data.results[i].name != "") {
+                            if (response.data.results[i].name != "" && typeof response.data.results[i].prices != 'undefined') {
                                 (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.results[i].name + "</td><td>"
                                     + formatter.format(response.data.results[i].prices[(response.data.results[i].prices.length)-1].value) + "</td></tr>");}}})
                     .catch(err => console.error(err));
