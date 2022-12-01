@@ -164,8 +164,7 @@
     const options = { headers: { authorization: 'Basic ' + myAPIToken }};
 
     if (__UP_myBoolHeadPref__ === false) {
-        const element = document.getElementById('headerID');
-        element.remove();
+        document.getElementById('headerID').remove();
     }
 
     let tagEnd = "";
@@ -189,7 +188,7 @@
         if (myItemID != "" && accID != "") {
             axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                 .then((response) => {
-                    if (response.data.name != "") {
+                    if (response.data.name != "" && typeof response.data.prices != 'undefined') {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
                             + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
             .catch(err => console.error(err));
@@ -220,7 +219,7 @@
             if (myItemID != "" && accID != "") {
                 axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                     .then((response) => {
-                        if (response.data.name != "") {
+                        if (response.data.name != "" && typeof response.data.prices != 'undefined') {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
                                 + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
                 .catch(err => console.error(err));
@@ -305,18 +304,17 @@
                         })
                     }
                     catch(err) {
-                        console.log(err);
+                        console.error(err);
                     }
                 }
                 console.log(countRow + " items removed due to low quantity.");
             }
             else {
-                console.log("Table not full. Trying again shortly.")
+                console.log("Table not full. Trying again shortly.");
                 await sleep(500);
                 removeMinStock();
             }
             console.log(stockList.length + " rows searched for removal.");
-            console.log("Testing, Should say PAPAYA: " + stockList[1][0].slice(stockList[1][0].indexOf('-') + 2, stockList[1][0].lastIndexOf('-')))
         }
         else {
             console.log("Organizational Unit ID is blank, will not remove items.")
