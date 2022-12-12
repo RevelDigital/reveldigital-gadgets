@@ -147,6 +147,7 @@
 		<UserPref name="imageStyle" display_name="Image Display Style" datatype="enum" default_value="blur">
 			<EnumValue display_value="Fade" value="fade" />
 			<EnumValue display_value="Blur" value="blur" />
+			<EnumValue display_value="Zoom" value="zoom" />
 		</UserPref>
 		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
 		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
@@ -176,7 +177,7 @@
 		
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/runtime.6e902dccf2146ee0.js" type="module"></script>
 				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/polyfills.d37cf2c34d0dab73.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main.208d09abaf403b32.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-news-app/main.92dc78095f834c27.js" type="module"></script>
 
 				<script type="text/javascript">
 
