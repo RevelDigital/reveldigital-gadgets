@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="Toast Menu" description="A menu gadget for displaying information from a Toast POS machine" author="" background="transparent">
-        <UserPref name="myCatPref" display_name="Category ID" datatype="string" default_value="78TBJX18YSNJ2" required="true" />
-        <UserPref name="myAPIPref" display_name="API Token" datatype="string" default_value="12783thadsAPI" required="true" />
-        <UserPref name="myExtIDPref" display_name="Restaurant External ID" datatype="string" default_value="testing123" required="true" />
+    <ModulePrefs title="Toast Menu" description="A menu gadget for displaying product information from Toast POS software" author="" background="transparent">
+        <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
+        <UserPref name="itemID" display_name="Product ID (for displaying a single item only)" datatype="string" default_value="" required="false" />
+        <UserPref name="groupID" display_name="Group ID (for displaying a single group only)" datatype="string" default_value="">
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
         <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
         <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="updateInterval" display_name="Update Interval (in minutes)" datatype="string" default_value="5" required="true" />
         <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
+        <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
         <UserPref name="myHeadTextColorPref" display_name="Header Text Color" datatype="color" default_value="#FFFFFF" />
         <UserPref name="myBackTextColorPref" display_name="Body Text Color" datatype="color" default_value="#000000" />
         <UserPref name="myBorderColorPref" display_name="Item List Border Color" datatype="color" default_value="#000000" />
+        <UserPref name="myTitlePref" display_name="Menu Title" datatype="string" default_value="Customizable Korona Menu via API!" required="false" />
 
-        <UserPref name="myBoolTablePref" display_name="Display Table Header" datatype="bool" default_value="true" />
-        <UserPref name="myBoolCorsPref" display_name="Enable CORS Proxy" datatype="bool" default_value="false" />
-        
+        <UserPref name="currencyTick" display_name="Currency Symbol" datatype="enum" default_value="USD">
+            <EnumValue value="USD" display_value="US Dollar" />
+            <EnumValue value="EUR" display_value="Euro" />
+            <EnumValue value="PND" display_value="British Pound" />
+            <EnumValue value="THB" display_value="Thai Baht" />
+        </UserPref>
+        <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="false" />
+
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
         <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
     </ModulePrefs>
-    <Content type="html"><![CDATA[<style type="text/css">
+    <Content type="html">
+        <![CDATA[<style type="text/css">
 
     body *
     {
@@ -44,14 +53,17 @@
         font-size: 20px;
     }
 
+    #priceStock {
+        font-size: 25px;
+        text-align: center;
+        color: __UP_myBackTextColorPref__;
+        font-size: __UP_stockFontSize__em;
+    }
+
     #itemList {
         font-size: 25px;
         text-align: center;
         color: __UP_myBackTextColorPref__;
-    }
-
-    #IDvalues {
-        text-decoration: underline;
     }
 
     .centerTable {
@@ -77,10 +89,12 @@
 
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <body>
     <div class="header" id="headerID">
-        <h1></h1>
-        <p id="IDvalues"></p>
+        <h1>__UP_myTitlePref__</h1>
     </div>
     <div id="itemList">
         <div>
@@ -91,42 +105,77 @@
 </body>
 
 <script type="text/javascript">
-
     var prefs = new gadgets.Prefs();
 
-    let myCatID = "__UP_myCatPref__";
-    let myAPIToken = "__UP_myAPIPref__";
-    let myExternalID = "__UP_myExtIDPref__";
-    let cors = "https://corsanywhere.herokuapp.com/";
+    let myRestaurantID = "__UP_myAPIPref__";
+    let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    let myItemID = "__UP_itemID__";
+    let myGroupID = "__UP_groupID__";
+    let endPoint = "https://toast-api-server/menus/v3/menus";
     
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    
-    var formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-    
-    const options = {
-        method: 'GET',
-        headers: {
-            "Toast-Restaurant-External-ID": + ref, 
-            Authorization: 'Bearer ' + myAPIToken
-        }
-    };
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-    if (__UP_myBoolCorsPref__ === false) {
-        cors = '';
+    if ("__UP_currencyTick__" == "USD") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+    }
+    else if ("__UP_currencyTick__" == "EUR") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'EUR',
+        });
+    }
+    else if ("__UP_currencyTick__" == "PND") {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'GBP',
+        });
+    }
+    else if ("__UP_currencyTick__" == "THB") {
+        var formatter = new Intl.NumberFormat('th-TH', {
+            style: 'currency',
+            currency: 'THB',
+        });
     }
     
-    fetch(cors + "https://toast-api-server/config/v2/menuGroups/" + myCatID, options)
-        .then(response => response.json())
+    const options = { headers: { "Toast-Restaurant-External-ID": myRestaurantID }};
+
+    if (__UP_myBoolHeadPref__ === false) {
+        const element = document.getElementById('headerID');
+        element.remove();
+    }
+
+    console.log("--------Initial Calls Here-----------");
+    console.log("------------Hierarchy needs testing/changing-----------");
+    axios.get(endPoint, options)
         .then((response) => {
-            for (let i = 0; i < response.items.length; i++) {
-                (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.items[i].name + "</td><td>"
-                    + formatter.format((response.items[i].price) / 100) + "</td></tr>");}})
+            for (let i = 0; i < response.data.results.length; i++) {
+                if (response.data.menus[i].menuGroups.menuItems.name != "" && typeof response.data.results[i].prices != 'undefined') {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.menus[i].menuGroups.menuItems.name + "</td><td>"
+                        + formatter.format((response.data.menus[i].menuGroups.menuItems.price)/100) + "</td></tr>");}}})
         .catch(err => console.error(err));
+        
+    function getInv() {
+        console.log("------------Run calls again here-----------");
+        console.log("------------Hierarchy needs testing/changing-----------");
+        axios.get(endPoint, options)
+            .then((response) => {
+                for (let i = 0; i < response.data.results.length; i++) {
+                    if (response.data.menus[i].menuGroups.menuItems.name != "" && typeof response.data.results[i].prices != 'undefined') {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.menus[i].menuGroups.menuItems.name + "</td><td>"
+                            + formatter.format(response.data.menus[i].menuGroups.menuItems.price)/100) + "</td></tr>");}}})
+            .catch(err => console.error(err));
+    {
+        
+
+    if (myUpdateInterval > 10000) { 
+        setInterval(function () {
+            getInv();
+            console.log("Items updated. Will update again in: " + __UP_updateInterval__ + " minute(s).");
+        }, myUpdateInterval);
+    }
 
 </script>]]></Content>
 </Module>
