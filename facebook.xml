@@ -244,7 +244,7 @@ span.when
             item.append(icon);
           }
           var body = $('<div/>').attr('class', txtClass + ' post' + i);
-          if (post.name != null) {
+          if (post.from != null) {
             body.append($('<a/>').attr('href', post.permalink_url).attr('title', 'post by ' + post.from.name).text(post.from.name));
           }
           //body.append($('<p/>').text(post.message));

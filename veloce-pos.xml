@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs title="Veloce Menu" description="A menu gadget for displaying information from Veloce POS software" author="" background="transparent">
-        <UserPref name="myItemPref" display_name="Item ID" datatype="string" default_value="" required="false" />
         <UserPref name="myAPIPref" display_name="API Token*" datatype="string" default_value="" required="true" />
-        <UserPref name="itemListCount" display_name="# of Visible Items" datatype="string" default_value="15" required="true" />
-        <UserPref name="itemType" display_name="Item Type" datatype="string" default_value="" required="false" />
+        <UserPref name="itemType" display_name="Division ID" datatype="string" default_value="" required="false" />
+        <UserPref name="itemID" display_name="Item ID" datatype="string" default_value="" required="false" />
 
         <UserPref name="tableSpacingTop" display_name="Top-Bottom Table Spacing" datatype="string" default_value="8" required="true" />
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
@@ -20,14 +19,15 @@
 
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="true" />
         <UserPref name="myBoolZeroPref" display_name="Hide $0 Items" datatype="bool" default_value="true" />
-        
+
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
         <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
         <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
     </ModulePrefs>
-    <Content type="html"><![CDATA[<style type="text/css">
+    <Content type="html">
+        <![CDATA[<style type="text/css">
 
     body *
     {
@@ -103,11 +103,10 @@
 
     var prefs = new gadgets.Prefs();
 
-    let itemID = "__UP_myItemPref__";
     let myAPIToken = "__UP_myAPIPref__";
     let myItemType = "__UP_itemType__";
-    let myListCount = __UP_itemListCount__;
     let myUpdateInterval = (__UP_updateInterval__ * 60000);
+    let myItemID = "__UP_itemID__";
     
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -131,12 +130,23 @@
         return /[a-zA-Z]/.test(str);
       }
     
-    if (isNaN(parseInt(myItemType)) == false) {
+    if (myItemType != "" && myItemID == "") {
 
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
-            for (let i = 0; i <= myListCount; i++) {
-                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == parseInt(myItemType)) {
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
+                    (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                        + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+        .catch(err => console.error(err));
+
+    }
+    else if (myItemID != "") {
+
+        axios.get('https://api.posveloce.com/items', optionsItems)
+        .then((response) => {
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemId == myItemID) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
         .catch(err => console.error(err));
@@ -146,7 +156,7 @@
 
         axios.get('https://api.posveloce.com/items', optionsItems)
         .then((response) => {
-            for (let i = 0; i <= myListCount; i++) {
+            for (let i = 0; i < response.data.length; i++) {
                 if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true) {
                     (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                         + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
@@ -182,12 +192,23 @@
     
     function getInv() {
     
-        if (isNaN(parseInt(myItemType)) == false) {
+        if (myItemType != "" && myItemID == "") {
 
             axios.get('https://api.posveloce.com/items', optionsItems)
             .then((response) => {
-                for (let i = 0; i <= myListCount; i++) {
-                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemType == parseInt(myItemType)) {
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].division.bigDivisionId == myItemType) {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
+                            + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
+            .catch(err => console.error(err));
+    
+        }
+        else if (myItemID != "") {
+    
+            axios.get('https://api.posveloce.com/items', optionsItems)
+            .then((response) => {
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true && response.data[i].itemId == myItemID) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                             + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
             .catch(err => console.error(err));
@@ -197,7 +218,7 @@
     
             axios.get('https://api.posveloce.com/items', optionsItems)
             .then((response) => {
-                for (let i = 0; i <= myListCount; i++) {
+                for (let i = 0; i < response.data.length; i++) {
                     if (response.data[i].name.includes("=") == false && response.data[i].name.includes("-") == false && response.data[i].name.includes("+") == false && containsAnyLetters(response.data[i].name) == true) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data[i].name + "</td><td>"
                             + formatter.format((response.data[i].regularPrice)) + "</td></tr>");}}})
@@ -240,5 +261,6 @@
         }, myUpdateInterval);
     }
 
-</script>]]></Content>
+</script>]]>
+    </Content>
 </Module>
