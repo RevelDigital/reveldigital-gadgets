@@ -26,15 +26,11 @@
             </style>
             <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.31d6cfe0d16ae931b73c.css">
 
-
 			<app-root></app-root>
 			
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es2015.5de2161c4e778383e7bc.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime-es5.5de2161c4e778383e7bc.js" nomodule defer></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es5.ac88382a682558a4bc2a.js" nomodule defer></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills-es2015.2221579c71c375a56971.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es2015.00afad89610504c17494.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main-es5.00afad89610504c17494.js" nomodule defer></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime.eb23f530848adee4.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills.a6e5fe95ffd24ff2.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main.baf5bf7bbe6c13d6.js" type="module"></script>
 
 			<script type="text/javascript">
 
