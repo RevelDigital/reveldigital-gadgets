@@ -50,26 +50,29 @@
 
                 var prefs = new gadgets.Prefs();
                 var map;
+                var geoLocation;
 
                 function initMap() {
-                    var lat;
-                    var lng;
-                    
+
                     var address = prefs.getString("Location");
                     if (address == '*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*') {
                         address = 'New York, NY';
                     }
-                
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({
-                        "address": address
-                    }, function(results) {
-                        lat = results[0].geometry.location.lat();
-                        lng = results[0].geometry.location.lng();
-                        console.log(results[0].geometry.location.lat()); //LatLng
 
-                        setMap(lat, lng);
-                    });   
+                    if (!geoLocation) {
+                      var geocoder = new google.maps.Geocoder();
+                      geocoder.geocode({
+                          "address": address
+                      }, function(results, status) {
+                          if (status == google.maps.GeocoderStatus.OK) {
+                            geoLocation = results[0].geometry.location;
+
+                            setMap(geoLocation.lat(), geoLocation.lng());
+                          }
+                      });  
+                    } else {
+                      setMap(geoLocation.lat(), geoLocation.lng());
+                    }
                 }
 
                 function setMap(lat, lng){
