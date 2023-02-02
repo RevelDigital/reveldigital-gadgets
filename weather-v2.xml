@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Gadget" description="Local weather details with forecast" author="RevelDigital" background="transparent">
+<ModulePrefs title="RevelDigital Weather Gadget" description="Local weather details with forecast" author="RevelDigital" background="transparent" deprecated="true">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
@@ -189,6 +189,7 @@ div, span
   var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var prefs = new gadgets.Prefs();
   var geocoder = new google.maps.Geocoder();
+  var geoLocation;
   var skycons;
   
   function mapIcon(icon) {
@@ -300,11 +301,16 @@ div, span
       location = "Fargo, ND";
     }
     
-    geocoder.geocode({'address': location}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        renderWeather(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-      }
-    });
+    if (!geoLocation) {
+      geocoder.geocode({'address': location}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+	    geoLocation = results[0].geometry.location;
+          renderWeather(geoLocation.lat(), geoLocation.lng());
+        }
+      });
+    } else {
+      renderWeather(geoLocation.lat(), geoLocation.lng());
+    }
   }
 
   gadgets.util.registerOnLoadHandler(load);
