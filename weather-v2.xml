@@ -258,7 +258,7 @@ div, span
       var min = data.currently.temperature;
       $.each(data.daily.data, function (i, val) {
         if (i < Math.min(8, prefs.getInt("ForecastDays"))) {
-          max = Math.max(max, val.temperatureMax);update
+          max = Math.max(max, val.temperatureMax);
           min = Math.min(min, val.temperatureMin);
           var t = new Date(1970,0,1);
           t.setSeconds(val.time);
@@ -303,18 +303,18 @@ div, span
       location = "Fargo, ND";
     }
     
-	renderWeather(prefs.getString("Latitude"), prefs.getString("Longitude"));
+	  //renderWeather(prefs.getString("Latitude"), prefs.getString("Longitude"));
 	
-    //if (!geoLocation) {
-    //  geocoder.geocode({'address': location}, function(results, status) {
-    //    if (status == google.maps.GeocoderStatus.OK) {
-	//    geoLocation = results[0].geometry.location;
-    //      renderWeather(geoLocation.lat(), geoLocation.lng());
-    //    }
-    //  });
-    //} else {
-    //  renderWeather(geoLocation.lat(), geoLocation.lng());
-    //}
+    if (!geoLocation) {
+      geocoder.geocode({'address': location}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+	        geoLocation = results[0].geometry.location;
+          renderWeather(geoLocation.lat(), geoLocation.lng());
+        }
+      });
+    } else {
+      renderWeather(geoLocation.lat(), geoLocation.lng());
+    }
   }
 
   gadgets.util.registerOnLoadHandler(load);
