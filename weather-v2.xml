@@ -5,6 +5,8 @@
   <Require feature="jquery" />
   <Require feature="webfont" />
   
+  <UserPref name="Latitude" datatype="hidden" default_value="*|DEVICE.LOCATION.LATITUDE|*" />
+  <UserPref name="Longitude" datatype="hidden" default_value="*|DEVICE.LOCATION.LONGITUDE|*" />
   <UserPref name="Location" display_name="City, State for Weather" datatype="string" required="true" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
   <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="us">
     <EnumValue value="us" display_value="US" />
@@ -301,16 +303,18 @@ div, span
       location = "Fargo, ND";
     }
     
-    if (!geoLocation) {
-      geocoder.geocode({'address': location}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-	    geoLocation = results[0].geometry.location;
-          renderWeather(geoLocation.lat(), geoLocation.lng());
-        }
-      });
-    } else {
-      renderWeather(geoLocation.lat(), geoLocation.lng());
-    }
+	renderWeather(prefs.getString("Latitude"), prefs.getString("Longitude"));
+	
+    //if (!geoLocation) {
+    //  geocoder.geocode({'address': location}, function(results, status) {
+    //    if (status == google.maps.GeocoderStatus.OK) {
+	//    geoLocation = results[0].geometry.location;
+    //      renderWeather(geoLocation.lat(), geoLocation.lng());
+    //    }
+    //  });
+    //} else {
+    //  renderWeather(geoLocation.lat(), geoLocation.lng());
+    //}
   }
 
   gadgets.util.registerOnLoadHandler(load);
