@@ -35,6 +35,11 @@
 			<script type="text/javascript">
 
 				function load() {
+					if (CefSharp) {
+						CefSharp.BindObjectAsync('Client').then(function() {
+							console.log('CEF Bound');
+						});
+					}
 				}
 				gadgets.util.registerOnLoadHandler(load);
 				
