@@ -24,6 +24,7 @@
         <UserPref name="tableSpacingSide" display_name="Left-Right Table Spacing" datatype="string" default_value="30" required="true" />
         <UserPref name="tableFontSize" display_name="Table Text Size" datatype="string" default_value="1.17" required="true" />
         <UserPref name="stockFontSize" display_name="Special Text Size" datatype="string" default_value="1.17" required="true" />
+        <UserPref name="imageWidth" display_name="Image Size (%)" datatype="string" default_value="100" required="true" />
         <UserPref name="updateInterval" display_name="Update Interval (in minutes)" datatype="string" default_value="5" required="true" />
         <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#B6D0E2" />
         <UserPref name="myHeadColorPref" display_name="Header Color" datatype="color" default_value="#1ABC9C" />
@@ -39,6 +40,7 @@
             <EnumValue value="THB" display_value="Thai Baht" />
         </UserPref>
         <UserPref name="myBoolHeadPref" display_name="Display Header" datatype="bool" default_value="false" />
+        <UserPref name="myBoolImagePref" display_name="Display Special Image" datatype="bool" default_value="false" />
         <UserPref name="myBoolDashPref" display_name="Display Dash in Name" datatype="bool" default_value="true" />
         <UserPref name="myBoolBrandPref" display_name="Display Brand Name" datatype="bool" default_value="true" />
 
@@ -99,6 +101,12 @@
         border-bottom: 1pt solid __UP_myBorderColorPref__;
     }
 
+    img {
+        transform-origin: center;
+        width:__UP_imageWidth__%;
+        height: auto;
+    }
+
     .my-style
     {
         __UP_myStylePref__;
@@ -107,7 +115,6 @@
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <body>
     <div class="header" id="headerID">
@@ -188,10 +195,14 @@
         if (myItemID != "" && accID != "") {
             axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                 .then((response) => {
-                    if (response.data.name != "" && typeof response.data.prices != 'undefined') {
+                    if (response.data.name != "" && typeof response.data.prices != 'undefined' && !(__UP_myBoolImagePref__)) {
                         (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
-                            + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
-            .catch(err => console.error(err));
+                            + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}
+                    else if (response.data.name != "" && typeof response.data.prices != 'undefined' && (__UP_myBoolImagePref__)) {
+                        (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
+                            + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td><td>"
+                            + '<img src=' + response.data.mediaUrls[(response.data.mediaUrls.length)-1].url + '>' + "</td></tr>");}})
+                .catch(err => console.error(err));
         }
         else {
             axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
@@ -219,10 +230,14 @@
             if (myItemID != "" && accID != "") {
                 axios.get(endPoint + '/accounts/' + accID + '/products/' + myItemID, options)
                     .then((response) => {
-                        if (response.data.name != "" && typeof response.data.prices != 'undefined') {
+                        if (response.data.name != "" && typeof response.data.prices != 'undefined' && !(__UP_myBoolImagePref__)) {
                             (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
-                                + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}})
-                .catch(err => console.error(err));
+                                + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td></tr>");}
+                        else if (response.data.name != "" && typeof response.data.prices != 'undefined' && (__UP_myBoolImagePref__)) {
+                            (document.getElementById("itemListList").innerHTML += "<tr><td>" + response.data.name + "</td><td>"
+                                + formatter.format(response.data.prices[(response.data.prices.length)-1].value) + "</td><td>"
+                                + '<img src=' + response.data.mediaUrls[(response.data.mediaUrls.length)-1].url + '>' + "</td></tr>");}})
+                    .catch(err => console.error(err));
             }
             else {
                 axios.get(endPoint + '/accounts/' + accID + '/products' + tagEnd, options)
@@ -266,9 +281,11 @@
         if (__UP_myBoolDashPref__ === false && accID != "") {
             var brandTable = document.getElementById("itemListList");
             if ((brandTable.rows.length) > 0) {
-                console.log("Attempting to Remove Dash from Name");
-                $('table.centerTable:contains("-")').each(function(){
-                    $(this).html($(this).html().split("-").join(""));});
+                var total = brandTable.rows.length;
+                for (var i = 0; i < total; i++) {
+                    console.log("attempt to remove dash")
+                    brandTable.rows[i].cells[0].innerHTML = brandTable.rows[i].cells[0].innerHTML.split("-").join("");
+                }
             }
             else {
                 await sleep(500);
