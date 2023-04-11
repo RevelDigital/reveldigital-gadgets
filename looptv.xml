@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="LoopTV" description="Loop TV | Music and Video streaming content for your business" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="offline" />
+  
+  <UserPref name="channel" display_name="Content Channel" datatype="enum" default_value="small">
+    <EnumValue value="https://biz.loop.tv/player/trivia" display_value="Trivia" />
+  </UserPref>
+  <UserPref name="UserAgent" datatype="hidden" default_value="Dalvik/2.1.0 (Linux; U; Android 6.0.1; MIBOX3 Build/MHC19J)" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+#container
+{
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  border: 0;
+}
+</style>
+
+<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" allow="microphone; camera"></iframe>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+  
+  var url = prefs.getString('channel');
+  
+  function load() {
+    $('#container').attr('src', url);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+  
+  window.addEventListener("message", receiveMessage, false);
+
+  function receiveMessage(event) {
+	  Client.callback(event.data);
+  }
+
+</script>
+
+]]>
+</Content>
+</Module>
