@@ -5,7 +5,7 @@
   <Require feature="jquery" />
   <Require feature="offline" />
   
-  <UserPref name="channel" display_name="Content Channel" datatype="enum" default_value="small">
+  <UserPref name="channel" display_name="Content Channel" datatype="enum" default_value="https://biz.loop.tv/player/trivia">
     <EnumValue value="https://biz.loop.tv/player/trivia" display_value="Trivia" />
   </UserPref>
   <UserPref name="UserAgent" datatype="hidden" default_value="Dalvik/2.1.0 (Linux; U; Android 6.0.1; MIBOX3 Build/MHC19J)" />
@@ -41,7 +41,7 @@ body
 }
 </style>
 
-<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" allow="microphone; camera"></iframe>
+<iframe id="container" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0"></iframe>
 
 <script type="text/javascript">
 
