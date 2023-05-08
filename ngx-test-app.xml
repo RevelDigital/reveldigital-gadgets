@@ -35,7 +35,7 @@
 			<script type="text/javascript">
 
 				function load() {
-					if (CefSharp) {
+					if (typeof CefSharp !== "undefined") {
 						CefSharp.BindObjectAsync('Client').then(function() {
 							console.log('CEF Bound');
 						});
