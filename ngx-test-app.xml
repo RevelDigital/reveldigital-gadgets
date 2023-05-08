@@ -24,13 +24,14 @@
 					overflow: hidden;
 				}
             </style>
-            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.31d6cfe0d16ae931b73c.css">
+            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.css">
 
 			<app-root></app-root>
 			
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime.eb23f530848adee4.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills.a6e5fe95ffd24ff2.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main.baf5bf7bbe6c13d6.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor.js" type="module"></script>
+			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main.js" type="module"></script>
 
 			<script type="text/javascript">
 
