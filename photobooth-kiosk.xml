@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="Photobooth Kiosk" description="Testing Photobooth Kiosk" author="" background="transparent">
+    <ModulePrefs title="Photobooth" description="Photobooth Functionality" author="" background="transparent">
         <Require feature="reveldigital" />
         <UserPref name="myCountdownPref" display_name="Timer Duration" datatype="string" default_value="5" required="true" />
         <UserPref name="myQRSizePref" display_name="QR Code Size (pixels)" datatype="string" default_value="300" required="true" />
@@ -67,11 +67,11 @@
         display: block;
     }
 
-    video {
+    video{
         object-fit: fill;
     }
 
-    .vid {
+    .vid{
         position: absolute; 
         top: 0; left:0;
         width: 100%; height: 100%; 
@@ -97,20 +97,16 @@
 
     var prefs = new gadgets.Prefs();
 
-    let timeRemain = __UP_myCountdownPref__;
     let timerStyle = "__UP_timerLoc__";
     let myTime = __UP_mytimeoutPref__;
     let qrSize = "__UP_myQRSizePref__";
     let isSleep = true;
+    var functionIsRunning = false;
+
     const video = document.getElementById("video")
+    document.getElementById('countdown').hidden = true;
     key = prefs.getString("regkey");
     $('.flash').hide();
-
-    document.getElementById('countdown').hidden = true;
-
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
     //QR code format: "https://photo-booth.herokuapp.com/?key=RegKey" Ex: https://photo-booth.herokuapp.com/?key=7ef4a535-e988-4f71-ada8-522a5b5da812
     document.getElementById("qrCode").innerHTML = ("<img src='https://api.qrserver.com/v1/create-qr-code/?size= + qrSize + x + qrSize + &data=https://photo-booth.herokuapp.com/?key=" + key + "'>");
@@ -155,15 +151,13 @@
             onCommand: function(name, arg) {
                 if (arg == "start") {
                     document.getElementById('qrCode').hidden = true;
-                    document.getElementById('countdown').hidden = false;
                     startTimer();
                 }
                 else if (arg != "timeout") {
                     canvas.getContext('2d').drawImage(video, 0, 0, 1080, 1920);
                     var data = canvas.toDataURL();
-                    console.log(data);
-                    document.getElementById('canvas').hidden = true;
                     flash();
+                    document.getElementById('canvas').hidden = true;
                     axios.post("https://photo-booth.herokuapp.com/photo", {
                         "key": key,
                         "background": data.substring(data.indexOf(',') + 1),
@@ -183,9 +177,7 @@
     async function getMedia() {
         let stream = null;
         try {
-            stream = await navigator.mediaDevices.getUserMedia({
-                video: true
-            })
+            stream = await navigator.mediaDevices.getUserMedia({video: true})
             video.srcObject = stream;
         } catch (err) {
             console.log("error displaying stream");
@@ -194,18 +186,23 @@
     getMedia();
 
     function startTimer() {
+        let timeRemain = __UP_myCountdownPref__;
         isSleep = false;
-        console.log("Timer Started");
-        var countdownTimer = setInterval(function() {
-            if (timeRemain <= 0) {
-                clearInterval(countdownTimer);
-                document.getElementById('countdown').hidden = true;
-                Client.sendCommand("takesnapshot", "");
-            } else {
-                document.getElementById("countdown").innerHTML = timeRemain;
-            }
-            timeRemain -= 1;
-        }, 1000);
+        if (!functionIsRunning) {
+            functionIsRunning = true;
+            var countdownTimer = setInterval(function() {
+                if (timeRemain <= 0) {
+                    clearInterval(countdownTimer);
+                    document.getElementById('countdown').hidden = true;
+                    Client.sendCommand("takesnapshot", "");
+                    functionIsRunning = false;
+                } else {
+                    document.getElementById("countdown").innerHTML = timeRemain;
+                    document.getElementById('countdown').hidden = false;
+                }
+                timeRemain -= 1;
+            }, 1000);
+        }
     }
 
     var sleepTimer = setInterval(function() {
