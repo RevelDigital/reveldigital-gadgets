@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Photobooth Kiosk" description="Testing Photobooth Kiosk" author="" background="transparent">
+        <Require feature="reveldigital" />
+        <UserPref name="myCountdownPref" display_name="Timer Duration" datatype="string" default_value="5" required="true" />
+        <UserPref name="myQRSizePref" display_name="QR Code Size (pixels)" datatype="string" default_value="300" required="true" />
+        <UserPref name="mytimeoutPref" display_name="Stream Timeout" datatype="string" default_value="60" required="true" />
+        <UserPref name="timerLoc" display_name="Timer Location" datatype="enum" default_value="TLeft" required="true">
+            <EnumValue value="TLeft" display_value="Top-Left" />
+            <EnumValue value="TRight" display_value="Top-Right" />
+            <EnumValue value="BLeft" display_value="Bottom-Left" />
+            <EnumValue value="BRight" display_value="Bottom-Right" />
+        </UserPref>
+        <UserPref name="textStyle" display_name="Countdown Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:64px;font-weight:bold;" required="true" />
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="regkey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html"><![CDATA[<style type="text/css">
+
+    body *{
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body{
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    .flash{ 
+        position:fixed; 
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color:#fff;
+    }
+
+    .my-style{
+        __UP_myStylePref__;
+    }
+
+    #countdown{
+        position: absolute;
+        __UP_textStyle__;
+    }
+
+    #qrCode{
+        position: absolute;
+    }
+
+    #qrCode img{
+        width: __UP_myQRSizePref__px;
+        height: __UP_myQRSizePref__px;
+    }
+
+    #canvas{
+        overflow: auto;
+    }
+
+    #video{
+        display: block;
+    }
+
+    video {
+        object-fit: fill;
+    }
+
+    .vid {
+        position: absolute; 
+        top: 0; left:0;
+        width: 100%; height: 100%; 
+        z-index: -1;
+        margin: 0px;
+    }
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+<body>
+    <div class="flash"></div>
+    <div id="countdown"></div>
+    <div id="qrCode"></div>
+    <div class='vid'><video id="video" width="1080" height="1920" muted autoplay></video></div>
+    <canvas id="canvas" width="1080" height="1920"></canvas>
+</body>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+
+    let timeRemain = __UP_myCountdownPref__;
+    let timerStyle = "__UP_timerLoc__";
+    let myTime = __UP_mytimeoutPref__;
+    let qrSize = "__UP_myQRSizePref__";
+    let isSleep = true;
+    const video = document.getElementById("video")
+    key = prefs.getString("regkey");
+    $('.flash').hide();
+
+    document.getElementById('countdown').hidden = true;
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    //QR code format: "https://photo-booth.herokuapp.com/?key=RegKey" Ex: https://photo-booth.herokuapp.com/?key=7ef4a535-e988-4f71-ada8-522a5b5da812
+    document.getElementById("qrCode").innerHTML = ("<img src='https://api.qrserver.com/v1/create-qr-code/?size= + qrSize + x + qrSize + &data=https://photo-booth.herokuapp.com/?key=" + key + "'>");
+
+    if (timerStyle == "TRight"){
+        document.getElementById("countdown").style.right = "0";
+        document.getElementById("countdown").style.top = "0";
+        document.getElementById("qrCode").style.right = "0";
+        document.getElementById("qrCode").style.top = "0";}
+    else if (timerStyle == "BLeft"){
+        document.getElementById("countdown").style.left = "0";
+        document.getElementById("countdown").style.bottom = "0";
+        document.getElementById("qrCode").style.left = "0";
+        document.getElementById("qrCode").style.bottom = "0";}
+    else if (timerStyle == "BRight"){
+        document.getElementById("countdown").style.right = "0";
+        document.getElementById("countdown").style.bottom = "0";
+        document.getElementById("qrCode").style.right = "0";
+        document.getElementById("qrCode").style.bottom = "0";}
+    else if (timerStyle == "TLeft"){
+        document.getElementById("countdown").style.left = "0";
+        document.getElementById("countdown").style.top = "0";
+        document.getElementById("qrCode").style.left = "0";
+        document.getElementById("qrCode").style.top = "0";}
+
+    function flash(){
+        $('.flash')
+        .show()
+        .animate({opacity: 0.5}, 300) 
+        .fadeOut(500)
+        .css({'opacity': 1});
+    }
+
+    function streamAsleep(){
+        if (isSleep == true){
+            Client.sendCommand("photobooth", "timeout");
+        }
+    }
+    
+    window.RevelDigital = {
+        Controller: {
+            onCommand: function(name, arg) {
+                if (arg == "start") {
+                    document.getElementById('qrCode').hidden = true;
+                    document.getElementById('countdown').hidden = false;
+                    startTimer();
+                }
+                else if (arg != "timeout") {
+                    canvas.getContext('2d').drawImage(video, 0, 0, 1080, 1920);
+                    var data = canvas.toDataURL();
+                    console.log(data);
+                    document.getElementById('canvas').hidden = true;
+                    flash();
+                    axios.post("https://photo-booth.herokuapp.com/photo", {
+                        "key": key,
+                        "background": data.substring(data.indexOf(',') + 1),
+                        "overlay": arg
+                    })
+                    .then((response) => console.log(response.data))
+                    .then((error) => console.log(error));
+                    document.getElementById('qrCode').hidden = false;
+                    isSleep = true;
+                }
+            },
+            onStart: function() {},
+            onStop: function() {}
+        }
+    }
+
+    async function getMedia() {
+        let stream = null;
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            video.srcObject = stream;
+        } catch (err) {
+            console.log("error displaying stream");
+        }
+    }
+    getMedia();
+
+    function startTimer() {
+        isSleep = false;
+        console.log("Timer Started");
+        var countdownTimer = setInterval(function() {
+            if (timeRemain <= 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('countdown').hidden = true;
+                Client.sendCommand("takesnapshot", "");
+            } else {
+                document.getElementById("countdown").innerHTML = timeRemain;
+            }
+            timeRemain -= 1;
+        }, 1000);
+    }
+
+    var sleepTimer = setInterval(function() {
+        streamAsleep();
+    }, myTime * 1000); 
+
+</script>]]></Content>
+</Module>
