@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Photobooth Collage" description="Display a Collage of Images" author="" background="transparent">
+        <Require feature="reveldigital" />
+        <UserPref name="myQuanPref" display_name="Number of Images" datatype="string" default_value="10" required="true" />
+        <UserPref name="myBoolRanPref" display_name="Randomize Images" datatype="bool" default_value="false" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#FFFFFF" />
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="regkey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html"><![CDATA[<style type="text/css">
+
+    body *{
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body{
+        background-color: __UP_myBackColorPref__;
+    }
+
+    #containter{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .wrapper{
+      position: relative;
+    }
+    .box{
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+    .box img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 5px solid #fff;
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+
+<body>
+    <main>
+        <div class="wrapper">
+          <div class="box" id="container" style="margin:0 auto;">
+          </div>
+        </div>
+    </main>
+</body>
+
+<script type="text/javascript">
+
+    var prefs = new gadgets.Prefs();
+    let imageValue = "__UP_myQuanPref__";
+
+    var arr = [];
+    const container = document.getElementById('container');
+    var imgSel = document.querySelector('#container');
+
+    const fetchData = async () => {
+        const response = await axios.get('https://photo-booth.herokuapp.com/random?size=' + imageValue);
+        arr = response.data;
+        for (var i=arr.length; i--;) {
+            arr[i] = 'https://photo-booth.herokuapp.com/p/' + arr[i];
+        }
+        for (let i = 0; i < arr.length; i++) {
+            const img = document.createElement('img');
+            img.src = arr[i];
+            container.appendChild(img);
+        }
+        return (console.log(arr));
+    };
+    fetchData();
+
+    if (__UP_myBoolRanPref__) {
+        const intervalFetch = setInterval(function() {
+            document.getElementById("container").innerHTML = "";
+            fetchData();
+        }, 20000);
+    }
+
+    let box = document.querySelector(".box");
+    const intervalAnime = setInterval(function() {
+        anime({
+            targets: box.querySelectorAll("img"),
+            easing: "easeOutExpo",
+            duration: 3500,
+            translateX: function () {
+                return anime.random(-300, 300);
+            },
+            translateY: function () {
+                return anime.random(-100, 1200);
+            },
+            rotate: function () {
+                return anime.random(-15, 15);
+            }
+          });
+        //RANDOM LAYER IMAGES EVERY ANIMATION
+        for (var i = imgSel.children.length; i >= 0; i--) {
+            imgSel.appendChild(imgSel.children[Math.random() * i | 0]);
+        }
+    }, 3500);
+</script>]]></Content>
+</Module>
