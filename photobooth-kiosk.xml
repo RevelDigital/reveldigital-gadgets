@@ -3,7 +3,6 @@
     <ModulePrefs title="Photobooth" description="Photobooth Functionality" author="" background="transparent">
         <Require feature="reveldigital" />
         <UserPref name="myCountdownPref" display_name="Timer Duration" datatype="string" default_value="5" required="true" />
-        <UserPref name="myQRSizePref" display_name="QR Code Size (pixels)" datatype="string" default_value="300" required="true" />
         <UserPref name="mytimeoutPref" display_name="Stream Timeout" datatype="string" default_value="60" required="true" />
         <UserPref name="timerLoc" display_name="Timer Location" datatype="enum" default_value="TLeft" required="true">
             <EnumValue value="TLeft" display_value="Top-Left" />
@@ -50,15 +49,6 @@
         __UP_textStyle__;
     }
 
-    #qrCode{
-        position: absolute;
-    }
-
-    #qrCode img{
-        width: __UP_myQRSizePref__px;
-        height: __UP_myQRSizePref__px;
-    }
-
     #canvas{
         overflow: auto;
     }
@@ -81,14 +71,12 @@
 
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 <body>
     <div class="flash"></div>
     <div id="countdown"></div>
-    <div id="qrCode"></div>
     <div class='vid'><video id="video" width="1080" height="1920" muted autoplay></video></div>
     <canvas id="canvas" width="1080" height="1920"></canvas>
 </body>
@@ -99,7 +87,6 @@
 
     let timerStyle = "__UP_timerLoc__";
     let myTime = __UP_mytimeoutPref__;
-    let qrSize = "__UP_myQRSizePref__";
     let isSleep = true;
     var functionIsRunning = false;
 
@@ -108,29 +95,18 @@
     key = prefs.getString("regkey");
     $('.flash').hide();
 
-    //QR code format: "https://photo-booth.herokuapp.com/?key=RegKey" Ex: https://photo-booth.herokuapp.com/?key=7ef4a535-e988-4f71-ada8-522a5b5da812
-    document.getElementById("qrCode").innerHTML = ("<img src='https://api.qrserver.com/v1/create-qr-code/?size= + qrSize + x + qrSize + &data=https://photo-booth.herokuapp.com/?key=" + key + "'>");
-
     if (timerStyle == "TRight"){
         document.getElementById("countdown").style.right = "0";
-        document.getElementById("countdown").style.top = "0";
-        document.getElementById("qrCode").style.right = "0";
-        document.getElementById("qrCode").style.top = "0";}
+        document.getElementById("countdown").style.top = "0";}
     else if (timerStyle == "BLeft"){
         document.getElementById("countdown").style.left = "0";
-        document.getElementById("countdown").style.bottom = "0";
-        document.getElementById("qrCode").style.left = "0";
-        document.getElementById("qrCode").style.bottom = "0";}
+        document.getElementById("countdown").style.bottom = "0";}
     else if (timerStyle == "BRight"){
         document.getElementById("countdown").style.right = "0";
-        document.getElementById("countdown").style.bottom = "0";
-        document.getElementById("qrCode").style.right = "0";
-        document.getElementById("qrCode").style.bottom = "0";}
+        document.getElementById("countdown").style.bottom = "0";}
     else if (timerStyle == "TLeft"){
         document.getElementById("countdown").style.left = "0";
-        document.getElementById("countdown").style.top = "0";
-        document.getElementById("qrCode").style.left = "0";
-        document.getElementById("qrCode").style.top = "0";}
+        document.getElementById("countdown").style.top = "0";}
 
     function flash(){
         $('.flash')
@@ -149,11 +125,10 @@
     window.RevelDigital = {
         Controller: {
             onCommand: function(name, arg) {
-                if (arg == "start") {
-                    document.getElementById('qrCode').hidden = true;
+                if (arg === "start") {
                     startTimer();
                 }
-                else if (arg != "timeout") {
+                else if ((arg != "timeout") && (isSleep === false)) {
                     canvas.getContext('2d').drawImage(video, 0, 0, 1080, 1920);
                     var data = canvas.toDataURL();
                     flash();
@@ -165,7 +140,6 @@
                     })
                     .then((response) => console.log(response.data))
                     .then((error) => console.log(error));
-                    document.getElementById('qrCode').hidden = false;
                     isSleep = true;
                 }
             },
