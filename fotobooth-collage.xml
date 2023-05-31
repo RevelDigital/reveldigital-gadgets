@@ -4,9 +4,12 @@
         <Require feature="reveldigital" />
         <UserPref name="myQuanPref" display_name="Number of Images" datatype="string" default_value="10" required="true" />
         <UserPref name="mySpeedPref" display_name="Animation Speed (ms)" datatype="string" default_value="3500" required="true" />
+        <UserPref name="myBorderSizePref" display_name="Border Thickness (px)" datatype="string" default_value="6" required="true" />
+        <UserPref name="myImageSizePref" display_name="Image Size (px)" datatype="string" default_value="500" required="true" />
         <UserPref name="myBoolLayerPref" display_name="Randomize Layers with Animation" datatype="bool" default_value="false" />
         <UserPref name="myBoolRanPref" display_name="Randomize Images" datatype="bool" default_value="false" />
         <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#FFFFFF" />
+        <UserPref name="myBorderColorPref" display_name="Border Color" datatype="color" default_value="#fff" />
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -39,15 +42,15 @@
     }
     .box{
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: __UP_myImageSizePref__px;
+      height: __UP_myImageSizePref__px;
     }
     .box img{
       position: absolute;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border: 5px solid #fff;
+      border: __UP_myBorderSizePref__px solid __UP_myBorderColorPref__;
       border-radius: 5px;
       pointer-events: none;
     }
@@ -81,7 +84,7 @@
     const fetchData = async () => {
         const response = await axios.get('https://photo-booth.herokuapp.com/random?size=' + imageValue);
         arr = response.data;
-        for (var i=arr.length; i--;) {
+        for (var i = arr.length; i--;) {
             arr[i] = 'https://photo-booth.herokuapp.com/p/' + arr[i];
         }
         for (let i = 0; i < arr.length; i++) {
@@ -105,16 +108,16 @@
             targets: box.querySelectorAll("img"),
             easing: "easeOutExpo",
             duration: animeSpeed,
-            translateX: function () {
+            translateX: function() {
                 return anime.random(-350, 350);
             },
-            translateY: function () {
+            translateY: function() {
                 return anime.random(-50, 1350);
             },
-            rotate: function () {
+            rotate: function() {
                 return anime.random(-15, 15);
             }
-          });
+        });
         if (__UP_myBoolLayerPref__) {
             for (var i = imgSel.children.length; i >= 0; i--) {
                 imgSel.appendChild(imgSel.children[Math.random() * i | 0]);
