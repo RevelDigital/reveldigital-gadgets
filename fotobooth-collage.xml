@@ -95,10 +95,22 @@
     };
     fetchData();
 
+    const fetchDataAgain = async () => {
+        arr = [];
+        const response = await axios.get('https://photo-booth.herokuapp.com/random?size=' + imageValue);
+        arr = response.data;
+        for (var i = arr.length; i--;) {
+            arr[i] = 'https://photo-booth.herokuapp.com/p/' + arr[i];
+        }
+        var imgs = document.getElementsByTagName("img");
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].src = arr[i];
+        }
+    };
+
     if (__UP_myBoolRanPref__) {
         const intervalFetch = setInterval(function() {
-            document.getElementById("container").innerHTML = "";
-            fetchData();
+            fetchDataAgain();
         }, 20000);
     }
 
