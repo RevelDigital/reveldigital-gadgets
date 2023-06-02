@@ -4,7 +4,8 @@
         <Require feature="reveldigital" />
         <UserPref name="myQuanPref" display_name="Number of Images" datatype="string" default_value="10" required="true" />
         <UserPref name="mySpeedPref" display_name="Animation Speed (ms)" datatype="string" default_value="3500" required="true" />
-        <UserPref name="myBorderSizePref" display_name="Border Thickness (px)" datatype="string" default_value="6" required="true" />
+        <UserPref name="myImageTimingPref" display_name="Randomize Images Every (ms)" datatype="string" default_value="20000" required="true" />
+        <UserPref name="myBorderSizePref" display_name="Image Border Thickness (px)" datatype="string" default_value="6" required="true" />
         <UserPref name="myImageSizePref" display_name="Image Size (px)" datatype="string" default_value="500" required="true" />
         <UserPref name="myBoolLayerPref" display_name="Randomize Layers with Animation" datatype="bool" default_value="false" />
         <UserPref name="myBoolRanPref" display_name="Randomize Images" datatype="bool" default_value="false" />
@@ -23,11 +24,9 @@
         letter-spacing: 0; 
         word-spacing: normal;
     }
-
     body{
         background-color: __UP_myBackColorPref__;
     }
-
     #containter{
       position: absolute;
       top:0;
@@ -36,7 +35,6 @@
       right: 0;
       margin: auto;
     }
-
     .wrapper{
       position: relative;
     }
@@ -76,6 +74,7 @@
     var prefs = new gadgets.Prefs();
     let imageValue = "__UP_myQuanPref__";
     let animeSpeed = __UP_mySpeedPref__;
+    let imageTiming = __UP_myImageTimingPref__;
 
     var arr = [];
     const container = document.getElementById('container');
@@ -89,13 +88,18 @@
         }
         for (let i = 0; i < arr.length; i++) {
             const img = document.createElement('img');
-            img.src = arr[i];
-            container.appendChild(img);
+            if (arr[i].split("/").pop().length === 21) {
+                img.src = arr[i];
+                container.appendChild(img);
+            }
+            else {
+                console.log(arr[i].split("/").pop().toString() + " is not a valid photo ID");
+            }
         }
     };
     fetchData();
 
-    const fetchDataAgain = async () => {
+    const fetchUpdate = async () => {
         arr = [];
         const response = await axios.get('https://photo-booth.herokuapp.com/random?size=' + imageValue);
         arr = response.data;
@@ -104,14 +108,19 @@
         }
         var imgs = document.getElementsByTagName("img");
         for (var i = 0; i < imgs.length; i++) {
-            imgs[i].src = arr[i];
+            if (arr[i].split("/").pop().length === 21) {
+                imgs[i].src = arr[i];
+            }
+            else {
+                console.log(arr[i].split("/").pop().toString() + " is not a valid photo ID");
+            }
         }
     };
 
     if (__UP_myBoolRanPref__) {
         const intervalFetch = setInterval(function() {
-            fetchDataAgain();
-        }, 20000);
+            fetchUpdate();
+        }, imageTiming);
     }
 
     let box = document.querySelector(".box");
