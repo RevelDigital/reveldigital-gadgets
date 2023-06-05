@@ -75,24 +75,19 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/styles.e25b086bad8be86f64da.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/styles.c8f449f011f44016.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es2015.ec85f614fb027b3060f0.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime-es5.ec85f614fb027b3060f0.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es5.2a0962a9cde1e98959b0.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills-es2015.7b87f6ec4f9a9947a98c.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es2015.9ac015be13950af33ab7.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main-es5.9ac015be13950af33ab7.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime.9c9515c800caeebf.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills.546533abd7464e01.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main.46b7f80e9611f5f6.js" type="module"></script>
 
 				<script type="text/javascript">
 
 					var prefs = new gadgets.Prefs();
 					
-					
 					function load() {
-					
 						WebFont.load({
 							google: {
 								families: [ gadgets.reveldigital.getFamilyName(prefs.getString("style")) ]
