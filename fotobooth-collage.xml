@@ -5,12 +5,13 @@
         <UserPref name="myQuanPref" display_name="Number of Images" datatype="string" default_value="10" required="true" />
         <UserPref name="mySpeedPref" display_name="Animation Speed (ms)" datatype="string" default_value="3500" required="true" />
         <UserPref name="myImageTimingPref" display_name="Randomize Images Every (ms)" datatype="string" default_value="20000" required="true" />
-        <UserPref name="myBorderSizePref" display_name="Image Border Thickness (px)" datatype="string" default_value="6" required="true" />
+        <UserPref name="myBorderSizePref" display_name="Image Border Thickness (px)" datatype="string" default_value="8" required="true" />
         <UserPref name="myImageSizePref" display_name="Image Size (px)" datatype="string" default_value="500" required="true" />
+        <UserPref name="myReplaceImagePref" display_name="Replacement Image URL" datatype="string" default_value="https://aabaseball.com/wp-content/uploads/2021/02/fm-redhawks-logo.png" required="true" />
         <UserPref name="myBoolLayerPref" display_name="Randomize Layers with Animation" datatype="bool" default_value="false" />
         <UserPref name="myBoolRanPref" display_name="Randomize Images" datatype="bool" default_value="false" />
-        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#FFFFFF" />
-        <UserPref name="myBorderColorPref" display_name="Border Color" datatype="color" default_value="#fff" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#000000" />
+        <UserPref name="myBorderColorPref" display_name="Border Color" datatype="color" default_value="#c51d24" />
         <UserPref name="ForeColor" datatype="hidden" />
         <UserPref name="BackColor" datatype="hidden" />
         <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -75,6 +76,12 @@
     let imageValue = "__UP_myQuanPref__";
     let animeSpeed = __UP_mySpeedPref__;
     let imageTiming = __UP_myImageTimingPref__;
+    let replaceImage = "__UP_myReplaceImagePref__";
+
+    function imgError(image) {
+        image.src = replaceImage;
+        console.log("Broken link replaced");
+    }
 
     var arr = [];
     const container = document.getElementById('container');
@@ -88,13 +95,12 @@
         }
         for (let i = 0; i < arr.length; i++) {
             const img = document.createElement('img');
-            if (arr[i].split("/").pop().length === 21) {
-                img.src = arr[i];
-                container.appendChild(img);
-            }
-            else {
-                console.log(arr[i].split("/").pop().toString() + " is not a valid photo ID");
-            }
+            img.src = arr[i];
+            container.appendChild(img);
+        }
+        var imgs = document.getElementsByTagName("img");
+        for (var i=0; i < imgs.length; i++) {
+            imgs[i].setAttribute("onerror", "imgError(this)");
         }
     };
     fetchData();
@@ -107,13 +113,8 @@
             arr[i] = 'https://photo-booth.herokuapp.com/p/' + arr[i];
         }
         var imgs = document.getElementsByTagName("img");
-        for (var i = 0; i < imgs.length; i++) {
-            if (arr[i].split("/").pop().length === 21) {
-                imgs[i].src = arr[i];
-            }
-            else {
-                console.log(arr[i].split("/").pop().toString() + " is not a valid photo ID");
-            }
+        for (var i=0; i < imgs.length; i++) {
+            imgs[i].src = arr[i];        
         }
     };
 
@@ -145,5 +146,6 @@
             }
         }
     }, animeSpeed);
+    
 </script>]]></Content>
 </Module>
