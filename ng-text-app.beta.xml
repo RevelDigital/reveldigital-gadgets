@@ -75,13 +75,13 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/styles.c8f449f011f44016.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app.beta/styles.c8f449f011f44016.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/runtime.9c9515c800caeebf.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/polyfills.546533abd7464e01.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app/main.7c11bba8492fed58.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app.beta/runtime.9c9515c800caeebf.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app.beta/polyfills.546533abd7464e01.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-text-app.beta/main.7c11bba8492fed58.js" type="module"></script>
 
 				<script type="text/javascript">
 
