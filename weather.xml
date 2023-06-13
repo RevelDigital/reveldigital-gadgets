@@ -71,9 +71,9 @@
             position: relative;
             height: 100%;
             width: 100%;
-            background-image: url('https://reveldigital.github.io/reveldigital-gadgets/images/weather-cap.png');
+            background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNy41LjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAzNTYgMTI0IiB4bWw6c3BhY2U9InByZXNlcnZlIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtvcGFjaXR5OjAuODt9DQoJLnN0MXtmaWxsOnVybCgjU1ZHSURfMV8pO30NCjwvc3R5bGU+DQo8ZyBjbGFzcz0ic3QwIj4NCgk8bGluZWFyR3JhZGllbnQgaWQ9IlNWR0lEXzFfIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjE3OCIgeTE9IjEyNCIgeDI9IjE3OCIgeTI9Ii05LjA5NDk0N2UtMTMiPg0KCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZGRkZGO3N0b3Atb3BhY2l0eTowLjIiLz4NCgkJPHN0b3AgIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGRkZGRiIvPg0KCTwvbGluZWFyR3JhZGllbnQ+DQoJPHBhdGggY2xhc3M9InN0MSIgZD0iTTM1NiwxMDMuN2MtMzQsOC4xLTk0LjIsMTkuNy0xNzIuMSwyMC4zQzk5LjcsMTI0LjYsMzQuOCwxMTIsMCwxMDMuN1YzNS42VjU1QzAsNDYuNywzLDAsMTQsMGgzMjcNCgkJYzExLDAsMTUsMzUsMTUsNTRWMTAzLjd6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==");
             background-repeat: no-repeat;
-            background-size: 100% 45%;
+            background-size: 100% 32%;
         }
 
         #current .temp-container {
