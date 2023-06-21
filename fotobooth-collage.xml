@@ -9,6 +9,7 @@
         <UserPref name="myImageSizePref" display_name="Image Size (px)" datatype="string" default_value="500" required="true" />
         <UserPref name="myReplaceImagePref" display_name="Replacement Image URL" datatype="string" default_value="https://aabaseball.com/wp-content/uploads/2021/02/fm-redhawks-logo.png" required="true" />
         <UserPref name="myBoolLayerPref" display_name="Randomize Layers with Animation" datatype="bool" default_value="false" />
+        <UserPref name="myBoolOrientPref" display_name="Landscape Orientation" datatype="bool" default_value="false" />
         <UserPref name="myBoolRanPref" display_name="Randomize Images" datatype="bool" default_value="false" />
         <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#000000" />
         <UserPref name="myBorderColorPref" display_name="Border Color" datatype="color" default_value="#c51d24" />
@@ -126,20 +127,38 @@
 
     let box = document.querySelector(".box");
     const intervalAnime = setInterval(function() {
-        anime({
-            targets: box.querySelectorAll("img"),
-            easing: "easeOutExpo",
-            duration: animeSpeed,
-            translateX: function() {
-                return anime.random(-350, 350);
-            },
-            translateY: function() {
-                return anime.random(-50, 1350);
-            },
-            rotate: function() {
-                return anime.random(-15, 15);
-            }
-        });
+        if (!__UP_myBoolOrientPref__) {
+            anime({
+                targets: box.querySelectorAll("img"),
+                easing: "easeOutExpo",
+                duration: animeSpeed,
+                translateX: function() {
+                    return anime.random(-350, 350);
+                },
+                translateY: function() {
+                    return anime.random(-50, 1350);
+                },
+                rotate: function() {
+                    return anime.random(-15, 15);
+                }
+            });
+        }
+        if (__UP_myBoolOrientPref__) {
+            anime({
+                targets: box.querySelectorAll("img"),
+                easing: "easeOutExpo",
+                duration: animeSpeed,
+                translateX: function () {
+                    return anime.random(-850, 850);
+                },
+                translateY: function () {
+                    return anime.random(-100, 350);
+                },
+                rotate: function() {
+                    return anime.random(-15, 15);
+                }
+            });
+        }
         if (__UP_myBoolLayerPref__) {
             for (var i = imgSel.children.length; i >= 0; i--) {
                 imgSel.appendChild(imgSel.children[Math.random() * i | 0]);
