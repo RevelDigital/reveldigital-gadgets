@@ -81,7 +81,6 @@ div.postscontainer
   text-align: left;
   overflow: hidden;
   background-color: #__UP_BackColor__;
-  padding: 10px;
 }
 
 div.post
@@ -153,7 +152,6 @@ div.post
 {
   display: table-cell;
   width: 50%;
-  padding: 20px;
 }
 
 .photo img
