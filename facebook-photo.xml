@@ -120,7 +120,7 @@ div.post
 
 .avatar-hidden
 {
-  display: none;
+  display: none !important;
 }
 
 .detail
