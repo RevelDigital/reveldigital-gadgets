@@ -196,6 +196,9 @@ span.when
 <script id="postTemplate" type="text/x-jQuery-tmpl">
   <div class="item" style="border: none;">
     <div style="display:table;width:100%;">
+      {{if full_picture}}
+      <div class="photo"><img src="${full_picture}} /></div>
+      {{/if}}
       {{if object_id}}
       <div class="photo" data-objectid="${object_id}"></div>
       {{/if}}
