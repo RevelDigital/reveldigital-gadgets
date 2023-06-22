@@ -83,6 +83,7 @@ div.postscontainer
   text-align: left;
   overflow: hidden;
   background-color: #__UP_BackColor__;
+  padding: 10px;
 }
 
 div.post
@@ -153,13 +154,13 @@ div.post
 .photo
 {
   display: table-cell;
-  padding-right: 20px;
   width: 50%;
+  padding: 10px;
 }
 
 .photo img
 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 5px 5px 6px -4px rgba(0, 0, 0, 0.19);
   width: 100%;
   margin-bottom: 20px;
 }
