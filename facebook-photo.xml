@@ -13,6 +13,7 @@
   <UserPref name="imageSize" display_name="Profile Image Size" datatype="enum" default_value="small">
     <EnumValue value="small" display_value="Small" />
     <EnumValue value="large" display_value="Large" />
+    <EnumValue value="hidden" display_value="Hidden" />
   </UserPref>
   <UserPref name="transition" display_name="Transition Style" datatype="enum" default_value="fade">
     <EnumValue value="fade" display_value="Fade" />
@@ -115,6 +116,11 @@ div.post
 {
   width: 130px;
   height: 130px;
+}
+
+.avatar-hidden
+{
+  display: none;
 }
 
 .detail
@@ -310,7 +316,7 @@ span.when
           dots: false,
           autoplaySpeed: prefs.getInt('pause') * 1000,
           autoplay: true,
-          fade: (prefs.getString('transition') == 'fade'),
+          fade: (prefs.getString('transition') === 'fade'),
           lazyLoad: 'progressive'
         });
       }
@@ -318,18 +324,20 @@ span.when
   }
 
   var getTextClass = function () {
-    if (prefs.getString("imageSize") == "large") {
-      return "text-large";
+    if (prefs.getString('imageSize') === 'large') {
+      return 'text-large';
     } else {
-      return "text-small";
+      return 'text-small';
     }
   }
   
   var getAvatarClass = function () {
-    if (prefs.getString("imageSize") == "large") {
-      return "avatar-large";
+    if (prefs.getString('imageSize') === 'large') {
+      return 'avatar-large';
+    } else if (prefs.getString('imageSize') === 'small') {
+      return 'avatar-small';
     } else {
-      return "avatar-small";
+      return 'avatar-hidden';
     }
   }
   
