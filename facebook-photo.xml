@@ -157,7 +157,7 @@ div.post
 .photo img
 {
   width: 100%;
-  height: calc(1080px - 60px);
+  height: __UP_rdH__px;
   object-fit: contain;
   object-position: top;
 }
@@ -207,7 +207,7 @@ span.when
       <div class="photo" data-objectid="${object_id}"></div>
       {{/if}}
       
-      <div style="display:table-cell; vertical-align:top; width: 100%;">
+      <div style="display:table-cell;vertical-align:top;width:100%;padding-left:20px;">
         <div style="display:table;">
           <div class="detail">
             <div class="${getAvatarClass()} picture" style="display:table-cell;">
