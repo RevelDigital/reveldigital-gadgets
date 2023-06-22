@@ -161,7 +161,7 @@ div.post
 .photo img
 {
   width: 100%;
-  height: calc(1080px - 40px);
+  height: calc(1080px - 60px);
   object-fit: contain;
   object-position: top;
 }

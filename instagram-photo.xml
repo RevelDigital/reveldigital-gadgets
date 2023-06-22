@@ -6,6 +6,7 @@
   <UserPref name="imageSize" display_name="Profile Image Size" datatype="enum" default_value="small">
     <EnumValue value="small" display_value="Small" />
     <EnumValue value="large" display_value="Large" />
+    <EnumValue value="hidden" display_value="Hidden" />
   </UserPref>
   <UserPref name="transition" display_name="Transition Style" datatype="enum" default_value="fade">
     <EnumValue value="fade" display_value="Fade" />
@@ -80,6 +81,7 @@ div.postscontainer
   text-align: left;
   overflow: hidden;
   background-color: #__UP_BackColor__;
+  padding: 10px;
 }
 
 div.post
@@ -115,6 +117,11 @@ div.post
   height: 130px;
 }
 
+.avatar-hidden
+{
+  display: none !important;
+}
+
 .detail
 {
   margin-top: 20px;
@@ -147,13 +154,15 @@ div.post
   display: table-cell;
   padding-right: 20px;
   width: 50%;
+  padding: 20px;
 }
 
 .photo img
 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 100%;
-  margin-bottom: 20px;
+  height: calc(1080px - 60px);
+  object-fit: contain;
+  object-position: top;
 }
 
 div.stats
@@ -271,10 +280,10 @@ span.when
   
   var update = function () {
 
-    key = prefs.getString("rdKey");    
-    if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
-      key = "68f45389-0213-441b-b69d-4e35ef94bb20";
-    }
+  key = prefs.getString("rdKey");    
+  if (key == "*|DEVICE.REGISTRATIONKEY|*") { // default key for preview
+    key = "68f45389-0213-441b-b69d-4e35ef94bb20";
+  }
 	
 	var url;
 	if (prefs.getString("hashtag").length > 0) {
@@ -296,7 +305,7 @@ span.when
           dots: false,
           autoplaySpeed: prefs.getInt('pause') * 1000,
           autoplay: true,
-          fade: (prefs.getString('transition') == 'fade'),
+          fade: (prefs.getString('transition') === 'fade'),
           lazyLoad: 'progressive'
         });
       }
@@ -304,18 +313,20 @@ span.when
   }
 
   var getTextClass = function () {
-    if (prefs.getString("imageSize") == "large") {
-      return "text-large";
+    if (prefs.getString('imageSize') === 'large') {
+      return 'text-large';
     } else {
-      return "text-small";
+      return 'text-small';
     }
   }
   
   var getAvatarClass = function () {
-    if (prefs.getString("imageSize") == "large") {
-      return "avatar-large";
+    if (prefs.getString('imageSize') === 'large') {
+      return 'avatar-large';
+    } else if (prefs.getString('imageSize') === 'small') {
+      return 'avatar-small';
     } else {
-      return "avatar-small";
+      return 'avatar-hidden';
     }
   }
   
