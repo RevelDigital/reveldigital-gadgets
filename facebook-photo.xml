@@ -155,14 +155,15 @@ div.post
 {
   display: table-cell;
   width: 50%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .photo img
 {
-  box-shadow: 5px 5px 6px -4px rgba(0, 0, 0, 0.19);
   width: 100%;
-  margin-bottom: 20px;
+  height: calc(1080px - 40px);
+  object-fit: contain;
+  object-position: top;
 }
 
 div.stats
