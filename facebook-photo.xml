@@ -299,7 +299,7 @@ span.when
 
         $('div.photo').each(function() {
           var self = $(this);
-          if ($(this).data('objectid') != '') {
+          if ($(this).data('objectid')) {
             $.getJSON('https://svc1.reveldigital.com/facebook/' + $(this).data('objectid') + '/' + key + '?format=json&callback=?', function (picjson) {
               if (picjson.images.length > 0) {
                 var img = $('<img/>');
