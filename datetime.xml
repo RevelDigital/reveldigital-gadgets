@@ -62,7 +62,7 @@ div#container
   visibility: hidden; 
 }
 
-.wf-active div#container
+.wf-active div#container, .wf-inactive div#container
 {
   visibility: visible;
 }
