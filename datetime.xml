@@ -4,6 +4,7 @@
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
+  <Require feature="moment" />
   <Require feature="offline" />
   
   <UserPref name="format" display_name="Format" datatype="enum" default_value="">
@@ -65,9 +66,6 @@ div#container
 }
 </style>
 
-<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
-<script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
-
 <div id="container"></div>
 
 <script type="text/javascript">
@@ -96,18 +94,9 @@ div#container
   function update() {
 
     if (prefs.getString("custom") !== '') {
-      $("#container").text(getTime().format(prefs.getString("custom")));  
+      $("#container").text(moment().format(prefs.getString("custom")));  
     } else {
-      $("#container").text(getTime().format(prefs.getString("format")));  
-    }
-  }
-  
-  function getTime() {
-
-    if (typeof Client != "undefined" && typeof(Client.getDeviceTime) == "function") {
-      return moment(Client.getDeviceTime());
-    } else {
-      return moment();
+      $("#container").text(moment().format(prefs.getString("format")));  
     }
   }
 </script>
