@@ -56,6 +56,16 @@ div#container
   width: __UP_rdW__px;
   height: __UP_rdH__px;
 }
+
+.wf-loading div#container
+{
+  visibility: hidden; 
+}
+
+.wf-active div#container
+{
+  visibility: visible;
+}
 </style>
 
 <div id="container"></div>
