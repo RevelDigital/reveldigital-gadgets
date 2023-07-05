@@ -44,8 +44,8 @@ body
 }
 
 #vast-player {
-  width: 100vw;
-  height: 100vh;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
   position: relative;
   left: 0px;
   top: 0px;
