@@ -62,9 +62,10 @@ body
 
   var prefs = new gadgets.Prefs();
   
-  var url = prefs.getString('channel');
-  
   function load() {
+
+    var url = prefs.getString('playerUrl') + "?organization_id=" + prefs.getString('orgId') + "&ad_unit_id=" + prefs.getString('adUnitId');
+
     $('#vast-player').attr('src', url);
   }
 
