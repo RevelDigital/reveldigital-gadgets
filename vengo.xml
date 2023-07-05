@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="Vengo" description="Vengo Ad Player" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="offline" />
+  
+  <UserPref name="playerUrl" display_name="VAST Player URL" datatype="string" default_value="https://staging.vast.vengo.tv" />
+  <UserPref name="orgId" display_name="Organization ID" datatype="string" default_value="" />
+  <UserPref name="adUnitId" display_name="Ad Unit ID" datatype="string" default_value="" />
+
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  text-align: center;
+}
+
+#vast-player {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  border: 0;
+  background: black;
+}
+
+</style>
+
+<iframe id="vast-player" scrolling="no" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0"></iframe>
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();
+  
+  var url = prefs.getString('channel');
+  
+  function load() {
+    $('#vast-player').attr('src', url);
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+  window.addEventListener("message", receiveMessage, false);
+
+  function receiveMessage(event) {
+	  Client.callback(event.data);
+  }
+
+</script>
+
+]]>
+</Content>
+</Module>
