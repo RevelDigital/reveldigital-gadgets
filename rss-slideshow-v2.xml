@@ -226,7 +226,7 @@
         
         $.getJSON(url, function(data) {
 
-            if (prefs.getBool('showHeader')) {
+            if (prefs.getBool('showHeader') && data.image) {
                 $('#container').append(
                     '<div id="header" class="row"><div class="col-2"><img src="' + data.image.url + '" width="100%"></div><div class="col-10"><h1>' + data.description + '</h1></div>'
                 );
