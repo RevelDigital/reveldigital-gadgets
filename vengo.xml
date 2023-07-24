@@ -78,7 +78,9 @@ body
     if (event.data === "ALL_ADS_COMPLETED"){
       console.log("All ads have been played");
 
-      Client.complete();
+      if (typeof Client != "undefined") {
+        Client.complete();
+      }
     }
   }
 
