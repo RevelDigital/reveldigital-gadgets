@@ -73,8 +73,6 @@ body
   window.addEventListener("message", receiveMessage, false);
 
   function receiveMessage(event) {
-	  Client.callback(event.data);
-
     if (event.data === "ALL_ADS_COMPLETED"){
       console.log("All ads have been played");
 
