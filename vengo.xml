@@ -91,6 +91,9 @@ body
       onStart: function() {
         //var url = prefs.getString('playerUrl') + "?organization_id=" + prefs.getString('orgId') + "&ad_unit_id=" + prefs.getString('adUnitId') + "&cacheBuster=" + new Date().getTime();
         var url = prefs.getString('playerUrl') + "?organization_id=" + prefs.getString('orgId') + "&ad_unit_id=" + prefs.getString('adUnitId') + "&max_ad_duration=" + prefs.getString('maxAdDuration') + "&no_ad_url=" + prefs.getString('noAdUrl') + "&cacheBuster=" + new Date().getTime();
+
+        console.log(url);
+        
         $('#vast-player').attr('src', url);
       },
       onStop: function() {}
