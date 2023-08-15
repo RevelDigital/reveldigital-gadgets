@@ -26,7 +26,7 @@
     <EnumValue value="tropical-cyclones-position-icons" display_value="Tropical Cyclones - Position Icons" />
     <EnumValue value="tropical-cyclones-track-lines" display_value="Tropical Cyclones - Track Lines" />
     <EnumValue value="tropical-cyclones-track-point-icons" display_value="Tropical Cyclones - Track Icons" />
-    <EnumValue value="tropical-cyclones-forecast-error-cones" display_value="Tropical Cyclones - Forecast Error Conese" />
+    <EnumValue value="tropical-cyclones-forecast-error-cones" display_value="Tropical Cyclones - Forecast Error Cones" />
     <EnumValue value="ftemperatures" display_value="Forecast Temperatures" />
     <EnumValue value="ftemperatures-max" display_value="Forecast High Temps" />
     <EnumValue value="ftemperatures-min" display_value="Forecast Low Temps" />
@@ -60,7 +60,7 @@
     <EnumValue value="temperatures-outlook-6-10d-cpc" display_value="6-10d Temp Outlook" />
     <EnumValue value="precip-outlook-6-10d-cpc" display_value="6-10d Precip Outlook" />
   </UserPref>
-  <UserPref name="zoom" display_name="Zoom Level" datatype="string" default_value="6" />
+  <UserPref name="zoom" display_name="Zoom Level" datatype="string" default_value="8" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />

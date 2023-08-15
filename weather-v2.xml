@@ -254,7 +254,7 @@ div, span
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
+    var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
     $.ajax({
       type: 'GET',
       url: api,
@@ -280,7 +280,7 @@ div, span
     if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
       location = "Fargo, ND";
     }
-    var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0';
+    var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
     $.ajax({
       type: 'GET',
       url: api,
