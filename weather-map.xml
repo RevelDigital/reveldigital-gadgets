@@ -58,7 +58,7 @@
 <div id="map">
 </div>
 
-<script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+<script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
 <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=__UP_gkey__" type="text/javascript"></script>
@@ -70,13 +70,13 @@
   
   var prefs = new gadgets.Prefs();
 
-  var search = prefs.getString("location");
   var unit = prefs.getString("units");
-
-  const aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0');
+  var aeris;
 
   function load() {
   
+    aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0');
+
     WebFont.load({
       google: {
         families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
@@ -84,13 +84,15 @@
     });
 
     setInterval(function() {
-      getForecast(search);
+      loadMap();
     }, 1000 * 60 * 30);
   }
 
-  function getForecast(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
+  function loadMap() {
+    var location = prefs.getString('location');
+
+    if (location === '' || location.indexOf('*|DEVICE.LOCATION.CITY|*') !== -1) {
+      location = 'Fargo, ND';
     }
 
     aeris.views().then((views) => {
