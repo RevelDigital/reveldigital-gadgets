@@ -163,7 +163,7 @@
             autoplay: true
           }
       });
-      map.timeline.play();
+      //map.timeline.play();
     });
   }
   
