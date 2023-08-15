@@ -123,7 +123,7 @@
 
   function load() {
   
-    aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'ZMIgejgODFsMZna95VAQjdCxPI3eaggs9pVdJ7kg');
+    aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW');
 
     WebFont.load({
       google: {
@@ -163,7 +163,6 @@
             autoplay: true
           }
       });
-      //map.timeline.play();
     });
   }
   
