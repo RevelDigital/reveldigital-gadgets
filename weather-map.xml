@@ -86,7 +86,9 @@
   }
 
   #map {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: __UP_rdW__px;
     height: __UP_rdH__px;
     margin: 0;
@@ -157,7 +159,8 @@
               layers: {
                   data: prefs.getString('maptype'),
                   overlays: 'admin-dk'
-              }
+              },
+              metric: prefs.getString('units') === 'c'
           },
           animation: {
             autoplay: true
