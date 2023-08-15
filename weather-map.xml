@@ -61,12 +61,10 @@
     <EnumValue value="precip-outlook-6-10d-cpc" display_value="6-10d Precip Outlook" />
   </UserPref>
   <UserPref name="zoom" display_name="Zoom Level" datatype="string" default_value="6" />
-  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
   <UserPref name="BackColor" datatype="hidden" />
-  <UserPref name="gkey" datatype="hidden" default_value="AIzaSyBZ14SEPEoqnPFNhfhk9tIdK22_Jw8YSB8" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -111,9 +109,6 @@
 <script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
 <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
 
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=__UP_gkey__" type="text/javascript"></script>
-<script src="https://www.google.com/jsapi" type="text/javascript"></script>
-
 <script type="text/javascript">
 
   var re = /[^\/]+$/;
@@ -126,12 +121,6 @@
   function load() {
   
     aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW');
-
-    WebFont.load({
-      google: {
-        families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
-      }
-    });
 
     setInterval(function() {
       loadMap();
