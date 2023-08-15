@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Map" description="Animated weather maps including precipition, cloud cover, and temperature" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
+    <EnumValue value="f" display_value="US" />
+    <EnumValue value="c" display_value="Metric" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="zoom" display_name="Zoom Level" datatype="string" default_value="6" />
+  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="gkey" datatype="hidden" default_value="AIzaSyBZ14SEPEoqnPFNhfhk9tIdK22_Jw8YSB8" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+
+  body * {
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+
+  body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    position: relative;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+  }
+
+  #temp {
+    __UP_font-style__;
+  }
+        
+</style>
+
+<div id="map">
+</div>
+
+<script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=__UP_gkey__" type="text/javascript"></script>
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  var re = /[^\/]+$/;
+  
+  var prefs = new gadgets.Prefs();
+
+  var search = prefs.getString("location");
+  var unit = prefs.getString("units");
+
+  const aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'APojYbUAk5ovlTHuTsAPGvdgCgcoo2ANE9Xuc7N0');
+
+  function load() {
+  
+    WebFont.load({
+      google: {
+        families: [ gadgets.reveldigital.getFamilyName(prefs.getString("font-style")) ]
+      }
+    });
+
+    setInterval(function() {
+      getForecast(search);
+    }, 1000 * 60 * 30);
+  }
+
+  function getForecast(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      location = "Fargo, ND";
+    }
+
+    aeris.views().then((views) => {
+      const map = new views.Map(document.getElementById('map'), {
+          map: {
+              center: location,
+              zoom: prefs.getInt('zoom'),
+              size: {
+                  width: __UP_rdW__,
+                  height: __UP_rdH__
+              },
+              layers: {
+                  data: 'satellite,radar',
+                  overlays: 'admin-dk'
+              }
+          },
+          overlays: {
+              title: "Radar / Satellite",
+              branding: {
+                  img: "https://www.aerisweather.com/img/logos/watermark-small.png"
+              }
+          },
+      });
+      map.timeline.play();
+    });
+  }
+  
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+
+]]>
+</Content>
+</Module>
