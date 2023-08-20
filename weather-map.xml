@@ -146,7 +146,7 @@
                   height: __UP_rdH__
               },
               layers: {
-                  data: prefs.getString('maptype'),
+                  data: prefs.getString('maptype').split('|').join(','),
                   overlays: 'admin-dk'
               },
               metric: prefs.getString('units') === 'c'
