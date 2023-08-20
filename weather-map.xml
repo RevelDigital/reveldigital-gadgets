@@ -100,7 +100,11 @@
   #temp {
     __UP_font-style__;
   }
-        
+
+  .awxjs__map-legend {
+    display: none;
+  }
+  
 </style>
 
 <div id="map">
