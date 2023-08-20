@@ -12,7 +12,7 @@
     <EnumValue value="c" display_value="Metric" />
   </UserPref>
   <UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
-  <UserPref name="maptype" display_name="Map Type" datatype="enum" default_value="radar">
+  <UserPref name="maptype" display_name="Map Type" datatype="enum" default_value="radar" multiple>
     <EnumValue value="radar" display_value="Radar" />
     <EnumValue value="fradar" display_value="Forecast Radar" />
     <EnumValue value="satellite-visible" display_value="Satellite - Visible" />
