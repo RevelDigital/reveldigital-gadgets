@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Audio Visualizer" description="A gadget for visualizing audio" author="" background="transparent">
+        <UserPref name="numBars" display_name="Number of Bars" datatype="enum" default_value="32">
+            <EnumValue value="32" display_value="32" />
+            <EnumValue value="64" display_value="64" />
+            <EnumValue value="128" display_value="128" />
+        </UserPref>
+        <UserPref name="myBarColorPref" display_name="Bar Color" datatype="color" default_value="#FFFFFF" required="true" />
+        <UserPref name="myBackColorPref" display_name="Background Color" datatype="color" default_value="#FFFFFF" required="true" />
+        <UserPref name="ForeColor" datatype="hidden" />
+        <UserPref name="BackColor" datatype="hidden" />
+        <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+        <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+        <UserPref name="rdKey" display_name="Device Registration Key" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[<style type="text/css">
+
+    body *
+    {
+        line-height: 1.2em; 
+        letter-spacing: 0; 
+        word-spacing: normal;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .my-style
+    {
+        __UP_myStylePref__;
+    }
+
+    canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: __UP_myBackColorPref__;
+    }
+
+</style>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
+<script type="text/javascript">
+    var prefs = new gadgets.Prefs();
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function hexToRgbA(hex){
+        var c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+        }
+        throw new Error('Bad Hex');
+    }
+
+    window.onload = () => {
+        window.onresize()
+
+        window.requestAnimationFrame(draw);
+        setup();
+    }
+
+    window.onresize = () => {
+        const scale = window.devicePixelRatio;
+        canvas.width = window.innerWidth * scale;
+        canvas.height = window.innerHeight * scale;
+        ctx.scale(scale, scale);
+    }
+
+    const numBars = __UP_numBars__;
+    const minimum = 20;
+
+    function setup() {
+        ctx.lineCap = 'round';
+        if (typeof actx == 'undefined') {
+            state = [];
+            for (let i = 0; i < numBars; i++)
+                state.push((128 - minimum / 2) * (1 + Math.sin(2 * Math.PI * i / numBars)));
+            actx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = actx.createAnalyser();
+            analyser.smoothingTimeConstant = 0.925;
+            analyser.fftSize = numBars * 2;
+            loadAudio();
+        }
+    }
+
+    function loadAudio() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                microphone = actx.createMediaStreamSource(stream);
+                microphone.connect(analyser);
+                state = new Uint8Array(analyser.frequencyBinCount);
+
+                if (actx.state === "suspended") {
+                    actx.resume();
+                }
+                window.setInterval(() => {
+
+                    analyser.getByteFrequencyData(state)
+                }, 10);
+            });
+    }
+
+    function draw() {
+        window.requestAnimationFrame(draw);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        let delta = Math.round(canvas.width / numBars);
+        let phi = Math.round(canvas.height / (2 * numBars));
+        ctx.lineWidth = delta - 2;
+
+        for (const s in state) {
+            if ("__UP_myBarColorPref__" == "#FFFFFF"){
+                ctx.strokeStyle = 'hsl(' + (256 - state[s]) + ',50%,50%)';
+            }
+            else{
+                ctx.strokeStyle = hexToRgbA("__UP_myBarColorPref__");
+            }
+            ctx.beginPath();
+            ctx.moveTo(
+                delta * s + delta / 2,
+                canvas.height
+            );
+            ctx.lineTo(
+                delta * s + delta / 2,
+                canvas.height + minimum - canvas.height * state[s] / 256
+            );
+            ctx.stroke();
+        }
+    }
+</script>]]></Content>
+</Module>
