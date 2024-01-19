@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="OpenAI API Prompt Gadget" description="Basic gadget for directly prompting GPT models via the OpenAI API." author="RevelDigital" background="transparent">
+  
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="axios" />
+  <Require feature="webfont" />
+  <Require feature="offline" />
+  
+  <!--  -->
+
+  <UserPref name="apikey" display_name="OpenAI API Key" datatype="string" default_value="" />
+  <UserPref name="apiprompt" display_name="Prompt" datatype="string" default_value="Name a random animal and return what sound it makes please!" />
+  <UserPref name="apimodel" display_name="Model" datatype="string" default_value="gpt-3.5-turbo" />
+  <UserPref name="apirole" display_name="Model Role" datatype="string" default_value="You are a helpful and smart assistant." />
+
+  <!--  -->
+
+  <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="ltrSpacing" display_name="Letter Spacing" required="true" default_value="0" datatype="string" />
+  <UserPref name="lineHeight" display_name="Line Spacing" required="true" default_value="1" datatype="string" />
+  <UserPref name="horizontal" display_name="Vertical Text" default_value="false" datatype="bool" />
+  <UserPref name="portrait" display_name="Portrait Mode" default_value="false" datatype="bool" />
+  <UserPref name="textwrap" display_name="Word Wrap" default_value="false" datatype="bool" />
+
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body *
+{
+  line-height: 1.2em; 
+  letter-spacing: 0; 
+  word-spacing: normal;
+}
+
+body
+{
+  background: transparent;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  overflow: hidden;
+}
+
+div#container
+{
+  __UP_font-style__;
+  width: __UP_rdW__px;
+  height: __UP_rdH__px;
+  letter-spacing: __UP_ltrSpacing__px;
+  line-height: __UP_lineHeight__;
+}
+</style>
+
+
+<div id="container"></div>
+
+<script type="text/javascript">
+
+  var openaiapiurl = "https://api.openai.com/v1/chat/completions";
+
+  var prefs = new gadgets.Prefs();
+
+  var apikey = prefs.getString("apikey");
+  var apiprompt = prefs.getString("apiprompt");
+  var apimodel = prefs.getString("apimodel");
+  var apirole = prefs.getString("apirole");
+
+  var apirequestdata = {
+    model: apimodel,
+    response_format: { type: 'json_object' },
+    messages: [
+      {
+        role: 'system',
+        content: apirole,
+      },
+      {
+        role: 'user',
+        content: apiprompt,
+      },
+    ],
+  };
+
+  function load() {
+  
+    WebFont.load({
+      google: {
+        families: [
+          gadgets.reveldigital.getFamilyName(prefs.getString("font-style"))
+        ]
+      }
+    });
+    if(prefs.getBool("horizontal"))
+    {
+      $("#container").css("text-orientation", "upright");
+      $("#container").css("writing-mode", "vertical-lr");
+    }
+    if(prefs.getBool("portrait"))
+    {
+      $("#container").css("position", "relative");
+      $("#container").css("width", "0px");
+      $("#container").css("height", "0px");
+      $("#container").css("float", "right");
+      $("#container").css("right", "0px");
+      $("#container").css("transform", "rotate(90deg)");
+    }
+    if(prefs.getBool("textwrap"))
+    {
+      $("#container").css("white-space", "nowrap");
+    }
+    
+    $("#container").text("Loading...");
+
+    // prompt request here
+    axios.post('https://api.openai.com/v1/chat/completions', requestData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apikey}`,
+      },
+    }).then(response => {
+      console.log(response.data);
+      $("#container").text(response.data);
+    }).catch(error => {
+      $("#container").text("[ERROR]");
+    });
+    
+
+  }
+
+  gadgets.util.registerOnLoadHandler(load);
+  
+  function setText(text) {
+    $("#container").text(text);
+  }
+  
+</script>
+
+]]>
+</Content>
+</Module>
