@@ -24,6 +24,7 @@
     <EnumValue value="page" display_value="Page" />
   </UserPref>
   <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
+  <UserPref name="refreshInterval" display_name="Refresh Interval" datatype="hidden" default_value="30" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
@@ -156,6 +157,12 @@ table.google-visualization-table-table,
     var query = new google.visualization.Query(googleUrl(prefs.getString("spreadsheetUrl")));
     query.setRefreshInterval(300);
     query.send(draw);
+
+    if (prefs.getInt("refreshInterval") > 0) {
+      setInterval(function() {
+        query.send(draw);
+      }, prefs.getInt("refreshInterval") * 1000 * 60);
+    }
   }
   
   function draw(response) {
