@@ -24,7 +24,7 @@
     <EnumValue value="page" display_value="Page" />
   </UserPref>
   <UserPref name="rowPadding" display_name="Row Padding" default_value="10" />
-  <UserPref name="refreshInterval" display_name="Refresh Interval" datatype="hidden" default_value="30" />
+  <UserPref name="refreshInterval" display_name="Refresh Interval" datatype="string" default_value="30" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
 </ModulePrefs>
