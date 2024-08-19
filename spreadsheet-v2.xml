@@ -102,7 +102,7 @@ table.google-visualization-table-table,
   overflow: hidden !important;
 }
 
-#error
+#errormsg
 {
   color: red;
   font-size: 24px;
@@ -124,7 +124,7 @@ table.google-visualization-table-table,
   <div id="table" class="scroll">
   </div>
 
-  <div id="error">
+  <div id="errormsg">
   </div>
 </div>
 
@@ -180,7 +180,7 @@ table.google-visualization-table-table,
   function draw(response) {
   
     if (response.isError()) {
-      $("#error").html("Error in query: " + response.getMessage() + " " + response.getDetailedMessage());
+      $("#errormsg").html("Error in query: " + response.getMessage() + " " + response.getDetailedMessage());
       return;
     }
     dataTable = response.getDataTable();
