@@ -101,6 +101,15 @@ table.google-visualization-table-table,
 {
   overflow: hidden !important;
 }
+
+#error
+{
+  color: red;
+  font-size: 24px;
+  font-family: Verdana;
+  text-align: center;
+}
+
 </style>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
@@ -113,6 +122,9 @@ table.google-visualization-table-table,
 
 <div id="container">
   <div id="table" class="scroll">
+  </div>
+
+  <div id="error">
   </div>
 </div>
 
@@ -168,6 +180,8 @@ table.google-visualization-table-table,
   function draw(response) {
   
     if (response.isError()) {
+      $("#error").html("Error in query: " + response.getMessage() + " " + response.getDetailedMessage());
+      return;
     }
     dataTable = response.getDataTable();
     
