@@ -77,7 +77,11 @@
   {
     __UP_body-style__;
     width: __UP_rdW__px;
+    height: __UP_rdH__px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   table, div#events
