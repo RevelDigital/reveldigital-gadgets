@@ -173,7 +173,7 @@
     </table>
   </div>
   <div id="noEventsMessage" style="display:none;">
-    <h2 id="errormsg">__UP_noEventsMessage__</h2>
+    __UP_noEventsMessage__
   </div>
 </div>
 
@@ -258,7 +258,7 @@
       } else {
         $("#noEventsMessage").hide();
       }
-      
+
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("displayFormat") == "table") {
           formatTable(response.items[i]);
