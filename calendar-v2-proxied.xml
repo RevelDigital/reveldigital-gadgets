@@ -172,6 +172,7 @@
       </tbody>
     </table>
   </div>
+  <div id="lastupdate"></div>
 </div>
 
 <script type="text/javascript">
