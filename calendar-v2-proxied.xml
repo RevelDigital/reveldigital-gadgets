@@ -135,6 +135,14 @@
     __UP_body-style__;
     font-size: 80% !important;
   }
+  
+  #lastupdate {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 7px;
+    color: #ffffff88;
+  }
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
@@ -168,6 +176,7 @@
 
 <script type="text/javascript">
 
+  var lastUpdate;
   var prefs = new gadgets.Prefs();
   
   function load() {
@@ -232,35 +241,40 @@
     }
     
 	gadgets.io.makeRequest(url, function(result) {
-      if (result.rc === 200) {
-		var response = result.data;
+    if (result.rc === 200) {
+
+      $("#lastupdate").text('Updated: ' + moment().format('YYYY-MM-DDTHH:mm:ssZ'));
+
+		  var response = result.data;
 		
-		if (response.timeZone) {
-        //moment.tz.setDefault(response.timeZone);
-		}
-		for (var i = 0; i < response.items.length; i++) {
-			if (prefs.getString("displayFormat") == "table") {
-			  formatTable(response.items[i]);
-			} else {
-			  formatDiv(response.items[i]);
-			}
-		}  
-		if (prefs.getString("scrollSpeed") != "none") {
-			$("#data").autoScroll({
-			  speed: prefs.getString("scrollSpeed"),
-			  by: prefs.getString("scrollBy")
-			}).on("done", function() {
-			  $("#data").data("plugin_autoScroll").play();
-			});
-			$("#data").data("plugin_autoScroll").play();
-		}
+      if (response.timeZone) {
+          //moment.tz.setDefault(response.timeZone);
+      }
+      for (var i = 0; i < response.items.length; i++) {
+        if (prefs.getString("displayFormat") == "table") {
+          formatTable(response.items[i]);
+        } else {
+          formatDiv(response.items[i]);
+        }
+      }  
+      if (prefs.getString("scrollSpeed") != "none") {
+        $("#data").autoScroll({
+          speed: prefs.getString("scrollSpeed"),
+          by: prefs.getString("scrollBy")
+        }).on("done", function() {
+          $("#data").data("plugin_autoScroll").play();
+        });
+        $("#data").data("plugin_autoScroll").play();
+      }
 	  } else {
-		console.log(url);
-		console.log('get calendar failed: ' + result.errors[0]);
-	  
-		setTimeout(function() {
-		  update();
-		}, 120000);
+      console.log(url);
+      console.log('get calendar failed: ' + result.errors[0]);
+      
+      $("#lastupdate").text('Update failed: ' + moment().format('YYYY-MM-DDTHH:mm:ssZ'));
+
+      setTimeout(function() {
+        update();
+      }, 120000);
 	  }
     },
     {
