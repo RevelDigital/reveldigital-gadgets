@@ -30,6 +30,7 @@
     <EnumValue value="continuous" display_value="Continuous" />
     <EnumValue value="page" display_value="Page" />
   </UserPref>
+  <UserPref name="noEventsMessage" display_name="No Events Message" datatype="string" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
   <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
   <UserPref name="ForeColor" datatype="hidden" />
@@ -70,6 +71,17 @@
   {
     color: #__UP_ForeColor__;
     width: __UP_rdW__px;
+  }
+
+  #noEventsMessage
+  {
+    __UP_body-style__;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   table, div#events
@@ -164,6 +176,9 @@
       </tbody>
     </table>
   </div>
+  <div id="noEventsMessage" style="display:none;">
+    __UP_noEventsMessage__
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -240,6 +255,14 @@
       if (response.timeZone) {
         //moment.tz.setDefault(response.timeZone);
       }
+
+      if (response.items.length == 0) {
+        $("#noEventsMessage").show();
+        return;
+      } else {
+        $("#noEventsMessage").hide();
+      }
+
       for (var i = 0; i < response.items.length; i++) {
         if (prefs.getString("displayFormat") == "table") {
           formatTable(response.items[i]);
