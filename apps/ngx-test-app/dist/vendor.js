@@ -1,17 +1,17 @@
-"use strict";
 (self["webpackChunktest_app"] = self["webpackChunktest_app"] || []).push([["vendor"],{
 
-/***/ 76317:
+/***/ 6317:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/BehaviorSubject.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BehaviorSubject": () => (/* binding */ BehaviorSubject)
 /* harmony export */ });
-/* harmony import */ var _Subject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subject */ 80228);
+/* harmony import */ var _Subject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subject */ 228);
 
 class BehaviorSubject extends _Subject__WEBPACK_IMPORTED_MODULE_0__.Subject {
     constructor(_value) {
@@ -42,12 +42,13 @@ class BehaviorSubject extends _Subject__WEBPACK_IMPORTED_MODULE_0__.Subject {
 
 /***/ }),
 
-/***/ 63279:
+/***/ 3279:
 /*!**********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/NotificationFactories.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "COMPLETE_NOTIFICATION": () => (/* binding */ COMPLETE_NOTIFICATION),
@@ -73,23 +74,24 @@ function createNotification(kind, value, error) {
 
 /***/ }),
 
-/***/ 90833:
+/***/ 833:
 /*!***********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/Observable.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Observable": () => (/* binding */ Observable)
 /* harmony export */ });
-/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscriber */ 19904);
-/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Subscription */ 26078);
-/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./symbol/observable */ 24585);
-/* harmony import */ var _util_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/pipe */ 60629);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ 99057);
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/isFunction */ 92971);
-/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/errorContext */ 12309);
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscriber */ 9904);
+/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Subscription */ 6078);
+/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./symbol/observable */ 4585);
+/* harmony import */ var _util_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/pipe */ 629);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ 9057);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/isFunction */ 2971);
+/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/errorContext */ 2309);
 
 
 
@@ -182,22 +184,23 @@ function isSubscriber(value) {
 
 /***/ }),
 
-/***/ 80228:
+/***/ 228:
 /*!********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/Subject.js ***!
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AnonymousSubject": () => (/* binding */ AnonymousSubject),
 /* harmony export */   "Subject": () => (/* binding */ Subject)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Observable */ 90833);
-/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Subscription */ 26078);
-/* harmony import */ var _util_ObjectUnsubscribedError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/ObjectUnsubscribedError */ 19872);
-/* harmony import */ var _util_arrRemove__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/arrRemove */ 39663);
-/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/errorContext */ 12309);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Observable */ 833);
+/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Subscription */ 6078);
+/* harmony import */ var _util_ObjectUnsubscribedError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/ObjectUnsubscribedError */ 9872);
+/* harmony import */ var _util_arrRemove__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/arrRemove */ 9663);
+/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/errorContext */ 2309);
 
 
 
@@ -326,26 +329,27 @@ class AnonymousSubject extends Subject {
 
 /***/ }),
 
-/***/ 19904:
+/***/ 9904:
 /*!***********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/Subscriber.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EMPTY_OBSERVER": () => (/* binding */ EMPTY_OBSERVER),
 /* harmony export */   "SafeSubscriber": () => (/* binding */ SafeSubscriber),
 /* harmony export */   "Subscriber": () => (/* binding */ Subscriber)
 /* harmony export */ });
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/isFunction */ 92971);
-/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscription */ 26078);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ 99057);
-/* harmony import */ var _util_reportUnhandledError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reportUnhandledError */ 84709);
-/* harmony import */ var _util_noop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/noop */ 99635);
-/* harmony import */ var _NotificationFactories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotificationFactories */ 63279);
-/* harmony import */ var _scheduler_timeoutProvider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scheduler/timeoutProvider */ 93542);
-/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/errorContext */ 12309);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/isFunction */ 2971);
+/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscription */ 6078);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ 9057);
+/* harmony import */ var _util_reportUnhandledError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reportUnhandledError */ 4709);
+/* harmony import */ var _util_noop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/noop */ 9635);
+/* harmony import */ var _NotificationFactories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotificationFactories */ 3279);
+/* harmony import */ var _scheduler_timeoutProvider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scheduler/timeoutProvider */ 3542);
+/* harmony import */ var _util_errorContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/errorContext */ 2309);
 
 
 
@@ -484,21 +488,22 @@ const EMPTY_OBSERVER = {
 
 /***/ }),
 
-/***/ 26078:
+/***/ 6078:
 /*!*************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/Subscription.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EMPTY_SUBSCRIPTION": () => (/* binding */ EMPTY_SUBSCRIPTION),
 /* harmony export */   "Subscription": () => (/* binding */ Subscription),
 /* harmony export */   "isSubscription": () => (/* binding */ isSubscription)
 /* harmony export */ });
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/isFunction */ 92971);
-/* harmony import */ var _util_UnsubscriptionError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/UnsubscriptionError */ 92524);
-/* harmony import */ var _util_arrRemove__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/arrRemove */ 39663);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/isFunction */ 2971);
+/* harmony import */ var _util_UnsubscriptionError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/UnsubscriptionError */ 2524);
+/* harmony import */ var _util_arrRemove__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/arrRemove */ 9663);
 
 
 
@@ -621,12 +626,13 @@ function execTeardown(teardown) {
 
 /***/ }),
 
-/***/ 99057:
+/***/ 9057:
 /*!*******************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/config.js ***!
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "config": () => (/* binding */ config)
@@ -642,18 +648,229 @@ const config = {
 
 /***/ }),
 
-/***/ 20591:
+/***/ 3932:
+/*!*********************************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/ConnectableObservable.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ConnectableObservable": () => (/* binding */ ConnectableObservable)
+/* harmony export */ });
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _Subscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Subscription */ 6078);
+/* harmony import */ var _operators_refCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operators/refCount */ 6074);
+/* harmony import */ var _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operators/OperatorSubscriber */ 3945);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
+
+
+
+
+
+class ConnectableObservable extends _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable {
+    constructor(source, subjectFactory) {
+        super();
+        this.source = source;
+        this.subjectFactory = subjectFactory;
+        this._subject = null;
+        this._refCount = 0;
+        this._connection = null;
+        if ((0,_util_lift__WEBPACK_IMPORTED_MODULE_1__.hasLift)(source)) {
+            this.lift = source.lift;
+        }
+    }
+    _subscribe(subscriber) {
+        return this.getSubject().subscribe(subscriber);
+    }
+    getSubject() {
+        const subject = this._subject;
+        if (!subject || subject.isStopped) {
+            this._subject = this.subjectFactory();
+        }
+        return this._subject;
+    }
+    _teardown() {
+        this._refCount = 0;
+        const { _connection } = this;
+        this._subject = this._connection = null;
+        _connection === null || _connection === void 0 ? void 0 : _connection.unsubscribe();
+    }
+    connect() {
+        let connection = this._connection;
+        if (!connection) {
+            connection = this._connection = new _Subscription__WEBPACK_IMPORTED_MODULE_2__.Subscription();
+            const subject = this.getSubject();
+            connection.add(this.source.subscribe(new _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_3__.OperatorSubscriber(subject, undefined, () => {
+                this._teardown();
+                subject.complete();
+            }, (err) => {
+                this._teardown();
+                subject.error(err);
+            }, () => this._teardown())));
+            if (connection.closed) {
+                this._connection = null;
+                connection = _Subscription__WEBPACK_IMPORTED_MODULE_2__.Subscription.EMPTY;
+            }
+        }
+        return connection;
+    }
+    refCount() {
+        return (0,_operators_refCount__WEBPACK_IMPORTED_MODULE_4__.refCount)()(this);
+    }
+}
+
+
+/***/ }),
+
+/***/ 6562:
+/*!*************************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/combineLatest.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "combineLatest": () => (/* binding */ combineLatest),
+/* harmony export */   "combineLatestInit": () => (/* binding */ combineLatestInit)
+/* harmony export */ });
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _util_argsArgArrayOrObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/argsArgArrayOrObject */ 5756);
+/* harmony import */ var _from__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./from */ 9346);
+/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/identity */ 9173);
+/* harmony import */ var _util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/mapOneOrManyArgs */ 8385);
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _util_createObject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/createObject */ 1054);
+/* harmony import */ var _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../operators/OperatorSubscriber */ 3945);
+/* harmony import */ var _util_executeSchedule__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/executeSchedule */ 1817);
+
+
+
+
+
+
+
+
+
+function combineLatest(...args) {
+    const scheduler = (0,_util_args__WEBPACK_IMPORTED_MODULE_0__.popScheduler)(args);
+    const resultSelector = (0,_util_args__WEBPACK_IMPORTED_MODULE_0__.popResultSelector)(args);
+    const { args: observables, keys } = (0,_util_argsArgArrayOrObject__WEBPACK_IMPORTED_MODULE_1__.argsArgArrayOrObject)(args);
+    if (observables.length === 0) {
+        return (0,_from__WEBPACK_IMPORTED_MODULE_2__.from)([], scheduler);
+    }
+    const result = new _Observable__WEBPACK_IMPORTED_MODULE_3__.Observable(combineLatestInit(observables, scheduler, keys
+        ?
+            (values) => (0,_util_createObject__WEBPACK_IMPORTED_MODULE_4__.createObject)(keys, values)
+        :
+            _util_identity__WEBPACK_IMPORTED_MODULE_5__.identity));
+    return resultSelector ? result.pipe((0,_util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_6__.mapOneOrManyArgs)(resultSelector)) : result;
+}
+function combineLatestInit(observables, scheduler, valueTransform = _util_identity__WEBPACK_IMPORTED_MODULE_5__.identity) {
+    return (subscriber) => {
+        maybeSchedule(scheduler, () => {
+            const { length } = observables;
+            const values = new Array(length);
+            let active = length;
+            let remainingFirstValues = length;
+            for (let i = 0; i < length; i++) {
+                maybeSchedule(scheduler, () => {
+                    const source = (0,_from__WEBPACK_IMPORTED_MODULE_2__.from)(observables[i], scheduler);
+                    let hasFirstValue = false;
+                    source.subscribe(new _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_7__.OperatorSubscriber(subscriber, (value) => {
+                        values[i] = value;
+                        if (!hasFirstValue) {
+                            hasFirstValue = true;
+                            remainingFirstValues--;
+                        }
+                        if (!remainingFirstValues) {
+                            subscriber.next(valueTransform(values.slice()));
+                        }
+                    }, () => {
+                        if (!--active) {
+                            subscriber.complete();
+                        }
+                    }));
+                }, subscriber);
+            }
+        }, subscriber);
+    };
+}
+function maybeSchedule(scheduler, execute, subscription) {
+    if (scheduler) {
+        (0,_util_executeSchedule__WEBPACK_IMPORTED_MODULE_8__.executeSchedule)(subscription, scheduler, execute);
+    }
+    else {
+        execute();
+    }
+}
+
+
+/***/ }),
+
+/***/ 4240:
+/*!******************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/concat.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "concat": () => (/* binding */ concat)
+/* harmony export */ });
+/* harmony import */ var _operators_concatAll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../operators/concatAll */ 4770);
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _from__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./from */ 9346);
+
+
+
+function concat(...args) {
+    return (0,_operators_concatAll__WEBPACK_IMPORTED_MODULE_0__.concatAll)()((0,_from__WEBPACK_IMPORTED_MODULE_1__.from)(args, (0,_util_args__WEBPACK_IMPORTED_MODULE_2__.popScheduler)(args)));
+}
+
+
+/***/ }),
+
+/***/ 1954:
+/*!*****************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/defer.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "defer": () => (/* binding */ defer)
+/* harmony export */ });
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./innerFrom */ 4987);
+
+
+function defer(observableFactory) {
+    return new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable((subscriber) => {
+        (0,_innerFrom__WEBPACK_IMPORTED_MODULE_1__.innerFrom)(observableFactory()).subscribe(subscriber);
+    });
+}
+
+
+/***/ }),
+
+/***/ 591:
 /*!*****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/empty.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EMPTY": () => (/* binding */ EMPTY),
 /* harmony export */   "empty": () => (/* binding */ empty)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 90833);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
 
 const EMPTY = new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable((subscriber) => subscriber.complete());
 function empty(scheduler) {
@@ -666,23 +883,24 @@ function emptyScheduled(scheduler) {
 
 /***/ }),
 
-/***/ 91640:
+/***/ 1640:
 /*!********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/forkJoin.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "forkJoin": () => (/* binding */ forkJoin)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Observable */ 90833);
-/* harmony import */ var _util_argsArgArrayOrObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/argsArgArrayOrObject */ 45756);
-/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./innerFrom */ 54987);
-/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 10420);
-/* harmony import */ var _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operators/OperatorSubscriber */ 93945);
-/* harmony import */ var _util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/mapOneOrManyArgs */ 58385);
-/* harmony import */ var _util_createObject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/createObject */ 11054);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _util_argsArgArrayOrObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/argsArgArrayOrObject */ 5756);
+/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./innerFrom */ 4987);
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _operators_OperatorSubscriber__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operators/OperatorSubscriber */ 3945);
+/* harmony import */ var _util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/mapOneOrManyArgs */ 8385);
+/* harmony import */ var _util_createObject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/createObject */ 1054);
 
 
 
@@ -726,18 +944,19 @@ function forkJoin(...args) {
 
 /***/ }),
 
-/***/ 59346:
+/***/ 9346:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/from.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "from": () => (/* binding */ from)
 /* harmony export */ });
-/* harmony import */ var _scheduled_scheduled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scheduled/scheduled */ 39517);
-/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./innerFrom */ 54987);
+/* harmony import */ var _scheduled_scheduled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scheduled/scheduled */ 9517);
+/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./innerFrom */ 4987);
 
 
 function from(input, scheduler) {
@@ -747,22 +966,23 @@ function from(input, scheduler) {
 
 /***/ }),
 
-/***/ 23280:
+/***/ 3280:
 /*!*********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/fromEvent.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fromEvent": () => (/* binding */ fromEvent)
 /* harmony export */ });
-/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../observable/innerFrom */ 54987);
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Observable */ 90833);
-/* harmony import */ var _operators_mergeMap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operators/mergeMap */ 51353);
-/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 99806);
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 92971);
-/* harmony import */ var _util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/mapOneOrManyArgs */ 58385);
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _operators_mergeMap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operators/mergeMap */ 1353);
+/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 9806);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 2971);
+/* harmony import */ var _util_mapOneOrManyArgs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/mapOneOrManyArgs */ 8385);
 
 
 
@@ -818,12 +1038,13 @@ function isEventTarget(target) {
 
 /***/ }),
 
-/***/ 54987:
+/***/ 4987:
 /*!*********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/innerFrom.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fromArrayLike": () => (/* binding */ fromArrayLike),
@@ -834,18 +1055,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fromReadableStreamLike": () => (/* binding */ fromReadableStreamLike),
 /* harmony export */   "innerFrom": () => (/* binding */ innerFrom)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 49126);
-/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 99806);
-/* harmony import */ var _util_isPromise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/isPromise */ 79548);
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 90833);
-/* harmony import */ var _util_isInteropObservable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/isInteropObservable */ 21331);
-/* harmony import */ var _util_isAsyncIterable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/isAsyncIterable */ 80470);
-/* harmony import */ var _util_throwUnobservableError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/throwUnobservableError */ 27785);
-/* harmony import */ var _util_isIterable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/isIterable */ 23433);
-/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 20181);
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../util/isFunction */ 92971);
-/* harmony import */ var _util_reportUnhandledError__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/reportUnhandledError */ 84709);
-/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../symbol/observable */ 24585);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 9126);
+/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 9806);
+/* harmony import */ var _util_isPromise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/isPromise */ 9548);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _util_isInteropObservable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/isInteropObservable */ 1331);
+/* harmony import */ var _util_isAsyncIterable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/isAsyncIterable */ 470);
+/* harmony import */ var _util_throwUnobservableError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/throwUnobservableError */ 7785);
+/* harmony import */ var _util_isIterable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/isIterable */ 3433);
+/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 181);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../util/isFunction */ 2971);
+/* harmony import */ var _util_reportUnhandledError__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/reportUnhandledError */ 4709);
+/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../symbol/observable */ 4585);
 
 
 
@@ -976,21 +1197,22 @@ function process(asyncIterable, subscriber) {
 
 /***/ }),
 
-/***/ 36646:
+/***/ 6646:
 /*!*****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/observable/merge.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "merge": () => (/* binding */ merge)
 /* harmony export */ });
 /* harmony import */ var _operators_mergeAll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operators/mergeAll */ 1308);
-/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./innerFrom */ 54987);
-/* harmony import */ var _empty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./empty */ 20591);
-/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 10420);
-/* harmony import */ var _from__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./from */ 59346);
+/* harmony import */ var _innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./innerFrom */ 4987);
+/* harmony import */ var _empty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./empty */ 591);
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _from__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./from */ 9346);
 
 
 
@@ -1013,17 +1235,65 @@ function merge(...args) {
 
 /***/ }),
 
-/***/ 93945:
+/***/ 745:
+/*!**************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/of.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "of": () => (/* binding */ of)
+/* harmony export */ });
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _from__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./from */ 9346);
+
+
+function of(...args) {
+    const scheduler = (0,_util_args__WEBPACK_IMPORTED_MODULE_0__.popScheduler)(args);
+    return (0,_from__WEBPACK_IMPORTED_MODULE_1__.from)(args, scheduler);
+}
+
+
+/***/ }),
+
+/***/ 7140:
+/*!**********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/observable/throwError.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "throwError": () => (/* binding */ throwError)
+/* harmony export */ });
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 2971);
+
+
+function throwError(errorOrErrorFactory, scheduler) {
+    const errorFactory = (0,_util_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(errorOrErrorFactory) ? errorOrErrorFactory : () => errorOrErrorFactory;
+    const init = (subscriber) => subscriber.error(errorFactory());
+    return new _Observable__WEBPACK_IMPORTED_MODULE_1__.Observable(scheduler ? (subscriber) => scheduler.schedule(init, 0, subscriber) : init);
+}
+
+
+/***/ }),
+
+/***/ 3945:
 /*!*****************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/OperatorSubscriber.js ***!
   \*****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "OperatorSubscriber": () => (/* binding */ OperatorSubscriber)
 /* harmony export */ });
-/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Subscriber */ 19904);
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Subscriber */ 9904);
 
 class OperatorSubscriber extends _Subscriber__WEBPACK_IMPORTED_MODULE_0__.Subscriber {
     constructor(destination, onNext, onComplete, onError, onFinalize) {
@@ -1077,18 +1347,252 @@ class OperatorSubscriber extends _Subscriber__WEBPACK_IMPORTED_MODULE_0__.Subscr
 
 /***/ }),
 
-/***/ 50635:
+/***/ 3158:
+/*!*********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/catchError.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "catchError": () => (/* binding */ catchError)
+/* harmony export */ });
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+
+
+
+function catchError(selector) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let innerSub = null;
+        let syncUnsub = false;
+        let handledResult;
+        innerSub = source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, undefined, undefined, (err) => {
+            handledResult = (0,_observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__.innerFrom)(selector(err, catchError(selector)(source)));
+            if (innerSub) {
+                innerSub.unsubscribe();
+                innerSub = null;
+                handledResult.subscribe(subscriber);
+            }
+            else {
+                syncUnsub = true;
+            }
+        }));
+        if (syncUnsub) {
+            innerSub.unsubscribe();
+            innerSub = null;
+            handledResult.subscribe(subscriber);
+        }
+    });
+}
+
+
+/***/ }),
+
+/***/ 4770:
+/*!********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/concatAll.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "concatAll": () => (/* binding */ concatAll)
+/* harmony export */ });
+/* harmony import */ var _mergeAll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mergeAll */ 1308);
+
+function concatAll() {
+    return (0,_mergeAll__WEBPACK_IMPORTED_MODULE_0__.mergeAll)(1);
+}
+
+
+/***/ }),
+
+/***/ 3853:
+/*!********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/concatMap.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "concatMap": () => (/* binding */ concatMap)
+/* harmony export */ });
+/* harmony import */ var _mergeMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mergeMap */ 1353);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 2971);
+
+
+function concatMap(project, resultSelector) {
+    return (0,_util_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(resultSelector) ? (0,_mergeMap__WEBPACK_IMPORTED_MODULE_1__.mergeMap)(project, resultSelector, 1) : (0,_mergeMap__WEBPACK_IMPORTED_MODULE_1__.mergeMap)(project, 1);
+}
+
+
+/***/ }),
+
+/***/ 4744:
+/*!*************************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/defaultIfEmpty.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "defaultIfEmpty": () => (/* binding */ defaultIfEmpty)
+/* harmony export */ });
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+function defaultIfEmpty(defaultValue) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let hasValue = false;
+        source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, (value) => {
+            hasValue = true;
+            subscriber.next(value);
+        }, () => {
+            if (!hasValue) {
+                subscriber.next(defaultValue);
+            }
+            subscriber.complete();
+        }));
+    });
+}
+
+
+/***/ }),
+
+/***/ 116:
+/*!*****************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/filter.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "filter": () => (/* binding */ filter)
+/* harmony export */ });
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+function filter(predicate, thisArg) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let index = 0;
+        source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, (value) => predicate.call(thisArg, value, index++) && subscriber.next(value)));
+    });
+}
+
+
+/***/ }),
+
+/***/ 2313:
+/*!*******************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/finalize.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "finalize": () => (/* binding */ finalize)
+/* harmony export */ });
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+
+function finalize(callback) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        try {
+            source.subscribe(subscriber);
+        }
+        finally {
+            subscriber.add(callback);
+        }
+    });
+}
+
+
+/***/ }),
+
+/***/ 155:
+/*!****************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/first.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "first": () => (/* binding */ first)
+/* harmony export */ });
+/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/EmptyError */ 4423);
+/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filter */ 116);
+/* harmony import */ var _take__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./take */ 9295);
+/* harmony import */ var _defaultIfEmpty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultIfEmpty */ 4744);
+/* harmony import */ var _throwIfEmpty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./throwIfEmpty */ 7354);
+/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/identity */ 9173);
+
+
+
+
+
+
+function first(predicate, defaultValue) {
+    const hasDefaultValue = arguments.length >= 2;
+    return (source) => source.pipe(predicate ? (0,_filter__WEBPACK_IMPORTED_MODULE_0__.filter)((v, i) => predicate(v, i, source)) : _util_identity__WEBPACK_IMPORTED_MODULE_1__.identity, (0,_take__WEBPACK_IMPORTED_MODULE_2__.take)(1), hasDefaultValue ? (0,_defaultIfEmpty__WEBPACK_IMPORTED_MODULE_3__.defaultIfEmpty)(defaultValue) : (0,_throwIfEmpty__WEBPACK_IMPORTED_MODULE_4__.throwIfEmpty)(() => new _util_EmptyError__WEBPACK_IMPORTED_MODULE_5__.EmptyError()));
+}
+
+
+/***/ }),
+
+/***/ 1955:
+/*!***************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/last.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "last": () => (/* binding */ last)
+/* harmony export */ });
+/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/EmptyError */ 4423);
+/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filter */ 116);
+/* harmony import */ var _takeLast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./takeLast */ 9601);
+/* harmony import */ var _throwIfEmpty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./throwIfEmpty */ 7354);
+/* harmony import */ var _defaultIfEmpty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultIfEmpty */ 4744);
+/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/identity */ 9173);
+
+
+
+
+
+
+function last(predicate, defaultValue) {
+    const hasDefaultValue = arguments.length >= 2;
+    return (source) => source.pipe(predicate ? (0,_filter__WEBPACK_IMPORTED_MODULE_0__.filter)((v, i) => predicate(v, i, source)) : _util_identity__WEBPACK_IMPORTED_MODULE_1__.identity, (0,_takeLast__WEBPACK_IMPORTED_MODULE_2__.takeLast)(1), hasDefaultValue ? (0,_defaultIfEmpty__WEBPACK_IMPORTED_MODULE_3__.defaultIfEmpty)(defaultValue) : (0,_throwIfEmpty__WEBPACK_IMPORTED_MODULE_4__.throwIfEmpty)(() => new _util_EmptyError__WEBPACK_IMPORTED_MODULE_5__.EmptyError()));
+}
+
+
+/***/ }),
+
+/***/ 635:
 /*!**************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/map.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "map": () => (/* binding */ map)
 /* harmony export */ });
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 41944);
-/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 93945);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
 
 
 function map(project, thisArg) {
@@ -1109,12 +1613,13 @@ function map(project, thisArg) {
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mergeAll": () => (/* binding */ mergeAll)
 /* harmony export */ });
-/* harmony import */ var _mergeMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mergeMap */ 51353);
-/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/identity */ 89173);
+/* harmony import */ var _mergeMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mergeMap */ 1353);
+/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/identity */ 9173);
 
 
 function mergeAll(concurrent = Infinity) {
@@ -1124,19 +1629,20 @@ function mergeAll(concurrent = Infinity) {
 
 /***/ }),
 
-/***/ 99280:
+/***/ 9280:
 /*!*************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/mergeInternals.js ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mergeInternals": () => (/* binding */ mergeInternals)
 /* harmony export */ });
-/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 54987);
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
 /* harmony import */ var _util_executeSchedule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/executeSchedule */ 1817);
-/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 93945);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
 
 
 
@@ -1198,21 +1704,22 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
 
 /***/ }),
 
-/***/ 51353:
+/***/ 1353:
 /*!*******************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/mergeMap.js ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mergeMap": () => (/* binding */ mergeMap)
 /* harmony export */ });
-/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map */ 50635);
-/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../observable/innerFrom */ 54987);
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/lift */ 41944);
-/* harmony import */ var _mergeInternals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mergeInternals */ 99280);
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 92971);
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map */ 635);
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _mergeInternals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mergeInternals */ 9280);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 2971);
 
 
 
@@ -1237,13 +1744,14 @@ function mergeMap(project, resultSelector, concurrent = Infinity) {
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "observeOn": () => (/* binding */ observeOn)
 /* harmony export */ });
 /* harmony import */ var _util_executeSchedule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/executeSchedule */ 1817);
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 41944);
-/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 93945);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
 
 
 
@@ -1256,21 +1764,123 @@ function observeOn(scheduler, delay = 0) {
 
 /***/ }),
 
-/***/ 81203:
+/***/ 6074:
+/*!*******************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/refCount.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "refCount": () => (/* binding */ refCount)
+/* harmony export */ });
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+function refCount() {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let connection = null;
+        source._refCount++;
+        const refCounter = new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, undefined, undefined, undefined, () => {
+            if (!source || source._refCount <= 0 || 0 < --source._refCount) {
+                connection = null;
+                return;
+            }
+            const sharedConnection = source._connection;
+            const conn = connection;
+            connection = null;
+            if (sharedConnection && (!conn || sharedConnection === conn)) {
+                sharedConnection.unsubscribe();
+            }
+            subscriber.unsubscribe();
+        });
+        source.subscribe(refCounter);
+        if (!refCounter.closed) {
+            connection = source.connect();
+        }
+    });
+}
+
+
+/***/ }),
+
+/***/ 4503:
+/*!***************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/scan.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "scan": () => (/* binding */ scan)
+/* harmony export */ });
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _scanInternals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scanInternals */ 4382);
+
+
+function scan(accumulator, seed) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((0,_scanInternals__WEBPACK_IMPORTED_MODULE_1__.scanInternals)(accumulator, seed, arguments.length >= 2, true));
+}
+
+
+/***/ }),
+
+/***/ 4382:
+/*!************************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/scanInternals.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "scanInternals": () => (/* binding */ scanInternals)
+/* harmony export */ });
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplete) {
+    return (source, subscriber) => {
+        let hasState = hasSeed;
+        let state = seed;
+        let index = 0;
+        source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_0__.OperatorSubscriber(subscriber, (value) => {
+            const i = index++;
+            state = hasState
+                ?
+                    accumulator(state, value, i)
+                :
+                    ((hasState = true), value);
+            emitOnNext && subscriber.next(state);
+        }, emitBeforeComplete &&
+            (() => {
+                hasState && subscriber.next(state);
+                subscriber.complete();
+            })));
+    };
+}
+
+
+/***/ }),
+
+/***/ 1203:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/share.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "share": () => (/* binding */ share)
 /* harmony export */ });
-/* harmony import */ var _observable_from__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../observable/from */ 59346);
-/* harmony import */ var _operators_take__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operators/take */ 59295);
-/* harmony import */ var _Subject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Subject */ 80228);
-/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Subscriber */ 19904);
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 41944);
+/* harmony import */ var _observable_from__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../observable/from */ 9346);
+/* harmony import */ var _operators_take__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operators/take */ 9295);
+/* harmony import */ var _Subject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Subject */ 228);
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Subscriber */ 9904);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
 
 
 
@@ -1349,17 +1959,45 @@ function handleReset(reset, on, ...args) {
 
 /***/ }),
 
-/***/ 54317:
+/***/ 4874:
+/*!********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/startWith.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "startWith": () => (/* binding */ startWith)
+/* harmony export */ });
+/* harmony import */ var _observable_concat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../observable/concat */ 4240);
+/* harmony import */ var _util_args__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/args */ 420);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
+
+
+
+function startWith(...values) {
+    const scheduler = (0,_util_args__WEBPACK_IMPORTED_MODULE_0__.popScheduler)(values);
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_1__.operate)((source, subscriber) => {
+        (scheduler ? (0,_observable_concat__WEBPACK_IMPORTED_MODULE_2__.concat)(values, source, scheduler) : (0,_observable_concat__WEBPACK_IMPORTED_MODULE_2__.concat)(values, source)).subscribe(subscriber);
+    });
+}
+
+
+/***/ }),
+
+/***/ 4317:
 /*!**********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/subscribeOn.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "subscribeOn": () => (/* binding */ subscribeOn)
 /* harmony export */ });
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 41944);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
 
 function subscribeOn(scheduler, delay = 0) {
     return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
@@ -1370,19 +2008,61 @@ function subscribeOn(scheduler, delay = 0) {
 
 /***/ }),
 
-/***/ 59295:
+/***/ 2673:
+/*!********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/switchMap.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "switchMap": () => (/* binding */ switchMap)
+/* harmony export */ });
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+
+function switchMap(project, resultSelector) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let innerSubscriber = null;
+        let index = 0;
+        let isComplete = false;
+        const checkComplete = () => isComplete && !innerSubscriber && subscriber.complete();
+        source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, (value) => {
+            innerSubscriber === null || innerSubscriber === void 0 ? void 0 : innerSubscriber.unsubscribe();
+            let innerIndex = 0;
+            const outerIndex = index++;
+            (0,_observable_innerFrom__WEBPACK_IMPORTED_MODULE_2__.innerFrom)(project(value, outerIndex)).subscribe((innerSubscriber = new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, (innerValue) => subscriber.next(resultSelector ? resultSelector(value, innerValue, outerIndex, innerIndex++) : innerValue), () => {
+                innerSubscriber = null;
+                checkComplete();
+            })));
+        }, () => {
+            isComplete = true;
+            checkComplete();
+        }));
+    });
+}
+
+
+/***/ }),
+
+/***/ 9295:
 /*!***************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/take.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "take": () => (/* binding */ take)
 /* harmony export */ });
-/* harmony import */ var _observable_empty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/empty */ 20591);
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 41944);
-/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OperatorSubscriber */ 93945);
+/* harmony import */ var _observable_empty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/empty */ 591);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
 
 
 
@@ -1406,20 +2086,60 @@ function take(count) {
 
 /***/ }),
 
-/***/ 19337:
+/***/ 9601:
+/*!*******************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/takeLast.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "takeLast": () => (/* binding */ takeLast)
+/* harmony export */ });
+/* harmony import */ var _observable_empty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/empty */ 591);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+
+function takeLast(count) {
+    return count <= 0
+        ? () => _observable_empty__WEBPACK_IMPORTED_MODULE_0__.EMPTY
+        : (0,_util_lift__WEBPACK_IMPORTED_MODULE_1__.operate)((source, subscriber) => {
+            let buffer = [];
+            source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__.OperatorSubscriber(subscriber, (value) => {
+                buffer.push(value);
+                count < buffer.length && buffer.shift();
+            }, () => {
+                for (const value of buffer) {
+                    subscriber.next(value);
+                }
+                subscriber.complete();
+            }, undefined, () => {
+                buffer = null;
+            }));
+        });
+}
+
+
+/***/ }),
+
+/***/ 9337:
 /*!**************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/operators/tap.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "tap": () => (/* binding */ tap)
 /* harmony export */ });
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 92971);
-/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 41944);
-/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OperatorSubscriber */ 93945);
-/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/identity */ 89173);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isFunction */ 2971);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+/* harmony import */ var _util_identity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/identity */ 9173);
 
 
 
@@ -1463,17 +2183,51 @@ function tap(observerOrNext, error, complete) {
 
 /***/ }),
 
-/***/ 83417:
+/***/ 7354:
+/*!***********************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/operators/throwIfEmpty.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "throwIfEmpty": () => (/* binding */ throwIfEmpty)
+/* harmony export */ });
+/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/EmptyError */ 4423);
+/* harmony import */ var _util_lift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lift */ 1944);
+/* harmony import */ var _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OperatorSubscriber */ 3945);
+
+
+
+function throwIfEmpty(errorFactory = defaultErrorFactory) {
+    return (0,_util_lift__WEBPACK_IMPORTED_MODULE_0__.operate)((source, subscriber) => {
+        let hasValue = false;
+        source.subscribe(new _OperatorSubscriber__WEBPACK_IMPORTED_MODULE_1__.OperatorSubscriber(subscriber, (value) => {
+            hasValue = true;
+            subscriber.next(value);
+        }, () => (hasValue ? subscriber.complete() : subscriber.error(errorFactory()))));
+    });
+}
+function defaultErrorFactory() {
+    return new _util_EmptyError__WEBPACK_IMPORTED_MODULE_2__.EmptyError();
+}
+
+
+/***/ }),
+
+/***/ 3417:
 /*!************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/scheduleArray.js ***!
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduleArray": () => (/* binding */ scheduleArray)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 90833);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
 
 function scheduleArray(input, scheduler) {
     return new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable((subscriber) => {
@@ -1495,17 +2249,18 @@ function scheduleArray(input, scheduler) {
 
 /***/ }),
 
-/***/ 65646:
+/***/ 5646:
 /*!********************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/scheduleAsyncIterable.js ***!
   \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduleAsyncIterable": () => (/* binding */ scheduleAsyncIterable)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 90833);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
 /* harmony import */ var _util_executeSchedule__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/executeSchedule */ 1817);
 
 
@@ -1532,19 +2287,20 @@ function scheduleAsyncIterable(input, scheduler) {
 
 /***/ }),
 
-/***/ 74924:
+/***/ 4924:
 /*!***************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/scheduleIterable.js ***!
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduleIterable": () => (/* binding */ scheduleIterable)
 /* harmony export */ });
-/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 90833);
-/* harmony import */ var _symbol_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../symbol/iterator */ 67321);
-/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/isFunction */ 92971);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Observable */ 833);
+/* harmony import */ var _symbol_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../symbol/iterator */ 7321);
+/* harmony import */ var _util_isFunction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/isFunction */ 2971);
 /* harmony import */ var _util_executeSchedule__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/executeSchedule */ 1817);
 
 
@@ -1580,19 +2336,20 @@ function scheduleIterable(input, scheduler) {
 
 /***/ }),
 
-/***/ 14349:
+/***/ 4349:
 /*!*****************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/scheduleObservable.js ***!
   \*****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduleObservable": () => (/* binding */ scheduleObservable)
 /* harmony export */ });
-/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 54987);
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
 /* harmony import */ var _operators_observeOn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../operators/observeOn */ 8728);
-/* harmony import */ var _operators_subscribeOn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operators/subscribeOn */ 54317);
+/* harmony import */ var _operators_subscribeOn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operators/subscribeOn */ 4317);
 
 
 
@@ -1603,19 +2360,20 @@ function scheduleObservable(input, scheduler) {
 
 /***/ }),
 
-/***/ 76642:
+/***/ 6642:
 /*!**************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/schedulePromise.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "schedulePromise": () => (/* binding */ schedulePromise)
 /* harmony export */ });
-/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 54987);
+/* harmony import */ var _observable_innerFrom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../observable/innerFrom */ 4987);
 /* harmony import */ var _operators_observeOn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../operators/observeOn */ 8728);
-/* harmony import */ var _operators_subscribeOn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operators/subscribeOn */ 54317);
+/* harmony import */ var _operators_subscribeOn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operators/subscribeOn */ 4317);
 
 
 
@@ -1632,12 +2390,13 @@ function schedulePromise(input, scheduler) {
   \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduleReadableStreamLike": () => (/* binding */ scheduleReadableStreamLike)
 /* harmony export */ });
-/* harmony import */ var _scheduleAsyncIterable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scheduleAsyncIterable */ 65646);
-/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 20181);
+/* harmony import */ var _scheduleAsyncIterable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scheduleAsyncIterable */ 5646);
+/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 181);
 
 
 function scheduleReadableStreamLike(input, scheduler) {
@@ -1647,28 +2406,29 @@ function scheduleReadableStreamLike(input, scheduler) {
 
 /***/ }),
 
-/***/ 39517:
+/***/ 9517:
 /*!********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduled/scheduled.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scheduled": () => (/* binding */ scheduled)
 /* harmony export */ });
-/* harmony import */ var _scheduleObservable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scheduleObservable */ 14349);
-/* harmony import */ var _schedulePromise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./schedulePromise */ 76642);
-/* harmony import */ var _scheduleArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scheduleArray */ 83417);
-/* harmony import */ var _scheduleIterable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scheduleIterable */ 74924);
-/* harmony import */ var _scheduleAsyncIterable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scheduleAsyncIterable */ 65646);
-/* harmony import */ var _util_isInteropObservable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isInteropObservable */ 21331);
-/* harmony import */ var _util_isPromise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/isPromise */ 79548);
-/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 99806);
-/* harmony import */ var _util_isIterable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/isIterable */ 23433);
-/* harmony import */ var _util_isAsyncIterable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/isAsyncIterable */ 80470);
-/* harmony import */ var _util_throwUnobservableError__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../util/throwUnobservableError */ 27785);
-/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 20181);
+/* harmony import */ var _scheduleObservable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scheduleObservable */ 4349);
+/* harmony import */ var _schedulePromise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./schedulePromise */ 6642);
+/* harmony import */ var _scheduleArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scheduleArray */ 3417);
+/* harmony import */ var _scheduleIterable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scheduleIterable */ 4924);
+/* harmony import */ var _scheduleAsyncIterable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scheduleAsyncIterable */ 5646);
+/* harmony import */ var _util_isInteropObservable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isInteropObservable */ 1331);
+/* harmony import */ var _util_isPromise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/isPromise */ 9548);
+/* harmony import */ var _util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/isArrayLike */ 9806);
+/* harmony import */ var _util_isIterable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/isIterable */ 3433);
+/* harmony import */ var _util_isAsyncIterable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/isAsyncIterable */ 470);
+/* harmony import */ var _util_throwUnobservableError__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../util/throwUnobservableError */ 7785);
+/* harmony import */ var _util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/isReadableStreamLike */ 181);
 /* harmony import */ var _scheduleReadableStreamLike__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./scheduleReadableStreamLike */ 316);
 
 
@@ -1710,12 +2470,13 @@ function scheduled(input, scheduler) {
 
 /***/ }),
 
-/***/ 93542:
+/***/ 3542:
 /*!**************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/scheduler/timeoutProvider.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "timeoutProvider": () => (/* binding */ timeoutProvider)
@@ -1735,12 +2496,13 @@ const timeoutProvider = {
 
 /***/ }),
 
-/***/ 67321:
+/***/ 7321:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/symbol/iterator.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getSymbolIterator": () => (/* binding */ getSymbolIterator),
@@ -1757,12 +2519,13 @@ const iterator = getSymbolIterator();
 
 /***/ }),
 
-/***/ 24585:
+/***/ 4585:
 /*!******************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/symbol/observable.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "observable": () => (/* binding */ observable)
@@ -1772,17 +2535,40 @@ const observable = (() => (typeof Symbol === 'function' && Symbol.observable) ||
 
 /***/ }),
 
-/***/ 19872:
+/***/ 4423:
+/*!****************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/util/EmptyError.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EmptyError": () => (/* binding */ EmptyError)
+/* harmony export */ });
+/* harmony import */ var _createErrorClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createErrorClass */ 7543);
+
+const EmptyError = (0,_createErrorClass__WEBPACK_IMPORTED_MODULE_0__.createErrorClass)((_super) => function EmptyErrorImpl() {
+    _super(this);
+    this.name = 'EmptyError';
+    this.message = 'no elements in sequence';
+});
+
+
+/***/ }),
+
+/***/ 9872:
 /*!*****************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/ObjectUnsubscribedError.js ***!
   \*****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ObjectUnsubscribedError": () => (/* binding */ ObjectUnsubscribedError)
 /* harmony export */ });
-/* harmony import */ var _createErrorClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createErrorClass */ 27543);
+/* harmony import */ var _createErrorClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createErrorClass */ 7543);
 
 const ObjectUnsubscribedError = (0,_createErrorClass__WEBPACK_IMPORTED_MODULE_0__.createErrorClass)((_super) => function ObjectUnsubscribedErrorImpl() {
     _super(this);
@@ -1793,17 +2579,18 @@ const ObjectUnsubscribedError = (0,_createErrorClass__WEBPACK_IMPORTED_MODULE_0_
 
 /***/ }),
 
-/***/ 92524:
+/***/ 2524:
 /*!*************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/UnsubscriptionError.js ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UnsubscriptionError": () => (/* binding */ UnsubscriptionError)
 /* harmony export */ });
-/* harmony import */ var _createErrorClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createErrorClass */ 27543);
+/* harmony import */ var _createErrorClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createErrorClass */ 7543);
 
 const UnsubscriptionError = (0,_createErrorClass__WEBPACK_IMPORTED_MODULE_0__.createErrorClass)((_super) => function UnsubscriptionErrorImpl(errors) {
     _super(this);
@@ -1818,20 +2605,21 @@ ${errors.map((err, i) => `${i + 1}) ${err.toString()}`).join('\n  ')}`
 
 /***/ }),
 
-/***/ 10420:
+/***/ 420:
 /*!**********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/args.js ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "popNumber": () => (/* binding */ popNumber),
 /* harmony export */   "popResultSelector": () => (/* binding */ popResultSelector),
 /* harmony export */   "popScheduler": () => (/* binding */ popScheduler)
 /* harmony export */ });
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
-/* harmony import */ var _isScheduler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isScheduler */ 59867);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
+/* harmony import */ var _isScheduler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isScheduler */ 9867);
 
 
 function last(arr) {
@@ -1850,12 +2638,13 @@ function popNumber(args, defaultValue) {
 
 /***/ }),
 
-/***/ 45756:
+/***/ 5756:
 /*!**************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/argsArgArrayOrObject.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "argsArgArrayOrObject": () => (/* binding */ argsArgArrayOrObject)
@@ -1885,12 +2674,13 @@ function isPOJO(obj) {
 
 /***/ }),
 
-/***/ 39663:
+/***/ 9663:
 /*!***************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/arrRemove.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "arrRemove": () => (/* binding */ arrRemove)
@@ -1905,12 +2695,13 @@ function arrRemove(arr, item) {
 
 /***/ }),
 
-/***/ 27543:
+/***/ 7543:
 /*!**********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/createErrorClass.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createErrorClass": () => (/* binding */ createErrorClass)
@@ -1929,12 +2720,13 @@ function createErrorClass(createImpl) {
 
 /***/ }),
 
-/***/ 11054:
+/***/ 1054:
 /*!******************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/createObject.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createObject": () => (/* binding */ createObject)
@@ -1946,18 +2738,19 @@ function createObject(keys, values) {
 
 /***/ }),
 
-/***/ 12309:
+/***/ 2309:
 /*!******************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/errorContext.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "captureError": () => (/* binding */ captureError),
 /* harmony export */   "errorContext": () => (/* binding */ errorContext)
 /* harmony export */ });
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../config */ 99057);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../config */ 9057);
 
 let context = null;
 function errorContext(cb) {
@@ -1995,6 +2788,7 @@ function captureError(err) {
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "executeSchedule": () => (/* binding */ executeSchedule)
@@ -2018,12 +2812,13 @@ function executeSchedule(parentSubscription, scheduler, work, delay = 0, repeat 
 
 /***/ }),
 
-/***/ 89173:
+/***/ 9173:
 /*!**************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/identity.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "identity": () => (/* binding */ identity)
@@ -2035,12 +2830,13 @@ function identity(x) {
 
 /***/ }),
 
-/***/ 99806:
+/***/ 9806:
 /*!*****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isArrayLike.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isArrayLike": () => (/* binding */ isArrayLike)
@@ -2050,17 +2846,18 @@ const isArrayLike = ((x) => x && typeof x.length === 'number' && typeof x !== 'f
 
 /***/ }),
 
-/***/ 80470:
+/***/ 470:
 /*!*********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isAsyncIterable.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isAsyncIterable": () => (/* binding */ isAsyncIterable)
 /* harmony export */ });
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 function isAsyncIterable(obj) {
   return Symbol.asyncIterator && (0,_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(obj === null || obj === void 0 ? void 0 : obj[Symbol.asyncIterator]);
@@ -2068,12 +2865,13 @@ function isAsyncIterable(obj) {
 
 /***/ }),
 
-/***/ 92971:
+/***/ 2971:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isFunction.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isFunction": () => (/* binding */ isFunction)
@@ -2085,18 +2883,19 @@ function isFunction(value) {
 
 /***/ }),
 
-/***/ 21331:
+/***/ 1331:
 /*!*************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isInteropObservable.js ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isInteropObservable": () => (/* binding */ isInteropObservable)
 /* harmony export */ });
-/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../symbol/observable */ 24585);
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _symbol_observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../symbol/observable */ 4585);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 
 function isInteropObservable(input) {
@@ -2106,18 +2905,19 @@ function isInteropObservable(input) {
 
 /***/ }),
 
-/***/ 23433:
+/***/ 3433:
 /*!****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isIterable.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isIterable": () => (/* binding */ isIterable)
 /* harmony export */ });
-/* harmony import */ var _symbol_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../symbol/iterator */ 67321);
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _symbol_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../symbol/iterator */ 7321);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 
 function isIterable(input) {
@@ -2127,17 +2927,18 @@ function isIterable(input) {
 
 /***/ }),
 
-/***/ 79548:
+/***/ 9548:
 /*!***************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isPromise.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isPromise": () => (/* binding */ isPromise)
 /* harmony export */ });
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 function isPromise(value) {
     return (0,_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(value === null || value === void 0 ? void 0 : value.then);
@@ -2146,19 +2947,20 @@ function isPromise(value) {
 
 /***/ }),
 
-/***/ 20181:
+/***/ 181:
 /*!**************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isReadableStreamLike.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isReadableStreamLike": () => (/* binding */ isReadableStreamLike),
 /* harmony export */   "readableStreamLikeToAsyncGenerator": () => (/* binding */ readableStreamLikeToAsyncGenerator)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 49126);
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 9126);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 
 function readableStreamLikeToAsyncGenerator(readableStream) {
@@ -2189,17 +2991,18 @@ function isReadableStreamLike(obj) {
 
 /***/ }),
 
-/***/ 59867:
+/***/ 9867:
 /*!*****************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/isScheduler.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isScheduler": () => (/* binding */ isScheduler)
 /* harmony export */ });
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 function isScheduler(value) {
     return value && (0,_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(value.schedule);
@@ -2208,18 +3011,19 @@ function isScheduler(value) {
 
 /***/ }),
 
-/***/ 41944:
+/***/ 1944:
 /*!**********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/lift.js ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "hasLift": () => (/* binding */ hasLift),
 /* harmony export */   "operate": () => (/* binding */ operate)
 /* harmony export */ });
-/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 92971);
+/* harmony import */ var _isFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isFunction */ 2971);
 
 function hasLift(source) {
     return (0,_isFunction__WEBPACK_IMPORTED_MODULE_0__.isFunction)(source === null || source === void 0 ? void 0 : source.lift);
@@ -2243,17 +3047,18 @@ function operate(init) {
 
 /***/ }),
 
-/***/ 58385:
+/***/ 8385:
 /*!**********************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/mapOneOrManyArgs.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mapOneOrManyArgs": () => (/* binding */ mapOneOrManyArgs)
 /* harmony export */ });
-/* harmony import */ var _operators_map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../operators/map */ 50635);
+/* harmony import */ var _operators_map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../operators/map */ 635);
 
 const { isArray } = Array;
 function callOrApply(fn, args) {
@@ -2266,12 +3071,13 @@ function mapOneOrManyArgs(fn) {
 
 /***/ }),
 
-/***/ 99635:
+/***/ 9635:
 /*!**********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/noop.js ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "noop": () => (/* binding */ noop)
@@ -2281,18 +3087,19 @@ function noop() { }
 
 /***/ }),
 
-/***/ 60629:
+/***/ 629:
 /*!**********************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/pipe.js ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "pipe": () => (/* binding */ pipe),
 /* harmony export */   "pipeFromArray": () => (/* binding */ pipeFromArray)
 /* harmony export */ });
-/* harmony import */ var _identity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./identity */ 89173);
+/* harmony import */ var _identity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./identity */ 9173);
 
 function pipe(...fns) {
     return pipeFromArray(fns);
@@ -2312,18 +3119,19 @@ function pipeFromArray(fns) {
 
 /***/ }),
 
-/***/ 84709:
+/***/ 4709:
 /*!**************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/reportUnhandledError.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "reportUnhandledError": () => (/* binding */ reportUnhandledError)
 /* harmony export */ });
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ 99057);
-/* harmony import */ var _scheduler_timeoutProvider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scheduler/timeoutProvider */ 93542);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ 9057);
+/* harmony import */ var _scheduler_timeoutProvider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scheduler/timeoutProvider */ 3542);
 
 
 function reportUnhandledError(err) {
@@ -2341,12 +3149,13 @@ function reportUnhandledError(err) {
 
 /***/ }),
 
-/***/ 27785:
+/***/ 7785:
 /*!****************************************************************************!*\
   !*** ./node_modules/rxjs/dist/esm/internal/util/throwUnobservableError.js ***!
   \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createInvalidObservableTypeError": () => (/* binding */ createInvalidObservableTypeError)
@@ -2358,12 +3167,826 @@ function createInvalidObservableTypeError(input) {
 
 /***/ }),
 
-/***/ 49126:
+/***/ 7522:
+/*!*****************************************************!*\
+  !*** ./node_modules/webfontloader/webfontloader.js ***!
+  \*****************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems, Google. License: Apache 2.0 */
+(function () {
+  function aa(a, b, c) {
+    return a.call.apply(a.bind, arguments);
+  }
+
+  function ba(a, b, c) {
+    if (!a) throw Error();
+
+    if (2 < arguments.length) {
+      var d = Array.prototype.slice.call(arguments, 2);
+      return function () {
+        var c = Array.prototype.slice.call(arguments);
+        Array.prototype.unshift.apply(c, d);
+        return a.apply(b, c);
+      };
+    }
+
+    return function () {
+      return a.apply(b, arguments);
+    };
+  }
+
+  function p(a, b, c) {
+    p = Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf("native code") ? aa : ba;
+    return p.apply(null, arguments);
+  }
+
+  var q = Date.now || function () {
+    return +new Date();
+  };
+
+  function ca(a, b) {
+    this.a = a;
+    this.o = b || a;
+    this.c = this.o.document;
+  }
+
+  var da = !!window.FontFace;
+
+  function t(a, b, c, d) {
+    b = a.c.createElement(b);
+    if (c) for (var e in c) c.hasOwnProperty(e) && ("style" == e ? b.style.cssText = c[e] : b.setAttribute(e, c[e]));
+    d && b.appendChild(a.c.createTextNode(d));
+    return b;
+  }
+
+  function u(a, b, c) {
+    a = a.c.getElementsByTagName(b)[0];
+    a || (a = document.documentElement);
+    a.insertBefore(c, a.lastChild);
+  }
+
+  function v(a) {
+    a.parentNode && a.parentNode.removeChild(a);
+  }
+
+  function w(a, b, c) {
+    b = b || [];
+    c = c || [];
+
+    for (var d = a.className.split(/\s+/), e = 0; e < b.length; e += 1) {
+      for (var f = !1, g = 0; g < d.length; g += 1) if (b[e] === d[g]) {
+        f = !0;
+        break;
+      }
+
+      f || d.push(b[e]);
+    }
+
+    b = [];
+
+    for (e = 0; e < d.length; e += 1) {
+      f = !1;
+
+      for (g = 0; g < c.length; g += 1) if (d[e] === c[g]) {
+        f = !0;
+        break;
+      }
+
+      f || b.push(d[e]);
+    }
+
+    a.className = b.join(" ").replace(/\s+/g, " ").replace(/^\s+|\s+$/, "");
+  }
+
+  function y(a, b) {
+    for (var c = a.className.split(/\s+/), d = 0, e = c.length; d < e; d++) if (c[d] == b) return !0;
+
+    return !1;
+  }
+
+  function ea(a) {
+    return a.o.location.hostname || a.a.location.hostname;
+  }
+
+  function z(a, b, c) {
+    function d() {
+      m && e && f && (m(g), m = null);
+    }
+
+    b = t(a, "link", {
+      rel: "stylesheet",
+      href: b,
+      media: "all"
+    });
+    var e = !1,
+        f = !0,
+        g = null,
+        m = c || null;
+    da ? (b.onload = function () {
+      e = !0;
+      d();
+    }, b.onerror = function () {
+      e = !0;
+      g = Error("Stylesheet failed to load");
+      d();
+    }) : setTimeout(function () {
+      e = !0;
+      d();
+    }, 0);
+    u(a, "head", b);
+  }
+
+  function A(a, b, c, d) {
+    var e = a.c.getElementsByTagName("head")[0];
+
+    if (e) {
+      var f = t(a, "script", {
+        src: b
+      }),
+          g = !1;
+
+      f.onload = f.onreadystatechange = function () {
+        g || this.readyState && "loaded" != this.readyState && "complete" != this.readyState || (g = !0, c && c(null), f.onload = f.onreadystatechange = null, "HEAD" == f.parentNode.tagName && e.removeChild(f));
+      };
+
+      e.appendChild(f);
+      setTimeout(function () {
+        g || (g = !0, c && c(Error("Script load timeout")));
+      }, d || 5E3);
+      return f;
+    }
+
+    return null;
+  }
+
+  ;
+
+  function B() {
+    this.a = 0;
+    this.c = null;
+  }
+
+  function C(a) {
+    a.a++;
+    return function () {
+      a.a--;
+      D(a);
+    };
+  }
+
+  function E(a, b) {
+    a.c = b;
+    D(a);
+  }
+
+  function D(a) {
+    0 == a.a && a.c && (a.c(), a.c = null);
+  }
+
+  ;
+
+  function F(a) {
+    this.a = a || "-";
+  }
+
+  F.prototype.c = function (a) {
+    for (var b = [], c = 0; c < arguments.length; c++) b.push(arguments[c].replace(/[\W_]+/g, "").toLowerCase());
+
+    return b.join(this.a);
+  };
+
+  function G(a, b) {
+    this.c = a;
+    this.f = 4;
+    this.a = "n";
+    var c = (b || "n4").match(/^([nio])([1-9])$/i);
+    c && (this.a = c[1], this.f = parseInt(c[2], 10));
+  }
+
+  function fa(a) {
+    return H(a) + " " + (a.f + "00") + " 300px " + I(a.c);
+  }
+
+  function I(a) {
+    var b = [];
+    a = a.split(/,\s*/);
+
+    for (var c = 0; c < a.length; c++) {
+      var d = a[c].replace(/['"]/g, "");
+      -1 != d.indexOf(" ") || /^\d/.test(d) ? b.push("'" + d + "'") : b.push(d);
+    }
+
+    return b.join(",");
+  }
+
+  function J(a) {
+    return a.a + a.f;
+  }
+
+  function H(a) {
+    var b = "normal";
+    "o" === a.a ? b = "oblique" : "i" === a.a && (b = "italic");
+    return b;
+  }
+
+  function ga(a) {
+    var b = 4,
+        c = "n",
+        d = null;
+    a && ((d = a.match(/(normal|oblique|italic)/i)) && d[1] && (c = d[1].substr(0, 1).toLowerCase()), (d = a.match(/([1-9]00|normal|bold)/i)) && d[1] && (/bold/i.test(d[1]) ? b = 7 : /[1-9]00/.test(d[1]) && (b = parseInt(d[1].substr(0, 1), 10))));
+    return c + b;
+  }
+
+  ;
+
+  function ha(a, b) {
+    this.c = a;
+    this.f = a.o.document.documentElement;
+    this.h = b;
+    this.a = new F("-");
+    this.j = !1 !== b.events;
+    this.g = !1 !== b.classes;
+  }
+
+  function ia(a) {
+    a.g && w(a.f, [a.a.c("wf", "loading")]);
+    K(a, "loading");
+  }
+
+  function L(a) {
+    if (a.g) {
+      var b = y(a.f, a.a.c("wf", "active")),
+          c = [],
+          d = [a.a.c("wf", "loading")];
+      b || c.push(a.a.c("wf", "inactive"));
+      w(a.f, c, d);
+    }
+
+    K(a, "inactive");
+  }
+
+  function K(a, b, c) {
+    if (a.j && a.h[b]) if (c) a.h[b](c.c, J(c));else a.h[b]();
+  }
+
+  ;
+
+  function ja() {
+    this.c = {};
+  }
+
+  function ka(a, b, c) {
+    var d = [],
+        e;
+
+    for (e in b) if (b.hasOwnProperty(e)) {
+      var f = a.c[e];
+      f && d.push(f(b[e], c));
+    }
+
+    return d;
+  }
+
+  ;
+
+  function M(a, b) {
+    this.c = a;
+    this.f = b;
+    this.a = t(this.c, "span", {
+      "aria-hidden": "true"
+    }, this.f);
+  }
+
+  function N(a) {
+    u(a.c, "body", a.a);
+  }
+
+  function O(a) {
+    return "display:block;position:absolute;top:-9999px;left:-9999px;font-size:300px;width:auto;height:auto;line-height:normal;margin:0;padding:0;font-variant:normal;white-space:nowrap;font-family:" + I(a.c) + ";" + ("font-style:" + H(a) + ";font-weight:" + (a.f + "00") + ";");
+  }
+
+  ;
+
+  function P(a, b, c, d, e, f) {
+    this.g = a;
+    this.j = b;
+    this.a = d;
+    this.c = c;
+    this.f = e || 3E3;
+    this.h = f || void 0;
+  }
+
+  P.prototype.start = function () {
+    var a = this.c.o.document,
+        b = this,
+        c = q(),
+        d = new Promise(function (d, e) {
+      function f() {
+        q() - c >= b.f ? e() : a.fonts.load(fa(b.a), b.h).then(function (a) {
+          1 <= a.length ? d() : setTimeout(f, 25);
+        }, function () {
+          e();
+        });
+      }
+
+      f();
+    }),
+        e = null,
+        f = new Promise(function (a, d) {
+      e = setTimeout(d, b.f);
+    });
+    Promise.race([f, d]).then(function () {
+      e && (clearTimeout(e), e = null);
+      b.g(b.a);
+    }, function () {
+      b.j(b.a);
+    });
+  };
+
+  function Q(a, b, c, d, e, f, g) {
+    this.v = a;
+    this.B = b;
+    this.c = c;
+    this.a = d;
+    this.s = g || "BESbswy";
+    this.f = {};
+    this.w = e || 3E3;
+    this.u = f || null;
+    this.m = this.j = this.h = this.g = null;
+    this.g = new M(this.c, this.s);
+    this.h = new M(this.c, this.s);
+    this.j = new M(this.c, this.s);
+    this.m = new M(this.c, this.s);
+    a = new G(this.a.c + ",serif", J(this.a));
+    a = O(a);
+    this.g.a.style.cssText = a;
+    a = new G(this.a.c + ",sans-serif", J(this.a));
+    a = O(a);
+    this.h.a.style.cssText = a;
+    a = new G("serif", J(this.a));
+    a = O(a);
+    this.j.a.style.cssText = a;
+    a = new G("sans-serif", J(this.a));
+    a = O(a);
+    this.m.a.style.cssText = a;
+    N(this.g);
+    N(this.h);
+    N(this.j);
+    N(this.m);
+  }
+
+  var R = {
+    D: "serif",
+    C: "sans-serif"
+  },
+      S = null;
+
+  function T() {
+    if (null === S) {
+      var a = /AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent);
+      S = !!a && (536 > parseInt(a[1], 10) || 536 === parseInt(a[1], 10) && 11 >= parseInt(a[2], 10));
+    }
+
+    return S;
+  }
+
+  Q.prototype.start = function () {
+    this.f.serif = this.j.a.offsetWidth;
+    this.f["sans-serif"] = this.m.a.offsetWidth;
+    this.A = q();
+    U(this);
+  };
+
+  function la(a, b, c) {
+    for (var d in R) if (R.hasOwnProperty(d) && b === a.f[R[d]] && c === a.f[R[d]]) return !0;
+
+    return !1;
+  }
+
+  function U(a) {
+    var b = a.g.a.offsetWidth,
+        c = a.h.a.offsetWidth,
+        d;
+    (d = b === a.f.serif && c === a.f["sans-serif"]) || (d = T() && la(a, b, c));
+    d ? q() - a.A >= a.w ? T() && la(a, b, c) && (null === a.u || a.u.hasOwnProperty(a.a.c)) ? V(a, a.v) : V(a, a.B) : ma(a) : V(a, a.v);
+  }
+
+  function ma(a) {
+    setTimeout(p(function () {
+      U(this);
+    }, a), 50);
+  }
+
+  function V(a, b) {
+    setTimeout(p(function () {
+      v(this.g.a);
+      v(this.h.a);
+      v(this.j.a);
+      v(this.m.a);
+      b(this.a);
+    }, a), 0);
+  }
+
+  ;
+
+  function W(a, b, c) {
+    this.c = a;
+    this.a = b;
+    this.f = 0;
+    this.m = this.j = !1;
+    this.s = c;
+  }
+
+  var X = null;
+
+  W.prototype.g = function (a) {
+    var b = this.a;
+    b.g && w(b.f, [b.a.c("wf", a.c, J(a).toString(), "active")], [b.a.c("wf", a.c, J(a).toString(), "loading"), b.a.c("wf", a.c, J(a).toString(), "inactive")]);
+    K(b, "fontactive", a);
+    this.m = !0;
+    na(this);
+  };
+
+  W.prototype.h = function (a) {
+    var b = this.a;
+
+    if (b.g) {
+      var c = y(b.f, b.a.c("wf", a.c, J(a).toString(), "active")),
+          d = [],
+          e = [b.a.c("wf", a.c, J(a).toString(), "loading")];
+      c || d.push(b.a.c("wf", a.c, J(a).toString(), "inactive"));
+      w(b.f, d, e);
+    }
+
+    K(b, "fontinactive", a);
+    na(this);
+  };
+
+  function na(a) {
+    0 == --a.f && a.j && (a.m ? (a = a.a, a.g && w(a.f, [a.a.c("wf", "active")], [a.a.c("wf", "loading"), a.a.c("wf", "inactive")]), K(a, "active")) : L(a.a));
+  }
+
+  ;
+
+  function oa(a) {
+    this.j = a;
+    this.a = new ja();
+    this.h = 0;
+    this.f = this.g = !0;
+  }
+
+  oa.prototype.load = function (a) {
+    this.c = new ca(this.j, a.context || this.j);
+    this.g = !1 !== a.events;
+    this.f = !1 !== a.classes;
+    pa(this, new ha(this.c, a), a);
+  };
+
+  function qa(a, b, c, d, e) {
+    var f = 0 == --a.h;
+    (a.f || a.g) && setTimeout(function () {
+      var a = e || null,
+          m = d || null || {};
+      if (0 === c.length && f) L(b.a);else {
+        b.f += c.length;
+        f && (b.j = f);
+        var h,
+            l = [];
+
+        for (h = 0; h < c.length; h++) {
+          var k = c[h],
+              n = m[k.c],
+              r = b.a,
+              x = k;
+          r.g && w(r.f, [r.a.c("wf", x.c, J(x).toString(), "loading")]);
+          K(r, "fontloading", x);
+          r = null;
+          if (null === X) if (window.FontFace) {
+            var x = /Gecko.*Firefox\/(\d+)/.exec(window.navigator.userAgent),
+                xa = /OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent) && /Apple/.exec(window.navigator.vendor);
+            X = x ? 42 < parseInt(x[1], 10) : xa ? !1 : !0;
+          } else X = !1;
+          X ? r = new P(p(b.g, b), p(b.h, b), b.c, k, b.s, n) : r = new Q(p(b.g, b), p(b.h, b), b.c, k, b.s, a, n);
+          l.push(r);
+        }
+
+        for (h = 0; h < l.length; h++) l[h].start();
+      }
+    }, 0);
+  }
+
+  function pa(a, b, c) {
+    var d = [],
+        e = c.timeout;
+    ia(b);
+    var d = ka(a.a, c, a.c),
+        f = new W(a.c, b, e);
+    a.h = d.length;
+    b = 0;
+
+    for (c = d.length; b < c; b++) d[b].load(function (b, d, c) {
+      qa(a, f, b, d, c);
+    });
+  }
+
+  ;
+
+  function ra(a, b) {
+    this.c = a;
+    this.a = b;
+  }
+
+  ra.prototype.load = function (a) {
+    function b() {
+      if (f["__mti_fntLst" + d]) {
+        var c = f["__mti_fntLst" + d](),
+            e = [],
+            h;
+        if (c) for (var l = 0; l < c.length; l++) {
+          var k = c[l].fontfamily;
+          void 0 != c[l].fontStyle && void 0 != c[l].fontWeight ? (h = c[l].fontStyle + c[l].fontWeight, e.push(new G(k, h))) : e.push(new G(k));
+        }
+        a(e);
+      } else setTimeout(function () {
+        b();
+      }, 50);
+    }
+
+    var c = this,
+        d = c.a.projectId,
+        e = c.a.version;
+
+    if (d) {
+      var f = c.c.o;
+      A(this.c, (c.a.api || "https://fast.fonts.net/jsapi") + "/" + d + ".js" + (e ? "?v=" + e : ""), function (e) {
+        e ? a([]) : (f["__MonotypeConfiguration__" + d] = function () {
+          return c.a;
+        }, b());
+      }).id = "__MonotypeAPIScript__" + d;
+    } else a([]);
+  };
+
+  function sa(a, b) {
+    this.c = a;
+    this.a = b;
+  }
+
+  sa.prototype.load = function (a) {
+    var b,
+        c,
+        d = this.a.urls || [],
+        e = this.a.families || [],
+        f = this.a.testStrings || {},
+        g = new B();
+    b = 0;
+
+    for (c = d.length; b < c; b++) z(this.c, d[b], C(g));
+
+    var m = [];
+    b = 0;
+
+    for (c = e.length; b < c; b++) if (d = e[b].split(":"), d[1]) for (var h = d[1].split(","), l = 0; l < h.length; l += 1) m.push(new G(d[0], h[l]));else m.push(new G(d[0]));
+
+    E(g, function () {
+      a(m, f);
+    });
+  };
+
+  function ta(a, b) {
+    a ? this.c = a : this.c = ua;
+    this.a = [];
+    this.f = [];
+    this.g = b || "";
+  }
+
+  var ua = "https://fonts.googleapis.com/css";
+
+  function va(a, b) {
+    for (var c = b.length, d = 0; d < c; d++) {
+      var e = b[d].split(":");
+      3 == e.length && a.f.push(e.pop());
+      var f = "";
+      2 == e.length && "" != e[1] && (f = ":");
+      a.a.push(e.join(f));
+    }
+  }
+
+  function wa(a) {
+    if (0 == a.a.length) throw Error("No fonts to load!");
+    if (-1 != a.c.indexOf("kit=")) return a.c;
+
+    for (var b = a.a.length, c = [], d = 0; d < b; d++) c.push(a.a[d].replace(/ /g, "+"));
+
+    b = a.c + "?family=" + c.join("%7C");
+    0 < a.f.length && (b += "&subset=" + a.f.join(","));
+    0 < a.g.length && (b += "&text=" + encodeURIComponent(a.g));
+    return b;
+  }
+
+  ;
+
+  function ya(a) {
+    this.f = a;
+    this.a = [];
+    this.c = {};
+  }
+
+  var za = {
+    latin: "BESbswy",
+    "latin-ext": "\u00e7\u00f6\u00fc\u011f\u015f",
+    cyrillic: "\u0439\u044f\u0416",
+    greek: "\u03b1\u03b2\u03a3",
+    khmer: "\u1780\u1781\u1782",
+    Hanuman: "\u1780\u1781\u1782"
+  },
+      Aa = {
+    thin: "1",
+    extralight: "2",
+    "extra-light": "2",
+    ultralight: "2",
+    "ultra-light": "2",
+    light: "3",
+    regular: "4",
+    book: "4",
+    medium: "5",
+    "semi-bold": "6",
+    semibold: "6",
+    "demi-bold": "6",
+    demibold: "6",
+    bold: "7",
+    "extra-bold": "8",
+    extrabold: "8",
+    "ultra-bold": "8",
+    ultrabold: "8",
+    black: "9",
+    heavy: "9",
+    l: "3",
+    r: "4",
+    b: "7"
+  },
+      Ba = {
+    i: "i",
+    italic: "i",
+    n: "n",
+    normal: "n"
+  },
+      Ca = /^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra|ultra)-?)?bold|black|heavy|l|r|b|[1-9]00)?(n|i|normal|italic)?$/;
+
+  function Da(a) {
+    for (var b = a.f.length, c = 0; c < b; c++) {
+      var d = a.f[c].split(":"),
+          e = d[0].replace(/\+/g, " "),
+          f = ["n4"];
+
+      if (2 <= d.length) {
+        var g;
+        var m = d[1];
+        g = [];
+        if (m) for (var m = m.split(","), h = m.length, l = 0; l < h; l++) {
+          var k;
+          k = m[l];
+
+          if (k.match(/^[\w-]+$/)) {
+            var n = Ca.exec(k.toLowerCase());
+            if (null == n) k = "";else {
+              k = n[2];
+              k = null == k || "" == k ? "n" : Ba[k];
+              n = n[1];
+              if (null == n || "" == n) n = "4";else var r = Aa[n],
+                  n = r ? r : isNaN(n) ? "4" : n.substr(0, 1);
+              k = [k, n].join("");
+            }
+          } else k = "";
+
+          k && g.push(k);
+        }
+        0 < g.length && (f = g);
+        3 == d.length && (d = d[2], g = [], d = d ? d.split(",") : g, 0 < d.length && (d = za[d[0]]) && (a.c[e] = d));
+      }
+
+      a.c[e] || (d = za[e]) && (a.c[e] = d);
+
+      for (d = 0; d < f.length; d += 1) a.a.push(new G(e, f[d]));
+    }
+  }
+
+  ;
+
+  function Ea(a, b) {
+    this.c = a;
+    this.a = b;
+  }
+
+  var Fa = {
+    Arimo: !0,
+    Cousine: !0,
+    Tinos: !0
+  };
+
+  Ea.prototype.load = function (a) {
+    var b = new B(),
+        c = this.c,
+        d = new ta(this.a.api, this.a.text),
+        e = this.a.families;
+    va(d, e);
+    var f = new ya(e);
+    Da(f);
+    z(c, wa(d), C(b));
+    E(b, function () {
+      a(f.a, f.c, Fa);
+    });
+  };
+
+  function Ga(a, b) {
+    this.c = a;
+    this.a = b;
+  }
+
+  Ga.prototype.load = function (a) {
+    var b = this.a.id,
+        c = this.c.o;
+    b ? A(this.c, (this.a.api || "https://use.typekit.net") + "/" + b + ".js", function (b) {
+      if (b) a([]);else if (c.Typekit && c.Typekit.config && c.Typekit.config.fn) {
+        b = c.Typekit.config.fn;
+
+        for (var e = [], f = 0; f < b.length; f += 2) for (var g = b[f], m = b[f + 1], h = 0; h < m.length; h++) e.push(new G(g, m[h]));
+
+        try {
+          c.Typekit.load({
+            events: !1,
+            classes: !1,
+            async: !0
+          });
+        } catch (l) {}
+
+        a(e);
+      }
+    }, 2E3) : a([]);
+  };
+
+  function Ha(a, b) {
+    this.c = a;
+    this.f = b;
+    this.a = [];
+  }
+
+  Ha.prototype.load = function (a) {
+    var b = this.f.id,
+        c = this.c.o,
+        d = this;
+    b ? (c.__webfontfontdeckmodule__ || (c.__webfontfontdeckmodule__ = {}), c.__webfontfontdeckmodule__[b] = function (b, c) {
+      for (var g = 0, m = c.fonts.length; g < m; ++g) {
+        var h = c.fonts[g];
+        d.a.push(new G(h.name, ga("font-weight:" + h.weight + ";font-style:" + h.style)));
+      }
+
+      a(d.a);
+    }, A(this.c, (this.f.api || "https://f.fontdeck.com/s/css/js/") + ea(this.c) + "/" + b + ".js", function (b) {
+      b && a([]);
+    })) : a([]);
+  };
+
+  var Y = new oa(window);
+
+  Y.a.c.custom = function (a, b) {
+    return new sa(b, a);
+  };
+
+  Y.a.c.fontdeck = function (a, b) {
+    return new Ha(b, a);
+  };
+
+  Y.a.c.monotype = function (a, b) {
+    return new ra(b, a);
+  };
+
+  Y.a.c.typekit = function (a, b) {
+    return new Ga(b, a);
+  };
+
+  Y.a.c.google = function (a, b) {
+    return new Ea(b, a);
+  };
+
+  var Z = {
+    load: p(Y.load, Y)
+  };
+   true ? !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+    return Z;
+  }).call(exports, __webpack_require__, exports, module),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : 0;
+})();
+
+/***/ }),
+
+/***/ 9126:
 /*!***********************************************************!*\
   !*** ./node_modules/rxjs/node_modules/tslib/tslib.es6.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "__assign": () => (/* binding */ __assign),
@@ -2632,12 +4255,13 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 /***/ }),
 
-/***/ 34929:
+/***/ 4929:
 /*!*****************************************!*\
   !*** ./node_modules/tslib/tslib.es6.js ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "__assign": () => (/* binding */ __assign),
@@ -2918,12 +4542,13 @@ function __classPrivateFieldIn(state, receiver) {
 
 /***/ }),
 
-/***/ 36362:
+/***/ 6362:
 /*!**********************************************************!*\
   !*** ./node_modules/@angular/common/fesm2015/common.mjs ***!
   \**********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "APP_BASE_HREF": () => (/* binding */ APP_BASE_HREF),
@@ -9948,12 +11573,2854 @@ class XhrFactory {}
 
 /***/ }),
 
-/***/ 58384:
+/***/ 8784:
+/*!********************************************************!*\
+  !*** ./node_modules/@angular/common/fesm2015/http.mjs ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HTTP_INTERCEPTORS": () => (/* binding */ HTTP_INTERCEPTORS),
+/* harmony export */   "HttpBackend": () => (/* binding */ HttpBackend),
+/* harmony export */   "HttpClient": () => (/* binding */ HttpClient),
+/* harmony export */   "HttpClientJsonpModule": () => (/* binding */ HttpClientJsonpModule),
+/* harmony export */   "HttpClientModule": () => (/* binding */ HttpClientModule),
+/* harmony export */   "HttpClientXsrfModule": () => (/* binding */ HttpClientXsrfModule),
+/* harmony export */   "HttpContext": () => (/* binding */ HttpContext),
+/* harmony export */   "HttpContextToken": () => (/* binding */ HttpContextToken),
+/* harmony export */   "HttpErrorResponse": () => (/* binding */ HttpErrorResponse),
+/* harmony export */   "HttpEventType": () => (/* binding */ HttpEventType),
+/* harmony export */   "HttpHandler": () => (/* binding */ HttpHandler),
+/* harmony export */   "HttpHeaderResponse": () => (/* binding */ HttpHeaderResponse),
+/* harmony export */   "HttpHeaders": () => (/* binding */ HttpHeaders),
+/* harmony export */   "HttpParams": () => (/* binding */ HttpParams),
+/* harmony export */   "HttpRequest": () => (/* binding */ HttpRequest),
+/* harmony export */   "HttpResponse": () => (/* binding */ HttpResponse),
+/* harmony export */   "HttpResponseBase": () => (/* binding */ HttpResponseBase),
+/* harmony export */   "HttpUrlEncodingCodec": () => (/* binding */ HttpUrlEncodingCodec),
+/* harmony export */   "HttpXhrBackend": () => (/* binding */ HttpXhrBackend),
+/* harmony export */   "HttpXsrfTokenExtractor": () => (/* binding */ HttpXsrfTokenExtractor),
+/* harmony export */   "JsonpClientBackend": () => (/* binding */ JsonpClientBackend),
+/* harmony export */   "JsonpInterceptor": () => (/* binding */ JsonpInterceptor),
+/* harmony export */   "XhrFactory": () => (/* binding */ XhrFactory),
+/* harmony export */   "ɵHttpInterceptingHandler": () => (/* binding */ HttpInterceptingHandler)
+/* harmony export */ });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 6362);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 745);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 833);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 3853);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 116);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 635);
+/**
+ * @license Angular v13.3.12
+ * (c) 2010-2022 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
+ * `HttpResponse`.
+ *
+ * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
+ * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
+ * `HttpBackend`.
+ *
+ * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
+ *
+ * @publicApi
+ */
+
+class HttpHandler {}
+/**
+ * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
+ *
+ * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
+ *
+ * When injected, `HttpBackend` dispatches requests directly to the backend, without going
+ * through the interceptor chain.
+ *
+ * @publicApi
+ */
+
+
+class HttpBackend {}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Represents the header configuration options for an HTTP request.
+ * Instances are immutable. Modifying methods return a cloned
+ * instance with the change. The original object is never changed.
+ *
+ * @publicApi
+ */
+
+
+class HttpHeaders {
+  /**  Constructs a new HTTP header object with the given values.*/
+  constructor(headers) {
+    /**
+     * Internal map of lowercased header names to the normalized
+     * form of the name (the form seen first).
+     */
+    this.normalizedNames = new Map();
+    /**
+     * Queued updates to be materialized the next initialization.
+     */
+
+    this.lazyUpdate = null;
+
+    if (!headers) {
+      this.headers = new Map();
+    } else if (typeof headers === 'string') {
+      this.lazyInit = () => {
+        this.headers = new Map();
+        headers.split('\n').forEach(line => {
+          const index = line.indexOf(':');
+
+          if (index > 0) {
+            const name = line.slice(0, index);
+            const key = name.toLowerCase();
+            const value = line.slice(index + 1).trim();
+            this.maybeSetNormalizedName(name, key);
+
+            if (this.headers.has(key)) {
+              this.headers.get(key).push(value);
+            } else {
+              this.headers.set(key, [value]);
+            }
+          }
+        });
+      };
+    } else {
+      this.lazyInit = () => {
+        this.headers = new Map();
+        Object.keys(headers).forEach(name => {
+          let values = headers[name];
+          const key = name.toLowerCase();
+
+          if (typeof values === 'string') {
+            values = [values];
+          }
+
+          if (values.length > 0) {
+            this.headers.set(key, values);
+            this.maybeSetNormalizedName(name, key);
+          }
+        });
+      };
+    }
+  }
+  /**
+   * Checks for existence of a given header.
+   *
+   * @param name The header name to check for existence.
+   *
+   * @returns True if the header exists, false otherwise.
+   */
+
+
+  has(name) {
+    this.init();
+    return this.headers.has(name.toLowerCase());
+  }
+  /**
+   * Retrieves the first value of a given header.
+   *
+   * @param name The header name.
+   *
+   * @returns The value string if the header exists, null otherwise
+   */
+
+
+  get(name) {
+    this.init();
+    const values = this.headers.get(name.toLowerCase());
+    return values && values.length > 0 ? values[0] : null;
+  }
+  /**
+   * Retrieves the names of the headers.
+   *
+   * @returns A list of header names.
+   */
+
+
+  keys() {
+    this.init();
+    return Array.from(this.normalizedNames.values());
+  }
+  /**
+   * Retrieves a list of values for a given header.
+   *
+   * @param name The header name from which to retrieve values.
+   *
+   * @returns A string of values if the header exists, null otherwise.
+   */
+
+
+  getAll(name) {
+    this.init();
+    return this.headers.get(name.toLowerCase()) || null;
+  }
+  /**
+   * Appends a new value to the existing set of values for a header
+   * and returns them in a clone of the original instance.
+   *
+   * @param name The header name for which to append the values.
+   * @param value The value to append.
+   *
+   * @returns A clone of the HTTP headers object with the value appended to the given header.
+   */
+
+
+  append(name, value) {
+    return this.clone({
+      name,
+      value,
+      op: 'a'
+    });
+  }
+  /**
+   * Sets or modifies a value for a given header in a clone of the original instance.
+   * If the header already exists, its value is replaced with the given value
+   * in the returned object.
+   *
+   * @param name The header name.
+   * @param value The value or values to set or overide for the given header.
+   *
+   * @returns A clone of the HTTP headers object with the newly set header value.
+   */
+
+
+  set(name, value) {
+    return this.clone({
+      name,
+      value,
+      op: 's'
+    });
+  }
+  /**
+   * Deletes values for a given header in a clone of the original instance.
+   *
+   * @param name The header name.
+   * @param value The value or values to delete for the given header.
+   *
+   * @returns A clone of the HTTP headers object with the given value deleted.
+   */
+
+
+  delete(name, value) {
+    return this.clone({
+      name,
+      value,
+      op: 'd'
+    });
+  }
+
+  maybeSetNormalizedName(name, lcName) {
+    if (!this.normalizedNames.has(lcName)) {
+      this.normalizedNames.set(lcName, name);
+    }
+  }
+
+  init() {
+    if (!!this.lazyInit) {
+      if (this.lazyInit instanceof HttpHeaders) {
+        this.copyFrom(this.lazyInit);
+      } else {
+        this.lazyInit();
+      }
+
+      this.lazyInit = null;
+
+      if (!!this.lazyUpdate) {
+        this.lazyUpdate.forEach(update => this.applyUpdate(update));
+        this.lazyUpdate = null;
+      }
+    }
+  }
+
+  copyFrom(other) {
+    other.init();
+    Array.from(other.headers.keys()).forEach(key => {
+      this.headers.set(key, other.headers.get(key));
+      this.normalizedNames.set(key, other.normalizedNames.get(key));
+    });
+  }
+
+  clone(update) {
+    const clone = new HttpHeaders();
+    clone.lazyInit = !!this.lazyInit && this.lazyInit instanceof HttpHeaders ? this.lazyInit : this;
+    clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
+    return clone;
+  }
+
+  applyUpdate(update) {
+    const key = update.name.toLowerCase();
+
+    switch (update.op) {
+      case 'a':
+      case 's':
+        let value = update.value;
+
+        if (typeof value === 'string') {
+          value = [value];
+        }
+
+        if (value.length === 0) {
+          return;
+        }
+
+        this.maybeSetNormalizedName(update.name, key);
+        const base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
+        base.push(...value);
+        this.headers.set(key, base);
+        break;
+
+      case 'd':
+        const toDelete = update.value;
+
+        if (!toDelete) {
+          this.headers.delete(key);
+          this.normalizedNames.delete(key);
+        } else {
+          let existing = this.headers.get(key);
+
+          if (!existing) {
+            return;
+          }
+
+          existing = existing.filter(value => toDelete.indexOf(value) === -1);
+
+          if (existing.length === 0) {
+            this.headers.delete(key);
+            this.normalizedNames.delete(key);
+          } else {
+            this.headers.set(key, existing);
+          }
+        }
+
+        break;
+    }
+  }
+  /**
+   * @internal
+   */
+
+
+  forEach(fn) {
+    this.init();
+    Array.from(this.normalizedNames.keys()).forEach(key => fn(this.normalizedNames.get(key), this.headers.get(key)));
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Provides encoding and decoding of URL parameter and query-string values.
+ *
+ * Serializes and parses URL parameter keys and values to encode and decode them.
+ * If you pass URL query parameters without encoding,
+ * the query parameters can be misinterpreted at the receiving end.
+ *
+ *
+ * @publicApi
+ */
+
+
+class HttpUrlEncodingCodec {
+  /**
+   * Encodes a key name for a URL parameter or query-string.
+   * @param key The key name.
+   * @returns The encoded key name.
+   */
+  encodeKey(key) {
+    return standardEncoding(key);
+  }
+  /**
+   * Encodes the value of a URL parameter or query-string.
+   * @param value The value.
+   * @returns The encoded value.
+   */
+
+
+  encodeValue(value) {
+    return standardEncoding(value);
+  }
+  /**
+   * Decodes an encoded URL parameter or query-string key.
+   * @param key The encoded key name.
+   * @returns The decoded key name.
+   */
+
+
+  decodeKey(key) {
+    return decodeURIComponent(key);
+  }
+  /**
+   * Decodes an encoded URL parameter or query-string value.
+   * @param value The encoded value.
+   * @returns The decoded value.
+   */
+
+
+  decodeValue(value) {
+    return decodeURIComponent(value);
+  }
+
+}
+
+function paramParser(rawParams, codec) {
+  const map = new Map();
+
+  if (rawParams.length > 0) {
+    // The `window.location.search` can be used while creating an instance of the `HttpParams` class
+    // (e.g. `new HttpParams({ fromString: window.location.search })`). The `window.location.search`
+    // may start with the `?` char, so we strip it if it's present.
+    const params = rawParams.replace(/^\?/, '').split('&');
+    params.forEach(param => {
+      const eqIdx = param.indexOf('=');
+      const [key, val] = eqIdx == -1 ? [codec.decodeKey(param), ''] : [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))];
+      const list = map.get(key) || [];
+      list.push(val);
+      map.set(key, list);
+    });
+  }
+
+  return map;
+}
+/**
+ * Encode input string with standard encodeURIComponent and then un-encode specific characters.
+ */
+
+
+const STANDARD_ENCODING_REGEX = /%(\d[a-f0-9])/gi;
+const STANDARD_ENCODING_REPLACEMENTS = {
+  '40': '@',
+  '3A': ':',
+  '24': '$',
+  '2C': ',',
+  '3B': ';',
+  '2B': '+',
+  '3D': '=',
+  '3F': '?',
+  '2F': '/'
+};
+
+function standardEncoding(v) {
+  return encodeURIComponent(v).replace(STANDARD_ENCODING_REGEX, (s, t) => {
+    var _a;
+
+    return (_a = STANDARD_ENCODING_REPLACEMENTS[t]) !== null && _a !== void 0 ? _a : s;
+  });
+}
+
+function valueToString(value) {
+  return `${value}`;
+}
+/**
+ * An HTTP request/response body that represents serialized parameters,
+ * per the MIME type `application/x-www-form-urlencoded`.
+ *
+ * This class is immutable; all mutation operations return a new instance.
+ *
+ * @publicApi
+ */
+
+
+class HttpParams {
+  constructor(options = {}) {
+    this.updates = null;
+    this.cloneFrom = null;
+    this.encoder = options.encoder || new HttpUrlEncodingCodec();
+
+    if (!!options.fromString) {
+      if (!!options.fromObject) {
+        throw new Error(`Cannot specify both fromString and fromObject.`);
+      }
+
+      this.map = paramParser(options.fromString, this.encoder);
+    } else if (!!options.fromObject) {
+      this.map = new Map();
+      Object.keys(options.fromObject).forEach(key => {
+        const value = options.fromObject[key];
+        this.map.set(key, Array.isArray(value) ? value : [value]);
+      });
+    } else {
+      this.map = null;
+    }
+  }
+  /**
+   * Reports whether the body includes one or more values for a given parameter.
+   * @param param The parameter name.
+   * @returns True if the parameter has one or more values,
+   * false if it has no value or is not present.
+   */
+
+
+  has(param) {
+    this.init();
+    return this.map.has(param);
+  }
+  /**
+   * Retrieves the first value for a parameter.
+   * @param param The parameter name.
+   * @returns The first value of the given parameter,
+   * or `null` if the parameter is not present.
+   */
+
+
+  get(param) {
+    this.init();
+    const res = this.map.get(param);
+    return !!res ? res[0] : null;
+  }
+  /**
+   * Retrieves all values for a  parameter.
+   * @param param The parameter name.
+   * @returns All values in a string array,
+   * or `null` if the parameter not present.
+   */
+
+
+  getAll(param) {
+    this.init();
+    return this.map.get(param) || null;
+  }
+  /**
+   * Retrieves all the parameters for this body.
+   * @returns The parameter names in a string array.
+   */
+
+
+  keys() {
+    this.init();
+    return Array.from(this.map.keys());
+  }
+  /**
+   * Appends a new value to existing values for a parameter.
+   * @param param The parameter name.
+   * @param value The new value to add.
+   * @return A new body with the appended value.
+   */
+
+
+  append(param, value) {
+    return this.clone({
+      param,
+      value,
+      op: 'a'
+    });
+  }
+  /**
+   * Constructs a new body with appended values for the given parameter name.
+   * @param params parameters and values
+   * @return A new body with the new value.
+   */
+
+
+  appendAll(params) {
+    const updates = [];
+    Object.keys(params).forEach(param => {
+      const value = params[param];
+
+      if (Array.isArray(value)) {
+        value.forEach(_value => {
+          updates.push({
+            param,
+            value: _value,
+            op: 'a'
+          });
+        });
+      } else {
+        updates.push({
+          param,
+          value: value,
+          op: 'a'
+        });
+      }
+    });
+    return this.clone(updates);
+  }
+  /**
+   * Replaces the value for a parameter.
+   * @param param The parameter name.
+   * @param value The new value.
+   * @return A new body with the new value.
+   */
+
+
+  set(param, value) {
+    return this.clone({
+      param,
+      value,
+      op: 's'
+    });
+  }
+  /**
+   * Removes a given value or all values from a parameter.
+   * @param param The parameter name.
+   * @param value The value to remove, if provided.
+   * @return A new body with the given value removed, or with all values
+   * removed if no value is specified.
+   */
+
+
+  delete(param, value) {
+    return this.clone({
+      param,
+      value,
+      op: 'd'
+    });
+  }
+  /**
+   * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
+   * separated by `&`s.
+   */
+
+
+  toString() {
+    this.init();
+    return this.keys().map(key => {
+      const eKey = this.encoder.encodeKey(key); // `a: ['1']` produces `'a=1'`
+      // `b: []` produces `''`
+      // `c: ['1', '2']` produces `'c=1&c=2'`
+
+      return this.map.get(key).map(value => eKey + '=' + this.encoder.encodeValue(value)).join('&');
+    }) // filter out empty values because `b: []` produces `''`
+    // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
+    .filter(param => param !== '').join('&');
+  }
+
+  clone(update) {
+    const clone = new HttpParams({
+      encoder: this.encoder
+    });
+    clone.cloneFrom = this.cloneFrom || this;
+    clone.updates = (this.updates || []).concat(update);
+    return clone;
+  }
+
+  init() {
+    if (this.map === null) {
+      this.map = new Map();
+    }
+
+    if (this.cloneFrom !== null) {
+      this.cloneFrom.init();
+      this.cloneFrom.keys().forEach(key => this.map.set(key, this.cloneFrom.map.get(key)));
+      this.updates.forEach(update => {
+        switch (update.op) {
+          case 'a':
+          case 's':
+            const base = (update.op === 'a' ? this.map.get(update.param) : undefined) || [];
+            base.push(valueToString(update.value));
+            this.map.set(update.param, base);
+            break;
+
+          case 'd':
+            if (update.value !== undefined) {
+              let base = this.map.get(update.param) || [];
+              const idx = base.indexOf(valueToString(update.value));
+
+              if (idx !== -1) {
+                base.splice(idx, 1);
+              }
+
+              if (base.length > 0) {
+                this.map.set(update.param, base);
+              } else {
+                this.map.delete(update.param);
+              }
+            } else {
+              this.map.delete(update.param);
+              break;
+            }
+
+        }
+      });
+      this.cloneFrom = this.updates = null;
+    }
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * A token used to manipulate and access values stored in `HttpContext`.
+ *
+ * @publicApi
+ */
+
+
+class HttpContextToken {
+  constructor(defaultValue) {
+    this.defaultValue = defaultValue;
+  }
+
+}
+/**
+ * Http context stores arbitrary user defined values and ensures type safety without
+ * actually knowing the types. It is backed by a `Map` and guarantees that keys do not clash.
+ *
+ * This context is mutable and is shared between cloned requests unless explicitly specified.
+ *
+ * @usageNotes
+ *
+ * ### Usage Example
+ *
+ * ```typescript
+ * // inside cache.interceptors.ts
+ * export const IS_CACHE_ENABLED = new HttpContextToken<boolean>(() => false);
+ *
+ * export class CacheInterceptor implements HttpInterceptor {
+ *
+ *   intercept(req: HttpRequest<any>, delegate: HttpHandler): Observable<HttpEvent<any>> {
+ *     if (req.context.get(IS_CACHE_ENABLED) === true) {
+ *       return ...;
+ *     }
+ *     return delegate.handle(req);
+ *   }
+ * }
+ *
+ * // inside a service
+ *
+ * this.httpClient.get('/api/weather', {
+ *   context: new HttpContext().set(IS_CACHE_ENABLED, true)
+ * }).subscribe(...);
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class HttpContext {
+  constructor() {
+    this.map = new Map();
+  }
+  /**
+   * Store a value in the context. If a value is already present it will be overwritten.
+   *
+   * @param token The reference to an instance of `HttpContextToken`.
+   * @param value The value to store.
+   *
+   * @returns A reference to itself for easy chaining.
+   */
+
+
+  set(token, value) {
+    this.map.set(token, value);
+    return this;
+  }
+  /**
+   * Retrieve the value associated with the given token.
+   *
+   * @param token The reference to an instance of `HttpContextToken`.
+   *
+   * @returns The stored value or default if one is defined.
+   */
+
+
+  get(token) {
+    if (!this.map.has(token)) {
+      this.map.set(token, token.defaultValue());
+    }
+
+    return this.map.get(token);
+  }
+  /**
+   * Delete the value associated with the given token.
+   *
+   * @param token The reference to an instance of `HttpContextToken`.
+   *
+   * @returns A reference to itself for easy chaining.
+   */
+
+
+  delete(token) {
+    this.map.delete(token);
+    return this;
+  }
+  /**
+   * Checks for existence of a given token.
+   *
+   * @param token The reference to an instance of `HttpContextToken`.
+   *
+   * @returns True if the token exists, false otherwise.
+   */
+
+
+  has(token) {
+    return this.map.has(token);
+  }
+  /**
+   * @returns a list of tokens currently stored in the context.
+   */
+
+
+  keys() {
+    return this.map.keys();
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Determine whether the given HTTP method may include a body.
+ */
+
+
+function mightHaveBody(method) {
+  switch (method) {
+    case 'DELETE':
+    case 'GET':
+    case 'HEAD':
+    case 'OPTIONS':
+    case 'JSONP':
+      return false;
+
+    default:
+      return true;
+  }
+}
+/**
+ * Safely assert whether the given value is an ArrayBuffer.
+ *
+ * In some execution environments ArrayBuffer is not defined.
+ */
+
+
+function isArrayBuffer(value) {
+  return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
+}
+/**
+ * Safely assert whether the given value is a Blob.
+ *
+ * In some execution environments Blob is not defined.
+ */
+
+
+function isBlob(value) {
+  return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+/**
+ * Safely assert whether the given value is a FormData instance.
+ *
+ * In some execution environments FormData is not defined.
+ */
+
+
+function isFormData(value) {
+  return typeof FormData !== 'undefined' && value instanceof FormData;
+}
+/**
+ * Safely assert whether the given value is a URLSearchParams instance.
+ *
+ * In some execution environments URLSearchParams is not defined.
+ */
+
+
+function isUrlSearchParams(value) {
+  return typeof URLSearchParams !== 'undefined' && value instanceof URLSearchParams;
+}
+/**
+ * An outgoing HTTP request with an optional typed body.
+ *
+ * `HttpRequest` represents an outgoing request, including URL, method,
+ * headers, body, and other request configuration options. Instances should be
+ * assumed to be immutable. To modify a `HttpRequest`, the `clone`
+ * method should be used.
+ *
+ * @publicApi
+ */
+
+
+class HttpRequest {
+  constructor(method, url, third, fourth) {
+    this.url = url;
+    /**
+     * The request body, or `null` if one isn't set.
+     *
+     * Bodies are not enforced to be immutable, as they can include a reference to any
+     * user-defined data type. However, interceptors should take care to preserve
+     * idempotence by treating them as such.
+     */
+
+    this.body = null;
+    /**
+     * Whether this request should be made in a way that exposes progress events.
+     *
+     * Progress events are expensive (change detection runs on each event) and so
+     * they should only be requested if the consumer intends to monitor them.
+     */
+
+    this.reportProgress = false;
+    /**
+     * Whether this request should be sent with outgoing credentials (cookies).
+     */
+
+    this.withCredentials = false;
+    /**
+     * The expected response type of the server.
+     *
+     * This is used to parse the response appropriately before returning it to
+     * the requestee.
+     */
+
+    this.responseType = 'json';
+    this.method = method.toUpperCase(); // Next, need to figure out which argument holds the HttpRequestInit
+    // options, if any.
+
+    let options; // Check whether a body argument is expected. The only valid way to omit
+    // the body argument is to use a known no-body method like GET.
+
+    if (mightHaveBody(this.method) || !!fourth) {
+      // Body is the third argument, options are the fourth.
+      this.body = third !== undefined ? third : null;
+      options = fourth;
+    } else {
+      // No body required, options are the third argument. The body stays null.
+      options = third;
+    } // If options have been passed, interpret them.
+
+
+    if (options) {
+      // Normalize reportProgress and withCredentials.
+      this.reportProgress = !!options.reportProgress;
+      this.withCredentials = !!options.withCredentials; // Override default response type of 'json' if one is provided.
+
+      if (!!options.responseType) {
+        this.responseType = options.responseType;
+      } // Override headers if they're provided.
+
+
+      if (!!options.headers) {
+        this.headers = options.headers;
+      }
+
+      if (!!options.context) {
+        this.context = options.context;
+      }
+
+      if (!!options.params) {
+        this.params = options.params;
+      }
+    } // If no headers have been passed in, construct a new HttpHeaders instance.
+
+
+    if (!this.headers) {
+      this.headers = new HttpHeaders();
+    } // If no context have been passed in, construct a new HttpContext instance.
+
+
+    if (!this.context) {
+      this.context = new HttpContext();
+    } // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
+
+
+    if (!this.params) {
+      this.params = new HttpParams();
+      this.urlWithParams = url;
+    } else {
+      // Encode the parameters to a string in preparation for inclusion in the URL.
+      const params = this.params.toString();
+
+      if (params.length === 0) {
+        // No parameters, the visible URL is just the URL given at creation time.
+        this.urlWithParams = url;
+      } else {
+        // Does the URL already have query parameters? Look for '?'.
+        const qIdx = url.indexOf('?'); // There are 3 cases to handle:
+        // 1) No existing parameters -> append '?' followed by params.
+        // 2) '?' exists and is followed by existing query string ->
+        //    append '&' followed by params.
+        // 3) '?' exists at the end of the url -> append params directly.
+        // This basically amounts to determining the character, if any, with
+        // which to join the URL and parameters.
+
+        const sep = qIdx === -1 ? '?' : qIdx < url.length - 1 ? '&' : '';
+        this.urlWithParams = url + sep + params;
+      }
+    }
+  }
+  /**
+   * Transform the free-form body into a serialized format suitable for
+   * transmission to the server.
+   */
+
+
+  serializeBody() {
+    // If no body is present, no need to serialize it.
+    if (this.body === null) {
+      return null;
+    } // Check whether the body is already in a serialized form. If so,
+    // it can just be returned directly.
+
+
+    if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) || isUrlSearchParams(this.body) || typeof this.body === 'string') {
+      return this.body;
+    } // Check whether the body is an instance of HttpUrlEncodedParams.
+
+
+    if (this.body instanceof HttpParams) {
+      return this.body.toString();
+    } // Check whether the body is an object or array, and serialize with JSON if so.
+
+
+    if (typeof this.body === 'object' || typeof this.body === 'boolean' || Array.isArray(this.body)) {
+      return JSON.stringify(this.body);
+    } // Fall back on toString() for everything else.
+
+
+    return this.body.toString();
+  }
+  /**
+   * Examine the body and attempt to infer an appropriate MIME type
+   * for it.
+   *
+   * If no such type can be inferred, this method will return `null`.
+   */
+
+
+  detectContentTypeHeader() {
+    // An empty body has no content type.
+    if (this.body === null) {
+      return null;
+    } // FormData bodies rely on the browser's content type assignment.
+
+
+    if (isFormData(this.body)) {
+      return null;
+    } // Blobs usually have their own content type. If it doesn't, then
+    // no type can be inferred.
+
+
+    if (isBlob(this.body)) {
+      return this.body.type || null;
+    } // Array buffers have unknown contents and thus no type can be inferred.
+
+
+    if (isArrayBuffer(this.body)) {
+      return null;
+    } // Technically, strings could be a form of JSON data, but it's safe enough
+    // to assume they're plain strings.
+
+
+    if (typeof this.body === 'string') {
+      return 'text/plain';
+    } // `HttpUrlEncodedParams` has its own content-type.
+
+
+    if (this.body instanceof HttpParams) {
+      return 'application/x-www-form-urlencoded;charset=UTF-8';
+    } // Arrays, objects, boolean and numbers will be encoded as JSON.
+
+
+    if (typeof this.body === 'object' || typeof this.body === 'number' || typeof this.body === 'boolean') {
+      return 'application/json';
+    } // No type could be inferred.
+
+
+    return null;
+  }
+
+  clone(update = {}) {
+    var _a; // For method, url, and responseType, take the current value unless
+    // it is overridden in the update hash.
+
+
+    const method = update.method || this.method;
+    const url = update.url || this.url;
+    const responseType = update.responseType || this.responseType; // The body is somewhat special - a `null` value in update.body means
+    // whatever current body is present is being overridden with an empty
+    // body, whereas an `undefined` value in update.body implies no
+    // override.
+
+    const body = update.body !== undefined ? update.body : this.body; // Carefully handle the boolean options to differentiate between
+    // `false` and `undefined` in the update args.
+
+    const withCredentials = update.withCredentials !== undefined ? update.withCredentials : this.withCredentials;
+    const reportProgress = update.reportProgress !== undefined ? update.reportProgress : this.reportProgress; // Headers and params may be appended to if `setHeaders` or
+    // `setParams` are used.
+
+    let headers = update.headers || this.headers;
+    let params = update.params || this.params; // Pass on context if needed
+
+    const context = (_a = update.context) !== null && _a !== void 0 ? _a : this.context; // Check whether the caller has asked to add headers.
+
+    if (update.setHeaders !== undefined) {
+      // Set every requested header.
+      headers = Object.keys(update.setHeaders).reduce((headers, name) => headers.set(name, update.setHeaders[name]), headers);
+    } // Check whether the caller has asked to set params.
+
+
+    if (update.setParams) {
+      // Set every requested param.
+      params = Object.keys(update.setParams).reduce((params, param) => params.set(param, update.setParams[param]), params);
+    } // Finally, construct the new HttpRequest using the pieces from above.
+
+
+    return new HttpRequest(method, url, body, {
+      params,
+      headers,
+      context,
+      reportProgress,
+      responseType,
+      withCredentials
+    });
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Type enumeration for the different kinds of `HttpEvent`.
+ *
+ * @publicApi
+ */
+
+
+var HttpEventType;
+
+(function (HttpEventType) {
+  /**
+   * The request was sent out over the wire.
+   */
+  HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
+  /**
+   * An upload progress event was received.
+   */
+
+  HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
+  /**
+   * The response status code and headers were received.
+   */
+
+  HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
+  /**
+   * A download progress event was received.
+   */
+
+  HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
+  /**
+   * The full response including the body was received.
+   */
+
+  HttpEventType[HttpEventType["Response"] = 4] = "Response";
+  /**
+   * A custom event from an interceptor or a backend.
+   */
+
+  HttpEventType[HttpEventType["User"] = 5] = "User";
+})(HttpEventType || (HttpEventType = {}));
+/**
+ * Base class for both `HttpResponse` and `HttpHeaderResponse`.
+ *
+ * @publicApi
+ */
+
+
+class HttpResponseBase {
+  /**
+   * Super-constructor for all responses.
+   *
+   * The single parameter accepted is an initialization hash. Any properties
+   * of the response passed there will override the default values.
+   */
+  constructor(init, defaultStatus = 200
+  /* Ok */
+  , defaultStatusText = 'OK') {
+    // If the hash has values passed, use them to initialize the response.
+    // Otherwise use the default values.
+    this.headers = init.headers || new HttpHeaders();
+    this.status = init.status !== undefined ? init.status : defaultStatus;
+    this.statusText = init.statusText || defaultStatusText;
+    this.url = init.url || null; // Cache the ok value to avoid defining a getter.
+
+    this.ok = this.status >= 200 && this.status < 300;
+  }
+
+}
+/**
+ * A partial HTTP response which only includes the status and header data,
+ * but no response body.
+ *
+ * `HttpHeaderResponse` is a `HttpEvent` available on the response
+ * event stream, only when progress events are requested.
+ *
+ * @publicApi
+ */
+
+
+class HttpHeaderResponse extends HttpResponseBase {
+  /**
+   * Create a new `HttpHeaderResponse` with the given parameters.
+   */
+  constructor(init = {}) {
+    super(init);
+    this.type = HttpEventType.ResponseHeader;
+  }
+  /**
+   * Copy this `HttpHeaderResponse`, overriding its contents with the
+   * given parameter hash.
+   */
+
+
+  clone(update = {}) {
+    // Perform a straightforward initialization of the new HttpHeaderResponse,
+    // overriding the current parameters with new ones if given.
+    return new HttpHeaderResponse({
+      headers: update.headers || this.headers,
+      status: update.status !== undefined ? update.status : this.status,
+      statusText: update.statusText || this.statusText,
+      url: update.url || this.url || undefined
+    });
+  }
+
+}
+/**
+ * A full HTTP response, including a typed response body (which may be `null`
+ * if one was not returned).
+ *
+ * `HttpResponse` is a `HttpEvent` available on the response event
+ * stream.
+ *
+ * @publicApi
+ */
+
+
+class HttpResponse extends HttpResponseBase {
+  /**
+   * Construct a new `HttpResponse`.
+   */
+  constructor(init = {}) {
+    super(init);
+    this.type = HttpEventType.Response;
+    this.body = init.body !== undefined ? init.body : null;
+  }
+
+  clone(update = {}) {
+    return new HttpResponse({
+      body: update.body !== undefined ? update.body : this.body,
+      headers: update.headers || this.headers,
+      status: update.status !== undefined ? update.status : this.status,
+      statusText: update.statusText || this.statusText,
+      url: update.url || this.url || undefined
+    });
+  }
+
+}
+/**
+ * A response that represents an error or failure, either from a
+ * non-successful HTTP status, an error while executing the request,
+ * or some other failure which occurred during the parsing of the response.
+ *
+ * Any error returned on the `Observable` response stream will be
+ * wrapped in an `HttpErrorResponse` to provide additional context about
+ * the state of the HTTP layer when the error occurred. The error property
+ * will contain either a wrapped Error object or the error response returned
+ * from the server.
+ *
+ * @publicApi
+ */
+
+
+class HttpErrorResponse extends HttpResponseBase {
+  constructor(init) {
+    // Initialize with a default status of 0 / Unknown Error.
+    super(init, 0, 'Unknown Error');
+    this.name = 'HttpErrorResponse';
+    /**
+     * Errors are never okay, even when the status code is in the 2xx success range.
+     */
+
+    this.ok = false; // If the response was successful, then this was a parse error. Otherwise, it was
+    // a protocol-level failure of some sort. Either the request failed in transit
+    // or the server returned an unsuccessful status code.
+
+    if (this.status >= 200 && this.status < 300) {
+      this.message = `Http failure during parsing for ${init.url || '(unknown url)'}`;
+    } else {
+      this.message = `Http failure response for ${init.url || '(unknown url)'}: ${init.status} ${init.statusText}`;
+    }
+
+    this.error = init.error || null;
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
+ * the given `body`. This function clones the object and adds the body.
+ *
+ * Note that the `responseType` *options* value is a String that identifies the
+ * single data type of the response.
+ * A single overload version of the method handles each response type.
+ * The value of `responseType` cannot be a union, as the combined signature could imply.
+ *
+ */
+
+
+function addBody(options, body) {
+  return {
+    body,
+    headers: options.headers,
+    context: options.context,
+    observe: options.observe,
+    params: options.params,
+    reportProgress: options.reportProgress,
+    responseType: options.responseType,
+    withCredentials: options.withCredentials
+  };
+}
+/**
+ * Performs HTTP requests.
+ * This service is available as an injectable class, with methods to perform HTTP requests.
+ * Each request method has multiple signatures, and the return type varies based on
+ * the signature that is called (mainly the values of `observe` and `responseType`).
+ *
+ * Note that the `responseType` *options* value is a String that identifies the
+ * single data type of the response.
+ * A single overload version of the method handles each response type.
+ * The value of `responseType` cannot be a union, as the combined signature could imply.
+
+ *
+ * @usageNotes
+ * Sample HTTP requests for the [Tour of Heroes](/tutorial/toh-pt0) application.
+ *
+ * ### HTTP Request Example
+ *
+ * ```
+ *  // GET heroes whose name contains search term
+ * searchHeroes(term: string): observable<Hero[]>{
+ *
+ *  const params = new HttpParams({fromString: 'name=term'});
+ *    return this.httpClient.request('GET', this.heroesUrl, {responseType:'json', params});
+ * }
+ * ```
+ *
+ * Alternatively, the parameter string can be used without invoking HttpParams
+ * by directly joining to the URL.
+ * ```
+ * this.httpClient.request('GET', this.heroesUrl + '?' + 'name=term', {responseType:'json'});
+ * ```
+ *
+ *
+ * ### JSONP Example
+ * ```
+ * requestJsonp(url, callback = 'callback') {
+ *  return this.httpClient.jsonp(this.heroesURL, callback);
+ * }
+ * ```
+ *
+ * ### PATCH Example
+ * ```
+ * // PATCH one of the heroes' name
+ * patchHero (id: number, heroName: string): Observable<{}> {
+ * const url = `${this.heroesUrl}/${id}`;   // PATCH api/heroes/42
+ *  return this.httpClient.patch(url, {name: heroName}, httpOptions)
+ *    .pipe(catchError(this.handleError('patchHero')));
+ * }
+ * ```
+ *
+ * @see [HTTP Guide](guide/http)
+ * @see [HTTP Request](api/common/http/HttpRequest)
+ *
+ * @publicApi
+ */
+
+
+class HttpClient {
+  constructor(handler) {
+    this.handler = handler;
+  }
+  /**
+   * Constructs an observable for a generic HTTP request that, when subscribed,
+   * fires the request through the chain of registered interceptors and on to the
+   * server.
+   *
+   * You can pass an `HttpRequest` directly as the only parameter. In this case,
+   * the call returns an observable of the raw `HttpEvent` stream.
+   *
+   * Alternatively you can pass an HTTP method as the first parameter,
+   * a URL string as the second, and an options hash containing the request body as the third.
+   * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
+   * type of returned observable.
+   *   * The `responseType` value determines how a successful response body is parsed.
+   *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
+   * object as a type parameter to the call.
+   *
+   * The `observe` value determines the return type, according to what you are interested in
+   * observing.
+   *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
+   * progress events by default.
+   *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
+   * where the `T` parameter depends on the `responseType` and any optionally provided type
+   * parameter.
+   *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
+   *
+   */
+
+
+  request(first, url, options = {}) {
+    let req; // First, check whether the primary argument is an instance of `HttpRequest`.
+
+    if (first instanceof HttpRequest) {
+      // It is. The other arguments must be undefined (per the signatures) and can be
+      // ignored.
+      req = first;
+    } else {
+      // It's a string, so it represents a URL. Construct a request based on it,
+      // and incorporate the remaining arguments (assuming `GET` unless a method is
+      // provided.
+      // Figure out the headers.
+      let headers = undefined;
+
+      if (options.headers instanceof HttpHeaders) {
+        headers = options.headers;
+      } else {
+        headers = new HttpHeaders(options.headers);
+      } // Sort out parameters.
+
+
+      let params = undefined;
+
+      if (!!options.params) {
+        if (options.params instanceof HttpParams) {
+          params = options.params;
+        } else {
+          params = new HttpParams({
+            fromObject: options.params
+          });
+        }
+      } // Construct the request.
+
+
+      req = new HttpRequest(first, url, options.body !== undefined ? options.body : null, {
+        headers,
+        context: options.context,
+        params,
+        reportProgress: options.reportProgress,
+        // By default, JSON is assumed to be returned for all calls.
+        responseType: options.responseType || 'json',
+        withCredentials: options.withCredentials
+      });
+    } // Start with an Observable.of() the initial request, and run the handler (which
+    // includes all interceptors) inside a concatMap(). This way, the handler runs
+    // inside an Observable chain, which causes interceptors to be re-run on every
+    // subscription (this also makes retries re-run the handler, including interceptors).
+
+
+    const events$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.of)(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.concatMap)(req => this.handler.handle(req))); // If coming via the API signature which accepts a previously constructed HttpRequest,
+    // the only option is to get the event stream. Otherwise, return the event stream if
+    // that is what was requested.
+
+    if (first instanceof HttpRequest || options.observe === 'events') {
+      return events$;
+    } // The requested stream contains either the full response or the body. In either
+    // case, the first step is to filter the event stream to extract a stream of
+    // responses(s).
+
+
+    const res$ = events$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.filter)(event => event instanceof HttpResponse)); // Decide which stream to return.
+
+    switch (options.observe || 'body') {
+      case 'body':
+        // The requested stream is the body. Map the response stream to the response
+        // body. This could be done more simply, but a misbehaving interceptor might
+        // transform the response body into a different format and ignore the requested
+        // responseType. Guard against this by validating that the response is of the
+        // requested type.
+        switch (req.responseType) {
+          case 'arraybuffer':
+            return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => {
+              // Validate that the body is an ArrayBuffer.
+              if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
+                throw new Error('Response is not an ArrayBuffer.');
+              }
+
+              return res.body;
+            }));
+
+          case 'blob':
+            return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => {
+              // Validate that the body is a Blob.
+              if (res.body !== null && !(res.body instanceof Blob)) {
+                throw new Error('Response is not a Blob.');
+              }
+
+              return res.body;
+            }));
+
+          case 'text':
+            return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => {
+              // Validate that the body is a string.
+              if (res.body !== null && typeof res.body !== 'string') {
+                throw new Error('Response is not a string.');
+              }
+
+              return res.body;
+            }));
+
+          case 'json':
+          default:
+            // No validation needed for JSON responses, as they can be of any type.
+            return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => res.body));
+        }
+
+      case 'response':
+        // The response stream was requested directly, so return it.
+        return res$;
+
+      default:
+        // Guard against new future observe types being added.
+        throw new Error(`Unreachable: unhandled observe type ${options.observe}}`);
+    }
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `DELETE` request to execute on the server. See the individual overloads for
+   * details on the return type.
+   *
+   * @param url     The endpoint URL.
+   * @param options The HTTP options to send with the request.
+   *
+   */
+
+
+  delete(url, options = {}) {
+    return this.request('DELETE', url, options);
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `GET` request to execute on the server. See the individual overloads for
+   * details on the return type.
+   */
+
+
+  get(url, options = {}) {
+    return this.request('GET', url, options);
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `HEAD` request to execute on the server. The `HEAD` method returns
+   * meta information about the resource without transferring the
+   * resource itself. See the individual overloads for
+   * details on the return type.
+   */
+
+
+  head(url, options = {}) {
+    return this.request('HEAD', url, options);
+  }
+  /**
+   * Constructs an `Observable` that, when subscribed, causes a request with the special method
+   * `JSONP` to be dispatched via the interceptor pipeline.
+   * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
+   * API endpoints that don't support newer,
+   * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
+   * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
+   * requests even if the API endpoint is not located on the same domain (origin) as the client-side
+   * application making the request.
+   * The endpoint API must support JSONP callback for JSONP requests to work.
+   * The resource API returns the JSON response wrapped in a callback function.
+   * You can pass the callback function name as one of the query parameters.
+   * Note that JSONP requests can only be used with `GET` requests.
+   *
+   * @param url The resource URL.
+   * @param callbackParam The callback function name.
+   *
+   */
+
+
+  jsonp(url, callbackParam) {
+    return this.request('JSONP', url, {
+      params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
+      observe: 'body',
+      responseType: 'json'
+    });
+  }
+  /**
+   * Constructs an `Observable` that, when subscribed, causes the configured
+   * `OPTIONS` request to execute on the server. This method allows the client
+   * to determine the supported HTTP methods and other capabilities of an endpoint,
+   * without implying a resource action. See the individual overloads for
+   * details on the return type.
+   */
+
+
+  options(url, options = {}) {
+    return this.request('OPTIONS', url, options);
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `PATCH` request to execute on the server. See the individual overloads for
+   * details on the return type.
+   */
+
+
+  patch(url, body, options = {}) {
+    return this.request('PATCH', url, addBody(options, body));
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `POST` request to execute on the server. The server responds with the location of
+   * the replaced resource. See the individual overloads for
+   * details on the return type.
+   */
+
+
+  post(url, body, options = {}) {
+    return this.request('POST', url, addBody(options, body));
+  }
+  /**
+   * Constructs an observable that, when subscribed, causes the configured
+   * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
+   * with a new set of values.
+   * See the individual overloads for details on the return type.
+   */
+
+
+  put(url, body, options = {}) {
+    return this.request('PUT', url, addBody(options, body));
+  }
+
+}
+
+HttpClient.ɵfac = function HttpClient_Factory(t) {
+  return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpHandler));
+};
+
+HttpClient.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: HttpClient,
+  factory: HttpClient.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClient, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: HttpHandler
+    }];
+  }, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+ *
+ *
+ */
+
+
+class HttpInterceptorHandler {
+  constructor(next, interceptor) {
+    this.next = next;
+    this.interceptor = interceptor;
+  }
+
+  handle(req) {
+    return this.interceptor.intercept(req, this.next);
+  }
+
+}
+/**
+ * A multi-provider token that represents the array of registered
+ * `HttpInterceptor` objects.
+ *
+ * @publicApi
+ */
+
+
+const HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('HTTP_INTERCEPTORS');
+
+class NoopInterceptor {
+  intercept(req, next) {
+    return next.handle(req);
+  }
+
+}
+
+NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) {
+  return new (t || NoopInterceptor)();
+};
+
+NoopInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: NoopInterceptor,
+  factory: NoopInterceptor.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](NoopInterceptor, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Every request made through JSONP needs a callback name that's unique across the
+// whole page. Each request is assigned an id and the callback name is constructed
+// from that. The next id to be assigned is tracked in a global variable here that
+// is shared among all applications on the page.
+
+
+let nextRequestId = 0;
+/**
+ * When a pending <script> is unsubscribed we'll move it to this document, so it won't be
+ * executed.
+ */
+
+let foreignDocument; // Error text given when a JSONP script is injected, but doesn't invoke the callback
+// passed in its URL.
+
+const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.'; // Error text given when a request is passed to the JsonpClientBackend that doesn't
+// have a request method JSONP.
+
+const JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
+const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
+/**
+ * DI token/abstract type representing a map of JSONP callbacks.
+ *
+ * In the browser, this should always be the `window` object.
+ *
+ *
+ */
+
+class JsonpCallbackContext {}
+/**
+ * Processes an `HttpRequest` with the JSONP method,
+ * by performing JSONP style requests.
+ * @see `HttpHandler`
+ * @see `HttpXhrBackend`
+ *
+ * @publicApi
+ */
+
+
+class JsonpClientBackend {
+  constructor(callbackMap, document) {
+    this.callbackMap = callbackMap;
+    this.document = document;
+    /**
+     * A resolved promise that can be used to schedule microtasks in the event handlers.
+     */
+
+    this.resolvedPromise = Promise.resolve();
+  }
+  /**
+   * Get the name of the next callback method, by incrementing the global `nextRequestId`.
+   */
+
+
+  nextCallback() {
+    return `ng_jsonp_callback_${nextRequestId++}`;
+  }
+  /**
+   * Processes a JSONP request and returns an event stream of the results.
+   * @param req The request object.
+   * @returns An observable of the response events.
+   *
+   */
+
+
+  handle(req) {
+    // Firstly, check both the method and response type. If either doesn't match
+    // then the request was improperly routed here and cannot be handled.
+    if (req.method !== 'JSONP') {
+      throw new Error(JSONP_ERR_WRONG_METHOD);
+    } else if (req.responseType !== 'json') {
+      throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
+    } // Everything else happens inside the Observable boundary.
+
+
+    return new rxjs__WEBPACK_IMPORTED_MODULE_5__.Observable(observer => {
+      // The first step to make a request is to generate the callback name, and replace the
+      // callback placeholder in the URL with the name. Care has to be taken here to ensure
+      // a trailing &, if matched, gets inserted back into the URL in the correct place.
+      const callback = this.nextCallback();
+      const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`); // Construct the <script> tag and point it at the URL.
+
+      const node = this.document.createElement('script');
+      node.src = url; // A JSONP request requires waiting for multiple callbacks. These variables
+      // are closed over and track state across those callbacks.
+      // The response object, if one has been received, or null otherwise.
+
+      let body = null; // Whether the response callback has been called.
+
+      let finished = false; // Set the response callback in this.callbackMap (which will be the window
+      // object in the browser. The script being loaded via the <script> tag will
+      // eventually call this callback.
+
+      this.callbackMap[callback] = data => {
+        // Data has been received from the JSONP script. Firstly, delete this callback.
+        delete this.callbackMap[callback]; // Set state to indicate data was received.
+
+        body = data;
+        finished = true;
+      }; // cleanup() is a utility closure that removes the <script> from the page and
+      // the response callback from the window. This logic is used in both the
+      // success, error, and cancellation paths, so it's extracted out for convenience.
+
+
+      const cleanup = () => {
+        // Remove the <script> tag if it's still on the page.
+        if (node.parentNode) {
+          node.parentNode.removeChild(node);
+        } // Remove the response callback from the callbackMap (window object in the
+        // browser).
+
+
+        delete this.callbackMap[callback];
+      }; // onLoad() is the success callback which runs after the response callback
+      // if the JSONP script loads successfully. The event itself is unimportant.
+      // If something went wrong, onLoad() may run without the response callback
+      // having been invoked.
+
+
+      const onLoad = event => {
+        // We wrap it in an extra Promise, to ensure the microtask
+        // is scheduled after the loaded endpoint has executed any potential microtask itself,
+        // which is not guaranteed in Internet Explorer and EdgeHTML. See issue #39496
+        this.resolvedPromise.then(() => {
+          // Cleanup the page.
+          cleanup(); // Check whether the response callback has run.
+
+          if (!finished) {
+            // It hasn't, something went wrong with the request. Return an error via
+            // the Observable error path. All JSONP errors have status 0.
+            observer.error(new HttpErrorResponse({
+              url,
+              status: 0,
+              statusText: 'JSONP Error',
+              error: new Error(JSONP_ERR_NO_CALLBACK)
+            }));
+            return;
+          } // Success. body either contains the response body or null if none was
+          // returned.
+
+
+          observer.next(new HttpResponse({
+            body,
+            status: 200
+            /* Ok */
+            ,
+            statusText: 'OK',
+            url
+          })); // Complete the stream, the response is over.
+
+          observer.complete();
+        });
+      }; // onError() is the error callback, which runs if the script returned generates
+      // a Javascript error. It emits the error via the Observable error channel as
+      // a HttpErrorResponse.
+
+
+      const onError = error => {
+        cleanup(); // Wrap the error in a HttpErrorResponse.
+
+        observer.error(new HttpErrorResponse({
+          error,
+          status: 0,
+          statusText: 'JSONP Error',
+          url
+        }));
+      }; // Subscribe to both the success (load) and error events on the <script> tag,
+      // and add it to the page.
+
+
+      node.addEventListener('load', onLoad);
+      node.addEventListener('error', onError);
+      this.document.body.appendChild(node); // The request has now been successfully sent.
+
+      observer.next({
+        type: HttpEventType.Sent
+      }); // Cancellation handler.
+
+      return () => {
+        if (!finished) {
+          this.removeListeners(node);
+        } // And finally, clean up the page.
+
+
+        cleanup();
+      };
+    });
+  }
+
+  removeListeners(script) {
+    // Issue #34818
+    // Changing <script>'s ownerDocument will prevent it from execution.
+    // https://html.spec.whatwg.org/multipage/scripting.html#execute-the-script-block
+    if (!foreignDocument) {
+      foreignDocument = this.document.implementation.createHTMLDocument();
+    }
+
+    foreignDocument.adoptNode(script);
+  }
+
+}
+
+JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) {
+  return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT));
+};
+
+JsonpClientBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: JsonpClientBackend,
+  factory: JsonpClientBackend.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](JsonpClientBackend, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: JsonpCallbackContext
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT]
+      }]
+    }];
+  }, null);
+})();
+/**
+ * Identifies requests with the method JSONP and
+ * shifts them to the `JsonpClientBackend`.
+ *
+ * @see `HttpInterceptor`
+ *
+ * @publicApi
+ */
+
+
+class JsonpInterceptor {
+  constructor(jsonp) {
+    this.jsonp = jsonp;
+  }
+  /**
+   * Identifies and handles a given JSONP request.
+   * @param req The outgoing request object to handle.
+   * @param next The next interceptor in the chain, or the backend
+   * if no interceptors remain in the chain.
+   * @returns An observable of the event stream.
+   */
+
+
+  intercept(req, next) {
+    if (req.method === 'JSONP') {
+      return this.jsonp.handle(req);
+    } // Fall through for normal HTTP requests.
+
+
+    return next.handle(req);
+  }
+
+}
+
+JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) {
+  return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](JsonpClientBackend));
+};
+
+JsonpInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: JsonpInterceptor,
+  factory: JsonpInterceptor.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](JsonpInterceptor, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: JsonpClientBackend
+    }];
+  }, null);
+})();
+
+const XSSI_PREFIX = /^\)\]\}',?\n/;
+/**
+ * Determine an appropriate URL for the response, by checking either
+ * XMLHttpRequest.responseURL or the X-Request-URL header.
+ */
+
+function getResponseUrl(xhr) {
+  if ('responseURL' in xhr && xhr.responseURL) {
+    return xhr.responseURL;
+  }
+
+  if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+    return xhr.getResponseHeader('X-Request-URL');
+  }
+
+  return null;
+}
+/**
+ * Uses `XMLHttpRequest` to send requests to a backend server.
+ * @see `HttpHandler`
+ * @see `JsonpClientBackend`
+ *
+ * @publicApi
+ */
+
+
+class HttpXhrBackend {
+  constructor(xhrFactory) {
+    this.xhrFactory = xhrFactory;
+  }
+  /**
+   * Processes a request and returns a stream of response events.
+   * @param req The request object.
+   * @returns An observable of the response events.
+   */
+
+
+  handle(req) {
+    // Quick check to give a better error message when a user attempts to use
+    // HttpClient.jsonp() without installing the HttpClientJsonpModule
+    if (req.method === 'JSONP') {
+      throw new Error(`Attempted to construct Jsonp request without HttpClientJsonpModule installed.`);
+    } // Everything happens on Observable subscription.
+
+
+    return new rxjs__WEBPACK_IMPORTED_MODULE_5__.Observable(observer => {
+      // Start by setting up the XHR object with request method, URL, and withCredentials flag.
+      const xhr = this.xhrFactory.build();
+      xhr.open(req.method, req.urlWithParams);
+
+      if (!!req.withCredentials) {
+        xhr.withCredentials = true;
+      } // Add all the requested headers.
+
+
+      req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(','))); // Add an Accept header if one isn't present already.
+
+      if (!req.headers.has('Accept')) {
+        xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+      } // Auto-detect the Content-Type header if one isn't present already.
+
+
+      if (!req.headers.has('Content-Type')) {
+        const detectedType = req.detectContentTypeHeader(); // Sometimes Content-Type detection fails.
+
+        if (detectedType !== null) {
+          xhr.setRequestHeader('Content-Type', detectedType);
+        }
+      } // Set the responseType if one was requested.
+
+
+      if (req.responseType) {
+        const responseType = req.responseType.toLowerCase(); // JSON responses need to be processed as text. This is because if the server
+        // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
+        // xhr.response will be null, and xhr.responseText cannot be accessed to
+        // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
+        // is parsed by first requesting text and then applying JSON.parse.
+
+        xhr.responseType = responseType !== 'json' ? responseType : 'text';
+      } // Serialize the request body if one is present. If not, this will be set to null.
+
+
+      const reqBody = req.serializeBody(); // If progress events are enabled, response headers will be delivered
+      // in two events - the HttpHeaderResponse event and the full HttpResponse
+      // event. However, since response headers don't change in between these
+      // two events, it doesn't make sense to parse them twice. So headerResponse
+      // caches the data extracted from the response whenever it's first parsed,
+      // to ensure parsing isn't duplicated.
+
+      let headerResponse = null; // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+      // state, and memoizes it into headerResponse.
+
+      const partialFromXhr = () => {
+        if (headerResponse !== null) {
+          return headerResponse;
+        }
+
+        const statusText = xhr.statusText || 'OK'; // Parse headers from XMLHttpRequest - this step is lazy.
+
+        const headers = new HttpHeaders(xhr.getAllResponseHeaders()); // Read the response URL from the XMLHttpResponse instance and fall back on the
+        // request URL.
+
+        const url = getResponseUrl(xhr) || req.url; // Construct the HttpHeaderResponse and memoize it.
+
+        headerResponse = new HttpHeaderResponse({
+          headers,
+          status: xhr.status,
+          statusText,
+          url
+        });
+        return headerResponse;
+      }; // Next, a few closures are defined for the various events which XMLHttpRequest can
+      // emit. This allows them to be unregistered as event listeners later.
+      // First up is the load event, which represents a response being fully available.
+
+
+      const onLoad = () => {
+        // Read response state from the memoized partial data.
+        let {
+          headers,
+          status,
+          statusText,
+          url
+        } = partialFromXhr(); // The body will be read out if present.
+
+        let body = null;
+
+        if (status !== 204
+        /* NoContent */
+        ) {
+          // Use XMLHttpRequest.response if set, responseText otherwise.
+          body = typeof xhr.response === 'undefined' ? xhr.responseText : xhr.response;
+        } // Normalize another potential bug (this one comes from CORS).
+
+
+        if (status === 0) {
+          status = !!body ? 200
+          /* Ok */
+          : 0;
+        } // ok determines whether the response will be transmitted on the event or
+        // error channel. Unsuccessful status codes (not 2xx) will always be errors,
+        // but a successful status code can still result in an error if the user
+        // asked for JSON data and the body cannot be parsed as such.
+
+
+        let ok = status >= 200 && status < 300; // Check whether the body needs to be parsed as JSON (in many cases the browser
+        // will have done that already).
+
+        if (req.responseType === 'json' && typeof body === 'string') {
+          // Save the original body, before attempting XSSI prefix stripping.
+          const originalBody = body;
+          body = body.replace(XSSI_PREFIX, '');
+
+          try {
+            // Attempt the parse. If it fails, a parse error should be delivered to the user.
+            body = body !== '' ? JSON.parse(body) : null;
+          } catch (error) {
+            // Since the JSON.parse failed, it's reasonable to assume this might not have been a
+            // JSON response. Restore the original body (including any XSSI prefix) to deliver
+            // a better error response.
+            body = originalBody; // If this was an error request to begin with, leave it as a string, it probably
+            // just isn't JSON. Otherwise, deliver the parsing error to the user.
+
+            if (ok) {
+              // Even though the response status was 2xx, this is still an error.
+              ok = false; // The parse error contains the text of the body that failed to parse.
+
+              body = {
+                error,
+                text: body
+              };
+            }
+          }
+        }
+
+        if (ok) {
+          // A successful response is delivered on the event stream.
+          observer.next(new HttpResponse({
+            body,
+            headers,
+            status,
+            statusText,
+            url: url || undefined
+          })); // The full body has been received and delivered, no further events
+          // are possible. This request is complete.
+
+          observer.complete();
+        } else {
+          // An unsuccessful request is delivered on the error channel.
+          observer.error(new HttpErrorResponse({
+            // The error in this case is the response body (error from the server).
+            error: body,
+            headers,
+            status,
+            statusText,
+            url: url || undefined
+          }));
+        }
+      }; // The onError callback is called when something goes wrong at the network level.
+      // Connection timeout, DNS error, offline, etc. These are actual errors, and are
+      // transmitted on the error channel.
+
+
+      const onError = error => {
+        const {
+          url
+        } = partialFromXhr();
+        const res = new HttpErrorResponse({
+          error,
+          status: xhr.status || 0,
+          statusText: xhr.statusText || 'Unknown Error',
+          url: url || undefined
+        });
+        observer.error(res);
+      }; // The sentHeaders flag tracks whether the HttpResponseHeaders event
+      // has been sent on the stream. This is necessary to track if progress
+      // is enabled since the event will be sent on only the first download
+      // progerss event.
+
+
+      let sentHeaders = false; // The download progress event handler, which is only registered if
+      // progress events are enabled.
+
+      const onDownProgress = event => {
+        // Send the HttpResponseHeaders event if it hasn't been sent already.
+        if (!sentHeaders) {
+          observer.next(partialFromXhr());
+          sentHeaders = true;
+        } // Start building the download progress event to deliver on the response
+        // event stream.
+
+
+        let progressEvent = {
+          type: HttpEventType.DownloadProgress,
+          loaded: event.loaded
+        }; // Set the total number of bytes in the event if it's available.
+
+        if (event.lengthComputable) {
+          progressEvent.total = event.total;
+        } // If the request was for text content and a partial response is
+        // available on XMLHttpRequest, include it in the progress event
+        // to allow for streaming reads.
+
+
+        if (req.responseType === 'text' && !!xhr.responseText) {
+          progressEvent.partialText = xhr.responseText;
+        } // Finally, fire the event.
+
+
+        observer.next(progressEvent);
+      }; // The upload progress event handler, which is only registered if
+      // progress events are enabled.
+
+
+      const onUpProgress = event => {
+        // Upload progress events are simpler. Begin building the progress
+        // event.
+        let progress = {
+          type: HttpEventType.UploadProgress,
+          loaded: event.loaded
+        }; // If the total number of bytes being uploaded is available, include
+        // it.
+
+        if (event.lengthComputable) {
+          progress.total = event.total;
+        } // Send the event.
+
+
+        observer.next(progress);
+      }; // By default, register for load and error events.
+
+
+      xhr.addEventListener('load', onLoad);
+      xhr.addEventListener('error', onError);
+      xhr.addEventListener('timeout', onError);
+      xhr.addEventListener('abort', onError); // Progress events are only enabled if requested.
+
+      if (req.reportProgress) {
+        // Download progress is always enabled if requested.
+        xhr.addEventListener('progress', onDownProgress); // Upload progress depends on whether there is a body to upload.
+
+        if (reqBody !== null && xhr.upload) {
+          xhr.upload.addEventListener('progress', onUpProgress);
+        }
+      } // Fire the request, and notify the event stream that it was fired.
+
+
+      xhr.send(reqBody);
+      observer.next({
+        type: HttpEventType.Sent
+      }); // This is the return from the Observable function, which is the
+      // request cancellation handler.
+
+      return () => {
+        // On a cancellation, remove all registered event listeners.
+        xhr.removeEventListener('error', onError);
+        xhr.removeEventListener('abort', onError);
+        xhr.removeEventListener('load', onLoad);
+        xhr.removeEventListener('timeout', onError);
+
+        if (req.reportProgress) {
+          xhr.removeEventListener('progress', onDownProgress);
+
+          if (reqBody !== null && xhr.upload) {
+            xhr.upload.removeEventListener('progress', onUpProgress);
+          }
+        } // Finally, abort the in-flight request.
+
+
+        if (xhr.readyState !== xhr.DONE) {
+          xhr.abort();
+        }
+      };
+    });
+  }
+
+}
+
+HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) {
+  return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.XhrFactory));
+};
+
+HttpXhrBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: HttpXhrBackend,
+  factory: HttpXhrBackend.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXhrBackend, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: _angular_common__WEBPACK_IMPORTED_MODULE_6__.XhrFactory
+    }];
+  }, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+const XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('XSRF_COOKIE_NAME');
+const XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('XSRF_HEADER_NAME');
+/**
+ * Retrieves the current XSRF token to use with the next outgoing request.
+ *
+ * @publicApi
+ */
+
+class HttpXsrfTokenExtractor {}
+/**
+ * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
+ */
+
+
+class HttpXsrfCookieExtractor {
+  constructor(doc, platform, cookieName) {
+    this.doc = doc;
+    this.platform = platform;
+    this.cookieName = cookieName;
+    this.lastCookieString = '';
+    this.lastToken = null;
+    /**
+     * @internal for testing
+     */
+
+    this.parseCount = 0;
+  }
+
+  getToken() {
+    if (this.platform === 'server') {
+      return null;
+    }
+
+    const cookieString = this.doc.cookie || '';
+
+    if (cookieString !== this.lastCookieString) {
+      this.parseCount++;
+      this.lastToken = (0,_angular_common__WEBPACK_IMPORTED_MODULE_6__["ɵparseCookieValue"])(cookieString, this.cookieName);
+      this.lastCookieString = cookieString;
+    }
+
+    return this.lastToken;
+  }
+
+}
+
+HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) {
+  return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.PLATFORM_ID), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](XSRF_COOKIE_NAME));
+};
+
+HttpXsrfCookieExtractor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: HttpXsrfCookieExtractor,
+  factory: HttpXsrfCookieExtractor.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT]
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [_angular_core__WEBPACK_IMPORTED_MODULE_4__.PLATFORM_ID]
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [XSRF_COOKIE_NAME]
+      }]
+    }];
+  }, null);
+})();
+/**
+ * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
+ */
+
+
+class HttpXsrfInterceptor {
+  constructor(tokenService, headerName) {
+    this.tokenService = tokenService;
+    this.headerName = headerName;
+  }
+
+  intercept(req, next) {
+    const lcUrl = req.url.toLowerCase(); // Skip both non-mutating requests and absolute URLs.
+    // Non-mutating requests don't require a token, and absolute URLs require special handling
+    // anyway as the cookie set
+    // on our origin is not the same as the token expected by another origin.
+
+    if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') || lcUrl.startsWith('https://')) {
+      return next.handle(req);
+    }
+
+    const token = this.tokenService.getToken(); // Be careful not to overwrite an existing header of the same name.
+
+    if (token !== null && !req.headers.has(this.headerName)) {
+      req = req.clone({
+        headers: req.headers.set(this.headerName, token)
+      });
+    }
+
+    return next.handle(req);
+  }
+
+}
+
+HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) {
+  return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](XSRF_HEADER_NAME));
+};
+
+HttpXsrfInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: HttpXsrfInterceptor,
+  factory: HttpXsrfInterceptor.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: HttpXsrfTokenExtractor
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [XSRF_HEADER_NAME]
+      }]
+    }];
+  }, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * An injectable `HttpHandler` that applies multiple interceptors
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * The interceptors are loaded lazily from the injector, to allow
+ * interceptors to themselves inject classes depending indirectly
+ * on `HttpInterceptingHandler` itself.
+ * @see `HttpInterceptor`
+ */
+
+
+class HttpInterceptingHandler {
+  constructor(backend, injector) {
+    this.backend = backend;
+    this.injector = injector;
+    this.chain = null;
+  }
+
+  handle(req) {
+    if (this.chain === null) {
+      const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+      this.chain = interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), this.backend);
+    }
+
+    return this.chain.handle(req);
+  }
+
+}
+
+HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) {
+  return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injector));
+};
+
+HttpInterceptingHandler.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+  token: HttpInterceptingHandler,
+  factory: HttpInterceptingHandler.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
+  }], function () {
+    return [{
+      type: HttpBackend
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injector
+    }];
+  }, null);
+})();
+/**
+ * Constructs an `HttpHandler` that applies interceptors
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * Use as a factory function within `HttpClientModule`.
+ *
+ *
+ */
+
+
+function interceptingHandler(backend, interceptors = []) {
+  if (!interceptors) {
+    return backend;
+  }
+
+  return interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), backend);
+}
+/**
+ * Factory function that determines where to store JSONP callbacks.
+ *
+ * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
+ * in test environments. In that case, callbacks are stored on an anonymous object instead.
+ *
+ *
+ */
+
+
+function jsonpCallbackContext() {
+  if (typeof window === 'object') {
+    return window;
+  }
+
+  return {};
+}
+/**
+ * Configures XSRF protection support for outgoing requests.
+ *
+ * For a server that supports a cookie-based XSRF protection system,
+ * use directly to configure XSRF protection with the correct
+ * cookie and header names.
+ *
+ * If no names are supplied, the default cookie name is `XSRF-TOKEN`
+ * and the default header name is `X-XSRF-TOKEN`.
+ *
+ * @publicApi
+ */
+
+
+class HttpClientXsrfModule {
+  /**
+   * Disable the default XSRF protection.
+   */
+  static disable() {
+    return {
+      ngModule: HttpClientXsrfModule,
+      providers: [{
+        provide: HttpXsrfInterceptor,
+        useClass: NoopInterceptor
+      }]
+    };
+  }
+  /**
+   * Configure XSRF protection.
+   * @param options An object that can specify either or both
+   * cookie name or header name.
+   * - Cookie name default is `XSRF-TOKEN`.
+   * - Header name default is `X-XSRF-TOKEN`.
+   *
+   */
+
+
+  static withOptions(options = {}) {
+    return {
+      ngModule: HttpClientXsrfModule,
+      providers: [options.cookieName ? {
+        provide: XSRF_COOKIE_NAME,
+        useValue: options.cookieName
+      } : [], options.headerName ? {
+        provide: XSRF_HEADER_NAME,
+        useValue: options.headerName
+      } : []]
+    };
+  }
+
+}
+
+HttpClientXsrfModule.ɵfac = function HttpClientXsrfModule_Factory(t) {
+  return new (t || HttpClientXsrfModule)();
+};
+
+HttpClientXsrfModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
+  type: HttpClientXsrfModule
+});
+HttpClientXsrfModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+  providers: [HttpXsrfInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useExisting: HttpXsrfInterceptor,
+    multi: true
+  }, {
+    provide: HttpXsrfTokenExtractor,
+    useClass: HttpXsrfCookieExtractor
+  }, {
+    provide: XSRF_COOKIE_NAME,
+    useValue: 'XSRF-TOKEN'
+  }, {
+    provide: XSRF_HEADER_NAME,
+    useValue: 'X-XSRF-TOKEN'
+  }]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
+    args: [{
+      providers: [HttpXsrfInterceptor, {
+        provide: HTTP_INTERCEPTORS,
+        useExisting: HttpXsrfInterceptor,
+        multi: true
+      }, {
+        provide: HttpXsrfTokenExtractor,
+        useClass: HttpXsrfCookieExtractor
+      }, {
+        provide: XSRF_COOKIE_NAME,
+        useValue: 'XSRF-TOKEN'
+      }, {
+        provide: XSRF_HEADER_NAME,
+        useValue: 'X-XSRF-TOKEN'
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+ * with supporting services for XSRF. Automatically imported by `HttpClientModule`.
+ *
+ * You can add interceptors to the chain behind `HttpClient` by binding them to the
+ * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+ *
+ * @publicApi
+ */
+
+
+class HttpClientModule {}
+
+HttpClientModule.ɵfac = function HttpClientModule_Factory(t) {
+  return new (t || HttpClientModule)();
+};
+
+HttpClientModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
+  type: HttpClientModule
+});
+HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+  providers: [HttpClient, {
+    provide: HttpHandler,
+    useClass: HttpInterceptingHandler
+  }, HttpXhrBackend, {
+    provide: HttpBackend,
+    useExisting: HttpXhrBackend
+  }],
+  imports: [[HttpClientXsrfModule.withOptions({
+    cookieName: 'XSRF-TOKEN',
+    headerName: 'X-XSRF-TOKEN'
+  })]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
+    args: [{
+      /**
+       * Optional configuration for XSRF protection.
+       */
+      imports: [HttpClientXsrfModule.withOptions({
+        cookieName: 'XSRF-TOKEN',
+        headerName: 'X-XSRF-TOKEN'
+      })],
+
+      /**
+       * Configures the [dependency injector](guide/glossary#injector) where it is imported
+       * with supporting services for HTTP communications.
+       */
+      providers: [HttpClient, {
+        provide: HttpHandler,
+        useClass: HttpInterceptingHandler
+      }, HttpXhrBackend, {
+        provide: HttpBackend,
+        useExisting: HttpXhrBackend
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * Configures the [dependency injector](guide/glossary#injector) for `HttpClient`
+ * with supporting services for JSONP.
+ * Without this module, Jsonp requests reach the backend
+ * with method JSONP, where they are rejected.
+ *
+ * You can add interceptors to the chain behind `HttpClient` by binding them to the
+ * multiprovider for built-in [DI token](guide/glossary#di-token) `HTTP_INTERCEPTORS`.
+ *
+ * @publicApi
+ */
+
+
+class HttpClientJsonpModule {}
+
+HttpClientJsonpModule.ɵfac = function HttpClientJsonpModule_Factory(t) {
+  return new (t || HttpClientJsonpModule)();
+};
+
+HttpClientJsonpModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
+  type: HttpClientJsonpModule
+});
+HttpClientJsonpModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+  providers: [JsonpClientBackend, {
+    provide: JsonpCallbackContext,
+    useFactory: jsonpCallbackContext
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JsonpInterceptor,
+    multi: true
+  }]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
+    args: [{
+      providers: [JsonpClientBackend, {
+        provide: JsonpCallbackContext,
+        useFactory: jsonpCallbackContext
+      }, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JsonpInterceptor,
+        multi: true
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * A wrapper around the `XMLHttpRequest` constructor.
+ *
+ * @publicApi
+ * @see `XhrFactory`
+ * @deprecated
+ * `XhrFactory` has moved, please import `XhrFactory` from `@angular/common` instead.
+ */
+
+
+const XhrFactory = _angular_common__WEBPACK_IMPORTED_MODULE_6__.XhrFactory;
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+/***/ }),
+
+/***/ 8384:
 /*!*****************************************************!*\
   !*** ./node_modules/@angular/common/locales/fr.mjs ***!
   \*****************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -9980,12 +14447,13 @@ function plural(val) {
 
 /***/ }),
 
-/***/ 17954:
+/***/ 7954:
 /*!*****************************************************!*\
   !*** ./node_modules/@angular/common/locales/ru.mjs ***!
   \*****************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -10020,6 +14488,7 @@ function plural(val) {
   \******************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ANALYZE_FOR_ENTRY_COMPONENTS": () => (/* binding */ ANALYZE_FOR_ENTRY_COMPONENTS),
@@ -10366,11 +14835,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵɵvalidateIframeAttribute": () => (/* binding */ ɵɵvalidateIframeAttribute),
 /* harmony export */   "ɵɵviewQuery": () => (/* binding */ ɵɵviewQuery)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 80228);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 26078);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 90833);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 36646);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 81203);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 228);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 6078);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 833);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 6646);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 1203);
 /**
  * @license Angular v13.3.12
  * (c) 2010-2022 Google LLC. https://angular.io/
@@ -39268,12 +43737,13 @@ if (typeof ngDevMode !== 'undefined' && ngDevMode) {
 
 /***/ }),
 
-/***/ 90587:
+/***/ 587:
 /*!********************************************************!*\
   !*** ./node_modules/@angular/forms/fesm2015/forms.mjs ***!
   \********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AbstractControl": () => (/* binding */ AbstractControl),
@@ -39324,10 +43794,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵNgSelectMultipleOption": () => (/* binding */ ɵNgSelectMultipleOption)
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 59346);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 91640);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 6362);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 9346);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 1640);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 635);
 /**
  * @license Angular v13.3.12
  * (c) 2010-2022 Google LLC. https://angular.io/
@@ -48622,12 +53092,13 @@ const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12'
 
 /***/ }),
 
-/***/ 50318:
+/***/ 318:
 /*!******************************************************************************!*\
   !*** ./node_modules/@angular/platform-browser/fesm2015/platform-browser.mjs ***!
   \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BrowserModule": () => (/* binding */ BrowserModule),
@@ -48667,7 +53138,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵshimContentAttribute": () => (/* binding */ shimContentAttribute),
 /* harmony export */   "ɵshimHostAttribute": () => (/* binding */ shimHostAttribute)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 6362);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
 /**
  * @license Angular v13.3.12
@@ -51432,6 +55903,11364 @@ const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('13.3.12'
 /**
  * Generated bundle index. Do not edit.
  */
+
+
+
+/***/ }),
+
+/***/ 2816:
+/*!**********************************************************!*\
+  !*** ./node_modules/@angular/router/fesm2015/router.mjs ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ActivatedRoute": () => (/* binding */ ActivatedRoute),
+/* harmony export */   "ActivatedRouteSnapshot": () => (/* binding */ ActivatedRouteSnapshot),
+/* harmony export */   "ActivationEnd": () => (/* binding */ ActivationEnd),
+/* harmony export */   "ActivationStart": () => (/* binding */ ActivationStart),
+/* harmony export */   "BaseRouteReuseStrategy": () => (/* binding */ BaseRouteReuseStrategy),
+/* harmony export */   "ChildActivationEnd": () => (/* binding */ ChildActivationEnd),
+/* harmony export */   "ChildActivationStart": () => (/* binding */ ChildActivationStart),
+/* harmony export */   "ChildrenOutletContexts": () => (/* binding */ ChildrenOutletContexts),
+/* harmony export */   "DefaultUrlSerializer": () => (/* binding */ DefaultUrlSerializer),
+/* harmony export */   "GuardsCheckEnd": () => (/* binding */ GuardsCheckEnd),
+/* harmony export */   "GuardsCheckStart": () => (/* binding */ GuardsCheckStart),
+/* harmony export */   "NavigationCancel": () => (/* binding */ NavigationCancel),
+/* harmony export */   "NavigationEnd": () => (/* binding */ NavigationEnd),
+/* harmony export */   "NavigationError": () => (/* binding */ NavigationError),
+/* harmony export */   "NavigationStart": () => (/* binding */ NavigationStart),
+/* harmony export */   "NoPreloading": () => (/* binding */ NoPreloading),
+/* harmony export */   "OutletContext": () => (/* binding */ OutletContext),
+/* harmony export */   "PRIMARY_OUTLET": () => (/* binding */ PRIMARY_OUTLET),
+/* harmony export */   "PreloadAllModules": () => (/* binding */ PreloadAllModules),
+/* harmony export */   "PreloadingStrategy": () => (/* binding */ PreloadingStrategy),
+/* harmony export */   "ROUTER_CONFIGURATION": () => (/* binding */ ROUTER_CONFIGURATION),
+/* harmony export */   "ROUTER_INITIALIZER": () => (/* binding */ ROUTER_INITIALIZER),
+/* harmony export */   "ROUTES": () => (/* binding */ ROUTES),
+/* harmony export */   "ResolveEnd": () => (/* binding */ ResolveEnd),
+/* harmony export */   "ResolveStart": () => (/* binding */ ResolveStart),
+/* harmony export */   "RouteConfigLoadEnd": () => (/* binding */ RouteConfigLoadEnd),
+/* harmony export */   "RouteConfigLoadStart": () => (/* binding */ RouteConfigLoadStart),
+/* harmony export */   "RouteReuseStrategy": () => (/* binding */ RouteReuseStrategy),
+/* harmony export */   "Router": () => (/* binding */ Router),
+/* harmony export */   "RouterEvent": () => (/* binding */ RouterEvent),
+/* harmony export */   "RouterLink": () => (/* binding */ RouterLink),
+/* harmony export */   "RouterLinkActive": () => (/* binding */ RouterLinkActive),
+/* harmony export */   "RouterLinkWithHref": () => (/* binding */ RouterLinkWithHref),
+/* harmony export */   "RouterModule": () => (/* binding */ RouterModule),
+/* harmony export */   "RouterOutlet": () => (/* binding */ RouterOutlet),
+/* harmony export */   "RouterPreloader": () => (/* binding */ RouterPreloader),
+/* harmony export */   "RouterState": () => (/* binding */ RouterState),
+/* harmony export */   "RouterStateSnapshot": () => (/* binding */ RouterStateSnapshot),
+/* harmony export */   "RoutesRecognized": () => (/* binding */ RoutesRecognized),
+/* harmony export */   "Scroll": () => (/* binding */ Scroll),
+/* harmony export */   "UrlHandlingStrategy": () => (/* binding */ UrlHandlingStrategy),
+/* harmony export */   "UrlSegment": () => (/* binding */ UrlSegment),
+/* harmony export */   "UrlSegmentGroup": () => (/* binding */ UrlSegmentGroup),
+/* harmony export */   "UrlSerializer": () => (/* binding */ UrlSerializer),
+/* harmony export */   "UrlTree": () => (/* binding */ UrlTree),
+/* harmony export */   "VERSION": () => (/* binding */ VERSION),
+/* harmony export */   "convertToParamMap": () => (/* binding */ convertToParamMap),
+/* harmony export */   "provideRoutes": () => (/* binding */ provideRoutes),
+/* harmony export */   "ɵEmptyOutletComponent": () => (/* binding */ ɵEmptyOutletComponent),
+/* harmony export */   "ɵROUTER_PROVIDERS": () => (/* binding */ ROUTER_PROVIDERS),
+/* harmony export */   "ɵassignExtraOptionsToRouter": () => (/* binding */ assignExtraOptionsToRouter),
+/* harmony export */   "ɵflatten": () => (/* binding */ flatten)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 9346);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 745);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 6317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 6562);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs */ 7140);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! rxjs */ 4423);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! rxjs */ 4240);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! rxjs */ 1954);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! rxjs */ 833);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! rxjs */ 591);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! rxjs */ 3932);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! rxjs */ 228);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 2673);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 9295);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 4874);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 4503);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 116);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 3158);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ 3853);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ 1955);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! rxjs/operators */ 155);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rxjs/operators */ 1353);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! rxjs/operators */ 9337);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! rxjs/operators */ 9601);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! rxjs/operators */ 6074);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! rxjs/operators */ 2313);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! rxjs/operators */ 1308);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/common */ 6362);
+/**
+ * @license Angular v13.3.12
+ * (c) 2010-2022 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Base for events the router goes through, as opposed to events tied to a specific
+ * route. Fired one time for any given navigation.
+ *
+ * The following code shows how a class subscribes to router events.
+ *
+ * ```ts
+ * import {Event, RouterEvent, Router} from '@angular/router';
+ *
+ * class MyService {
+ *   constructor(public router: Router) {
+ *     router.events.pipe(
+ *        filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
+ *     ).subscribe((e: RouterEvent) => {
+ *       // Do something
+ *     });
+ *   }
+ * }
+ * ```
+ *
+ * @see `Event`
+ * @see [Router events summary](guide/router-reference#router-events)
+ * @publicApi
+ */
+
+class RouterEvent {
+  constructor(
+  /** A unique ID that the router assigns to every router navigation. */
+  id,
+  /** The URL that is the destination for this navigation. */
+  url) {
+    this.id = id;
+    this.url = url;
+  }
+
+}
+/**
+ * An event triggered when a navigation starts.
+ *
+ * @publicApi
+ */
+
+
+class NavigationStart extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  navigationTrigger = 'imperative',
+  /** @docsNotRequired */
+  restoredState = null) {
+    super(id, url);
+    this.navigationTrigger = navigationTrigger;
+    this.restoredState = restoredState;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return `NavigationStart(id: ${this.id}, url: '${this.url}')`;
+  }
+
+}
+/**
+ * An event triggered when a navigation ends successfully.
+ *
+ * @see `NavigationStart`
+ * @see `NavigationCancel`
+ * @see `NavigationError`
+ *
+ * @publicApi
+ */
+
+
+class NavigationEnd extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return `NavigationEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}')`;
+  }
+
+}
+/**
+ * An event triggered when a navigation is canceled, directly or indirectly.
+ * This can happen for several reasons including when a route guard
+ * returns `false` or initiates a redirect by returning a `UrlTree`.
+ *
+ * @see `NavigationStart`
+ * @see `NavigationEnd`
+ * @see `NavigationError`
+ *
+ * @publicApi
+ */
+
+
+class NavigationCancel extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  reason) {
+    super(id, url);
+    this.reason = reason;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return `NavigationCancel(id: ${this.id}, url: '${this.url}')`;
+  }
+
+}
+/**
+ * An event triggered when a navigation fails due to an unexpected error.
+ *
+ * @see `NavigationStart`
+ * @see `NavigationEnd`
+ * @see `NavigationCancel`
+ *
+ * @publicApi
+ */
+
+
+class NavigationError extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  error) {
+    super(id, url);
+    this.error = error;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return `NavigationError(id: ${this.id}, url: '${this.url}', error: ${this.error})`;
+  }
+
+}
+/**
+ * An event triggered when routes are recognized.
+ *
+ * @publicApi
+ */
+
+
+class RoutesRecognized extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects,
+  /** @docsNotRequired */
+  state) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+    this.state = state;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return `RoutesRecognized(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
+  }
+
+}
+/**
+ * An event triggered at the start of the Guard phase of routing.
+ *
+ * @see `GuardsCheckEnd`
+ *
+ * @publicApi
+ */
+
+
+class GuardsCheckStart extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects,
+  /** @docsNotRequired */
+  state) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+    this.state = state;
+  }
+
+  toString() {
+    return `GuardsCheckStart(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
+  }
+
+}
+/**
+ * An event triggered at the end of the Guard phase of routing.
+ *
+ * @see `GuardsCheckStart`
+ *
+ * @publicApi
+ */
+
+
+class GuardsCheckEnd extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects,
+  /** @docsNotRequired */
+  state,
+  /** @docsNotRequired */
+  shouldActivate) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+    this.state = state;
+    this.shouldActivate = shouldActivate;
+  }
+
+  toString() {
+    return `GuardsCheckEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state}, shouldActivate: ${this.shouldActivate})`;
+  }
+
+}
+/**
+ * An event triggered at the start of the Resolve phase of routing.
+ *
+ * Runs in the "resolve" phase whether or not there is anything to resolve.
+ * In future, may change to only run when there are things to be resolved.
+ *
+ * @see `ResolveEnd`
+ *
+ * @publicApi
+ */
+
+
+class ResolveStart extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects,
+  /** @docsNotRequired */
+  state) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+    this.state = state;
+  }
+
+  toString() {
+    return `ResolveStart(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
+  }
+
+}
+/**
+ * An event triggered at the end of the Resolve phase of routing.
+ * @see `ResolveStart`.
+ *
+ * @publicApi
+ */
+
+
+class ResolveEnd extends RouterEvent {
+  constructor(
+  /** @docsNotRequired */
+  id,
+  /** @docsNotRequired */
+  url,
+  /** @docsNotRequired */
+  urlAfterRedirects,
+  /** @docsNotRequired */
+  state) {
+    super(id, url);
+    this.urlAfterRedirects = urlAfterRedirects;
+    this.state = state;
+  }
+
+  toString() {
+    return `ResolveEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
+  }
+
+}
+/**
+ * An event triggered before lazy loading a route configuration.
+ *
+ * @see `RouteConfigLoadEnd`
+ *
+ * @publicApi
+ */
+
+
+class RouteConfigLoadStart {
+  constructor(
+  /** @docsNotRequired */
+  route) {
+    this.route = route;
+  }
+
+  toString() {
+    return `RouteConfigLoadStart(path: ${this.route.path})`;
+  }
+
+}
+/**
+ * An event triggered when a route has been lazy loaded.
+ *
+ * @see `RouteConfigLoadStart`
+ *
+ * @publicApi
+ */
+
+
+class RouteConfigLoadEnd {
+  constructor(
+  /** @docsNotRequired */
+  route) {
+    this.route = route;
+  }
+
+  toString() {
+    return `RouteConfigLoadEnd(path: ${this.route.path})`;
+  }
+
+}
+/**
+ * An event triggered at the start of the child-activation
+ * part of the Resolve phase of routing.
+ * @see  `ChildActivationEnd`
+ * @see `ResolveStart`
+ *
+ * @publicApi
+ */
+
+
+class ChildActivationStart {
+  constructor(
+  /** @docsNotRequired */
+  snapshot) {
+    this.snapshot = snapshot;
+  }
+
+  toString() {
+    const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
+    return `ChildActivationStart(path: '${path}')`;
+  }
+
+}
+/**
+ * An event triggered at the end of the child-activation part
+ * of the Resolve phase of routing.
+ * @see `ChildActivationStart`
+ * @see `ResolveStart`
+ * @publicApi
+ */
+
+
+class ChildActivationEnd {
+  constructor(
+  /** @docsNotRequired */
+  snapshot) {
+    this.snapshot = snapshot;
+  }
+
+  toString() {
+    const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
+    return `ChildActivationEnd(path: '${path}')`;
+  }
+
+}
+/**
+ * An event triggered at the start of the activation part
+ * of the Resolve phase of routing.
+ * @see `ActivationEnd`
+ * @see `ResolveStart`
+ *
+ * @publicApi
+ */
+
+
+class ActivationStart {
+  constructor(
+  /** @docsNotRequired */
+  snapshot) {
+    this.snapshot = snapshot;
+  }
+
+  toString() {
+    const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
+    return `ActivationStart(path: '${path}')`;
+  }
+
+}
+/**
+ * An event triggered at the end of the activation part
+ * of the Resolve phase of routing.
+ * @see `ActivationStart`
+ * @see `ResolveStart`
+ *
+ * @publicApi
+ */
+
+
+class ActivationEnd {
+  constructor(
+  /** @docsNotRequired */
+  snapshot) {
+    this.snapshot = snapshot;
+  }
+
+  toString() {
+    const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
+    return `ActivationEnd(path: '${path}')`;
+  }
+
+}
+/**
+ * An event triggered by scrolling.
+ *
+ * @publicApi
+ */
+
+
+class Scroll {
+  constructor(
+  /** @docsNotRequired */
+  routerEvent,
+  /** @docsNotRequired */
+  position,
+  /** @docsNotRequired */
+  anchor) {
+    this.routerEvent = routerEvent;
+    this.position = position;
+    this.anchor = anchor;
+  }
+
+  toString() {
+    const pos = this.position ? `${this.position[0]}, ${this.position[1]}` : null;
+    return `Scroll(anchor: '${this.anchor}', position: '${pos}')`;
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * The primary routing outlet.
+ *
+ * @publicApi
+ */
+
+
+const PRIMARY_OUTLET = 'primary';
+
+class ParamsAsMap {
+  constructor(params) {
+    this.params = params || {};
+  }
+
+  has(name) {
+    return Object.prototype.hasOwnProperty.call(this.params, name);
+  }
+
+  get(name) {
+    if (this.has(name)) {
+      const v = this.params[name];
+      return Array.isArray(v) ? v[0] : v;
+    }
+
+    return null;
+  }
+
+  getAll(name) {
+    if (this.has(name)) {
+      const v = this.params[name];
+      return Array.isArray(v) ? v : [v];
+    }
+
+    return [];
+  }
+
+  get keys() {
+    return Object.keys(this.params);
+  }
+
+}
+/**
+ * Converts a `Params` instance to a `ParamMap`.
+ * @param params The instance to convert.
+ * @returns The new map instance.
+ *
+ * @publicApi
+ */
+
+
+function convertToParamMap(params) {
+  return new ParamsAsMap(params);
+}
+
+const NAVIGATION_CANCELING_ERROR = 'ngNavigationCancelingError';
+
+function navigationCancelingError(message) {
+  const error = Error('NavigationCancelingError: ' + message);
+  error[NAVIGATION_CANCELING_ERROR] = true;
+  return error;
+}
+
+function isNavigationCancelingError(error) {
+  return error && error[NAVIGATION_CANCELING_ERROR];
+} // Matches the route configuration (`route`) against the actual URL (`segments`).
+
+
+function defaultUrlMatcher(segments, segmentGroup, route) {
+  const parts = route.path.split('/');
+
+  if (parts.length > segments.length) {
+    // The actual URL is shorter than the config, no match
+    return null;
+  }
+
+  if (route.pathMatch === 'full' && (segmentGroup.hasChildren() || parts.length < segments.length)) {
+    // The config is longer than the actual URL but we are looking for a full match, return null
+    return null;
+  }
+
+  const posParams = {}; // Check each config part against the actual URL
+
+  for (let index = 0; index < parts.length; index++) {
+    const part = parts[index];
+    const segment = segments[index];
+    const isParameter = part.startsWith(':');
+
+    if (isParameter) {
+      posParams[part.substring(1)] = segment;
+    } else if (part !== segment.path) {
+      // The actual URL part does not match the config, no match
+      return null;
+    }
+  }
+
+  return {
+    consumed: segments.slice(0, parts.length),
+    posParams
+  };
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function shallowEqualArrays(a, b) {
+  if (a.length !== b.length) return false;
+
+  for (let i = 0; i < a.length; ++i) {
+    if (!shallowEqual(a[i], b[i])) return false;
+  }
+
+  return true;
+}
+
+function shallowEqual(a, b) {
+  // While `undefined` should never be possible, it would sometimes be the case in IE 11
+  // and pre-chromium Edge. The check below accounts for this edge case.
+  const k1 = a ? Object.keys(a) : undefined;
+  const k2 = b ? Object.keys(b) : undefined;
+
+  if (!k1 || !k2 || k1.length != k2.length) {
+    return false;
+  }
+
+  let key;
+
+  for (let i = 0; i < k1.length; i++) {
+    key = k1[i];
+
+    if (!equalArraysOrString(a[key], b[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+/**
+ * Test equality for arrays of strings or a string.
+ */
+
+
+function equalArraysOrString(a, b) {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+    const aSorted = [...a].sort();
+    const bSorted = [...b].sort();
+    return aSorted.every((val, index) => bSorted[index] === val);
+  } else {
+    return a === b;
+  }
+}
+/**
+ * Flattens single-level nested arrays.
+ */
+
+
+function flatten(arr) {
+  return Array.prototype.concat.apply([], arr);
+}
+/**
+ * Return the last element of an array.
+ */
+
+
+function last(a) {
+  return a.length > 0 ? a[a.length - 1] : null;
+}
+/**
+ * Verifys all booleans in an array are `true`.
+ */
+
+
+function and(bools) {
+  return !bools.some(v => !v);
+}
+
+function forEach(map, callback) {
+  for (const prop in map) {
+    if (map.hasOwnProperty(prop)) {
+      callback(map[prop], prop);
+    }
+  }
+}
+
+function wrapIntoObservable(value) {
+  if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisObservable"])(value)) {
+    return value;
+  }
+
+  if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisPromise"])(value)) {
+    // Use `Promise.resolve()` to wrap promise-like instances.
+    // Required ie when a Resolver returns a AngularJS `$q` promise to correctly trigger the
+    // change detection.
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(Promise.resolve(value));
+  }
+
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(value);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function createEmptyUrlTree() {
+  return new UrlTree(new UrlSegmentGroup([], {}), {}, null);
+}
+
+const pathCompareMap = {
+  'exact': equalSegmentGroups,
+  'subset': containsSegmentGroup
+};
+const paramCompareMap = {
+  'exact': equalParams,
+  'subset': containsParams,
+  'ignored': () => true
+};
+
+function containsTree(container, containee, options) {
+  return pathCompareMap[options.paths](container.root, containee.root, options.matrixParams) && paramCompareMap[options.queryParams](container.queryParams, containee.queryParams) && !(options.fragment === 'exact' && container.fragment !== containee.fragment);
+}
+
+function equalParams(container, containee) {
+  // TODO: This does not handle array params correctly.
+  return shallowEqual(container, containee);
+}
+
+function equalSegmentGroups(container, containee, matrixParams) {
+  if (!equalPath(container.segments, containee.segments)) return false;
+
+  if (!matrixParamsMatch(container.segments, containee.segments, matrixParams)) {
+    return false;
+  }
+
+  if (container.numberOfChildren !== containee.numberOfChildren) return false;
+
+  for (const c in containee.children) {
+    if (!container.children[c]) return false;
+    if (!equalSegmentGroups(container.children[c], containee.children[c], matrixParams)) return false;
+  }
+
+  return true;
+}
+
+function containsParams(container, containee) {
+  return Object.keys(containee).length <= Object.keys(container).length && Object.keys(containee).every(key => equalArraysOrString(container[key], containee[key]));
+}
+
+function containsSegmentGroup(container, containee, matrixParams) {
+  return containsSegmentGroupHelper(container, containee, containee.segments, matrixParams);
+}
+
+function containsSegmentGroupHelper(container, containee, containeePaths, matrixParams) {
+  if (container.segments.length > containeePaths.length) {
+    const current = container.segments.slice(0, containeePaths.length);
+    if (!equalPath(current, containeePaths)) return false;
+    if (containee.hasChildren()) return false;
+    if (!matrixParamsMatch(current, containeePaths, matrixParams)) return false;
+    return true;
+  } else if (container.segments.length === containeePaths.length) {
+    if (!equalPath(container.segments, containeePaths)) return false;
+    if (!matrixParamsMatch(container.segments, containeePaths, matrixParams)) return false;
+
+    for (const c in containee.children) {
+      if (!container.children[c]) return false;
+
+      if (!containsSegmentGroup(container.children[c], containee.children[c], matrixParams)) {
+        return false;
+      }
+    }
+
+    return true;
+  } else {
+    const current = containeePaths.slice(0, container.segments.length);
+    const next = containeePaths.slice(container.segments.length);
+    if (!equalPath(container.segments, current)) return false;
+    if (!matrixParamsMatch(container.segments, current, matrixParams)) return false;
+    if (!container.children[PRIMARY_OUTLET]) return false;
+    return containsSegmentGroupHelper(container.children[PRIMARY_OUTLET], containee, next, matrixParams);
+  }
+}
+
+function matrixParamsMatch(containerPaths, containeePaths, options) {
+  return containeePaths.every((containeeSegment, i) => {
+    return paramCompareMap[options](containerPaths[i].parameters, containeeSegment.parameters);
+  });
+}
+/**
+ * @description
+ *
+ * Represents the parsed URL.
+ *
+ * Since a router state is a tree, and the URL is nothing but a serialized state, the URL is a
+ * serialized tree.
+ * UrlTree is a data structure that provides a lot of affordances in dealing with URLs
+ *
+ * @usageNotes
+ * ### Example
+ *
+ * ```
+ * @Component({templateUrl:'template.html'})
+ * class MyComponent {
+ *   constructor(router: Router) {
+ *     const tree: UrlTree =
+ *       router.parseUrl('/team/33/(user/victor//support:help)?debug=true#fragment');
+ *     const f = tree.fragment; // return 'fragment'
+ *     const q = tree.queryParams; // returns {debug: 'true'}
+ *     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+ *     const s: UrlSegment[] = g.segments; // returns 2 segments 'team' and '33'
+ *     g.children[PRIMARY_OUTLET].segments; // returns 2 segments 'user' and 'victor'
+ *     g.children['support'].segments; // return 1 segment 'help'
+ *   }
+ * }
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class UrlTree {
+  /** @internal */
+  constructor(
+  /** The root segment group of the URL tree */
+  root,
+  /** The query params of the URL */
+  queryParams,
+  /** The fragment of the URL */
+  fragment) {
+    this.root = root;
+    this.queryParams = queryParams;
+    this.fragment = fragment;
+  }
+
+  get queryParamMap() {
+    if (!this._queryParamMap) {
+      this._queryParamMap = convertToParamMap(this.queryParams);
+    }
+
+    return this._queryParamMap;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return DEFAULT_SERIALIZER.serialize(this);
+  }
+
+}
+/**
+ * @description
+ *
+ * Represents the parsed URL segment group.
+ *
+ * See `UrlTree` for more information.
+ *
+ * @publicApi
+ */
+
+
+class UrlSegmentGroup {
+  constructor(
+  /** The URL segments of this group. See `UrlSegment` for more information */
+  segments,
+  /** The list of children of this group */
+  children) {
+    this.segments = segments;
+    this.children = children;
+    /** The parent node in the url tree */
+
+    this.parent = null;
+    forEach(children, (v, k) => v.parent = this);
+  }
+  /** Whether the segment has child segments */
+
+
+  hasChildren() {
+    return this.numberOfChildren > 0;
+  }
+  /** Number of child segments */
+
+
+  get numberOfChildren() {
+    return Object.keys(this.children).length;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return serializePaths(this);
+  }
+
+}
+/**
+ * @description
+ *
+ * Represents a single URL segment.
+ *
+ * A UrlSegment is a part of a URL between the two slashes. It contains a path and the matrix
+ * parameters associated with the segment.
+ *
+ * @usageNotes
+ * ### Example
+ *
+ * ```
+ * @Component({templateUrl:'template.html'})
+ * class MyComponent {
+ *   constructor(router: Router) {
+ *     const tree: UrlTree = router.parseUrl('/team;id=33');
+ *     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+ *     const s: UrlSegment[] = g.segments;
+ *     s[0].path; // returns 'team'
+ *     s[0].parameters; // returns {id: 33}
+ *   }
+ * }
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class UrlSegment {
+  constructor(
+  /** The path part of a URL segment */
+  path,
+  /** The matrix parameters associated with a segment */
+  parameters) {
+    this.path = path;
+    this.parameters = parameters;
+  }
+
+  get parameterMap() {
+    if (!this._parameterMap) {
+      this._parameterMap = convertToParamMap(this.parameters);
+    }
+
+    return this._parameterMap;
+  }
+  /** @docsNotRequired */
+
+
+  toString() {
+    return serializePath(this);
+  }
+
+}
+
+function equalSegments(as, bs) {
+  return equalPath(as, bs) && as.every((a, i) => shallowEqual(a.parameters, bs[i].parameters));
+}
+
+function equalPath(as, bs) {
+  if (as.length !== bs.length) return false;
+  return as.every((a, i) => a.path === bs[i].path);
+}
+
+function mapChildrenIntoArray(segment, fn) {
+  let res = [];
+  forEach(segment.children, (child, childOutlet) => {
+    if (childOutlet === PRIMARY_OUTLET) {
+      res = res.concat(fn(child, childOutlet));
+    }
+  });
+  forEach(segment.children, (child, childOutlet) => {
+    if (childOutlet !== PRIMARY_OUTLET) {
+      res = res.concat(fn(child, childOutlet));
+    }
+  });
+  return res;
+}
+/**
+ * @description
+ *
+ * Serializes and deserializes a URL string into a URL tree.
+ *
+ * The url serialization strategy is customizable. You can
+ * make all URLs case insensitive by providing a custom UrlSerializer.
+ *
+ * See `DefaultUrlSerializer` for an example of a URL serializer.
+ *
+ * @publicApi
+ */
+
+
+class UrlSerializer {}
+/**
+ * @description
+ *
+ * A default implementation of the `UrlSerializer`.
+ *
+ * Example URLs:
+ *
+ * ```
+ * /inbox/33(popup:compose)
+ * /inbox/33;open=true/messages/44
+ * ```
+ *
+ * DefaultUrlSerializer uses parentheses to serialize secondary segments (e.g., popup:compose), the
+ * colon syntax to specify the outlet, and the ';parameter=value' syntax (e.g., open=true) to
+ * specify route specific parameters.
+ *
+ * @publicApi
+ */
+
+
+class DefaultUrlSerializer {
+  /** Parses a url into a `UrlTree` */
+  parse(url) {
+    const p = new UrlParser(url);
+    return new UrlTree(p.parseRootSegment(), p.parseQueryParams(), p.parseFragment());
+  }
+  /** Converts a `UrlTree` into a url */
+
+
+  serialize(tree) {
+    const segment = `/${serializeSegment(tree.root, true)}`;
+    const query = serializeQueryParams(tree.queryParams);
+    const fragment = typeof tree.fragment === `string` ? `#${encodeUriFragment(tree.fragment)}` : '';
+    return `${segment}${query}${fragment}`;
+  }
+
+}
+
+const DEFAULT_SERIALIZER = new DefaultUrlSerializer();
+
+function serializePaths(segment) {
+  return segment.segments.map(p => serializePath(p)).join('/');
+}
+
+function serializeSegment(segment, root) {
+  if (!segment.hasChildren()) {
+    return serializePaths(segment);
+  }
+
+  if (root) {
+    const primary = segment.children[PRIMARY_OUTLET] ? serializeSegment(segment.children[PRIMARY_OUTLET], false) : '';
+    const children = [];
+    forEach(segment.children, (v, k) => {
+      if (k !== PRIMARY_OUTLET) {
+        children.push(`${k}:${serializeSegment(v, false)}`);
+      }
+    });
+    return children.length > 0 ? `${primary}(${children.join('//')})` : primary;
+  } else {
+    const children = mapChildrenIntoArray(segment, (v, k) => {
+      if (k === PRIMARY_OUTLET) {
+        return [serializeSegment(segment.children[PRIMARY_OUTLET], false)];
+      }
+
+      return [`${k}:${serializeSegment(v, false)}`];
+    }); // use no parenthesis if the only child is a primary outlet route
+
+    if (Object.keys(segment.children).length === 1 && segment.children[PRIMARY_OUTLET] != null) {
+      return `${serializePaths(segment)}/${children[0]}`;
+    }
+
+    return `${serializePaths(segment)}/(${children.join('//')})`;
+  }
+}
+/**
+ * Encodes a URI string with the default encoding. This function will only ever be called from
+ * `encodeUriQuery` or `encodeUriSegment` as it's the base set of encodings to be used. We need
+ * a custom encoding because encodeURIComponent is too aggressive and encodes stuff that doesn't
+ * have to be encoded per https://url.spec.whatwg.org.
+ */
+
+
+function encodeUriString(s) {
+  return encodeURIComponent(s).replace(/%40/g, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',');
+}
+/**
+ * This function should be used to encode both keys and values in a query string key/value. In
+ * the following URL, you need to call encodeUriQuery on "k" and "v":
+ *
+ * http://www.site.org/html;mk=mv?k=v#f
+ */
+
+
+function encodeUriQuery(s) {
+  return encodeUriString(s).replace(/%3B/gi, ';');
+}
+/**
+ * This function should be used to encode a URL fragment. In the following URL, you need to call
+ * encodeUriFragment on "f":
+ *
+ * http://www.site.org/html;mk=mv?k=v#f
+ */
+
+
+function encodeUriFragment(s) {
+  return encodeURI(s);
+}
+/**
+ * This function should be run on any URI segment as well as the key and value in a key/value
+ * pair for matrix params. In the following URL, you need to call encodeUriSegment on "html",
+ * "mk", and "mv":
+ *
+ * http://www.site.org/html;mk=mv?k=v#f
+ */
+
+
+function encodeUriSegment(s) {
+  return encodeUriString(s).replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%26/gi, '&');
+}
+
+function decode(s) {
+  return decodeURIComponent(s);
+} // Query keys/values should have the "+" replaced first, as "+" in a query string is " ".
+// decodeURIComponent function will not decode "+" as a space.
+
+
+function decodeQuery(s) {
+  return decode(s.replace(/\+/g, '%20'));
+}
+
+function serializePath(path) {
+  return `${encodeUriSegment(path.path)}${serializeMatrixParams(path.parameters)}`;
+}
+
+function serializeMatrixParams(params) {
+  return Object.keys(params).map(key => `;${encodeUriSegment(key)}=${encodeUriSegment(params[key])}`).join('');
+}
+
+function serializeQueryParams(params) {
+  const strParams = Object.keys(params).map(name => {
+    const value = params[name];
+    return Array.isArray(value) ? value.map(v => `${encodeUriQuery(name)}=${encodeUriQuery(v)}`).join('&') : `${encodeUriQuery(name)}=${encodeUriQuery(value)}`;
+  }).filter(s => !!s);
+  return strParams.length ? `?${strParams.join('&')}` : '';
+}
+
+const SEGMENT_RE = /^[^\/()?;=#]+/;
+
+function matchSegments(str) {
+  const match = str.match(SEGMENT_RE);
+  return match ? match[0] : '';
+}
+
+const QUERY_PARAM_RE = /^[^=?&#]+/; // Return the name of the query param at the start of the string or an empty string
+
+function matchQueryParams(str) {
+  const match = str.match(QUERY_PARAM_RE);
+  return match ? match[0] : '';
+}
+
+const QUERY_PARAM_VALUE_RE = /^[^&#]+/; // Return the value of the query param at the start of the string or an empty string
+
+function matchUrlQueryParamValue(str) {
+  const match = str.match(QUERY_PARAM_VALUE_RE);
+  return match ? match[0] : '';
+}
+
+class UrlParser {
+  constructor(url) {
+    this.url = url;
+    this.remaining = url;
+  }
+
+  parseRootSegment() {
+    this.consumeOptional('/');
+
+    if (this.remaining === '' || this.peekStartsWith('?') || this.peekStartsWith('#')) {
+      return new UrlSegmentGroup([], {});
+    } // The root segment group never has segments
+
+
+    return new UrlSegmentGroup([], this.parseChildren());
+  }
+
+  parseQueryParams() {
+    const params = {};
+
+    if (this.consumeOptional('?')) {
+      do {
+        this.parseQueryParam(params);
+      } while (this.consumeOptional('&'));
+    }
+
+    return params;
+  }
+
+  parseFragment() {
+    return this.consumeOptional('#') ? decodeURIComponent(this.remaining) : null;
+  }
+
+  parseChildren() {
+    if (this.remaining === '') {
+      return {};
+    }
+
+    this.consumeOptional('/');
+    const segments = [];
+
+    if (!this.peekStartsWith('(')) {
+      segments.push(this.parseSegment());
+    }
+
+    while (this.peekStartsWith('/') && !this.peekStartsWith('//') && !this.peekStartsWith('/(')) {
+      this.capture('/');
+      segments.push(this.parseSegment());
+    }
+
+    let children = {};
+
+    if (this.peekStartsWith('/(')) {
+      this.capture('/');
+      children = this.parseParens(true);
+    }
+
+    let res = {};
+
+    if (this.peekStartsWith('(')) {
+      res = this.parseParens(false);
+    }
+
+    if (segments.length > 0 || Object.keys(children).length > 0) {
+      res[PRIMARY_OUTLET] = new UrlSegmentGroup(segments, children);
+    }
+
+    return res;
+  } // parse a segment with its matrix parameters
+  // ie `name;k1=v1;k2`
+
+
+  parseSegment() {
+    const path = matchSegments(this.remaining);
+
+    if (path === '' && this.peekStartsWith(';')) {
+      throw new Error(`Empty path url segment cannot have parameters: '${this.remaining}'.`);
+    }
+
+    this.capture(path);
+    return new UrlSegment(decode(path), this.parseMatrixParams());
+  }
+
+  parseMatrixParams() {
+    const params = {};
+
+    while (this.consumeOptional(';')) {
+      this.parseParam(params);
+    }
+
+    return params;
+  }
+
+  parseParam(params) {
+    const key = matchSegments(this.remaining);
+
+    if (!key) {
+      return;
+    }
+
+    this.capture(key);
+    let value = '';
+
+    if (this.consumeOptional('=')) {
+      const valueMatch = matchSegments(this.remaining);
+
+      if (valueMatch) {
+        value = valueMatch;
+        this.capture(value);
+      }
+    }
+
+    params[decode(key)] = decode(value);
+  } // Parse a single query parameter `name[=value]`
+
+
+  parseQueryParam(params) {
+    const key = matchQueryParams(this.remaining);
+
+    if (!key) {
+      return;
+    }
+
+    this.capture(key);
+    let value = '';
+
+    if (this.consumeOptional('=')) {
+      const valueMatch = matchUrlQueryParamValue(this.remaining);
+
+      if (valueMatch) {
+        value = valueMatch;
+        this.capture(value);
+      }
+    }
+
+    const decodedKey = decodeQuery(key);
+    const decodedVal = decodeQuery(value);
+
+    if (params.hasOwnProperty(decodedKey)) {
+      // Append to existing values
+      let currentVal = params[decodedKey];
+
+      if (!Array.isArray(currentVal)) {
+        currentVal = [currentVal];
+        params[decodedKey] = currentVal;
+      }
+
+      currentVal.push(decodedVal);
+    } else {
+      // Create a new value
+      params[decodedKey] = decodedVal;
+    }
+  } // parse `(a/b//outlet_name:c/d)`
+
+
+  parseParens(allowPrimary) {
+    const segments = {};
+    this.capture('(');
+
+    while (!this.consumeOptional(')') && this.remaining.length > 0) {
+      const path = matchSegments(this.remaining);
+      const next = this.remaining[path.length]; // if is is not one of these characters, then the segment was unescaped
+      // or the group was not closed
+
+      if (next !== '/' && next !== ')' && next !== ';') {
+        throw new Error(`Cannot parse url '${this.url}'`);
+      }
+
+      let outletName = undefined;
+
+      if (path.indexOf(':') > -1) {
+        outletName = path.substr(0, path.indexOf(':'));
+        this.capture(outletName);
+        this.capture(':');
+      } else if (allowPrimary) {
+        outletName = PRIMARY_OUTLET;
+      }
+
+      const children = this.parseChildren();
+      segments[outletName] = Object.keys(children).length === 1 ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
+      this.consumeOptional('//');
+    }
+
+    return segments;
+  }
+
+  peekStartsWith(str) {
+    return this.remaining.startsWith(str);
+  } // Consumes the prefix when it is present and returns whether it has been consumed
+
+
+  consumeOptional(str) {
+    if (this.peekStartsWith(str)) {
+      this.remaining = this.remaining.substring(str.length);
+      return true;
+    }
+
+    return false;
+  }
+
+  capture(str) {
+    if (!this.consumeOptional(str)) {
+      throw new Error(`Expected "${str}".`);
+    }
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+class Tree {
+  constructor(root) {
+    this._root = root;
+  }
+
+  get root() {
+    return this._root.value;
+  }
+  /**
+   * @internal
+   */
+
+
+  parent(t) {
+    const p = this.pathFromRoot(t);
+    return p.length > 1 ? p[p.length - 2] : null;
+  }
+  /**
+   * @internal
+   */
+
+
+  children(t) {
+    const n = findNode(t, this._root);
+    return n ? n.children.map(t => t.value) : [];
+  }
+  /**
+   * @internal
+   */
+
+
+  firstChild(t) {
+    const n = findNode(t, this._root);
+    return n && n.children.length > 0 ? n.children[0].value : null;
+  }
+  /**
+   * @internal
+   */
+
+
+  siblings(t) {
+    const p = findPath(t, this._root);
+    if (p.length < 2) return [];
+    const c = p[p.length - 2].children.map(c => c.value);
+    return c.filter(cc => cc !== t);
+  }
+  /**
+   * @internal
+   */
+
+
+  pathFromRoot(t) {
+    return findPath(t, this._root).map(s => s.value);
+  }
+
+} // DFS for the node matching the value
+
+
+function findNode(value, node) {
+  if (value === node.value) return node;
+
+  for (const child of node.children) {
+    const node = findNode(value, child);
+    if (node) return node;
+  }
+
+  return null;
+} // Return the path to the node with the given value using DFS
+
+
+function findPath(value, node) {
+  if (value === node.value) return [node];
+
+  for (const child of node.children) {
+    const path = findPath(value, child);
+
+    if (path.length) {
+      path.unshift(node);
+      return path;
+    }
+  }
+
+  return [];
+}
+
+class TreeNode {
+  constructor(value, children) {
+    this.value = value;
+    this.children = children;
+  }
+
+  toString() {
+    return `TreeNode(${this.value})`;
+  }
+
+} // Return the list of T indexed by outlet name
+
+
+function nodeChildrenAsMap(node) {
+  const map = {};
+
+  if (node) {
+    node.children.forEach(child => map[child.value.outlet] = child);
+  }
+
+  return map;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Represents the state of the router as a tree of activated routes.
+ *
+ * @usageNotes
+ *
+ * Every node in the route tree is an `ActivatedRoute` instance
+ * that knows about the "consumed" URL segments, the extracted parameters,
+ * and the resolved data.
+ * Use the `ActivatedRoute` properties to traverse the tree from any node.
+ *
+ * The following fragment shows how a component gets the root node
+ * of the current state to establish its own route tree:
+ *
+ * ```
+ * @Component({templateUrl:'template.html'})
+ * class MyComponent {
+ *   constructor(router: Router) {
+ *     const state: RouterState = router.routerState;
+ *     const root: ActivatedRoute = state.root;
+ *     const child = root.firstChild;
+ *     const id: Observable<string> = child.params.map(p => p.id);
+ *     //...
+ *   }
+ * }
+ * ```
+ *
+ * @see `ActivatedRoute`
+ * @see [Getting route information](guide/router#getting-route-information)
+ *
+ * @publicApi
+ */
+
+
+class RouterState extends Tree {
+  /** @internal */
+  constructor(root,
+  /** The current snapshot of the router state */
+  snapshot) {
+    super(root);
+    this.snapshot = snapshot;
+    setRouterState(this, root);
+  }
+
+  toString() {
+    return this.snapshot.toString();
+  }
+
+}
+
+function createEmptyState(urlTree, rootComponent) {
+  const snapshot = createEmptyStateSnapshot(urlTree, rootComponent);
+  const emptyUrl = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject([new UrlSegment('', {})]);
+  const emptyParams = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject({});
+  const emptyData = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject({});
+  const emptyQueryParams = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject({});
+  const fragment = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject('');
+  const activated = new ActivatedRoute(emptyUrl, emptyParams, emptyQueryParams, fragment, emptyData, PRIMARY_OUTLET, rootComponent, snapshot.root);
+  activated.snapshot = snapshot.root;
+  return new RouterState(new TreeNode(activated, []), snapshot);
+}
+
+function createEmptyStateSnapshot(urlTree, rootComponent) {
+  const emptyParams = {};
+  const emptyData = {};
+  const emptyQueryParams = {};
+  const fragment = '';
+  const activated = new ActivatedRouteSnapshot([], emptyParams, emptyQueryParams, fragment, emptyData, PRIMARY_OUTLET, rootComponent, null, urlTree.root, -1, {});
+  return new RouterStateSnapshot('', new TreeNode(activated, []));
+}
+/**
+ * Provides access to information about a route associated with a component
+ * that is loaded in an outlet.
+ * Use to traverse the `RouterState` tree and extract information from nodes.
+ *
+ * The following example shows how to construct a component using information from a
+ * currently activated route.
+ *
+ * Note: the observables in this class only emit when the current and previous values differ based
+ * on shallow equality. For example, changing deeply nested properties in resolved `data` will not
+ * cause the `ActivatedRoute.data` `Observable` to emit a new value.
+ *
+ * {@example router/activated-route/module.ts region="activated-route"
+ *     header="activated-route.component.ts"}
+ *
+ * @see [Getting route information](guide/router#getting-route-information)
+ *
+ * @publicApi
+ */
+
+
+class ActivatedRoute {
+  /** @internal */
+  constructor(
+  /** An observable of the URL segments matched by this route. */
+  url,
+  /** An observable of the matrix parameters scoped to this route. */
+  params,
+  /** An observable of the query parameters shared by all the routes. */
+  queryParams,
+  /** An observable of the URL fragment shared by all the routes. */
+  fragment,
+  /** An observable of the static and resolved data of this route. */
+  data,
+  /** The outlet name of the route, a constant. */
+  outlet,
+  /** The component of the route, a constant. */
+  // TODO(vsavkin): remove |string
+  component, futureSnapshot) {
+    this.url = url;
+    this.params = params;
+    this.queryParams = queryParams;
+    this.fragment = fragment;
+    this.data = data;
+    this.outlet = outlet;
+    this.component = component;
+    this._futureSnapshot = futureSnapshot;
+  }
+  /** The configuration used to match this route. */
+
+
+  get routeConfig() {
+    return this._futureSnapshot.routeConfig;
+  }
+  /** The root of the router state. */
+
+
+  get root() {
+    return this._routerState.root;
+  }
+  /** The parent of this route in the router state tree. */
+
+
+  get parent() {
+    return this._routerState.parent(this);
+  }
+  /** The first child of this route in the router state tree. */
+
+
+  get firstChild() {
+    return this._routerState.firstChild(this);
+  }
+  /** The children of this route in the router state tree. */
+
+
+  get children() {
+    return this._routerState.children(this);
+  }
+  /** The path from the root of the router state tree to this route. */
+
+
+  get pathFromRoot() {
+    return this._routerState.pathFromRoot(this);
+  }
+  /**
+   * An Observable that contains a map of the required and optional parameters
+   * specific to the route.
+   * The map supports retrieving single and multiple values from the same parameter.
+   */
+
+
+  get paramMap() {
+    if (!this._paramMap) {
+      this._paramMap = this.params.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(p => convertToParamMap(p)));
+    }
+
+    return this._paramMap;
+  }
+  /**
+   * An Observable that contains a map of the query parameters available to all routes.
+   * The map supports retrieving single and multiple values from the query parameter.
+   */
+
+
+  get queryParamMap() {
+    if (!this._queryParamMap) {
+      this._queryParamMap = this.queryParams.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(p => convertToParamMap(p)));
+    }
+
+    return this._queryParamMap;
+  }
+
+  toString() {
+    return this.snapshot ? this.snapshot.toString() : `Future(${this._futureSnapshot})`;
+  }
+
+}
+/**
+ * Returns the inherited params, data, and resolve for a given route.
+ * By default, this only inherits values up to the nearest path-less or component-less route.
+ * @internal
+ */
+
+
+function inheritedParamsDataResolve(route, paramsInheritanceStrategy = 'emptyOnly') {
+  const pathFromRoot = route.pathFromRoot;
+  let inheritingStartingFrom = 0;
+
+  if (paramsInheritanceStrategy !== 'always') {
+    inheritingStartingFrom = pathFromRoot.length - 1;
+
+    while (inheritingStartingFrom >= 1) {
+      const current = pathFromRoot[inheritingStartingFrom];
+      const parent = pathFromRoot[inheritingStartingFrom - 1]; // current route is an empty path => inherits its parent's params and data
+
+      if (current.routeConfig && current.routeConfig.path === '') {
+        inheritingStartingFrom--; // parent is componentless => current route should inherit its params and data
+      } else if (!parent.component) {
+        inheritingStartingFrom--;
+      } else {
+        break;
+      }
+    }
+  }
+
+  return flattenInherited(pathFromRoot.slice(inheritingStartingFrom));
+}
+/** @internal */
+
+
+function flattenInherited(pathFromRoot) {
+  return pathFromRoot.reduce((res, curr) => {
+    const params = Object.assign(Object.assign({}, res.params), curr.params);
+    const data = Object.assign(Object.assign({}, res.data), curr.data);
+    const resolve = Object.assign(Object.assign({}, res.resolve), curr._resolvedData);
+    return {
+      params,
+      data,
+      resolve
+    };
+  }, {
+    params: {},
+    data: {},
+    resolve: {}
+  });
+}
+/**
+ * @description
+ *
+ * Contains the information about a route associated with a component loaded in an
+ * outlet at a particular moment in time. ActivatedRouteSnapshot can also be used to
+ * traverse the router state tree.
+ *
+ * The following example initializes a component with route information extracted
+ * from the snapshot of the root node at the time of creation.
+ *
+ * ```
+ * @Component({templateUrl:'./my-component.html'})
+ * class MyComponent {
+ *   constructor(route: ActivatedRoute) {
+ *     const id: string = route.snapshot.params.id;
+ *     const url: string = route.snapshot.url.join('');
+ *     const user = route.snapshot.data.user;
+ *   }
+ * }
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class ActivatedRouteSnapshot {
+  /** @internal */
+  constructor(
+  /** The URL segments matched by this route */
+  url,
+  /**
+   *  The matrix parameters scoped to this route.
+   *
+   *  You can compute all params (or data) in the router state or to get params outside
+   *  of an activated component by traversing the `RouterState` tree as in the following
+   *  example:
+   *  ```
+   *  collectRouteParams(router: Router) {
+   *    let params = {};
+   *    let stack: ActivatedRouteSnapshot[] = [router.routerState.snapshot.root];
+   *    while (stack.length > 0) {
+   *      const route = stack.pop()!;
+   *      params = {...params, ...route.params};
+   *      stack.push(...route.children);
+   *    }
+   *    return params;
+   *  }
+   *  ```
+   */
+  params,
+  /** The query parameters shared by all the routes */
+  queryParams,
+  /** The URL fragment shared by all the routes */
+  fragment,
+  /** The static and resolved data of this route */
+  data,
+  /** The outlet name of the route */
+  outlet,
+  /** The component of the route */
+  component, routeConfig, urlSegment, lastPathIndex, resolve) {
+    this.url = url;
+    this.params = params;
+    this.queryParams = queryParams;
+    this.fragment = fragment;
+    this.data = data;
+    this.outlet = outlet;
+    this.component = component;
+    this.routeConfig = routeConfig;
+    this._urlSegment = urlSegment;
+    this._lastPathIndex = lastPathIndex;
+    this._resolve = resolve;
+  }
+  /** The root of the router state */
+
+
+  get root() {
+    return this._routerState.root;
+  }
+  /** The parent of this route in the router state tree */
+
+
+  get parent() {
+    return this._routerState.parent(this);
+  }
+  /** The first child of this route in the router state tree */
+
+
+  get firstChild() {
+    return this._routerState.firstChild(this);
+  }
+  /** The children of this route in the router state tree */
+
+
+  get children() {
+    return this._routerState.children(this);
+  }
+  /** The path from the root of the router state tree to this route */
+
+
+  get pathFromRoot() {
+    return this._routerState.pathFromRoot(this);
+  }
+
+  get paramMap() {
+    if (!this._paramMap) {
+      this._paramMap = convertToParamMap(this.params);
+    }
+
+    return this._paramMap;
+  }
+
+  get queryParamMap() {
+    if (!this._queryParamMap) {
+      this._queryParamMap = convertToParamMap(this.queryParams);
+    }
+
+    return this._queryParamMap;
+  }
+
+  toString() {
+    const url = this.url.map(segment => segment.toString()).join('/');
+    const matched = this.routeConfig ? this.routeConfig.path : '';
+    return `Route(url:'${url}', path:'${matched}')`;
+  }
+
+}
+/**
+ * @description
+ *
+ * Represents the state of the router at a moment in time.
+ *
+ * This is a tree of activated route snapshots. Every node in this tree knows about
+ * the "consumed" URL segments, the extracted parameters, and the resolved data.
+ *
+ * The following example shows how a component is initialized with information
+ * from the snapshot of the root node's state at the time of creation.
+ *
+ * ```
+ * @Component({templateUrl:'template.html'})
+ * class MyComponent {
+ *   constructor(router: Router) {
+ *     const state: RouterState = router.routerState;
+ *     const snapshot: RouterStateSnapshot = state.snapshot;
+ *     const root: ActivatedRouteSnapshot = snapshot.root;
+ *     const child = root.firstChild;
+ *     const id: Observable<string> = child.params.map(p => p.id);
+ *     //...
+ *   }
+ * }
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class RouterStateSnapshot extends Tree {
+  /** @internal */
+  constructor(
+  /** The url from which this snapshot was created */
+  url, root) {
+    super(root);
+    this.url = url;
+    setRouterState(this, root);
+  }
+
+  toString() {
+    return serializeNode(this._root);
+  }
+
+}
+
+function setRouterState(state, node) {
+  node.value._routerState = state;
+  node.children.forEach(c => setRouterState(state, c));
+}
+
+function serializeNode(node) {
+  const c = node.children.length > 0 ? ` { ${node.children.map(serializeNode).join(', ')} } ` : '';
+  return `${node.value}${c}`;
+}
+/**
+ * The expectation is that the activate route is created with the right set of parameters.
+ * So we push new values into the observables only when they are not the initial values.
+ * And we detect that by checking if the snapshot field is set.
+ */
+
+
+function advanceActivatedRoute(route) {
+  if (route.snapshot) {
+    const currentSnapshot = route.snapshot;
+    const nextSnapshot = route._futureSnapshot;
+    route.snapshot = nextSnapshot;
+
+    if (!shallowEqual(currentSnapshot.queryParams, nextSnapshot.queryParams)) {
+      route.queryParams.next(nextSnapshot.queryParams);
+    }
+
+    if (currentSnapshot.fragment !== nextSnapshot.fragment) {
+      route.fragment.next(nextSnapshot.fragment);
+    }
+
+    if (!shallowEqual(currentSnapshot.params, nextSnapshot.params)) {
+      route.params.next(nextSnapshot.params);
+    }
+
+    if (!shallowEqualArrays(currentSnapshot.url, nextSnapshot.url)) {
+      route.url.next(nextSnapshot.url);
+    }
+
+    if (!shallowEqual(currentSnapshot.data, nextSnapshot.data)) {
+      route.data.next(nextSnapshot.data);
+    }
+  } else {
+    route.snapshot = route._futureSnapshot; // this is for resolved data
+
+    route.data.next(route._futureSnapshot.data);
+  }
+}
+
+function equalParamsAndUrlSegments(a, b) {
+  const equalUrlParams = shallowEqual(a.params, b.params) && equalSegments(a.url, b.url);
+  const parentsMismatch = !a.parent !== !b.parent;
+  return equalUrlParams && !parentsMismatch && (!a.parent || equalParamsAndUrlSegments(a.parent, b.parent));
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function createRouterState(routeReuseStrategy, curr, prevState) {
+  const root = createNode(routeReuseStrategy, curr._root, prevState ? prevState._root : undefined);
+  return new RouterState(root, curr);
+}
+
+function createNode(routeReuseStrategy, curr, prevState) {
+  // reuse an activated route that is currently displayed on the screen
+  if (prevState && routeReuseStrategy.shouldReuseRoute(curr.value, prevState.value.snapshot)) {
+    const value = prevState.value;
+    value._futureSnapshot = curr.value;
+    const children = createOrReuseChildren(routeReuseStrategy, curr, prevState);
+    return new TreeNode(value, children);
+  } else {
+    if (routeReuseStrategy.shouldAttach(curr.value)) {
+      // retrieve an activated route that is used to be displayed, but is not currently displayed
+      const detachedRouteHandle = routeReuseStrategy.retrieve(curr.value);
+
+      if (detachedRouteHandle !== null) {
+        const tree = detachedRouteHandle.route;
+        tree.value._futureSnapshot = curr.value;
+        tree.children = curr.children.map(c => createNode(routeReuseStrategy, c));
+        return tree;
+      }
+    }
+
+    const value = createActivatedRoute(curr.value);
+    const children = curr.children.map(c => createNode(routeReuseStrategy, c));
+    return new TreeNode(value, children);
+  }
+}
+
+function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
+  return curr.children.map(child => {
+    for (const p of prevState.children) {
+      if (routeReuseStrategy.shouldReuseRoute(child.value, p.value.snapshot)) {
+        return createNode(routeReuseStrategy, child, p);
+      }
+    }
+
+    return createNode(routeReuseStrategy, child);
+  });
+}
+
+function createActivatedRoute(c) {
+  return new ActivatedRoute(new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.url), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.params), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.queryParams), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.fragment), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.data), c.outlet, c.component, c);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function createUrlTree(route, urlTree, commands, queryParams, fragment) {
+  if (commands.length === 0) {
+    return tree(urlTree.root, urlTree.root, urlTree.root, queryParams, fragment);
+  }
+
+  const nav = computeNavigation(commands);
+
+  if (nav.toRoot()) {
+    return tree(urlTree.root, urlTree.root, new UrlSegmentGroup([], {}), queryParams, fragment);
+  }
+
+  const startingPosition = findStartingPosition(nav, urlTree, route);
+  const segmentGroup = startingPosition.processChildren ? updateSegmentGroupChildren(startingPosition.segmentGroup, startingPosition.index, nav.commands) : updateSegmentGroup(startingPosition.segmentGroup, startingPosition.index, nav.commands);
+  return tree(urlTree.root, startingPosition.segmentGroup, segmentGroup, queryParams, fragment);
+}
+
+function isMatrixParams(command) {
+  return typeof command === 'object' && command != null && !command.outlets && !command.segmentPath;
+}
+/**
+ * Determines if a given command has an `outlets` map. When we encounter a command
+ * with an outlets k/v map, we need to apply each outlet individually to the existing segment.
+ */
+
+
+function isCommandWithOutlets(command) {
+  return typeof command === 'object' && command != null && command.outlets;
+}
+
+function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment) {
+  let qp = {};
+
+  if (queryParams) {
+    forEach(queryParams, (value, name) => {
+      qp[name] = Array.isArray(value) ? value.map(v => `${v}`) : `${value}`;
+    });
+  }
+
+  if (oldRoot === oldSegmentGroup) {
+    return new UrlTree(newSegmentGroup, qp, fragment);
+  }
+
+  const newRoot = replaceSegment(oldRoot, oldSegmentGroup, newSegmentGroup);
+  return new UrlTree(newRoot, qp, fragment);
+}
+
+function replaceSegment(current, oldSegment, newSegment) {
+  const children = {};
+  forEach(current.children, (c, outletName) => {
+    if (c === oldSegment) {
+      children[outletName] = newSegment;
+    } else {
+      children[outletName] = replaceSegment(c, oldSegment, newSegment);
+    }
+  });
+  return new UrlSegmentGroup(current.segments, children);
+}
+
+class Navigation {
+  constructor(isAbsolute, numberOfDoubleDots, commands) {
+    this.isAbsolute = isAbsolute;
+    this.numberOfDoubleDots = numberOfDoubleDots;
+    this.commands = commands;
+
+    if (isAbsolute && commands.length > 0 && isMatrixParams(commands[0])) {
+      throw new Error('Root segment cannot have matrix parameters');
+    }
+
+    const cmdWithOutlet = commands.find(isCommandWithOutlets);
+
+    if (cmdWithOutlet && cmdWithOutlet !== last(commands)) {
+      throw new Error('{outlets:{}} has to be the last command');
+    }
+  }
+
+  toRoot() {
+    return this.isAbsolute && this.commands.length === 1 && this.commands[0] == '/';
+  }
+
+}
+/** Transforms commands to a normalized `Navigation` */
+
+
+function computeNavigation(commands) {
+  if (typeof commands[0] === 'string' && commands.length === 1 && commands[0] === '/') {
+    return new Navigation(true, 0, commands);
+  }
+
+  let numberOfDoubleDots = 0;
+  let isAbsolute = false;
+  const res = commands.reduce((res, cmd, cmdIdx) => {
+    if (typeof cmd === 'object' && cmd != null) {
+      if (cmd.outlets) {
+        const outlets = {};
+        forEach(cmd.outlets, (commands, name) => {
+          outlets[name] = typeof commands === 'string' ? commands.split('/') : commands;
+        });
+        return [...res, {
+          outlets
+        }];
+      }
+
+      if (cmd.segmentPath) {
+        return [...res, cmd.segmentPath];
+      }
+    }
+
+    if (!(typeof cmd === 'string')) {
+      return [...res, cmd];
+    }
+
+    if (cmdIdx === 0) {
+      cmd.split('/').forEach((urlPart, partIndex) => {
+        if (partIndex == 0 && urlPart === '.') {// skip './a'
+        } else if (partIndex == 0 && urlPart === '') {
+          //  '/a'
+          isAbsolute = true;
+        } else if (urlPart === '..') {
+          //  '../a'
+          numberOfDoubleDots++;
+        } else if (urlPart != '') {
+          res.push(urlPart);
+        }
+      });
+      return res;
+    }
+
+    return [...res, cmd];
+  }, []);
+  return new Navigation(isAbsolute, numberOfDoubleDots, res);
+}
+
+class Position {
+  constructor(segmentGroup, processChildren, index) {
+    this.segmentGroup = segmentGroup;
+    this.processChildren = processChildren;
+    this.index = index;
+  }
+
+}
+
+function findStartingPosition(nav, tree, route) {
+  if (nav.isAbsolute) {
+    return new Position(tree.root, true, 0);
+  }
+
+  if (route.snapshot._lastPathIndex === -1) {
+    const segmentGroup = route.snapshot._urlSegment; // Pathless ActivatedRoute has _lastPathIndex === -1 but should not process children
+    // see issue #26224, #13011, #35687
+    // However, if the ActivatedRoute is the root we should process children like above.
+
+    const processChildren = segmentGroup === tree.root;
+    return new Position(segmentGroup, processChildren, 0);
+  }
+
+  const modifier = isMatrixParams(nav.commands[0]) ? 0 : 1;
+  const index = route.snapshot._lastPathIndex + modifier;
+  return createPositionApplyingDoubleDots(route.snapshot._urlSegment, index, nav.numberOfDoubleDots);
+}
+
+function createPositionApplyingDoubleDots(group, index, numberOfDoubleDots) {
+  let g = group;
+  let ci = index;
+  let dd = numberOfDoubleDots;
+
+  while (dd > ci) {
+    dd -= ci;
+    g = g.parent;
+
+    if (!g) {
+      throw new Error('Invalid number of \'../\'');
+    }
+
+    ci = g.segments.length;
+  }
+
+  return new Position(g, false, ci - dd);
+}
+
+function getOutlets(commands) {
+  if (isCommandWithOutlets(commands[0])) {
+    return commands[0].outlets;
+  }
+
+  return {
+    [PRIMARY_OUTLET]: commands
+  };
+}
+
+function updateSegmentGroup(segmentGroup, startIndex, commands) {
+  if (!segmentGroup) {
+    segmentGroup = new UrlSegmentGroup([], {});
+  }
+
+  if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
+    return updateSegmentGroupChildren(segmentGroup, startIndex, commands);
+  }
+
+  const m = prefixedWith(segmentGroup, startIndex, commands);
+  const slicedCommands = commands.slice(m.commandIndex);
+
+  if (m.match && m.pathIndex < segmentGroup.segments.length) {
+    const g = new UrlSegmentGroup(segmentGroup.segments.slice(0, m.pathIndex), {});
+    g.children[PRIMARY_OUTLET] = new UrlSegmentGroup(segmentGroup.segments.slice(m.pathIndex), segmentGroup.children);
+    return updateSegmentGroupChildren(g, 0, slicedCommands);
+  } else if (m.match && slicedCommands.length === 0) {
+    return new UrlSegmentGroup(segmentGroup.segments, {});
+  } else if (m.match && !segmentGroup.hasChildren()) {
+    return createNewSegmentGroup(segmentGroup, startIndex, commands);
+  } else if (m.match) {
+    return updateSegmentGroupChildren(segmentGroup, 0, slicedCommands);
+  } else {
+    return createNewSegmentGroup(segmentGroup, startIndex, commands);
+  }
+}
+
+function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
+  if (commands.length === 0) {
+    return new UrlSegmentGroup(segmentGroup.segments, {});
+  } else {
+    const outlets = getOutlets(commands);
+    const children = {};
+    forEach(outlets, (commands, outlet) => {
+      if (typeof commands === 'string') {
+        commands = [commands];
+      }
+
+      if (commands !== null) {
+        children[outlet] = updateSegmentGroup(segmentGroup.children[outlet], startIndex, commands);
+      }
+    });
+    forEach(segmentGroup.children, (child, childOutlet) => {
+      if (outlets[childOutlet] === undefined) {
+        children[childOutlet] = child;
+      }
+    });
+    return new UrlSegmentGroup(segmentGroup.segments, children);
+  }
+}
+
+function prefixedWith(segmentGroup, startIndex, commands) {
+  let currentCommandIndex = 0;
+  let currentPathIndex = startIndex;
+  const noMatch = {
+    match: false,
+    pathIndex: 0,
+    commandIndex: 0
+  };
+
+  while (currentPathIndex < segmentGroup.segments.length) {
+    if (currentCommandIndex >= commands.length) return noMatch;
+    const path = segmentGroup.segments[currentPathIndex];
+    const command = commands[currentCommandIndex]; // Do not try to consume command as part of the prefixing if it has outlets because it can
+    // contain outlets other than the one being processed. Consuming the outlets command would
+    // result in other outlets being ignored.
+
+    if (isCommandWithOutlets(command)) {
+      break;
+    }
+
+    const curr = `${command}`;
+    const next = currentCommandIndex < commands.length - 1 ? commands[currentCommandIndex + 1] : null;
+    if (currentPathIndex > 0 && curr === undefined) break;
+
+    if (curr && next && typeof next === 'object' && next.outlets === undefined) {
+      if (!compare(curr, next, path)) return noMatch;
+      currentCommandIndex += 2;
+    } else {
+      if (!compare(curr, {}, path)) return noMatch;
+      currentCommandIndex++;
+    }
+
+    currentPathIndex++;
+  }
+
+  return {
+    match: true,
+    pathIndex: currentPathIndex,
+    commandIndex: currentCommandIndex
+  };
+}
+
+function createNewSegmentGroup(segmentGroup, startIndex, commands) {
+  const paths = segmentGroup.segments.slice(0, startIndex);
+  let i = 0;
+
+  while (i < commands.length) {
+    const command = commands[i];
+
+    if (isCommandWithOutlets(command)) {
+      const children = createNewSegmentChildren(command.outlets);
+      return new UrlSegmentGroup(paths, children);
+    } // if we start with an object literal, we need to reuse the path part from the segment
+
+
+    if (i === 0 && isMatrixParams(commands[0])) {
+      const p = segmentGroup.segments[startIndex];
+      paths.push(new UrlSegment(p.path, stringify(commands[0])));
+      i++;
+      continue;
+    }
+
+    const curr = isCommandWithOutlets(command) ? command.outlets[PRIMARY_OUTLET] : `${command}`;
+    const next = i < commands.length - 1 ? commands[i + 1] : null;
+
+    if (curr && next && isMatrixParams(next)) {
+      paths.push(new UrlSegment(curr, stringify(next)));
+      i += 2;
+    } else {
+      paths.push(new UrlSegment(curr, {}));
+      i++;
+    }
+  }
+
+  return new UrlSegmentGroup(paths, {});
+}
+
+function createNewSegmentChildren(outlets) {
+  const children = {};
+  forEach(outlets, (commands, outlet) => {
+    if (typeof commands === 'string') {
+      commands = [commands];
+    }
+
+    if (commands !== null) {
+      children[outlet] = createNewSegmentGroup(new UrlSegmentGroup([], {}), 0, commands);
+    }
+  });
+  return children;
+}
+
+function stringify(params) {
+  const res = {};
+  forEach(params, (v, k) => res[k] = `${v}`);
+  return res;
+}
+
+function compare(path, params, segment) {
+  return path == segment.path && shallowEqual(params, segment.parameters);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+const activateRoutes = (rootContexts, routeReuseStrategy, forwardEvent) => (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
+  new ActivateRoutes(routeReuseStrategy, t.targetRouterState, t.currentRouterState, forwardEvent).activate(rootContexts);
+  return t;
+});
+
+class ActivateRoutes {
+  constructor(routeReuseStrategy, futureState, currState, forwardEvent) {
+    this.routeReuseStrategy = routeReuseStrategy;
+    this.futureState = futureState;
+    this.currState = currState;
+    this.forwardEvent = forwardEvent;
+  }
+
+  activate(parentContexts) {
+    const futureRoot = this.futureState._root;
+    const currRoot = this.currState ? this.currState._root : null;
+    this.deactivateChildRoutes(futureRoot, currRoot, parentContexts);
+    advanceActivatedRoute(this.futureState.root);
+    this.activateChildRoutes(futureRoot, currRoot, parentContexts);
+  } // De-activate the child route that are not re-used for the future state
+
+
+  deactivateChildRoutes(futureNode, currNode, contexts) {
+    const children = nodeChildrenAsMap(currNode); // Recurse on the routes active in the future state to de-activate deeper children
+
+    futureNode.children.forEach(futureChild => {
+      const childOutletName = futureChild.value.outlet;
+      this.deactivateRoutes(futureChild, children[childOutletName], contexts);
+      delete children[childOutletName];
+    }); // De-activate the routes that will not be re-used
+
+    forEach(children, (v, childName) => {
+      this.deactivateRouteAndItsChildren(v, contexts);
+    });
+  }
+
+  deactivateRoutes(futureNode, currNode, parentContext) {
+    const future = futureNode.value;
+    const curr = currNode ? currNode.value : null;
+
+    if (future === curr) {
+      // Reusing the node, check to see if the children need to be de-activated
+      if (future.component) {
+        // If we have a normal route, we need to go through an outlet.
+        const context = parentContext.getContext(future.outlet);
+
+        if (context) {
+          this.deactivateChildRoutes(futureNode, currNode, context.children);
+        }
+      } else {
+        // if we have a componentless route, we recurse but keep the same outlet map.
+        this.deactivateChildRoutes(futureNode, currNode, parentContext);
+      }
+    } else {
+      if (curr) {
+        // Deactivate the current route which will not be re-used
+        this.deactivateRouteAndItsChildren(currNode, parentContext);
+      }
+    }
+  }
+
+  deactivateRouteAndItsChildren(route, parentContexts) {
+    // If there is no component, the Route is never attached to an outlet (because there is no
+    // component to attach).
+    if (route.value.component && this.routeReuseStrategy.shouldDetach(route.value.snapshot)) {
+      this.detachAndStoreRouteSubtree(route, parentContexts);
+    } else {
+      this.deactivateRouteAndOutlet(route, parentContexts);
+    }
+  }
+
+  detachAndStoreRouteSubtree(route, parentContexts) {
+    const context = parentContexts.getContext(route.value.outlet);
+    const contexts = context && route.value.component ? context.children : parentContexts;
+    const children = nodeChildrenAsMap(route);
+
+    for (const childOutlet of Object.keys(children)) {
+      this.deactivateRouteAndItsChildren(children[childOutlet], contexts);
+    }
+
+    if (context && context.outlet) {
+      const componentRef = context.outlet.detach();
+      const contexts = context.children.onOutletDeactivated();
+      this.routeReuseStrategy.store(route.value.snapshot, {
+        componentRef,
+        route,
+        contexts
+      });
+    }
+  }
+
+  deactivateRouteAndOutlet(route, parentContexts) {
+    const context = parentContexts.getContext(route.value.outlet); // The context could be `null` if we are on a componentless route but there may still be
+    // children that need deactivating.
+
+    const contexts = context && route.value.component ? context.children : parentContexts;
+    const children = nodeChildrenAsMap(route);
+
+    for (const childOutlet of Object.keys(children)) {
+      this.deactivateRouteAndItsChildren(children[childOutlet], contexts);
+    }
+
+    if (context && context.outlet) {
+      // Destroy the component
+      context.outlet.deactivate(); // Destroy the contexts for all the outlets that were in the component
+
+      context.children.onOutletDeactivated(); // Clear the information about the attached component on the context but keep the reference to
+      // the outlet.
+
+      context.attachRef = null;
+      context.resolver = null;
+      context.route = null;
+    }
+  }
+
+  activateChildRoutes(futureNode, currNode, contexts) {
+    const children = nodeChildrenAsMap(currNode);
+    futureNode.children.forEach(c => {
+      this.activateRoutes(c, children[c.value.outlet], contexts);
+      this.forwardEvent(new ActivationEnd(c.value.snapshot));
+    });
+
+    if (futureNode.children.length) {
+      this.forwardEvent(new ChildActivationEnd(futureNode.value.snapshot));
+    }
+  }
+
+  activateRoutes(futureNode, currNode, parentContexts) {
+    const future = futureNode.value;
+    const curr = currNode ? currNode.value : null;
+    advanceActivatedRoute(future); // reusing the node
+
+    if (future === curr) {
+      if (future.component) {
+        // If we have a normal route, we need to go through an outlet.
+        const context = parentContexts.getOrCreateContext(future.outlet);
+        this.activateChildRoutes(futureNode, currNode, context.children);
+      } else {
+        // if we have a componentless route, we recurse but keep the same outlet map.
+        this.activateChildRoutes(futureNode, currNode, parentContexts);
+      }
+    } else {
+      if (future.component) {
+        // if we have a normal route, we need to place the component into the outlet and recurse.
+        const context = parentContexts.getOrCreateContext(future.outlet);
+
+        if (this.routeReuseStrategy.shouldAttach(future.snapshot)) {
+          const stored = this.routeReuseStrategy.retrieve(future.snapshot);
+          this.routeReuseStrategy.store(future.snapshot, null);
+          context.children.onOutletReAttached(stored.contexts);
+          context.attachRef = stored.componentRef;
+          context.route = stored.route.value;
+
+          if (context.outlet) {
+            // Attach right away when the outlet has already been instantiated
+            // Otherwise attach from `RouterOutlet.ngOnInit` when it is instantiated
+            context.outlet.attach(stored.componentRef, stored.route.value);
+          }
+
+          advanceActivatedRoute(stored.route.value);
+          this.activateChildRoutes(futureNode, null, context.children);
+        } else {
+          const config = parentLoadedConfig(future.snapshot);
+          const cmpFactoryResolver = config ? config.module.componentFactoryResolver : null;
+          context.attachRef = null;
+          context.route = future;
+          context.resolver = cmpFactoryResolver;
+
+          if (context.outlet) {
+            // Activate the outlet when it has already been instantiated
+            // Otherwise it will get activated from its `ngOnInit` when instantiated
+            context.outlet.activateWith(future, cmpFactoryResolver);
+          }
+
+          this.activateChildRoutes(futureNode, null, context.children);
+        }
+      } else {
+        // if we have a componentless route, we recurse but keep the same outlet map.
+        this.activateChildRoutes(futureNode, null, parentContexts);
+      }
+    }
+  }
+
+}
+
+function parentLoadedConfig(snapshot) {
+  for (let s = snapshot.parent; s; s = s.parent) {
+    const route = s.routeConfig;
+    if (route && route._loadedConfig) return route._loadedConfig;
+    if (route && route.component) return null;
+  }
+
+  return null;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+class LoadedRouterConfig {
+  constructor(routes, module) {
+    this.routes = routes;
+    this.module = module;
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Simple function check, but generic so type inference will flow. Example:
+ *
+ * function product(a: number, b: number) {
+ *   return a * b;
+ * }
+ *
+ * if (isFunction<product>(fn)) {
+ *   return fn(1, 2);
+ * } else {
+ *   throw "Must provide the `product` function";
+ * }
+ */
+
+
+function isFunction(v) {
+  return typeof v === 'function';
+}
+
+function isBoolean(v) {
+  return typeof v === 'boolean';
+}
+
+function isUrlTree(v) {
+  return v instanceof UrlTree;
+}
+
+function isCanLoad(guard) {
+  return guard && isFunction(guard.canLoad);
+}
+
+function isCanActivate(guard) {
+  return guard && isFunction(guard.canActivate);
+}
+
+function isCanActivateChild(guard) {
+  return guard && isFunction(guard.canActivateChild);
+}
+
+function isCanDeactivate(guard) {
+  return guard && isFunction(guard.canDeactivate);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+const INITIAL_VALUE = Symbol('INITIAL_VALUE');
+
+function prioritizedGuardValue() {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(obs => {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.combineLatest)(obs.map(o => o.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.take)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.startWith)(INITIAL_VALUE)))).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.scan)((acc, list) => {
+      let isPending = false;
+      return list.reduce((innerAcc, val, i) => {
+        if (innerAcc !== INITIAL_VALUE) return innerAcc; // Toggle pending flag if any values haven't been set yet
+
+        if (val === INITIAL_VALUE) isPending = true; // Any other return values are only valid if we haven't yet hit a pending
+        // call. This guarantees that in the case of a guard at the bottom of the
+        // tree that returns a redirect, we will wait for the higher priority
+        // guard at the top to finish before performing the redirect.
+
+        if (!isPending) {
+          // Early return when we hit a `false` value as that should always
+          // cancel navigation
+          if (val === false) return val;
+
+          if (i === list.length - 1 || isUrlTree(val)) {
+            return val;
+          }
+        }
+
+        return innerAcc;
+      }, acc);
+    }, INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(item => item !== INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(item => isUrlTree(item) ? item : item === true), //
+    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.take)(1));
+  });
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Store contextual information about a `RouterOutlet`
+ *
+ * @publicApi
+ */
+
+
+class OutletContext {
+  constructor() {
+    this.outlet = null;
+    this.route = null;
+    this.resolver = null;
+    this.children = new ChildrenOutletContexts();
+    this.attachRef = null;
+  }
+
+}
+/**
+ * Store contextual information about the children (= nested) `RouterOutlet`
+ *
+ * @publicApi
+ */
+
+
+class ChildrenOutletContexts {
+  constructor() {
+    // contexts for child outlets, by name.
+    this.contexts = new Map();
+  }
+  /** Called when a `RouterOutlet` directive is instantiated */
+
+
+  onChildOutletCreated(childName, outlet) {
+    const context = this.getOrCreateContext(childName);
+    context.outlet = outlet;
+    this.contexts.set(childName, context);
+  }
+  /**
+   * Called when a `RouterOutlet` directive is destroyed.
+   * We need to keep the context as the outlet could be destroyed inside a NgIf and might be
+   * re-created later.
+   */
+
+
+  onChildOutletDestroyed(childName) {
+    const context = this.getContext(childName);
+
+    if (context) {
+      context.outlet = null;
+      context.attachRef = null;
+    }
+  }
+  /**
+   * Called when the corresponding route is deactivated during navigation.
+   * Because the component get destroyed, all children outlet are destroyed.
+   */
+
+
+  onOutletDeactivated() {
+    const contexts = this.contexts;
+    this.contexts = new Map();
+    return contexts;
+  }
+
+  onOutletReAttached(contexts) {
+    this.contexts = contexts;
+  }
+
+  getOrCreateContext(childName) {
+    let context = this.getContext(childName);
+
+    if (!context) {
+      context = new OutletContext();
+      this.contexts.set(childName, context);
+    }
+
+    return context;
+  }
+
+  getContext(childName) {
+    return this.contexts.get(childName) || null;
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @description
+ *
+ * Acts as a placeholder that Angular dynamically fills based on the current router state.
+ *
+ * Each outlet can have a unique name, determined by the optional `name` attribute.
+ * The name cannot be set or changed dynamically. If not set, default value is "primary".
+ *
+ * ```
+ * <router-outlet></router-outlet>
+ * <router-outlet name='left'></router-outlet>
+ * <router-outlet name='right'></router-outlet>
+ * ```
+ *
+ * Named outlets can be the targets of secondary routes.
+ * The `Route` object for a secondary route has an `outlet` property to identify the target outlet:
+ *
+ * `{path: <base-path>, component: <component>, outlet: <target_outlet_name>}`
+ *
+ * Using named outlets and secondary routes, you can target multiple outlets in
+ * the same `RouterLink` directive.
+ *
+ * The router keeps track of separate branches in a navigation tree for each named outlet and
+ * generates a representation of that tree in the URL.
+ * The URL for a secondary route uses the following syntax to specify both the primary and secondary
+ * routes at the same time:
+ *
+ * `http://base-path/primary-route-path(outlet-name:route-path)`
+ *
+ * A router outlet emits an activate event when a new component is instantiated,
+ * deactivate event when a component is destroyed.
+ * An attached event emits when the `RouteReuseStrategy` instructs the outlet to reattach the
+ * subtree, and the detached event emits when the `RouteReuseStrategy` instructs the outlet to
+ * detach the subtree.
+ *
+ * ```
+ * <router-outlet
+ *   (activate)='onActivate($event)'
+ *   (deactivate)='onDeactivate($event)'
+ *   (attach)='onAttach($event)'
+ *   (detach)='onDetach($event)'></router-outlet>
+ * ```
+ *
+ * @see [Routing tutorial](guide/router-tutorial-toh#named-outlets "Example of a named
+ * outlet and secondary route configuration").
+ * @see `RouterLink`
+ * @see `Route`
+ * @ngModule RouterModule
+ *
+ * @publicApi
+ */
+
+
+class RouterOutlet {
+  constructor(parentContexts, location, resolver, name, changeDetector) {
+    this.parentContexts = parentContexts;
+    this.location = location;
+    this.resolver = resolver;
+    this.changeDetector = changeDetector;
+    this.activated = null;
+    this._activatedRoute = null;
+    this.activateEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.deactivateEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    /**
+     * Emits an attached component instance when the `RouteReuseStrategy` instructs to re-attach a
+     * previously detached subtree.
+     **/
+
+    this.attachEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    /**
+     * Emits a detached component instance when the `RouteReuseStrategy` instructs to detach the
+     * subtree.
+     */
+
+    this.detachEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.name = name || PRIMARY_OUTLET;
+    parentContexts.onChildOutletCreated(this.name, this);
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    this.parentContexts.onChildOutletDestroyed(this.name);
+  }
+  /** @nodoc */
+
+
+  ngOnInit() {
+    if (!this.activated) {
+      // If the outlet was not instantiated at the time the route got activated we need to populate
+      // the outlet when it is initialized (ie inside a NgIf)
+      const context = this.parentContexts.getContext(this.name);
+
+      if (context && context.route) {
+        if (context.attachRef) {
+          // `attachRef` is populated when there is an existing component to mount
+          this.attach(context.attachRef, context.route);
+        } else {
+          // otherwise the component defined in the configuration is created
+          this.activateWith(context.route, context.resolver || null);
+        }
+      }
+    }
+  }
+
+  get isActivated() {
+    return !!this.activated;
+  }
+  /**
+   * @returns The currently activated component instance.
+   * @throws An error if the outlet is not activated.
+   */
+
+
+  get component() {
+    if (!this.activated) throw new Error('Outlet is not activated');
+    return this.activated.instance;
+  }
+
+  get activatedRoute() {
+    if (!this.activated) throw new Error('Outlet is not activated');
+    return this._activatedRoute;
+  }
+
+  get activatedRouteData() {
+    if (this._activatedRoute) {
+      return this._activatedRoute.snapshot.data;
+    }
+
+    return {};
+  }
+  /**
+   * Called when the `RouteReuseStrategy` instructs to detach the subtree
+   */
+
+
+  detach() {
+    if (!this.activated) throw new Error('Outlet is not activated');
+    this.location.detach();
+    const cmp = this.activated;
+    this.activated = null;
+    this._activatedRoute = null;
+    this.detachEvents.emit(cmp.instance);
+    return cmp;
+  }
+  /**
+   * Called when the `RouteReuseStrategy` instructs to re-attach a previously detached subtree
+   */
+
+
+  attach(ref, activatedRoute) {
+    this.activated = ref;
+    this._activatedRoute = activatedRoute;
+    this.location.insert(ref.hostView);
+    this.attachEvents.emit(ref.instance);
+  }
+
+  deactivate() {
+    if (this.activated) {
+      const c = this.component;
+      this.activated.destroy();
+      this.activated = null;
+      this._activatedRoute = null;
+      this.deactivateEvents.emit(c);
+    }
+  }
+
+  activateWith(activatedRoute, resolver) {
+    if (this.isActivated) {
+      throw new Error('Cannot activate an already activated outlet');
+    }
+
+    this._activatedRoute = activatedRoute;
+    const snapshot = activatedRoute._futureSnapshot;
+    const component = snapshot.routeConfig.component;
+    resolver = resolver || this.resolver;
+    const factory = resolver.resolveComponentFactory(component);
+    const childContexts = this.parentContexts.getOrCreateContext(this.name).children;
+    const injector = new OutletInjector(activatedRoute, childContexts, this.location.injector);
+    this.activated = this.location.createComponent(factory, this.location.length, injector); // Calling `markForCheck` to make sure we will run the change detection when the
+    // `RouterOutlet` is inside a `ChangeDetectionStrategy.OnPush` component.
+
+    this.changeDetector.markForCheck();
+    this.activateEvents.emit(this.activated.instance);
+  }
+
+}
+
+RouterOutlet.ɵfac = function RouterOutlet_Factory(t) {
+  return new (t || RouterOutlet)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ChildrenOutletContexts), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ComponentFactoryResolver), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectAttribute"]('name'), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef));
+};
+
+RouterOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
+  type: RouterOutlet,
+  selectors: [["router-outlet"]],
+  outputs: {
+    activateEvents: "activate",
+    deactivateEvents: "deactivate",
+    attachEvents: "attach",
+    detachEvents: "detach"
+  },
+  exportAs: ["outlet"]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterOutlet, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
+    args: [{
+      selector: 'router-outlet',
+      exportAs: 'outlet'
+    }]
+  }], function () {
+    return [{
+      type: ChildrenOutletContexts
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ComponentFactoryResolver
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Attribute,
+        args: ['name']
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef
+    }];
+  }, {
+    activateEvents: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output,
+      args: ['activate']
+    }],
+    deactivateEvents: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output,
+      args: ['deactivate']
+    }],
+    attachEvents: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output,
+      args: ['attach']
+    }],
+    detachEvents: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output,
+      args: ['detach']
+    }]
+  });
+})();
+
+class OutletInjector {
+  constructor(route, childContexts, parent) {
+    this.route = route;
+    this.childContexts = childContexts;
+    this.parent = parent;
+  }
+
+  get(token, notFoundValue) {
+    if (token === ActivatedRoute) {
+      return this.route;
+    }
+
+    if (token === ChildrenOutletContexts) {
+      return this.childContexts;
+    }
+
+    return this.parent.get(token, notFoundValue);
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * This component is used internally within the router to be a placeholder when an empty
+ * router-outlet is needed. For example, with a config such as:
+ *
+ * `{path: 'parent', outlet: 'nav', children: [...]}`
+ *
+ * In order to render, there needs to be a component on this config, which will default
+ * to this `EmptyOutletComponent`.
+ */
+
+
+class ɵEmptyOutletComponent {}
+
+ɵEmptyOutletComponent.ɵfac = function ɵEmptyOutletComponent_Factory(t) {
+  return new (t || ɵEmptyOutletComponent)();
+};
+
+ɵEmptyOutletComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+  type: ɵEmptyOutletComponent,
+  selectors: [["ng-component"]],
+  decls: 1,
+  vars: 0,
+  template: function ɵEmptyOutletComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "router-outlet");
+    }
+  },
+  directives: [RouterOutlet],
+  encapsulation: 2
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ɵEmptyOutletComponent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
+    args: [{
+      template: `<router-outlet></router-outlet>`
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function validateConfig(config, parentPath = '') {
+  // forEach doesn't iterate undefined values
+  for (let i = 0; i < config.length; i++) {
+    const route = config[i];
+    const fullPath = getFullPath(parentPath, route);
+    validateNode(route, fullPath);
+  }
+}
+
+function validateNode(route, fullPath) {
+  if (typeof ngDevMode === 'undefined' || ngDevMode) {
+    if (!route) {
+      throw new Error(`
+      Invalid configuration of route '${fullPath}': Encountered undefined route.
+      The reason might be an extra comma.
+
+      Example:
+      const routes: Routes = [
+        { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+        { path: 'dashboard',  component: DashboardComponent },, << two commas
+        { path: 'detail/:id', component: HeroDetailComponent }
+      ];
+    `);
+    }
+
+    if (Array.isArray(route)) {
+      throw new Error(`Invalid configuration of route '${fullPath}': Array cannot be specified`);
+    }
+
+    if (!route.component && !route.children && !route.loadChildren && route.outlet && route.outlet !== PRIMARY_OUTLET) {
+      throw new Error(`Invalid configuration of route '${fullPath}': a componentless route without children or loadChildren cannot have a named outlet set`);
+    }
+
+    if (route.redirectTo && route.children) {
+      throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and children cannot be used together`);
+    }
+
+    if (route.redirectTo && route.loadChildren) {
+      throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and loadChildren cannot be used together`);
+    }
+
+    if (route.children && route.loadChildren) {
+      throw new Error(`Invalid configuration of route '${fullPath}': children and loadChildren cannot be used together`);
+    }
+
+    if (route.redirectTo && route.component) {
+      throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and component cannot be used together`);
+    }
+
+    if (route.redirectTo && route.canActivate) {
+      throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and canActivate cannot be used together. Redirects happen before activation ` + `so canActivate will never be executed.`);
+    }
+
+    if (route.path && route.matcher) {
+      throw new Error(`Invalid configuration of route '${fullPath}': path and matcher cannot be used together`);
+    }
+
+    if (route.redirectTo === void 0 && !route.component && !route.children && !route.loadChildren) {
+      throw new Error(`Invalid configuration of route '${fullPath}'. One of the following must be provided: component, redirectTo, children or loadChildren`);
+    }
+
+    if (route.path === void 0 && route.matcher === void 0) {
+      throw new Error(`Invalid configuration of route '${fullPath}': routes must have either a path or a matcher specified`);
+    }
+
+    if (typeof route.path === 'string' && route.path.charAt(0) === '/') {
+      throw new Error(`Invalid configuration of route '${fullPath}': path cannot start with a slash`);
+    }
+
+    if (route.path === '' && route.redirectTo !== void 0 && route.pathMatch === void 0) {
+      const exp = `The default value of 'pathMatch' is 'prefix', but often the intent is to use 'full'.`;
+      throw new Error(`Invalid configuration of route '{path: "${fullPath}", redirectTo: "${route.redirectTo}"}': please provide 'pathMatch'. ${exp}`);
+    }
+
+    if (route.pathMatch !== void 0 && route.pathMatch !== 'full' && route.pathMatch !== 'prefix') {
+      throw new Error(`Invalid configuration of route '${fullPath}': pathMatch can only be set to 'prefix' or 'full'`);
+    }
+  }
+
+  if (route.children) {
+    validateConfig(route.children, fullPath);
+  }
+}
+
+function getFullPath(parentPath, currentRoute) {
+  if (!currentRoute) {
+    return parentPath;
+  }
+
+  if (!parentPath && !currentRoute.path) {
+    return '';
+  } else if (parentPath && !currentRoute.path) {
+    return `${parentPath}/`;
+  } else if (!parentPath && currentRoute.path) {
+    return currentRoute.path;
+  } else {
+    return `${parentPath}/${currentRoute.path}`;
+  }
+}
+/**
+ * Makes a copy of the config and adds any default required properties.
+ */
+
+
+function standardizeConfig(r) {
+  const children = r.children && r.children.map(standardizeConfig);
+  const c = children ? Object.assign(Object.assign({}, r), {
+    children
+  }) : Object.assign({}, r);
+
+  if (!c.component && (children || c.loadChildren) && c.outlet && c.outlet !== PRIMARY_OUTLET) {
+    c.component = ɵEmptyOutletComponent;
+  }
+
+  return c;
+}
+/** Returns the `route.outlet` or PRIMARY_OUTLET if none exists. */
+
+
+function getOutlet(route) {
+  return route.outlet || PRIMARY_OUTLET;
+}
+/**
+ * Sorts the `routes` such that the ones with an outlet matching `outletName` come first.
+ * The order of the configs is otherwise preserved.
+ */
+
+
+function sortByMatchingOutlets(routes, outletName) {
+  const sortedConfig = routes.filter(r => getOutlet(r) === outletName);
+  sortedConfig.push(...routes.filter(r => getOutlet(r) !== outletName));
+  return sortedConfig;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+const noMatch$1 = {
+  matched: false,
+  consumedSegments: [],
+  remainingSegments: [],
+  parameters: {},
+  positionalParamSegments: {}
+};
+
+function match(segmentGroup, route, segments) {
+  var _a;
+
+  if (route.path === '') {
+    if (route.pathMatch === 'full' && (segmentGroup.hasChildren() || segments.length > 0)) {
+      return Object.assign({}, noMatch$1);
+    }
+
+    return {
+      matched: true,
+      consumedSegments: [],
+      remainingSegments: segments,
+      parameters: {},
+      positionalParamSegments: {}
+    };
+  }
+
+  const matcher = route.matcher || defaultUrlMatcher;
+  const res = matcher(segments, segmentGroup, route);
+  if (!res) return Object.assign({}, noMatch$1);
+  const posParams = {};
+  forEach(res.posParams, (v, k) => {
+    posParams[k] = v.path;
+  });
+  const parameters = res.consumed.length > 0 ? Object.assign(Object.assign({}, posParams), res.consumed[res.consumed.length - 1].parameters) : posParams;
+  return {
+    matched: true,
+    consumedSegments: res.consumed,
+    remainingSegments: segments.slice(res.consumed.length),
+    // TODO(atscott): investigate combining parameters and positionalParamSegments
+    parameters,
+    positionalParamSegments: (_a = res.posParams) !== null && _a !== void 0 ? _a : {}
+  };
+}
+
+function split(segmentGroup, consumedSegments, slicedSegments, config, relativeLinkResolution = 'corrected') {
+  if (slicedSegments.length > 0 && containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, config)) {
+    const s = new UrlSegmentGroup(consumedSegments, createChildrenForEmptyPaths(segmentGroup, consumedSegments, config, new UrlSegmentGroup(slicedSegments, segmentGroup.children)));
+    s._sourceSegment = segmentGroup;
+    s._segmentIndexShift = consumedSegments.length;
+    return {
+      segmentGroup: s,
+      slicedSegments: []
+    };
+  }
+
+  if (slicedSegments.length === 0 && containsEmptyPathMatches(segmentGroup, slicedSegments, config)) {
+    const s = new UrlSegmentGroup(segmentGroup.segments, addEmptyPathsToChildrenIfNeeded(segmentGroup, consumedSegments, slicedSegments, config, segmentGroup.children, relativeLinkResolution));
+    s._sourceSegment = segmentGroup;
+    s._segmentIndexShift = consumedSegments.length;
+    return {
+      segmentGroup: s,
+      slicedSegments
+    };
+  }
+
+  const s = new UrlSegmentGroup(segmentGroup.segments, segmentGroup.children);
+  s._sourceSegment = segmentGroup;
+  s._segmentIndexShift = consumedSegments.length;
+  return {
+    segmentGroup: s,
+    slicedSegments
+  };
+}
+
+function addEmptyPathsToChildrenIfNeeded(segmentGroup, consumedSegments, slicedSegments, routes, children, relativeLinkResolution) {
+  const res = {};
+
+  for (const r of routes) {
+    if (emptyPathMatch(segmentGroup, slicedSegments, r) && !children[getOutlet(r)]) {
+      const s = new UrlSegmentGroup([], {});
+      s._sourceSegment = segmentGroup;
+
+      if (relativeLinkResolution === 'legacy') {
+        s._segmentIndexShift = segmentGroup.segments.length;
+      } else {
+        s._segmentIndexShift = consumedSegments.length;
+      }
+
+      res[getOutlet(r)] = s;
+    }
+  }
+
+  return Object.assign(Object.assign({}, children), res);
+}
+
+function createChildrenForEmptyPaths(segmentGroup, consumedSegments, routes, primarySegment) {
+  const res = {};
+  res[PRIMARY_OUTLET] = primarySegment;
+  primarySegment._sourceSegment = segmentGroup;
+  primarySegment._segmentIndexShift = consumedSegments.length;
+
+  for (const r of routes) {
+    if (r.path === '' && getOutlet(r) !== PRIMARY_OUTLET) {
+      const s = new UrlSegmentGroup([], {});
+      s._sourceSegment = segmentGroup;
+      s._segmentIndexShift = consumedSegments.length;
+      res[getOutlet(r)] = s;
+    }
+  }
+
+  return res;
+}
+
+function containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, routes) {
+  return routes.some(r => emptyPathMatch(segmentGroup, slicedSegments, r) && getOutlet(r) !== PRIMARY_OUTLET);
+}
+
+function containsEmptyPathMatches(segmentGroup, slicedSegments, routes) {
+  return routes.some(r => emptyPathMatch(segmentGroup, slicedSegments, r));
+}
+
+function emptyPathMatch(segmentGroup, slicedSegments, r) {
+  if ((segmentGroup.hasChildren() || slicedSegments.length > 0) && r.pathMatch === 'full') {
+    return false;
+  }
+
+  return r.path === '';
+}
+/**
+ * Determines if `route` is a path match for the `rawSegment`, `segments`, and `outlet` without
+ * verifying that its children are a full match for the remainder of the `rawSegment` children as
+ * well.
+ */
+
+
+function isImmediateMatch(route, rawSegment, segments, outlet) {
+  // We allow matches to empty paths when the outlets differ so we can match a url like `/(b:b)` to
+  // a config like
+  // * `{path: '', children: [{path: 'b', outlet: 'b'}]}`
+  // or even
+  // * `{path: '', outlet: 'a', children: [{path: 'b', outlet: 'b'}]`
+  //
+  // The exception here is when the segment outlet is for the primary outlet. This would
+  // result in a match inside the named outlet because all children there are written as primary
+  // outlets. So we need to prevent child named outlet matches in a url like `/b` in a config like
+  // * `{path: '', outlet: 'x' children: [{path: 'b'}]}`
+  // This should only match if the url is `/(x:b)`.
+  if (getOutlet(route) !== outlet && (outlet === PRIMARY_OUTLET || !emptyPathMatch(rawSegment, segments, route))) {
+    return false;
+  }
+
+  if (route.path === '**') {
+    return true;
+  }
+
+  return match(rawSegment, route, segments).matched;
+}
+
+function noLeftoversInUrl(segmentGroup, segments, outlet) {
+  return segments.length === 0 && !segmentGroup.children[outlet];
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+class NoMatch$1 {
+  constructor(segmentGroup) {
+    this.segmentGroup = segmentGroup || null;
+  }
+
+}
+
+class AbsoluteRedirect {
+  constructor(urlTree) {
+    this.urlTree = urlTree;
+  }
+
+}
+
+function noMatch(segmentGroup) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new NoMatch$1(segmentGroup));
+}
+
+function absoluteRedirect(newTree) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new AbsoluteRedirect(newTree));
+}
+
+function namedOutletsRedirect(redirectTo) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new Error(`Only absolute redirects can have named outlets. redirectTo: '${redirectTo}'`));
+}
+
+function canLoadFails(route) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(navigationCancelingError(`Cannot load children because the guard of the route "path: '${route.path}'" returned false`));
+}
+/**
+ * Returns the `UrlTree` with the redirection applied.
+ *
+ * Lazy modules are loaded along the way.
+ */
+
+
+function applyRedirects$1(moduleInjector, configLoader, urlSerializer, urlTree, config) {
+  return new ApplyRedirects(moduleInjector, configLoader, urlSerializer, urlTree, config).apply();
+}
+
+class ApplyRedirects {
+  constructor(moduleInjector, configLoader, urlSerializer, urlTree, config) {
+    this.configLoader = configLoader;
+    this.urlSerializer = urlSerializer;
+    this.urlTree = urlTree;
+    this.config = config;
+    this.allowRedirects = true;
+    this.ngModule = moduleInjector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
+  }
+
+  apply() {
+    const splitGroup = split(this.urlTree.root, [], [], this.config).segmentGroup; // TODO(atscott): creating a new segment removes the _sourceSegment _segmentIndexShift, which is
+    // only necessary to prevent failures in tests which assert exact object matches. The `split` is
+    // now shared between `applyRedirects` and `recognize` but only the `recognize` step needs these
+    // properties. Before the implementations were merged, the `applyRedirects` would not assign
+    // them. We should be able to remove this logic as a "breaking change" but should do some more
+    // investigation into the failures first.
+
+    const rootSegmentGroup = new UrlSegmentGroup(splitGroup.segments, splitGroup.children);
+    const expanded$ = this.expandSegmentGroup(this.ngModule, this.config, rootSegmentGroup, PRIMARY_OUTLET);
+    const urlTrees$ = expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(rootSegmentGroup => {
+      return this.createUrlTree(squashSegmentGroup(rootSegmentGroup), this.urlTree.queryParams, this.urlTree.fragment);
+    }));
+    return urlTrees$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(e => {
+      if (e instanceof AbsoluteRedirect) {
+        // After an absolute redirect we do not apply any more redirects!
+        // If this implementation changes, update the documentation note in `redirectTo`.
+        this.allowRedirects = false; // we need to run matching, so we can fetch all lazy-loaded modules
+
+        return this.match(e.urlTree);
+      }
+
+      if (e instanceof NoMatch$1) {
+        throw this.noMatchError(e);
+      }
+
+      throw e;
+    }));
+  }
+
+  match(tree) {
+    const expanded$ = this.expandSegmentGroup(this.ngModule, this.config, tree.root, PRIMARY_OUTLET);
+    const mapped$ = expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(rootSegmentGroup => {
+      return this.createUrlTree(squashSegmentGroup(rootSegmentGroup), tree.queryParams, tree.fragment);
+    }));
+    return mapped$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(e => {
+      if (e instanceof NoMatch$1) {
+        throw this.noMatchError(e);
+      }
+
+      throw e;
+    }));
+  }
+
+  noMatchError(e) {
+    return new Error(`Cannot match any routes. URL Segment: '${e.segmentGroup}'`);
+  }
+
+  createUrlTree(rootCandidate, queryParams, fragment) {
+    const root = rootCandidate.segments.length > 0 ? new UrlSegmentGroup([], {
+      [PRIMARY_OUTLET]: rootCandidate
+    }) : rootCandidate;
+    return new UrlTree(root, queryParams, fragment);
+  }
+
+  expandSegmentGroup(ngModule, routes, segmentGroup, outlet) {
+    if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
+      return this.expandChildren(ngModule, routes, segmentGroup).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(children => new UrlSegmentGroup([], children)));
+    }
+
+    return this.expandSegment(ngModule, segmentGroup, routes, segmentGroup.segments, outlet, true);
+  } // Recursively expand segment groups for all the child outlets
+
+
+  expandChildren(ngModule, routes, segmentGroup) {
+    // Expand outlets one at a time, starting with the primary outlet. We need to do it this way
+    // because an absolute redirect from the primary outlet takes precedence.
+    const childOutlets = [];
+
+    for (const child of Object.keys(segmentGroup.children)) {
+      if (child === 'primary') {
+        childOutlets.unshift(child);
+      } else {
+        childOutlets.push(child);
+      }
+    }
+
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(childOutlets).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(childOutlet => {
+      const child = segmentGroup.children[childOutlet]; // Sort the routes so routes with outlets that match the segment appear
+      // first, followed by routes for other outlets, which might match if they have an
+      // empty path.
+
+      const sortedRoutes = sortByMatchingOutlets(routes, childOutlet);
+      return this.expandSegmentGroup(ngModule, sortedRoutes, child, childOutlet).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(s => ({
+        segment: s,
+        outlet: childOutlet
+      })));
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.scan)((children, expandedChild) => {
+      children[expandedChild.outlet] = expandedChild.segment;
+      return children;
+    }, {}), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_14__.last)());
+  }
+
+  expandSegment(ngModule, segmentGroup, routes, segments, outlet, allowRedirects) {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(routes).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(r => {
+      const expanded$ = this.expandSegmentAgainstRoute(ngModule, segmentGroup, routes, r, segments, outlet, allowRedirects);
+      return expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(e => {
+        if (e instanceof NoMatch$1) {
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+        }
+
+        throw e;
+      }));
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)(s => !!s), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)((e, _) => {
+      if (e instanceof rxjs__WEBPACK_IMPORTED_MODULE_16__.EmptyError || e.name === 'EmptyError') {
+        if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup([], {}));
+        }
+
+        return noMatch(segmentGroup);
+      }
+
+      throw e;
+    }));
+  }
+
+  expandSegmentAgainstRoute(ngModule, segmentGroup, routes, route, paths, outlet, allowRedirects) {
+    if (!isImmediateMatch(route, segmentGroup, paths, outlet)) {
+      return noMatch(segmentGroup);
+    }
+
+    if (route.redirectTo === undefined) {
+      return this.matchSegmentAgainstRoute(ngModule, segmentGroup, route, paths, outlet);
+    }
+
+    if (allowRedirects && this.allowRedirects) {
+      return this.expandSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, paths, outlet);
+    }
+
+    return noMatch(segmentGroup);
+  }
+
+  expandSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet) {
+    if (route.path === '**') {
+      return this.expandWildCardWithParamsAgainstRouteUsingRedirect(ngModule, routes, route, outlet);
+    }
+
+    return this.expandRegularSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet);
+  }
+
+  expandWildCardWithParamsAgainstRouteUsingRedirect(ngModule, routes, route, outlet) {
+    const newTree = this.applyRedirectCommands([], route.redirectTo, {});
+
+    if (route.redirectTo.startsWith('/')) {
+      return absoluteRedirect(newTree);
+    }
+
+    return this.lineralizeSegments(route, newTree).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(newSegments => {
+      const group = new UrlSegmentGroup(newSegments, {});
+      return this.expandSegment(ngModule, group, routes, newSegments, outlet, false);
+    }));
+  }
+
+  expandRegularSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet) {
+    const {
+      matched,
+      consumedSegments,
+      remainingSegments,
+      positionalParamSegments
+    } = match(segmentGroup, route, segments);
+    if (!matched) return noMatch(segmentGroup);
+    const newTree = this.applyRedirectCommands(consumedSegments, route.redirectTo, positionalParamSegments);
+
+    if (route.redirectTo.startsWith('/')) {
+      return absoluteRedirect(newTree);
+    }
+
+    return this.lineralizeSegments(route, newTree).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(newSegments => {
+      return this.expandSegment(ngModule, segmentGroup, routes, newSegments.concat(remainingSegments), outlet, false);
+    }));
+  }
+
+  matchSegmentAgainstRoute(ngModule, rawSegmentGroup, route, segments, outlet) {
+    if (route.path === '**') {
+      if (route.loadChildren) {
+        const loaded$ = route._loadedConfig ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(route._loadedConfig) : this.configLoader.load(ngModule.injector, route);
+        return loaded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(cfg => {
+          route._loadedConfig = cfg;
+          return new UrlSegmentGroup(segments, {});
+        }));
+      }
+
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup(segments, {}));
+    }
+
+    const {
+      matched,
+      consumedSegments,
+      remainingSegments
+    } = match(rawSegmentGroup, route, segments);
+    if (!matched) return noMatch(rawSegmentGroup);
+    const childConfig$ = this.getChildConfig(ngModule, route, segments);
+    return childConfig$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(routerConfig => {
+      const childModule = routerConfig.module;
+      const childConfig = routerConfig.routes;
+      const {
+        segmentGroup: splitSegmentGroup,
+        slicedSegments
+      } = split(rawSegmentGroup, consumedSegments, remainingSegments, childConfig); // See comment on the other call to `split` about why this is necessary.
+
+      const segmentGroup = new UrlSegmentGroup(splitSegmentGroup.segments, splitSegmentGroup.children);
+
+      if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
+        const expanded$ = this.expandChildren(childModule, childConfig, segmentGroup);
+        return expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(children => new UrlSegmentGroup(consumedSegments, children)));
+      }
+
+      if (childConfig.length === 0 && slicedSegments.length === 0) {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup(consumedSegments, {}));
+      }
+
+      const matchedOnOutlet = getOutlet(route) === outlet;
+      const expanded$ = this.expandSegment(childModule, segmentGroup, childConfig, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet, true);
+      return expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(cs => new UrlSegmentGroup(consumedSegments.concat(cs.segments), cs.children)));
+    }));
+  }
+
+  getChildConfig(ngModule, route, segments) {
+    if (route.children) {
+      // The children belong to the same module
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new LoadedRouterConfig(route.children, ngModule));
+    }
+
+    if (route.loadChildren) {
+      // lazy children belong to the loaded module
+      if (route._loadedConfig !== undefined) {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(route._loadedConfig);
+      }
+
+      return this.runCanLoadGuards(ngModule.injector, route, segments).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(shouldLoadResult => {
+        if (shouldLoadResult) {
+          return this.configLoader.load(ngModule.injector, route).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(cfg => {
+            route._loadedConfig = cfg;
+            return cfg;
+          }));
+        }
+
+        return canLoadFails(route);
+      }));
+    }
+
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new LoadedRouterConfig([], ngModule));
+  }
+
+  runCanLoadGuards(moduleInjector, route, segments) {
+    const canLoad = route.canLoad;
+    if (!canLoad || canLoad.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
+    const canLoadObservables = canLoad.map(injectionToken => {
+      const guard = moduleInjector.get(injectionToken);
+      let guardVal;
+
+      if (isCanLoad(guard)) {
+        guardVal = guard.canLoad(route, segments);
+      } else if (isFunction(guard)) {
+        guardVal = guard(route, segments);
+      } else {
+        throw new Error('Invalid CanLoad guard');
+      }
+
+      return wrapIntoObservable(guardVal);
+    });
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canLoadObservables).pipe(prioritizedGuardValue(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(result => {
+      if (!isUrlTree(result)) return;
+      const error = navigationCancelingError(`Redirecting to "${this.urlSerializer.serialize(result)}"`);
+      error.url = result;
+      throw error;
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(result => result === true));
+  }
+
+  lineralizeSegments(route, urlTree) {
+    let res = [];
+    let c = urlTree.root;
+
+    while (true) {
+      res = res.concat(c.segments);
+
+      if (c.numberOfChildren === 0) {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(res);
+      }
+
+      if (c.numberOfChildren > 1 || !c.children[PRIMARY_OUTLET]) {
+        return namedOutletsRedirect(route.redirectTo);
+      }
+
+      c = c.children[PRIMARY_OUTLET];
+    }
+  }
+
+  applyRedirectCommands(segments, redirectTo, posParams) {
+    return this.applyRedirectCreatreUrlTree(redirectTo, this.urlSerializer.parse(redirectTo), segments, posParams);
+  }
+
+  applyRedirectCreatreUrlTree(redirectTo, urlTree, segments, posParams) {
+    const newRoot = this.createSegmentGroup(redirectTo, urlTree.root, segments, posParams);
+    return new UrlTree(newRoot, this.createQueryParams(urlTree.queryParams, this.urlTree.queryParams), urlTree.fragment);
+  }
+
+  createQueryParams(redirectToParams, actualParams) {
+    const res = {};
+    forEach(redirectToParams, (v, k) => {
+      const copySourceValue = typeof v === 'string' && v.startsWith(':');
+
+      if (copySourceValue) {
+        const sourceName = v.substring(1);
+        res[k] = actualParams[sourceName];
+      } else {
+        res[k] = v;
+      }
+    });
+    return res;
+  }
+
+  createSegmentGroup(redirectTo, group, segments, posParams) {
+    const updatedSegments = this.createSegments(redirectTo, group.segments, segments, posParams);
+    let children = {};
+    forEach(group.children, (child, name) => {
+      children[name] = this.createSegmentGroup(redirectTo, child, segments, posParams);
+    });
+    return new UrlSegmentGroup(updatedSegments, children);
+  }
+
+  createSegments(redirectTo, redirectToSegments, actualSegments, posParams) {
+    return redirectToSegments.map(s => s.path.startsWith(':') ? this.findPosParam(redirectTo, s, posParams) : this.findOrReturn(s, actualSegments));
+  }
+
+  findPosParam(redirectTo, redirectToUrlSegment, posParams) {
+    const pos = posParams[redirectToUrlSegment.path.substring(1)];
+    if (!pos) throw new Error(`Cannot redirect to '${redirectTo}'. Cannot find '${redirectToUrlSegment.path}'.`);
+    return pos;
+  }
+
+  findOrReturn(redirectToUrlSegment, actualSegments) {
+    let idx = 0;
+
+    for (const s of actualSegments) {
+      if (s.path === redirectToUrlSegment.path) {
+        actualSegments.splice(idx);
+        return s;
+      }
+
+      idx++;
+    }
+
+    return redirectToUrlSegment;
+  }
+
+}
+/**
+ * When possible, merges the primary outlet child into the parent `UrlSegmentGroup`.
+ *
+ * When a segment group has only one child which is a primary outlet, merges that child into the
+ * parent. That is, the child segment group's segments are merged into the `s` and the child's
+ * children become the children of `s`. Think of this like a 'squash', merging the child segment
+ * group into the parent.
+ */
+
+
+function mergeTrivialChildren(s) {
+  if (s.numberOfChildren === 1 && s.children[PRIMARY_OUTLET]) {
+    const c = s.children[PRIMARY_OUTLET];
+    return new UrlSegmentGroup(s.segments.concat(c.segments), c.children);
+  }
+
+  return s;
+}
+/**
+ * Recursively merges primary segment children into their parents and also drops empty children
+ * (those which have no segments and no children themselves). The latter prevents serializing a
+ * group into something like `/a(aux:)`, where `aux` is an empty child segment.
+ */
+
+
+function squashSegmentGroup(segmentGroup) {
+  const newChildren = {};
+
+  for (const childOutlet of Object.keys(segmentGroup.children)) {
+    const child = segmentGroup.children[childOutlet];
+    const childCandidate = squashSegmentGroup(child); // don't add empty children
+
+    if (childCandidate.segments.length > 0 || childCandidate.hasChildren()) {
+      newChildren[childOutlet] = childCandidate;
+    }
+  }
+
+  const s = new UrlSegmentGroup(segmentGroup.segments, newChildren);
+  return mergeTrivialChildren(s);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function applyRedirects(moduleInjector, configLoader, urlSerializer, config) {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => applyRedirects$1(moduleInjector, configLoader, urlSerializer, t.extractedUrl, config).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(urlAfterRedirects => Object.assign(Object.assign({}, t), {
+    urlAfterRedirects
+  }))));
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+class CanActivate {
+  constructor(path) {
+    this.path = path;
+    this.route = this.path[this.path.length - 1];
+  }
+
+}
+
+class CanDeactivate {
+  constructor(component, route) {
+    this.component = component;
+    this.route = route;
+  }
+
+}
+
+function getAllRouteGuards(future, curr, parentContexts) {
+  const futureRoot = future._root;
+  const currRoot = curr ? curr._root : null;
+  return getChildRouteGuards(futureRoot, currRoot, parentContexts, [futureRoot.value]);
+}
+
+function getCanActivateChild(p) {
+  const canActivateChild = p.routeConfig ? p.routeConfig.canActivateChild : null;
+  if (!canActivateChild || canActivateChild.length === 0) return null;
+  return {
+    node: p,
+    guards: canActivateChild
+  };
+}
+
+function getToken(token, snapshot, moduleInjector) {
+  const config = getClosestLoadedConfig(snapshot);
+  const injector = config ? config.module.injector : moduleInjector;
+  return injector.get(token);
+}
+
+function getClosestLoadedConfig(snapshot) {
+  if (!snapshot) return null;
+
+  for (let s = snapshot.parent; s; s = s.parent) {
+    const route = s.routeConfig;
+    if (route && route._loadedConfig) return route._loadedConfig;
+  }
+
+  return null;
+}
+
+function getChildRouteGuards(futureNode, currNode, contexts, futurePath, checks = {
+  canDeactivateChecks: [],
+  canActivateChecks: []
+}) {
+  const prevChildren = nodeChildrenAsMap(currNode); // Process the children of the future route
+
+  futureNode.children.forEach(c => {
+    getRouteGuards(c, prevChildren[c.value.outlet], contexts, futurePath.concat([c.value]), checks);
+    delete prevChildren[c.value.outlet];
+  }); // Process any children left from the current route (not active for the future route)
+
+  forEach(prevChildren, (v, k) => deactivateRouteAndItsChildren(v, contexts.getContext(k), checks));
+  return checks;
+}
+
+function getRouteGuards(futureNode, currNode, parentContexts, futurePath, checks = {
+  canDeactivateChecks: [],
+  canActivateChecks: []
+}) {
+  const future = futureNode.value;
+  const curr = currNode ? currNode.value : null;
+  const context = parentContexts ? parentContexts.getContext(futureNode.value.outlet) : null; // reusing the node
+
+  if (curr && future.routeConfig === curr.routeConfig) {
+    const shouldRun = shouldRunGuardsAndResolvers(curr, future, future.routeConfig.runGuardsAndResolvers);
+
+    if (shouldRun) {
+      checks.canActivateChecks.push(new CanActivate(futurePath));
+    } else {
+      // we need to set the data
+      future.data = curr.data;
+      future._resolvedData = curr._resolvedData;
+    } // If we have a component, we need to go through an outlet.
+
+
+    if (future.component) {
+      getChildRouteGuards(futureNode, currNode, context ? context.children : null, futurePath, checks); // if we have a componentless route, we recurse but keep the same outlet map.
+    } else {
+      getChildRouteGuards(futureNode, currNode, parentContexts, futurePath, checks);
+    }
+
+    if (shouldRun && context && context.outlet && context.outlet.isActivated) {
+      checks.canDeactivateChecks.push(new CanDeactivate(context.outlet.component, curr));
+    }
+  } else {
+    if (curr) {
+      deactivateRouteAndItsChildren(currNode, context, checks);
+    }
+
+    checks.canActivateChecks.push(new CanActivate(futurePath)); // If we have a component, we need to go through an outlet.
+
+    if (future.component) {
+      getChildRouteGuards(futureNode, null, context ? context.children : null, futurePath, checks); // if we have a componentless route, we recurse but keep the same outlet map.
+    } else {
+      getChildRouteGuards(futureNode, null, parentContexts, futurePath, checks);
+    }
+  }
+
+  return checks;
+}
+
+function shouldRunGuardsAndResolvers(curr, future, mode) {
+  if (typeof mode === 'function') {
+    return mode(curr, future);
+  }
+
+  switch (mode) {
+    case 'pathParamsChange':
+      return !equalPath(curr.url, future.url);
+
+    case 'pathParamsOrQueryParamsChange':
+      return !equalPath(curr.url, future.url) || !shallowEqual(curr.queryParams, future.queryParams);
+
+    case 'always':
+      return true;
+
+    case 'paramsOrQueryParamsChange':
+      return !equalParamsAndUrlSegments(curr, future) || !shallowEqual(curr.queryParams, future.queryParams);
+
+    case 'paramsChange':
+    default:
+      return !equalParamsAndUrlSegments(curr, future);
+  }
+}
+
+function deactivateRouteAndItsChildren(route, context, checks) {
+  const children = nodeChildrenAsMap(route);
+  const r = route.value;
+  forEach(children, (node, childName) => {
+    if (!r.component) {
+      deactivateRouteAndItsChildren(node, context, checks);
+    } else if (context) {
+      deactivateRouteAndItsChildren(node, context.children.getContext(childName), checks);
+    } else {
+      deactivateRouteAndItsChildren(node, null, checks);
+    }
+  });
+
+  if (!r.component) {
+    checks.canDeactivateChecks.push(new CanDeactivate(null, r));
+  } else if (context && context.outlet && context.outlet.isActivated) {
+    checks.canDeactivateChecks.push(new CanDeactivate(context.outlet.component, r));
+  } else {
+    checks.canDeactivateChecks.push(new CanDeactivate(null, r));
+  }
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function checkGuards(moduleInjector, forwardEvent) {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
+    const {
+      targetSnapshot,
+      currentSnapshot,
+      guards: {
+        canActivateChecks,
+        canDeactivateChecks
+      }
+    } = t;
+
+    if (canDeactivateChecks.length === 0 && canActivateChecks.length === 0) {
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(Object.assign(Object.assign({}, t), {
+        guardsResult: true
+      }));
+    }
+
+    return runCanDeactivateChecks(canDeactivateChecks, targetSnapshot, currentSnapshot, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(canDeactivate => {
+      return canDeactivate && isBoolean(canDeactivate) ? runCanActivateChecks(targetSnapshot, canActivateChecks, moduleInjector, forwardEvent) : (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canDeactivate);
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(guardsResult => Object.assign(Object.assign({}, t), {
+      guardsResult
+    })));
+  });
+}
+
+function runCanDeactivateChecks(checks, futureRSS, currRSS, moduleInjector) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(checks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(check => runCanDeactivate(check.component, check.route, currRSS, futureRSS, moduleInjector)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)(result => {
+    return result !== true;
+  }, true));
+}
+
+function runCanActivateChecks(futureSnapshot, checks, moduleInjector, forwardEvent) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(checks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(check => {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_19__.concat)(fireChildActivationStart(check.route.parent, forwardEvent), fireActivationStart(check.route, forwardEvent), runCanActivateChild(futureSnapshot, check.path, moduleInjector), runCanActivate(futureSnapshot, check.route, moduleInjector));
+  }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)(result => {
+    return result !== true;
+  }, true));
+}
+/**
+ * This should fire off `ActivationStart` events for each route being activated at this
+ * level.
+ * In other words, if you're activating `a` and `b` below, `path` will contain the
+ * `ActivatedRouteSnapshot`s for both and we will fire `ActivationStart` for both. Always
+ * return
+ * `true` so checks continue to run.
+ */
+
+
+function fireActivationStart(snapshot, forwardEvent) {
+  if (snapshot !== null && forwardEvent) {
+    forwardEvent(new ActivationStart(snapshot));
+  }
+
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
+}
+/**
+ * This should fire off `ChildActivationStart` events for each route being activated at this
+ * level.
+ * In other words, if you're activating `a` and `b` below, `path` will contain the
+ * `ActivatedRouteSnapshot`s for both and we will fire `ChildActivationStart` for both. Always
+ * return
+ * `true` so checks continue to run.
+ */
+
+
+function fireChildActivationStart(snapshot, forwardEvent) {
+  if (snapshot !== null && forwardEvent) {
+    forwardEvent(new ChildActivationStart(snapshot));
+  }
+
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
+}
+
+function runCanActivate(futureRSS, futureARS, moduleInjector) {
+  const canActivate = futureARS.routeConfig ? futureARS.routeConfig.canActivate : null;
+  if (!canActivate || canActivate.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
+  const canActivateObservables = canActivate.map(c => {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_20__.defer)(() => {
+      const guard = getToken(c, futureARS, moduleInjector);
+      let observable;
+
+      if (isCanActivate(guard)) {
+        observable = wrapIntoObservable(guard.canActivate(futureARS, futureRSS));
+      } else if (isFunction(guard)) {
+        observable = wrapIntoObservable(guard(futureARS, futureRSS));
+      } else {
+        throw new Error('Invalid CanActivate guard');
+      }
+
+      return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
+    });
+  });
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canActivateObservables).pipe(prioritizedGuardValue());
+}
+
+function runCanActivateChild(futureRSS, path, moduleInjector) {
+  const futureARS = path[path.length - 1];
+  const canActivateChildGuards = path.slice(0, path.length - 1).reverse().map(p => getCanActivateChild(p)).filter(_ => _ !== null);
+  const canActivateChildGuardsMapped = canActivateChildGuards.map(d => {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_20__.defer)(() => {
+      const guardsMapped = d.guards.map(c => {
+        const guard = getToken(c, d.node, moduleInjector);
+        let observable;
+
+        if (isCanActivateChild(guard)) {
+          observable = wrapIntoObservable(guard.canActivateChild(futureARS, futureRSS));
+        } else if (isFunction(guard)) {
+          observable = wrapIntoObservable(guard(futureARS, futureRSS));
+        } else {
+          throw new Error('Invalid CanActivateChild guard');
+        }
+
+        return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
+      });
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(guardsMapped).pipe(prioritizedGuardValue());
+    });
+  });
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canActivateChildGuardsMapped).pipe(prioritizedGuardValue());
+}
+
+function runCanDeactivate(component, currARS, currRSS, futureRSS, moduleInjector) {
+  const canDeactivate = currARS && currARS.routeConfig ? currARS.routeConfig.canDeactivate : null;
+  if (!canDeactivate || canDeactivate.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
+  const canDeactivateObservables = canDeactivate.map(c => {
+    const guard = getToken(c, currARS, moduleInjector);
+    let observable;
+
+    if (isCanDeactivate(guard)) {
+      observable = wrapIntoObservable(guard.canDeactivate(component, currARS, currRSS, futureRSS));
+    } else if (isFunction(guard)) {
+      observable = wrapIntoObservable(guard(component, currARS, currRSS, futureRSS));
+    } else {
+      throw new Error('Invalid CanDeactivate guard');
+    }
+
+    return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
+  });
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canDeactivateObservables).pipe(prioritizedGuardValue());
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+class NoMatch {}
+
+function newObservableError(e) {
+  // TODO(atscott): This pattern is used throughout the router code and can be `throwError` instead.
+  return new rxjs__WEBPACK_IMPORTED_MODULE_21__.Observable(obs => obs.error(e));
+}
+
+function recognize$1(rootComponentType, config, urlTree, url, paramsInheritanceStrategy = 'emptyOnly', relativeLinkResolution = 'legacy') {
+  try {
+    const result = new Recognizer(rootComponentType, config, urlTree, url, paramsInheritanceStrategy, relativeLinkResolution).recognize();
+
+    if (result === null) {
+      return newObservableError(new NoMatch());
+    } else {
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(result);
+    }
+  } catch (e) {
+    // Catch the potential error from recognize due to duplicate outlet matches and return as an
+    // `Observable` error instead.
+    return newObservableError(e);
+  }
+}
+
+class Recognizer {
+  constructor(rootComponentType, config, urlTree, url, paramsInheritanceStrategy, relativeLinkResolution) {
+    this.rootComponentType = rootComponentType;
+    this.config = config;
+    this.urlTree = urlTree;
+    this.url = url;
+    this.paramsInheritanceStrategy = paramsInheritanceStrategy;
+    this.relativeLinkResolution = relativeLinkResolution;
+  }
+
+  recognize() {
+    const rootSegmentGroup = split(this.urlTree.root, [], [], this.config.filter(c => c.redirectTo === undefined), this.relativeLinkResolution).segmentGroup;
+    const children = this.processSegmentGroup(this.config, rootSegmentGroup, PRIMARY_OUTLET);
+
+    if (children === null) {
+      return null;
+    } // Use Object.freeze to prevent readers of the Router state from modifying it outside of a
+    // navigation, resulting in the router being out of sync with the browser.
+
+
+    const root = new ActivatedRouteSnapshot([], Object.freeze({}), Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, {}, PRIMARY_OUTLET, this.rootComponentType, null, this.urlTree.root, -1, {});
+    const rootNode = new TreeNode(root, children);
+    const routeState = new RouterStateSnapshot(this.url, rootNode);
+    this.inheritParamsAndData(routeState._root);
+    return routeState;
+  }
+
+  inheritParamsAndData(routeNode) {
+    const route = routeNode.value;
+    const i = inheritedParamsDataResolve(route, this.paramsInheritanceStrategy);
+    route.params = Object.freeze(i.params);
+    route.data = Object.freeze(i.data);
+    routeNode.children.forEach(n => this.inheritParamsAndData(n));
+  }
+
+  processSegmentGroup(config, segmentGroup, outlet) {
+    if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
+      return this.processChildren(config, segmentGroup);
+    }
+
+    return this.processSegment(config, segmentGroup, segmentGroup.segments, outlet);
+  }
+  /**
+   * Matches every child outlet in the `segmentGroup` to a `Route` in the config. Returns `null` if
+   * we cannot find a match for _any_ of the children.
+   *
+   * @param config - The `Routes` to match against
+   * @param segmentGroup - The `UrlSegmentGroup` whose children need to be matched against the
+   *     config.
+   */
+
+
+  processChildren(config, segmentGroup) {
+    const children = [];
+
+    for (const childOutlet of Object.keys(segmentGroup.children)) {
+      const child = segmentGroup.children[childOutlet]; // Sort the config so that routes with outlets that match the one being activated appear
+      // first, followed by routes for other outlets, which might match if they have an empty path.
+
+      const sortedConfig = sortByMatchingOutlets(config, childOutlet);
+      const outletChildren = this.processSegmentGroup(sortedConfig, child, childOutlet);
+
+      if (outletChildren === null) {
+        // Configs must match all segment children so because we did not find a match for this
+        // outlet, return `null`.
+        return null;
+      }
+
+      children.push(...outletChildren);
+    } // Because we may have matched two outlets to the same empty path segment, we can have multiple
+    // activated results for the same outlet. We should merge the children of these results so the
+    // final return value is only one `TreeNode` per outlet.
+
+
+    const mergedChildren = mergeEmptyPathMatches(children);
+
+    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+      // This should really never happen - we are only taking the first match for each outlet and
+      // merge the empty path matches.
+      checkOutletNameUniqueness(mergedChildren);
+    }
+
+    sortActivatedRouteSnapshots(mergedChildren);
+    return mergedChildren;
+  }
+
+  processSegment(config, segmentGroup, segments, outlet) {
+    for (const r of config) {
+      const children = this.processSegmentAgainstRoute(r, segmentGroup, segments, outlet);
+
+      if (children !== null) {
+        return children;
+      }
+    }
+
+    if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
+      return [];
+    }
+
+    return null;
+  }
+
+  processSegmentAgainstRoute(route, rawSegment, segments, outlet) {
+    if (route.redirectTo || !isImmediateMatch(route, rawSegment, segments, outlet)) return null;
+    let snapshot;
+    let consumedSegments = [];
+    let remainingSegments = [];
+
+    if (route.path === '**') {
+      const params = segments.length > 0 ? last(segments).parameters : {};
+      snapshot = new ActivatedRouteSnapshot(segments, params, Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, getData(route), getOutlet(route), route.component, route, getSourceSegmentGroup(rawSegment), getPathIndexShift(rawSegment) + segments.length, getResolve(route));
+    } else {
+      const result = match(rawSegment, route, segments);
+
+      if (!result.matched) {
+        return null;
+      }
+
+      consumedSegments = result.consumedSegments;
+      remainingSegments = result.remainingSegments;
+      snapshot = new ActivatedRouteSnapshot(consumedSegments, result.parameters, Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, getData(route), getOutlet(route), route.component, route, getSourceSegmentGroup(rawSegment), getPathIndexShift(rawSegment) + consumedSegments.length, getResolve(route));
+    }
+
+    const childConfig = getChildConfig(route);
+    const {
+      segmentGroup,
+      slicedSegments
+    } = split(rawSegment, consumedSegments, remainingSegments, // Filter out routes with redirectTo because we are trying to create activated route
+    // snapshots and don't handle redirects here. That should have been done in
+    // `applyRedirects`.
+    childConfig.filter(c => c.redirectTo === undefined), this.relativeLinkResolution);
+
+    if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
+      const children = this.processChildren(childConfig, segmentGroup);
+
+      if (children === null) {
+        return null;
+      }
+
+      return [new TreeNode(snapshot, children)];
+    }
+
+    if (childConfig.length === 0 && slicedSegments.length === 0) {
+      return [new TreeNode(snapshot, [])];
+    }
+
+    const matchedOnOutlet = getOutlet(route) === outlet; // If we matched a config due to empty path match on a different outlet, we need to continue
+    // passing the current outlet for the segment rather than switch to PRIMARY.
+    // Note that we switch to primary when we have a match because outlet configs look like this:
+    // {path: 'a', outlet: 'a', children: [
+    //  {path: 'b', component: B},
+    //  {path: 'c', component: C},
+    // ]}
+    // Notice that the children of the named outlet are configured with the primary outlet
+
+    const children = this.processSegment(childConfig, segmentGroup, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet);
+
+    if (children === null) {
+      return null;
+    }
+
+    return [new TreeNode(snapshot, children)];
+  }
+
+}
+
+function sortActivatedRouteSnapshots(nodes) {
+  nodes.sort((a, b) => {
+    if (a.value.outlet === PRIMARY_OUTLET) return -1;
+    if (b.value.outlet === PRIMARY_OUTLET) return 1;
+    return a.value.outlet.localeCompare(b.value.outlet);
+  });
+}
+
+function getChildConfig(route) {
+  if (route.children) {
+    return route.children;
+  }
+
+  if (route.loadChildren) {
+    return route._loadedConfig.routes;
+  }
+
+  return [];
+}
+
+function hasEmptyPathConfig(node) {
+  const config = node.value.routeConfig;
+  return config && config.path === '' && config.redirectTo === undefined;
+}
+/**
+ * Finds `TreeNode`s with matching empty path route configs and merges them into `TreeNode` with the
+ * children from each duplicate. This is necessary because different outlets can match a single
+ * empty path route config and the results need to then be merged.
+ */
+
+
+function mergeEmptyPathMatches(nodes) {
+  const result = []; // The set of nodes which contain children that were merged from two duplicate empty path nodes.
+
+  const mergedNodes = new Set();
+
+  for (const node of nodes) {
+    if (!hasEmptyPathConfig(node)) {
+      result.push(node);
+      continue;
+    }
+
+    const duplicateEmptyPathNode = result.find(resultNode => node.value.routeConfig === resultNode.value.routeConfig);
+
+    if (duplicateEmptyPathNode !== undefined) {
+      duplicateEmptyPathNode.children.push(...node.children);
+      mergedNodes.add(duplicateEmptyPathNode);
+    } else {
+      result.push(node);
+    }
+  } // For each node which has children from multiple sources, we need to recompute a new `TreeNode`
+  // by also merging those children. This is necessary when there are multiple empty path configs in
+  // a row. Put another way: whenever we combine children of two nodes, we need to also check if any
+  // of those children can be combined into a single node as well.
+
+
+  for (const mergedNode of mergedNodes) {
+    const mergedChildren = mergeEmptyPathMatches(mergedNode.children);
+    result.push(new TreeNode(mergedNode.value, mergedChildren));
+  }
+
+  return result.filter(n => !mergedNodes.has(n));
+}
+
+function checkOutletNameUniqueness(nodes) {
+  const names = {};
+  nodes.forEach(n => {
+    const routeWithSameOutletName = names[n.value.outlet];
+
+    if (routeWithSameOutletName) {
+      const p = routeWithSameOutletName.url.map(s => s.toString()).join('/');
+      const c = n.value.url.map(s => s.toString()).join('/');
+      throw new Error(`Two segments cannot have the same outlet name: '${p}' and '${c}'.`);
+    }
+
+    names[n.value.outlet] = n.value;
+  });
+}
+
+function getSourceSegmentGroup(segmentGroup) {
+  let s = segmentGroup;
+
+  while (s._sourceSegment) {
+    s = s._sourceSegment;
+  }
+
+  return s;
+}
+
+function getPathIndexShift(segmentGroup) {
+  let s = segmentGroup;
+  let res = s._segmentIndexShift ? s._segmentIndexShift : 0;
+
+  while (s._sourceSegment) {
+    s = s._sourceSegment;
+    res += s._segmentIndexShift ? s._segmentIndexShift : 0;
+  }
+
+  return res - 1;
+}
+
+function getData(route) {
+  return route.data || {};
+}
+
+function getResolve(route) {
+  return route.resolve || {};
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function recognize(rootComponentType, config, serializer, paramsInheritanceStrategy, relativeLinkResolution) {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => recognize$1(rootComponentType, config, t.urlAfterRedirects, serializer(t.urlAfterRedirects), paramsInheritanceStrategy, relativeLinkResolution).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(targetSnapshot => Object.assign(Object.assign({}, t), {
+    targetSnapshot
+  }))));
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+function resolveData(paramsInheritanceStrategy, moduleInjector) {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
+    const {
+      targetSnapshot,
+      guards: {
+        canActivateChecks
+      }
+    } = t;
+
+    if (!canActivateChecks.length) {
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t);
+    }
+
+    let canActivateChecksResolved = 0;
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(canActivateChecks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(check => runResolve(check.route, targetSnapshot, paramsInheritanceStrategy, moduleInjector)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(() => canActivateChecksResolved++), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_22__.takeLast)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(_ => canActivateChecksResolved === canActivateChecks.length ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t) : rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY));
+  });
+}
+
+function runResolve(futureARS, futureRSS, paramsInheritanceStrategy, moduleInjector) {
+  const resolve = futureARS._resolve;
+  return resolveNode(resolve, futureARS, futureRSS, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(resolvedData => {
+    futureARS._resolvedData = resolvedData;
+    futureARS.data = Object.assign(Object.assign({}, futureARS.data), inheritedParamsDataResolve(futureARS, paramsInheritanceStrategy).resolve);
+    return null;
+  }));
+}
+
+function resolveNode(resolve, futureARS, futureRSS, moduleInjector) {
+  const keys = getDataKeys(resolve);
+
+  if (keys.length === 0) {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)({});
+  }
+
+  const data = {};
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(keys).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(key => getResolver(resolve[key], futureARS, futureRSS, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(value => {
+    data[key] = value;
+  }))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_22__.takeLast)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(() => {
+    // Ensure all resolvers returned values, otherwise don't emit any "next" and just complete
+    // the chain which will cancel navigation
+    if (getDataKeys(data).length === keys.length) {
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(data);
+    }
+
+    return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
+  }));
+}
+
+function getDataKeys(obj) {
+  return [...Object.keys(obj), ...Object.getOwnPropertySymbols(obj)];
+}
+
+function getResolver(injectionToken, futureARS, futureRSS, moduleInjector) {
+  const resolver = getToken(injectionToken, futureARS, moduleInjector);
+  return resolver.resolve ? wrapIntoObservable(resolver.resolve(futureARS, futureRSS)) : wrapIntoObservable(resolver(futureARS, futureRSS));
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Perform a side effect through a switchMap for every emission on the source Observable,
+ * but return an Observable that is identical to the source. It's essentially the same as
+ * the `tap` operator, but if the side effectful `next` function returns an ObservableInput,
+ * it will wait before continuing with the original value.
+ */
+
+
+function switchTap(next) {
+  return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(v => {
+    const nextResult = next(v);
+
+    if (nextResult) {
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(nextResult).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(() => v));
+    }
+
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(v);
+  });
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @description
+ *
+ * Provides a way to customize when activated routes get reused.
+ *
+ * @publicApi
+ */
+
+
+class RouteReuseStrategy {}
+/**
+ * @description
+ *
+ * This base route reuse strategy only reuses routes when the matched router configs are
+ * identical. This prevents components from being destroyed and recreated
+ * when just the fragment or query parameters change
+ * (that is, the existing component is _reused_).
+ *
+ * This strategy does not store any routes for later reuse.
+ *
+ * Angular uses this strategy by default.
+ *
+ *
+ * It can be used as a base class for custom route reuse strategies, i.e. you can create your own
+ * class that extends the `BaseRouteReuseStrategy` one.
+ * @publicApi
+ */
+
+
+class BaseRouteReuseStrategy {
+  /**
+   * Whether the given route should detach for later reuse.
+   * Always returns false for `BaseRouteReuseStrategy`.
+   * */
+  shouldDetach(route) {
+    return false;
+  }
+  /**
+   * A no-op; the route is never stored since this strategy never detaches routes for later re-use.
+   */
+
+
+  store(route, detachedTree) {}
+  /** Returns `false`, meaning the route (and its subtree) is never reattached */
+
+
+  shouldAttach(route) {
+    return false;
+  }
+  /** Returns `null` because this strategy does not store routes for later re-use. */
+
+
+  retrieve(route) {
+    return null;
+  }
+  /**
+   * Determines if a route should be reused.
+   * This strategy returns `true` when the future route config and current route config are
+   * identical.
+   */
+
+
+  shouldReuseRoute(future, curr) {
+    return future.routeConfig === curr.routeConfig;
+  }
+
+}
+
+class DefaultRouteReuseStrategy extends BaseRouteReuseStrategy {}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * The [DI token](guide/glossary/#di-token) for a router configuration.
+ *
+ * `ROUTES` is a low level API for router configuration via dependency injection.
+ *
+ * We recommend that in almost all cases to use higher level APIs such as `RouterModule.forRoot()`,
+ * `RouterModule.forChild()`, `provideRoutes`, or `Router.resetConfig()`.
+ *
+ * @publicApi
+ */
+
+
+const ROUTES = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTES');
+
+class RouterConfigLoader {
+  constructor(injector, compiler, onLoadStartListener, onLoadEndListener) {
+    this.injector = injector;
+    this.compiler = compiler;
+    this.onLoadStartListener = onLoadStartListener;
+    this.onLoadEndListener = onLoadEndListener;
+  }
+
+  load(parentInjector, route) {
+    if (route._loader$) {
+      return route._loader$;
+    }
+
+    if (this.onLoadStartListener) {
+      this.onLoadStartListener(route);
+    }
+
+    const moduleFactory$ = this.loadModuleFactory(route.loadChildren);
+    const loadRunner = moduleFactory$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(factory => {
+      if (this.onLoadEndListener) {
+        this.onLoadEndListener(route);
+      }
+
+      const module = factory.create(parentInjector); // When loading a module that doesn't provide `RouterModule.forChild()` preloader
+      // will get stuck in an infinite loop. The child module's Injector will look to
+      // its parent `Injector` when it doesn't find any ROUTES so it will return routes
+      // for it's parent module instead.
+
+      return new LoadedRouterConfig(flatten(module.injector.get(ROUTES, undefined, _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Self | _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Optional)).map(standardizeConfig), module);
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(err => {
+      route._loader$ = undefined;
+      throw err;
+    })); // Use custom ConnectableObservable as share in runners pipe increasing the bundle size too much
+
+    route._loader$ = new rxjs__WEBPACK_IMPORTED_MODULE_24__.ConnectableObservable(loadRunner, () => new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_26__.refCount)());
+    return route._loader$;
+  }
+
+  loadModuleFactory(loadChildren) {
+    return wrapIntoObservable(loadChildren()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
+      if (t instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleFactory) {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t);
+      } else {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(this.compiler.compileModuleAsync(t));
+      }
+    }));
+  }
+
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @description
+ *
+ * Provides a way to migrate AngularJS applications to Angular.
+ *
+ * @publicApi
+ */
+
+
+class UrlHandlingStrategy {}
+/**
+ * @publicApi
+ */
+
+
+class DefaultUrlHandlingStrategy {
+  shouldProcessUrl(url) {
+    return true;
+  }
+
+  extract(url) {
+    return url;
+  }
+
+  merge(newUrlPart, wholeUrl) {
+    return newUrlPart;
+  }
+
+}
+
+function defaultErrorHandler(error) {
+  throw error;
+}
+
+function defaultMalformedUriErrorHandler(error, urlSerializer, url) {
+  return urlSerializer.parse('/');
+}
+/**
+ * @internal
+ */
+
+
+function defaultRouterHook(snapshot, runExtras) {
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+}
+/**
+ * The equivalent `IsActiveMatchOptions` options for `Router.isActive` is called with `true`
+ * (exact = true).
+ */
+
+
+const exactMatchOptions = {
+  paths: 'exact',
+  fragment: 'ignored',
+  matrixParams: 'ignored',
+  queryParams: 'exact'
+};
+/**
+ * The equivalent `IsActiveMatchOptions` options for `Router.isActive` is called with `false`
+ * (exact = false).
+ */
+
+const subsetMatchOptions = {
+  paths: 'subset',
+  fragment: 'ignored',
+  matrixParams: 'ignored',
+  queryParams: 'subset'
+};
+/**
+ * @description
+ *
+ * A service that provides navigation among views and URL manipulation capabilities.
+ *
+ * @see `Route`.
+ * @see [Routing and Navigation Guide](guide/router).
+ *
+ * @ngModule RouterModule
+ *
+ * @publicApi
+ */
+
+class Router {
+  /**
+   * Creates the router service.
+   */
+  // TODO: vsavkin make internal after the final is out.
+  constructor(rootComponentType, urlSerializer, rootContexts, location, injector, compiler, config) {
+    this.rootComponentType = rootComponentType;
+    this.urlSerializer = urlSerializer;
+    this.rootContexts = rootContexts;
+    this.location = location;
+    this.config = config;
+    this.lastSuccessfulNavigation = null;
+    this.currentNavigation = null;
+    this.disposed = false;
+    this.navigationId = 0;
+    /**
+     * The id of the currently active page in the router.
+     * Updated to the transition's target id on a successful navigation.
+     *
+     * This is used to track what page the router last activated. When an attempted navigation fails,
+     * the router can then use this to compute how to restore the state back to the previously active
+     * page.
+     */
+
+    this.currentPageId = 0;
+    this.isNgZoneEnabled = false;
+    /**
+     * An event stream for routing events in this NgModule.
+     */
+
+    this.events = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
+    /**
+     * A handler for navigation errors in this NgModule.
+     */
+
+    this.errorHandler = defaultErrorHandler;
+    /**
+     * A handler for errors thrown by `Router.parseUrl(url)`
+     * when `url` contains an invalid character.
+     * The most common case is a `%` sign
+     * that's not encoded and is not part of a percent encoded sequence.
+     */
+
+    this.malformedUriErrorHandler = defaultMalformedUriErrorHandler;
+    /**
+     * True if at least one navigation event has occurred,
+     * false otherwise.
+     */
+
+    this.navigated = false;
+    this.lastSuccessfulId = -1;
+    /**
+     * Hooks that enable you to pause navigation,
+     * either before or after the preactivation phase.
+     * Used by `RouterModule`.
+     *
+     * @internal
+     */
+
+    this.hooks = {
+      beforePreactivation: defaultRouterHook,
+      afterPreactivation: defaultRouterHook
+    };
+    /**
+     * A strategy for extracting and merging URLs.
+     * Used for AngularJS to Angular migrations.
+     */
+
+    this.urlHandlingStrategy = new DefaultUrlHandlingStrategy();
+    /**
+     * A strategy for re-using routes.
+     */
+
+    this.routeReuseStrategy = new DefaultRouteReuseStrategy();
+    /**
+     * How to handle a navigation request to the current URL. One of:
+     *
+     * - `'ignore'` :  The router ignores the request.
+     * - `'reload'` : The router reloads the URL. Use to implement a "refresh" feature.
+     *
+     * Note that this only configures whether the Route reprocesses the URL and triggers related
+     * action and events like redirects, guards, and resolvers. By default, the router re-uses a
+     * component instance when it re-navigates to the same component type without visiting a different
+     * component first. This behavior is configured by the `RouteReuseStrategy`. In order to reload
+     * routed components on same url navigation, you need to set `onSameUrlNavigation` to `'reload'`
+     * _and_ provide a `RouteReuseStrategy` which returns `false` for `shouldReuseRoute`.
+     */
+
+    this.onSameUrlNavigation = 'ignore';
+    /**
+     * How to merge parameters, data, and resolved data from parent to child
+     * routes. One of:
+     *
+     * - `'emptyOnly'` : Inherit parent parameters, data, and resolved data
+     * for path-less or component-less routes.
+     * - `'always'` : Inherit parent parameters, data, and resolved data
+     * for all child routes.
+     */
+
+    this.paramsInheritanceStrategy = 'emptyOnly';
+    /**
+     * Determines when the router updates the browser URL.
+     * By default (`"deferred"`), updates the browser URL after navigation has finished.
+     * Set to `'eager'` to update the browser URL at the beginning of navigation.
+     * You can choose to update early so that, if navigation fails,
+     * you can show an error message with the URL that failed.
+     */
+
+    this.urlUpdateStrategy = 'deferred';
+    /**
+     * Enables a bug fix that corrects relative link resolution in components with empty paths.
+     * @see `RouterModule`
+     */
+
+    this.relativeLinkResolution = 'corrected';
+    /**
+     * Configures how the Router attempts to restore state when a navigation is cancelled.
+     *
+     * 'replace' - Always uses `location.replaceState` to set the browser state to the state of the
+     * router before the navigation started. This means that if the URL of the browser is updated
+     * _before_ the navigation is canceled, the Router will simply replace the item in history rather
+     * than trying to restore to the previous location in the session history. This happens most
+     * frequently with `urlUpdateStrategy: 'eager'` and navigations with the browser back/forward
+     * buttons.
+     *
+     * 'computed' - Will attempt to return to the same index in the session history that corresponds
+     * to the Angular route when the navigation gets cancelled. For example, if the browser back
+     * button is clicked and the navigation is cancelled, the Router will trigger a forward navigation
+     * and vice versa.
+     *
+     * Note: the 'computed' option is incompatible with any `UrlHandlingStrategy` which only
+     * handles a portion of the URL because the history restoration navigates to the previous place in
+     * the browser history rather than simply resetting a portion of the URL.
+     *
+     * The default value is `replace`.
+     *
+     */
+
+    this.canceledNavigationResolution = 'replace';
+
+    const onLoadStart = r => this.triggerEvent(new RouteConfigLoadStart(r));
+
+    const onLoadEnd = r => this.triggerEvent(new RouteConfigLoadEnd(r));
+
+    this.ngModule = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
+    this.console = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"]);
+    const ngZone = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone);
+    this.isNgZoneEnabled = ngZone instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone && _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone.isInAngularZone();
+    this.resetConfig(config);
+    this.currentUrlTree = createEmptyUrlTree();
+    this.rawUrlTree = this.currentUrlTree;
+    this.browserUrlTree = this.currentUrlTree;
+    this.configLoader = new RouterConfigLoader(injector, compiler, onLoadStart, onLoadEnd);
+    this.routerState = createEmptyState(this.currentUrlTree, this.rootComponentType);
+    this.transitions = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject({
+      id: 0,
+      targetPageId: 0,
+      currentUrlTree: this.currentUrlTree,
+      currentRawUrl: this.currentUrlTree,
+      extractedUrl: this.urlHandlingStrategy.extract(this.currentUrlTree),
+      urlAfterRedirects: this.urlHandlingStrategy.extract(this.currentUrlTree),
+      rawUrl: this.currentUrlTree,
+      extras: {},
+      resolve: null,
+      reject: null,
+      promise: Promise.resolve(true),
+      source: 'imperative',
+      restoredState: null,
+      currentSnapshot: this.routerState.snapshot,
+      targetSnapshot: null,
+      currentRouterState: this.routerState,
+      targetRouterState: null,
+      guards: {
+        canActivateChecks: [],
+        canDeactivateChecks: []
+      },
+      guardsResult: null
+    });
+    this.navigations = this.setupNavigations(this.transitions);
+    this.processNavigations();
+  }
+  /**
+   * The ɵrouterPageId of whatever page is currently active in the browser history. This is
+   * important for computing the target page id for new navigations because we need to ensure each
+   * page id in the browser history is 1 more than the previous entry.
+   */
+
+
+  get browserPageId() {
+    var _a;
+
+    return (_a = this.location.getState()) === null || _a === void 0 ? void 0 : _a.ɵrouterPageId;
+  }
+
+  setupNavigations(transitions) {
+    const eventsSubject = this.events;
+    return transitions.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => t.id !== 0), // Extract URL
+    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => Object.assign(Object.assign({}, t), {
+      extractedUrl: this.urlHandlingStrategy.extract(t.rawUrl)
+    })), // Using switchMap so we cancel executing navigations when a new one comes in
+    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
+      let completed = false;
+      let errored = false;
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe( // Store the Navigation object
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+        this.currentNavigation = {
+          id: t.id,
+          initialUrl: t.currentRawUrl,
+          extractedUrl: t.extractedUrl,
+          trigger: t.source,
+          extras: t.extras,
+          previousNavigation: this.lastSuccessfulNavigation ? Object.assign(Object.assign({}, this.lastSuccessfulNavigation), {
+            previousNavigation: null
+          }) : null
+        };
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
+        const browserUrlTree = this.browserUrlTree.toString();
+        const urlTransition = !this.navigated || t.extractedUrl.toString() !== browserUrlTree || // Navigations which succeed or ones which fail and are cleaned up
+        // correctly should result in `browserUrlTree` and `currentUrlTree`
+        // matching. If this is not the case, assume something went wrong and try
+        // processing the URL again.
+        browserUrlTree !== this.currentUrlTree.toString();
+        const processCurrentUrl = (this.onSameUrlNavigation === 'reload' ? true : urlTransition) && this.urlHandlingStrategy.shouldProcessUrl(t.rawUrl);
+
+        if (processCurrentUrl) {
+          // If the source of the navigation is from a browser event, the URL is
+          // already updated. We already need to sync the internal state.
+          if (isBrowserTriggeredNavigation(t.source)) {
+            this.browserUrlTree = t.extractedUrl;
+          }
+
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe( // Fire NavigationStart event
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
+            const transition = this.transitions.getValue();
+            eventsSubject.next(new NavigationStart(t.id, this.serializeUrl(t.extractedUrl), t.source, t.restoredState));
+
+            if (transition !== this.transitions.getValue()) {
+              return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
+            } // This delay is required to match old behavior that forced
+            // navigation to always be async
+
+
+            return Promise.resolve(t);
+          }), // ApplyRedirects
+          applyRedirects(this.ngModule.injector, this.configLoader, this.urlSerializer, this.config), // Update the currentNavigation
+          // `urlAfterRedirects` is guaranteed to be set after this point
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+            this.currentNavigation = Object.assign(Object.assign({}, this.currentNavigation), {
+              finalUrl: t.urlAfterRedirects
+            });
+          }), // Recognize
+          recognize(this.rootComponentType, this.config, url => this.serializeUrl(url), this.paramsInheritanceStrategy, this.relativeLinkResolution), // Update URL if in `eager` update mode
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+            if (this.urlUpdateStrategy === 'eager') {
+              if (!t.extras.skipLocationChange) {
+                const rawUrl = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
+                this.setBrowserUrl(rawUrl, t);
+              }
+
+              this.browserUrlTree = t.urlAfterRedirects;
+            } // Fire RoutesRecognized
+
+
+            const routesRecognized = new RoutesRecognized(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            eventsSubject.next(routesRecognized);
+          }));
+        } else {
+          const processPreviousUrl = urlTransition && this.rawUrlTree && this.urlHandlingStrategy.shouldProcessUrl(this.rawUrlTree);
+          /* When the current URL shouldn't be processed, but the previous one was,
+           * we handle this "error condition" by navigating to the previously
+           * successful URL, but leaving the URL intact.*/
+
+          if (processPreviousUrl) {
+            const {
+              id,
+              extractedUrl,
+              source,
+              restoredState,
+              extras
+            } = t;
+            const navStart = new NavigationStart(id, this.serializeUrl(extractedUrl), source, restoredState);
+            eventsSubject.next(navStart);
+            const targetSnapshot = createEmptyState(extractedUrl, this.rootComponentType).snapshot;
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(Object.assign(Object.assign({}, t), {
+              targetSnapshot,
+              urlAfterRedirects: extractedUrl,
+              extras: Object.assign(Object.assign({}, extras), {
+                skipLocationChange: false,
+                replaceUrl: false
+              })
+            }));
+          } else {
+            /* When neither the current or previous URL can be processed, do nothing
+             * other than update router's internal reference to the current "settled"
+             * URL. This way the next navigation will be coming from the current URL
+             * in the browser.
+             */
+            this.rawUrlTree = t.rawUrl;
+            t.resolve(null);
+            return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
+          }
+        }
+      }), // Before Preactivation
+      switchTap(t => {
+        const {
+          targetSnapshot,
+          id: navigationId,
+          extractedUrl: appliedUrlTree,
+          rawUrl: rawUrlTree,
+          extras: {
+            skipLocationChange,
+            replaceUrl
+          }
+        } = t;
+        return this.hooks.beforePreactivation(targetSnapshot, {
+          navigationId,
+          appliedUrlTree,
+          rawUrlTree,
+          skipLocationChange: !!skipLocationChange,
+          replaceUrl: !!replaceUrl
+        });
+      }), // --- GUARDS ---
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+        const guardsStart = new GuardsCheckStart(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+        this.triggerEvent(guardsStart);
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => Object.assign(Object.assign({}, t), {
+        guards: getAllRouteGuards(t.targetSnapshot, t.currentSnapshot, this.rootContexts)
+      })), checkGuards(this.ngModule.injector, evt => this.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+        if (isUrlTree(t.guardsResult)) {
+          const error = navigationCancelingError(`Redirecting to "${this.serializeUrl(t.guardsResult)}"`);
+          error.url = t.guardsResult;
+          throw error;
+        }
+
+        const guardsEnd = new GuardsCheckEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot, !!t.guardsResult);
+        this.triggerEvent(guardsEnd);
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => {
+        if (!t.guardsResult) {
+          this.restoreHistory(t);
+          this.cancelNavigationTransition(t, '');
+          return false;
+        }
+
+        return true;
+      }), // --- RESOLVE ---
+      switchTap(t => {
+        if (t.guards.canActivateChecks.length) {
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+            const resolveStart = new ResolveStart(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            this.triggerEvent(resolveStart);
+          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
+            let dataResolved = false;
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(resolveData(this.paramsInheritanceStrategy, this.ngModule.injector), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)({
+              next: () => dataResolved = true,
+              complete: () => {
+                if (!dataResolved) {
+                  this.restoreHistory(t);
+                  this.cancelNavigationTransition(t, `At least one route resolver didn't emit any value.`);
+                }
+              }
+            }));
+          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+            const resolveEnd = new ResolveEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            this.triggerEvent(resolveEnd);
+          }));
+        }
+
+        return undefined;
+      }), // --- AFTER PREACTIVATION ---
+      switchTap(t => {
+        const {
+          targetSnapshot,
+          id: navigationId,
+          extractedUrl: appliedUrlTree,
+          rawUrl: rawUrlTree,
+          extras: {
+            skipLocationChange,
+            replaceUrl
+          }
+        } = t;
+        return this.hooks.afterPreactivation(targetSnapshot, {
+          navigationId,
+          appliedUrlTree,
+          rawUrlTree,
+          skipLocationChange: !!skipLocationChange,
+          replaceUrl: !!replaceUrl
+        });
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
+        const targetRouterState = createRouterState(this.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
+        return Object.assign(Object.assign({}, t), {
+          targetRouterState
+        });
+      }),
+      /* Once here, we are about to activate syncronously. The assumption is this
+         will succeed, and user code may read from the Router service. Therefore
+         before activation, we need to update router properties storing the current
+         URL and the RouterState, as well as updated the browser URL. All this should
+         happen *before* activating. */
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
+        this.currentUrlTree = t.urlAfterRedirects;
+        this.rawUrlTree = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
+        this.routerState = t.targetRouterState;
+
+        if (this.urlUpdateStrategy === 'deferred') {
+          if (!t.extras.skipLocationChange) {
+            this.setBrowserUrl(this.rawUrlTree, t);
+          }
+
+          this.browserUrlTree = t.urlAfterRedirects;
+        }
+      }), activateRoutes(this.rootContexts, this.routeReuseStrategy, evt => this.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)({
+        next() {
+          completed = true;
+        },
+
+        complete() {
+          completed = true;
+        }
+
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_27__.finalize)(() => {
+        var _a;
+        /* When the navigation stream finishes either through error or success, we
+         * set the `completed` or `errored` flag. However, there are some situations
+         * where we could get here without either of those being set. For instance, a
+         * redirect during NavigationStart. Therefore, this is a catch-all to make
+         * sure the NavigationCancel
+         * event is fired when a navigation gets cancelled but not caught by other
+         * means. */
+
+
+        if (!completed && !errored) {
+          const cancelationReason = `Navigation ID ${t.id} is not equal to the current navigation id ${this.navigationId}`;
+          this.cancelNavigationTransition(t, cancelationReason);
+        } // Only clear current navigation if it is still set to the one that
+        // finalized.
+
+
+        if (((_a = this.currentNavigation) === null || _a === void 0 ? void 0 : _a.id) === t.id) {
+          this.currentNavigation = null;
+        }
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(e => {
+        // TODO(atscott): The NavigationTransition `t` used here does not accurately
+        // reflect the current state of the whole transition because some operations
+        // return a new object rather than modifying the one in the outermost
+        // `switchMap`.
+        //  The fix can likely be to:
+        //  1. Rename the outer `t` variable so it's not shadowed all the time and
+        //  confusing
+        //  2. Keep reassigning to the outer variable after each stage to ensure it
+        //  gets updated. Or change the implementations to not return a copy.
+        // Not changed yet because it affects existing code and would need to be
+        // tested more thoroughly.
+        errored = true;
+        /* This error type is issued during Redirect, and is handled as a
+         * cancellation rather than an error. */
+
+        if (isNavigationCancelingError(e)) {
+          const redirecting = isUrlTree(e.url);
+
+          if (!redirecting) {
+            // Set property only if we're not redirecting. If we landed on a page and
+            // redirect to `/` route, the new navigation is going to see the `/`
+            // isn't a change from the default currentUrlTree and won't navigate.
+            // This is only applicable with initial navigation, so setting
+            // `navigated` only when not redirecting resolves this scenario.
+            this.navigated = true;
+            this.restoreHistory(t, true);
+          }
+
+          const navCancel = new NavigationCancel(t.id, this.serializeUrl(t.extractedUrl), e.message);
+          eventsSubject.next(navCancel); // When redirecting, we need to delay resolving the navigation
+          // promise and push it to the redirect navigation
+
+          if (!redirecting) {
+            t.resolve(false);
+          } else {
+            // setTimeout is required so this navigation finishes with
+            // the return EMPTY below. If it isn't allowed to finish
+            // processing, there can be multiple navigations to the same
+            // URL.
+            setTimeout(() => {
+              const mergedTree = this.urlHandlingStrategy.merge(e.url, this.rawUrlTree);
+              const extras = {
+                skipLocationChange: t.extras.skipLocationChange,
+                // The URL is already updated at this point if we have 'eager' URL
+                // updates or if the navigation was triggered by the browser (back
+                // button, URL bar, etc). We want to replace that item in history if
+                // the navigation is rejected.
+                replaceUrl: this.urlUpdateStrategy === 'eager' || isBrowserTriggeredNavigation(t.source)
+              };
+              this.scheduleNavigation(mergedTree, 'imperative', null, extras, {
+                resolve: t.resolve,
+                reject: t.reject,
+                promise: t.promise
+              });
+            }, 0);
+          }
+          /* All other errors should reset to the router's internal URL reference to
+           * the pre-error state. */
+
+        } else {
+          this.restoreHistory(t, true);
+          const navError = new NavigationError(t.id, this.serializeUrl(t.extractedUrl), e);
+          eventsSubject.next(navError);
+
+          try {
+            t.resolve(this.errorHandler(e));
+          } catch (ee) {
+            t.reject(ee);
+          }
+        }
+
+        return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
+      })); // TODO(jasonaden): remove cast once g3 is on updated TypeScript
+    }));
+  }
+  /**
+   * @internal
+   * TODO: this should be removed once the constructor of the router made internal
+   */
+
+
+  resetRootComponentType(rootComponentType) {
+    this.rootComponentType = rootComponentType; // TODO: vsavkin router 4.0 should make the root component set to null
+    // this will simplify the lifecycle of the router.
+
+    this.routerState.root.component = this.rootComponentType;
+  }
+
+  setTransition(t) {
+    this.transitions.next(Object.assign(Object.assign({}, this.transitions.value), t));
+  }
+  /**
+   * Sets up the location change listener and performs the initial navigation.
+   */
+
+
+  initialNavigation() {
+    this.setUpLocationChangeListener();
+
+    if (this.navigationId === 0) {
+      this.navigateByUrl(this.location.path(true), {
+        replaceUrl: true
+      });
+    }
+  }
+  /**
+   * Sets up the location change listener. This listener detects navigations triggered from outside
+   * the Router (the browser back/forward buttons, for example) and schedules a corresponding Router
+   * navigation so that the correct events, guards, etc. are triggered.
+   */
+
+
+  setUpLocationChangeListener() {
+    // Don't need to use Zone.wrap any more, because zone.js
+    // already patch onPopState, so location change callback will
+    // run into ngZone
+    if (!this.locationSubscription) {
+      this.locationSubscription = this.location.subscribe(event => {
+        const source = event['type'] === 'popstate' ? 'popstate' : 'hashchange';
+
+        if (source === 'popstate') {
+          // The `setTimeout` was added in #12160 and is likely to support Angular/AngularJS
+          // hybrid apps.
+          setTimeout(() => {
+            var _a;
+
+            const extras = {
+              replaceUrl: true
+            }; // Navigations coming from Angular router have a navigationId state
+            // property. When this exists, restore the state.
+
+            const state = ((_a = event.state) === null || _a === void 0 ? void 0 : _a.navigationId) ? event.state : null;
+
+            if (state) {
+              const stateCopy = Object.assign({}, state);
+              delete stateCopy.navigationId;
+              delete stateCopy.ɵrouterPageId;
+
+              if (Object.keys(stateCopy).length !== 0) {
+                extras.state = stateCopy;
+              }
+            }
+
+            const urlTree = this.parseUrl(event['url']);
+            this.scheduleNavigation(urlTree, source, state, extras);
+          }, 0);
+        }
+      });
+    }
+  }
+  /** The current URL. */
+
+
+  get url() {
+    return this.serializeUrl(this.currentUrlTree);
+  }
+  /**
+   * Returns the current `Navigation` object when the router is navigating,
+   * and `null` when idle.
+   */
+
+
+  getCurrentNavigation() {
+    return this.currentNavigation;
+  }
+  /** @internal */
+
+
+  triggerEvent(event) {
+    this.events.next(event);
+  }
+  /**
+   * Resets the route configuration used for navigation and generating links.
+   *
+   * @param config The route array for the new configuration.
+   *
+   * @usageNotes
+   *
+   * ```
+   * router.resetConfig([
+   *  { path: 'team/:id', component: TeamCmp, children: [
+   *    { path: 'simple', component: SimpleCmp },
+   *    { path: 'user/:name', component: UserCmp }
+   *  ]}
+   * ]);
+   * ```
+   */
+
+
+  resetConfig(config) {
+    validateConfig(config);
+    this.config = config.map(standardizeConfig);
+    this.navigated = false;
+    this.lastSuccessfulId = -1;
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    this.dispose();
+  }
+  /** Disposes of the router. */
+
+
+  dispose() {
+    this.transitions.complete();
+
+    if (this.locationSubscription) {
+      this.locationSubscription.unsubscribe();
+      this.locationSubscription = undefined;
+    }
+
+    this.disposed = true;
+  }
+  /**
+   * Appends URL segments to the current URL tree to create a new URL tree.
+   *
+   * @param commands An array of URL fragments with which to construct the new URL tree.
+   * If the path is static, can be the literal URL string. For a dynamic path, pass an array of path
+   * segments, followed by the parameters for each segment.
+   * The fragments are applied to the current URL tree or the one provided  in the `relativeTo`
+   * property of the options object, if supplied.
+   * @param navigationExtras Options that control the navigation strategy.
+   * @returns The new URL tree.
+   *
+   * @usageNotes
+   *
+   * ```
+   * // create /team/33/user/11
+   * router.createUrlTree(['/team', 33, 'user', 11]);
+   *
+   * // create /team/33;expand=true/user/11
+   * router.createUrlTree(['/team', 33, {expand: true}, 'user', 11]);
+   *
+   * // you can collapse static segments like this (this works only with the first passed-in value):
+   * router.createUrlTree(['/team/33/user', userId]);
+   *
+   * // If the first segment can contain slashes, and you do not want the router to split it,
+   * // you can do the following:
+   * router.createUrlTree([{segmentPath: '/one/two'}]);
+   *
+   * // create /team/33/(user/11//right:chat)
+   * router.createUrlTree(['/team', 33, {outlets: {primary: 'user/11', right: 'chat'}}]);
+   *
+   * // remove the right secondary node
+   * router.createUrlTree(['/team', 33, {outlets: {primary: 'user/11', right: null}}]);
+   *
+   * // assuming the current url is `/team/33/user/11` and the route points to `user/11`
+   *
+   * // navigate to /team/33/user/11/details
+   * router.createUrlTree(['details'], {relativeTo: route});
+   *
+   * // navigate to /team/33/user/22
+   * router.createUrlTree(['../22'], {relativeTo: route});
+   *
+   * // navigate to /team/44/user/22
+   * router.createUrlTree(['../../team/44/user/22'], {relativeTo: route});
+   *
+   * Note that a value of `null` or `undefined` for `relativeTo` indicates that the
+   * tree should be created relative to the root.
+   * ```
+   */
+
+
+  createUrlTree(commands, navigationExtras = {}) {
+    const {
+      relativeTo,
+      queryParams,
+      fragment,
+      queryParamsHandling,
+      preserveFragment
+    } = navigationExtras;
+    const a = relativeTo || this.routerState.root;
+    const f = preserveFragment ? this.currentUrlTree.fragment : fragment;
+    let q = null;
+
+    switch (queryParamsHandling) {
+      case 'merge':
+        q = Object.assign(Object.assign({}, this.currentUrlTree.queryParams), queryParams);
+        break;
+
+      case 'preserve':
+        q = this.currentUrlTree.queryParams;
+        break;
+
+      default:
+        q = queryParams || null;
+    }
+
+    if (q !== null) {
+      q = this.removeEmptyProps(q);
+    }
+
+    return createUrlTree(a, this.currentUrlTree, commands, q, f !== null && f !== void 0 ? f : null);
+  }
+  /**
+   * Navigates to a view using an absolute route path.
+   *
+   * @param url An absolute path for a defined route. The function does not apply any delta to the
+   *     current URL.
+   * @param extras An object containing properties that modify the navigation strategy.
+   *
+   * @returns A Promise that resolves to 'true' when navigation succeeds,
+   * to 'false' when navigation fails, or is rejected on error.
+   *
+   * @usageNotes
+   *
+   * The following calls request navigation to an absolute path.
+   *
+   * ```
+   * router.navigateByUrl("/team/33/user/11");
+   *
+   * // Navigate without updating the URL
+   * router.navigateByUrl("/team/33/user/11", { skipLocationChange: true });
+   * ```
+   *
+   * @see [Routing and Navigation guide](guide/router)
+   *
+   */
+
+
+  navigateByUrl(url, extras = {
+    skipLocationChange: false
+  }) {
+    if (typeof ngDevMode === 'undefined' || ngDevMode && this.isNgZoneEnabled && !_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone.isInAngularZone()) {
+      this.console.warn(`Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?`);
+    }
+
+    const urlTree = isUrlTree(url) ? url : this.parseUrl(url);
+    const mergedTree = this.urlHandlingStrategy.merge(urlTree, this.rawUrlTree);
+    return this.scheduleNavigation(mergedTree, 'imperative', null, extras);
+  }
+  /**
+   * Navigate based on the provided array of commands and a starting point.
+   * If no starting route is provided, the navigation is absolute.
+   *
+   * @param commands An array of URL fragments with which to construct the target URL.
+   * If the path is static, can be the literal URL string. For a dynamic path, pass an array of path
+   * segments, followed by the parameters for each segment.
+   * The fragments are applied to the current URL or the one provided  in the `relativeTo` property
+   * of the options object, if supplied.
+   * @param extras An options object that determines how the URL should be constructed or
+   *     interpreted.
+   *
+   * @returns A Promise that resolves to `true` when navigation succeeds, to `false` when navigation
+   *     fails,
+   * or is rejected on error.
+   *
+   * @usageNotes
+   *
+   * The following calls request navigation to a dynamic route path relative to the current URL.
+   *
+   * ```
+   * router.navigate(['team', 33, 'user', 11], {relativeTo: route});
+   *
+   * // Navigate without updating the URL, overriding the default behavior
+   * router.navigate(['team', 33, 'user', 11], {relativeTo: route, skipLocationChange: true});
+   * ```
+   *
+   * @see [Routing and Navigation guide](guide/router)
+   *
+   */
+
+
+  navigate(commands, extras = {
+    skipLocationChange: false
+  }) {
+    validateCommands(commands);
+    return this.navigateByUrl(this.createUrlTree(commands, extras), extras);
+  }
+  /** Serializes a `UrlTree` into a string */
+
+
+  serializeUrl(url) {
+    return this.urlSerializer.serialize(url);
+  }
+  /** Parses a string into a `UrlTree` */
+
+
+  parseUrl(url) {
+    let urlTree;
+
+    try {
+      urlTree = this.urlSerializer.parse(url);
+    } catch (e) {
+      urlTree = this.malformedUriErrorHandler(e, this.urlSerializer, url);
+    }
+
+    return urlTree;
+  }
+
+  isActive(url, matchOptions) {
+    let options;
+
+    if (matchOptions === true) {
+      options = Object.assign({}, exactMatchOptions);
+    } else if (matchOptions === false) {
+      options = Object.assign({}, subsetMatchOptions);
+    } else {
+      options = matchOptions;
+    }
+
+    if (isUrlTree(url)) {
+      return containsTree(this.currentUrlTree, url, options);
+    }
+
+    const urlTree = this.parseUrl(url);
+    return containsTree(this.currentUrlTree, urlTree, options);
+  }
+
+  removeEmptyProps(params) {
+    return Object.keys(params).reduce((result, key) => {
+      const value = params[key];
+
+      if (value !== null && value !== undefined) {
+        result[key] = value;
+      }
+
+      return result;
+    }, {});
+  }
+
+  processNavigations() {
+    this.navigations.subscribe(t => {
+      this.navigated = true;
+      this.lastSuccessfulId = t.id;
+      this.currentPageId = t.targetPageId;
+      this.events.next(new NavigationEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(this.currentUrlTree)));
+      this.lastSuccessfulNavigation = this.currentNavigation;
+      t.resolve(true);
+    }, e => {
+      this.console.warn(`Unhandled Navigation Error: ${e}`);
+    });
+  }
+
+  scheduleNavigation(rawUrl, source, restoredState, extras, priorPromise) {
+    var _a, _b;
+
+    if (this.disposed) {
+      return Promise.resolve(false);
+    }
+
+    let resolve;
+    let reject;
+    let promise;
+
+    if (priorPromise) {
+      resolve = priorPromise.resolve;
+      reject = priorPromise.reject;
+      promise = priorPromise.promise;
+    } else {
+      promise = new Promise((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
+    }
+
+    const id = ++this.navigationId;
+    let targetPageId;
+
+    if (this.canceledNavigationResolution === 'computed') {
+      const isInitialPage = this.currentPageId === 0;
+
+      if (isInitialPage) {
+        restoredState = this.location.getState();
+      } // If the `ɵrouterPageId` exist in the state then `targetpageId` should have the value of
+      // `ɵrouterPageId`. This is the case for something like a page refresh where we assign the
+      // target id to the previously set value for that page.
+
+
+      if (restoredState && restoredState.ɵrouterPageId) {
+        targetPageId = restoredState.ɵrouterPageId;
+      } else {
+        // If we're replacing the URL or doing a silent navigation, we do not want to increment the
+        // page id because we aren't pushing a new entry to history.
+        if (extras.replaceUrl || extras.skipLocationChange) {
+          targetPageId = (_a = this.browserPageId) !== null && _a !== void 0 ? _a : 0;
+        } else {
+          targetPageId = ((_b = this.browserPageId) !== null && _b !== void 0 ? _b : 0) + 1;
+        }
+      }
+    } else {
+      // This is unused when `canceledNavigationResolution` is not computed.
+      targetPageId = 0;
+    }
+
+    this.setTransition({
+      id,
+      targetPageId,
+      source,
+      restoredState,
+      currentUrlTree: this.currentUrlTree,
+      currentRawUrl: this.rawUrlTree,
+      rawUrl,
+      extras,
+      resolve,
+      reject,
+      promise,
+      currentSnapshot: this.routerState.snapshot,
+      currentRouterState: this.routerState
+    }); // Make sure that the error is propagated even though `processNavigations` catch
+    // handler does not rethrow
+
+    return promise.catch(e => {
+      return Promise.reject(e);
+    });
+  }
+
+  setBrowserUrl(url, t) {
+    const path = this.urlSerializer.serialize(url);
+    const state = Object.assign(Object.assign({}, t.extras.state), this.generateNgRouterState(t.id, t.targetPageId));
+
+    if (this.location.isCurrentPathEqualTo(path) || !!t.extras.replaceUrl) {
+      this.location.replaceState(path, '', state);
+    } else {
+      this.location.go(path, '', state);
+    }
+  }
+  /**
+   * Performs the necessary rollback action to restore the browser URL to the
+   * state before the transition.
+   */
+
+
+  restoreHistory(t, restoringFromCaughtError = false) {
+    var _a, _b;
+
+    if (this.canceledNavigationResolution === 'computed') {
+      const targetPagePosition = this.currentPageId - t.targetPageId; // The navigator change the location before triggered the browser event,
+      // so we need to go back to the current url if the navigation is canceled.
+      // Also, when navigation gets cancelled while using url update strategy eager, then we need to
+      // go back. Because, when `urlUpdateSrategy` is `eager`; `setBrowserUrl` method is called
+      // before any verification.
+
+      const browserUrlUpdateOccurred = t.source === 'popstate' || this.urlUpdateStrategy === 'eager' || this.currentUrlTree === ((_a = this.currentNavigation) === null || _a === void 0 ? void 0 : _a.finalUrl);
+
+      if (browserUrlUpdateOccurred && targetPagePosition !== 0) {
+        this.location.historyGo(targetPagePosition);
+      } else if (this.currentUrlTree === ((_b = this.currentNavigation) === null || _b === void 0 ? void 0 : _b.finalUrl) && targetPagePosition === 0) {
+        // We got to the activation stage (where currentUrlTree is set to the navigation's
+        // finalUrl), but we weren't moving anywhere in history (skipLocationChange or replaceUrl).
+        // We still need to reset the router state back to what it was when the navigation started.
+        this.resetState(t); // TODO(atscott): resetting the `browserUrlTree` should really be done in `resetState`.
+        // Investigate if this can be done by running TGP.
+
+        this.browserUrlTree = t.currentUrlTree;
+        this.resetUrlToCurrentUrlTree();
+      } else {// The browser URL and router state was not updated before the navigation cancelled so
+        // there's no restoration needed.
+      }
+    } else if (this.canceledNavigationResolution === 'replace') {
+      // TODO(atscott): It seems like we should _always_ reset the state here. It would be a no-op
+      // for `deferred` navigations that haven't change the internal state yet because guards
+      // reject. For 'eager' navigations, it seems like we also really should reset the state
+      // because the navigation was cancelled. Investigate if this can be done by running TGP.
+      if (restoringFromCaughtError) {
+        this.resetState(t);
+      }
+
+      this.resetUrlToCurrentUrlTree();
+    }
+  }
+
+  resetState(t) {
+    this.routerState = t.currentRouterState;
+    this.currentUrlTree = t.currentUrlTree; // Note here that we use the urlHandlingStrategy to get the reset `rawUrlTree` because it may be
+    // configured to handle only part of the navigation URL. This means we would only want to reset
+    // the part of the navigation handled by the Angular router rather than the whole URL. In
+    // addition, the URLHandlingStrategy may be configured to specifically preserve parts of the URL
+    // when merging, such as the query params so they are not lost on a refresh.
+
+    this.rawUrlTree = this.urlHandlingStrategy.merge(this.currentUrlTree, t.rawUrl);
+  }
+
+  resetUrlToCurrentUrlTree() {
+    this.location.replaceState(this.urlSerializer.serialize(this.rawUrlTree), '', this.generateNgRouterState(this.lastSuccessfulId, this.currentPageId));
+  }
+
+  cancelNavigationTransition(t, reason) {
+    const navCancel = new NavigationCancel(t.id, this.serializeUrl(t.extractedUrl), reason);
+    this.triggerEvent(navCancel);
+    t.resolve(false);
+  }
+
+  generateNgRouterState(navigationId, routerPageId) {
+    if (this.canceledNavigationResolution === 'computed') {
+      return {
+        navigationId,
+        ɵrouterPageId: routerPageId
+      };
+    }
+
+    return {
+      navigationId
+    };
+  }
+
+}
+
+Router.ɵfac = function Router_Factory(t) {
+  _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinvalidFactory"]();
+};
+
+Router.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: Router,
+  factory: Router.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Router, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Type
+    }, {
+      type: UrlSerializer
+    }, {
+      type: ChildrenOutletContexts
+    }, {
+      type: _angular_common__WEBPACK_IMPORTED_MODULE_28__.Location
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Compiler
+    }, {
+      type: undefined
+    }];
+  }, null);
+})();
+
+function validateCommands(commands) {
+  for (let i = 0; i < commands.length; i++) {
+    const cmd = commands[i];
+
+    if (cmd == null) {
+      throw new Error(`The requested path contains ${cmd} segment at index ${i}`);
+    }
+  }
+}
+
+function isBrowserTriggeredNavigation(source) {
+  return source !== 'imperative';
+}
+/**
+ * @description
+ *
+ * When applied to an element in a template, makes that element a link
+ * that initiates navigation to a route. Navigation opens one or more routed components
+ * in one or more `<router-outlet>` locations on the page.
+ *
+ * Given a route configuration `[{ path: 'user/:name', component: UserCmp }]`,
+ * the following creates a static link to the route:
+ * `<a routerLink="/user/bob">link to user component</a>`
+ *
+ * You can use dynamic values to generate the link.
+ * For a dynamic link, pass an array of path segments,
+ * followed by the params for each segment.
+ * For example, `['/team', teamId, 'user', userName, {details: true}]`
+ * generates a link to `/team/11/user/bob;details=true`.
+ *
+ * Multiple static segments can be merged into one term and combined with dynamic segments.
+ * For example, `['/team/11/user', userName, {details: true}]`
+ *
+ * The input that you provide to the link is treated as a delta to the current URL.
+ * For instance, suppose the current URL is `/user/(box//aux:team)`.
+ * The link `<a [routerLink]="['/user/jim']">Jim</a>` creates the URL
+ * `/user/(jim//aux:team)`.
+ * See {@link Router#createUrlTree createUrlTree} for more information.
+ *
+ * @usageNotes
+ *
+ * You can use absolute or relative paths in a link, set query parameters,
+ * control how parameters are handled, and keep a history of navigation states.
+ *
+ * ### Relative link paths
+ *
+ * The first segment name can be prepended with `/`, `./`, or `../`.
+ * * If the first segment begins with `/`, the router looks up the route from the root of the
+ *   app.
+ * * If the first segment begins with `./`, or doesn't begin with a slash, the router
+ *   looks in the children of the current activated route.
+ * * If the first segment begins with `../`, the router goes up one level in the route tree.
+ *
+ * ### Setting and handling query params and fragments
+ *
+ * The following link adds a query parameter and a fragment to the generated URL:
+ *
+ * ```
+ * <a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" fragment="education">
+ *   link to user component
+ * </a>
+ * ```
+ * By default, the directive constructs the new URL using the given query parameters.
+ * The example generates the link: `/user/bob?debug=true#education`.
+ *
+ * You can instruct the directive to handle query parameters differently
+ * by specifying the `queryParamsHandling` option in the link.
+ * Allowed values are:
+ *
+ *  - `'merge'`: Merge the given `queryParams` into the current query params.
+ *  - `'preserve'`: Preserve the current query params.
+ *
+ * For example:
+ *
+ * ```
+ * <a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" queryParamsHandling="merge">
+ *   link to user component
+ * </a>
+ * ```
+ *
+ * See {@link UrlCreationOptions.queryParamsHandling UrlCreationOptions#queryParamsHandling}.
+ *
+ * ### Preserving navigation history
+ *
+ * You can provide a `state` value to be persisted to the browser's
+ * [`History.state` property](https://developer.mozilla.org/en-US/docs/Web/API/History#Properties).
+ * For example:
+ *
+ * ```
+ * <a [routerLink]="['/user/bob']" [state]="{tracingId: 123}">
+ *   link to user component
+ * </a>
+ * ```
+ *
+ * Use {@link Router.getCurrentNavigation() Router#getCurrentNavigation} to retrieve a saved
+ * navigation-state value. For example, to capture the `tracingId` during the `NavigationStart`
+ * event:
+ *
+ * ```
+ * // Get NavigationStart events
+ * router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+ *   const navigation = router.getCurrentNavigation();
+ *   tracingService.trace({id: navigation.extras.state.tracingId});
+ * });
+ * ```
+ *
+ * @ngModule RouterModule
+ *
+ * @publicApi
+ */
+
+
+class RouterLink {
+  constructor(router, route, tabIndexAttribute, renderer, el) {
+    this.router = router;
+    this.route = route;
+    this.tabIndexAttribute = tabIndexAttribute;
+    this.renderer = renderer;
+    this.el = el;
+    this.commands = null;
+    /** @internal */
+
+    this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
+    this.setTabIndexIfNotOnNativeEl('0');
+  }
+  /**
+   * Modifies the tab index if there was not a tabindex attribute on the element during
+   * instantiation.
+   */
+
+
+  setTabIndexIfNotOnNativeEl(newTabIndex) {
+    if (this.tabIndexAttribute != null
+    /* both `null` and `undefined` */
+    ) {
+      return;
+    }
+
+    const renderer = this.renderer;
+    const nativeElement = this.el.nativeElement;
+
+    if (newTabIndex !== null) {
+      renderer.setAttribute(nativeElement, 'tabindex', newTabIndex);
+    } else {
+      renderer.removeAttribute(nativeElement, 'tabindex');
+    }
+  }
+  /** @nodoc */
+
+
+  ngOnChanges(changes) {
+    // This is subscribed to by `RouterLinkActive` so that it knows to update when there are changes
+    // to the RouterLinks it's tracking.
+    this.onChanges.next(this);
+  }
+  /**
+   * Commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+   *   - **array**: commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+   *   - **string**: shorthand for array of commands with just the string, i.e. `['/route']`
+   *   - **null|undefined**: effectively disables the `routerLink`
+   * @see {@link Router#createUrlTree Router#createUrlTree}
+   */
+
+
+  set routerLink(commands) {
+    if (commands != null) {
+      this.commands = Array.isArray(commands) ? commands : [commands];
+      this.setTabIndexIfNotOnNativeEl('0');
+    } else {
+      this.commands = null;
+      this.setTabIndexIfNotOnNativeEl(null);
+    }
+  }
+  /** @nodoc */
+
+
+  onClick() {
+    if (this.urlTree === null) {
+      return true;
+    }
+
+    const extras = {
+      skipLocationChange: attrBoolValue(this.skipLocationChange),
+      replaceUrl: attrBoolValue(this.replaceUrl),
+      state: this.state
+    };
+    this.router.navigateByUrl(this.urlTree, extras);
+    return true;
+  }
+
+  get urlTree() {
+    if (this.commands === null) {
+      return null;
+    }
+
+    return this.router.createUrlTree(this.commands, {
+      // If the `relativeTo` input is not defined, we want to use `this.route` by default.
+      // Otherwise, we should use the value provided by the user in the input.
+      relativeTo: this.relativeTo !== undefined ? this.relativeTo : this.route,
+      queryParams: this.queryParams,
+      fragment: this.fragment,
+      queryParamsHandling: this.queryParamsHandling,
+      preserveFragment: attrBoolValue(this.preserveFragment)
+    });
+  }
+
+}
+
+RouterLink.ɵfac = function RouterLink_Factory(t) {
+  return new (t || RouterLink)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectAttribute"]('tabindex'), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef));
+};
+
+RouterLink.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
+  type: RouterLink,
+  selectors: [["", "routerLink", "", 5, "a", 5, "area"]],
+  hostBindings: function RouterLink_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RouterLink_click_HostBindingHandler() {
+        return ctx.onClick();
+      });
+    }
+  },
+  inputs: {
+    queryParams: "queryParams",
+    fragment: "fragment",
+    queryParamsHandling: "queryParamsHandling",
+    preserveFragment: "preserveFragment",
+    skipLocationChange: "skipLocationChange",
+    replaceUrl: "replaceUrl",
+    state: "state",
+    relativeTo: "relativeTo",
+    routerLink: "routerLink"
+  },
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLink, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
+    args: [{
+      selector: ':not(a):not(area)[routerLink]'
+    }]
+  }], function () {
+    return [{
+      type: Router
+    }, {
+      type: ActivatedRoute
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Attribute,
+        args: ['tabindex']
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }];
+  }, {
+    queryParams: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    fragment: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    queryParamsHandling: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    preserveFragment: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    skipLocationChange: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    replaceUrl: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    state: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    relativeTo: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    routerLink: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onClick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
+      args: ['click']
+    }]
+  });
+})();
+/**
+ * @description
+ *
+ * Lets you link to specific routes in your app.
+ *
+ * See `RouterLink` for more information.
+ *
+ * @ngModule RouterModule
+ *
+ * @publicApi
+ */
+
+
+class RouterLinkWithHref {
+  constructor(router, route, locationStrategy) {
+    this.router = router;
+    this.route = route;
+    this.locationStrategy = locationStrategy;
+    this.commands = null; // the url displayed on the anchor element.
+    // @HostBinding('attr.href') is used rather than @HostBinding() because it removes the
+    // href attribute when it becomes `null`.
+
+    this.href = null;
+    /** @internal */
+
+    this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
+    this.subscription = router.events.subscribe(s => {
+      if (s instanceof NavigationEnd) {
+        this.updateTargetUrlAndHref();
+      }
+    });
+  }
+  /**
+   * Commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+   *   - **array**: commands to pass to {@link Router#createUrlTree Router#createUrlTree}.
+   *   - **string**: shorthand for array of commands with just the string, i.e. `['/route']`
+   *   - **null|undefined**: Disables the link by removing the `href`
+   * @see {@link Router#createUrlTree Router#createUrlTree}
+   */
+
+
+  set routerLink(commands) {
+    if (commands != null) {
+      this.commands = Array.isArray(commands) ? commands : [commands];
+    } else {
+      this.commands = null;
+    }
+  }
+  /** @nodoc */
+
+
+  ngOnChanges(changes) {
+    this.updateTargetUrlAndHref();
+    this.onChanges.next(this);
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  /** @nodoc */
+
+
+  onClick(button, ctrlKey, shiftKey, altKey, metaKey) {
+    if (button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
+      return true;
+    }
+
+    if (typeof this.target === 'string' && this.target != '_self' || this.urlTree === null) {
+      return true;
+    }
+
+    const extras = {
+      skipLocationChange: attrBoolValue(this.skipLocationChange),
+      replaceUrl: attrBoolValue(this.replaceUrl),
+      state: this.state
+    };
+    this.router.navigateByUrl(this.urlTree, extras);
+    return false;
+  }
+
+  updateTargetUrlAndHref() {
+    this.href = this.urlTree !== null ? this.locationStrategy.prepareExternalUrl(this.router.serializeUrl(this.urlTree)) : null;
+  }
+
+  get urlTree() {
+    if (this.commands === null) {
+      return null;
+    }
+
+    return this.router.createUrlTree(this.commands, {
+      // If the `relativeTo` input is not defined, we want to use `this.route` by default.
+      // Otherwise, we should use the value provided by the user in the input.
+      relativeTo: this.relativeTo !== undefined ? this.relativeTo : this.route,
+      queryParams: this.queryParams,
+      fragment: this.fragment,
+      queryParamsHandling: this.queryParamsHandling,
+      preserveFragment: attrBoolValue(this.preserveFragment)
+    });
+  }
+
+}
+
+RouterLinkWithHref.ɵfac = function RouterLinkWithHref_Factory(t) {
+  return new (t || RouterLinkWithHref)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_28__.LocationStrategy));
+};
+
+RouterLinkWithHref.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
+  type: RouterLinkWithHref,
+  selectors: [["a", "routerLink", ""], ["area", "routerLink", ""]],
+  hostVars: 2,
+  hostBindings: function RouterLinkWithHref_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RouterLinkWithHref_click_HostBindingHandler($event) {
+        return ctx.onClick($event.button, $event.ctrlKey, $event.shiftKey, $event.altKey, $event.metaKey);
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"]("target", ctx.target)("href", ctx.href, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    }
+  },
+  inputs: {
+    target: "target",
+    queryParams: "queryParams",
+    fragment: "fragment",
+    queryParamsHandling: "queryParamsHandling",
+    preserveFragment: "preserveFragment",
+    skipLocationChange: "skipLocationChange",
+    replaceUrl: "replaceUrl",
+    state: "state",
+    relativeTo: "relativeTo",
+    routerLink: "routerLink"
+  },
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLinkWithHref, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
+    args: [{
+      selector: 'a[routerLink],area[routerLink]'
+    }]
+  }], function () {
+    return [{
+      type: Router
+    }, {
+      type: ActivatedRoute
+    }, {
+      type: _angular_common__WEBPACK_IMPORTED_MODULE_28__.LocationStrategy
+    }];
+  }, {
+    target: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostBinding,
+      args: ['attr.target']
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    queryParams: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    fragment: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    queryParamsHandling: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    preserveFragment: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    skipLocationChange: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    replaceUrl: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    state: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    relativeTo: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    href: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostBinding,
+      args: ['attr.href']
+    }],
+    routerLink: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onClick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
+      args: ['click', ['$event.button', '$event.ctrlKey', '$event.shiftKey', '$event.altKey', '$event.metaKey']]
+    }]
+  });
+})();
+
+function attrBoolValue(s) {
+  return s === '' || !!s;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ *
+ * @description
+ *
+ * Tracks whether the linked route of an element is currently active, and allows you
+ * to specify one or more CSS classes to add to the element when the linked route
+ * is active.
+ *
+ * Use this directive to create a visual distinction for elements associated with an active route.
+ * For example, the following code highlights the word "Bob" when the router
+ * activates the associated route:
+ *
+ * ```
+ * <a routerLink="/user/bob" routerLinkActive="active-link">Bob</a>
+ * ```
+ *
+ * Whenever the URL is either '/user' or '/user/bob', the "active-link" class is
+ * added to the anchor tag. If the URL changes, the class is removed.
+ *
+ * You can set more than one class using a space-separated string or an array.
+ * For example:
+ *
+ * ```
+ * <a routerLink="/user/bob" routerLinkActive="class1 class2">Bob</a>
+ * <a routerLink="/user/bob" [routerLinkActive]="['class1', 'class2']">Bob</a>
+ * ```
+ *
+ * To add the classes only when the URL matches the link exactly, add the option `exact: true`:
+ *
+ * ```
+ * <a routerLink="/user/bob" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+ * true}">Bob</a>
+ * ```
+ *
+ * To directly check the `isActive` status of the link, assign the `RouterLinkActive`
+ * instance to a template variable.
+ * For example, the following checks the status without assigning any CSS classes:
+ *
+ * ```
+ * <a routerLink="/user/bob" routerLinkActive #rla="routerLinkActive">
+ *   Bob {{ rla.isActive ? '(already open)' : ''}}
+ * </a>
+ * ```
+ *
+ * You can apply the `RouterLinkActive` directive to an ancestor of linked elements.
+ * For example, the following sets the active-link class on the `<div>`  parent tag
+ * when the URL is either '/user/jim' or '/user/bob'.
+ *
+ * ```
+ * <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+ *   <a routerLink="/user/jim">Jim</a>
+ *   <a routerLink="/user/bob">Bob</a>
+ * </div>
+ * ```
+ *
+ * @ngModule RouterModule
+ *
+ * @publicApi
+ */
+
+
+class RouterLinkActive {
+  constructor(router, element, renderer, cdr, link, linkWithHref) {
+    this.router = router;
+    this.element = element;
+    this.renderer = renderer;
+    this.cdr = cdr;
+    this.link = link;
+    this.linkWithHref = linkWithHref;
+    this.classes = [];
+    this.isActive = false;
+    /**
+     * Options to configure how to determine if the router link is active.
+     *
+     * These options are passed to the `Router.isActive()` function.
+     *
+     * @see Router.isActive
+     */
+
+    this.routerLinkActiveOptions = {
+      exact: false
+    };
+    /**
+     *
+     * You can use the output `isActiveChange` to get notified each time the link becomes
+     * active or inactive.
+     *
+     * Emits:
+     * true  -> Route is active
+     * false -> Route is inactive
+     *
+     * ```
+     * <a
+     *  routerLink="/user/bob"
+     *  routerLinkActive="active-link"
+     *  (isActiveChange)="this.onRouterLinkActive($event)">Bob</a>
+     * ```
+     */
+
+    this.isActiveChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.routerEventsSubscription = router.events.subscribe(s => {
+      if (s instanceof NavigationEnd) {
+        this.update();
+      }
+    });
+  }
+  /** @nodoc */
+
+
+  ngAfterContentInit() {
+    // `of(null)` is used to force subscribe body to execute once immediately (like `startWith`).
+    (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(this.links.changes, this.linksWithHrefs.changes, (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)()).subscribe(_ => {
+      this.update();
+      this.subscribeToEachLinkOnChanges();
+    });
+  }
+
+  subscribeToEachLinkOnChanges() {
+    var _a;
+
+    (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+    const allLinkChanges = [...this.links.toArray(), ...this.linksWithHrefs.toArray(), this.link, this.linkWithHref].filter(link => !!link).map(link => link.onChanges);
+    this.linkInputChangesSubscription = (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(allLinkChanges).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)()).subscribe(link => {
+      if (this.isActive !== this.isLinkActive(this.router)(link)) {
+        this.update();
+      }
+    });
+  }
+
+  set routerLinkActive(data) {
+    const classes = Array.isArray(data) ? data : data.split(' ');
+    this.classes = classes.filter(c => !!c);
+  }
+  /** @nodoc */
+
+
+  ngOnChanges(changes) {
+    this.update();
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    var _a;
+
+    this.routerEventsSubscription.unsubscribe();
+    (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+  }
+
+  update() {
+    if (!this.links || !this.linksWithHrefs || !this.router.navigated) return;
+    Promise.resolve().then(() => {
+      const hasActiveLinks = this.hasActiveLinks();
+
+      if (this.isActive !== hasActiveLinks) {
+        this.isActive = hasActiveLinks;
+        this.cdr.markForCheck();
+        this.classes.forEach(c => {
+          if (hasActiveLinks) {
+            this.renderer.addClass(this.element.nativeElement, c);
+          } else {
+            this.renderer.removeClass(this.element.nativeElement, c);
+          }
+        }); // Emit on isActiveChange after classes are updated
+
+        this.isActiveChange.emit(hasActiveLinks);
+      }
+    });
+  }
+
+  isLinkActive(router) {
+    const options = isActiveMatchOptions(this.routerLinkActiveOptions) ? this.routerLinkActiveOptions : // While the types should disallow `undefined` here, it's possible without strict inputs
+    this.routerLinkActiveOptions.exact || false;
+    return link => link.urlTree ? router.isActive(link.urlTree, options) : false;
+  }
+
+  hasActiveLinks() {
+    const isActiveCheckFn = this.isLinkActive(this.router);
+    return this.link && isActiveCheckFn(this.link) || this.linkWithHref && isActiveCheckFn(this.linkWithHref) || this.links.some(isActiveCheckFn) || this.linksWithHrefs.some(isActiveCheckFn);
+  }
+
+}
+
+RouterLinkActive.ɵfac = function RouterLinkActive_Factory(t) {
+  return new (t || RouterLinkActive)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](RouterLink, 8), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](RouterLinkWithHref, 8));
+};
+
+RouterLinkActive.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
+  type: RouterLinkActive,
+  selectors: [["", "routerLinkActive", ""]],
+  contentQueries: function RouterLinkActive_ContentQueries(rf, ctx, dirIndex) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵcontentQuery"](dirIndex, RouterLink, 5);
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵcontentQuery"](dirIndex, RouterLinkWithHref, 5);
+    }
+
+    if (rf & 2) {
+      let _t;
+
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.links = _t);
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.linksWithHrefs = _t);
+    }
+  },
+  inputs: {
+    routerLinkActiveOptions: "routerLinkActiveOptions",
+    routerLinkActive: "routerLinkActive"
+  },
+  outputs: {
+    isActiveChange: "isActiveChange"
+  },
+  exportAs: ["routerLinkActive"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLinkActive, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
+    args: [{
+      selector: '[routerLinkActive]',
+      exportAs: 'routerLinkActive'
+    }]
+  }], function () {
+    return [{
+      type: Router
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef
+    }, {
+      type: RouterLink,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional
+      }]
+    }, {
+      type: RouterLinkWithHref,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional
+      }]
+    }];
+  }, {
+    links: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ContentChildren,
+      args: [RouterLink, {
+        descendants: true
+      }]
+    }],
+    linksWithHrefs: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ContentChildren,
+      args: [RouterLinkWithHref, {
+        descendants: true
+      }]
+    }],
+    routerLinkActiveOptions: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    isActiveChange: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    routerLinkActive: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }]
+  });
+})();
+/**
+ * Use instead of `'paths' in options` to be compatible with property renaming
+ */
+
+
+function isActiveMatchOptions(options) {
+  return !!options.paths;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @description
+ *
+ * Provides a preloading strategy.
+ *
+ * @publicApi
+ */
+
+
+class PreloadingStrategy {}
+/**
+ * @description
+ *
+ * Provides a preloading strategy that preloads all modules as quickly as possible.
+ *
+ * ```
+ * RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
+ * ```
+ *
+ * @publicApi
+ */
+
+
+class PreloadAllModules {
+  preload(route, fn) {
+    return fn().pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null)));
+  }
+
+}
+/**
+ * @description
+ *
+ * Provides a preloading strategy that does not preload any modules.
+ *
+ * This strategy is enabled by default.
+ *
+ * @publicApi
+ */
+
+
+class NoPreloading {
+  preload(route, fn) {
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+  }
+
+}
+/**
+ * The preloader optimistically loads all router configurations to
+ * make navigations into lazily-loaded sections of the application faster.
+ *
+ * The preloader runs in the background. When the router bootstraps, the preloader
+ * starts listening to all navigation events. After every such event, the preloader
+ * will check if any configurations can be loaded lazily.
+ *
+ * If a route is protected by `canLoad` guards, the preloaded will not load it.
+ *
+ * @publicApi
+ */
+
+
+class RouterPreloader {
+  constructor(router, compiler, injector, preloadingStrategy) {
+    this.router = router;
+    this.injector = injector;
+    this.preloadingStrategy = preloadingStrategy;
+
+    const onStartLoad = r => router.triggerEvent(new RouteConfigLoadStart(r));
+
+    const onEndLoad = r => router.triggerEvent(new RouteConfigLoadEnd(r));
+
+    this.loader = new RouterConfigLoader(injector, compiler, onStartLoad, onEndLoad);
+  }
+
+  setUpPreloading() {
+    this.subscription = this.router.events.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(e => e instanceof NavigationEnd), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(() => this.preload())).subscribe(() => {});
+  }
+
+  preload() {
+    const ngModule = this.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
+    return this.processRoutes(ngModule, this.router.config);
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  processRoutes(ngModule, routes) {
+    const res = [];
+
+    for (const route of routes) {
+      // we already have the config loaded, just recurse
+      if (route.loadChildren && !route.canLoad && route._loadedConfig) {
+        const childConfig = route._loadedConfig;
+        res.push(this.processRoutes(childConfig.module, childConfig.routes)); // no config loaded, fetch the config
+      } else if (route.loadChildren && !route.canLoad) {
+        res.push(this.preloadConfig(ngModule, route)); // recurse into children
+      } else if (route.children) {
+        res.push(this.processRoutes(ngModule, route.children));
+      }
+    }
+
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(res).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(_ => void 0));
+  }
+
+  preloadConfig(ngModule, route) {
+    return this.preloadingStrategy.preload(route, () => {
+      const loaded$ = route._loadedConfig ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(route._loadedConfig) : this.loader.load(ngModule.injector, route);
+      return loaded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(config => {
+        route._loadedConfig = config;
+        return this.processRoutes(config.module, config.routes);
+      }));
+    });
+  }
+
+}
+
+RouterPreloader.ɵfac = function RouterPreloader_Factory(t) {
+  return new (t || RouterPreloader)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Compiler), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](PreloadingStrategy));
+};
+
+RouterPreloader.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: RouterPreloader,
+  factory: RouterPreloader.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterPreloader, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
+  }], function () {
+    return [{
+      type: Router
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Compiler
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector
+    }, {
+      type: PreloadingStrategy
+    }];
+  }, null);
+})();
+
+class RouterScroller {
+  constructor(router,
+  /** @docsNotRequired */
+  viewportScroller, options = {}) {
+    this.router = router;
+    this.viewportScroller = viewportScroller;
+    this.options = options;
+    this.lastId = 0;
+    this.lastSource = 'imperative';
+    this.restoredId = 0;
+    this.store = {}; // Default both options to 'disabled'
+
+    options.scrollPositionRestoration = options.scrollPositionRestoration || 'disabled';
+    options.anchorScrolling = options.anchorScrolling || 'disabled';
+  }
+
+  init() {
+    // we want to disable the automatic scrolling because having two places
+    // responsible for scrolling results race conditions, especially given
+    // that browser don't implement this behavior consistently
+    if (this.options.scrollPositionRestoration !== 'disabled') {
+      this.viewportScroller.setHistoryScrollRestoration('manual');
+    }
+
+    this.routerEventsSubscription = this.createScrollEvents();
+    this.scrollEventsSubscription = this.consumeScrollEvents();
+  }
+
+  createScrollEvents() {
+    return this.router.events.subscribe(e => {
+      if (e instanceof NavigationStart) {
+        // store the scroll position of the current stable navigations.
+        this.store[this.lastId] = this.viewportScroller.getScrollPosition();
+        this.lastSource = e.navigationTrigger;
+        this.restoredId = e.restoredState ? e.restoredState.navigationId : 0;
+      } else if (e instanceof NavigationEnd) {
+        this.lastId = e.id;
+        this.scheduleScrollEvent(e, this.router.parseUrl(e.urlAfterRedirects).fragment);
+      }
+    });
+  }
+
+  consumeScrollEvents() {
+    return this.router.events.subscribe(e => {
+      if (!(e instanceof Scroll)) return; // a popstate event. The pop state event will always ignore anchor scrolling.
+
+      if (e.position) {
+        if (this.options.scrollPositionRestoration === 'top') {
+          this.viewportScroller.scrollToPosition([0, 0]);
+        } else if (this.options.scrollPositionRestoration === 'enabled') {
+          this.viewportScroller.scrollToPosition(e.position);
+        } // imperative navigation "forward"
+
+      } else {
+        if (e.anchor && this.options.anchorScrolling === 'enabled') {
+          this.viewportScroller.scrollToAnchor(e.anchor);
+        } else if (this.options.scrollPositionRestoration !== 'disabled') {
+          this.viewportScroller.scrollToPosition([0, 0]);
+        }
+      }
+    });
+  }
+
+  scheduleScrollEvent(routerEvent, anchor) {
+    this.router.triggerEvent(new Scroll(routerEvent, this.lastSource === 'popstate' ? this.store[this.restoredId] : null, anchor));
+  }
+  /** @nodoc */
+
+
+  ngOnDestroy() {
+    if (this.routerEventsSubscription) {
+      this.routerEventsSubscription.unsubscribe();
+    }
+
+    if (this.scrollEventsSubscription) {
+      this.scrollEventsSubscription.unsubscribe();
+    }
+  }
+
+}
+
+RouterScroller.ɵfac = function RouterScroller_Factory(t) {
+  _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinvalidFactory"]();
+};
+
+RouterScroller.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: RouterScroller,
+  factory: RouterScroller.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterScroller, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
+  }], function () {
+    return [{
+      type: Router
+    }, {
+      type: _angular_common__WEBPACK_IMPORTED_MODULE_28__.ViewportScroller
+    }, {
+      type: undefined
+    }];
+  }, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * The directives defined in the `RouterModule`.
+ */
+
+
+const ROUTER_DIRECTIVES = [RouterOutlet, RouterLink, RouterLinkWithHref, RouterLinkActive, ɵEmptyOutletComponent];
+/**
+ * A [DI token](guide/glossary/#di-token) for the router service.
+ *
+ * @publicApi
+ */
+
+const ROUTER_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTER_CONFIGURATION');
+/**
+ * @docsNotRequired
+ */
+
+const ROUTER_FORROOT_GUARD = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTER_FORROOT_GUARD');
+const ROUTER_PROVIDERS = [_angular_common__WEBPACK_IMPORTED_MODULE_28__.Location, {
+  provide: UrlSerializer,
+  useClass: DefaultUrlSerializer
+}, {
+  provide: Router,
+  useFactory: setupRouter,
+  deps: [UrlSerializer, ChildrenOutletContexts, _angular_common__WEBPACK_IMPORTED_MODULE_28__.Location, _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector, _angular_core__WEBPACK_IMPORTED_MODULE_0__.Compiler, ROUTES, ROUTER_CONFIGURATION, [UrlHandlingStrategy, new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional()], [RouteReuseStrategy, new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional()]]
+}, ChildrenOutletContexts, {
+  provide: ActivatedRoute,
+  useFactory: rootRoute,
+  deps: [Router]
+}, RouterPreloader, NoPreloading, PreloadAllModules, {
+  provide: ROUTER_CONFIGURATION,
+  useValue: {
+    enableTracing: false
+  }
+}];
+
+function routerNgProbeToken() {
+  return new _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgProbeToken('Router', Router);
+}
+/**
+ * @description
+ *
+ * Adds directives and providers for in-app navigation among views defined in an application.
+ * Use the Angular `Router` service to declaratively specify application states and manage state
+ * transitions.
+ *
+ * You can import this NgModule multiple times, once for each lazy-loaded bundle.
+ * However, only one `Router` service can be active.
+ * To ensure this, there are two ways to register routes when importing this module:
+ *
+ * * The `forRoot()` method creates an `NgModule` that contains all the directives, the given
+ * routes, and the `Router` service itself.
+ * * The `forChild()` method creates an `NgModule` that contains all the directives and the given
+ * routes, but does not include the `Router` service.
+ *
+ * @see [Routing and Navigation guide](guide/router) for an
+ * overview of how the `Router` service should be used.
+ *
+ * @publicApi
+ */
+
+
+class RouterModule {
+  // Note: We are injecting the Router so it gets created eagerly...
+  constructor(guard, router) {}
+  /**
+   * Creates and configures a module with all the router providers and directives.
+   * Optionally sets up an application listener to perform an initial navigation.
+   *
+   * When registering the NgModule at the root, import as follows:
+   *
+   * ```
+   * @NgModule({
+   *   imports: [RouterModule.forRoot(ROUTES)]
+   * })
+   * class MyNgModule {}
+   * ```
+   *
+   * @param routes An array of `Route` objects that define the navigation paths for the application.
+   * @param config An `ExtraOptions` configuration object that controls how navigation is performed.
+   * @return The new `NgModule`.
+   *
+   */
+
+
+  static forRoot(routes, config) {
+    return {
+      ngModule: RouterModule,
+      providers: [ROUTER_PROVIDERS, provideRoutes(routes), {
+        provide: ROUTER_FORROOT_GUARD,
+        useFactory: provideForRootGuard,
+        deps: [[Router, new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional(), new _angular_core__WEBPACK_IMPORTED_MODULE_0__.SkipSelf()]]
+      }, {
+        provide: ROUTER_CONFIGURATION,
+        useValue: config ? config : {}
+      }, {
+        provide: _angular_common__WEBPACK_IMPORTED_MODULE_28__.LocationStrategy,
+        useFactory: provideLocationStrategy,
+        deps: [_angular_common__WEBPACK_IMPORTED_MODULE_28__.PlatformLocation, [new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Inject(_angular_common__WEBPACK_IMPORTED_MODULE_28__.APP_BASE_HREF), new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional()], ROUTER_CONFIGURATION]
+      }, {
+        provide: RouterScroller,
+        useFactory: createRouterScroller,
+        deps: [Router, _angular_common__WEBPACK_IMPORTED_MODULE_28__.ViewportScroller, ROUTER_CONFIGURATION]
+      }, {
+        provide: PreloadingStrategy,
+        useExisting: config && config.preloadingStrategy ? config.preloadingStrategy : NoPreloading
+      }, {
+        provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgProbeToken,
+        multi: true,
+        useFactory: routerNgProbeToken
+      }, provideRouterInitializer()]
+    };
+  }
+  /**
+   * Creates a module with all the router directives and a provider registering routes,
+   * without creating a new Router service.
+   * When registering for submodules and lazy-loaded submodules, create the NgModule as follows:
+   *
+   * ```
+   * @NgModule({
+   *   imports: [RouterModule.forChild(ROUTES)]
+   * })
+   * class MyNgModule {}
+   * ```
+   *
+   * @param routes An array of `Route` objects that define the navigation paths for the submodule.
+   * @return The new NgModule.
+   *
+   */
+
+
+  static forChild(routes) {
+    return {
+      ngModule: RouterModule,
+      providers: [provideRoutes(routes)]
+    };
+  }
+
+}
+
+RouterModule.ɵfac = function RouterModule_Factory(t) {
+  return new (t || RouterModule)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](ROUTER_FORROOT_GUARD, 8), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](Router, 8));
+};
+
+RouterModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+  type: RouterModule
+});
+RouterModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
+    args: [{
+      declarations: ROUTER_DIRECTIVES,
+      exports: ROUTER_DIRECTIVES
+    }]
+  }], function () {
+    return [{
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Inject,
+        args: [ROUTER_FORROOT_GUARD]
+      }]
+    }, {
+      type: Router,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional
+      }]
+    }];
+  }, null);
+})();
+
+function createRouterScroller(router, viewportScroller, config) {
+  if (config.scrollOffset) {
+    viewportScroller.setOffset(config.scrollOffset);
+  }
+
+  return new RouterScroller(router, viewportScroller, config);
+}
+
+function provideLocationStrategy(platformLocationStrategy, baseHref, options = {}) {
+  return options.useHash ? new _angular_common__WEBPACK_IMPORTED_MODULE_28__.HashLocationStrategy(platformLocationStrategy, baseHref) : new _angular_common__WEBPACK_IMPORTED_MODULE_28__.PathLocationStrategy(platformLocationStrategy, baseHref);
+}
+
+function provideForRootGuard(router) {
+  if ((typeof ngDevMode === 'undefined' || ngDevMode) && router) {
+    throw new Error(`RouterModule.forRoot() called twice. Lazy loaded modules should use RouterModule.forChild() instead.`);
+  }
+
+  return 'guarded';
+}
+/**
+ * Registers a [DI provider](guide/glossary#provider) for a set of routes.
+ * @param routes The route configuration to provide.
+ *
+ * @usageNotes
+ *
+ * ```
+ * @NgModule({
+ *   imports: [RouterModule.forChild(ROUTES)],
+ *   providers: [provideRoutes(EXTRA_ROUTES)]
+ * })
+ * class MyNgModule {}
+ * ```
+ *
+ * @publicApi
+ */
+
+
+function provideRoutes(routes) {
+  return [{
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ANALYZE_FOR_ENTRY_COMPONENTS,
+    multi: true,
+    useValue: routes
+  }, {
+    provide: ROUTES,
+    multi: true,
+    useValue: routes
+  }];
+}
+
+function setupRouter(urlSerializer, contexts, location, injector, compiler, config, opts = {}, urlHandlingStrategy, routeReuseStrategy) {
+  const router = new Router(null, urlSerializer, contexts, location, injector, compiler, flatten(config));
+
+  if (urlHandlingStrategy) {
+    router.urlHandlingStrategy = urlHandlingStrategy;
+  }
+
+  if (routeReuseStrategy) {
+    router.routeReuseStrategy = routeReuseStrategy;
+  }
+
+  assignExtraOptionsToRouter(opts, router);
+
+  if (opts.enableTracing) {
+    router.events.subscribe(e => {
+      var _a, _b; // tslint:disable:no-console
+
+
+      (_a = console.group) === null || _a === void 0 ? void 0 : _a.call(console, `Router Event: ${e.constructor.name}`);
+      console.log(e.toString());
+      console.log(e);
+      (_b = console.groupEnd) === null || _b === void 0 ? void 0 : _b.call(console); // tslint:enable:no-console
+    });
+  }
+
+  return router;
+}
+
+function assignExtraOptionsToRouter(opts, router) {
+  if (opts.errorHandler) {
+    router.errorHandler = opts.errorHandler;
+  }
+
+  if (opts.malformedUriErrorHandler) {
+    router.malformedUriErrorHandler = opts.malformedUriErrorHandler;
+  }
+
+  if (opts.onSameUrlNavigation) {
+    router.onSameUrlNavigation = opts.onSameUrlNavigation;
+  }
+
+  if (opts.paramsInheritanceStrategy) {
+    router.paramsInheritanceStrategy = opts.paramsInheritanceStrategy;
+  }
+
+  if (opts.relativeLinkResolution) {
+    router.relativeLinkResolution = opts.relativeLinkResolution;
+  }
+
+  if (opts.urlUpdateStrategy) {
+    router.urlUpdateStrategy = opts.urlUpdateStrategy;
+  }
+
+  if (opts.canceledNavigationResolution) {
+    router.canceledNavigationResolution = opts.canceledNavigationResolution;
+  }
+}
+
+function rootRoute(router) {
+  return router.routerState.root;
+}
+/**
+ * Router initialization requires two steps:
+ *
+ * First, we start the navigation in a `APP_INITIALIZER` to block the bootstrap if
+ * a resolver or a guard executes asynchronously.
+ *
+ * Next, we actually run activation in a `BOOTSTRAP_LISTENER`, using the
+ * `afterPreactivation` hook provided by the router.
+ * The router navigation starts, reaches the point when preactivation is done, and then
+ * pauses. It waits for the hook to be resolved. We then resolve it only in a bootstrap listener.
+ */
+
+
+class RouterInitializer {
+  constructor(injector) {
+    this.injector = injector;
+    this.initNavigation = false;
+    this.destroyed = false;
+    this.resultOfPreactivationDone = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
+  }
+
+  appInitializer() {
+    const p = this.injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_28__.LOCATION_INITIALIZED, Promise.resolve(null));
+    return p.then(() => {
+      // If the injector was destroyed, the DI lookups below will fail.
+      if (this.destroyed) {
+        return Promise.resolve(true);
+      }
+
+      let resolve = null;
+      const res = new Promise(r => resolve = r);
+      const router = this.injector.get(Router);
+      const opts = this.injector.get(ROUTER_CONFIGURATION);
+
+      if (opts.initialNavigation === 'disabled') {
+        router.setUpLocationChangeListener();
+        resolve(true);
+      } else if ( // TODO: enabled is deprecated as of v11, can be removed in v13
+      opts.initialNavigation === 'enabled' || opts.initialNavigation === 'enabledBlocking') {
+        router.hooks.afterPreactivation = () => {
+          // only the initial navigation should be delayed
+          if (!this.initNavigation) {
+            this.initNavigation = true;
+            resolve(true);
+            return this.resultOfPreactivationDone; // subsequent navigations should not be delayed
+          } else {
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+          }
+        };
+
+        router.initialNavigation();
+      } else {
+        resolve(true);
+      }
+
+      return res;
+    });
+  }
+
+  bootstrapListener(bootstrappedComponentRef) {
+    const opts = this.injector.get(ROUTER_CONFIGURATION);
+    const preloader = this.injector.get(RouterPreloader);
+    const routerScroller = this.injector.get(RouterScroller);
+    const router = this.injector.get(Router);
+    const ref = this.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.ApplicationRef);
+
+    if (bootstrappedComponentRef !== ref.components[0]) {
+      return;
+    } // Default case
+
+
+    if (opts.initialNavigation === 'enabledNonBlocking' || opts.initialNavigation === undefined) {
+      router.initialNavigation();
+    }
+
+    preloader.setUpPreloading();
+    routerScroller.init();
+    router.resetRootComponentType(ref.componentTypes[0]);
+    this.resultOfPreactivationDone.next(null);
+    this.resultOfPreactivationDone.complete();
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
+  }
+
+}
+
+RouterInitializer.ɵfac = function RouterInitializer_Factory(t) {
+  return new (t || RouterInitializer)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector));
+};
+
+RouterInitializer.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: RouterInitializer,
+  factory: RouterInitializer.ɵfac
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterInitializer, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector
+    }];
+  }, null);
+})();
+
+function getAppInitializer(r) {
+  return r.appInitializer.bind(r);
+}
+
+function getBootstrapListener(r) {
+  return r.bootstrapListener.bind(r);
+}
+/**
+ * A [DI token](guide/glossary/#di-token) for the router initializer that
+ * is called after the app is bootstrapped.
+ *
+ * @publicApi
+ */
+
+
+const ROUTER_INITIALIZER = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('Router Initializer');
+
+function provideRouterInitializer() {
+  return [RouterInitializer, {
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.APP_INITIALIZER,
+    multi: true,
+    useFactory: getAppInitializer,
+    deps: [RouterInitializer]
+  }, {
+    provide: ROUTER_INITIALIZER,
+    useFactory: getBootstrapListener,
+    deps: [RouterInitializer]
+  }, {
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.APP_BOOTSTRAP_LISTENER,
+    multi: true,
+    useExisting: ROUTER_INITIALIZER
+  }];
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @publicApi
+ */
+
+
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12');
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// This file only reexports content of the `src` folder. Keep it that way.
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+/***/ }),
+
+/***/ 5474:
+/*!***********************************************!*\
+  !*** ./node_modules/js-yaml/dist/js-yaml.mjs ***!
+  \***********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CORE_SCHEMA": () => (/* binding */ CORE_SCHEMA),
+/* harmony export */   "DEFAULT_SCHEMA": () => (/* binding */ DEFAULT_SCHEMA),
+/* harmony export */   "FAILSAFE_SCHEMA": () => (/* binding */ FAILSAFE_SCHEMA),
+/* harmony export */   "JSON_SCHEMA": () => (/* binding */ JSON_SCHEMA),
+/* harmony export */   "Schema": () => (/* binding */ Schema),
+/* harmony export */   "Type": () => (/* binding */ Type),
+/* harmony export */   "YAMLException": () => (/* binding */ YAMLException),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "dump": () => (/* binding */ dump),
+/* harmony export */   "load": () => (/* binding */ load),
+/* harmony export */   "loadAll": () => (/* binding */ loadAll),
+/* harmony export */   "safeDump": () => (/* binding */ safeDump),
+/* harmony export */   "safeLoad": () => (/* binding */ safeLoad),
+/* harmony export */   "safeLoadAll": () => (/* binding */ safeLoadAll),
+/* harmony export */   "types": () => (/* binding */ types)
+/* harmony export */ });
+
+/*! js-yaml 4.1.0 https://github.com/nodeca/js-yaml @license MIT */
+function isNothing(subject) {
+  return (typeof subject === 'undefined') || (subject === null);
+}
+
+
+function isObject(subject) {
+  return (typeof subject === 'object') && (subject !== null);
+}
+
+
+function toArray(sequence) {
+  if (Array.isArray(sequence)) return sequence;
+  else if (isNothing(sequence)) return [];
+
+  return [ sequence ];
+}
+
+
+function extend(target, source) {
+  var index, length, key, sourceKeys;
+
+  if (source) {
+    sourceKeys = Object.keys(source);
+
+    for (index = 0, length = sourceKeys.length; index < length; index += 1) {
+      key = sourceKeys[index];
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+
+function repeat(string, count) {
+  var result = '', cycle;
+
+  for (cycle = 0; cycle < count; cycle += 1) {
+    result += string;
+  }
+
+  return result;
+}
+
+
+function isNegativeZero(number) {
+  return (number === 0) && (Number.NEGATIVE_INFINITY === 1 / number);
+}
+
+
+var isNothing_1      = isNothing;
+var isObject_1       = isObject;
+var toArray_1        = toArray;
+var repeat_1         = repeat;
+var isNegativeZero_1 = isNegativeZero;
+var extend_1         = extend;
+
+var common = {
+	isNothing: isNothing_1,
+	isObject: isObject_1,
+	toArray: toArray_1,
+	repeat: repeat_1,
+	isNegativeZero: isNegativeZero_1,
+	extend: extend_1
+};
+
+// YAML error class. http://stackoverflow.com/questions/8458984
+
+
+function formatError(exception, compact) {
+  var where = '', message = exception.reason || '(unknown reason)';
+
+  if (!exception.mark) return message;
+
+  if (exception.mark.name) {
+    where += 'in "' + exception.mark.name + '" ';
+  }
+
+  where += '(' + (exception.mark.line + 1) + ':' + (exception.mark.column + 1) + ')';
+
+  if (!compact && exception.mark.snippet) {
+    where += '\n\n' + exception.mark.snippet;
+  }
+
+  return message + ' ' + where;
+}
+
+
+function YAMLException$1(reason, mark) {
+  // Super constructor
+  Error.call(this);
+
+  this.name = 'YAMLException';
+  this.reason = reason;
+  this.mark = mark;
+  this.message = formatError(this, false);
+
+  // Include stack trace in error object
+  if (Error.captureStackTrace) {
+    // Chrome and NodeJS
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    // FF, IE 10+ and Safari 6+. Fallback for others
+    this.stack = (new Error()).stack || '';
+  }
+}
+
+
+// Inherit from Error
+YAMLException$1.prototype = Object.create(Error.prototype);
+YAMLException$1.prototype.constructor = YAMLException$1;
+
+
+YAMLException$1.prototype.toString = function toString(compact) {
+  return this.name + ': ' + formatError(this, compact);
+};
+
+
+var exception = YAMLException$1;
+
+// get snippet for a single line, respecting maxLength
+function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
+  var head = '';
+  var tail = '';
+  var maxHalfLength = Math.floor(maxLineLength / 2) - 1;
+
+  if (position - lineStart > maxHalfLength) {
+    head = ' ... ';
+    lineStart = position - maxHalfLength + head.length;
+  }
+
+  if (lineEnd - position > maxHalfLength) {
+    tail = ' ...';
+    lineEnd = position + maxHalfLength - tail.length;
+  }
+
+  return {
+    str: head + buffer.slice(lineStart, lineEnd).replace(/\t/g, '→') + tail,
+    pos: position - lineStart + head.length // relative position
+  };
+}
+
+
+function padStart(string, max) {
+  return common.repeat(' ', max - string.length) + string;
+}
+
+
+function makeSnippet(mark, options) {
+  options = Object.create(options || null);
+
+  if (!mark.buffer) return null;
+
+  if (!options.maxLength) options.maxLength = 79;
+  if (typeof options.indent      !== 'number') options.indent      = 1;
+  if (typeof options.linesBefore !== 'number') options.linesBefore = 3;
+  if (typeof options.linesAfter  !== 'number') options.linesAfter  = 2;
+
+  var re = /\r?\n|\r|\0/g;
+  var lineStarts = [ 0 ];
+  var lineEnds = [];
+  var match;
+  var foundLineNo = -1;
+
+  while ((match = re.exec(mark.buffer))) {
+    lineEnds.push(match.index);
+    lineStarts.push(match.index + match[0].length);
+
+    if (mark.position <= match.index && foundLineNo < 0) {
+      foundLineNo = lineStarts.length - 2;
+    }
+  }
+
+  if (foundLineNo < 0) foundLineNo = lineStarts.length - 1;
+
+  var result = '', i, line;
+  var lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
+  var maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
+
+  for (i = 1; i <= options.linesBefore; i++) {
+    if (foundLineNo - i < 0) break;
+    line = getLine(
+      mark.buffer,
+      lineStarts[foundLineNo - i],
+      lineEnds[foundLineNo - i],
+      mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo - i]),
+      maxLineLength
+    );
+    result = common.repeat(' ', options.indent) + padStart((mark.line - i + 1).toString(), lineNoLength) +
+      ' | ' + line.str + '\n' + result;
+  }
+
+  line = getLine(mark.buffer, lineStarts[foundLineNo], lineEnds[foundLineNo], mark.position, maxLineLength);
+  result += common.repeat(' ', options.indent) + padStart((mark.line + 1).toString(), lineNoLength) +
+    ' | ' + line.str + '\n';
+  result += common.repeat('-', options.indent + lineNoLength + 3 + line.pos) + '^' + '\n';
+
+  for (i = 1; i <= options.linesAfter; i++) {
+    if (foundLineNo + i >= lineEnds.length) break;
+    line = getLine(
+      mark.buffer,
+      lineStarts[foundLineNo + i],
+      lineEnds[foundLineNo + i],
+      mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo + i]),
+      maxLineLength
+    );
+    result += common.repeat(' ', options.indent) + padStart((mark.line + i + 1).toString(), lineNoLength) +
+      ' | ' + line.str + '\n';
+  }
+
+  return result.replace(/\n$/, '');
+}
+
+
+var snippet = makeSnippet;
+
+var TYPE_CONSTRUCTOR_OPTIONS = [
+  'kind',
+  'multi',
+  'resolve',
+  'construct',
+  'instanceOf',
+  'predicate',
+  'represent',
+  'representName',
+  'defaultStyle',
+  'styleAliases'
+];
+
+var YAML_NODE_KINDS = [
+  'scalar',
+  'sequence',
+  'mapping'
+];
+
+function compileStyleAliases(map) {
+  var result = {};
+
+  if (map !== null) {
+    Object.keys(map).forEach(function (style) {
+      map[style].forEach(function (alias) {
+        result[String(alias)] = style;
+      });
+    });
+  }
+
+  return result;
+}
+
+function Type$1(tag, options) {
+  options = options || {};
+
+  Object.keys(options).forEach(function (name) {
+    if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
+      throw new exception('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
+    }
+  });
+
+  // TODO: Add tag format check.
+  this.options       = options; // keep original options in case user wants to extend this type later
+  this.tag           = tag;
+  this.kind          = options['kind']          || null;
+  this.resolve       = options['resolve']       || function () { return true; };
+  this.construct     = options['construct']     || function (data) { return data; };
+  this.instanceOf    = options['instanceOf']    || null;
+  this.predicate     = options['predicate']     || null;
+  this.represent     = options['represent']     || null;
+  this.representName = options['representName'] || null;
+  this.defaultStyle  = options['defaultStyle']  || null;
+  this.multi         = options['multi']         || false;
+  this.styleAliases  = compileStyleAliases(options['styleAliases'] || null);
+
+  if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
+    throw new exception('Unknown kind "' + this.kind + '" is specified for "' + tag + '" YAML type.');
+  }
+}
+
+var type = Type$1;
+
+/*eslint-disable max-len*/
+
+
+
+
+
+function compileList(schema, name) {
+  var result = [];
+
+  schema[name].forEach(function (currentType) {
+    var newIndex = result.length;
+
+    result.forEach(function (previousType, previousIndex) {
+      if (previousType.tag === currentType.tag &&
+          previousType.kind === currentType.kind &&
+          previousType.multi === currentType.multi) {
+
+        newIndex = previousIndex;
+      }
+    });
+
+    result[newIndex] = currentType;
+  });
+
+  return result;
+}
+
+
+function compileMap(/* lists... */) {
+  var result = {
+        scalar: {},
+        sequence: {},
+        mapping: {},
+        fallback: {},
+        multi: {
+          scalar: [],
+          sequence: [],
+          mapping: [],
+          fallback: []
+        }
+      }, index, length;
+
+  function collectType(type) {
+    if (type.multi) {
+      result.multi[type.kind].push(type);
+      result.multi['fallback'].push(type);
+    } else {
+      result[type.kind][type.tag] = result['fallback'][type.tag] = type;
+    }
+  }
+
+  for (index = 0, length = arguments.length; index < length; index += 1) {
+    arguments[index].forEach(collectType);
+  }
+  return result;
+}
+
+
+function Schema$1(definition) {
+  return this.extend(definition);
+}
+
+
+Schema$1.prototype.extend = function extend(definition) {
+  var implicit = [];
+  var explicit = [];
+
+  if (definition instanceof type) {
+    // Schema.extend(type)
+    explicit.push(definition);
+
+  } else if (Array.isArray(definition)) {
+    // Schema.extend([ type1, type2, ... ])
+    explicit = explicit.concat(definition);
+
+  } else if (definition && (Array.isArray(definition.implicit) || Array.isArray(definition.explicit))) {
+    // Schema.extend({ explicit: [ type1, type2, ... ], implicit: [ type1, type2, ... ] })
+    if (definition.implicit) implicit = implicit.concat(definition.implicit);
+    if (definition.explicit) explicit = explicit.concat(definition.explicit);
+
+  } else {
+    throw new exception('Schema.extend argument should be a Type, [ Type ], ' +
+      'or a schema definition ({ implicit: [...], explicit: [...] })');
+  }
+
+  implicit.forEach(function (type$1) {
+    if (!(type$1 instanceof type)) {
+      throw new exception('Specified list of YAML types (or a single Type object) contains a non-Type object.');
+    }
+
+    if (type$1.loadKind && type$1.loadKind !== 'scalar') {
+      throw new exception('There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.');
+    }
+
+    if (type$1.multi) {
+      throw new exception('There is a multi type in the implicit list of a schema. Multi tags can only be listed as explicit.');
+    }
+  });
+
+  explicit.forEach(function (type$1) {
+    if (!(type$1 instanceof type)) {
+      throw new exception('Specified list of YAML types (or a single Type object) contains a non-Type object.');
+    }
+  });
+
+  var result = Object.create(Schema$1.prototype);
+
+  result.implicit = (this.implicit || []).concat(implicit);
+  result.explicit = (this.explicit || []).concat(explicit);
+
+  result.compiledImplicit = compileList(result, 'implicit');
+  result.compiledExplicit = compileList(result, 'explicit');
+  result.compiledTypeMap  = compileMap(result.compiledImplicit, result.compiledExplicit);
+
+  return result;
+};
+
+
+var schema = Schema$1;
+
+var str = new type('tag:yaml.org,2002:str', {
+  kind: 'scalar',
+  construct: function (data) { return data !== null ? data : ''; }
+});
+
+var seq = new type('tag:yaml.org,2002:seq', {
+  kind: 'sequence',
+  construct: function (data) { return data !== null ? data : []; }
+});
+
+var map = new type('tag:yaml.org,2002:map', {
+  kind: 'mapping',
+  construct: function (data) { return data !== null ? data : {}; }
+});
+
+var failsafe = new schema({
+  explicit: [
+    str,
+    seq,
+    map
+  ]
+});
+
+function resolveYamlNull(data) {
+  if (data === null) return true;
+
+  var max = data.length;
+
+  return (max === 1 && data === '~') ||
+         (max === 4 && (data === 'null' || data === 'Null' || data === 'NULL'));
+}
+
+function constructYamlNull() {
+  return null;
+}
+
+function isNull(object) {
+  return object === null;
+}
+
+var _null = new type('tag:yaml.org,2002:null', {
+  kind: 'scalar',
+  resolve: resolveYamlNull,
+  construct: constructYamlNull,
+  predicate: isNull,
+  represent: {
+    canonical: function () { return '~';    },
+    lowercase: function () { return 'null'; },
+    uppercase: function () { return 'NULL'; },
+    camelcase: function () { return 'Null'; },
+    empty:     function () { return '';     }
+  },
+  defaultStyle: 'lowercase'
+});
+
+function resolveYamlBoolean(data) {
+  if (data === null) return false;
+
+  var max = data.length;
+
+  return (max === 4 && (data === 'true' || data === 'True' || data === 'TRUE')) ||
+         (max === 5 && (data === 'false' || data === 'False' || data === 'FALSE'));
+}
+
+function constructYamlBoolean(data) {
+  return data === 'true' ||
+         data === 'True' ||
+         data === 'TRUE';
+}
+
+function isBoolean(object) {
+  return Object.prototype.toString.call(object) === '[object Boolean]';
+}
+
+var bool = new type('tag:yaml.org,2002:bool', {
+  kind: 'scalar',
+  resolve: resolveYamlBoolean,
+  construct: constructYamlBoolean,
+  predicate: isBoolean,
+  represent: {
+    lowercase: function (object) { return object ? 'true' : 'false'; },
+    uppercase: function (object) { return object ? 'TRUE' : 'FALSE'; },
+    camelcase: function (object) { return object ? 'True' : 'False'; }
+  },
+  defaultStyle: 'lowercase'
+});
+
+function isHexCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) ||
+         ((0x41/* A */ <= c) && (c <= 0x46/* F */)) ||
+         ((0x61/* a */ <= c) && (c <= 0x66/* f */));
+}
+
+function isOctCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x37/* 7 */));
+}
+
+function isDecCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */));
+}
+
+function resolveYamlInteger(data) {
+  if (data === null) return false;
+
+  var max = data.length,
+      index = 0,
+      hasDigits = false,
+      ch;
+
+  if (!max) return false;
+
+  ch = data[index];
+
+  // sign
+  if (ch === '-' || ch === '+') {
+    ch = data[++index];
+  }
+
+  if (ch === '0') {
+    // 0
+    if (index + 1 === max) return true;
+    ch = data[++index];
+
+    // base 2, base 8, base 16
+
+    if (ch === 'b') {
+      // base 2
+      index++;
+
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === '_') continue;
+        if (ch !== '0' && ch !== '1') return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== '_';
+    }
+
+
+    if (ch === 'x') {
+      // base 16
+      index++;
+
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === '_') continue;
+        if (!isHexCode(data.charCodeAt(index))) return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== '_';
+    }
+
+
+    if (ch === 'o') {
+      // base 8
+      index++;
+
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === '_') continue;
+        if (!isOctCode(data.charCodeAt(index))) return false;
+        hasDigits = true;
+      }
+      return hasDigits && ch !== '_';
+    }
+  }
+
+  // base 10 (except 0)
+
+  // value should not start with `_`;
+  if (ch === '_') return false;
+
+  for (; index < max; index++) {
+    ch = data[index];
+    if (ch === '_') continue;
+    if (!isDecCode(data.charCodeAt(index))) {
+      return false;
+    }
+    hasDigits = true;
+  }
+
+  // Should have digits and should not end with `_`
+  if (!hasDigits || ch === '_') return false;
+
+  return true;
+}
+
+function constructYamlInteger(data) {
+  var value = data, sign = 1, ch;
+
+  if (value.indexOf('_') !== -1) {
+    value = value.replace(/_/g, '');
+  }
+
+  ch = value[0];
+
+  if (ch === '-' || ch === '+') {
+    if (ch === '-') sign = -1;
+    value = value.slice(1);
+    ch = value[0];
+  }
+
+  if (value === '0') return 0;
+
+  if (ch === '0') {
+    if (value[1] === 'b') return sign * parseInt(value.slice(2), 2);
+    if (value[1] === 'x') return sign * parseInt(value.slice(2), 16);
+    if (value[1] === 'o') return sign * parseInt(value.slice(2), 8);
+  }
+
+  return sign * parseInt(value, 10);
+}
+
+function isInteger(object) {
+  return (Object.prototype.toString.call(object)) === '[object Number]' &&
+         (object % 1 === 0 && !common.isNegativeZero(object));
+}
+
+var int = new type('tag:yaml.org,2002:int', {
+  kind: 'scalar',
+  resolve: resolveYamlInteger,
+  construct: constructYamlInteger,
+  predicate: isInteger,
+  represent: {
+    binary:      function (obj) { return obj >= 0 ? '0b' + obj.toString(2) : '-0b' + obj.toString(2).slice(1); },
+    octal:       function (obj) { return obj >= 0 ? '0o'  + obj.toString(8) : '-0o'  + obj.toString(8).slice(1); },
+    decimal:     function (obj) { return obj.toString(10); },
+    /* eslint-disable max-len */
+    hexadecimal: function (obj) { return obj >= 0 ? '0x' + obj.toString(16).toUpperCase() :  '-0x' + obj.toString(16).toUpperCase().slice(1); }
+  },
+  defaultStyle: 'decimal',
+  styleAliases: {
+    binary:      [ 2,  'bin' ],
+    octal:       [ 8,  'oct' ],
+    decimal:     [ 10, 'dec' ],
+    hexadecimal: [ 16, 'hex' ]
+  }
+});
+
+var YAML_FLOAT_PATTERN = new RegExp(
+  // 2.5e4, 2.5 and integers
+  '^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?' +
+  // .2e4, .2
+  // special case, seems not from spec
+  '|\\.[0-9_]+(?:[eE][-+]?[0-9]+)?' +
+  // .inf
+  '|[-+]?\\.(?:inf|Inf|INF)' +
+  // .nan
+  '|\\.(?:nan|NaN|NAN))$');
+
+function resolveYamlFloat(data) {
+  if (data === null) return false;
+
+  if (!YAML_FLOAT_PATTERN.test(data) ||
+      // Quick hack to not allow integers end with `_`
+      // Probably should update regexp & check speed
+      data[data.length - 1] === '_') {
+    return false;
+  }
+
+  return true;
+}
+
+function constructYamlFloat(data) {
+  var value, sign;
+
+  value  = data.replace(/_/g, '').toLowerCase();
+  sign   = value[0] === '-' ? -1 : 1;
+
+  if ('+-'.indexOf(value[0]) >= 0) {
+    value = value.slice(1);
+  }
+
+  if (value === '.inf') {
+    return (sign === 1) ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
+
+  } else if (value === '.nan') {
+    return NaN;
+  }
+  return sign * parseFloat(value, 10);
+}
+
+
+var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+
+function representYamlFloat(object, style) {
+  var res;
+
+  if (isNaN(object)) {
+    switch (style) {
+      case 'lowercase': return '.nan';
+      case 'uppercase': return '.NAN';
+      case 'camelcase': return '.NaN';
+    }
+  } else if (Number.POSITIVE_INFINITY === object) {
+    switch (style) {
+      case 'lowercase': return '.inf';
+      case 'uppercase': return '.INF';
+      case 'camelcase': return '.Inf';
+    }
+  } else if (Number.NEGATIVE_INFINITY === object) {
+    switch (style) {
+      case 'lowercase': return '-.inf';
+      case 'uppercase': return '-.INF';
+      case 'camelcase': return '-.Inf';
+    }
+  } else if (common.isNegativeZero(object)) {
+    return '-0.0';
+  }
+
+  res = object.toString(10);
+
+  // JS stringifier can build scientific format without dots: 5e-100,
+  // while YAML requres dot: 5.e-100. Fix it with simple hack
+
+  return SCIENTIFIC_WITHOUT_DOT.test(res) ? res.replace('e', '.e') : res;
+}
+
+function isFloat(object) {
+  return (Object.prototype.toString.call(object) === '[object Number]') &&
+         (object % 1 !== 0 || common.isNegativeZero(object));
+}
+
+var float = new type('tag:yaml.org,2002:float', {
+  kind: 'scalar',
+  resolve: resolveYamlFloat,
+  construct: constructYamlFloat,
+  predicate: isFloat,
+  represent: representYamlFloat,
+  defaultStyle: 'lowercase'
+});
+
+var json = failsafe.extend({
+  implicit: [
+    _null,
+    bool,
+    int,
+    float
+  ]
+});
+
+var core = json;
+
+var YAML_DATE_REGEXP = new RegExp(
+  '^([0-9][0-9][0-9][0-9])'          + // [1] year
+  '-([0-9][0-9])'                    + // [2] month
+  '-([0-9][0-9])$');                   // [3] day
+
+var YAML_TIMESTAMP_REGEXP = new RegExp(
+  '^([0-9][0-9][0-9][0-9])'          + // [1] year
+  '-([0-9][0-9]?)'                   + // [2] month
+  '-([0-9][0-9]?)'                   + // [3] day
+  '(?:[Tt]|[ \\t]+)'                 + // ...
+  '([0-9][0-9]?)'                    + // [4] hour
+  ':([0-9][0-9])'                    + // [5] minute
+  ':([0-9][0-9])'                    + // [6] second
+  '(?:\\.([0-9]*))?'                 + // [7] fraction
+  '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' + // [8] tz [9] tz_sign [10] tz_hour
+  '(?::([0-9][0-9]))?))?$');           // [11] tz_minute
+
+function resolveYamlTimestamp(data) {
+  if (data === null) return false;
+  if (YAML_DATE_REGEXP.exec(data) !== null) return true;
+  if (YAML_TIMESTAMP_REGEXP.exec(data) !== null) return true;
+  return false;
+}
+
+function constructYamlTimestamp(data) {
+  var match, year, month, day, hour, minute, second, fraction = 0,
+      delta = null, tz_hour, tz_minute, date;
+
+  match = YAML_DATE_REGEXP.exec(data);
+  if (match === null) match = YAML_TIMESTAMP_REGEXP.exec(data);
+
+  if (match === null) throw new Error('Date resolve error');
+
+  // match: [1] year [2] month [3] day
+
+  year = +(match[1]);
+  month = +(match[2]) - 1; // JS month starts with 0
+  day = +(match[3]);
+
+  if (!match[4]) { // no hour
+    return new Date(Date.UTC(year, month, day));
+  }
+
+  // match: [4] hour [5] minute [6] second [7] fraction
+
+  hour = +(match[4]);
+  minute = +(match[5]);
+  second = +(match[6]);
+
+  if (match[7]) {
+    fraction = match[7].slice(0, 3);
+    while (fraction.length < 3) { // milli-seconds
+      fraction += '0';
+    }
+    fraction = +fraction;
+  }
+
+  // match: [8] tz [9] tz_sign [10] tz_hour [11] tz_minute
+
+  if (match[9]) {
+    tz_hour = +(match[10]);
+    tz_minute = +(match[11] || 0);
+    delta = (tz_hour * 60 + tz_minute) * 60000; // delta in mili-seconds
+    if (match[9] === '-') delta = -delta;
+  }
+
+  date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
+
+  if (delta) date.setTime(date.getTime() - delta);
+
+  return date;
+}
+
+function representYamlTimestamp(object /*, style*/) {
+  return object.toISOString();
+}
+
+var timestamp = new type('tag:yaml.org,2002:timestamp', {
+  kind: 'scalar',
+  resolve: resolveYamlTimestamp,
+  construct: constructYamlTimestamp,
+  instanceOf: Date,
+  represent: representYamlTimestamp
+});
+
+function resolveYamlMerge(data) {
+  return data === '<<' || data === null;
+}
+
+var merge = new type('tag:yaml.org,2002:merge', {
+  kind: 'scalar',
+  resolve: resolveYamlMerge
+});
+
+/*eslint-disable no-bitwise*/
+
+
+
+
+
+// [ 64, 65, 66 ] -> [ padding, CR, LF ]
+var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
+
+
+function resolveYamlBinary(data) {
+  if (data === null) return false;
+
+  var code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
+
+  // Convert one by one.
+  for (idx = 0; idx < max; idx++) {
+    code = map.indexOf(data.charAt(idx));
+
+    // Skip CR/LF
+    if (code > 64) continue;
+
+    // Fail on illegal characters
+    if (code < 0) return false;
+
+    bitlen += 6;
+  }
+
+  // If there are any bits left, source was corrupted
+  return (bitlen % 8) === 0;
+}
+
+function constructYamlBinary(data) {
+  var idx, tailbits,
+      input = data.replace(/[\r\n=]/g, ''), // remove CR/LF & padding to simplify scan
+      max = input.length,
+      map = BASE64_MAP,
+      bits = 0,
+      result = [];
+
+  // Collect by 6*4 bits (3 bytes)
+
+  for (idx = 0; idx < max; idx++) {
+    if ((idx % 4 === 0) && idx) {
+      result.push((bits >> 16) & 0xFF);
+      result.push((bits >> 8) & 0xFF);
+      result.push(bits & 0xFF);
+    }
+
+    bits = (bits << 6) | map.indexOf(input.charAt(idx));
+  }
+
+  // Dump tail
+
+  tailbits = (max % 4) * 6;
+
+  if (tailbits === 0) {
+    result.push((bits >> 16) & 0xFF);
+    result.push((bits >> 8) & 0xFF);
+    result.push(bits & 0xFF);
+  } else if (tailbits === 18) {
+    result.push((bits >> 10) & 0xFF);
+    result.push((bits >> 2) & 0xFF);
+  } else if (tailbits === 12) {
+    result.push((bits >> 4) & 0xFF);
+  }
+
+  return new Uint8Array(result);
+}
+
+function representYamlBinary(object /*, style*/) {
+  var result = '', bits = 0, idx, tail,
+      max = object.length,
+      map = BASE64_MAP;
+
+  // Convert every three bytes to 4 ASCII characters.
+
+  for (idx = 0; idx < max; idx++) {
+    if ((idx % 3 === 0) && idx) {
+      result += map[(bits >> 18) & 0x3F];
+      result += map[(bits >> 12) & 0x3F];
+      result += map[(bits >> 6) & 0x3F];
+      result += map[bits & 0x3F];
+    }
+
+    bits = (bits << 8) + object[idx];
+  }
+
+  // Dump tail
+
+  tail = max % 3;
+
+  if (tail === 0) {
+    result += map[(bits >> 18) & 0x3F];
+    result += map[(bits >> 12) & 0x3F];
+    result += map[(bits >> 6) & 0x3F];
+    result += map[bits & 0x3F];
+  } else if (tail === 2) {
+    result += map[(bits >> 10) & 0x3F];
+    result += map[(bits >> 4) & 0x3F];
+    result += map[(bits << 2) & 0x3F];
+    result += map[64];
+  } else if (tail === 1) {
+    result += map[(bits >> 2) & 0x3F];
+    result += map[(bits << 4) & 0x3F];
+    result += map[64];
+    result += map[64];
+  }
+
+  return result;
+}
+
+function isBinary(obj) {
+  return Object.prototype.toString.call(obj) ===  '[object Uint8Array]';
+}
+
+var binary = new type('tag:yaml.org,2002:binary', {
+  kind: 'scalar',
+  resolve: resolveYamlBinary,
+  construct: constructYamlBinary,
+  predicate: isBinary,
+  represent: representYamlBinary
+});
+
+var _hasOwnProperty$3 = Object.prototype.hasOwnProperty;
+var _toString$2       = Object.prototype.toString;
+
+function resolveYamlOmap(data) {
+  if (data === null) return true;
+
+  var objectKeys = [], index, length, pair, pairKey, pairHasKey,
+      object = data;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+    pairHasKey = false;
+
+    if (_toString$2.call(pair) !== '[object Object]') return false;
+
+    for (pairKey in pair) {
+      if (_hasOwnProperty$3.call(pair, pairKey)) {
+        if (!pairHasKey) pairHasKey = true;
+        else return false;
+      }
+    }
+
+    if (!pairHasKey) return false;
+
+    if (objectKeys.indexOf(pairKey) === -1) objectKeys.push(pairKey);
+    else return false;
+  }
+
+  return true;
+}
+
+function constructYamlOmap(data) {
+  return data !== null ? data : [];
+}
+
+var omap = new type('tag:yaml.org,2002:omap', {
+  kind: 'sequence',
+  resolve: resolveYamlOmap,
+  construct: constructYamlOmap
+});
+
+var _toString$1 = Object.prototype.toString;
+
+function resolveYamlPairs(data) {
+  if (data === null) return true;
+
+  var index, length, pair, keys, result,
+      object = data;
+
+  result = new Array(object.length);
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+
+    if (_toString$1.call(pair) !== '[object Object]') return false;
+
+    keys = Object.keys(pair);
+
+    if (keys.length !== 1) return false;
+
+    result[index] = [ keys[0], pair[keys[0]] ];
+  }
+
+  return true;
+}
+
+function constructYamlPairs(data) {
+  if (data === null) return [];
+
+  var index, length, pair, keys, result,
+      object = data;
+
+  result = new Array(object.length);
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+
+    keys = Object.keys(pair);
+
+    result[index] = [ keys[0], pair[keys[0]] ];
+  }
+
+  return result;
+}
+
+var pairs = new type('tag:yaml.org,2002:pairs', {
+  kind: 'sequence',
+  resolve: resolveYamlPairs,
+  construct: constructYamlPairs
+});
+
+var _hasOwnProperty$2 = Object.prototype.hasOwnProperty;
+
+function resolveYamlSet(data) {
+  if (data === null) return true;
+
+  var key, object = data;
+
+  for (key in object) {
+    if (_hasOwnProperty$2.call(object, key)) {
+      if (object[key] !== null) return false;
+    }
+  }
+
+  return true;
+}
+
+function constructYamlSet(data) {
+  return data !== null ? data : {};
+}
+
+var set = new type('tag:yaml.org,2002:set', {
+  kind: 'mapping',
+  resolve: resolveYamlSet,
+  construct: constructYamlSet
+});
+
+var _default = core.extend({
+  implicit: [
+    timestamp,
+    merge
+  ],
+  explicit: [
+    binary,
+    omap,
+    pairs,
+    set
+  ]
+});
+
+/*eslint-disable max-len,no-use-before-define*/
+
+
+
+
+
+
+
+var _hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+
+
+var CONTEXT_FLOW_IN   = 1;
+var CONTEXT_FLOW_OUT  = 2;
+var CONTEXT_BLOCK_IN  = 3;
+var CONTEXT_BLOCK_OUT = 4;
+
+
+var CHOMPING_CLIP  = 1;
+var CHOMPING_STRIP = 2;
+var CHOMPING_KEEP  = 3;
+
+
+var PATTERN_NON_PRINTABLE         = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+var PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
+var PATTERN_FLOW_INDICATORS       = /[,\[\]\{\}]/;
+var PATTERN_TAG_HANDLE            = /^(?:!|!!|![a-z\-]+!)$/i;
+var PATTERN_TAG_URI               = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
+
+
+function _class(obj) { return Object.prototype.toString.call(obj); }
+
+function is_EOL(c) {
+  return (c === 0x0A/* LF */) || (c === 0x0D/* CR */);
+}
+
+function is_WHITE_SPACE(c) {
+  return (c === 0x09/* Tab */) || (c === 0x20/* Space */);
+}
+
+function is_WS_OR_EOL(c) {
+  return (c === 0x09/* Tab */) ||
+         (c === 0x20/* Space */) ||
+         (c === 0x0A/* LF */) ||
+         (c === 0x0D/* CR */);
+}
+
+function is_FLOW_INDICATOR(c) {
+  return c === 0x2C/* , */ ||
+         c === 0x5B/* [ */ ||
+         c === 0x5D/* ] */ ||
+         c === 0x7B/* { */ ||
+         c === 0x7D/* } */;
+}
+
+function fromHexCode(c) {
+  var lc;
+
+  if ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) {
+    return c - 0x30;
+  }
+
+  /*eslint-disable no-bitwise*/
+  lc = c | 0x20;
+
+  if ((0x61/* a */ <= lc) && (lc <= 0x66/* f */)) {
+    return lc - 0x61 + 10;
+  }
+
+  return -1;
+}
+
+function escapedHexLen(c) {
+  if (c === 0x78/* x */) { return 2; }
+  if (c === 0x75/* u */) { return 4; }
+  if (c === 0x55/* U */) { return 8; }
+  return 0;
+}
+
+function fromDecimalCode(c) {
+  if ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) {
+    return c - 0x30;
+  }
+
+  return -1;
+}
+
+function simpleEscapeSequence(c) {
+  /* eslint-disable indent */
+  return (c === 0x30/* 0 */) ? '\x00' :
+        (c === 0x61/* a */) ? '\x07' :
+        (c === 0x62/* b */) ? '\x08' :
+        (c === 0x74/* t */) ? '\x09' :
+        (c === 0x09/* Tab */) ? '\x09' :
+        (c === 0x6E/* n */) ? '\x0A' :
+        (c === 0x76/* v */) ? '\x0B' :
+        (c === 0x66/* f */) ? '\x0C' :
+        (c === 0x72/* r */) ? '\x0D' :
+        (c === 0x65/* e */) ? '\x1B' :
+        (c === 0x20/* Space */) ? ' ' :
+        (c === 0x22/* " */) ? '\x22' :
+        (c === 0x2F/* / */) ? '/' :
+        (c === 0x5C/* \ */) ? '\x5C' :
+        (c === 0x4E/* N */) ? '\x85' :
+        (c === 0x5F/* _ */) ? '\xA0' :
+        (c === 0x4C/* L */) ? '\u2028' :
+        (c === 0x50/* P */) ? '\u2029' : '';
+}
+
+function charFromCodepoint(c) {
+  if (c <= 0xFFFF) {
+    return String.fromCharCode(c);
+  }
+  // Encode UTF-16 surrogate pair
+  // https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B010000_to_U.2B10FFFF
+  return String.fromCharCode(
+    ((c - 0x010000) >> 10) + 0xD800,
+    ((c - 0x010000) & 0x03FF) + 0xDC00
+  );
+}
+
+var simpleEscapeCheck = new Array(256); // integer, for fast access
+var simpleEscapeMap = new Array(256);
+for (var i = 0; i < 256; i++) {
+  simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
+  simpleEscapeMap[i] = simpleEscapeSequence(i);
+}
+
+
+function State$1(input, options) {
+  this.input = input;
+
+  this.filename  = options['filename']  || null;
+  this.schema    = options['schema']    || _default;
+  this.onWarning = options['onWarning'] || null;
+  // (Hidden) Remove? makes the loader to expect YAML 1.1 documents
+  // if such documents have no explicit %YAML directive
+  this.legacy    = options['legacy']    || false;
+
+  this.json      = options['json']      || false;
+  this.listener  = options['listener']  || null;
+
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.typeMap       = this.schema.compiledTypeMap;
+
+  this.length     = input.length;
+  this.position   = 0;
+  this.line       = 0;
+  this.lineStart  = 0;
+  this.lineIndent = 0;
+
+  // position of first leading tab in the current line,
+  // used to make sure there are no tabs in the indentation
+  this.firstTabInLine = -1;
+
+  this.documents = [];
+
+  /*
+  this.version;
+  this.checkLineBreaks;
+  this.tagMap;
+  this.anchorMap;
+  this.tag;
+  this.anchor;
+  this.kind;
+  this.result;*/
+
+}
+
+
+function generateError(state, message) {
+  var mark = {
+    name:     state.filename,
+    buffer:   state.input.slice(0, -1), // omit trailing \0
+    position: state.position,
+    line:     state.line,
+    column:   state.position - state.lineStart
+  };
+
+  mark.snippet = snippet(mark);
+
+  return new exception(message, mark);
+}
+
+function throwError(state, message) {
+  throw generateError(state, message);
+}
+
+function throwWarning(state, message) {
+  if (state.onWarning) {
+    state.onWarning.call(null, generateError(state, message));
+  }
+}
+
+
+var directiveHandlers = {
+
+  YAML: function handleYamlDirective(state, name, args) {
+
+    var match, major, minor;
+
+    if (state.version !== null) {
+      throwError(state, 'duplication of %YAML directive');
+    }
+
+    if (args.length !== 1) {
+      throwError(state, 'YAML directive accepts exactly one argument');
+    }
+
+    match = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
+
+    if (match === null) {
+      throwError(state, 'ill-formed argument of the YAML directive');
+    }
+
+    major = parseInt(match[1], 10);
+    minor = parseInt(match[2], 10);
+
+    if (major !== 1) {
+      throwError(state, 'unacceptable YAML version of the document');
+    }
+
+    state.version = args[0];
+    state.checkLineBreaks = (minor < 2);
+
+    if (minor !== 1 && minor !== 2) {
+      throwWarning(state, 'unsupported YAML version of the document');
+    }
+  },
+
+  TAG: function handleTagDirective(state, name, args) {
+
+    var handle, prefix;
+
+    if (args.length !== 2) {
+      throwError(state, 'TAG directive accepts exactly two arguments');
+    }
+
+    handle = args[0];
+    prefix = args[1];
+
+    if (!PATTERN_TAG_HANDLE.test(handle)) {
+      throwError(state, 'ill-formed tag handle (first argument) of the TAG directive');
+    }
+
+    if (_hasOwnProperty$1.call(state.tagMap, handle)) {
+      throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
+    }
+
+    if (!PATTERN_TAG_URI.test(prefix)) {
+      throwError(state, 'ill-formed tag prefix (second argument) of the TAG directive');
+    }
+
+    try {
+      prefix = decodeURIComponent(prefix);
+    } catch (err) {
+      throwError(state, 'tag prefix is malformed: ' + prefix);
+    }
+
+    state.tagMap[handle] = prefix;
+  }
+};
+
+
+function captureSegment(state, start, end, checkJson) {
+  var _position, _length, _character, _result;
+
+  if (start < end) {
+    _result = state.input.slice(start, end);
+
+    if (checkJson) {
+      for (_position = 0, _length = _result.length; _position < _length; _position += 1) {
+        _character = _result.charCodeAt(_position);
+        if (!(_character === 0x09 ||
+              (0x20 <= _character && _character <= 0x10FFFF))) {
+          throwError(state, 'expected valid JSON character');
+        }
+      }
+    } else if (PATTERN_NON_PRINTABLE.test(_result)) {
+      throwError(state, 'the stream contains non-printable characters');
+    }
+
+    state.result += _result;
+  }
+}
+
+function mergeMappings(state, destination, source, overridableKeys) {
+  var sourceKeys, key, index, quantity;
+
+  if (!common.isObject(source)) {
+    throwError(state, 'cannot merge mappings; the provided source object is unacceptable');
+  }
+
+  sourceKeys = Object.keys(source);
+
+  for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
+    key = sourceKeys[index];
+
+    if (!_hasOwnProperty$1.call(destination, key)) {
+      destination[key] = source[key];
+      overridableKeys[key] = true;
+    }
+  }
+}
+
+function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode,
+  startLine, startLineStart, startPos) {
+
+  var index, quantity;
+
+  // The output is a plain object here, so keys can only be strings.
+  // We need to convert keyNode to a string, but doing so can hang the process
+  // (deeply nested arrays that explode exponentially using aliases).
+  if (Array.isArray(keyNode)) {
+    keyNode = Array.prototype.slice.call(keyNode);
+
+    for (index = 0, quantity = keyNode.length; index < quantity; index += 1) {
+      if (Array.isArray(keyNode[index])) {
+        throwError(state, 'nested arrays are not supported inside keys');
+      }
+
+      if (typeof keyNode === 'object' && _class(keyNode[index]) === '[object Object]') {
+        keyNode[index] = '[object Object]';
+      }
+    }
+  }
+
+  // Avoid code execution in load() via toString property
+  // (still use its own toString for arrays, timestamps,
+  // and whatever user schema extensions happen to have @@toStringTag)
+  if (typeof keyNode === 'object' && _class(keyNode) === '[object Object]') {
+    keyNode = '[object Object]';
+  }
+
+
+  keyNode = String(keyNode);
+
+  if (_result === null) {
+    _result = {};
+  }
+
+  if (keyTag === 'tag:yaml.org,2002:merge') {
+    if (Array.isArray(valueNode)) {
+      for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
+        mergeMappings(state, _result, valueNode[index], overridableKeys);
+      }
+    } else {
+      mergeMappings(state, _result, valueNode, overridableKeys);
+    }
+  } else {
+    if (!state.json &&
+        !_hasOwnProperty$1.call(overridableKeys, keyNode) &&
+        _hasOwnProperty$1.call(_result, keyNode)) {
+      state.line = startLine || state.line;
+      state.lineStart = startLineStart || state.lineStart;
+      state.position = startPos || state.position;
+      throwError(state, 'duplicated mapping key');
+    }
+
+    // used for this specific key only because Object.defineProperty is slow
+    if (keyNode === '__proto__') {
+      Object.defineProperty(_result, keyNode, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: valueNode
+      });
+    } else {
+      _result[keyNode] = valueNode;
+    }
+    delete overridableKeys[keyNode];
+  }
+
+  return _result;
+}
+
+function readLineBreak(state) {
+  var ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x0A/* LF */) {
+    state.position++;
+  } else if (ch === 0x0D/* CR */) {
+    state.position++;
+    if (state.input.charCodeAt(state.position) === 0x0A/* LF */) {
+      state.position++;
+    }
+  } else {
+    throwError(state, 'a line break is expected');
+  }
+
+  state.line += 1;
+  state.lineStart = state.position;
+  state.firstTabInLine = -1;
+}
+
+function skipSeparationSpace(state, allowComments, checkIndent) {
+  var lineBreaks = 0,
+      ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+    while (is_WHITE_SPACE(ch)) {
+      if (ch === 0x09/* Tab */ && state.firstTabInLine === -1) {
+        state.firstTabInLine = state.position;
+      }
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    if (allowComments && ch === 0x23/* # */) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (ch !== 0x0A/* LF */ && ch !== 0x0D/* CR */ && ch !== 0);
+    }
+
+    if (is_EOL(ch)) {
+      readLineBreak(state);
+
+      ch = state.input.charCodeAt(state.position);
+      lineBreaks++;
+      state.lineIndent = 0;
+
+      while (ch === 0x20/* Space */) {
+        state.lineIndent++;
+        ch = state.input.charCodeAt(++state.position);
+      }
+    } else {
+      break;
+    }
+  }
+
+  if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
+    throwWarning(state, 'deficient indentation');
+  }
+
+  return lineBreaks;
+}
+
+function testDocumentSeparator(state) {
+  var _position = state.position,
+      ch;
+
+  ch = state.input.charCodeAt(_position);
+
+  // Condition state.position === state.lineStart is tested
+  // in parent on each call, for efficiency. No needs to test here again.
+  if ((ch === 0x2D/* - */ || ch === 0x2E/* . */) &&
+      ch === state.input.charCodeAt(_position + 1) &&
+      ch === state.input.charCodeAt(_position + 2)) {
+
+    _position += 3;
+
+    ch = state.input.charCodeAt(_position);
+
+    if (ch === 0 || is_WS_OR_EOL(ch)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function writeFoldedLines(state, count) {
+  if (count === 1) {
+    state.result += ' ';
+  } else if (count > 1) {
+    state.result += common.repeat('\n', count - 1);
+  }
+}
+
+
+function readPlainScalar(state, nodeIndent, withinFlowCollection) {
+  var preceding,
+      following,
+      captureStart,
+      captureEnd,
+      hasPendingContent,
+      _line,
+      _lineStart,
+      _lineIndent,
+      _kind = state.kind,
+      _result = state.result,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (is_WS_OR_EOL(ch)      ||
+      is_FLOW_INDICATOR(ch) ||
+      ch === 0x23/* # */    ||
+      ch === 0x26/* & */    ||
+      ch === 0x2A/* * */    ||
+      ch === 0x21/* ! */    ||
+      ch === 0x7C/* | */    ||
+      ch === 0x3E/* > */    ||
+      ch === 0x27/* ' */    ||
+      ch === 0x22/* " */    ||
+      ch === 0x25/* % */    ||
+      ch === 0x40/* @ */    ||
+      ch === 0x60/* ` */) {
+    return false;
+  }
+
+  if (ch === 0x3F/* ? */ || ch === 0x2D/* - */) {
+    following = state.input.charCodeAt(state.position + 1);
+
+    if (is_WS_OR_EOL(following) ||
+        withinFlowCollection && is_FLOW_INDICATOR(following)) {
+      return false;
+    }
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  captureStart = captureEnd = state.position;
+  hasPendingContent = false;
+
+  while (ch !== 0) {
+    if (ch === 0x3A/* : */) {
+      following = state.input.charCodeAt(state.position + 1);
+
+      if (is_WS_OR_EOL(following) ||
+          withinFlowCollection && is_FLOW_INDICATOR(following)) {
+        break;
+      }
+
+    } else if (ch === 0x23/* # */) {
+      preceding = state.input.charCodeAt(state.position - 1);
+
+      if (is_WS_OR_EOL(preceding)) {
+        break;
+      }
+
+    } else if ((state.position === state.lineStart && testDocumentSeparator(state)) ||
+               withinFlowCollection && is_FLOW_INDICATOR(ch)) {
+      break;
+
+    } else if (is_EOL(ch)) {
+      _line = state.line;
+      _lineStart = state.lineStart;
+      _lineIndent = state.lineIndent;
+      skipSeparationSpace(state, false, -1);
+
+      if (state.lineIndent >= nodeIndent) {
+        hasPendingContent = true;
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      } else {
+        state.position = captureEnd;
+        state.line = _line;
+        state.lineStart = _lineStart;
+        state.lineIndent = _lineIndent;
+        break;
+      }
+    }
+
+    if (hasPendingContent) {
+      captureSegment(state, captureStart, captureEnd, false);
+      writeFoldedLines(state, state.line - _line);
+      captureStart = captureEnd = state.position;
+      hasPendingContent = false;
+    }
+
+    if (!is_WHITE_SPACE(ch)) {
+      captureEnd = state.position + 1;
+    }
+
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  captureSegment(state, captureStart, captureEnd, false);
+
+  if (state.result) {
+    return true;
+  }
+
+  state.kind = _kind;
+  state.result = _result;
+  return false;
+}
+
+function readSingleQuotedScalar(state, nodeIndent) {
+  var ch,
+      captureStart, captureEnd;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x27/* ' */) {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  state.position++;
+  captureStart = captureEnd = state.position;
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 0x27/* ' */) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+
+      if (ch === 0x27/* ' */) {
+        captureStart = state.position;
+        state.position++;
+        captureEnd = state.position;
+      } else {
+        return true;
+      }
+
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, 'unexpected end of the document within a single quoted scalar');
+
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a single quoted scalar');
+}
+
+function readDoubleQuotedScalar(state, nodeIndent) {
+  var captureStart,
+      captureEnd,
+      hexLength,
+      hexResult,
+      tmp,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x22/* " */) {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  state.position++;
+  captureStart = captureEnd = state.position;
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 0x22/* " */) {
+      captureSegment(state, captureStart, state.position, true);
+      state.position++;
+      return true;
+
+    } else if (ch === 0x5C/* \ */) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+
+      if (is_EOL(ch)) {
+        skipSeparationSpace(state, false, nodeIndent);
+
+        // TODO: rework to inline fn with no type cast?
+      } else if (ch < 256 && simpleEscapeCheck[ch]) {
+        state.result += simpleEscapeMap[ch];
+        state.position++;
+
+      } else if ((tmp = escapedHexLen(ch)) > 0) {
+        hexLength = tmp;
+        hexResult = 0;
+
+        for (; hexLength > 0; hexLength--) {
+          ch = state.input.charCodeAt(++state.position);
+
+          if ((tmp = fromHexCode(ch)) >= 0) {
+            hexResult = (hexResult << 4) + tmp;
+
+          } else {
+            throwError(state, 'expected hexadecimal character');
+          }
+        }
+
+        state.result += charFromCodepoint(hexResult);
+
+        state.position++;
+
+      } else {
+        throwError(state, 'unknown escape sequence');
+      }
+
+      captureStart = captureEnd = state.position;
+
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, 'unexpected end of the document within a double quoted scalar');
+
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a double quoted scalar');
+}
+
+function readFlowCollection(state, nodeIndent) {
+  var readNext = true,
+      _line,
+      _lineStart,
+      _pos,
+      _tag     = state.tag,
+      _result,
+      _anchor  = state.anchor,
+      following,
+      terminator,
+      isPair,
+      isExplicitPair,
+      isMapping,
+      overridableKeys = Object.create(null),
+      keyNode,
+      keyTag,
+      valueNode,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x5B/* [ */) {
+    terminator = 0x5D;/* ] */
+    isMapping = false;
+    _result = [];
+  } else if (ch === 0x7B/* { */) {
+    terminator = 0x7D;/* } */
+    isMapping = true;
+    _result = {};
+  } else {
+    return false;
+  }
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+
+  while (ch !== 0) {
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (ch === terminator) {
+      state.position++;
+      state.tag = _tag;
+      state.anchor = _anchor;
+      state.kind = isMapping ? 'mapping' : 'sequence';
+      state.result = _result;
+      return true;
+    } else if (!readNext) {
+      throwError(state, 'missed comma between flow collection entries');
+    } else if (ch === 0x2C/* , */) {
+      // "flow collection entries can never be completely empty", as per YAML 1.2, section 7.4
+      throwError(state, "expected the node content, but found ','");
+    }
+
+    keyTag = keyNode = valueNode = null;
+    isPair = isExplicitPair = false;
+
+    if (ch === 0x3F/* ? */) {
+      following = state.input.charCodeAt(state.position + 1);
+
+      if (is_WS_OR_EOL(following)) {
+        isPair = isExplicitPair = true;
+        state.position++;
+        skipSeparationSpace(state, true, nodeIndent);
+      }
+    }
+
+    _line = state.line; // Save the current line.
+    _lineStart = state.lineStart;
+    _pos = state.position;
+    composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+    keyTag = state.tag;
+    keyNode = state.result;
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if ((isExplicitPair || state.line === _line) && ch === 0x3A/* : */) {
+      isPair = true;
+      ch = state.input.charCodeAt(++state.position);
+      skipSeparationSpace(state, true, nodeIndent);
+      composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+      valueNode = state.result;
+    }
+
+    if (isMapping) {
+      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
+    } else if (isPair) {
+      _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
+    } else {
+      _result.push(keyNode);
+    }
+
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (ch === 0x2C/* , */) {
+      readNext = true;
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      readNext = false;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a flow collection');
+}
+
+function readBlockScalar(state, nodeIndent) {
+  var captureStart,
+      folding,
+      chomping       = CHOMPING_CLIP,
+      didReadContent = false,
+      detectedIndent = false,
+      textIndent     = nodeIndent,
+      emptyLines     = 0,
+      atMoreIndented = false,
+      tmp,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x7C/* | */) {
+    folding = false;
+  } else if (ch === 0x3E/* > */) {
+    folding = true;
+  } else {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+
+  while (ch !== 0) {
+    ch = state.input.charCodeAt(++state.position);
+
+    if (ch === 0x2B/* + */ || ch === 0x2D/* - */) {
+      if (CHOMPING_CLIP === chomping) {
+        chomping = (ch === 0x2B/* + */) ? CHOMPING_KEEP : CHOMPING_STRIP;
+      } else {
+        throwError(state, 'repeat of a chomping mode identifier');
+      }
+
+    } else if ((tmp = fromDecimalCode(ch)) >= 0) {
+      if (tmp === 0) {
+        throwError(state, 'bad explicit indentation width of a block scalar; it cannot be less than one');
+      } else if (!detectedIndent) {
+        textIndent = nodeIndent + tmp - 1;
+        detectedIndent = true;
+      } else {
+        throwError(state, 'repeat of an indentation width identifier');
+      }
+
+    } else {
+      break;
+    }
+  }
+
+  if (is_WHITE_SPACE(ch)) {
+    do { ch = state.input.charCodeAt(++state.position); }
+    while (is_WHITE_SPACE(ch));
+
+    if (ch === 0x23/* # */) {
+      do { ch = state.input.charCodeAt(++state.position); }
+      while (!is_EOL(ch) && (ch !== 0));
+    }
+  }
+
+  while (ch !== 0) {
+    readLineBreak(state);
+    state.lineIndent = 0;
+
+    ch = state.input.charCodeAt(state.position);
+
+    while ((!detectedIndent || state.lineIndent < textIndent) &&
+           (ch === 0x20/* Space */)) {
+      state.lineIndent++;
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    if (!detectedIndent && state.lineIndent > textIndent) {
+      textIndent = state.lineIndent;
+    }
+
+    if (is_EOL(ch)) {
+      emptyLines++;
+      continue;
+    }
+
+    // End of the scalar.
+    if (state.lineIndent < textIndent) {
+
+      // Perform the chomping.
+      if (chomping === CHOMPING_KEEP) {
+        state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+      } else if (chomping === CHOMPING_CLIP) {
+        if (didReadContent) { // i.e. only if the scalar is not empty.
+          state.result += '\n';
+        }
+      }
+
+      // Break this `while` cycle and go to the funciton's epilogue.
+      break;
+    }
+
+    // Folded style: use fancy rules to handle line breaks.
+    if (folding) {
+
+      // Lines starting with white space characters (more-indented lines) are not folded.
+      if (is_WHITE_SPACE(ch)) {
+        atMoreIndented = true;
+        // except for the first content line (cf. Example 8.1)
+        state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+
+      // End of more-indented block.
+      } else if (atMoreIndented) {
+        atMoreIndented = false;
+        state.result += common.repeat('\n', emptyLines + 1);
+
+      // Just one line break - perceive as the same line.
+      } else if (emptyLines === 0) {
+        if (didReadContent) { // i.e. only if we have already read some scalar content.
+          state.result += ' ';
+        }
+
+      // Several line breaks - perceive as different lines.
+      } else {
+        state.result += common.repeat('\n', emptyLines);
+      }
+
+    // Literal style: just add exact number of line breaks between content lines.
+    } else {
+      // Keep all line breaks except the header line break.
+      state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+    }
+
+    didReadContent = true;
+    detectedIndent = true;
+    emptyLines = 0;
+    captureStart = state.position;
+
+    while (!is_EOL(ch) && (ch !== 0)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    captureSegment(state, captureStart, state.position, false);
+  }
+
+  return true;
+}
+
+function readBlockSequence(state, nodeIndent) {
+  var _line,
+      _tag      = state.tag,
+      _anchor   = state.anchor,
+      _result   = [],
+      following,
+      detected  = false,
+      ch;
+
+  // there is a leading tab before this token, so it can't be a block sequence/mapping;
+  // it can still be flow sequence/mapping or a scalar
+  if (state.firstTabInLine !== -1) return false;
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+    if (state.firstTabInLine !== -1) {
+      state.position = state.firstTabInLine;
+      throwError(state, 'tab characters must not be used in indentation');
+    }
+
+    if (ch !== 0x2D/* - */) {
+      break;
+    }
+
+    following = state.input.charCodeAt(state.position + 1);
+
+    if (!is_WS_OR_EOL(following)) {
+      break;
+    }
+
+    detected = true;
+    state.position++;
+
+    if (skipSeparationSpace(state, true, -1)) {
+      if (state.lineIndent <= nodeIndent) {
+        _result.push(null);
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      }
+    }
+
+    _line = state.line;
+    composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
+    _result.push(state.result);
+    skipSeparationSpace(state, true, -1);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if ((state.line === _line || state.lineIndent > nodeIndent) && (ch !== 0)) {
+      throwError(state, 'bad indentation of a sequence entry');
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = 'sequence';
+    state.result = _result;
+    return true;
+  }
+  return false;
+}
+
+function readBlockMapping(state, nodeIndent, flowIndent) {
+  var following,
+      allowCompact,
+      _line,
+      _keyLine,
+      _keyLineStart,
+      _keyPos,
+      _tag          = state.tag,
+      _anchor       = state.anchor,
+      _result       = {},
+      overridableKeys = Object.create(null),
+      keyTag        = null,
+      keyNode       = null,
+      valueNode     = null,
+      atExplicitKey = false,
+      detected      = false,
+      ch;
+
+  // there is a leading tab before this token, so it can't be a block sequence/mapping;
+  // it can still be flow sequence/mapping or a scalar
+  if (state.firstTabInLine !== -1) return false;
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+    if (!atExplicitKey && state.firstTabInLine !== -1) {
+      state.position = state.firstTabInLine;
+      throwError(state, 'tab characters must not be used in indentation');
+    }
+
+    following = state.input.charCodeAt(state.position + 1);
+    _line = state.line; // Save the current line.
+
+    //
+    // Explicit notation case. There are two separate blocks:
+    // first for the key (denoted by "?") and second for the value (denoted by ":")
+    //
+    if ((ch === 0x3F/* ? */ || ch === 0x3A/* : */) && is_WS_OR_EOL(following)) {
+
+      if (ch === 0x3F/* ? */) {
+        if (atExplicitKey) {
+          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+          keyTag = keyNode = valueNode = null;
+        }
+
+        detected = true;
+        atExplicitKey = true;
+        allowCompact = true;
+
+      } else if (atExplicitKey) {
+        // i.e. 0x3A/* : */ === character after the explicit key.
+        atExplicitKey = false;
+        allowCompact = true;
+
+      } else {
+        throwError(state, 'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line');
+      }
+
+      state.position += 1;
+      ch = following;
+
+    //
+    // Implicit notation case. Flow-style node as the key first, then ":", and the value.
+    //
+    } else {
+      _keyLine = state.line;
+      _keyLineStart = state.lineStart;
+      _keyPos = state.position;
+
+      if (!composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
+        // Neither implicit nor explicit notation.
+        // Reading is done. Go to the epilogue.
+        break;
+      }
+
+      if (state.line === _line) {
+        ch = state.input.charCodeAt(state.position);
+
+        while (is_WHITE_SPACE(ch)) {
+          ch = state.input.charCodeAt(++state.position);
+        }
+
+        if (ch === 0x3A/* : */) {
+          ch = state.input.charCodeAt(++state.position);
+
+          if (!is_WS_OR_EOL(ch)) {
+            throwError(state, 'a whitespace character is expected after the key-value separator within a block mapping');
+          }
+
+          if (atExplicitKey) {
+            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+            keyTag = keyNode = valueNode = null;
+          }
+
+          detected = true;
+          atExplicitKey = false;
+          allowCompact = false;
+          keyTag = state.tag;
+          keyNode = state.result;
+
+        } else if (detected) {
+          throwError(state, 'can not read an implicit mapping pair; a colon is missed');
+
+        } else {
+          state.tag = _tag;
+          state.anchor = _anchor;
+          return true; // Keep the result of `composeNode`.
+        }
+
+      } else if (detected) {
+        throwError(state, 'can not read a block mapping entry; a multiline key may not be an implicit key');
+
+      } else {
+        state.tag = _tag;
+        state.anchor = _anchor;
+        return true; // Keep the result of `composeNode`.
+      }
+    }
+
+    //
+    // Common reading code for both explicit and implicit notations.
+    //
+    if (state.line === _line || state.lineIndent > nodeIndent) {
+      if (atExplicitKey) {
+        _keyLine = state.line;
+        _keyLineStart = state.lineStart;
+        _keyPos = state.position;
+      }
+
+      if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
+        if (atExplicitKey) {
+          keyNode = state.result;
+        } else {
+          valueNode = state.result;
+        }
+      }
+
+      if (!atExplicitKey) {
+        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
+        keyTag = keyNode = valueNode = null;
+      }
+
+      skipSeparationSpace(state, true, -1);
+      ch = state.input.charCodeAt(state.position);
+    }
+
+    if ((state.line === _line || state.lineIndent > nodeIndent) && (ch !== 0)) {
+      throwError(state, 'bad indentation of a mapping entry');
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+
+  //
+  // Epilogue.
+  //
+
+  // Special case: last mapping's node contains only the key in explicit notation.
+  if (atExplicitKey) {
+    storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+  }
+
+  // Expose the resulting mapping.
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = 'mapping';
+    state.result = _result;
+  }
+
+  return detected;
+}
+
+function readTagProperty(state) {
+  var _position,
+      isVerbatim = false,
+      isNamed    = false,
+      tagHandle,
+      tagName,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x21/* ! */) return false;
+
+  if (state.tag !== null) {
+    throwError(state, 'duplication of a tag property');
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+
+  if (ch === 0x3C/* < */) {
+    isVerbatim = true;
+    ch = state.input.charCodeAt(++state.position);
+
+  } else if (ch === 0x21/* ! */) {
+    isNamed = true;
+    tagHandle = '!!';
+    ch = state.input.charCodeAt(++state.position);
+
+  } else {
+    tagHandle = '!';
+  }
+
+  _position = state.position;
+
+  if (isVerbatim) {
+    do { ch = state.input.charCodeAt(++state.position); }
+    while (ch !== 0 && ch !== 0x3E/* > */);
+
+    if (state.position < state.length) {
+      tagName = state.input.slice(_position, state.position);
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      throwError(state, 'unexpected end of the stream within a verbatim tag');
+    }
+  } else {
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+
+      if (ch === 0x21/* ! */) {
+        if (!isNamed) {
+          tagHandle = state.input.slice(_position - 1, state.position + 1);
+
+          if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
+            throwError(state, 'named tag handle cannot contain such characters');
+          }
+
+          isNamed = true;
+          _position = state.position + 1;
+        } else {
+          throwError(state, 'tag suffix cannot contain exclamation marks');
+        }
+      }
+
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    tagName = state.input.slice(_position, state.position);
+
+    if (PATTERN_FLOW_INDICATORS.test(tagName)) {
+      throwError(state, 'tag suffix cannot contain flow indicator characters');
+    }
+  }
+
+  if (tagName && !PATTERN_TAG_URI.test(tagName)) {
+    throwError(state, 'tag name cannot contain such characters: ' + tagName);
+  }
+
+  try {
+    tagName = decodeURIComponent(tagName);
+  } catch (err) {
+    throwError(state, 'tag name is malformed: ' + tagName);
+  }
+
+  if (isVerbatim) {
+    state.tag = tagName;
+
+  } else if (_hasOwnProperty$1.call(state.tagMap, tagHandle)) {
+    state.tag = state.tagMap[tagHandle] + tagName;
+
+  } else if (tagHandle === '!') {
+    state.tag = '!' + tagName;
+
+  } else if (tagHandle === '!!') {
+    state.tag = 'tag:yaml.org,2002:' + tagName;
+
+  } else {
+    throwError(state, 'undeclared tag handle "' + tagHandle + '"');
+  }
+
+  return true;
+}
+
+function readAnchorProperty(state) {
+  var _position,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x26/* & */) return false;
+
+  if (state.anchor !== null) {
+    throwError(state, 'duplication of an anchor property');
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  if (state.position === _position) {
+    throwError(state, 'name of an anchor node must contain at least one character');
+  }
+
+  state.anchor = state.input.slice(_position, state.position);
+  return true;
+}
+
+function readAlias(state) {
+  var _position, alias,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x2A/* * */) return false;
+
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  if (state.position === _position) {
+    throwError(state, 'name of an alias node must contain at least one character');
+  }
+
+  alias = state.input.slice(_position, state.position);
+
+  if (!_hasOwnProperty$1.call(state.anchorMap, alias)) {
+    throwError(state, 'unidentified alias "' + alias + '"');
+  }
+
+  state.result = state.anchorMap[alias];
+  skipSeparationSpace(state, true, -1);
+  return true;
+}
+
+function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
+  var allowBlockStyles,
+      allowBlockScalars,
+      allowBlockCollections,
+      indentStatus = 1, // 1: this>parent, 0: this=parent, -1: this<parent
+      atNewLine  = false,
+      hasContent = false,
+      typeIndex,
+      typeQuantity,
+      typeList,
+      type,
+      flowIndent,
+      blockIndent;
+
+  if (state.listener !== null) {
+    state.listener('open', state);
+  }
+
+  state.tag    = null;
+  state.anchor = null;
+  state.kind   = null;
+  state.result = null;
+
+  allowBlockStyles = allowBlockScalars = allowBlockCollections =
+    CONTEXT_BLOCK_OUT === nodeContext ||
+    CONTEXT_BLOCK_IN  === nodeContext;
+
+  if (allowToSeek) {
+    if (skipSeparationSpace(state, true, -1)) {
+      atNewLine = true;
+
+      if (state.lineIndent > parentIndent) {
+        indentStatus = 1;
+      } else if (state.lineIndent === parentIndent) {
+        indentStatus = 0;
+      } else if (state.lineIndent < parentIndent) {
+        indentStatus = -1;
+      }
+    }
+  }
+
+  if (indentStatus === 1) {
+    while (readTagProperty(state) || readAnchorProperty(state)) {
+      if (skipSeparationSpace(state, true, -1)) {
+        atNewLine = true;
+        allowBlockCollections = allowBlockStyles;
+
+        if (state.lineIndent > parentIndent) {
+          indentStatus = 1;
+        } else if (state.lineIndent === parentIndent) {
+          indentStatus = 0;
+        } else if (state.lineIndent < parentIndent) {
+          indentStatus = -1;
+        }
+      } else {
+        allowBlockCollections = false;
+      }
+    }
+  }
+
+  if (allowBlockCollections) {
+    allowBlockCollections = atNewLine || allowCompact;
+  }
+
+  if (indentStatus === 1 || CONTEXT_BLOCK_OUT === nodeContext) {
+    if (CONTEXT_FLOW_IN === nodeContext || CONTEXT_FLOW_OUT === nodeContext) {
+      flowIndent = parentIndent;
+    } else {
+      flowIndent = parentIndent + 1;
+    }
+
+    blockIndent = state.position - state.lineStart;
+
+    if (indentStatus === 1) {
+      if (allowBlockCollections &&
+          (readBlockSequence(state, blockIndent) ||
+           readBlockMapping(state, blockIndent, flowIndent)) ||
+          readFlowCollection(state, flowIndent)) {
+        hasContent = true;
+      } else {
+        if ((allowBlockScalars && readBlockScalar(state, flowIndent)) ||
+            readSingleQuotedScalar(state, flowIndent) ||
+            readDoubleQuotedScalar(state, flowIndent)) {
+          hasContent = true;
+
+        } else if (readAlias(state)) {
+          hasContent = true;
+
+          if (state.tag !== null || state.anchor !== null) {
+            throwError(state, 'alias node should not have any properties');
+          }
+
+        } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
+          hasContent = true;
+
+          if (state.tag === null) {
+            state.tag = '?';
+          }
+        }
+
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+      }
+    } else if (indentStatus === 0) {
+      // Special case: block sequences are allowed to have same indentation level as the parent.
+      // http://www.yaml.org/spec/1.2/spec.html#id2799784
+      hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
+    }
+  }
+
+  if (state.tag === null) {
+    if (state.anchor !== null) {
+      state.anchorMap[state.anchor] = state.result;
+    }
+
+  } else if (state.tag === '?') {
+    // Implicit resolving is not allowed for non-scalar types, and '?'
+    // non-specific tag is only automatically assigned to plain scalars.
+    //
+    // We only need to check kind conformity in case user explicitly assigns '?'
+    // tag, for example like this: "!<?> [0]"
+    //
+    if (state.result !== null && state.kind !== 'scalar') {
+      throwError(state, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state.kind + '"');
+    }
+
+    for (typeIndex = 0, typeQuantity = state.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
+      type = state.implicitTypes[typeIndex];
+
+      if (type.resolve(state.result)) { // `state.result` updated in resolver if matched
+        state.result = type.construct(state.result);
+        state.tag = type.tag;
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+        break;
+      }
+    }
+  } else if (state.tag !== '!') {
+    if (_hasOwnProperty$1.call(state.typeMap[state.kind || 'fallback'], state.tag)) {
+      type = state.typeMap[state.kind || 'fallback'][state.tag];
+    } else {
+      // looking for multi type
+      type = null;
+      typeList = state.typeMap.multi[state.kind || 'fallback'];
+
+      for (typeIndex = 0, typeQuantity = typeList.length; typeIndex < typeQuantity; typeIndex += 1) {
+        if (state.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
+          type = typeList[typeIndex];
+          break;
+        }
+      }
+    }
+
+    if (!type) {
+      throwError(state, 'unknown tag !<' + state.tag + '>');
+    }
+
+    if (state.result !== null && type.kind !== state.kind) {
+      throwError(state, 'unacceptable node kind for !<' + state.tag + '> tag; it should be "' + type.kind + '", not "' + state.kind + '"');
+    }
+
+    if (!type.resolve(state.result, state.tag)) { // `state.result` updated in resolver if matched
+      throwError(state, 'cannot resolve a node with !<' + state.tag + '> explicit tag');
+    } else {
+      state.result = type.construct(state.result, state.tag);
+      if (state.anchor !== null) {
+        state.anchorMap[state.anchor] = state.result;
+      }
+    }
+  }
+
+  if (state.listener !== null) {
+    state.listener('close', state);
+  }
+  return state.tag !== null ||  state.anchor !== null || hasContent;
+}
+
+function readDocument(state) {
+  var documentStart = state.position,
+      _position,
+      directiveName,
+      directiveArgs,
+      hasDirectives = false,
+      ch;
+
+  state.version = null;
+  state.checkLineBreaks = state.legacy;
+  state.tagMap = Object.create(null);
+  state.anchorMap = Object.create(null);
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    skipSeparationSpace(state, true, -1);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (state.lineIndent > 0 || ch !== 0x25/* % */) {
+      break;
+    }
+
+    hasDirectives = true;
+    ch = state.input.charCodeAt(++state.position);
+    _position = state.position;
+
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    directiveName = state.input.slice(_position, state.position);
+    directiveArgs = [];
+
+    if (directiveName.length < 1) {
+      throwError(state, 'directive name must not be less than one character in length');
+    }
+
+    while (ch !== 0) {
+      while (is_WHITE_SPACE(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+
+      if (ch === 0x23/* # */) {
+        do { ch = state.input.charCodeAt(++state.position); }
+        while (ch !== 0 && !is_EOL(ch));
+        break;
+      }
+
+      if (is_EOL(ch)) break;
+
+      _position = state.position;
+
+      while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+
+      directiveArgs.push(state.input.slice(_position, state.position));
+    }
+
+    if (ch !== 0) readLineBreak(state);
+
+    if (_hasOwnProperty$1.call(directiveHandlers, directiveName)) {
+      directiveHandlers[directiveName](state, directiveName, directiveArgs);
+    } else {
+      throwWarning(state, 'unknown document directive "' + directiveName + '"');
+    }
+  }
+
+  skipSeparationSpace(state, true, -1);
+
+  if (state.lineIndent === 0 &&
+      state.input.charCodeAt(state.position)     === 0x2D/* - */ &&
+      state.input.charCodeAt(state.position + 1) === 0x2D/* - */ &&
+      state.input.charCodeAt(state.position + 2) === 0x2D/* - */) {
+    state.position += 3;
+    skipSeparationSpace(state, true, -1);
+
+  } else if (hasDirectives) {
+    throwError(state, 'directives end mark is expected');
+  }
+
+  composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
+  skipSeparationSpace(state, true, -1);
+
+  if (state.checkLineBreaks &&
+      PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
+    throwWarning(state, 'non-ASCII line breaks are interpreted as content');
+  }
+
+  state.documents.push(state.result);
+
+  if (state.position === state.lineStart && testDocumentSeparator(state)) {
+
+    if (state.input.charCodeAt(state.position) === 0x2E/* . */) {
+      state.position += 3;
+      skipSeparationSpace(state, true, -1);
+    }
+    return;
+  }
+
+  if (state.position < (state.length - 1)) {
+    throwError(state, 'end of the stream or a document separator is expected');
+  } else {
+    return;
+  }
+}
+
+
+function loadDocuments(input, options) {
+  input = String(input);
+  options = options || {};
+
+  if (input.length !== 0) {
+
+    // Add tailing `\n` if not exists
+    if (input.charCodeAt(input.length - 1) !== 0x0A/* LF */ &&
+        input.charCodeAt(input.length - 1) !== 0x0D/* CR */) {
+      input += '\n';
+    }
+
+    // Strip BOM
+    if (input.charCodeAt(0) === 0xFEFF) {
+      input = input.slice(1);
+    }
+  }
+
+  var state = new State$1(input, options);
+
+  var nullpos = input.indexOf('\0');
+
+  if (nullpos !== -1) {
+    state.position = nullpos;
+    throwError(state, 'null byte is not allowed in input');
+  }
+
+  // Use 0 as string terminator. That significantly simplifies bounds check.
+  state.input += '\0';
+
+  while (state.input.charCodeAt(state.position) === 0x20/* Space */) {
+    state.lineIndent += 1;
+    state.position += 1;
+  }
+
+  while (state.position < (state.length - 1)) {
+    readDocument(state);
+  }
+
+  return state.documents;
+}
+
+
+function loadAll$1(input, iterator, options) {
+  if (iterator !== null && typeof iterator === 'object' && typeof options === 'undefined') {
+    options = iterator;
+    iterator = null;
+  }
+
+  var documents = loadDocuments(input, options);
+
+  if (typeof iterator !== 'function') {
+    return documents;
+  }
+
+  for (var index = 0, length = documents.length; index < length; index += 1) {
+    iterator(documents[index]);
+  }
+}
+
+
+function load$1(input, options) {
+  var documents = loadDocuments(input, options);
+
+  if (documents.length === 0) {
+    /*eslint-disable no-undefined*/
+    return undefined;
+  } else if (documents.length === 1) {
+    return documents[0];
+  }
+  throw new exception('expected a single document in the stream, but found more');
+}
+
+
+var loadAll_1 = loadAll$1;
+var load_1    = load$1;
+
+var loader = {
+	loadAll: loadAll_1,
+	load: load_1
+};
+
+/*eslint-disable no-use-before-define*/
+
+
+
+
+
+var _toString       = Object.prototype.toString;
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+
+var CHAR_BOM                  = 0xFEFF;
+var CHAR_TAB                  = 0x09; /* Tab */
+var CHAR_LINE_FEED            = 0x0A; /* LF */
+var CHAR_CARRIAGE_RETURN      = 0x0D; /* CR */
+var CHAR_SPACE                = 0x20; /* Space */
+var CHAR_EXCLAMATION          = 0x21; /* ! */
+var CHAR_DOUBLE_QUOTE         = 0x22; /* " */
+var CHAR_SHARP                = 0x23; /* # */
+var CHAR_PERCENT              = 0x25; /* % */
+var CHAR_AMPERSAND            = 0x26; /* & */
+var CHAR_SINGLE_QUOTE         = 0x27; /* ' */
+var CHAR_ASTERISK             = 0x2A; /* * */
+var CHAR_COMMA                = 0x2C; /* , */
+var CHAR_MINUS                = 0x2D; /* - */
+var CHAR_COLON                = 0x3A; /* : */
+var CHAR_EQUALS               = 0x3D; /* = */
+var CHAR_GREATER_THAN         = 0x3E; /* > */
+var CHAR_QUESTION             = 0x3F; /* ? */
+var CHAR_COMMERCIAL_AT        = 0x40; /* @ */
+var CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
+var CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
+var CHAR_GRAVE_ACCENT         = 0x60; /* ` */
+var CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
+var CHAR_VERTICAL_LINE        = 0x7C; /* | */
+var CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
+
+var ESCAPE_SEQUENCES = {};
+
+ESCAPE_SEQUENCES[0x00]   = '\\0';
+ESCAPE_SEQUENCES[0x07]   = '\\a';
+ESCAPE_SEQUENCES[0x08]   = '\\b';
+ESCAPE_SEQUENCES[0x09]   = '\\t';
+ESCAPE_SEQUENCES[0x0A]   = '\\n';
+ESCAPE_SEQUENCES[0x0B]   = '\\v';
+ESCAPE_SEQUENCES[0x0C]   = '\\f';
+ESCAPE_SEQUENCES[0x0D]   = '\\r';
+ESCAPE_SEQUENCES[0x1B]   = '\\e';
+ESCAPE_SEQUENCES[0x22]   = '\\"';
+ESCAPE_SEQUENCES[0x5C]   = '\\\\';
+ESCAPE_SEQUENCES[0x85]   = '\\N';
+ESCAPE_SEQUENCES[0xA0]   = '\\_';
+ESCAPE_SEQUENCES[0x2028] = '\\L';
+ESCAPE_SEQUENCES[0x2029] = '\\P';
+
+var DEPRECATED_BOOLEANS_SYNTAX = [
+  'y', 'Y', 'yes', 'Yes', 'YES', 'on', 'On', 'ON',
+  'n', 'N', 'no', 'No', 'NO', 'off', 'Off', 'OFF'
+];
+
+var DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+
+function compileStyleMap(schema, map) {
+  var result, keys, index, length, tag, style, type;
+
+  if (map === null) return {};
+
+  result = {};
+  keys = Object.keys(map);
+
+  for (index = 0, length = keys.length; index < length; index += 1) {
+    tag = keys[index];
+    style = String(map[tag]);
+
+    if (tag.slice(0, 2) === '!!') {
+      tag = 'tag:yaml.org,2002:' + tag.slice(2);
+    }
+    type = schema.compiledTypeMap['fallback'][tag];
+
+    if (type && _hasOwnProperty.call(type.styleAliases, style)) {
+      style = type.styleAliases[style];
+    }
+
+    result[tag] = style;
+  }
+
+  return result;
+}
+
+function encodeHex(character) {
+  var string, handle, length;
+
+  string = character.toString(16).toUpperCase();
+
+  if (character <= 0xFF) {
+    handle = 'x';
+    length = 2;
+  } else if (character <= 0xFFFF) {
+    handle = 'u';
+    length = 4;
+  } else if (character <= 0xFFFFFFFF) {
+    handle = 'U';
+    length = 8;
+  } else {
+    throw new exception('code point within a string may not be greater than 0xFFFFFFFF');
+  }
+
+  return '\\' + handle + common.repeat('0', length - string.length) + string;
+}
+
+
+var QUOTING_TYPE_SINGLE = 1,
+    QUOTING_TYPE_DOUBLE = 2;
+
+function State(options) {
+  this.schema        = options['schema'] || _default;
+  this.indent        = Math.max(1, (options['indent'] || 2));
+  this.noArrayIndent = options['noArrayIndent'] || false;
+  this.skipInvalid   = options['skipInvalid'] || false;
+  this.flowLevel     = (common.isNothing(options['flowLevel']) ? -1 : options['flowLevel']);
+  this.styleMap      = compileStyleMap(this.schema, options['styles'] || null);
+  this.sortKeys      = options['sortKeys'] || false;
+  this.lineWidth     = options['lineWidth'] || 80;
+  this.noRefs        = options['noRefs'] || false;
+  this.noCompatMode  = options['noCompatMode'] || false;
+  this.condenseFlow  = options['condenseFlow'] || false;
+  this.quotingType   = options['quotingType'] === '"' ? QUOTING_TYPE_DOUBLE : QUOTING_TYPE_SINGLE;
+  this.forceQuotes   = options['forceQuotes'] || false;
+  this.replacer      = typeof options['replacer'] === 'function' ? options['replacer'] : null;
+
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.explicitTypes = this.schema.compiledExplicit;
+
+  this.tag = null;
+  this.result = '';
+
+  this.duplicates = [];
+  this.usedDuplicates = null;
+}
+
+// Indents every line in a string. Empty lines (\n only) are not indented.
+function indentString(string, spaces) {
+  var ind = common.repeat(' ', spaces),
+      position = 0,
+      next = -1,
+      result = '',
+      line,
+      length = string.length;
+
+  while (position < length) {
+    next = string.indexOf('\n', position);
+    if (next === -1) {
+      line = string.slice(position);
+      position = length;
+    } else {
+      line = string.slice(position, next + 1);
+      position = next + 1;
+    }
+
+    if (line.length && line !== '\n') result += ind;
+
+    result += line;
+  }
+
+  return result;
+}
+
+function generateNextLine(state, level) {
+  return '\n' + common.repeat(' ', state.indent * level);
+}
+
+function testImplicitResolving(state, str) {
+  var index, length, type;
+
+  for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
+    type = state.implicitTypes[index];
+
+    if (type.resolve(str)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// [33] s-white ::= s-space | s-tab
+function isWhitespace(c) {
+  return c === CHAR_SPACE || c === CHAR_TAB;
+}
+
+// Returns true if the character can be printed without escaping.
+// From YAML 1.2: "any allowed characters known to be non-printable
+// should also be escaped. [However,] This isn’t mandatory"
+// Derived from nb-char - \t - #x85 - #xA0 - #x2028 - #x2029.
+function isPrintable(c) {
+  return  (0x00020 <= c && c <= 0x00007E)
+      || ((0x000A1 <= c && c <= 0x00D7FF) && c !== 0x2028 && c !== 0x2029)
+      || ((0x0E000 <= c && c <= 0x00FFFD) && c !== CHAR_BOM)
+      ||  (0x10000 <= c && c <= 0x10FFFF);
+}
+
+// [34] ns-char ::= nb-char - s-white
+// [27] nb-char ::= c-printable - b-char - c-byte-order-mark
+// [26] b-char  ::= b-line-feed | b-carriage-return
+// Including s-white (for some reason, examples doesn't match specs in this aspect)
+// ns-char ::= c-printable - b-line-feed - b-carriage-return - c-byte-order-mark
+function isNsCharOrWhitespace(c) {
+  return isPrintable(c)
+    && c !== CHAR_BOM
+    // - b-char
+    && c !== CHAR_CARRIAGE_RETURN
+    && c !== CHAR_LINE_FEED;
+}
+
+// [127]  ns-plain-safe(c) ::= c = flow-out  ⇒ ns-plain-safe-out
+//                             c = flow-in   ⇒ ns-plain-safe-in
+//                             c = block-key ⇒ ns-plain-safe-out
+//                             c = flow-key  ⇒ ns-plain-safe-in
+// [128] ns-plain-safe-out ::= ns-char
+// [129]  ns-plain-safe-in ::= ns-char - c-flow-indicator
+// [130]  ns-plain-char(c) ::=  ( ns-plain-safe(c) - “:” - “#” )
+//                            | ( /* An ns-char preceding */ “#” )
+//                            | ( “:” /* Followed by an ns-plain-safe(c) */ )
+function isPlainSafe(c, prev, inblock) {
+  var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
+  var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
+  return (
+    // ns-plain-safe
+    inblock ? // c = flow-in
+      cIsNsCharOrWhitespace
+      : cIsNsCharOrWhitespace
+        // - c-flow-indicator
+        && c !== CHAR_COMMA
+        && c !== CHAR_LEFT_SQUARE_BRACKET
+        && c !== CHAR_RIGHT_SQUARE_BRACKET
+        && c !== CHAR_LEFT_CURLY_BRACKET
+        && c !== CHAR_RIGHT_CURLY_BRACKET
+  )
+    // ns-plain-char
+    && c !== CHAR_SHARP // false on '#'
+    && !(prev === CHAR_COLON && !cIsNsChar) // false on ': '
+    || (isNsCharOrWhitespace(prev) && !isWhitespace(prev) && c === CHAR_SHARP) // change to true on '[^ ]#'
+    || (prev === CHAR_COLON && cIsNsChar); // change to true on ':[^ ]'
+}
+
+// Simplified test for values allowed as the first character in plain style.
+function isPlainSafeFirst(c) {
+  // Uses a subset of ns-char - c-indicator
+  // where ns-char = nb-char - s-white.
+  // No support of ( ( “?” | “:” | “-” ) /* Followed by an ns-plain-safe(c)) */ ) part
+  return isPrintable(c) && c !== CHAR_BOM
+    && !isWhitespace(c) // - s-white
+    // - (c-indicator ::=
+    // “-” | “?” | “:” | “,” | “[” | “]” | “{” | “}”
+    && c !== CHAR_MINUS
+    && c !== CHAR_QUESTION
+    && c !== CHAR_COLON
+    && c !== CHAR_COMMA
+    && c !== CHAR_LEFT_SQUARE_BRACKET
+    && c !== CHAR_RIGHT_SQUARE_BRACKET
+    && c !== CHAR_LEFT_CURLY_BRACKET
+    && c !== CHAR_RIGHT_CURLY_BRACKET
+    // | “#” | “&” | “*” | “!” | “|” | “=” | “>” | “'” | “"”
+    && c !== CHAR_SHARP
+    && c !== CHAR_AMPERSAND
+    && c !== CHAR_ASTERISK
+    && c !== CHAR_EXCLAMATION
+    && c !== CHAR_VERTICAL_LINE
+    && c !== CHAR_EQUALS
+    && c !== CHAR_GREATER_THAN
+    && c !== CHAR_SINGLE_QUOTE
+    && c !== CHAR_DOUBLE_QUOTE
+    // | “%” | “@” | “`”)
+    && c !== CHAR_PERCENT
+    && c !== CHAR_COMMERCIAL_AT
+    && c !== CHAR_GRAVE_ACCENT;
+}
+
+// Simplified test for values allowed as the last character in plain style.
+function isPlainSafeLast(c) {
+  // just not whitespace or colon, it will be checked to be plain character later
+  return !isWhitespace(c) && c !== CHAR_COLON;
+}
+
+// Same as 'string'.codePointAt(pos), but works in older browsers.
+function codePointAt(string, pos) {
+  var first = string.charCodeAt(pos), second;
+  if (first >= 0xD800 && first <= 0xDBFF && pos + 1 < string.length) {
+    second = string.charCodeAt(pos + 1);
+    if (second >= 0xDC00 && second <= 0xDFFF) {
+      // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+      return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
+    }
+  }
+  return first;
+}
+
+// Determines whether block indentation indicator is required.
+function needIndentIndicator(string) {
+  var leadingSpaceRe = /^\n* /;
+  return leadingSpaceRe.test(string);
+}
+
+var STYLE_PLAIN   = 1,
+    STYLE_SINGLE  = 2,
+    STYLE_LITERAL = 3,
+    STYLE_FOLDED  = 4,
+    STYLE_DOUBLE  = 5;
+
+// Determines which scalar styles are possible and returns the preferred style.
+// lineWidth = -1 => no limit.
+// Pre-conditions: str.length > 0.
+// Post-conditions:
+//    STYLE_PLAIN or STYLE_SINGLE => no \n are in the string.
+//    STYLE_LITERAL => no lines are suitable for folding (or lineWidth is -1).
+//    STYLE_FOLDED => a line > lineWidth and can be folded (and lineWidth != -1).
+function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth,
+  testAmbiguousType, quotingType, forceQuotes, inblock) {
+
+  var i;
+  var char = 0;
+  var prevChar = null;
+  var hasLineBreak = false;
+  var hasFoldableLine = false; // only checked if shouldTrackWidth
+  var shouldTrackWidth = lineWidth !== -1;
+  var previousLineBreak = -1; // count the first line correctly
+  var plain = isPlainSafeFirst(codePointAt(string, 0))
+          && isPlainSafeLast(codePointAt(string, string.length - 1));
+
+  if (singleLineOnly || forceQuotes) {
+    // Case: no block styles.
+    // Check for disallowed characters to rule out plain and single.
+    for (i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
+      char = codePointAt(string, i);
+      if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char, prevChar, inblock);
+      prevChar = char;
+    }
+  } else {
+    // Case: block styles permitted.
+    for (i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
+      char = codePointAt(string, i);
+      if (char === CHAR_LINE_FEED) {
+        hasLineBreak = true;
+        // Check if any line can be folded.
+        if (shouldTrackWidth) {
+          hasFoldableLine = hasFoldableLine ||
+            // Foldable line = too long, and not more-indented.
+            (i - previousLineBreak - 1 > lineWidth &&
+             string[previousLineBreak + 1] !== ' ');
+          previousLineBreak = i;
+        }
+      } else if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char, prevChar, inblock);
+      prevChar = char;
+    }
+    // in case the end is missing a \n
+    hasFoldableLine = hasFoldableLine || (shouldTrackWidth &&
+      (i - previousLineBreak - 1 > lineWidth &&
+       string[previousLineBreak + 1] !== ' '));
+  }
+  // Although every style can represent \n without escaping, prefer block styles
+  // for multiline, since they're more readable and they don't add empty lines.
+  // Also prefer folding a super-long line.
+  if (!hasLineBreak && !hasFoldableLine) {
+    // Strings interpretable as another type have to be quoted;
+    // e.g. the string 'true' vs. the boolean true.
+    if (plain && !forceQuotes && !testAmbiguousType(string)) {
+      return STYLE_PLAIN;
+    }
+    return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+  }
+  // Edge case: block indentation indicator can only have one digit.
+  if (indentPerLevel > 9 && needIndentIndicator(string)) {
+    return STYLE_DOUBLE;
+  }
+  // At this point we know block styles are valid.
+  // Prefer literal style unless we want to fold.
+  if (!forceQuotes) {
+    return hasFoldableLine ? STYLE_FOLDED : STYLE_LITERAL;
+  }
+  return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+}
+
+// Note: line breaking/folding is implemented for only the folded style.
+// NB. We drop the last trailing newline (if any) of a returned block scalar
+//  since the dumper adds its own newline. This always works:
+//    • No ending newline => unaffected; already using strip "-" chomping.
+//    • Ending newline    => removed then restored.
+//  Importantly, this keeps the "+" chomp indicator from gaining an extra line.
+function writeScalar(state, string, level, iskey, inblock) {
+  state.dump = (function () {
+    if (string.length === 0) {
+      return state.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
+    }
+    if (!state.noCompatMode) {
+      if (DEPRECATED_BOOLEANS_SYNTAX.indexOf(string) !== -1 || DEPRECATED_BASE60_SYNTAX.test(string)) {
+        return state.quotingType === QUOTING_TYPE_DOUBLE ? ('"' + string + '"') : ("'" + string + "'");
+      }
+    }
+
+    var indent = state.indent * Math.max(1, level); // no 0-indent scalars
+    // As indentation gets deeper, let the width decrease monotonically
+    // to the lower bound min(state.lineWidth, 40).
+    // Note that this implies
+    //  state.lineWidth ≤ 40 + state.indent: width is fixed at the lower bound.
+    //  state.lineWidth > 40 + state.indent: width decreases until the lower bound.
+    // This behaves better than a constant minimum width which disallows narrower options,
+    // or an indent threshold which causes the width to suddenly increase.
+    var lineWidth = state.lineWidth === -1
+      ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
+
+    // Without knowing if keys are implicit/explicit, assume implicit for safety.
+    var singleLineOnly = iskey
+      // No block styles in flow mode.
+      || (state.flowLevel > -1 && level >= state.flowLevel);
+    function testAmbiguity(string) {
+      return testImplicitResolving(state, string);
+    }
+
+    switch (chooseScalarStyle(string, singleLineOnly, state.indent, lineWidth,
+      testAmbiguity, state.quotingType, state.forceQuotes && !iskey, inblock)) {
+
+      case STYLE_PLAIN:
+        return string;
+      case STYLE_SINGLE:
+        return "'" + string.replace(/'/g, "''") + "'";
+      case STYLE_LITERAL:
+        return '|' + blockHeader(string, state.indent)
+          + dropEndingNewline(indentString(string, indent));
+      case STYLE_FOLDED:
+        return '>' + blockHeader(string, state.indent)
+          + dropEndingNewline(indentString(foldString(string, lineWidth), indent));
+      case STYLE_DOUBLE:
+        return '"' + escapeString(string) + '"';
+      default:
+        throw new exception('impossible error: invalid scalar style');
+    }
+  }());
+}
+
+// Pre-conditions: string is valid for a block scalar, 1 <= indentPerLevel <= 9.
+function blockHeader(string, indentPerLevel) {
+  var indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : '';
+
+  // note the special case: the string '\n' counts as a "trailing" empty line.
+  var clip =          string[string.length - 1] === '\n';
+  var keep = clip && (string[string.length - 2] === '\n' || string === '\n');
+  var chomp = keep ? '+' : (clip ? '' : '-');
+
+  return indentIndicator + chomp + '\n';
+}
+
+// (See the note for writeScalar.)
+function dropEndingNewline(string) {
+  return string[string.length - 1] === '\n' ? string.slice(0, -1) : string;
+}
+
+// Note: a long line without a suitable break point will exceed the width limit.
+// Pre-conditions: every char in str isPrintable, str.length > 0, width > 0.
+function foldString(string, width) {
+  // In folded style, $k$ consecutive newlines output as $k+1$ newlines—
+  // unless they're before or after a more-indented line, or at the very
+  // beginning or end, in which case $k$ maps to $k$.
+  // Therefore, parse each chunk as newline(s) followed by a content line.
+  var lineRe = /(\n+)([^\n]*)/g;
+
+  // first line (possibly an empty line)
+  var result = (function () {
+    var nextLF = string.indexOf('\n');
+    nextLF = nextLF !== -1 ? nextLF : string.length;
+    lineRe.lastIndex = nextLF;
+    return foldLine(string.slice(0, nextLF), width);
+  }());
+  // If we haven't reached the first content line yet, don't add an extra \n.
+  var prevMoreIndented = string[0] === '\n' || string[0] === ' ';
+  var moreIndented;
+
+  // rest of the lines
+  var match;
+  while ((match = lineRe.exec(string))) {
+    var prefix = match[1], line = match[2];
+    moreIndented = (line[0] === ' ');
+    result += prefix
+      + (!prevMoreIndented && !moreIndented && line !== ''
+        ? '\n' : '')
+      + foldLine(line, width);
+    prevMoreIndented = moreIndented;
+  }
+
+  return result;
+}
+
+// Greedy line breaking.
+// Picks the longest line under the limit each time,
+// otherwise settles for the shortest line over the limit.
+// NB. More-indented lines *cannot* be folded, as that would add an extra \n.
+function foldLine(line, width) {
+  if (line === '' || line[0] === ' ') return line;
+
+  // Since a more-indented line adds a \n, breaks can't be followed by a space.
+  var breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
+  var match;
+  // start is an inclusive index. end, curr, and next are exclusive.
+  var start = 0, end, curr = 0, next = 0;
+  var result = '';
+
+  // Invariants: 0 <= start <= length-1.
+  //   0 <= curr <= next <= max(0, length-2). curr - start <= width.
+  // Inside the loop:
+  //   A match implies length >= 2, so curr and next are <= length-2.
+  while ((match = breakRe.exec(line))) {
+    next = match.index;
+    // maintain invariant: curr - start <= width
+    if (next - start > width) {
+      end = (curr > start) ? curr : next; // derive end <= length-2
+      result += '\n' + line.slice(start, end);
+      // skip the space that was output as \n
+      start = end + 1;                    // derive start <= length-1
+    }
+    curr = next;
+  }
+
+  // By the invariants, start <= length-1, so there is something left over.
+  // It is either the whole string or a part starting from non-whitespace.
+  result += '\n';
+  // Insert a break if the remainder is too long and there is a break available.
+  if (line.length - start > width && curr > start) {
+    result += line.slice(start, curr) + '\n' + line.slice(curr + 1);
+  } else {
+    result += line.slice(start);
+  }
+
+  return result.slice(1); // drop extra \n joiner
+}
+
+// Escapes a double-quoted string.
+function escapeString(string) {
+  var result = '';
+  var char = 0;
+  var escapeSeq;
+
+  for (var i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
+    char = codePointAt(string, i);
+    escapeSeq = ESCAPE_SEQUENCES[char];
+
+    if (!escapeSeq && isPrintable(char)) {
+      result += string[i];
+      if (char >= 0x10000) result += string[i + 1];
+    } else {
+      result += escapeSeq || encodeHex(char);
+    }
+  }
+
+  return result;
+}
+
+function writeFlowSequence(state, level, object) {
+  var _result = '',
+      _tag    = state.tag,
+      index,
+      length,
+      value;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    value = object[index];
+
+    if (state.replacer) {
+      value = state.replacer.call(object, String(index), value);
+    }
+
+    // Write only valid elements, put null instead of invalid elements.
+    if (writeNode(state, level, value, false, false) ||
+        (typeof value === 'undefined' &&
+         writeNode(state, level, null, false, false))) {
+
+      if (_result !== '') _result += ',' + (!state.condenseFlow ? ' ' : '');
+      _result += state.dump;
+    }
+  }
+
+  state.tag = _tag;
+  state.dump = '[' + _result + ']';
+}
+
+function writeBlockSequence(state, level, object, compact) {
+  var _result = '',
+      _tag    = state.tag,
+      index,
+      length,
+      value;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    value = object[index];
+
+    if (state.replacer) {
+      value = state.replacer.call(object, String(index), value);
+    }
+
+    // Write only valid elements, put null instead of invalid elements.
+    if (writeNode(state, level + 1, value, true, true, false, true) ||
+        (typeof value === 'undefined' &&
+         writeNode(state, level + 1, null, true, true, false, true))) {
+
+      if (!compact || _result !== '') {
+        _result += generateNextLine(state, level);
+      }
+
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        _result += '-';
+      } else {
+        _result += '- ';
+      }
+
+      _result += state.dump;
+    }
+  }
+
+  state.tag = _tag;
+  state.dump = _result || '[]'; // Empty sequence if no valid values.
+}
+
+function writeFlowMapping(state, level, object) {
+  var _result       = '',
+      _tag          = state.tag,
+      objectKeyList = Object.keys(object),
+      index,
+      length,
+      objectKey,
+      objectValue,
+      pairBuffer;
+
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+
+    pairBuffer = '';
+    if (_result !== '') pairBuffer += ', ';
+
+    if (state.condenseFlow) pairBuffer += '"';
+
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+
+    if (state.replacer) {
+      objectValue = state.replacer.call(object, objectKey, objectValue);
+    }
+
+    if (!writeNode(state, level, objectKey, false, false)) {
+      continue; // Skip this pair because of invalid key;
+    }
+
+    if (state.dump.length > 1024) pairBuffer += '? ';
+
+    pairBuffer += state.dump + (state.condenseFlow ? '"' : '') + ':' + (state.condenseFlow ? '' : ' ');
+
+    if (!writeNode(state, level, objectValue, false, false)) {
+      continue; // Skip this pair because of invalid value.
+    }
+
+    pairBuffer += state.dump;
+
+    // Both key and value are valid.
+    _result += pairBuffer;
+  }
+
+  state.tag = _tag;
+  state.dump = '{' + _result + '}';
+}
+
+function writeBlockMapping(state, level, object, compact) {
+  var _result       = '',
+      _tag          = state.tag,
+      objectKeyList = Object.keys(object),
+      index,
+      length,
+      objectKey,
+      objectValue,
+      explicitPair,
+      pairBuffer;
+
+  // Allow sorting keys so that the output file is deterministic
+  if (state.sortKeys === true) {
+    // Default sorting
+    objectKeyList.sort();
+  } else if (typeof state.sortKeys === 'function') {
+    // Custom sort function
+    objectKeyList.sort(state.sortKeys);
+  } else if (state.sortKeys) {
+    // Something is wrong
+    throw new exception('sortKeys must be a boolean or a function');
+  }
+
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+    pairBuffer = '';
+
+    if (!compact || _result !== '') {
+      pairBuffer += generateNextLine(state, level);
+    }
+
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+
+    if (state.replacer) {
+      objectValue = state.replacer.call(object, objectKey, objectValue);
+    }
+
+    if (!writeNode(state, level + 1, objectKey, true, true, true)) {
+      continue; // Skip this pair because of invalid key.
+    }
+
+    explicitPair = (state.tag !== null && state.tag !== '?') ||
+                   (state.dump && state.dump.length > 1024);
+
+    if (explicitPair) {
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        pairBuffer += '?';
+      } else {
+        pairBuffer += '? ';
+      }
+    }
+
+    pairBuffer += state.dump;
+
+    if (explicitPair) {
+      pairBuffer += generateNextLine(state, level);
+    }
+
+    if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
+      continue; // Skip this pair because of invalid value.
+    }
+
+    if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+      pairBuffer += ':';
+    } else {
+      pairBuffer += ': ';
+    }
+
+    pairBuffer += state.dump;
+
+    // Both key and value are valid.
+    _result += pairBuffer;
+  }
+
+  state.tag = _tag;
+  state.dump = _result || '{}'; // Empty mapping if no valid pairs.
+}
+
+function detectType(state, object, explicit) {
+  var _result, typeList, index, length, type, style;
+
+  typeList = explicit ? state.explicitTypes : state.implicitTypes;
+
+  for (index = 0, length = typeList.length; index < length; index += 1) {
+    type = typeList[index];
+
+    if ((type.instanceOf  || type.predicate) &&
+        (!type.instanceOf || ((typeof object === 'object') && (object instanceof type.instanceOf))) &&
+        (!type.predicate  || type.predicate(object))) {
+
+      if (explicit) {
+        if (type.multi && type.representName) {
+          state.tag = type.representName(object);
+        } else {
+          state.tag = type.tag;
+        }
+      } else {
+        state.tag = '?';
+      }
+
+      if (type.represent) {
+        style = state.styleMap[type.tag] || type.defaultStyle;
+
+        if (_toString.call(type.represent) === '[object Function]') {
+          _result = type.represent(object, style);
+        } else if (_hasOwnProperty.call(type.represent, style)) {
+          _result = type.represent[style](object, style);
+        } else {
+          throw new exception('!<' + type.tag + '> tag resolver accepts not "' + style + '" style');
+        }
+
+        state.dump = _result;
+      }
+
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// Serializes `object` and writes it to global `result`.
+// Returns true on success, or false on invalid object.
+//
+function writeNode(state, level, object, block, compact, iskey, isblockseq) {
+  state.tag = null;
+  state.dump = object;
+
+  if (!detectType(state, object, false)) {
+    detectType(state, object, true);
+  }
+
+  var type = _toString.call(state.dump);
+  var inblock = block;
+  var tagStr;
+
+  if (block) {
+    block = (state.flowLevel < 0 || state.flowLevel > level);
+  }
+
+  var objectOrArray = type === '[object Object]' || type === '[object Array]',
+      duplicateIndex,
+      duplicate;
+
+  if (objectOrArray) {
+    duplicateIndex = state.duplicates.indexOf(object);
+    duplicate = duplicateIndex !== -1;
+  }
+
+  if ((state.tag !== null && state.tag !== '?') || duplicate || (state.indent !== 2 && level > 0)) {
+    compact = false;
+  }
+
+  if (duplicate && state.usedDuplicates[duplicateIndex]) {
+    state.dump = '*ref_' + duplicateIndex;
+  } else {
+    if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
+      state.usedDuplicates[duplicateIndex] = true;
+    }
+    if (type === '[object Object]') {
+      if (block && (Object.keys(state.dump).length !== 0)) {
+        writeBlockMapping(state, level, state.dump, compact);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowMapping(state, level, state.dump);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + ' ' + state.dump;
+        }
+      }
+    } else if (type === '[object Array]') {
+      if (block && (state.dump.length !== 0)) {
+        if (state.noArrayIndent && !isblockseq && level > 0) {
+          writeBlockSequence(state, level - 1, state.dump, compact);
+        } else {
+          writeBlockSequence(state, level, state.dump, compact);
+        }
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowSequence(state, level, state.dump);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + ' ' + state.dump;
+        }
+      }
+    } else if (type === '[object String]') {
+      if (state.tag !== '?') {
+        writeScalar(state, state.dump, level, iskey, inblock);
+      }
+    } else if (type === '[object Undefined]') {
+      return false;
+    } else {
+      if (state.skipInvalid) return false;
+      throw new exception('unacceptable kind of an object to dump ' + type);
+    }
+
+    if (state.tag !== null && state.tag !== '?') {
+      // Need to encode all characters except those allowed by the spec:
+      //
+      // [35] ns-dec-digit    ::=  [#x30-#x39] /* 0-9 */
+      // [36] ns-hex-digit    ::=  ns-dec-digit
+      //                         | [#x41-#x46] /* A-F */ | [#x61-#x66] /* a-f */
+      // [37] ns-ascii-letter ::=  [#x41-#x5A] /* A-Z */ | [#x61-#x7A] /* a-z */
+      // [38] ns-word-char    ::=  ns-dec-digit | ns-ascii-letter | “-”
+      // [39] ns-uri-char     ::=  “%” ns-hex-digit ns-hex-digit | ns-word-char | “#”
+      //                         | “;” | “/” | “?” | “:” | “@” | “&” | “=” | “+” | “$” | “,”
+      //                         | “_” | “.” | “!” | “~” | “*” | “'” | “(” | “)” | “[” | “]”
+      //
+      // Also need to encode '!' because it has special meaning (end of tag prefix).
+      //
+      tagStr = encodeURI(
+        state.tag[0] === '!' ? state.tag.slice(1) : state.tag
+      ).replace(/!/g, '%21');
+
+      if (state.tag[0] === '!') {
+        tagStr = '!' + tagStr;
+      } else if (tagStr.slice(0, 18) === 'tag:yaml.org,2002:') {
+        tagStr = '!!' + tagStr.slice(18);
+      } else {
+        tagStr = '!<' + tagStr + '>';
+      }
+
+      state.dump = tagStr + ' ' + state.dump;
+    }
+  }
+
+  return true;
+}
+
+function getDuplicateReferences(object, state) {
+  var objects = [],
+      duplicatesIndexes = [],
+      index,
+      length;
+
+  inspectNode(object, objects, duplicatesIndexes);
+
+  for (index = 0, length = duplicatesIndexes.length; index < length; index += 1) {
+    state.duplicates.push(objects[duplicatesIndexes[index]]);
+  }
+  state.usedDuplicates = new Array(length);
+}
+
+function inspectNode(object, objects, duplicatesIndexes) {
+  var objectKeyList,
+      index,
+      length;
+
+  if (object !== null && typeof object === 'object') {
+    index = objects.indexOf(object);
+    if (index !== -1) {
+      if (duplicatesIndexes.indexOf(index) === -1) {
+        duplicatesIndexes.push(index);
+      }
+    } else {
+      objects.push(object);
+
+      if (Array.isArray(object)) {
+        for (index = 0, length = object.length; index < length; index += 1) {
+          inspectNode(object[index], objects, duplicatesIndexes);
+        }
+      } else {
+        objectKeyList = Object.keys(object);
+
+        for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+          inspectNode(object[objectKeyList[index]], objects, duplicatesIndexes);
+        }
+      }
+    }
+  }
+}
+
+function dump$1(input, options) {
+  options = options || {};
+
+  var state = new State(options);
+
+  if (!state.noRefs) getDuplicateReferences(input, state);
+
+  var value = input;
+
+  if (state.replacer) {
+    value = state.replacer.call({ '': value }, '', value);
+  }
+
+  if (writeNode(state, 0, value, true, true)) return state.dump + '\n';
+
+  return '';
+}
+
+var dump_1 = dump$1;
+
+var dumper = {
+	dump: dump_1
+};
+
+function renamed(from, to) {
+  return function () {
+    throw new Error('Function yaml.' + from + ' is removed in js-yaml 4. ' +
+      'Use yaml.' + to + ' instead, which is now safe by default.');
+  };
+}
+
+
+var Type                = type;
+var Schema              = schema;
+var FAILSAFE_SCHEMA     = failsafe;
+var JSON_SCHEMA         = json;
+var CORE_SCHEMA         = core;
+var DEFAULT_SCHEMA      = _default;
+var load                = loader.load;
+var loadAll             = loader.loadAll;
+var dump                = dumper.dump;
+var YAMLException       = exception;
+
+// Re-export all types in case user wants to create custom schema
+var types = {
+  binary:    binary,
+  float:     float,
+  map:       map,
+  null:      _null,
+  pairs:     pairs,
+  set:       set,
+  timestamp: timestamp,
+  bool:      bool,
+  int:       int,
+  merge:     merge,
+  omap:      omap,
+  seq:       seq,
+  str:       str
+};
+
+// Removed functions from JS-YAML 3.0.x
+var safeLoad            = renamed('safeLoad', 'load');
+var safeLoadAll         = renamed('safeLoadAll', 'loadAll');
+var safeDump            = renamed('safeDump', 'dump');
+
+var jsYaml = {
+	Type: Type,
+	Schema: Schema,
+	FAILSAFE_SCHEMA: FAILSAFE_SCHEMA,
+	JSON_SCHEMA: JSON_SCHEMA,
+	CORE_SCHEMA: CORE_SCHEMA,
+	DEFAULT_SCHEMA: DEFAULT_SCHEMA,
+	load: load,
+	loadAll: loadAll,
+	dump: dump,
+	YAMLException: YAMLException,
+	types: types,
+	safeLoad: safeLoad,
+	safeLoadAll: safeLoadAll,
+	safeDump: safeDump
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (jsYaml);
 
 
 

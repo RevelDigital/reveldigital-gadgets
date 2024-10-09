@@ -1,0 +1,54 @@
+title: My Gadget
+title_url: https://mysupporturl.org
+description: Describe the purpose of your gadget here
+author: My Organization
+background: transparent
+
+requirements:
+  - reveldigital
+  - offline
+  - webfont
+
+locales:
+  - messages: https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml
+
+  - lang: ru
+    messages: https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml
+
+prefs:
+  - name: myStringPref
+    display_name: Sample string preference
+    datatype: string
+    default_value: test string
+    required: true
+
+  - name: myBoolPref
+    display_name: Sample boolean preference
+    datatype: bool
+    default_value: true
+    required: true
+    depends:
+      - name: myEnumPref
+        any_of:
+          - values:
+            - fast
+
+  - name: myStylePref
+    display_name: Sample style preference
+    datatype: style
+    default_value: font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;
+    required: true
+
+  - name: myEnumPref
+    display_name: Sample enum preference
+    datatype: enum
+    default_value: fast
+    required: true
+    multiple: false
+    options:
+      - value: fastest
+        display_value: Fastest
+      - value: fast
+        display_value: Fast
+      - value: medium
+        display_value: Medium
