@@ -1083,43 +1083,34 @@ function innerFrom(input) {
   if (input instanceof _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable) {
     return input;
   }
-
   if (input != null) {
     if ((0,_util_isInteropObservable__WEBPACK_IMPORTED_MODULE_1__.isInteropObservable)(input)) {
       return fromInteropObservable(input);
     }
-
     if ((0,_util_isArrayLike__WEBPACK_IMPORTED_MODULE_2__.isArrayLike)(input)) {
       return fromArrayLike(input);
     }
-
     if ((0,_util_isPromise__WEBPACK_IMPORTED_MODULE_3__.isPromise)(input)) {
       return fromPromise(input);
     }
-
     if ((0,_util_isAsyncIterable__WEBPACK_IMPORTED_MODULE_4__.isAsyncIterable)(input)) {
       return fromAsyncIterable(input);
     }
-
     if ((0,_util_isIterable__WEBPACK_IMPORTED_MODULE_5__.isIterable)(input)) {
       return fromIterable(input);
     }
-
     if ((0,_util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_6__.isReadableStreamLike)(input)) {
       return fromReadableStreamLike(input);
     }
   }
-
   throw (0,_util_throwUnobservableError__WEBPACK_IMPORTED_MODULE_7__.createInvalidObservableTypeError)(input);
 }
 function fromInteropObservable(obj) {
   return new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable(subscriber => {
     const obs = obj[_symbol_observable__WEBPACK_IMPORTED_MODULE_8__.observable]();
-
     if ((0,_util_isFunction__WEBPACK_IMPORTED_MODULE_9__.isFunction)(obs.subscribe)) {
       return obs.subscribe(subscriber);
     }
-
     throw new TypeError('Provided object does not correctly implement Symbol.observable');
   });
 }
@@ -1128,7 +1119,6 @@ function fromArrayLike(array) {
     for (let i = 0; i < array.length && !subscriber.closed; i++) {
       subscriber.next(array[i]);
     }
-
     subscriber.complete();
   });
 }
@@ -1146,12 +1136,10 @@ function fromIterable(iterable) {
   return new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable(subscriber => {
     for (const value of iterable) {
       subscriber.next(value);
-
       if (subscriber.closed) {
         return;
       }
     }
-
     subscriber.complete();
   });
 }
@@ -1163,18 +1151,14 @@ function fromAsyncIterable(asyncIterable) {
 function fromReadableStreamLike(readableStream) {
   return fromAsyncIterable((0,_util_isReadableStreamLike__WEBPACK_IMPORTED_MODULE_6__.readableStreamLikeToAsyncGenerator)(readableStream));
 }
-
 function process(asyncIterable, subscriber) {
   var asyncIterable_1, asyncIterable_1_1;
-
   var e_1, _a;
-
   return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
     try {
       for (asyncIterable_1 = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__asyncValues)(asyncIterable); asyncIterable_1_1 = yield asyncIterable_1.next(), !asyncIterable_1_1.done;) {
         const value = asyncIterable_1_1.value;
         subscriber.next(value);
-
         if (subscriber.closed) {
           return;
         }
@@ -1190,7 +1174,6 @@ function process(asyncIterable, subscriber) {
         if (e_1) throw e_1.error;
       }
     }
-
     subscriber.complete();
   });
 }
@@ -2268,7 +2251,6 @@ function scheduleAsyncIterable(input, scheduler) {
   if (!input) {
     throw new Error('Iterable cannot be null');
   }
-
   return new _Observable__WEBPACK_IMPORTED_MODULE_0__.Observable(subscriber => {
     (0,_util_executeSchedule__WEBPACK_IMPORTED_MODULE_1__.executeSchedule)(subscriber, scheduler, () => {
       const iterator = input[Symbol.asyncIterator]();
@@ -2966,18 +2948,15 @@ __webpack_require__.r(__webpack_exports__);
 function readableStreamLikeToAsyncGenerator(readableStream) {
   return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__asyncGenerator)(this, arguments, function* readableStreamLikeToAsyncGenerator_1() {
     const reader = readableStream.getReader();
-
     try {
       while (true) {
         const {
           value,
           done
         } = yield (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__await)(reader.read());
-
         if (done) {
           return yield (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__await)(void 0);
         }
-
         yield yield (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__await)(value);
       }
     } finally {
@@ -3173,15 +3152,12 @@ function createInvalidObservableTypeError(input) {
   \*****************************************************/
 /***/ ((module, exports, __webpack_require__) => {
 
-var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems, Google. License: Apache 2.0 */
-(function () {
+var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems, Google. License: Apache 2.0 */(function () {
   function aa(a, b, c) {
     return a.call.apply(a.bind, arguments);
   }
-
   function ba(a, b, c) {
     if (!a) throw Error();
-
     if (2 < arguments.length) {
       var d = Array.prototype.slice.call(arguments, 2);
       return function () {
@@ -3190,99 +3166,78 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
         return a.apply(b, c);
       };
     }
-
     return function () {
       return a.apply(b, arguments);
     };
   }
-
   function p(a, b, c) {
     p = Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf("native code") ? aa : ba;
     return p.apply(null, arguments);
   }
-
   var q = Date.now || function () {
     return +new Date();
   };
-
   function ca(a, b) {
     this.a = a;
     this.o = b || a;
     this.c = this.o.document;
   }
-
   var da = !!window.FontFace;
-
   function t(a, b, c, d) {
     b = a.c.createElement(b);
     if (c) for (var e in c) c.hasOwnProperty(e) && ("style" == e ? b.style.cssText = c[e] : b.setAttribute(e, c[e]));
     d && b.appendChild(a.c.createTextNode(d));
     return b;
   }
-
   function u(a, b, c) {
     a = a.c.getElementsByTagName(b)[0];
     a || (a = document.documentElement);
     a.insertBefore(c, a.lastChild);
   }
-
   function v(a) {
     a.parentNode && a.parentNode.removeChild(a);
   }
-
   function w(a, b, c) {
     b = b || [];
     c = c || [];
-
     for (var d = a.className.split(/\s+/), e = 0; e < b.length; e += 1) {
       for (var f = !1, g = 0; g < d.length; g += 1) if (b[e] === d[g]) {
         f = !0;
         break;
       }
-
       f || d.push(b[e]);
     }
-
     b = [];
-
     for (e = 0; e < d.length; e += 1) {
       f = !1;
-
       for (g = 0; g < c.length; g += 1) if (d[e] === c[g]) {
         f = !0;
         break;
       }
-
       f || b.push(d[e]);
     }
-
     a.className = b.join(" ").replace(/\s+/g, " ").replace(/^\s+|\s+$/, "");
   }
-
   function y(a, b) {
     for (var c = a.className.split(/\s+/), d = 0, e = c.length; d < e; d++) if (c[d] == b) return !0;
-
     return !1;
   }
-
   function ea(a) {
     return a.o.location.hostname || a.a.location.hostname;
   }
-
   function z(a, b, c) {
     function d() {
       m && e && f && (m(g), m = null);
     }
-
     b = t(a, "link", {
       rel: "stylesheet",
       href: b,
       media: "all"
     });
     var e = !1,
-        f = !0,
-        g = null,
-        m = c || null;
+      f = !0,
+      g = null,
+      m = c || null;
     da ? (b.onload = function () {
       e = !0;
       d();
@@ -3296,37 +3251,29 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     }, 0);
     u(a, "head", b);
   }
-
   function A(a, b, c, d) {
     var e = a.c.getElementsByTagName("head")[0];
-
     if (e) {
       var f = t(a, "script", {
-        src: b
-      }),
-          g = !1;
-
+          src: b
+        }),
+        g = !1;
       f.onload = f.onreadystatechange = function () {
         g || this.readyState && "loaded" != this.readyState && "complete" != this.readyState || (g = !0, c && c(null), f.onload = f.onreadystatechange = null, "HEAD" == f.parentNode.tagName && e.removeChild(f));
       };
-
       e.appendChild(f);
       setTimeout(function () {
         g || (g = !0, c && c(Error("Script load timeout")));
       }, d || 5E3);
       return f;
     }
-
     return null;
   }
-
   ;
-
   function B() {
     this.a = 0;
     this.c = null;
   }
-
   function C(a) {
     a.a++;
     return function () {
@@ -3334,28 +3281,21 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       D(a);
     };
   }
-
   function E(a, b) {
     a.c = b;
     D(a);
   }
-
   function D(a) {
     0 == a.a && a.c && (a.c(), a.c = null);
   }
-
   ;
-
   function F(a) {
     this.a = a || "-";
   }
-
   F.prototype.c = function (a) {
     for (var b = [], c = 0; c < arguments.length; c++) b.push(arguments[c].replace(/[\W_]+/g, "").toLowerCase());
-
     return b.join(this.a);
   };
-
   function G(a, b) {
     this.c = a;
     this.f = 4;
@@ -3363,43 +3303,34 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     var c = (b || "n4").match(/^([nio])([1-9])$/i);
     c && (this.a = c[1], this.f = parseInt(c[2], 10));
   }
-
   function fa(a) {
     return H(a) + " " + (a.f + "00") + " 300px " + I(a.c);
   }
-
   function I(a) {
     var b = [];
     a = a.split(/,\s*/);
-
     for (var c = 0; c < a.length; c++) {
       var d = a[c].replace(/['"]/g, "");
       -1 != d.indexOf(" ") || /^\d/.test(d) ? b.push("'" + d + "'") : b.push(d);
     }
-
     return b.join(",");
   }
-
   function J(a) {
     return a.a + a.f;
   }
-
   function H(a) {
     var b = "normal";
     "o" === a.a ? b = "oblique" : "i" === a.a && (b = "italic");
     return b;
   }
-
   function ga(a) {
     var b = 4,
-        c = "n",
-        d = null;
+      c = "n",
+      d = null;
     a && ((d = a.match(/(normal|oblique|italic)/i)) && d[1] && (c = d[1].substr(0, 1).toLowerCase()), (d = a.match(/([1-9]00|normal|bold)/i)) && d[1] && (/bold/i.test(d[1]) ? b = 7 : /[1-9]00/.test(d[1]) && (b = parseInt(d[1].substr(0, 1), 10))));
     return c + b;
   }
-
   ;
-
   function ha(a, b) {
     this.c = a;
     this.f = a.o.document.documentElement;
@@ -3408,48 +3339,37 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     this.j = !1 !== b.events;
     this.g = !1 !== b.classes;
   }
-
   function ia(a) {
     a.g && w(a.f, [a.a.c("wf", "loading")]);
     K(a, "loading");
   }
-
   function L(a) {
     if (a.g) {
       var b = y(a.f, a.a.c("wf", "active")),
-          c = [],
-          d = [a.a.c("wf", "loading")];
+        c = [],
+        d = [a.a.c("wf", "loading")];
       b || c.push(a.a.c("wf", "inactive"));
       w(a.f, c, d);
     }
-
     K(a, "inactive");
   }
-
   function K(a, b, c) {
     if (a.j && a.h[b]) if (c) a.h[b](c.c, J(c));else a.h[b]();
   }
-
   ;
-
   function ja() {
     this.c = {};
   }
-
   function ka(a, b, c) {
     var d = [],
-        e;
-
+      e;
     for (e in b) if (b.hasOwnProperty(e)) {
       var f = a.c[e];
       f && d.push(f(b[e], c));
     }
-
     return d;
   }
-
   ;
-
   function M(a, b) {
     this.c = a;
     this.f = b;
@@ -3457,17 +3377,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       "aria-hidden": "true"
     }, this.f);
   }
-
   function N(a) {
     u(a.c, "body", a.a);
   }
-
   function O(a) {
     return "display:block;position:absolute;top:-9999px;left:-9999px;font-size:300px;width:auto;height:auto;line-height:normal;margin:0;padding:0;font-variant:normal;white-space:nowrap;font-family:" + I(a.c) + ";" + ("font-style:" + H(a) + ";font-weight:" + (a.f + "00") + ";");
   }
-
   ;
-
   function P(a, b, c, d, e, f) {
     this.g = a;
     this.j = b;
@@ -3476,26 +3392,24 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     this.f = e || 3E3;
     this.h = f || void 0;
   }
-
   P.prototype.start = function () {
     var a = this.c.o.document,
-        b = this,
-        c = q(),
-        d = new Promise(function (d, e) {
-      function f() {
-        q() - c >= b.f ? e() : a.fonts.load(fa(b.a), b.h).then(function (a) {
-          1 <= a.length ? d() : setTimeout(f, 25);
-        }, function () {
-          e();
-        });
-      }
-
-      f();
-    }),
-        e = null,
-        f = new Promise(function (a, d) {
-      e = setTimeout(d, b.f);
-    });
+      b = this,
+      c = q(),
+      d = new Promise(function (d, e) {
+        function f() {
+          q() - c >= b.f ? e() : a.fonts.load(fa(b.a), b.h).then(function (a) {
+            1 <= a.length ? d() : setTimeout(f, 25);
+          }, function () {
+            e();
+          });
+        }
+        f();
+      }),
+      e = null,
+      f = new Promise(function (a, d) {
+        e = setTimeout(d, b.f);
+      });
     Promise.race([f, d]).then(function () {
       e && (clearTimeout(e), e = null);
       b.g(b.a);
@@ -3503,7 +3417,6 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       b.j(b.a);
     });
   };
-
   function Q(a, b, c, d, e, f, g) {
     this.v = a;
     this.B = b;
@@ -3535,49 +3448,40 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     N(this.j);
     N(this.m);
   }
-
   var R = {
-    D: "serif",
-    C: "sans-serif"
-  },
-      S = null;
-
+      D: "serif",
+      C: "sans-serif"
+    },
+    S = null;
   function T() {
     if (null === S) {
       var a = /AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent);
       S = !!a && (536 > parseInt(a[1], 10) || 536 === parseInt(a[1], 10) && 11 >= parseInt(a[2], 10));
     }
-
     return S;
   }
-
   Q.prototype.start = function () {
     this.f.serif = this.j.a.offsetWidth;
     this.f["sans-serif"] = this.m.a.offsetWidth;
     this.A = q();
     U(this);
   };
-
   function la(a, b, c) {
     for (var d in R) if (R.hasOwnProperty(d) && b === a.f[R[d]] && c === a.f[R[d]]) return !0;
-
     return !1;
   }
-
   function U(a) {
     var b = a.g.a.offsetWidth,
-        c = a.h.a.offsetWidth,
-        d;
+      c = a.h.a.offsetWidth,
+      d;
     (d = b === a.f.serif && c === a.f["sans-serif"]) || (d = T() && la(a, b, c));
     d ? q() - a.A >= a.w ? T() && la(a, b, c) && (null === a.u || a.u.hasOwnProperty(a.a.c)) ? V(a, a.v) : V(a, a.B) : ma(a) : V(a, a.v);
   }
-
   function ma(a) {
     setTimeout(p(function () {
       U(this);
     }, a), 50);
   }
-
   function V(a, b) {
     setTimeout(p(function () {
       v(this.g.a);
@@ -3587,9 +3491,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       b(this.a);
     }, a), 0);
   }
-
   ;
-
   function W(a, b, c) {
     this.c = a;
     this.a = b;
@@ -3597,9 +3499,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     this.m = this.j = !1;
     this.s = c;
   }
-
   var X = null;
-
   W.prototype.g = function (a) {
     var b = this.a;
     b.g && w(b.f, [b.a.c("wf", a.c, J(a).toString(), "active")], [b.a.c("wf", a.c, J(a).toString(), "loading"), b.a.c("wf", a.c, J(a).toString(), "inactive")]);
@@ -3607,102 +3507,87 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
     this.m = !0;
     na(this);
   };
-
   W.prototype.h = function (a) {
     var b = this.a;
-
     if (b.g) {
       var c = y(b.f, b.a.c("wf", a.c, J(a).toString(), "active")),
-          d = [],
-          e = [b.a.c("wf", a.c, J(a).toString(), "loading")];
+        d = [],
+        e = [b.a.c("wf", a.c, J(a).toString(), "loading")];
       c || d.push(b.a.c("wf", a.c, J(a).toString(), "inactive"));
       w(b.f, d, e);
     }
-
     K(b, "fontinactive", a);
     na(this);
   };
-
   function na(a) {
     0 == --a.f && a.j && (a.m ? (a = a.a, a.g && w(a.f, [a.a.c("wf", "active")], [a.a.c("wf", "loading"), a.a.c("wf", "inactive")]), K(a, "active")) : L(a.a));
   }
-
   ;
-
   function oa(a) {
     this.j = a;
     this.a = new ja();
     this.h = 0;
     this.f = this.g = !0;
   }
-
   oa.prototype.load = function (a) {
     this.c = new ca(this.j, a.context || this.j);
     this.g = !1 !== a.events;
     this.f = !1 !== a.classes;
     pa(this, new ha(this.c, a), a);
   };
-
   function qa(a, b, c, d, e) {
     var f = 0 == --a.h;
     (a.f || a.g) && setTimeout(function () {
       var a = e || null,
-          m = d || null || {};
+        m = d || null || {};
       if (0 === c.length && f) L(b.a);else {
         b.f += c.length;
         f && (b.j = f);
         var h,
-            l = [];
-
+          l = [];
         for (h = 0; h < c.length; h++) {
           var k = c[h],
-              n = m[k.c],
-              r = b.a,
-              x = k;
+            n = m[k.c],
+            r = b.a,
+            x = k;
           r.g && w(r.f, [r.a.c("wf", x.c, J(x).toString(), "loading")]);
           K(r, "fontloading", x);
           r = null;
           if (null === X) if (window.FontFace) {
             var x = /Gecko.*Firefox\/(\d+)/.exec(window.navigator.userAgent),
-                xa = /OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent) && /Apple/.exec(window.navigator.vendor);
+              xa = /OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent) && /Apple/.exec(window.navigator.vendor);
             X = x ? 42 < parseInt(x[1], 10) : xa ? !1 : !0;
           } else X = !1;
           X ? r = new P(p(b.g, b), p(b.h, b), b.c, k, b.s, n) : r = new Q(p(b.g, b), p(b.h, b), b.c, k, b.s, a, n);
           l.push(r);
         }
-
         for (h = 0; h < l.length; h++) l[h].start();
       }
     }, 0);
   }
-
   function pa(a, b, c) {
     var d = [],
-        e = c.timeout;
+      e = c.timeout;
     ia(b);
     var d = ka(a.a, c, a.c),
-        f = new W(a.c, b, e);
+      f = new W(a.c, b, e);
     a.h = d.length;
     b = 0;
-
     for (c = d.length; b < c; b++) d[b].load(function (b, d, c) {
       qa(a, f, b, d, c);
     });
   }
-
   ;
-
   function ra(a, b) {
     this.c = a;
     this.a = b;
   }
-
   ra.prototype.load = function (a) {
     function b() {
       if (f["__mti_fntLst" + d]) {
         var c = f["__mti_fntLst" + d](),
-            e = [],
-            h;
+          e = [],
+          h;
         if (c) for (var l = 0; l < c.length; l++) {
           var k = c[l].fontfamily;
           void 0 != c[l].fontStyle && void 0 != c[l].fontWeight ? (h = c[l].fontStyle + c[l].fontWeight, e.push(new G(k, h))) : e.push(new G(k));
@@ -3712,11 +3597,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
         b();
       }, 50);
     }
-
     var c = this,
-        d = c.a.projectId,
-        e = c.a.version;
-
+      d = c.a.projectId,
+      e = c.a.version;
     if (d) {
       var f = c.c.o;
       A(this.c, (c.a.api || "https://fast.fonts.net/jsapi") + "/" + d + ".js" + (e ? "?v=" + e : ""), function (e) {
@@ -3726,42 +3609,33 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       }).id = "__MonotypeAPIScript__" + d;
     } else a([]);
   };
-
   function sa(a, b) {
     this.c = a;
     this.a = b;
   }
-
   sa.prototype.load = function (a) {
     var b,
-        c,
-        d = this.a.urls || [],
-        e = this.a.families || [],
-        f = this.a.testStrings || {},
-        g = new B();
+      c,
+      d = this.a.urls || [],
+      e = this.a.families || [],
+      f = this.a.testStrings || {},
+      g = new B();
     b = 0;
-
     for (c = d.length; b < c; b++) z(this.c, d[b], C(g));
-
     var m = [];
     b = 0;
-
     for (c = e.length; b < c; b++) if (d = e[b].split(":"), d[1]) for (var h = d[1].split(","), l = 0; l < h.length; l += 1) m.push(new G(d[0], h[l]));else m.push(new G(d[0]));
-
     E(g, function () {
       a(m, f);
     });
   };
-
   function ta(a, b) {
     a ? this.c = a : this.c = ua;
     this.a = [];
     this.f = [];
     this.g = b || "";
   }
-
   var ua = "https://fonts.googleapis.com/css";
-
   function va(a, b) {
     for (var c = b.length, d = 0; d < c; d++) {
       var e = b[d].split(":");
@@ -3771,74 +3645,66 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       a.a.push(e.join(f));
     }
   }
-
   function wa(a) {
     if (0 == a.a.length) throw Error("No fonts to load!");
     if (-1 != a.c.indexOf("kit=")) return a.c;
-
     for (var b = a.a.length, c = [], d = 0; d < b; d++) c.push(a.a[d].replace(/ /g, "+"));
-
     b = a.c + "?family=" + c.join("%7C");
     0 < a.f.length && (b += "&subset=" + a.f.join(","));
     0 < a.g.length && (b += "&text=" + encodeURIComponent(a.g));
     return b;
   }
-
   ;
-
   function ya(a) {
     this.f = a;
     this.a = [];
     this.c = {};
   }
-
   var za = {
-    latin: "BESbswy",
-    "latin-ext": "\u00e7\u00f6\u00fc\u011f\u015f",
-    cyrillic: "\u0439\u044f\u0416",
-    greek: "\u03b1\u03b2\u03a3",
-    khmer: "\u1780\u1781\u1782",
-    Hanuman: "\u1780\u1781\u1782"
-  },
-      Aa = {
-    thin: "1",
-    extralight: "2",
-    "extra-light": "2",
-    ultralight: "2",
-    "ultra-light": "2",
-    light: "3",
-    regular: "4",
-    book: "4",
-    medium: "5",
-    "semi-bold": "6",
-    semibold: "6",
-    "demi-bold": "6",
-    demibold: "6",
-    bold: "7",
-    "extra-bold": "8",
-    extrabold: "8",
-    "ultra-bold": "8",
-    ultrabold: "8",
-    black: "9",
-    heavy: "9",
-    l: "3",
-    r: "4",
-    b: "7"
-  },
-      Ba = {
-    i: "i",
-    italic: "i",
-    n: "n",
-    normal: "n"
-  },
-      Ca = /^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra|ultra)-?)?bold|black|heavy|l|r|b|[1-9]00)?(n|i|normal|italic)?$/;
-
+      latin: "BESbswy",
+      "latin-ext": "\u00e7\u00f6\u00fc\u011f\u015f",
+      cyrillic: "\u0439\u044f\u0416",
+      greek: "\u03b1\u03b2\u03a3",
+      khmer: "\u1780\u1781\u1782",
+      Hanuman: "\u1780\u1781\u1782"
+    },
+    Aa = {
+      thin: "1",
+      extralight: "2",
+      "extra-light": "2",
+      ultralight: "2",
+      "ultra-light": "2",
+      light: "3",
+      regular: "4",
+      book: "4",
+      medium: "5",
+      "semi-bold": "6",
+      semibold: "6",
+      "demi-bold": "6",
+      demibold: "6",
+      bold: "7",
+      "extra-bold": "8",
+      extrabold: "8",
+      "ultra-bold": "8",
+      ultrabold: "8",
+      black: "9",
+      heavy: "9",
+      l: "3",
+      r: "4",
+      b: "7"
+    },
+    Ba = {
+      i: "i",
+      italic: "i",
+      n: "n",
+      normal: "n"
+    },
+    Ca = /^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra|ultra)-?)?bold|black|heavy|l|r|b|[1-9]00)?(n|i|normal|italic)?$/;
   function Da(a) {
     for (var b = a.f.length, c = 0; c < b; c++) {
       var d = a.f[c].split(":"),
-          e = d[0].replace(/\+/g, " "),
-          f = ["n4"];
-
+        e = d[0].replace(/\+/g, " "),
+        f = ["n4"];
       if (2 <= d.length) {
         var g;
         var m = d[1];
@@ -3846,7 +3712,6 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
         if (m) for (var m = m.split(","), h = m.length, l = 0; l < h; l++) {
           var k;
           k = m[l];
-
           if (k.match(/^[\w-]+$/)) {
             var n = Ca.exec(k.toLowerCase());
             if (null == n) k = "";else {
@@ -3854,41 +3719,34 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
               k = null == k || "" == k ? "n" : Ba[k];
               n = n[1];
               if (null == n || "" == n) n = "4";else var r = Aa[n],
-                  n = r ? r : isNaN(n) ? "4" : n.substr(0, 1);
+                n = r ? r : isNaN(n) ? "4" : n.substr(0, 1);
               k = [k, n].join("");
             }
           } else k = "";
-
           k && g.push(k);
         }
         0 < g.length && (f = g);
         3 == d.length && (d = d[2], g = [], d = d ? d.split(",") : g, 0 < d.length && (d = za[d[0]]) && (a.c[e] = d));
       }
-
       a.c[e] || (d = za[e]) && (a.c[e] = d);
-
       for (d = 0; d < f.length; d += 1) a.a.push(new G(e, f[d]));
     }
   }
-
   ;
-
   function Ea(a, b) {
     this.c = a;
     this.a = b;
   }
-
   var Fa = {
     Arimo: !0,
     Cousine: !0,
     Tinos: !0
   };
-
   Ea.prototype.load = function (a) {
     var b = new B(),
-        c = this.c,
-        d = new ta(this.a.api, this.a.text),
-        e = this.a.families;
+      c = this.c,
+      d = new ta(this.a.api, this.a.text),
+      e = this.a.families;
     va(d, e);
     var f = new ya(e);
     Da(f);
@@ -3897,21 +3755,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
       a(f.a, f.c, Fa);
     });
   };
-
   function Ga(a, b) {
     this.c = a;
     this.a = b;
   }
-
   Ga.prototype.load = function (a) {
     var b = this.a.id,
-        c = this.c.o;
+      c = this.c.o;
     b ? A(this.c, (this.a.api || "https://use.typekit.net") + "/" + b + ".js", function (b) {
       if (b) a([]);else if (c.Typekit && c.Typekit.config && c.Typekit.config.fn) {
         b = c.Typekit.config.fn;
-
         for (var e = [], f = 0; f < b.length; f += 2) for (var g = b[f], m = b[f + 1], h = 0; h < m.length; h++) e.push(new G(g, m[h]));
-
         try {
           c.Typekit.load({
             events: !1,
@@ -3919,56 +3773,45 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems
             async: !0
           });
         } catch (l) {}
-
         a(e);
       }
     }, 2E3) : a([]);
   };
-
   function Ha(a, b) {
     this.c = a;
     this.f = b;
     this.a = [];
   }
-
   Ha.prototype.load = function (a) {
     var b = this.f.id,
-        c = this.c.o,
-        d = this;
+      c = this.c.o,
+      d = this;
     b ? (c.__webfontfontdeckmodule__ || (c.__webfontfontdeckmodule__ = {}), c.__webfontfontdeckmodule__[b] = function (b, c) {
       for (var g = 0, m = c.fonts.length; g < m; ++g) {
         var h = c.fonts[g];
         d.a.push(new G(h.name, ga("font-weight:" + h.weight + ";font-style:" + h.style)));
       }
-
       a(d.a);
     }, A(this.c, (this.f.api || "https://f.fontdeck.com/s/css/js/") + ea(this.c) + "/" + b + ".js", function (b) {
       b && a([]);
     })) : a([]);
   };
-
   var Y = new oa(window);
-
   Y.a.c.custom = function (a, b) {
     return new sa(b, a);
   };
-
   Y.a.c.fontdeck = function (a, b) {
     return new Ha(b, a);
   };
-
   Y.a.c.monotype = function (a, b) {
     return new ra(b, a);
   };
-
   Y.a.c.typekit = function (a, b) {
     return new Ga(b, a);
   };
-
   Y.a.c.google = function (a, b) {
     return new Ea(b, a);
   };
-
   var Z = {
     load: p(Y.load, Y)
   };
@@ -4648,6 +4491,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -4655,33 +4500,27 @@ __webpack_require__.r(__webpack_exports__);
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 let _DOM = null;
-
 function getDOM() {
   return _DOM;
 }
-
 function setDOM(adapter) {
   _DOM = adapter;
 }
-
 function setRootDomAdapter(adapter) {
   if (!_DOM) {
     _DOM = adapter;
   }
 }
 /* tslint:disable:requireParameterType */
-
 /**
  * Provides DOM operations in an environment-agnostic way.
  *
  * @security Tread carefully! Interacting with the DOM directly is dangerous and
  * can introduce XSS risks.
  */
-
-
 class DomAdapter {}
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -4689,7 +4528,6 @@ class DomAdapter {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A DI Token representing the main rendering context. In a browser this is the DOM Document.
  *
@@ -4698,9 +4536,8 @@ class DomAdapter {}
  *
  * @publicApi
  */
-
-
 const DOCUMENT = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('DocumentToken');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -4708,7 +4545,6 @@ const DOCUMENT = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * This class should not be used directly by an application developer. Instead, use
  * {@link Location}.
@@ -4731,18 +4567,14 @@ const DOCUMENT = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('
  *
  * @publicApi
  */
-
 class PlatformLocation {
   historyGo(relativePosition) {
     throw new Error('Not implemented');
   }
-
 }
-
 PlatformLocation.ɵfac = function PlatformLocation_Factory(t) {
   return new (t || PlatformLocation)();
 };
-
 PlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: PlatformLocation,
   factory: function () {
@@ -4750,7 +4582,6 @@ PlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
   },
   providedIn: 'platform'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PlatformLocation, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -4761,7 +4592,6 @@ PlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
     }]
   }], null, null);
 })();
-
 function useBrowserPlatformLocation() {
   return (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(BrowserPlatformLocation);
 }
@@ -4771,79 +4601,61 @@ function useBrowserPlatformLocation() {
  *
  * @publicApi
  */
-
-
 const LOCATION_INITIALIZED = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('Location Initialized');
 /**
  * `PlatformLocation` encapsulates all of the direct calls to platform APIs.
  * This class should not be used directly by an application developer. Instead, use
  * {@link Location}.
  */
-
 class BrowserPlatformLocation extends PlatformLocation {
   constructor(_doc) {
     super();
     this._doc = _doc;
-
     this._init();
-  } // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
-
+  }
+  // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
   /** @internal */
-
-
   _init() {
     this.location = window.location;
     this._history = window.history;
   }
-
   getBaseHrefFromDOM() {
     return getDOM().getBaseHref(this._doc);
   }
-
   onPopState(fn) {
     const window = getDOM().getGlobalEventTarget(this._doc, 'window');
     window.addEventListener('popstate', fn, false);
     return () => window.removeEventListener('popstate', fn);
   }
-
   onHashChange(fn) {
     const window = getDOM().getGlobalEventTarget(this._doc, 'window');
     window.addEventListener('hashchange', fn, false);
     return () => window.removeEventListener('hashchange', fn);
   }
-
   get href() {
     return this.location.href;
   }
-
   get protocol() {
     return this.location.protocol;
   }
-
   get hostname() {
     return this.location.hostname;
   }
-
   get port() {
     return this.location.port;
   }
-
   get pathname() {
     return this.location.pathname;
   }
-
   get search() {
     return this.location.search;
   }
-
   get hash() {
     return this.location.hash;
   }
-
   set pathname(newPath) {
     this.location.pathname = newPath;
   }
-
   pushState(state, title, url) {
     if (supportsState()) {
       this._history.pushState(state, title, url);
@@ -4851,7 +4663,6 @@ class BrowserPlatformLocation extends PlatformLocation {
       this.location.hash = url;
     }
   }
-
   replaceState(state, title, url) {
     if (supportsState()) {
       this._history.replaceState(state, title, url);
@@ -4859,29 +4670,22 @@ class BrowserPlatformLocation extends PlatformLocation {
       this.location.hash = url;
     }
   }
-
   forward() {
     this._history.forward();
   }
-
   back() {
     this._history.back();
   }
-
   historyGo(relativePosition = 0) {
     this._history.go(relativePosition);
   }
-
   getState() {
     return this._history.state;
   }
-
 }
-
 BrowserPlatformLocation.ɵfac = function BrowserPlatformLocation_Factory(t) {
   return new (t || BrowserPlatformLocation)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](DOCUMENT));
 };
-
 BrowserPlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: BrowserPlatformLocation,
   factory: function () {
@@ -4889,7 +4693,6 @@ BrowserPlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_
   },
   providedIn: 'platform'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BrowserPlatformLocation, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -4908,21 +4711,12 @@ BrowserPlatformLocation.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_
     }];
   }, null);
 })();
-
 function supportsState() {
   return !!window.history.pushState;
 }
-
 function createBrowserPlatformLocation() {
   return new BrowserPlatformLocation((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(DOCUMENT));
 }
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 
 /**
  * @license
@@ -4932,6 +4726,13 @@ function createBrowserPlatformLocation() {
  * found in the LICENSE file at https://angular.io/license
  */
 
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /**
  * Joins two parts of a URL with a slash if needed.
  *
@@ -4941,35 +4742,26 @@ function createBrowserPlatformLocation() {
  *
  * @returns The joined URL string.
  */
-
-
 function joinWithSlash(start, end) {
   if (start.length == 0) {
     return end;
   }
-
   if (end.length == 0) {
     return start;
   }
-
   let slashes = 0;
-
   if (start.endsWith('/')) {
     slashes++;
   }
-
   if (end.startsWith('/')) {
     slashes++;
   }
-
   if (slashes == 2) {
     return start + end.substring(1);
   }
-
   if (slashes == 1) {
     return start + end;
   }
-
   return start + '/' + end;
 }
 /**
@@ -4981,8 +4773,6 @@ function joinWithSlash(start, end) {
  *
  * @returns The URL string, modified if needed.
  */
-
-
 function stripTrailingSlash(url) {
   const match = url.match(/#|\?|$/);
   const pathEndIdx = match && match.index || url.length;
@@ -4996,11 +4786,10 @@ function stripTrailingSlash(url) {
  *
  * @returns The normalized URL parameters string.
  */
-
-
 function normalizeQueryParams(params) {
   return params && params[0] !== '?' ? '?' + params : params;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5008,7 +4797,6 @@ function normalizeQueryParams(params) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Enables the `Location` service to read route state from the browser's URL.
  * Angular provides two strategies:
@@ -5026,19 +4814,14 @@ function normalizeQueryParams(params) {
  *
  * @publicApi
  */
-
-
 class LocationStrategy {
   historyGo(relativePosition) {
     throw new Error('Not implemented');
   }
-
 }
-
 LocationStrategy.ɵfac = function LocationStrategy_Factory(t) {
   return new (t || LocationStrategy)();
 };
-
 LocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: LocationStrategy,
   factory: function () {
@@ -5046,7 +4829,6 @@ LocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](LocationStrategy, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -5056,7 +4838,6 @@ LocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
     }]
   }], null, null);
 })();
-
 function provideLocationStrategy(platformLocation) {
   // See #23917
   const location = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(DOCUMENT).location;
@@ -5085,8 +4866,6 @@ function provideLocationStrategy(platformLocation) {
  *
  * @publicApi
  */
-
-
 const APP_BASE_HREF = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('appBaseHref');
 /**
  * @description
@@ -5119,87 +4898,65 @@ const APP_BASE_HREF = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionTo
  *
  * @publicApi
  */
-
 class PathLocationStrategy extends LocationStrategy {
   constructor(_platformLocation, href) {
     super();
     this._platformLocation = _platformLocation;
     this._removeListenerFns = [];
-
     if (href == null) {
       href = this._platformLocation.getBaseHrefFromDOM();
     }
-
     if (href == null) {
       throw new Error(`No base href set. Please provide a value for the APP_BASE_HREF token or add a base element to the document.`);
     }
-
     this._baseHref = href;
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     while (this._removeListenerFns.length) {
       this._removeListenerFns.pop()();
     }
   }
-
   onPopState(fn) {
     this._removeListenerFns.push(this._platformLocation.onPopState(fn), this._platformLocation.onHashChange(fn));
   }
-
   getBaseHref() {
     return this._baseHref;
   }
-
   prepareExternalUrl(internal) {
     return joinWithSlash(this._baseHref, internal);
   }
-
   path(includeHash = false) {
     const pathname = this._platformLocation.pathname + normalizeQueryParams(this._platformLocation.search);
     const hash = this._platformLocation.hash;
     return hash && includeHash ? `${pathname}${hash}` : pathname;
   }
-
   pushState(state, title, url, queryParams) {
     const externalUrl = this.prepareExternalUrl(url + normalizeQueryParams(queryParams));
-
     this._platformLocation.pushState(state, title, externalUrl);
   }
-
   replaceState(state, title, url, queryParams) {
     const externalUrl = this.prepareExternalUrl(url + normalizeQueryParams(queryParams));
-
     this._platformLocation.replaceState(state, title, externalUrl);
   }
-
   forward() {
     this._platformLocation.forward();
   }
-
   back() {
     this._platformLocation.back();
   }
-
   historyGo(relativePosition = 0) {
     var _a, _b;
-
     (_b = (_a = this._platformLocation).historyGo) === null || _b === void 0 ? void 0 : _b.call(_a, relativePosition);
   }
-
 }
-
 PathLocationStrategy.ɵfac = function PathLocationStrategy_Factory(t) {
   return new (t || PathLocationStrategy)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](PlatformLocation), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](APP_BASE_HREF, 8));
 };
-
 PathLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: PathLocationStrategy,
   factory: PathLocationStrategy.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PathLocationStrategy, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -5217,6 +4974,7 @@ PathLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5224,7 +4982,6 @@ PathLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  * A {@link LocationStrategy} used to configure the {@link Location} service to
@@ -5243,36 +5000,28 @@ PathLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  *
  * @publicApi
  */
-
-
 class HashLocationStrategy extends LocationStrategy {
   constructor(_platformLocation, _baseHref) {
     super();
     this._platformLocation = _platformLocation;
     this._baseHref = '';
     this._removeListenerFns = [];
-
     if (_baseHref != null) {
       this._baseHref = _baseHref;
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     while (this._removeListenerFns.length) {
       this._removeListenerFns.pop()();
     }
   }
-
   onPopState(fn) {
     this._removeListenerFns.push(this._platformLocation.onPopState(fn), this._platformLocation.onHashChange(fn));
   }
-
   getBaseHref() {
     return this._baseHref;
   }
-
   path(includeHash = false) {
     // the hash value is always prefixed with a `#`
     // and if it is empty then it will stay empty
@@ -5280,57 +5029,42 @@ class HashLocationStrategy extends LocationStrategy {
     if (path == null) path = '#';
     return path.length > 0 ? path.substring(1) : path;
   }
-
   prepareExternalUrl(internal) {
     const url = joinWithSlash(this._baseHref, internal);
     return url.length > 0 ? '#' + url : url;
   }
-
   pushState(state, title, path, queryParams) {
     let url = this.prepareExternalUrl(path + normalizeQueryParams(queryParams));
-
     if (url.length == 0) {
       url = this._platformLocation.pathname;
     }
-
     this._platformLocation.pushState(state, title, url);
   }
-
   replaceState(state, title, path, queryParams) {
     let url = this.prepareExternalUrl(path + normalizeQueryParams(queryParams));
-
     if (url.length == 0) {
       url = this._platformLocation.pathname;
     }
-
     this._platformLocation.replaceState(state, title, url);
   }
-
   forward() {
     this._platformLocation.forward();
   }
-
   back() {
     this._platformLocation.back();
   }
-
   historyGo(relativePosition = 0) {
     var _a, _b;
-
     (_b = (_a = this._platformLocation).historyGo) === null || _b === void 0 ? void 0 : _b.call(_a, relativePosition);
   }
-
 }
-
 HashLocationStrategy.ɵfac = function HashLocationStrategy_Factory(t) {
   return new (t || HashLocationStrategy)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](PlatformLocation), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](APP_BASE_HREF, 8));
 };
-
 HashLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: HashLocationStrategy,
   factory: HashLocationStrategy.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HashLocationStrategy, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -5348,6 +5082,7 @@ HashLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5355,7 +5090,6 @@ HashLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -5384,22 +5118,16 @@ HashLocationStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  *
  * @publicApi
  */
-
-
 class Location {
   constructor(platformStrategy, platformLocation) {
     /** @internal */
     this._subject = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     /** @internal */
-
     this._urlChangeListeners = [];
     this._platformStrategy = platformStrategy;
-
     const browserBaseHref = this._platformStrategy.getBaseHref();
-
     this._platformLocation = platformLocation;
     this._baseHref = stripTrailingSlash(_stripIndexHtml(browserBaseHref));
-
     this._platformStrategy.onPopState(ev => {
       this._subject.emit({
         'url': this.path(true),
@@ -5418,8 +5146,6 @@ class Location {
    */
   // TODO: vsavkin. Remove the boolean flag and always include hash once the deprecated router is
   // removed.
-
-
   path(includeHash = false) {
     return this.normalize(this._platformStrategy.path(includeHash));
   }
@@ -5427,8 +5153,6 @@ class Location {
    * Reports the current state of the location history.
    * @returns The current value of the `history.state` object.
    */
-
-
   getState() {
     return this._platformLocation.getState();
   }
@@ -5441,8 +5165,6 @@ class Location {
    * @returns True if the given URL path is equal to the current normalized path, false
    * otherwise.
    */
-
-
   isCurrentPathEqualTo(path, query = '') {
     return this.path() == this.normalize(path + normalizeQueryParams(query));
   }
@@ -5453,8 +5175,6 @@ class Location {
    *
    * @returns The normalized URL string.
    */
-
-
   normalize(url) {
     return Location.stripTrailingSlash(_stripBaseHref(this._baseHref, _stripIndexHtml(url)));
   }
@@ -5468,16 +5188,13 @@ class Location {
    *
    * @returns  A normalized platform-specific URL.
    */
-
-
   prepareExternalUrl(url) {
     if (url && url[0] !== '/') {
       url = '/' + url;
     }
-
     return this._platformStrategy.prepareExternalUrl(url);
-  } // TODO: rename this method to pushState
-
+  }
+  // TODO: rename this method to pushState
   /**
    * Changes the browser's URL to a normalized version of a given URL, and pushes a
    * new item onto the platform's history.
@@ -5487,11 +5204,8 @@ class Location {
    * @param state Location history state.
    *
    */
-
-
   go(path, query = '', state = null) {
     this._platformStrategy.pushState(state, '', path, query);
-
     this._notifyUrlChangeListeners(this.prepareExternalUrl(path + normalizeQueryParams(query)), state);
   }
   /**
@@ -5502,26 +5216,19 @@ class Location {
    * @param query Query parameters.
    * @param state Location history state.
    */
-
-
   replaceState(path, query = '', state = null) {
     this._platformStrategy.replaceState(state, '', path, query);
-
     this._notifyUrlChangeListeners(this.prepareExternalUrl(path + normalizeQueryParams(query)), state);
   }
   /**
    * Navigates forward in the platform's history.
    */
-
-
   forward() {
     this._platformStrategy.forward();
   }
   /**
    * Navigates back in the platform's history.
    */
-
-
   back() {
     this._platformStrategy.back();
   }
@@ -5537,11 +5244,8 @@ class Location {
    * when `relativePosition` equals 0.
    * @see https://developer.mozilla.org/en-US/docs/Web/API/History_API#Moving_to_a_specific_point_in_history
    */
-
-
   historyGo(relativePosition = 0) {
     var _a, _b;
-
     (_b = (_a = this._platformStrategy).historyGo) === null || _b === void 0 ? void 0 : _b.call(_a, relativePosition);
   }
   /**
@@ -5550,11 +5254,8 @@ class Location {
    *
    * @param fn The change handler function, which take a URL and a location history state.
    */
-
-
   onUrlChange(fn) {
     this._urlChangeListeners.push(fn);
-
     if (!this._urlChangeSubscription) {
       this._urlChangeSubscription = this.subscribe(v => {
         this._notifyUrlChangeListeners(v.url, v.state);
@@ -5562,8 +5263,6 @@ class Location {
     }
   }
   /** @internal */
-
-
   _notifyUrlChangeListeners(url = '', state) {
     this._urlChangeListeners.forEach(fn => fn(url, state));
   }
@@ -5580,8 +5279,6 @@ class Location {
    *
    * @returns Subscribed events.
    */
-
-
   subscribe(onNext, onThrow, onReturn) {
     return this._subject.subscribe({
       next: onNext,
@@ -5589,7 +5286,6 @@ class Location {
       complete: onReturn
     });
   }
-
 }
 /**
  * Normalizes URL parameters by prepending with `?` if needed.
@@ -5598,8 +5294,6 @@ class Location {
  *
  * @returns The normalized URL parameters string.
  */
-
-
 Location.normalizeQueryParams = normalizeQueryParams;
 /**
  * Joins two parts of a URL with a slash if needed.
@@ -5610,7 +5304,6 @@ Location.normalizeQueryParams = normalizeQueryParams;
  *
  * @returns The joined URL string.
  */
-
 Location.joinWithSlash = joinWithSlash;
 /**
  * Removes a trailing slash from a URL string if needed.
@@ -5621,13 +5314,10 @@ Location.joinWithSlash = joinWithSlash;
  *
  * @returns The URL string, modified if needed.
  */
-
 Location.stripTrailingSlash = stripTrailingSlash;
-
 Location.ɵfac = function Location_Factory(t) {
   return new (t || Location)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](LocationStrategy), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](PlatformLocation));
 };
-
 Location.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: Location,
   factory: function () {
@@ -5635,7 +5325,6 @@ Location.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Location, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -5652,25 +5341,15 @@ Location.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
     }];
   }, null);
 })();
-
 function createLocation() {
   return new Location((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(LocationStrategy), (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(PlatformLocation));
 }
-
 function _stripBaseHref(baseHref, url) {
   return baseHref && url.startsWith(baseHref) ? url.substring(baseHref.length) : url;
 }
-
 function _stripIndexHtml(url) {
   return url.replace(/\/index.html$/, '');
 }
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 
 /**
  * @license
@@ -5680,9 +5359,14 @@ function _stripIndexHtml(url) {
  * found in the LICENSE file at https://angular.io/license
  */
 
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /** @internal */
-
-
 const CURRENCIES_EN = {
   "ADP": [undefined, undefined, 0],
   "AFN": [undefined, "؋", 0],
@@ -5825,6 +5509,7 @@ const CURRENCIES_EN = {
   "ZMW": [undefined, "ZK"],
   "ZWD": [undefined, undefined, 0]
 };
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5832,7 +5517,6 @@ const CURRENCIES_EN = {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Format styles that can be used to represent numbers.
  * @see `getLocaleNumberFormat()`.
@@ -5840,9 +5524,7 @@ const CURRENCIES_EN = {
  *
  * @publicApi
  */
-
 var NumberFormatStyle;
-
 (function (NumberFormatStyle) {
   NumberFormatStyle[NumberFormatStyle["Decimal"] = 0] = "Decimal";
   NumberFormatStyle[NumberFormatStyle["Percent"] = 1] = "Percent";
@@ -5858,10 +5540,7 @@ var NumberFormatStyle;
  *
  * @publicApi
  */
-
-
 var Plural;
-
 (function (Plural) {
   Plural[Plural["Zero"] = 0] = "Zero";
   Plural[Plural["One"] = 1] = "One";
@@ -5879,10 +5558,7 @@ var Plural;
  *
  * @publicApi
  */
-
-
 var FormStyle;
-
 (function (FormStyle) {
   FormStyle[FormStyle["Format"] = 0] = "Format";
   FormStyle[FormStyle["Standalone"] = 1] = "Standalone";
@@ -5894,21 +5570,15 @@ var FormStyle;
  *
  * @publicApi
  */
-
-
 var TranslationWidth;
-
 (function (TranslationWidth) {
   /** 1 character for `en-US`. For example: 'S' */
   TranslationWidth[TranslationWidth["Narrow"] = 0] = "Narrow";
   /** 3 characters for `en-US`. For example: 'Sun' */
-
   TranslationWidth[TranslationWidth["Abbreviated"] = 1] = "Abbreviated";
   /** Full length for `en-US`. For example: "Sunday" */
-
   TranslationWidth[TranslationWidth["Wide"] = 2] = "Wide";
   /** 2 characters for `en-US`, For example: "Su" */
-
   TranslationWidth[TranslationWidth["Short"] = 3] = "Short";
 })(TranslationWidth || (TranslationWidth = {}));
 /**
@@ -5922,10 +5592,7 @@ var TranslationWidth;
  * @see [Internationalization (i18n) Guide](https://angular.io/guide/i18n-overview)
  * @publicApi
  */
-
-
 var FormatWidth;
-
 (function (FormatWidth) {
   /**
    * For `en-US`, 'M/d/yy, h:mm a'`
@@ -5936,19 +5603,16 @@ var FormatWidth;
    * For `en-US`, `'MMM d, y, h:mm:ss a'`
    * (Example: `Jun 15, 2015, 9:03:01 AM`)
    */
-
   FormatWidth[FormatWidth["Medium"] = 1] = "Medium";
   /**
    * For `en-US`, `'MMMM d, y, h:mm:ss a z'`
    * (Example: `June 15, 2015 at 9:03:01 AM GMT+1`)
    */
-
   FormatWidth[FormatWidth["Long"] = 2] = "Long";
   /**
    * For `en-US`, `'EEEE, MMMM d, y, h:mm:ss a zzzz'`
    * (Example: `Monday, June 15, 2015 at 9:03:01 AM GMT+01:00`)
    */
-
   FormatWidth[FormatWidth["Full"] = 3] = "Full";
 })(FormatWidth || (FormatWidth = {}));
 /**
@@ -5960,10 +5624,7 @@ var FormatWidth;
  *
  * @publicApi
  */
-
-
 var NumberSymbol;
-
 (function (NumberSymbol) {
   /**
    * Decimal separator.
@@ -5976,79 +5637,66 @@ var NumberSymbol;
    * For `en-US`, the comma character.
    * Example: 2`,`345.67
    */
-
   NumberSymbol[NumberSymbol["Group"] = 1] = "Group";
   /**
    * List-item separator.
    * Example: "one, two, and three"
    */
-
   NumberSymbol[NumberSymbol["List"] = 2] = "List";
   /**
    * Sign for percentage (out of 100).
    * Example: 23.4%
    */
-
   NumberSymbol[NumberSymbol["PercentSign"] = 3] = "PercentSign";
   /**
    * Sign for positive numbers.
    * Example: +23
    */
-
   NumberSymbol[NumberSymbol["PlusSign"] = 4] = "PlusSign";
   /**
    * Sign for negative numbers.
    * Example: -23
    */
-
   NumberSymbol[NumberSymbol["MinusSign"] = 5] = "MinusSign";
   /**
    * Computer notation for exponential value (n times a power of 10).
    * Example: 1.2E3
    */
-
   NumberSymbol[NumberSymbol["Exponential"] = 6] = "Exponential";
   /**
    * Human-readable format of exponential.
    * Example: 1.2x103
    */
-
   NumberSymbol[NumberSymbol["SuperscriptingExponent"] = 7] = "SuperscriptingExponent";
   /**
    * Sign for permille (out of 1000).
    * Example: 23.4‰
    */
-
   NumberSymbol[NumberSymbol["PerMille"] = 8] = "PerMille";
   /**
    * Infinity, can be used with plus and minus.
    * Example: ∞, +∞, -∞
    */
-
   NumberSymbol[NumberSymbol["Infinity"] = 9] = "Infinity";
   /**
    * Not a number.
    * Example: NaN
    */
-
   NumberSymbol[NumberSymbol["NaN"] = 10] = "NaN";
   /**
    * Symbol used between time units.
    * Example: 10:52
    */
-
   NumberSymbol[NumberSymbol["TimeSeparator"] = 11] = "TimeSeparator";
   /**
    * Decimal separator for currency values (fallback to `Decimal`).
    * Example: $2,345.67
    */
-
   NumberSymbol[NumberSymbol["CurrencyDecimal"] = 12] = "CurrencyDecimal";
   /**
    * Group separator for currency values (fallback to `Group`).
    * Example: $2,345.67
    */
-
   NumberSymbol[NumberSymbol["CurrencyGroup"] = 13] = "CurrencyGroup";
 })(NumberSymbol || (NumberSymbol = {}));
 /**
@@ -6056,10 +5704,7 @@ var NumberSymbol;
  *
  * @publicApi
  */
-
-
 var WeekDay;
-
 (function (WeekDay) {
   WeekDay[WeekDay["Sunday"] = 0] = "Sunday";
   WeekDay[WeekDay["Monday"] = 1] = "Monday";
@@ -6078,8 +5723,6 @@ var WeekDay;
  *
  * @publicApi
  */
-
-
 function getLocaleId(locale) {
   return (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale)[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].LocaleId];
 }
@@ -6094,8 +5737,6 @@ function getLocaleId(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleDayPeriods(locale, formStyle, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const amPmData = [data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DayPeriodsFormat], data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DayPeriodsStandalone]];
@@ -6114,8 +5755,6 @@ function getLocaleDayPeriods(locale, formStyle, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleDayNames(locale, formStyle, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const daysData = [data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DaysFormat], data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DaysStandalone]];
@@ -6134,8 +5773,6 @@ function getLocaleDayNames(locale, formStyle, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleMonthNames(locale, formStyle, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const monthsData = [data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].MonthsFormat], data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].MonthsStandalone]];
@@ -6153,8 +5790,6 @@ function getLocaleMonthNames(locale, formStyle, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleEraNames(locale, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const erasData = data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].Eras];
@@ -6171,8 +5806,6 @@ function getLocaleEraNames(locale, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleFirstDayOfWeek(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].FirstDayOfWeek];
@@ -6186,8 +5819,6 @@ function getLocaleFirstDayOfWeek(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleWeekEndRange(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].WeekendRange];
@@ -6203,8 +5834,6 @@ function getLocaleWeekEndRange(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleDateFormat(locale, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return getLastDefinedValue(data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DateFormat], width);
@@ -6220,8 +5849,6 @@ function getLocaleDateFormat(locale, width) {
 
  * @publicApi
  */
-
-
 function getLocaleTimeFormat(locale, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return getLastDefinedValue(data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].TimeFormat], width);
@@ -6237,8 +5864,6 @@ function getLocaleTimeFormat(locale, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleDateTimeFormat(locale, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const dateTimeFormatData = data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].DateTimeFormat];
@@ -6254,12 +5879,9 @@ function getLocaleDateTimeFormat(locale, width) {
  *
  * @publicApi
  */
-
-
 function getLocaleNumberSymbol(locale, symbol) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   const res = data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].NumberSymbols][symbol];
-
   if (typeof res === 'undefined') {
     if (symbol === NumberSymbol.CurrencyDecimal) {
       return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].NumberSymbols][NumberSymbol.Decimal];
@@ -6267,7 +5889,6 @@ function getLocaleNumberSymbol(locale, symbol) {
       return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].NumberSymbols][NumberSymbol.Group];
     }
   }
-
   return res;
 }
 /**
@@ -6305,8 +5926,6 @@ function getLocaleNumberSymbol(locale, symbol) {
  *
  * @publicApi
  */
-
-
 function getLocaleNumberFormat(locale, type) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].NumberFormats][type];
@@ -6322,8 +5941,6 @@ function getLocaleNumberFormat(locale, type) {
  *
  * @publicApi
  */
-
-
 function getLocaleCurrencySymbol(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].CurrencySymbol] || null;
@@ -6338,8 +5955,6 @@ function getLocaleCurrencySymbol(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleCurrencyName(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].CurrencyName] || null;
@@ -6354,8 +5969,6 @@ function getLocaleCurrencyName(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleCurrencyCode(locale) {
   return (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵgetLocaleCurrencyCode"])(locale);
 }
@@ -6365,8 +5978,6 @@ function getLocaleCurrencyCode(locale) {
  * @returns The currency values.
  * @see [Internationalization (i18n) Guide](https://angular.io/guide/i18n-overview)
  */
-
-
 function getLocaleCurrencies(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].Currencies];
@@ -6375,10 +5986,7 @@ function getLocaleCurrencies(locale) {
  * @alias core/ɵgetLocalePluralCase
  * @publicApi
  */
-
-
 const getLocalePluralCase = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵgetLocalePluralCase"];
-
 function checkFullData(data) {
   if (!data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData]) {
     throw new Error(`Missing extra locale data for the locale "${data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].LocaleId]}". Use "registerLocaleData" to load new data. See the "I18n guide" on angular.io to know more.`);
@@ -6406,19 +6014,14 @@ function checkFullData(data) {
  *
  * @publicApi
  */
-
-
 function getLocaleExtraDayPeriodRules(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   checkFullData(data);
-  const rules = data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][2
-  /* ExtraDayPeriodsRules */
-  ] || [];
+  const rules = data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][2 /* ExtraDayPeriodsRules */] || [];
   return rules.map(rule => {
     if (typeof rule === 'string') {
       return extractTime(rule);
     }
-
     return [extractTime(rule[0]), extractTime(rule[1])];
   });
 }
@@ -6439,16 +6042,11 @@ function getLocaleExtraDayPeriodRules(locale) {
  *
  * @publicApi
  */
-
-
 function getLocaleExtraDayPeriods(locale, formStyle, width) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   checkFullData(data);
-  const dayPeriodsData = [data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][0
-  /* ExtraDayPeriodFormats */
-  ], data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][1
-  /* ExtraDayPeriodStandalone */
-  ]];
+  const dayPeriodsData = [data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][0 /* ExtraDayPeriodFormats */], data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].ExtraData][1 /* ExtraDayPeriodStandalone */]];
+
   const dayPeriods = getLastDefinedValue(dayPeriodsData, formStyle) || [];
   return getLastDefinedValue(dayPeriods, width) || [];
 }
@@ -6459,8 +6057,6 @@ function getLocaleExtraDayPeriods(locale, formStyle, width) {
  * @returns 'rtl' or 'ltr'
  * @see [Internationalization (i18n) Guide](https://angular.io/guide/i18n-overview)
  */
-
-
 function getLocaleDirection(locale) {
   const data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵfindLocaleData"])(locale);
   return data[_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵLocaleDataIndex"].Directionality];
@@ -6478,22 +6074,17 @@ function getLocaleDirection(locale) {
  *
  * @publicApi
  */
-
-
 function getLastDefinedValue(data, index) {
   for (let i = index; i > -1; i--) {
     if (typeof data[i] !== 'undefined') {
       return data[i];
     }
   }
-
   throw new Error('Locale data API: locale data undefined');
 }
 /**
  * Extracts the hours and minutes from a string like "15:45"
  */
-
-
 function extractTime(time) {
   const [h, m] = time.split(':');
   return {
@@ -6516,24 +6107,15 @@ function extractTime(time) {
  *
  * @publicApi
  */
-
-
 function getCurrencySymbol(code, format, locale = 'en') {
   const currency = getLocaleCurrencies(locale)[code] || CURRENCIES_EN[code] || [];
-  const symbolNarrow = currency[1
-  /* SymbolNarrow */
-  ];
-
+  const symbolNarrow = currency[1 /* SymbolNarrow */];
   if (format === 'narrow' && typeof symbolNarrow === 'string') {
     return symbolNarrow;
   }
-
-  return currency[0
-  /* Symbol */
-  ] || code;
-} // Most currencies have cents, that's why the default is 2
-
-
+  return currency[0 /* Symbol */] || code;
+}
+// Most currencies have cents, that's why the default is 2
 const DEFAULT_NB_OF_CURRENCY_DIGITS = 2;
 /**
  * Reports the number of decimal digits for a given currency.
@@ -6545,19 +6127,16 @@ const DEFAULT_NB_OF_CURRENCY_DIGITS = 2;
  *
  * @publicApi
  */
-
 function getNumberOfCurrencyDigits(code) {
   let digits;
   const currency = CURRENCIES_EN[code];
-
   if (currency) {
-    digits = currency[2
-    /* NbOfDigits */
-    ];
+    digits = currency[2 /* NbOfDigits */];
   }
 
   return typeof digits === 'number' ? digits : DEFAULT_NB_OF_CURRENCY_DIGITS;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -6565,23 +6144,18 @@ function getNumberOfCurrencyDigits(code) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
-const ISO8601_DATE_REGEX = /^(\d{4})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/; //    1        2       3         4          5          6          7          8  9     10      11
-
+const ISO8601_DATE_REGEX = /^(\d{4})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/;
+//    1        2       3         4          5          6          7          8  9     10      11
 const NAMED_FORMATS = {};
 const DATE_FORMATS_SPLIT = /((?:[^BEGHLMOSWYZabcdhmswyz']+)|(?:'(?:[^']|'')*')|(?:G{1,5}|y{1,4}|Y{1,4}|M{1,5}|L{1,5}|w{1,2}|W{1}|d{1,2}|E{1,6}|c{1,6}|a{1,5}|b{1,5}|B{1,5}|h{1,2}|H{1,2}|m{1,2}|s{1,2}|S{1,3}|z{1,4}|Z{1,5}|O{1,4}))([\s\S]*)/;
 var ZoneWidth;
-
 (function (ZoneWidth) {
   ZoneWidth[ZoneWidth["Short"] = 0] = "Short";
   ZoneWidth[ZoneWidth["ShortGMT"] = 1] = "ShortGMT";
   ZoneWidth[ZoneWidth["Long"] = 2] = "Long";
   ZoneWidth[ZoneWidth["Extended"] = 3] = "Extended";
 })(ZoneWidth || (ZoneWidth = {}));
-
 var DateType;
-
 (function (DateType) {
   DateType[DateType["FullYear"] = 0] = "FullYear";
   DateType[DateType["Month"] = 1] = "Month";
@@ -6592,9 +6166,7 @@ var DateType;
   DateType[DateType["FractionalSeconds"] = 6] = "FractionalSeconds";
   DateType[DateType["Day"] = 7] = "Day";
 })(DateType || (DateType = {}));
-
 var TranslationType;
-
 (function (TranslationType) {
   TranslationType[TranslationType["DayPeriods"] = 0] = "DayPeriods";
   TranslationType[TranslationType["Days"] = 1] = "Days";
@@ -6622,40 +6194,31 @@ var TranslationType;
  *
  * @publicApi
  */
-
-
 function formatDate(value, format, locale, timezone) {
   let date = toDate(value);
   const namedFormat = getNamedFormat(locale, format);
   format = namedFormat || format;
   let parts = [];
   let match;
-
   while (format) {
     match = DATE_FORMATS_SPLIT.exec(format);
-
     if (match) {
       parts = parts.concat(match.slice(1));
       const part = parts.pop();
-
       if (!part) {
         break;
       }
-
       format = part;
     } else {
       parts.push(format);
       break;
     }
   }
-
   let dateTimezoneOffset = date.getTimezoneOffset();
-
   if (timezone) {
     dateTimezoneOffset = timezoneToOffset(timezone, dateTimezoneOffset);
     date = convertTimezoneToLocal(date, timezone, true);
   }
-
   let text = '';
   parts.forEach(value => {
     const dateFormatter = getDateFormatter(value);
@@ -6673,115 +6236,92 @@ function formatDate(value, format, locale, timezone) {
  * timezone. In the future we might want to change this to be midnight in UTC, but this would be a
  * considerable breaking change.
  */
-
-
 function createDate(year, month, date) {
   // The `newDate` is set to midnight (UTC) on January 1st 1970.
   // - In PST this will be December 31st 1969 at 4pm.
   // - In GMT this will be January 1st 1970 at 1am.
   // Note that they even have different years, dates and months!
-  const newDate = new Date(0); // `setFullYear()` allows years like 0001 to be set correctly. This function does not
+  const newDate = new Date(0);
+  // `setFullYear()` allows years like 0001 to be set correctly. This function does not
   // change the internal time of the date.
   // Consider calling `setFullYear(2019, 8, 20)` (September 20, 2019).
   // - In PST this will now be September 20, 2019 at 4pm
   // - In GMT this will now be September 20, 2019 at 1am
-
-  newDate.setFullYear(year, month, date); // We want the final date to be at local midnight, so we reset the time.
+  newDate.setFullYear(year, month, date);
+  // We want the final date to be at local midnight, so we reset the time.
   // - In PST this will now be September 20, 2019 at 12am
   // - In GMT this will now be September 20, 2019 at 12am
-
   newDate.setHours(0, 0, 0);
   return newDate;
 }
-
 function getNamedFormat(locale, format) {
   const localeId = getLocaleId(locale);
   NAMED_FORMATS[localeId] = NAMED_FORMATS[localeId] || {};
-
   if (NAMED_FORMATS[localeId][format]) {
     return NAMED_FORMATS[localeId][format];
   }
-
   let formatValue = '';
-
   switch (format) {
     case 'shortDate':
       formatValue = getLocaleDateFormat(locale, FormatWidth.Short);
       break;
-
     case 'mediumDate':
       formatValue = getLocaleDateFormat(locale, FormatWidth.Medium);
       break;
-
     case 'longDate':
       formatValue = getLocaleDateFormat(locale, FormatWidth.Long);
       break;
-
     case 'fullDate':
       formatValue = getLocaleDateFormat(locale, FormatWidth.Full);
       break;
-
     case 'shortTime':
       formatValue = getLocaleTimeFormat(locale, FormatWidth.Short);
       break;
-
     case 'mediumTime':
       formatValue = getLocaleTimeFormat(locale, FormatWidth.Medium);
       break;
-
     case 'longTime':
       formatValue = getLocaleTimeFormat(locale, FormatWidth.Long);
       break;
-
     case 'fullTime':
       formatValue = getLocaleTimeFormat(locale, FormatWidth.Full);
       break;
-
     case 'short':
       const shortTime = getNamedFormat(locale, 'shortTime');
       const shortDate = getNamedFormat(locale, 'shortDate');
       formatValue = formatDateTime(getLocaleDateTimeFormat(locale, FormatWidth.Short), [shortTime, shortDate]);
       break;
-
     case 'medium':
       const mediumTime = getNamedFormat(locale, 'mediumTime');
       const mediumDate = getNamedFormat(locale, 'mediumDate');
       formatValue = formatDateTime(getLocaleDateTimeFormat(locale, FormatWidth.Medium), [mediumTime, mediumDate]);
       break;
-
     case 'long':
       const longTime = getNamedFormat(locale, 'longTime');
       const longDate = getNamedFormat(locale, 'longDate');
       formatValue = formatDateTime(getLocaleDateTimeFormat(locale, FormatWidth.Long), [longTime, longDate]);
       break;
-
     case 'full':
       const fullTime = getNamedFormat(locale, 'fullTime');
       const fullDate = getNamedFormat(locale, 'fullDate');
       formatValue = formatDateTime(getLocaleDateTimeFormat(locale, FormatWidth.Full), [fullTime, fullDate]);
       break;
   }
-
   if (formatValue) {
     NAMED_FORMATS[localeId][format] = formatValue;
   }
-
   return formatValue;
 }
-
 function formatDateTime(str, opt_values) {
   if (opt_values) {
     str = str.replace(/\{([^}]+)}/g, function (match, key) {
       return opt_values != null && key in opt_values ? opt_values[key] : match;
     });
   }
-
   return str;
 }
-
 function padNumber(num, digits, minusSign = '-', trim, negWrap) {
   let neg = '';
-
   if (num < 0 || negWrap && num <= 0) {
     if (negWrap) {
       num = -num + 1;
@@ -6790,20 +6330,15 @@ function padNumber(num, digits, minusSign = '-', trim, negWrap) {
       neg = minusSign;
     }
   }
-
   let strNum = String(num);
-
   while (strNum.length < digits) {
     strNum = '0' + strNum;
   }
-
   if (trim) {
     strNum = strNum.substr(strNum.length - digits);
   }
-
   return neg + strNum;
 }
-
 function formatFractionalSeconds(milliseconds, digits) {
   const strMs = padNumber(milliseconds, 3);
   return strMs.substr(0, digits);
@@ -6811,16 +6346,12 @@ function formatFractionalSeconds(milliseconds, digits) {
 /**
  * Returns a date formatter that transforms a date into its locale digit representation
  */
-
-
 function dateGetter(name, size, offset = 0, trim = false, negWrap = false) {
   return function (date, locale) {
     let part = getDatePart(name, date);
-
     if (offset > 0 || part > -offset) {
       part += offset;
     }
-
     if (name === DateType.Hours) {
       if (part === 0 && offset === -12) {
         part = 12;
@@ -6828,38 +6359,28 @@ function dateGetter(name, size, offset = 0, trim = false, negWrap = false) {
     } else if (name === DateType.FractionalSeconds) {
       return formatFractionalSeconds(part, size);
     }
-
     const localeMinus = getLocaleNumberSymbol(locale, NumberSymbol.MinusSign);
     return padNumber(part, size, localeMinus, trim, negWrap);
   };
 }
-
 function getDatePart(part, date) {
   switch (part) {
     case DateType.FullYear:
       return date.getFullYear();
-
     case DateType.Month:
       return date.getMonth();
-
     case DateType.Date:
       return date.getDate();
-
     case DateType.Hours:
       return date.getHours();
-
     case DateType.Minutes:
       return date.getMinutes();
-
     case DateType.Seconds:
       return date.getSeconds();
-
     case DateType.FractionalSeconds:
       return date.getMilliseconds();
-
     case DateType.Day:
       return date.getDay();
-
     default:
       throw new Error(`Unknown DateType value "${part}".`);
   }
@@ -6867,8 +6388,6 @@ function getDatePart(part, date) {
 /**
  * Returns a date formatter that transforms a date into its locale string representation
  */
-
-
 function dateStrGetter(name, width, form = FormStyle.Format, extended = false) {
   return function (date, locale) {
     return getDateTranslation(date, locale, name, width, form, extended);
@@ -6877,20 +6396,15 @@ function dateStrGetter(name, width, form = FormStyle.Format, extended = false) {
 /**
  * Returns the locale translation of a date for a given form, type and width
  */
-
-
 function getDateTranslation(date, locale, name, width, form, extended) {
   switch (name) {
     case TranslationType.Months:
       return getLocaleMonthNames(locale, form, width)[date.getMonth()];
-
     case TranslationType.Days:
       return getLocaleDayNames(locale, form, width)[date.getDay()];
-
     case TranslationType.DayPeriods:
       const currentHours = date.getHours();
       const currentMinutes = date.getMinutes();
-
       if (extended) {
         const rules = getLocaleExtraDayPeriodRules(locale);
         const dayPeriods = getLocaleExtraDayPeriods(locale, form, width);
@@ -6899,7 +6413,8 @@ function getDateTranslation(date, locale, name, width, form, extended) {
             // morning, afternoon, evening, night
             const [from, to] = rule;
             const afterFrom = currentHours >= from.hours && currentMinutes >= from.minutes;
-            const beforeTo = currentHours < to.hours || currentHours === to.hours && currentMinutes < to.minutes; // We must account for normal rules that span a period during the day (e.g. 6am-9am)
+            const beforeTo = currentHours < to.hours || currentHours === to.hours && currentMinutes < to.minutes;
+            // We must account for normal rules that span a period during the day (e.g. 6am-9am)
             // where `from` is less (earlier) than `to`. But also rules that span midnight (e.g.
             // 10pm - 5am) where `from` is greater (later!) than `to`.
             //
@@ -6909,7 +6424,6 @@ function getDateTranslation(date, locale, name, width, form, extended) {
             // In the second case the current time must be EITHER after `from` OR before `to`
             // (e.g. 4am is before 5am but not after 10pm; and 11pm is not before 5am but it is
             // after 10pm).
-
             if (from.hours < to.hours) {
               if (afterFrom && beforeTo) {
                 return true;
@@ -6923,21 +6437,16 @@ function getDateTranslation(date, locale, name, width, form, extended) {
               return true;
             }
           }
-
           return false;
         });
-
         if (index !== -1) {
           return dayPeriods[index];
         }
-      } // if no rules for the day periods, we use am/pm by default
-
-
+      }
+      // if no rules for the day periods, we use am/pm by default
       return getLocaleDayPeriods(locale, form, width)[currentHours < 12 ? 0 : 1];
-
     case TranslationType.Eras:
       return getLocaleEraNames(locale, width)[date.getFullYear() <= 0 ? 0 : 1];
-
     default:
       // This default case is not needed by TypeScript compiler, as the switch is exhaustive.
       // However Closure Compiler does not understand that and reports an error in typed mode.
@@ -6952,61 +6461,49 @@ function getDateTranslation(date, locale, name, width, form, extended) {
  * GMT format depending on the width (eg: short = +0430, short:GMT = GMT+4, long = GMT+04:30,
  * extended = +04:30)
  */
-
-
 function timeZoneGetter(width) {
   return function (date, locale, offset) {
     const zone = -1 * offset;
     const minusSign = getLocaleNumberSymbol(locale, NumberSymbol.MinusSign);
     const hours = zone > 0 ? Math.floor(zone / 60) : Math.ceil(zone / 60);
-
     switch (width) {
       case ZoneWidth.Short:
         return (zone >= 0 ? '+' : '') + padNumber(hours, 2, minusSign) + padNumber(Math.abs(zone % 60), 2, minusSign);
-
       case ZoneWidth.ShortGMT:
         return 'GMT' + (zone >= 0 ? '+' : '') + padNumber(hours, 1, minusSign);
-
       case ZoneWidth.Long:
         return 'GMT' + (zone >= 0 ? '+' : '') + padNumber(hours, 2, minusSign) + ':' + padNumber(Math.abs(zone % 60), 2, minusSign);
-
       case ZoneWidth.Extended:
         if (offset === 0) {
           return 'Z';
         } else {
           return (zone >= 0 ? '+' : '') + padNumber(hours, 2, minusSign) + ':' + padNumber(Math.abs(zone % 60), 2, minusSign);
         }
-
       default:
         throw new Error(`Unknown zone width "${width}"`);
     }
   };
 }
-
 const JANUARY = 0;
 const THURSDAY = 4;
-
 function getFirstThursdayOfYear(year) {
   const firstDayOfYear = createDate(year, JANUARY, 1).getDay();
   return createDate(year, 0, 1 + (firstDayOfYear <= THURSDAY ? THURSDAY : THURSDAY + 7) - firstDayOfYear);
 }
-
 function getThursdayThisWeek(datetime) {
   return createDate(datetime.getFullYear(), datetime.getMonth(), datetime.getDate() + (THURSDAY - datetime.getDay()));
 }
-
 function weekGetter(size, monthBased = false) {
   return function (date, locale) {
     let result;
-
     if (monthBased) {
       const nbDaysBefore1stDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay() - 1;
       const today = date.getDate();
       result = 1 + Math.floor((today + nbDaysBefore1stDayOfMonth) / 7);
     } else {
-      const thisThurs = getThursdayThisWeek(date); // Some days of a year are part of next year according to ISO 8601.
+      const thisThurs = getThursdayThisWeek(date);
+      // Some days of a year are part of next year according to ISO 8601.
       // Compute the firstThurs from the year of this week's Thursday
-
       const firstThurs = getFirstThursdayOfYear(thisThurs.getFullYear());
       const diff = thisThurs.getTime() - firstThurs.getTime();
       result = 1 + Math.round(diff / 6.048e8); // 6.048e8 ms per week
@@ -7018,8 +6515,6 @@ function weekGetter(size, monthBased = false) {
 /**
  * Returns a date formatter that provides the week-numbering year for the input date.
  */
-
-
 function weekNumberingYearGetter(size, trim = false) {
   return function (date, locale) {
     const thisThurs = getThursdayThisWeek(date);
@@ -7027,19 +6522,16 @@ function weekNumberingYearGetter(size, trim = false) {
     return padNumber(weekNumberingYear, size, getLocaleNumberSymbol(locale, NumberSymbol.MinusSign), trim);
   };
 }
-
-const DATE_FORMATS = {}; // Based on CLDR formats:
+const DATE_FORMATS = {};
+// Based on CLDR formats:
 // See complete list: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
 // See also explanations: http://cldr.unicode.org/translation/date-time
 // TODO(ocombe): support all missing cldr formats: U, Q, D, F, e, j, J, C, A, v, V, X, x
-
 function getDateFormatter(format) {
   if (DATE_FORMATS[format]) {
     return DATE_FORMATS[format];
   }
-
   let formatter;
-
   switch (format) {
     // Era name (AD/BC)
     case 'G':
@@ -7047,292 +6539,233 @@ function getDateFormatter(format) {
     case 'GGG':
       formatter = dateStrGetter(TranslationType.Eras, TranslationWidth.Abbreviated);
       break;
-
     case 'GGGG':
       formatter = dateStrGetter(TranslationType.Eras, TranslationWidth.Wide);
       break;
-
     case 'GGGGG':
       formatter = dateStrGetter(TranslationType.Eras, TranslationWidth.Narrow);
       break;
     // 1 digit representation of the year, e.g. (AD 1 => 1, AD 199 => 199)
-
     case 'y':
       formatter = dateGetter(DateType.FullYear, 1, 0, false, true);
       break;
     // 2 digit representation of the year, padded (00-99). (e.g. AD 2001 => 01, AD 2010 => 10)
-
     case 'yy':
       formatter = dateGetter(DateType.FullYear, 2, 0, true, true);
       break;
     // 3 digit representation of the year, padded (000-999). (e.g. AD 2001 => 01, AD 2010 => 10)
-
     case 'yyy':
       formatter = dateGetter(DateType.FullYear, 3, 0, false, true);
       break;
     // 4 digit representation of the year (e.g. AD 1 => 0001, AD 2010 => 2010)
-
     case 'yyyy':
       formatter = dateGetter(DateType.FullYear, 4, 0, false, true);
       break;
     // 1 digit representation of the week-numbering year, e.g. (AD 1 => 1, AD 199 => 199)
-
     case 'Y':
       formatter = weekNumberingYearGetter(1);
       break;
     // 2 digit representation of the week-numbering year, padded (00-99). (e.g. AD 2001 => 01, AD
     // 2010 => 10)
-
     case 'YY':
       formatter = weekNumberingYearGetter(2, true);
       break;
     // 3 digit representation of the week-numbering year, padded (000-999). (e.g. AD 1 => 001, AD
     // 2010 => 2010)
-
     case 'YYY':
       formatter = weekNumberingYearGetter(3);
       break;
     // 4 digit representation of the week-numbering year (e.g. AD 1 => 0001, AD 2010 => 2010)
-
     case 'YYYY':
       formatter = weekNumberingYearGetter(4);
       break;
     // Month of the year (1-12), numeric
-
     case 'M':
     case 'L':
       formatter = dateGetter(DateType.Month, 1, 1);
       break;
-
     case 'MM':
     case 'LL':
       formatter = dateGetter(DateType.Month, 2, 1);
       break;
     // Month of the year (January, ...), string, format
-
     case 'MMM':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Abbreviated);
       break;
-
     case 'MMMM':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Wide);
       break;
-
     case 'MMMMM':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Narrow);
       break;
     // Month of the year (January, ...), string, standalone
-
     case 'LLL':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Abbreviated, FormStyle.Standalone);
       break;
-
     case 'LLLL':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Wide, FormStyle.Standalone);
       break;
-
     case 'LLLLL':
       formatter = dateStrGetter(TranslationType.Months, TranslationWidth.Narrow, FormStyle.Standalone);
       break;
     // Week of the year (1, ... 52)
-
     case 'w':
       formatter = weekGetter(1);
       break;
-
     case 'ww':
       formatter = weekGetter(2);
       break;
     // Week of the month (1, ...)
-
     case 'W':
       formatter = weekGetter(1, true);
       break;
     // Day of the month (1-31)
-
     case 'd':
       formatter = dateGetter(DateType.Date, 1);
       break;
-
     case 'dd':
       formatter = dateGetter(DateType.Date, 2);
       break;
     // Day of the Week StandAlone (1, 1, Mon, Monday, M, Mo)
-
     case 'c':
     case 'cc':
       formatter = dateGetter(DateType.Day, 1);
       break;
-
     case 'ccc':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Abbreviated, FormStyle.Standalone);
       break;
-
     case 'cccc':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Wide, FormStyle.Standalone);
       break;
-
     case 'ccccc':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Narrow, FormStyle.Standalone);
       break;
-
     case 'cccccc':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Short, FormStyle.Standalone);
       break;
     // Day of the Week
-
     case 'E':
     case 'EE':
     case 'EEE':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Abbreviated);
       break;
-
     case 'EEEE':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Wide);
       break;
-
     case 'EEEEE':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Narrow);
       break;
-
     case 'EEEEEE':
       formatter = dateStrGetter(TranslationType.Days, TranslationWidth.Short);
       break;
     // Generic period of the day (am-pm)
-
     case 'a':
     case 'aa':
     case 'aaa':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Abbreviated);
       break;
-
     case 'aaaa':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Wide);
       break;
-
     case 'aaaaa':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Narrow);
       break;
     // Extended period of the day (midnight, at night, ...), standalone
-
     case 'b':
     case 'bb':
     case 'bbb':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Abbreviated, FormStyle.Standalone, true);
       break;
-
     case 'bbbb':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Wide, FormStyle.Standalone, true);
       break;
-
     case 'bbbbb':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Narrow, FormStyle.Standalone, true);
       break;
     // Extended period of the day (midnight, night, ...), standalone
-
     case 'B':
     case 'BB':
     case 'BBB':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Abbreviated, FormStyle.Format, true);
       break;
-
     case 'BBBB':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Wide, FormStyle.Format, true);
       break;
-
     case 'BBBBB':
       formatter = dateStrGetter(TranslationType.DayPeriods, TranslationWidth.Narrow, FormStyle.Format, true);
       break;
     // Hour in AM/PM, (1-12)
-
     case 'h':
       formatter = dateGetter(DateType.Hours, 1, -12);
       break;
-
     case 'hh':
       formatter = dateGetter(DateType.Hours, 2, -12);
       break;
     // Hour of the day (0-23)
-
     case 'H':
       formatter = dateGetter(DateType.Hours, 1);
       break;
     // Hour in day, padded (00-23)
-
     case 'HH':
       formatter = dateGetter(DateType.Hours, 2);
       break;
     // Minute of the hour (0-59)
-
     case 'm':
       formatter = dateGetter(DateType.Minutes, 1);
       break;
-
     case 'mm':
       formatter = dateGetter(DateType.Minutes, 2);
       break;
     // Second of the minute (0-59)
-
     case 's':
       formatter = dateGetter(DateType.Seconds, 1);
       break;
-
     case 'ss':
       formatter = dateGetter(DateType.Seconds, 2);
       break;
     // Fractional second
-
     case 'S':
       formatter = dateGetter(DateType.FractionalSeconds, 1);
       break;
-
     case 'SS':
       formatter = dateGetter(DateType.FractionalSeconds, 2);
       break;
-
     case 'SSS':
       formatter = dateGetter(DateType.FractionalSeconds, 3);
       break;
     // Timezone ISO8601 short format (-0430)
-
     case 'Z':
     case 'ZZ':
     case 'ZZZ':
       formatter = timeZoneGetter(ZoneWidth.Short);
       break;
     // Timezone ISO8601 extended format (-04:30)
-
     case 'ZZZZZ':
       formatter = timeZoneGetter(ZoneWidth.Extended);
       break;
     // Timezone GMT short format (GMT+4)
-
     case 'O':
     case 'OO':
-    case 'OOO': // Should be location, but fallback to format O instead because we don't have the data yet
-
+    case 'OOO':
+    // Should be location, but fallback to format O instead because we don't have the data yet
     case 'z':
     case 'zz':
     case 'zzz':
       formatter = timeZoneGetter(ZoneWidth.ShortGMT);
       break;
     // Timezone GMT long format (GMT+0430)
-
     case 'OOOO':
-    case 'ZZZZ': // Should be location, but fallback to format O instead because we don't have the data yet
-
+    case 'ZZZZ':
+    // Should be location, but fallback to format O instead because we don't have the data yet
     case 'zzzz':
       formatter = timeZoneGetter(ZoneWidth.Long);
       break;
-
     default:
       return null;
   }
-
   DATE_FORMATS[format] = formatter;
   return formatter;
 }
-
 function timezoneToOffset(timezone, fallback) {
   // Support: IE 11 only, Edge 13-15+
   // IE/Edge do not "understand" colon (`:`) in timezone
@@ -7340,13 +6773,11 @@ function timezoneToOffset(timezone, fallback) {
   const requestedTimezoneOffset = Date.parse('Jan 01, 1970 00:00:00 ' + timezone) / 60000;
   return isNaN(requestedTimezoneOffset) ? fallback : requestedTimezoneOffset;
 }
-
 function addDateMinutes(date, minutes) {
   date = new Date(date.getTime());
   date.setMinutes(date.getMinutes() + minutes);
   return date;
 }
-
 function convertTimezoneToLocal(date, timezone, reverse) {
   const reverseValue = reverse ? -1 : 1;
   const dateTimezoneOffset = date.getTimezoneOffset();
@@ -7365,20 +6796,15 @@ function convertTimezoneToLocal(date, timezone, reverse) {
  *
  * Throws if unable to convert to a date.
  */
-
-
 function toDate(value) {
   if (isDate(value)) {
     return value;
   }
-
   if (typeof value === 'number' && !isNaN(value)) {
     return new Date(value);
   }
-
   if (typeof value === 'string') {
     value = value.trim();
-
     if (/^(\d{4}(-\d{1,2}(-\d{1,2})?)?)$/.test(value)) {
       /* For ISO Strings without time the day, month and year must be extracted from the ISO String
       before Date creation to avoid time offset and errors in the new Date.
@@ -7390,62 +6816,53 @@ function toDate(value) {
       const [y, m = 1, d = 1] = value.split('-').map(val => +val);
       return createDate(y, m - 1, d);
     }
-
-    const parsedNb = parseFloat(value); // any string that only contains numbers, like "1234" but not like "1234hello"
-
+    const parsedNb = parseFloat(value);
+    // any string that only contains numbers, like "1234" but not like "1234hello"
     if (!isNaN(value - parsedNb)) {
       return new Date(parsedNb);
     }
-
     let match;
-
     if (match = value.match(ISO8601_DATE_REGEX)) {
       return isoStringToDate(match);
     }
   }
-
   const date = new Date(value);
-
   if (!isDate(date)) {
     throw new Error(`Unable to convert "${value}" into a date`);
   }
-
   return date;
 }
 /**
  * Converts a date in ISO8601 to a Date.
  * Used instead of `Date.parse` because of browser discrepancies.
  */
-
-
 function isoStringToDate(match) {
   const date = new Date(0);
   let tzHour = 0;
-  let tzMin = 0; // match[8] means that the string contains "Z" (UTC) or a timezone like "+01:00" or "+0100"
-
+  let tzMin = 0;
+  // match[8] means that the string contains "Z" (UTC) or a timezone like "+01:00" or "+0100"
   const dateSetter = match[8] ? date.setUTCFullYear : date.setFullYear;
-  const timeSetter = match[8] ? date.setUTCHours : date.setHours; // if there is a timezone defined like "+01:00" or "+0100"
-
+  const timeSetter = match[8] ? date.setUTCHours : date.setHours;
+  // if there is a timezone defined like "+01:00" or "+0100"
   if (match[9]) {
     tzHour = Number(match[9] + match[10]);
     tzMin = Number(match[9] + match[11]);
   }
-
   dateSetter.call(date, Number(match[1]), Number(match[2]) - 1, Number(match[3]));
   const h = Number(match[4] || 0) - tzHour;
   const m = Number(match[5] || 0) - tzMin;
-  const s = Number(match[6] || 0); // The ECMAScript specification (https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.11)
+  const s = Number(match[6] || 0);
+  // The ECMAScript specification (https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.11)
   // defines that `DateTime` milliseconds should always be rounded down, so that `999.9ms`
   // becomes `999ms`.
-
   const ms = Math.floor(parseFloat('0.' + (match[7] || 0)) * 1000);
   timeSetter.call(date, h, m, s, ms);
   return date;
 }
-
 function isDate(value) {
   return value instanceof Date && !isNaN(value.valueOf());
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -7453,8 +6870,6 @@ function isDate(value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const NUMBER_FORMAT_REGEXP = /^(\d+)?\.((\d+)(-(\d+))?)?$/;
 const MAX_DIGITS = 22;
 const DECIMAL_SEP = '.';
@@ -7467,106 +6882,85 @@ const PERCENT_CHAR = '%';
 /**
  * Transforms a number to a locale string based on a style and a format.
  */
-
 function formatNumberToLocaleString(value, pattern, locale, groupSymbol, decimalSymbol, digitsInfo, isPercent = false) {
   let formattedText = '';
   let isZero = false;
-
   if (!isFinite(value)) {
     formattedText = getLocaleNumberSymbol(locale, NumberSymbol.Infinity);
   } else {
     let parsedNumber = parseNumber(value);
-
     if (isPercent) {
       parsedNumber = toPercent(parsedNumber);
     }
-
     let minInt = pattern.minInt;
     let minFraction = pattern.minFrac;
     let maxFraction = pattern.maxFrac;
-
     if (digitsInfo) {
       const parts = digitsInfo.match(NUMBER_FORMAT_REGEXP);
-
       if (parts === null) {
         throw new Error(`${digitsInfo} is not a valid digit info`);
       }
-
       const minIntPart = parts[1];
       const minFractionPart = parts[3];
       const maxFractionPart = parts[5];
-
       if (minIntPart != null) {
         minInt = parseIntAutoRadix(minIntPart);
       }
-
       if (minFractionPart != null) {
         minFraction = parseIntAutoRadix(minFractionPart);
       }
-
       if (maxFractionPart != null) {
         maxFraction = parseIntAutoRadix(maxFractionPart);
       } else if (minFractionPart != null && minFraction > maxFraction) {
         maxFraction = minFraction;
       }
     }
-
     roundNumber(parsedNumber, minFraction, maxFraction);
     let digits = parsedNumber.digits;
     let integerLen = parsedNumber.integerLen;
     const exponent = parsedNumber.exponent;
     let decimals = [];
-    isZero = digits.every(d => !d); // pad zeros for small numbers
-
+    isZero = digits.every(d => !d);
+    // pad zeros for small numbers
     for (; integerLen < minInt; integerLen++) {
       digits.unshift(0);
-    } // pad zeros for small numbers
-
-
+    }
+    // pad zeros for small numbers
     for (; integerLen < 0; integerLen++) {
       digits.unshift(0);
-    } // extract decimals digits
-
-
+    }
+    // extract decimals digits
     if (integerLen > 0) {
       decimals = digits.splice(integerLen, digits.length);
     } else {
       decimals = digits;
       digits = [0];
-    } // format the integer digits with grouping separators
-
-
+    }
+    // format the integer digits with grouping separators
     const groups = [];
-
     if (digits.length >= pattern.lgSize) {
       groups.unshift(digits.splice(-pattern.lgSize, digits.length).join(''));
     }
-
     while (digits.length > pattern.gSize) {
       groups.unshift(digits.splice(-pattern.gSize, digits.length).join(''));
     }
-
     if (digits.length) {
       groups.unshift(digits.join(''));
     }
-
-    formattedText = groups.join(getLocaleNumberSymbol(locale, groupSymbol)); // append the decimal digits
-
+    formattedText = groups.join(getLocaleNumberSymbol(locale, groupSymbol));
+    // append the decimal digits
     if (decimals.length) {
       formattedText += getLocaleNumberSymbol(locale, decimalSymbol) + decimals.join('');
     }
-
     if (exponent) {
       formattedText += getLocaleNumberSymbol(locale, NumberSymbol.Exponential) + '+' + exponent;
     }
   }
-
   if (value < 0 && !isZero) {
     formattedText = pattern.negPre + formattedText + pattern.negSuf;
   } else {
     formattedText = pattern.posPre + formattedText + pattern.posSuf;
   }
-
   return formattedText;
 }
 /**
@@ -7594,16 +6988,16 @@ function formatNumberToLocaleString(value, pattern, locale, groupSymbol, decimal
  *
  * @publicApi
  */
-
-
 function formatCurrency(value, locale, currency, currencyCode, digitsInfo) {
   const format = getLocaleNumberFormat(locale, NumberFormatStyle.Currency);
   const pattern = parseNumberFormat(format, getLocaleNumberSymbol(locale, NumberSymbol.MinusSign));
   pattern.minFrac = getNumberOfCurrencyDigits(currencyCode);
   pattern.maxFrac = pattern.minFrac;
   const res = formatNumberToLocaleString(value, pattern, locale, NumberSymbol.CurrencyGroup, NumberSymbol.CurrencyDecimal, digitsInfo);
-  return res.replace(CURRENCY_CHAR, currency) // if we have 2 time the currency character, the second one is ignored
-  .replace(CURRENCY_CHAR, '') // If there is a spacing between currency character and the value and
+  return res.replace(CURRENCY_CHAR, currency)
+  // if we have 2 time the currency character, the second one is ignored
+  .replace(CURRENCY_CHAR, '')
+  // If there is a spacing between currency character and the value and
   // the currency character is supressed by passing an empty string, the
   // spacing character would remain as part of the string. Then we
   // should remove it.
@@ -7628,8 +7022,6 @@ function formatCurrency(value, locale, currency, currencyCode, digitsInfo) {
  * @publicApi
  *
  */
-
-
 function formatPercent(value, locale, digitsInfo) {
   const format = getLocaleNumberFormat(locale, NumberFormatStyle.Percent);
   const pattern = parseNumberFormat(format, getLocaleNumberSymbol(locale, NumberSymbol.MinusSign));
@@ -7653,14 +7045,11 @@ function formatPercent(value, locale, digitsInfo) {
  *
  * @publicApi
  */
-
-
 function formatNumber(value, locale, digitsInfo) {
   const format = getLocaleNumberFormat(locale, NumberFormatStyle.Decimal);
   const pattern = parseNumberFormat(format, getLocaleNumberSymbol(locale, NumberSymbol.MinusSign));
   return formatNumberToLocaleString(value, pattern, locale, NumberSymbol.Group, NumberSymbol.Decimal, digitsInfo);
 }
-
 function parseNumberFormat(format, minusSign = '-') {
   const p = {
     minInt: 1,
@@ -7677,13 +7066,11 @@ function parseNumberFormat(format, minusSign = '-') {
   const positive = patternParts[0];
   const negative = patternParts[1];
   const positiveParts = positive.indexOf(DECIMAL_SEP) !== -1 ? positive.split(DECIMAL_SEP) : [positive.substring(0, positive.lastIndexOf(ZERO_CHAR) + 1), positive.substring(positive.lastIndexOf(ZERO_CHAR) + 1)],
-        integer = positiveParts[0],
-        fraction = positiveParts[1] || '';
+    integer = positiveParts[0],
+    fraction = positiveParts[1] || '';
   p.posPre = integer.substr(0, integer.indexOf(DIGIT_CHAR));
-
   for (let i = 0; i < fraction.length; i++) {
     const ch = fraction.charAt(i);
-
     if (ch === ZERO_CHAR) {
       p.minFrac = p.maxFrac = i + 1;
     } else if (ch === DIGIT_CHAR) {
@@ -7692,34 +7079,28 @@ function parseNumberFormat(format, minusSign = '-') {
       p.posSuf += ch;
     }
   }
-
   const groups = integer.split(GROUP_SEP);
   p.gSize = groups[1] ? groups[1].length : 0;
   p.lgSize = groups[2] || groups[1] ? (groups[2] || groups[1]).length : 0;
-
   if (negative) {
     const trunkLen = positive.length - p.posPre.length - p.posSuf.length,
-          pos = negative.indexOf(DIGIT_CHAR);
+      pos = negative.indexOf(DIGIT_CHAR);
     p.negPre = negative.substr(0, pos).replace(/'/g, '');
     p.negSuf = negative.substr(pos + trunkLen).replace(/'/g, '');
   } else {
     p.negPre = minusSign + p.posPre;
     p.negSuf = p.posSuf;
   }
-
   return p;
-} // Transforms a parsed number into a percentage by multiplying it by 100
-
-
+}
+// Transforms a parsed number into a percentage by multiplying it by 100
 function toPercent(parsedNumber) {
   // if the number is 0, don't do anything
   if (parsedNumber.digits[0] === 0) {
     return parsedNumber;
-  } // Getting the current number of decimals
-
-
+  }
+  // Getting the current number of decimals
   const fractionLen = parsedNumber.digits.length - parsedNumber.integerLen;
-
   if (parsedNumber.exponent) {
     parsedNumber.exponent += 2;
   } else {
@@ -7728,30 +7109,25 @@ function toPercent(parsedNumber) {
     } else if (fractionLen === 1) {
       parsedNumber.digits.push(0);
     }
-
     parsedNumber.integerLen += 2;
   }
-
   return parsedNumber;
 }
 /**
  * Parses a number.
  * Significant bits of this parse algorithm came from https://github.com/MikeMcl/big.js/
  */
-
-
 function parseNumber(num) {
   let numStr = Math.abs(num) + '';
   let exponent = 0,
-      digits,
-      integerLen;
-  let i, j, zeros; // Decimal point?
-
+    digits,
+    integerLen;
+  let i, j, zeros;
+  // Decimal point?
   if ((integerLen = numStr.indexOf(DECIMAL_SEP)) > -1) {
     numStr = numStr.replace(DECIMAL_SEP, '');
-  } // Exponential form?
-
-
+  }
+  // Exponential form?
   if ((i = numStr.search(/e/i)) > 0) {
     // Work out the exponent.
     if (integerLen < 0) integerLen = i;
@@ -7760,13 +7136,10 @@ function parseNumber(num) {
   } else if (integerLen < 0) {
     // There was no decimal point or exponent so it is an integer.
     integerLen = numStr.length;
-  } // Count the number of leading zeros.
-
-
-  for (i = 0; numStr.charAt(i) === ZERO_CHAR; i++) {
-    /* empty */
   }
-
+  // Count the number of leading zeros.
+  for (i = 0; numStr.charAt(i) === ZERO_CHAR; i++) {/* empty */
+  }
   if (i === (zeros = numStr.length)) {
     // The digits are all zero.
     digits = [0];
@@ -7774,25 +7147,21 @@ function parseNumber(num) {
   } else {
     // Count the number of trailing zeros
     zeros--;
-
-    while (numStr.charAt(zeros) === ZERO_CHAR) zeros--; // Trailing zeros are insignificant so ignore them
-
-
+    while (numStr.charAt(zeros) === ZERO_CHAR) zeros--;
+    // Trailing zeros are insignificant so ignore them
     integerLen -= i;
-    digits = []; // Convert string to array of digits without leading/trailing zeros.
-
+    digits = [];
+    // Convert string to array of digits without leading/trailing zeros.
     for (j = 0; i <= zeros; i++, j++) {
       digits[j] = Number(numStr.charAt(i));
     }
-  } // If the number overflows the maximum allowed digits then use an exponent.
-
-
+  }
+  // If the number overflows the maximum allowed digits then use an exponent.
   if (integerLen > MAX_DIGITS) {
     digits = digits.splice(0, MAX_DIGITS - 1);
     exponent = integerLen - 1;
     integerLen = 1;
   }
-
   return {
     digits,
     exponent,
@@ -7803,24 +7172,20 @@ function parseNumber(num) {
  * Round the parsed number to the specified number of decimal places
  * This function changes the parsedNumber in-place
  */
-
-
 function roundNumber(parsedNumber, minFrac, maxFrac) {
   if (minFrac > maxFrac) {
     throw new Error(`The minimum number of digits after fraction (${minFrac}) is higher than the maximum (${maxFrac}).`);
   }
-
   let digits = parsedNumber.digits;
   let fractionLen = digits.length - parsedNumber.integerLen;
-  const fractionSize = Math.min(Math.max(minFrac, fractionLen), maxFrac); // The index of the digit to where rounding is to occur
-
+  const fractionSize = Math.min(Math.max(minFrac, fractionLen), maxFrac);
+  // The index of the digit to where rounding is to occur
   let roundAt = fractionSize + parsedNumber.integerLen;
   let digit = digits[roundAt];
-
   if (roundAt > 0) {
     // Drop fractional digits beyond `roundAt`
-    digits.splice(Math.max(parsedNumber.integerLen, roundAt)); // Set non-fractional digits beyond `roundAt` to 0
-
+    digits.splice(Math.max(parsedNumber.integerLen, roundAt));
+    // Set non-fractional digits beyond `roundAt` to 0
     for (let j = roundAt; j < digits.length; j++) {
       digits[j] = 0;
     }
@@ -7830,36 +7195,30 @@ function roundNumber(parsedNumber, minFrac, maxFrac) {
     parsedNumber.integerLen = 1;
     digits.length = Math.max(1, roundAt = fractionSize + 1);
     digits[0] = 0;
-
     for (let i = 1; i < roundAt; i++) digits[i] = 0;
   }
-
   if (digit >= 5) {
     if (roundAt - 1 < 0) {
       for (let k = 0; k > roundAt; k--) {
         digits.unshift(0);
         parsedNumber.integerLen++;
       }
-
       digits.unshift(1);
       parsedNumber.integerLen++;
     } else {
       digits[roundAt - 1]++;
     }
-  } // Pad out with zeros to get the required fraction length
-
-
+  }
+  // Pad out with zeros to get the required fraction length
   for (; fractionLen < Math.max(0, fractionSize); fractionLen++) digits.push(0);
-
-  let dropTrailingZeros = fractionSize !== 0; // Minimal length = nb of decimals required + current nb of integers
+  let dropTrailingZeros = fractionSize !== 0;
+  // Minimal length = nb of decimals required + current nb of integers
   // Any number besides that is optional and can be removed if it's a trailing 0
-
-  const minLen = minFrac + parsedNumber.integerLen; // Do any carrying, e.g. a digit was rounded up to 10
-
+  const minLen = minFrac + parsedNumber.integerLen;
+  // Do any carrying, e.g. a digit was rounded up to 10
   const carry = digits.reduceRight(function (carry, d, i, digits) {
     d = d + carry;
     digits[i] = d < 10 ? d : d - 10; // d % 10
-
     if (dropTrailingZeros) {
       // Do not keep meaningless fractional trailing zeros (e.g. 15.52000 --> 15.52)
       if (digits[i] === 0 && i >= minLen) {
@@ -7868,25 +7227,21 @@ function roundNumber(parsedNumber, minFrac, maxFrac) {
         dropTrailingZeros = false;
       }
     }
-
     return d >= 10 ? 1 : 0; // Math.floor(d / 10);
   }, 0);
-
   if (carry) {
     digits.unshift(carry);
     parsedNumber.integerLen++;
   }
 }
-
 function parseIntAutoRadix(text) {
   const result = parseInt(text);
-
   if (isNaN(result)) {
     throw new Error('Invalid integer literal when parsing ' + text);
   }
-
   return result;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -7894,34 +7249,26 @@ function parseIntAutoRadix(text) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @publicApi
  */
-
-
 class NgLocalization {}
-
 NgLocalization.ɵfac = function NgLocalization_Factory(t) {
   return new (t || NgLocalization)();
 };
-
 NgLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: NgLocalization,
   factory: function NgLocalization_Factory(t) {
     let r = null;
-
     if (t) {
       r = new t();
     } else {
       r = (locale => new NgLocaleLocalization(locale))(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID));
     }
-
     return r;
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgLocalization, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -7937,25 +7284,18 @@ NgLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * - "=value" when the case exists,
  * - the plural category otherwise
  */
-
-
 function getPluralCategory(value, cases, ngLocalization, locale) {
   let key = `=${value}`;
-
   if (cases.indexOf(key) > -1) {
     return key;
   }
-
   key = ngLocalization.getPluralCategory(value, locale);
-
   if (cases.indexOf(key) > -1) {
     return key;
   }
-
   if (cases.indexOf('other') > -1) {
     return 'other';
   }
-
   throw new Error(`No plural message found for value "${value}"`);
 }
 /**
@@ -7963,49 +7303,36 @@ function getPluralCategory(value, cases, ngLocalization, locale) {
  *
  * @publicApi
  */
-
-
 class NgLocaleLocalization extends NgLocalization {
   constructor(locale) {
     super();
     this.locale = locale;
   }
-
   getPluralCategory(value, locale) {
     const plural = getLocalePluralCase(locale || this.locale)(value);
-
     switch (plural) {
       case Plural.Zero:
         return 'zero';
-
       case Plural.One:
         return 'one';
-
       case Plural.Two:
         return 'two';
-
       case Plural.Few:
         return 'few';
-
       case Plural.Many:
         return 'many';
-
       default:
         return 'other';
     }
   }
-
 }
-
 NgLocaleLocalization.ɵfac = function NgLocaleLocalization_Factory(t) {
   return new (t || NgLocaleLocalization)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID));
 };
-
 NgLocaleLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: NgLocaleLocalization,
   factory: NgLocaleLocalization.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgLocaleLocalization, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -8019,6 +7346,7 @@ NgLocaleLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8026,7 +7354,6 @@ NgLocaleLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Register global data to be used internally by Angular. See the
  * ["I18n guide"](guide/i18n-common-format-data-locale) to know how to import additional locale
@@ -8036,11 +7363,10 @@ NgLocaleLocalization.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  *
  * @publicApi
  */
-
-
 function registerLocaleData(data, localeId, extraData) {
   return (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵregisterLocaleData"])(data, localeId, extraData);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8048,22 +7374,18 @@ function registerLocaleData(data, localeId, extraData) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function parseCookieValue(cookieStr, name) {
   name = encodeURIComponent(name);
-
   for (const cookie of cookieStr.split(';')) {
     const eqIndex = cookie.indexOf('=');
     const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ''] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
-
     if (cookieName.trim() === name) {
       return decodeURIComponent(cookieValue);
     }
   }
-
   return null;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8071,7 +7393,6 @@ function parseCookieValue(cookieStr, name) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  *
@@ -8100,8 +7421,6 @@ function parseCookieValue(cookieStr, name) {
  *
  * @publicApi
  */
-
-
 class NgClass {
   constructor(_iterableDiffers, _keyValueDiffers, _ngEl, _renderer) {
     this._iterableDiffers = _iterableDiffers;
@@ -8113,26 +7432,18 @@ class NgClass {
     this._initialClasses = [];
     this._rawClass = null;
   }
-
   set klass(value) {
     this._removeClasses(this._initialClasses);
-
     this._initialClasses = typeof value === 'string' ? value.split(/\s+/) : [];
-
     this._applyClasses(this._initialClasses);
-
     this._applyClasses(this._rawClass);
   }
-
   set ngClass(value) {
     this._removeClasses(this._rawClass);
-
     this._applyClasses(this._initialClasses);
-
     this._iterableDiffer = null;
     this._keyValueDiffer = null;
     this._rawClass = typeof value === 'string' ? value.split(/\s+/) : value;
-
     if (this._rawClass) {
       if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisListLikeIterable"])(this._rawClass)) {
         this._iterableDiffer = this._iterableDiffers.find(this._rawClass).create();
@@ -8141,23 +7452,19 @@ class NgClass {
       }
     }
   }
-
   ngDoCheck() {
     if (this._iterableDiffer) {
       const iterableChanges = this._iterableDiffer.diff(this._rawClass);
-
       if (iterableChanges) {
         this._applyIterableChanges(iterableChanges);
       }
     } else if (this._keyValueDiffer) {
       const keyValueChanges = this._keyValueDiffer.diff(this._rawClass);
-
       if (keyValueChanges) {
         this._applyKeyValueChanges(keyValueChanges);
       }
     }
   }
-
   _applyKeyValueChanges(changes) {
     changes.forEachAddedItem(record => this._toggleClass(record.key, record.currentValue));
     changes.forEachChangedItem(record => this._toggleClass(record.key, record.currentValue));
@@ -8167,7 +7474,6 @@ class NgClass {
       }
     });
   }
-
   _applyIterableChanges(changes) {
     changes.forEachAddedItem(record => {
       if (typeof record.item === 'string') {
@@ -8186,8 +7492,6 @@ class NgClass {
    * For argument of type Map CSS class name in the map's key is toggled based on the value (added
    * for truthy and removed for falsy).
    */
-
-
   _applyClasses(rawClassVal) {
     if (rawClassVal) {
       if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
@@ -8201,8 +7505,6 @@ class NgClass {
    * Removes a collection of CSS classes from the DOM element. This is mostly useful for cleanup
    * purposes.
    */
-
-
   _removeClasses(rawClassVal) {
     if (rawClassVal) {
       if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
@@ -8212,10 +7514,8 @@ class NgClass {
       }
     }
   }
-
   _toggleClass(klass, enabled) {
     klass = klass.trim();
-
     if (klass) {
       klass.split(/\s+/g).forEach(klass => {
         if (enabled) {
@@ -8226,13 +7526,10 @@ class NgClass {
       });
     }
   }
-
 }
-
 NgClass.ɵfac = function NgClass_Factory(t) {
   return new (t || NgClass)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.IterableDiffers), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.KeyValueDiffers), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
 };
-
 NgClass.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgClass,
   selectors: [["", "ngClass", ""]],
@@ -8241,7 +7538,6 @@ NgClass.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     ngClass: "ngClass"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgClass, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -8269,6 +7565,7 @@ NgClass.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8276,7 +7573,6 @@ NgClass.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Instantiates a {@link Component} type and inserts its Host View into the current View.
  * `NgComponentOutlet` provides a declarative approach for dynamic component creation.
@@ -8332,8 +7628,6 @@ NgClass.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  * @publicApi
  * @ngModule CommonModule
  */
-
-
 class NgComponentOutlet {
   constructor(_viewContainerRef) {
     this._viewContainerRef = _viewContainerRef;
@@ -8341,19 +7635,13 @@ class NgComponentOutlet {
     this._moduleRef = null;
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     this._viewContainerRef.clear();
-
     this._componentRef = null;
-
     if (this.ngComponentOutlet) {
       const elInjector = this.ngComponentOutletInjector || this._viewContainerRef.parentInjector;
-
       if (changes['ngComponentOutletNgModuleFactory']) {
         if (this._moduleRef) this._moduleRef.destroy();
-
         if (this.ngComponentOutletNgModuleFactory) {
           const parentModule = elInjector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
           this._moduleRef = this.ngComponentOutletNgModuleFactory.create(parentModule.injector);
@@ -8361,25 +7649,19 @@ class NgComponentOutlet {
           this._moduleRef = null;
         }
       }
-
       const componentFactoryResolver = this._moduleRef ? this._moduleRef.componentFactoryResolver : elInjector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.ComponentFactoryResolver);
       const componentFactory = componentFactoryResolver.resolveComponentFactory(this.ngComponentOutlet);
       this._componentRef = this._viewContainerRef.createComponent(componentFactory, this._viewContainerRef.length, elInjector, this.ngComponentOutletContent);
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this._moduleRef) this._moduleRef.destroy();
   }
-
 }
-
 NgComponentOutlet.ɵfac = function NgComponentOutlet_Factory(t) {
   return new (t || NgComponentOutlet)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef));
 };
-
 NgComponentOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgComponentOutlet,
   selectors: [["", "ngComponentOutlet", ""]],
@@ -8391,7 +7673,6 @@ NgComponentOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgComponentOutlet, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -8417,6 +7698,7 @@ NgComponentOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8424,12 +7706,9 @@ NgComponentOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @publicApi
  */
-
-
 class NgForOfContext {
   constructor($implicit, ngForOf, index, count) {
     this.$implicit = $implicit;
@@ -8437,23 +7716,18 @@ class NgForOfContext {
     this.index = index;
     this.count = count;
   }
-
   get first() {
     return this.index === 0;
   }
-
   get last() {
     return this.index === this.count - 1;
   }
-
   get even() {
     return this.index % 2 === 0;
   }
-
   get odd() {
     return !this.even;
   }
-
 }
 /**
  * A [structural directive](guide/structural-directives) that renders
@@ -8553,8 +7827,6 @@ class NgForOfContext {
  * @ngModule CommonModule
  * @publicApi
  */
-
-
 class NgForOf {
   constructor(_viewContainer, _template, _differs) {
     this._viewContainer = _viewContainer;
@@ -8568,8 +7840,6 @@ class NgForOf {
    * The value of the iterable expression, which can be used as a
    * [template input variable](guide/structural-directives#shorthand).
    */
-
-
   set ngForOf(ngForOf) {
     this._ngForOf = ngForOf;
     this._ngForOfDirty = true;
@@ -8592,8 +7862,6 @@ class NgForOf {
    *
    * @see `TrackByFunction`
    */
-
-
   set ngForTrackBy(fn) {
     if ((typeof ngDevMode === 'undefined' || ngDevMode) && fn != null && typeof fn !== 'function') {
       // TODO(vicb): use a log service once there is a public one available
@@ -8601,10 +7869,8 @@ class NgForOf {
         console.warn(`trackBy must be a function, but received ${JSON.stringify(fn)}. ` + `See https://angular.io/api/common/NgForOf#change-propagation for more information.`);
       }
     }
-
     this._trackByFn = fn;
   }
-
   get ngForTrackBy() {
     return this._trackByFn;
   }
@@ -8612,8 +7878,6 @@ class NgForOf {
    * A reference to the template that is stamped out for each item in the iterable.
    * @see [template reference variable](guide/template-reference-variables)
    */
-
-
   set ngForTemplate(value) {
     // TODO(TS2.1): make TemplateRef<Partial<NgForRowOf<T>>> once we move to TS v2.1
     // The current type is too restrictive; a template that just uses index, for example,
@@ -8626,14 +7890,11 @@ class NgForOf {
    * Applies the changes when needed.
    * @nodoc
    */
-
-
   ngDoCheck() {
     if (this._ngForOfDirty) {
-      this._ngForOfDirty = false; // React on ngForOf changes only once all inputs have been initialized
-
+      this._ngForOfDirty = false;
+      // React on ngForOf changes only once all inputs have been initialized
       const value = this._ngForOf;
-
       if (!this._differ && value) {
         if (typeof ngDevMode === 'undefined' || ngDevMode) {
           try {
@@ -8650,14 +7911,11 @@ class NgForOf {
         }
       }
     }
-
     if (this._differ) {
       const changes = this._differ.diff(this._ngForOf);
-
       if (changes) this._applyChanges(changes);
     }
   }
-
   _applyChanges(changes) {
     const viewContainer = this._viewContainer;
     changes.forEachOperation((item, adjustedPreviousIndex, currentIndex) => {
@@ -8674,7 +7932,6 @@ class NgForOf {
         applyViewChange(view, item);
       }
     });
-
     for (let i = 0, ilen = viewContainer.length; i < ilen; i++) {
       const viewRef = viewContainer.get(i);
       const context = viewRef.context;
@@ -8682,7 +7939,6 @@ class NgForOf {
       context.count = ilen;
       context.ngForOf = this._ngForOf;
     }
-
     changes.forEachIdentityChange(record => {
       const viewRef = viewContainer.get(record.currentIndex);
       applyViewChange(viewRef, record);
@@ -8694,18 +7950,13 @@ class NgForOf {
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgForOf` structural directive renders its template with a specific context type.
    */
-
-
   static ngTemplateContextGuard(dir, ctx) {
     return true;
   }
-
 }
-
 NgForOf.ɵfac = function NgForOf_Factory(t) {
   return new (t || NgForOf)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.TemplateRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.IterableDiffers));
 };
-
 NgForOf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgForOf,
   selectors: [["", "ngFor", "", "ngForOf", ""]],
@@ -8715,7 +7966,6 @@ NgForOf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     ngForTemplate: "ngForTemplate"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgForOf, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -8742,14 +7992,13 @@ NgForOf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     }]
   });
 })();
-
 function applyViewChange(view, record) {
   view.context.$implicit = record.item;
 }
-
 function getTypeName(type) {
   return type['name'] || typeof type;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -8757,7 +8006,6 @@ function getTypeName(type) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A structural directive that conditionally includes a template based on the value of
  * an expression coerced to Boolean.
@@ -8897,8 +8145,6 @@ function getTypeName(type) {
  * @ngModule CommonModule
  * @publicApi
  */
-
-
 class NgIf {
   constructor(_viewContainer, templateRef) {
     this._viewContainer = _viewContainer;
@@ -8912,45 +8158,33 @@ class NgIf {
   /**
    * The Boolean expression to evaluate as the condition for showing a template.
    */
-
-
   set ngIf(condition) {
     this._context.$implicit = this._context.ngIf = condition;
-
     this._updateView();
   }
   /**
    * A template to show if the condition expression evaluates to true.
    */
-
-
   set ngIfThen(templateRef) {
     assertTemplate('ngIfThen', templateRef);
     this._thenTemplateRef = templateRef;
     this._thenViewRef = null; // clear previous view if any.
-
     this._updateView();
   }
   /**
    * A template to show if the condition expression evaluates to false.
    */
-
-
   set ngIfElse(templateRef) {
     assertTemplate('ngIfElse', templateRef);
     this._elseTemplateRef = templateRef;
     this._elseViewRef = null; // clear previous view if any.
-
     this._updateView();
   }
-
   _updateView() {
     if (this._context.$implicit) {
       if (!this._thenViewRef) {
         this._viewContainer.clear();
-
         this._elseViewRef = null;
-
         if (this._thenTemplateRef) {
           this._thenViewRef = this._viewContainer.createEmbeddedView(this._thenTemplateRef, this._context);
         }
@@ -8958,9 +8192,7 @@ class NgIf {
     } else {
       if (!this._elseViewRef) {
         this._viewContainer.clear();
-
         this._thenViewRef = null;
-
         if (this._elseTemplateRef) {
           this._elseViewRef = this._viewContainer.createEmbeddedView(this._elseTemplateRef, this._context);
         }
@@ -8973,18 +8205,13 @@ class NgIf {
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgIf` structural directive renders its template with a specific context type.
    */
-
-
   static ngTemplateContextGuard(dir, ctx) {
     return true;
   }
-
 }
-
 NgIf.ɵfac = function NgIf_Factory(t) {
   return new (t || NgIf)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.TemplateRef));
 };
-
 NgIf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgIf,
   selectors: [["", "ngIf", ""]],
@@ -8994,7 +8221,6 @@ NgIf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     ngIfElse: "ngIfElse"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgIf, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9022,23 +8248,19 @@ NgIf.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 /**
  * @publicApi
  */
-
-
 class NgIfContext {
   constructor() {
     this.$implicit = null;
     this.ngIf = null;
   }
-
 }
-
 function assertTemplate(property, templateRef) {
   const isTemplateRefOrNull = !!(!templateRef || templateRef.createEmbeddedView);
-
   if (!isTemplateRefOrNull) {
     throw new Error(`${property} must be a TemplateRef, but received '${(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵstringify"])(templateRef)}'.`);
   }
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9046,27 +8268,20 @@ function assertTemplate(property, templateRef) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class SwitchView {
   constructor(_viewContainerRef, _templateRef) {
     this._viewContainerRef = _viewContainerRef;
     this._templateRef = _templateRef;
     this._created = false;
   }
-
   create() {
     this._created = true;
-
     this._viewContainerRef.createEmbeddedView(this._templateRef);
   }
-
   destroy() {
     this._created = false;
-
     this._viewContainerRef.clear();
   }
-
   enforceState(created) {
     if (created && !this._created) {
       this.create();
@@ -9074,7 +8289,6 @@ class SwitchView {
       this.destroy();
     }
   }
-
 }
 /**
  * @ngModule CommonModule
@@ -9142,8 +8356,6 @@ class SwitchView {
  * @see [Structural Directives](guide/structural-directives)
  *
  */
-
-
 class NgSwitch {
   constructor() {
     this._defaultUsed = false;
@@ -9151,65 +8363,48 @@ class NgSwitch {
     this._lastCaseCheckIndex = 0;
     this._lastCasesMatched = false;
   }
-
   set ngSwitch(newValue) {
     this._ngSwitch = newValue;
-
     if (this._caseCount === 0) {
       this._updateDefaultCases(true);
     }
   }
   /** @internal */
-
-
   _addCase() {
     return this._caseCount++;
   }
   /** @internal */
-
-
   _addDefault(view) {
     if (!this._defaultViews) {
       this._defaultViews = [];
     }
-
     this._defaultViews.push(view);
   }
   /** @internal */
-
-
   _matchCase(value) {
     const matched = value == this._ngSwitch;
     this._lastCasesMatched = this._lastCasesMatched || matched;
     this._lastCaseCheckIndex++;
-
     if (this._lastCaseCheckIndex === this._caseCount) {
       this._updateDefaultCases(!this._lastCasesMatched);
-
       this._lastCaseCheckIndex = 0;
       this._lastCasesMatched = false;
     }
-
     return matched;
   }
-
   _updateDefaultCases(useDefault) {
     if (this._defaultViews && useDefault !== this._defaultUsed) {
       this._defaultUsed = useDefault;
-
       for (let i = 0; i < this._defaultViews.length; i++) {
         const defaultView = this._defaultViews[i];
         defaultView.enforceState(useDefault);
       }
     }
   }
-
 }
-
 NgSwitch.ɵfac = function NgSwitch_Factory(t) {
   return new (t || NgSwitch)();
 };
-
 NgSwitch.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgSwitch,
   selectors: [["", "ngSwitch", ""]],
@@ -9217,7 +8412,6 @@ NgSwitch.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
     ngSwitch: "ngSwitch"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgSwitch, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9263,36 +8457,26 @@ NgSwitch.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
  * @see `NgSwitchDefault`
  *
  */
-
-
 class NgSwitchCase {
   constructor(viewContainer, templateRef, ngSwitch) {
     this.ngSwitch = ngSwitch;
-
     if ((typeof ngDevMode === 'undefined' || ngDevMode) && !ngSwitch) {
       throwNgSwitchProviderNotFoundError('ngSwitchCase', 'NgSwitchCase');
     }
-
     ngSwitch._addCase();
-
     this._view = new SwitchView(viewContainer, templateRef);
   }
   /**
    * Performs case matching. For internal use only.
    * @nodoc
    */
-
-
   ngDoCheck() {
     this._view.enforceState(this.ngSwitch._matchCase(this.ngSwitchCase));
   }
-
 }
-
 NgSwitchCase.ɵfac = function NgSwitchCase_Factory(t) {
   return new (t || NgSwitchCase)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.TemplateRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgSwitch, 9));
 };
-
 NgSwitchCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgSwitchCase,
   selectors: [["", "ngSwitchCase", ""]],
@@ -9300,7 +8484,6 @@ NgSwitchCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     ngSwitchCase: "ngSwitchCase"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgSwitchCase, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9340,28 +8523,21 @@ NgSwitchCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * @see `NgSwitchCase`
  *
  */
-
-
 class NgSwitchDefault {
   constructor(viewContainer, templateRef, ngSwitch) {
     if ((typeof ngDevMode === 'undefined' || ngDevMode) && !ngSwitch) {
       throwNgSwitchProviderNotFoundError('ngSwitchDefault', 'NgSwitchDefault');
     }
-
     ngSwitch._addDefault(new SwitchView(viewContainer, templateRef));
   }
-
 }
-
 NgSwitchDefault.ɵfac = function NgSwitchDefault_Factory(t) {
   return new (t || NgSwitchDefault)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.TemplateRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgSwitch, 9));
 };
-
 NgSwitchDefault.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgSwitchDefault,
   selectors: [["", "ngSwitchDefault", ""]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgSwitchDefault, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9383,12 +8559,10 @@ NgSwitchDefault.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }];
   }, null);
 })();
-
 function throwNgSwitchProviderNotFoundError(attrName, directiveName) {
-  throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](2000
-  /* PARENT_NG_SWITCH_NOT_FOUND */
-  , `An element with the "${attrName}" attribute ` + `(matching the "${directiveName}" directive) must be located inside an element with the "ngSwitch" attribute ` + `(matching "NgSwitch" directive)`);
+  throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](2000 /* PARENT_NG_SWITCH_NOT_FOUND */, `An element with the "${attrName}" attribute ` + `(matching the "${directiveName}" directive) must be located inside an element with the "ngSwitch" attribute ` + `(matching "NgSwitch" directive)`);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9396,7 +8570,6 @@ function throwNgSwitchProviderNotFoundError(attrName, directiveName) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  *
@@ -9428,51 +8601,37 @@ function throwNgSwitchProviderNotFoundError(attrName, directiveName) {
  *
  * @publicApi
  */
-
-
 class NgPlural {
   constructor(_localization) {
     this._localization = _localization;
     this._caseViews = {};
   }
-
   set ngPlural(value) {
     this._switchValue = value;
-
     this._updateView();
   }
-
   addCase(value, switchView) {
     this._caseViews[value] = switchView;
   }
-
   _updateView() {
     this._clearViews();
-
     const cases = Object.keys(this._caseViews);
     const key = getPluralCategory(this._switchValue, cases, this._localization);
-
     this._activateView(this._caseViews[key]);
   }
-
   _clearViews() {
     if (this._activeView) this._activeView.destroy();
   }
-
   _activateView(view) {
     if (view) {
       this._activeView = view;
-
       this._activeView.create();
     }
   }
-
 }
-
 NgPlural.ɵfac = function NgPlural_Factory(t) {
   return new (t || NgPlural)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgLocalization));
 };
-
 NgPlural.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgPlural,
   selectors: [["", "ngPlural", ""]],
@@ -9480,7 +8639,6 @@ NgPlural.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
     ngPlural: "ngPlural"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgPlural, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9517,26 +8675,20 @@ NgPlural.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
  *
  * @publicApi
  */
-
-
 class NgPluralCase {
   constructor(value, template, viewContainer, ngPlural) {
     this.value = value;
     const isANumber = !isNaN(Number(value));
     ngPlural.addCase(isANumber ? `=${value}` : value, new SwitchView(viewContainer, template));
   }
-
 }
-
 NgPluralCase.ɵfac = function NgPluralCase_Factory(t) {
   return new (t || NgPluralCase)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectAttribute"]('ngPluralCase'), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.TemplateRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgPlural, 1));
 };
-
 NgPluralCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgPluralCase,
   selectors: [["", "ngPluralCase", ""]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgPluralCase, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9562,6 +8714,7 @@ NgPluralCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9569,7 +8722,6 @@ NgPluralCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  *
@@ -9606,8 +8758,6 @@ NgPluralCase.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  *
  * @publicApi
  */
-
-
 class NgStyle {
   constructor(_ngEl, _differs, _renderer) {
     this._ngEl = _ngEl;
@@ -9616,48 +8766,38 @@ class NgStyle {
     this._ngStyle = null;
     this._differ = null;
   }
-
   set ngStyle(values) {
     this._ngStyle = values;
-
     if (!this._differ && values) {
       this._differ = this._differs.find(values).create();
     }
   }
-
   ngDoCheck() {
     if (this._differ) {
       const changes = this._differ.diff(this._ngStyle);
-
       if (changes) {
         this._applyChanges(changes);
       }
     }
   }
-
   _setStyle(nameAndUnit, value) {
     const [name, unit] = nameAndUnit.split('.');
     value = value != null && unit ? `${value}${unit}` : value;
-
     if (value != null) {
       this._renderer.setStyle(this._ngEl.nativeElement, name, value);
     } else {
       this._renderer.removeStyle(this._ngEl.nativeElement, name);
     }
   }
-
   _applyChanges(changes) {
     changes.forEachRemovedItem(record => this._setStyle(record.key, null));
     changes.forEachAddedItem(record => this._setStyle(record.key, record.currentValue));
     changes.forEachChangedItem(record => this._setStyle(record.key, record.currentValue));
   }
-
 }
-
 NgStyle.ɵfac = function NgStyle_Factory(t) {
   return new (t || NgStyle)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.KeyValueDiffers), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
 };
-
 NgStyle.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgStyle,
   selectors: [["", "ngStyle", ""]],
@@ -9665,7 +8805,6 @@ NgStyle.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     ngStyle: "ngStyle"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgStyle, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9687,6 +8826,7 @@ NgStyle.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9694,7 +8834,6 @@ NgStyle.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  *
@@ -9719,8 +8858,6 @@ NgStyle.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  *
  * @publicApi
  */
-
-
 class NgTemplateOutlet {
   constructor(_viewContainerRef) {
     this._viewContainerRef = _viewContainerRef;
@@ -9731,37 +8868,28 @@ class NgTemplateOutlet {
      * declarations.
      * Using the key `$implicit` in the context object will set its value as default.
      */
-
     this.ngTemplateOutletContext = null;
     /**
      * A string defining the template reference and optionally the context object for the template.
      */
-
     this.ngTemplateOutlet = null;
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     if (changes['ngTemplateOutlet']) {
       const viewContainerRef = this._viewContainerRef;
-
       if (this._viewRef) {
         viewContainerRef.remove(viewContainerRef.indexOf(this._viewRef));
       }
-
       this._viewRef = this.ngTemplateOutlet ? viewContainerRef.createEmbeddedView(this.ngTemplateOutlet, this.ngTemplateOutletContext) : null;
     } else if (this._viewRef && changes['ngTemplateOutletContext'] && this.ngTemplateOutletContext) {
       this._viewRef.context = this.ngTemplateOutletContext;
     }
   }
-
 }
-
 NgTemplateOutlet.ɵfac = function NgTemplateOutlet_Factory(t) {
   return new (t || NgTemplateOutlet)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef));
 };
-
 NgTemplateOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgTemplateOutlet,
   selectors: [["", "ngTemplateOutlet", ""]],
@@ -9771,7 +8899,6 @@ NgTemplateOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgTemplateOutlet, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -9791,6 +8918,7 @@ NgTemplateOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9798,14 +8926,12 @@ NgTemplateOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A collection of Angular directives that are likely to be used in each and every Angular
  * application.
  */
-
-
 const COMMON_DIRECTIVES = [NgClass, NgComponentOutlet, NgForOf, NgIf, NgTemplateOutlet, NgStyle, NgSwitch, NgSwitchCase, NgSwitchDefault, NgPlural, NgPluralCase];
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9813,13 +8939,11 @@ const COMMON_DIRECTIVES = [NgClass, NgComponentOutlet, NgForOf, NgIf, NgTemplate
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 function invalidPipeArgumentError(type, value) {
   const errorMessage = typeof ngDevMode === 'undefined' || ngDevMode ? `InvalidPipeArgument: '${value}' for pipe '${(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵstringify"])(type)}'` : '';
-  return new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](2100
-  /* INVALID_PIPE_ARGUMENT */
-  , errorMessage);
+  return new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](2100 /* INVALID_PIPE_ARGUMENT */, errorMessage);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9827,8 +8951,6 @@ function invalidPipeArgumentError(type, value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class SubscribableStrategy {
   createSubscription(async, updateLatestValue) {
     return async.subscribe({
@@ -9838,32 +8960,23 @@ class SubscribableStrategy {
       }
     });
   }
-
   dispose(subscription) {
     subscription.unsubscribe();
   }
-
   onDestroy(subscription) {
     subscription.unsubscribe();
   }
-
 }
-
 class PromiseStrategy {
   createSubscription(async, updateLatestValue) {
     return async.then(updateLatestValue, e => {
       throw e;
     });
   }
-
   dispose(subscription) {}
-
   onDestroy(subscription) {}
-
 }
-
 const _promiseStrategy = new PromiseStrategy();
-
 const _subscribableStrategy = new SubscribableStrategy();
 /**
  * @ngModule CommonModule
@@ -9893,8 +9006,6 @@ const _subscribableStrategy = new SubscribableStrategy();
  *
  * @publicApi
  */
-
-
 class AsyncPipe {
   constructor(_ref) {
     this._ref = _ref;
@@ -9903,77 +9014,59 @@ class AsyncPipe {
     this._obj = null;
     this._strategy = null;
   }
-
   ngOnDestroy() {
     if (this._subscription) {
       this._dispose();
     }
   }
-
   transform(obj) {
     if (!this._obj) {
       if (obj) {
         this._subscribe(obj);
       }
-
       return this._latestValue;
     }
-
     if (obj !== this._obj) {
       this._dispose();
-
       return this.transform(obj);
     }
-
     return this._latestValue;
   }
-
   _subscribe(obj) {
     this._obj = obj;
     this._strategy = this._selectStrategy(obj);
     this._subscription = this._strategy.createSubscription(obj, value => this._updateLatestValue(obj, value));
   }
-
   _selectStrategy(obj) {
     if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisPromise"])(obj)) {
       return _promiseStrategy;
     }
-
     if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisSubscribable"])(obj)) {
       return _subscribableStrategy;
     }
-
     throw invalidPipeArgumentError(AsyncPipe, obj);
   }
-
   _dispose() {
     this._strategy.dispose(this._subscription);
-
     this._latestValue = null;
     this._subscription = null;
     this._obj = null;
   }
-
   _updateLatestValue(async, value) {
     if (async === this._obj) {
       this._latestValue = value;
-
       this._ref.markForCheck();
     }
   }
-
 }
-
 AsyncPipe.ɵfac = function AsyncPipe_Factory(t) {
   return new (t || AsyncPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef, 16));
 };
-
 AsyncPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "async",
   type: AsyncPipe,
   pure: false
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AsyncPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -9987,6 +9080,7 @@ AsyncPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9994,7 +9088,6 @@ AsyncPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Transforms text to all lower case.
  *
@@ -10010,31 +9103,23 @@ AsyncPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
  * @ngModule CommonModule
  * @publicApi
  */
-
-
 class LowerCasePipe {
   transform(value) {
     if (value == null) return null;
-
     if (typeof value !== 'string') {
       throw invalidPipeArgumentError(LowerCasePipe, value);
     }
-
     return value.toLowerCase();
   }
-
 }
-
 LowerCasePipe.ɵfac = function LowerCasePipe_Factory(t) {
   return new (t || LowerCasePipe)();
 };
-
 LowerCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "lowercase",
   type: LowerCasePipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](LowerCasePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10042,7 +9127,8 @@ LowerCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
       name: 'lowercase'
     }]
   }], null, null);
-})(); //
+})();
+//
 // Regex below matches any Unicode word and number compatible with ES5. In ES2018 the same result
 // can be achieved by using /[0-9\p{L}]\S*/gu and also known as Unicode Property Escapes
 // (https://2ality.com/2017/07/regexp-unicode-property-escapes.html). Since there is no
@@ -10050,8 +9136,6 @@ LowerCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
 // to use already transpiled form. Example can be found here -
 // https://mothereff.in/regexpu#input=var+regex+%3D+%2F%5B0-9%5Cp%7BL%7D%5D%5CS*%2Fgu%3B%0A%0A&unicodePropertyEscape=1
 //
-
-
 const unicodeWordMatch = /(?:[0-9A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD50-\uDD52\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E]|\uD838[\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF38\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A])\S*/g;
 /**
  * Transforms text to title case.
@@ -10070,30 +9154,23 @@ const unicodeWordMatch = /(?:[0-9A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1
  * @ngModule CommonModule
  * @publicApi
  */
-
 class TitleCasePipe {
   transform(value) {
     if (value == null) return null;
-
     if (typeof value !== 'string') {
       throw invalidPipeArgumentError(TitleCasePipe, value);
     }
-
     return value.replace(unicodeWordMatch, txt => txt[0].toUpperCase() + txt.substr(1).toLowerCase());
   }
-
 }
-
 TitleCasePipe.ɵfac = function TitleCasePipe_Factory(t) {
   return new (t || TitleCasePipe)();
 };
-
 TitleCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "titlecase",
   type: TitleCasePipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TitleCasePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10110,31 +9187,23 @@ TitleCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
  * @ngModule CommonModule
  * @publicApi
  */
-
-
 class UpperCasePipe {
   transform(value) {
     if (value == null) return null;
-
     if (typeof value !== 'string') {
       throw invalidPipeArgumentError(UpperCasePipe, value);
     }
-
     return value.toUpperCase();
   }
-
 }
-
 UpperCasePipe.ɵfac = function UpperCasePipe_Factory(t) {
   return new (t || UpperCasePipe)();
 };
-
 UpperCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "uppercase",
   type: UpperCasePipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UpperCasePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10143,6 +9212,7 @@ UpperCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10150,15 +9220,12 @@ UpperCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Optionally-provided default timezone to use for all instances of `DatePipe` (such as `'+0430'`).
  * If the value isn't provided, the `DatePipe` will use the end-user's local system timezone.
  */
-
-
-const DATE_PIPE_DEFAULT_TIMEZONE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('DATE_PIPE_DEFAULT_TIMEZONE'); // clang-format off
-
+const DATE_PIPE_DEFAULT_TIMEZONE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('DATE_PIPE_DEFAULT_TIMEZONE');
+// clang-format off
 /**
  * @ngModule CommonModule
  * @description
@@ -10317,37 +9384,29 @@ const DATE_PIPE_DEFAULT_TIMEZONE = new _angular_core__WEBPACK_IMPORTED_MODULE_0_
  * @publicApi
  */
 // clang-format on
-
 class DatePipe {
   constructor(locale, defaultTimezone) {
     this.locale = locale;
     this.defaultTimezone = defaultTimezone;
   }
-
   transform(value, format = 'mediumDate', timezone, locale) {
     var _a;
-
     if (value == null || value === '' || value !== value) return null;
-
     try {
       return formatDate(value, format, locale || this.locale, (_a = timezone !== null && timezone !== void 0 ? timezone : this.defaultTimezone) !== null && _a !== void 0 ? _a : undefined);
     } catch (error) {
       throw invalidPipeArgumentError(DatePipe, error.message);
     }
   }
-
 }
-
 DatePipe.ɵfac = function DatePipe_Factory(t) {
   return new (t || DatePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](DATE_PIPE_DEFAULT_TIMEZONE, 24));
 };
-
 DatePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "date",
   type: DatePipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DatePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10373,6 +9432,7 @@ DatePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10380,8 +9440,6 @@ DatePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const _INTERPOLATION_REGEXP = /#/g;
 /**
  * @ngModule CommonModule
@@ -10397,7 +9455,6 @@ const _INTERPOLATION_REGEXP = /#/g;
  *
  * @publicApi
  */
-
 class I18nPluralPipe {
   constructor(_localization) {
     this._localization = _localization;
@@ -10409,31 +9466,23 @@ class I18nPluralPipe {
    * @param locale a `string` defining the locale to use (uses the current {@link LOCALE_ID} by
    * default).
    */
-
-
   transform(value, pluralMap, locale) {
     if (value == null) return '';
-
     if (typeof pluralMap !== 'object' || pluralMap === null) {
       throw invalidPipeArgumentError(I18nPluralPipe, pluralMap);
     }
-
     const key = getPluralCategory(value, Object.keys(pluralMap), this._localization, locale);
     return pluralMap[key].replace(_INTERPOLATION_REGEXP, value.toString());
   }
-
 }
-
 I18nPluralPipe.ɵfac = function I18nPluralPipe_Factory(t) {
   return new (t || I18nPluralPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgLocalization, 16));
 };
-
 I18nPluralPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "i18nPlural",
   type: I18nPluralPipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](I18nPluralPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10447,6 +9496,7 @@ I18nPluralPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10454,7 +9504,6 @@ I18nPluralPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  * @description
@@ -10472,8 +9521,6 @@ I18nPluralPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  *
  * @publicApi
  */
-
-
 class I18nSelectPipe {
   /**
    * @param value a string to be internationalized.
@@ -10482,34 +9529,26 @@ class I18nSelectPipe {
    */
   transform(value, mapping) {
     if (value == null) return '';
-
     if (typeof mapping !== 'object' || typeof value !== 'string') {
       throw invalidPipeArgumentError(I18nSelectPipe, mapping);
     }
-
     if (mapping.hasOwnProperty(value)) {
       return mapping[value];
     }
-
     if (mapping.hasOwnProperty('other')) {
       return mapping['other'];
     }
-
     return '';
   }
-
 }
-
 I18nSelectPipe.ɵfac = function I18nSelectPipe_Factory(t) {
   return new (t || I18nSelectPipe)();
 };
-
 I18nSelectPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "i18nSelect",
   type: I18nSelectPipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](I18nSelectPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10519,6 +9558,7 @@ I18nSelectPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10526,7 +9566,6 @@ I18nSelectPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  * @description
@@ -10542,8 +9581,6 @@ I18nSelectPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  *
  * @publicApi
  */
-
-
 class JsonPipe {
   /**
    * @param value A value of any type to convert into a JSON-format string.
@@ -10551,19 +9588,15 @@ class JsonPipe {
   transform(value) {
     return JSON.stringify(value, null, 2);
   }
-
 }
-
 JsonPipe.ɵfac = function JsonPipe_Factory(t) {
   return new (t || JsonPipe)();
 };
-
 JsonPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "json",
   type: JsonPipe,
   pure: false
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JsonPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10573,6 +9606,7 @@ JsonPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10580,8 +9614,6 @@ JsonPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function makeKeyValuePair(key, value) {
   return {
     key: key,
@@ -10608,55 +9640,43 @@ function makeKeyValuePair(key, value) {
  *
  * @publicApi
  */
-
-
 class KeyValuePipe {
   constructor(differs) {
     this.differs = differs;
     this.keyValues = [];
     this.compareFn = defaultComparator;
   }
-
   transform(input, compareFn = defaultComparator) {
     if (!input || !(input instanceof Map) && typeof input !== 'object') {
       return null;
     }
-
     if (!this.differ) {
       // make a differ for whatever type we've been passed in
       this.differ = this.differs.find(input).create();
     }
-
     const differChanges = this.differ.diff(input);
     const compareFnChanged = compareFn !== this.compareFn;
-
     if (differChanges) {
       this.keyValues = [];
       differChanges.forEachItem(r => {
         this.keyValues.push(makeKeyValuePair(r.key, r.currentValue));
       });
     }
-
     if (differChanges || compareFnChanged) {
       this.keyValues.sort(compareFn);
       this.compareFn = compareFn;
     }
-
     return this.keyValues;
   }
-
 }
-
 KeyValuePipe.ɵfac = function KeyValuePipe_Factory(t) {
   return new (t || KeyValuePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.KeyValueDiffers, 16));
 };
-
 KeyValuePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "keyvalue",
   type: KeyValuePipe,
   pure: false
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](KeyValuePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10670,36 +9690,32 @@ KeyValuePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
     }];
   }, null);
 })();
-
 function defaultComparator(keyValueA, keyValueB) {
   const a = keyValueA.key;
-  const b = keyValueB.key; // if same exit with 0;
-
-  if (a === b) return 0; // make sure that undefined are at the end of the sort.
-
+  const b = keyValueB.key;
+  // if same exit with 0;
+  if (a === b) return 0;
+  // make sure that undefined are at the end of the sort.
   if (a === undefined) return 1;
-  if (b === undefined) return -1; // make sure that nulls are at the end of the sort.
-
+  if (b === undefined) return -1;
+  // make sure that nulls are at the end of the sort.
   if (a === null) return 1;
   if (b === null) return -1;
-
   if (typeof a == 'string' && typeof b == 'string') {
     return a < b ? -1 : 1;
   }
-
   if (typeof a == 'number' && typeof b == 'number') {
     return a - b;
   }
-
   if (typeof a == 'boolean' && typeof b == 'boolean') {
     return a < b ? -1 : 1;
-  } // `a` and `b` are of different types. Compare their string values.
-
-
+  }
+  // `a` and `b` are of different types. Compare their string values.
   const aString = String(a);
   const bString = String(b);
   return aString == bString ? 0 : aString < bString ? -1 : 1;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -10707,7 +9723,6 @@ function defaultComparator(keyValueA, keyValueB) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  * @description
@@ -10771,8 +9786,6 @@ function defaultComparator(keyValueA, keyValueB) {
  *
  * @publicApi
  */
-
-
 class DecimalPipe {
   constructor(_locale) {
     this._locale = _locale;
@@ -10784,12 +9797,9 @@ class DecimalPipe {
    * @param locale Specifies what locale format rules to use.
    * [See more](#locale).
    */
-
-
   transform(value, digitsInfo, locale) {
     if (!isValue(value)) return null;
     locale = locale || this._locale;
-
     try {
       const num = strToNumber(value);
       return formatNumber(num, locale, digitsInfo);
@@ -10797,19 +9807,15 @@ class DecimalPipe {
       throw invalidPipeArgumentError(DecimalPipe, error.message);
     }
   }
-
 }
-
 DecimalPipe.ɵfac = function DecimalPipe_Factory(t) {
   return new (t || DecimalPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16));
 };
-
 DecimalPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "number",
   type: DecimalPipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DecimalPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10846,8 +9852,6 @@ DecimalPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  *
  * @publicApi
  */
-
-
 class PercentPipe {
   constructor(_locale) {
     this._locale = _locale;
@@ -10868,12 +9872,9 @@ class PercentPipe {
    * When not supplied, uses the value of `LOCALE_ID`, which is `en-US` by default.
    * See [Setting your app locale](guide/i18n-common-locale-id).
    */
-
-
   transform(value, digitsInfo, locale) {
     if (!isValue(value)) return null;
     locale = locale || this._locale;
-
     try {
       const num = strToNumber(value);
       return formatPercent(num, locale, digitsInfo);
@@ -10881,19 +9882,15 @@ class PercentPipe {
       throw invalidPipeArgumentError(PercentPipe, error.message);
     }
   }
-
 }
-
 PercentPipe.ɵfac = function PercentPipe_Factory(t) {
   return new (t || PercentPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16));
 };
-
 PercentPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "percent",
   type: PercentPipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PercentPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -10950,8 +9947,6 @@ PercentPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  *
  * @publicApi
  */
-
-
 class CurrencyPipe {
   constructor(_locale, _defaultCurrencyCode = 'USD') {
     this._locale = _locale;
@@ -10990,22 +9985,16 @@ class CurrencyPipe {
    * When not supplied, uses the value of `LOCALE_ID`, which is `en-US` by default.
    * See [Setting your app locale](guide/i18n-common-locale-id).
    */
-
-
   transform(value, currencyCode = this._defaultCurrencyCode, display = 'symbol', digitsInfo, locale) {
     if (!isValue(value)) return null;
     locale = locale || this._locale;
-
     if (typeof display === 'boolean') {
       if ((typeof ngDevMode === 'undefined' || ngDevMode) && console && console.warn) {
         console.warn(`Warning: the currency pipe has been changed in Angular v5. The symbolDisplay option (third parameter) is now a string instead of a boolean. The accepted values are "code", "symbol" or "symbol-narrow".`);
       }
-
       display = display ? 'symbol' : 'code';
     }
-
     let currency = currencyCode || this._defaultCurrencyCode;
-
     if (display !== 'code') {
       if (display === 'symbol' || display === 'symbol-narrow') {
         currency = getCurrencySymbol(currency, display === 'symbol' ? 'wide' : 'narrow', locale);
@@ -11013,7 +10002,6 @@ class CurrencyPipe {
         currency = display;
       }
     }
-
     try {
       const num = strToNumber(value);
       return formatCurrency(num, locale, currency, currencyCode, digitsInfo);
@@ -11021,19 +10009,15 @@ class CurrencyPipe {
       throw invalidPipeArgumentError(CurrencyPipe, error.message);
     }
   }
-
 }
-
 CurrencyPipe.ɵfac = function CurrencyPipe_Factory(t) {
   return new (t || CurrencyPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_CURRENCY_CODE, 16));
 };
-
 CurrencyPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "currency",
   type: CurrencyPipe,
   pure: true
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CurrencyPipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -11056,27 +10040,23 @@ CurrencyPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
     }];
   }, null);
 })();
-
 function isValue(value) {
   return !(value == null || value === '' || value !== value);
 }
 /**
  * Transforms a string into a number (if needed).
  */
-
-
 function strToNumber(value) {
   // Convert strings to numbers
   if (typeof value === 'string' && !isNaN(Number(value) - parseFloat(value))) {
     return Number(value);
   }
-
   if (typeof value !== 'number') {
     throw new Error(`${value} is not a number`);
   }
-
   return value;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11084,7 +10064,6 @@ function strToNumber(value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @ngModule CommonModule
  * @description
@@ -11120,35 +10099,26 @@ function strToNumber(value) {
  *
  * @publicApi
  */
-
-
 class SlicePipe {
   transform(value, start, end) {
     if (value == null) return null;
-
     if (!this.supports(value)) {
       throw invalidPipeArgumentError(SlicePipe, value);
     }
-
     return value.slice(start, end);
   }
-
   supports(obj) {
     return typeof obj === 'string' || Array.isArray(obj);
   }
-
 }
-
 SlicePipe.ɵfac = function SlicePipe_Factory(t) {
   return new (t || SlicePipe)();
 };
-
 SlicePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
   name: "slice",
   type: SlicePipe,
   pure: false
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SlicePipe, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Pipe,
@@ -11158,6 +10128,7 @@ SlicePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11165,13 +10136,11 @@ SlicePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A collection of Angular pipes that are likely to be used in each and every application.
  */
-
-
 const COMMON_PIPES = [AsyncPipe, UpperCasePipe, LowerCasePipe, JsonPipe, SlicePipe, DecimalPipe, PercentPipe, TitleCasePipe, CurrencyPipe, DatePipe, I18nPluralPipe, I18nSelectPipe, KeyValuePipe];
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11181,7 +10150,6 @@ const COMMON_PIPES = [AsyncPipe, UpperCasePipe, LowerCasePipe, JsonPipe, SlicePi
  */
 // Note: This does not contain the location providers,
 // as they need some platform specific implementations to work.
-
 /**
  * Exports all the basic Angular directives and pipes,
  * such as `NgIf`, `NgForOf`, `DecimalPipe`, and so on.
@@ -11195,18 +10163,14 @@ const COMMON_PIPES = [AsyncPipe, UpperCasePipe, LowerCasePipe, JsonPipe, SlicePi
  *
  * @publicApi
  */
-
 class CommonModule {}
-
 CommonModule.ɵfac = function CommonModule_Factory(t) {
   return new (t || CommonModule)();
 };
-
 CommonModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: CommonModule
 });
 CommonModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({});
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CommonModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
@@ -11216,6 +10180,7 @@ CommonModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11223,8 +10188,6 @@ CommonModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const PLATFORM_BROWSER_ID = 'browser';
 const PLATFORM_SERVER_ID = 'server';
 const PLATFORM_WORKER_APP_ID = 'browserWorkerApp';
@@ -11233,7 +10196,6 @@ const PLATFORM_WORKER_UI_ID = 'browserWorkerUi';
  * Returns whether a platform id represents a browser platform.
  * @publicApi
  */
-
 function isPlatformBrowser(platformId) {
   return platformId === PLATFORM_BROWSER_ID;
 }
@@ -11241,8 +10203,6 @@ function isPlatformBrowser(platformId) {
  * Returns whether a platform id represents a server platform.
  * @publicApi
  */
-
-
 function isPlatformServer(platformId) {
   return platformId === PLATFORM_SERVER_ID;
 }
@@ -11250,8 +10210,6 @@ function isPlatformServer(platformId) {
  * Returns whether a platform id represents a web worker app platform.
  * @publicApi
  */
-
-
 function isPlatformWorkerApp(platformId) {
   return platformId === PLATFORM_WORKER_APP_ID;
 }
@@ -11259,11 +10217,10 @@ function isPlatformWorkerApp(platformId) {
  * Returns whether a platform id represents a web worker UI platform.
  * @publicApi
  */
-
-
 function isPlatformWorkerUi(platformId) {
   return platformId === PLATFORM_WORKER_UI_ID;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11271,13 +10228,11 @@ function isPlatformWorkerUi(platformId) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @publicApi
  */
-
-
 const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11285,19 +10240,15 @@ const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12'
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Defines a scroll position manager. Implemented by `BrowserViewportScroller`.
  *
  * @publicApi
  */
-
-class ViewportScroller {} // De-sugared tree-shakable injection
+class ViewportScroller {}
+// De-sugared tree-shakable injection
 // See #23917
-
 /** @nocollapse */
-
-
 ViewportScroller.ɵprov = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"])({
   token: ViewportScroller,
   providedIn: 'root',
@@ -11306,12 +10257,10 @@ ViewportScroller.ɵprov = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
 /**
  * Manages the scroll position for a browser window.
  */
-
 class BrowserViewportScroller {
   constructor(document, window) {
     this.document = document;
     this.window = window;
-
     this.offset = () => [0, 0];
   }
   /**
@@ -11320,8 +10269,6 @@ class BrowserViewportScroller {
    * or a function that returns the top offset position.
    *
    */
-
-
   setOffset(offset) {
     if (Array.isArray(offset)) {
       this.offset = () => offset;
@@ -11333,8 +10280,6 @@ class BrowserViewportScroller {
    * Retrieves the current scroll position.
    * @returns The position in screen coordinates.
    */
-
-
   getScrollPosition() {
     if (this.supportsScrolling()) {
       return [this.window.pageXOffset, this.window.pageYOffset];
@@ -11346,8 +10291,6 @@ class BrowserViewportScroller {
    * Sets the scroll position.
    * @param position The new position in screen coordinates.
    */
-
-
   scrollToPosition(position) {
     if (this.supportsScrolling()) {
       this.window.scrollTo(position[0], position[1]);
@@ -11364,35 +10307,28 @@ class BrowserViewportScroller {
    * @see https://html.spec.whatwg.org/#the-indicated-part-of-the-document
    * @see https://html.spec.whatwg.org/#scroll-to-fragid
    */
-
-
   scrollToAnchor(target) {
     if (!this.supportsScrolling()) {
       return;
     }
-
     const elSelected = findAnchorFromDocument(this.document, target);
-
     if (elSelected) {
-      this.scrollToElement(elSelected); // After scrolling to the element, the spec dictates that we follow the focus steps for the
+      this.scrollToElement(elSelected);
+      // After scrolling to the element, the spec dictates that we follow the focus steps for the
       // target. Rather than following the robust steps, simply attempt focus.
       //
       // @see https://html.spec.whatwg.org/#get-the-focusable-area
       // @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus
       // @see https://html.spec.whatwg.org/#focusable-area
-
       elSelected.focus();
     }
   }
   /**
    * Disables automatic scroll restoration provided by the browser.
    */
-
-
   setHistoryScrollRestoration(scrollRestoration) {
     if (this.supportScrollRestoration()) {
       const history = this.window.history;
-
       if (history && history.scrollRestoration) {
         history.scrollRestoration = scrollRestoration;
       }
@@ -11404,8 +10340,6 @@ class BrowserViewportScroller {
    * The offset can be used when we know that there is a floating header and scrolling naively to an
    * element (ex: `scrollIntoView`) leaves the element hidden behind the floating header.
    */
-
-
   scrollToElement(el) {
     const rect = el.getBoundingClientRect();
     const left = rect.left + this.window.pageXOffset;
@@ -11421,24 +10355,20 @@ class BrowserViewportScroller {
    * Since webworkers aren't widely used, we will lift it once RouterScroller is
    * battle-tested.
    */
-
-
   supportScrollRestoration() {
     try {
       if (!this.supportsScrolling()) {
         return false;
-      } // The `scrollRestoration` property could be on the `history` instance or its prototype.
-
-
-      const scrollRestorationDescriptor = getScrollRestorationProperty(this.window.history) || getScrollRestorationProperty(Object.getPrototypeOf(this.window.history)); // We can write to the `scrollRestoration` property if it is a writable data field or it has a
+      }
+      // The `scrollRestoration` property could be on the `history` instance or its prototype.
+      const scrollRestorationDescriptor = getScrollRestorationProperty(this.window.history) || getScrollRestorationProperty(Object.getPrototypeOf(this.window.history));
+      // We can write to the `scrollRestoration` property if it is a writable data field or it has a
       // setter function.
-
       return !!scrollRestorationDescriptor && !!(scrollRestorationDescriptor.writable || scrollRestorationDescriptor.set);
     } catch (_a) {
       return false;
     }
   }
-
   supportsScrolling() {
     try {
       return !!this.window && !!this.window.scrollTo && 'pageXOffset' in this.window;
@@ -11446,50 +10376,38 @@ class BrowserViewportScroller {
       return false;
     }
   }
-
 }
-
 function getScrollRestorationProperty(obj) {
   return Object.getOwnPropertyDescriptor(obj, 'scrollRestoration');
 }
-
 function findAnchorFromDocument(document, target) {
   const documentResult = document.getElementById(target) || document.getElementsByName(target)[0];
-
   if (documentResult) {
     return documentResult;
-  } // `getElementById` and `getElementsByName` won't pierce through the shadow DOM so we
+  }
+  // `getElementById` and `getElementsByName` won't pierce through the shadow DOM so we
   // have to traverse the DOM manually and do the lookup through the shadow roots.
-
-
   if (typeof document.createTreeWalker === 'function' && document.body && (document.body.createShadowRoot || document.body.attachShadow)) {
     const treeWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currentNode = treeWalker.currentNode;
-
     while (currentNode) {
       const shadowRoot = currentNode.shadowRoot;
-
       if (shadowRoot) {
         // Note that `ShadowRoot` doesn't support `getElementsByName`
         // so we have to fall back to `querySelector`.
         const result = shadowRoot.getElementById(target) || shadowRoot.querySelector(`[name="${target}"]`);
-
         if (result) {
           return result;
         }
       }
-
       currentNode = treeWalker.nextNode();
     }
   }
-
   return null;
 }
 /**
  * Provides an empty implementation of the viewport scroller.
  */
-
-
 class NullViewportScroller {
   /**
    * Empty implementation
@@ -11498,31 +10416,23 @@ class NullViewportScroller {
   /**
    * Empty implementation
    */
-
-
   getScrollPosition() {
     return [0, 0];
   }
   /**
    * Empty implementation
    */
-
-
   scrollToPosition(position) {}
   /**
    * Empty implementation
    */
-
-
   scrollToAnchor(anchor) {}
   /**
    * Empty implementation
    */
-
-
   setHistoryScrollRestoration(scrollRestoration) {}
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11530,15 +10440,13 @@ class NullViewportScroller {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A wrapper around the `XMLHttpRequest` constructor.
  *
  * @publicApi
  */
-
-
 class XhrFactory {}
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11567,7 +10475,6 @@ class XhrFactory {}
 /**
  * Generated bundle index. Do not edit.
  */
-
 
 
 
@@ -11625,6 +10532,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11632,7 +10541,6 @@ __webpack_require__.r(__webpack_exports__);
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
  * `HttpResponse`.
@@ -11645,7 +10553,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @publicApi
  */
-
 class HttpHandler {}
 /**
  * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
@@ -11657,9 +10564,8 @@ class HttpHandler {}
  *
  * @publicApi
  */
-
-
 class HttpBackend {}
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11667,7 +10573,6 @@ class HttpBackend {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Represents the header configuration options for an HTTP request.
  * Instances are immutable. Modifying methods return a cloned
@@ -11675,8 +10580,6 @@ class HttpBackend {}
  *
  * @publicApi
  */
-
-
 class HttpHeaders {
   /**  Constructs a new HTTP header object with the given values.*/
   constructor(headers) {
@@ -11688,9 +10591,7 @@ class HttpHeaders {
     /**
      * Queued updates to be materialized the next initialization.
      */
-
     this.lazyUpdate = null;
-
     if (!headers) {
       this.headers = new Map();
     } else if (typeof headers === 'string') {
@@ -11698,13 +10599,11 @@ class HttpHeaders {
         this.headers = new Map();
         headers.split('\n').forEach(line => {
           const index = line.indexOf(':');
-
           if (index > 0) {
             const name = line.slice(0, index);
             const key = name.toLowerCase();
             const value = line.slice(index + 1).trim();
             this.maybeSetNormalizedName(name, key);
-
             if (this.headers.has(key)) {
               this.headers.get(key).push(value);
             } else {
@@ -11719,11 +10618,9 @@ class HttpHeaders {
         Object.keys(headers).forEach(name => {
           let values = headers[name];
           const key = name.toLowerCase();
-
           if (typeof values === 'string') {
             values = [values];
           }
-
           if (values.length > 0) {
             this.headers.set(key, values);
             this.maybeSetNormalizedName(name, key);
@@ -11739,8 +10636,6 @@ class HttpHeaders {
    *
    * @returns True if the header exists, false otherwise.
    */
-
-
   has(name) {
     this.init();
     return this.headers.has(name.toLowerCase());
@@ -11752,8 +10647,6 @@ class HttpHeaders {
    *
    * @returns The value string if the header exists, null otherwise
    */
-
-
   get(name) {
     this.init();
     const values = this.headers.get(name.toLowerCase());
@@ -11764,8 +10657,6 @@ class HttpHeaders {
    *
    * @returns A list of header names.
    */
-
-
   keys() {
     this.init();
     return Array.from(this.normalizedNames.values());
@@ -11777,8 +10668,6 @@ class HttpHeaders {
    *
    * @returns A string of values if the header exists, null otherwise.
    */
-
-
   getAll(name) {
     this.init();
     return this.headers.get(name.toLowerCase()) || null;
@@ -11792,8 +10681,6 @@ class HttpHeaders {
    *
    * @returns A clone of the HTTP headers object with the value appended to the given header.
    */
-
-
   append(name, value) {
     return this.clone({
       name,
@@ -11811,8 +10698,6 @@ class HttpHeaders {
    *
    * @returns A clone of the HTTP headers object with the newly set header value.
    */
-
-
   set(name, value) {
     return this.clone({
       name,
@@ -11828,8 +10713,6 @@ class HttpHeaders {
    *
    * @returns A clone of the HTTP headers object with the given value deleted.
    */
-
-
   delete(name, value) {
     return this.clone({
       name,
@@ -11837,13 +10720,11 @@ class HttpHeaders {
       op: 'd'
     });
   }
-
   maybeSetNormalizedName(name, lcName) {
     if (!this.normalizedNames.has(lcName)) {
       this.normalizedNames.set(lcName, name);
     }
   }
-
   init() {
     if (!!this.lazyInit) {
       if (this.lazyInit instanceof HttpHeaders) {
@@ -11851,16 +10732,13 @@ class HttpHeaders {
       } else {
         this.lazyInit();
       }
-
       this.lazyInit = null;
-
       if (!!this.lazyUpdate) {
         this.lazyUpdate.forEach(update => this.applyUpdate(update));
         this.lazyUpdate = null;
       }
     }
   }
-
   copyFrom(other) {
     other.init();
     Array.from(other.headers.keys()).forEach(key => {
@@ -11868,51 +10746,40 @@ class HttpHeaders {
       this.normalizedNames.set(key, other.normalizedNames.get(key));
     });
   }
-
   clone(update) {
     const clone = new HttpHeaders();
     clone.lazyInit = !!this.lazyInit && this.lazyInit instanceof HttpHeaders ? this.lazyInit : this;
     clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
     return clone;
   }
-
   applyUpdate(update) {
     const key = update.name.toLowerCase();
-
     switch (update.op) {
       case 'a':
       case 's':
         let value = update.value;
-
         if (typeof value === 'string') {
           value = [value];
         }
-
         if (value.length === 0) {
           return;
         }
-
         this.maybeSetNormalizedName(update.name, key);
         const base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
         base.push(...value);
         this.headers.set(key, base);
         break;
-
       case 'd':
         const toDelete = update.value;
-
         if (!toDelete) {
           this.headers.delete(key);
           this.normalizedNames.delete(key);
         } else {
           let existing = this.headers.get(key);
-
           if (!existing) {
             return;
           }
-
           existing = existing.filter(value => toDelete.indexOf(value) === -1);
-
           if (existing.length === 0) {
             this.headers.delete(key);
             this.normalizedNames.delete(key);
@@ -11920,21 +10787,18 @@ class HttpHeaders {
             this.headers.set(key, existing);
           }
         }
-
         break;
     }
   }
   /**
    * @internal
    */
-
-
   forEach(fn) {
     this.init();
     Array.from(this.normalizedNames.keys()).forEach(key => fn(this.normalizedNames.get(key), this.headers.get(key)));
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -11942,7 +10806,6 @@ class HttpHeaders {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Provides encoding and decoding of URL parameter and query-string values.
  *
@@ -11953,8 +10816,6 @@ class HttpHeaders {
  *
  * @publicApi
  */
-
-
 class HttpUrlEncodingCodec {
   /**
    * Encodes a key name for a URL parameter or query-string.
@@ -11969,8 +10830,6 @@ class HttpUrlEncodingCodec {
    * @param value The value.
    * @returns The encoded value.
    */
-
-
   encodeValue(value) {
     return standardEncoding(value);
   }
@@ -11979,8 +10838,6 @@ class HttpUrlEncodingCodec {
    * @param key The encoded key name.
    * @returns The decoded key name.
    */
-
-
   decodeKey(key) {
     return decodeURIComponent(key);
   }
@@ -11989,17 +10846,12 @@ class HttpUrlEncodingCodec {
    * @param value The encoded value.
    * @returns The decoded value.
    */
-
-
   decodeValue(value) {
     return decodeURIComponent(value);
   }
-
 }
-
 function paramParser(rawParams, codec) {
   const map = new Map();
-
   if (rawParams.length > 0) {
     // The `window.location.search` can be used while creating an instance of the `HttpParams` class
     // (e.g. `new HttpParams({ fromString: window.location.search })`). The `window.location.search`
@@ -12013,14 +10865,11 @@ function paramParser(rawParams, codec) {
       map.set(key, list);
     });
   }
-
   return map;
 }
 /**
  * Encode input string with standard encodeURIComponent and then un-encode specific characters.
  */
-
-
 const STANDARD_ENCODING_REGEX = /%(\d[a-f0-9])/gi;
 const STANDARD_ENCODING_REPLACEMENTS = {
   '40': '@',
@@ -12033,15 +10882,12 @@ const STANDARD_ENCODING_REPLACEMENTS = {
   '3F': '?',
   '2F': '/'
 };
-
 function standardEncoding(v) {
   return encodeURIComponent(v).replace(STANDARD_ENCODING_REGEX, (s, t) => {
     var _a;
-
     return (_a = STANDARD_ENCODING_REPLACEMENTS[t]) !== null && _a !== void 0 ? _a : s;
   });
 }
-
 function valueToString(value) {
   return `${value}`;
 }
@@ -12053,19 +10899,15 @@ function valueToString(value) {
  *
  * @publicApi
  */
-
-
 class HttpParams {
   constructor(options = {}) {
     this.updates = null;
     this.cloneFrom = null;
     this.encoder = options.encoder || new HttpUrlEncodingCodec();
-
     if (!!options.fromString) {
       if (!!options.fromObject) {
         throw new Error(`Cannot specify both fromString and fromObject.`);
       }
-
       this.map = paramParser(options.fromString, this.encoder);
     } else if (!!options.fromObject) {
       this.map = new Map();
@@ -12083,8 +10925,6 @@ class HttpParams {
    * @returns True if the parameter has one or more values,
    * false if it has no value or is not present.
    */
-
-
   has(param) {
     this.init();
     return this.map.has(param);
@@ -12095,8 +10935,6 @@ class HttpParams {
    * @returns The first value of the given parameter,
    * or `null` if the parameter is not present.
    */
-
-
   get(param) {
     this.init();
     const res = this.map.get(param);
@@ -12108,8 +10946,6 @@ class HttpParams {
    * @returns All values in a string array,
    * or `null` if the parameter not present.
    */
-
-
   getAll(param) {
     this.init();
     return this.map.get(param) || null;
@@ -12118,8 +10954,6 @@ class HttpParams {
    * Retrieves all the parameters for this body.
    * @returns The parameter names in a string array.
    */
-
-
   keys() {
     this.init();
     return Array.from(this.map.keys());
@@ -12130,8 +10964,6 @@ class HttpParams {
    * @param value The new value to add.
    * @return A new body with the appended value.
    */
-
-
   append(param, value) {
     return this.clone({
       param,
@@ -12144,13 +10976,10 @@ class HttpParams {
    * @param params parameters and values
    * @return A new body with the new value.
    */
-
-
   appendAll(params) {
     const updates = [];
     Object.keys(params).forEach(param => {
       const value = params[param];
-
       if (Array.isArray(value)) {
         value.forEach(_value => {
           updates.push({
@@ -12175,8 +11004,6 @@ class HttpParams {
    * @param value The new value.
    * @return A new body with the new value.
    */
-
-
   set(param, value) {
     return this.clone({
       param,
@@ -12191,8 +11018,6 @@ class HttpParams {
    * @return A new body with the given value removed, or with all values
    * removed if no value is specified.
    */
-
-
   delete(param, value) {
     return this.clone({
       param,
@@ -12204,21 +11029,19 @@ class HttpParams {
    * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
    * separated by `&`s.
    */
-
-
   toString() {
     this.init();
     return this.keys().map(key => {
-      const eKey = this.encoder.encodeKey(key); // `a: ['1']` produces `'a=1'`
+      const eKey = this.encoder.encodeKey(key);
+      // `a: ['1']` produces `'a=1'`
       // `b: []` produces `''`
       // `c: ['1', '2']` produces `'c=1&c=2'`
-
       return this.map.get(key).map(value => eKey + '=' + this.encoder.encodeValue(value)).join('&');
-    }) // filter out empty values because `b: []` produces `''`
+    })
+    // filter out empty values because `b: []` produces `''`
     // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
     .filter(param => param !== '').join('&');
   }
-
   clone(update) {
     const clone = new HttpParams({
       encoder: this.encoder
@@ -12227,12 +11050,10 @@ class HttpParams {
     clone.updates = (this.updates || []).concat(update);
     return clone;
   }
-
   init() {
     if (this.map === null) {
       this.map = new Map();
     }
-
     if (this.cloneFrom !== null) {
       this.cloneFrom.init();
       this.cloneFrom.keys().forEach(key => this.map.set(key, this.cloneFrom.map.get(key)));
@@ -12244,16 +11065,13 @@ class HttpParams {
             base.push(valueToString(update.value));
             this.map.set(update.param, base);
             break;
-
           case 'd':
             if (update.value !== undefined) {
               let base = this.map.get(update.param) || [];
               const idx = base.indexOf(valueToString(update.value));
-
               if (idx !== -1) {
                 base.splice(idx, 1);
               }
-
               if (base.length > 0) {
                 this.map.set(update.param, base);
               } else {
@@ -12263,14 +11081,13 @@ class HttpParams {
               this.map.delete(update.param);
               break;
             }
-
         }
       });
       this.cloneFrom = this.updates = null;
     }
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -12278,19 +11095,15 @@ class HttpParams {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A token used to manipulate and access values stored in `HttpContext`.
  *
  * @publicApi
  */
-
-
 class HttpContextToken {
   constructor(defaultValue) {
     this.defaultValue = defaultValue;
   }
-
 }
 /**
  * Http context stores arbitrary user defined values and ensures type safety without
@@ -12325,8 +11138,6 @@ class HttpContextToken {
  *
  * @publicApi
  */
-
-
 class HttpContext {
   constructor() {
     this.map = new Map();
@@ -12339,8 +11150,6 @@ class HttpContext {
    *
    * @returns A reference to itself for easy chaining.
    */
-
-
   set(token, value) {
     this.map.set(token, value);
     return this;
@@ -12352,13 +11161,10 @@ class HttpContext {
    *
    * @returns The stored value or default if one is defined.
    */
-
-
   get(token) {
     if (!this.map.has(token)) {
       this.map.set(token, token.defaultValue());
     }
-
     return this.map.get(token);
   }
   /**
@@ -12368,8 +11174,6 @@ class HttpContext {
    *
    * @returns A reference to itself for easy chaining.
    */
-
-
   delete(token) {
     this.map.delete(token);
     return this;
@@ -12381,21 +11185,17 @@ class HttpContext {
    *
    * @returns True if the token exists, false otherwise.
    */
-
-
   has(token) {
     return this.map.has(token);
   }
   /**
    * @returns a list of tokens currently stored in the context.
    */
-
-
   keys() {
     return this.map.keys();
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -12403,12 +11203,9 @@ class HttpContext {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Determine whether the given HTTP method may include a body.
  */
-
-
 function mightHaveBody(method) {
   switch (method) {
     case 'DELETE':
@@ -12417,7 +11214,6 @@ function mightHaveBody(method) {
     case 'OPTIONS':
     case 'JSONP':
       return false;
-
     default:
       return true;
   }
@@ -12427,8 +11223,6 @@ function mightHaveBody(method) {
  *
  * In some execution environments ArrayBuffer is not defined.
  */
-
-
 function isArrayBuffer(value) {
   return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
 }
@@ -12437,8 +11231,6 @@ function isArrayBuffer(value) {
  *
  * In some execution environments Blob is not defined.
  */
-
-
 function isBlob(value) {
   return typeof Blob !== 'undefined' && value instanceof Blob;
 }
@@ -12447,8 +11239,6 @@ function isBlob(value) {
  *
  * In some execution environments FormData is not defined.
  */
-
-
 function isFormData(value) {
   return typeof FormData !== 'undefined' && value instanceof FormData;
 }
@@ -12457,8 +11247,6 @@ function isFormData(value) {
  *
  * In some execution environments URLSearchParams is not defined.
  */
-
-
 function isUrlSearchParams(value) {
   return typeof URLSearchParams !== 'undefined' && value instanceof URLSearchParams;
 }
@@ -12472,8 +11260,6 @@ function isUrlSearchParams(value) {
  *
  * @publicApi
  */
-
-
 class HttpRequest {
   constructor(method, url, third, fourth) {
     this.url = url;
@@ -12484,7 +11270,6 @@ class HttpRequest {
      * user-defined data type. However, interceptors should take care to preserve
      * idempotence by treating them as such.
      */
-
     this.body = null;
     /**
      * Whether this request should be made in a way that exposes progress events.
@@ -12492,12 +11277,10 @@ class HttpRequest {
      * Progress events are expensive (change detection runs on each event) and so
      * they should only be requested if the consumer intends to monitor them.
      */
-
     this.reportProgress = false;
     /**
      * Whether this request should be sent with outgoing credentials (cookies).
      */
-
     this.withCredentials = false;
     /**
      * The expected response type of the server.
@@ -12505,14 +11288,13 @@ class HttpRequest {
      * This is used to parse the response appropriately before returning it to
      * the requestee.
      */
-
     this.responseType = 'json';
-    this.method = method.toUpperCase(); // Next, need to figure out which argument holds the HttpRequestInit
+    this.method = method.toUpperCase();
+    // Next, need to figure out which argument holds the HttpRequestInit
     // options, if any.
-
-    let options; // Check whether a body argument is expected. The only valid way to omit
+    let options;
+    // Check whether a body argument is expected. The only valid way to omit
     // the body argument is to use a known no-body method like GET.
-
     if (mightHaveBody(this.method) || !!fourth) {
       // Body is the third argument, options are the fourth.
       this.body = third !== undefined ? third : null;
@@ -12520,63 +11302,55 @@ class HttpRequest {
     } else {
       // No body required, options are the third argument. The body stays null.
       options = third;
-    } // If options have been passed, interpret them.
-
-
+    }
+    // If options have been passed, interpret them.
     if (options) {
       // Normalize reportProgress and withCredentials.
       this.reportProgress = !!options.reportProgress;
-      this.withCredentials = !!options.withCredentials; // Override default response type of 'json' if one is provided.
-
+      this.withCredentials = !!options.withCredentials;
+      // Override default response type of 'json' if one is provided.
       if (!!options.responseType) {
         this.responseType = options.responseType;
-      } // Override headers if they're provided.
-
-
+      }
+      // Override headers if they're provided.
       if (!!options.headers) {
         this.headers = options.headers;
       }
-
       if (!!options.context) {
         this.context = options.context;
       }
-
       if (!!options.params) {
         this.params = options.params;
       }
-    } // If no headers have been passed in, construct a new HttpHeaders instance.
-
-
+    }
+    // If no headers have been passed in, construct a new HttpHeaders instance.
     if (!this.headers) {
       this.headers = new HttpHeaders();
-    } // If no context have been passed in, construct a new HttpContext instance.
-
-
+    }
+    // If no context have been passed in, construct a new HttpContext instance.
     if (!this.context) {
       this.context = new HttpContext();
-    } // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
-
-
+    }
+    // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
     if (!this.params) {
       this.params = new HttpParams();
       this.urlWithParams = url;
     } else {
       // Encode the parameters to a string in preparation for inclusion in the URL.
       const params = this.params.toString();
-
       if (params.length === 0) {
         // No parameters, the visible URL is just the URL given at creation time.
         this.urlWithParams = url;
       } else {
         // Does the URL already have query parameters? Look for '?'.
-        const qIdx = url.indexOf('?'); // There are 3 cases to handle:
+        const qIdx = url.indexOf('?');
+        // There are 3 cases to handle:
         // 1) No existing parameters -> append '?' followed by params.
         // 2) '?' exists and is followed by existing query string ->
         //    append '&' followed by params.
         // 3) '?' exists at the end of the url -> append params directly.
         // This basically amounts to determining the character, if any, with
         // which to join the URL and parameters.
-
         const sep = qIdx === -1 ? '?' : qIdx < url.length - 1 ? '&' : '';
         this.urlWithParams = url + sep + params;
       }
@@ -12586,31 +11360,25 @@ class HttpRequest {
    * Transform the free-form body into a serialized format suitable for
    * transmission to the server.
    */
-
-
   serializeBody() {
     // If no body is present, no need to serialize it.
     if (this.body === null) {
       return null;
-    } // Check whether the body is already in a serialized form. If so,
+    }
+    // Check whether the body is already in a serialized form. If so,
     // it can just be returned directly.
-
-
     if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) || isUrlSearchParams(this.body) || typeof this.body === 'string') {
       return this.body;
-    } // Check whether the body is an instance of HttpUrlEncodedParams.
-
-
+    }
+    // Check whether the body is an instance of HttpUrlEncodedParams.
     if (this.body instanceof HttpParams) {
       return this.body.toString();
-    } // Check whether the body is an object or array, and serialize with JSON if so.
-
-
+    }
+    // Check whether the body is an object or array, and serialize with JSON if so.
     if (typeof this.body === 'object' || typeof this.body === 'boolean' || Array.isArray(this.body)) {
       return JSON.stringify(this.body);
-    } // Fall back on toString() for everything else.
-
-
+    }
+    // Fall back on toString() for everything else.
     return this.body.toString();
   }
   /**
@@ -12619,86 +11387,73 @@ class HttpRequest {
    *
    * If no such type can be inferred, this method will return `null`.
    */
-
-
   detectContentTypeHeader() {
     // An empty body has no content type.
     if (this.body === null) {
       return null;
-    } // FormData bodies rely on the browser's content type assignment.
-
-
+    }
+    // FormData bodies rely on the browser's content type assignment.
     if (isFormData(this.body)) {
       return null;
-    } // Blobs usually have their own content type. If it doesn't, then
+    }
+    // Blobs usually have their own content type. If it doesn't, then
     // no type can be inferred.
-
-
     if (isBlob(this.body)) {
       return this.body.type || null;
-    } // Array buffers have unknown contents and thus no type can be inferred.
-
-
+    }
+    // Array buffers have unknown contents and thus no type can be inferred.
     if (isArrayBuffer(this.body)) {
       return null;
-    } // Technically, strings could be a form of JSON data, but it's safe enough
+    }
+    // Technically, strings could be a form of JSON data, but it's safe enough
     // to assume they're plain strings.
-
-
     if (typeof this.body === 'string') {
       return 'text/plain';
-    } // `HttpUrlEncodedParams` has its own content-type.
-
-
+    }
+    // `HttpUrlEncodedParams` has its own content-type.
     if (this.body instanceof HttpParams) {
       return 'application/x-www-form-urlencoded;charset=UTF-8';
-    } // Arrays, objects, boolean and numbers will be encoded as JSON.
-
-
+    }
+    // Arrays, objects, boolean and numbers will be encoded as JSON.
     if (typeof this.body === 'object' || typeof this.body === 'number' || typeof this.body === 'boolean') {
       return 'application/json';
-    } // No type could be inferred.
-
-
+    }
+    // No type could be inferred.
     return null;
   }
-
   clone(update = {}) {
-    var _a; // For method, url, and responseType, take the current value unless
+    var _a;
+    // For method, url, and responseType, take the current value unless
     // it is overridden in the update hash.
-
-
     const method = update.method || this.method;
     const url = update.url || this.url;
-    const responseType = update.responseType || this.responseType; // The body is somewhat special - a `null` value in update.body means
+    const responseType = update.responseType || this.responseType;
+    // The body is somewhat special - a `null` value in update.body means
     // whatever current body is present is being overridden with an empty
     // body, whereas an `undefined` value in update.body implies no
     // override.
-
-    const body = update.body !== undefined ? update.body : this.body; // Carefully handle the boolean options to differentiate between
+    const body = update.body !== undefined ? update.body : this.body;
+    // Carefully handle the boolean options to differentiate between
     // `false` and `undefined` in the update args.
-
     const withCredentials = update.withCredentials !== undefined ? update.withCredentials : this.withCredentials;
-    const reportProgress = update.reportProgress !== undefined ? update.reportProgress : this.reportProgress; // Headers and params may be appended to if `setHeaders` or
+    const reportProgress = update.reportProgress !== undefined ? update.reportProgress : this.reportProgress;
+    // Headers and params may be appended to if `setHeaders` or
     // `setParams` are used.
-
     let headers = update.headers || this.headers;
-    let params = update.params || this.params; // Pass on context if needed
-
-    const context = (_a = update.context) !== null && _a !== void 0 ? _a : this.context; // Check whether the caller has asked to add headers.
-
+    let params = update.params || this.params;
+    // Pass on context if needed
+    const context = (_a = update.context) !== null && _a !== void 0 ? _a : this.context;
+    // Check whether the caller has asked to add headers.
     if (update.setHeaders !== undefined) {
       // Set every requested header.
       headers = Object.keys(update.setHeaders).reduce((headers, name) => headers.set(name, update.setHeaders[name]), headers);
-    } // Check whether the caller has asked to set params.
-
-
+    }
+    // Check whether the caller has asked to set params.
     if (update.setParams) {
       // Set every requested param.
       params = Object.keys(update.setParams).reduce((params, param) => params.set(param, update.setParams[param]), params);
-    } // Finally, construct the new HttpRequest using the pieces from above.
-
-
+    }
+    // Finally, construct the new HttpRequest using the pieces from above.
     return new HttpRequest(method, url, body, {
       params,
       headers,
@@ -12708,8 +11463,8 @@ class HttpRequest {
       withCredentials
     });
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -12717,16 +11472,12 @@ class HttpRequest {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Type enumeration for the different kinds of `HttpEvent`.
  *
  * @publicApi
  */
-
-
 var HttpEventType;
-
 (function (HttpEventType) {
   /**
    * The request was sent out over the wire.
@@ -12735,27 +11486,22 @@ var HttpEventType;
   /**
    * An upload progress event was received.
    */
-
   HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
   /**
    * The response status code and headers were received.
    */
-
   HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
   /**
    * A download progress event was received.
    */
-
   HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
   /**
    * The full response including the body was received.
    */
-
   HttpEventType[HttpEventType["Response"] = 4] = "Response";
   /**
    * A custom event from an interceptor or a backend.
    */
-
   HttpEventType[HttpEventType["User"] = 5] = "User";
 })(HttpEventType || (HttpEventType = {}));
 /**
@@ -12763,8 +11509,6 @@ var HttpEventType;
  *
  * @publicApi
  */
-
-
 class HttpResponseBase {
   /**
    * Super-constructor for all responses.
@@ -12772,19 +11516,16 @@ class HttpResponseBase {
    * The single parameter accepted is an initialization hash. Any properties
    * of the response passed there will override the default values.
    */
-  constructor(init, defaultStatus = 200
-  /* Ok */
-  , defaultStatusText = 'OK') {
+  constructor(init, defaultStatus = 200 /* Ok */, defaultStatusText = 'OK') {
     // If the hash has values passed, use them to initialize the response.
     // Otherwise use the default values.
     this.headers = init.headers || new HttpHeaders();
     this.status = init.status !== undefined ? init.status : defaultStatus;
     this.statusText = init.statusText || defaultStatusText;
-    this.url = init.url || null; // Cache the ok value to avoid defining a getter.
-
+    this.url = init.url || null;
+    // Cache the ok value to avoid defining a getter.
     this.ok = this.status >= 200 && this.status < 300;
   }
-
 }
 /**
  * A partial HTTP response which only includes the status and header data,
@@ -12795,8 +11536,6 @@ class HttpResponseBase {
  *
  * @publicApi
  */
-
-
 class HttpHeaderResponse extends HttpResponseBase {
   /**
    * Create a new `HttpHeaderResponse` with the given parameters.
@@ -12809,8 +11548,6 @@ class HttpHeaderResponse extends HttpResponseBase {
    * Copy this `HttpHeaderResponse`, overriding its contents with the
    * given parameter hash.
    */
-
-
   clone(update = {}) {
     // Perform a straightforward initialization of the new HttpHeaderResponse,
     // overriding the current parameters with new ones if given.
@@ -12821,7 +11558,6 @@ class HttpHeaderResponse extends HttpResponseBase {
       url: update.url || this.url || undefined
     });
   }
-
 }
 /**
  * A full HTTP response, including a typed response body (which may be `null`
@@ -12832,8 +11568,6 @@ class HttpHeaderResponse extends HttpResponseBase {
  *
  * @publicApi
  */
-
-
 class HttpResponse extends HttpResponseBase {
   /**
    * Construct a new `HttpResponse`.
@@ -12843,7 +11577,6 @@ class HttpResponse extends HttpResponseBase {
     this.type = HttpEventType.Response;
     this.body = init.body !== undefined ? init.body : null;
   }
-
   clone(update = {}) {
     return new HttpResponse({
       body: update.body !== undefined ? update.body : this.body,
@@ -12853,7 +11586,6 @@ class HttpResponse extends HttpResponseBase {
       url: update.url || this.url || undefined
     });
   }
-
 }
 /**
  * A response that represents an error or failure, either from a
@@ -12868,8 +11600,6 @@ class HttpResponse extends HttpResponseBase {
  *
  * @publicApi
  */
-
-
 class HttpErrorResponse extends HttpResponseBase {
   constructor(init) {
     // Initialize with a default status of 0 / Unknown Error.
@@ -12878,21 +11608,19 @@ class HttpErrorResponse extends HttpResponseBase {
     /**
      * Errors are never okay, even when the status code is in the 2xx success range.
      */
-
-    this.ok = false; // If the response was successful, then this was a parse error. Otherwise, it was
+    this.ok = false;
+    // If the response was successful, then this was a parse error. Otherwise, it was
     // a protocol-level failure of some sort. Either the request failed in transit
     // or the server returned an unsuccessful status code.
-
     if (this.status >= 200 && this.status < 300) {
       this.message = `Http failure during parsing for ${init.url || '(unknown url)'}`;
     } else {
       this.message = `Http failure response for ${init.url || '(unknown url)'}: ${init.status} ${init.statusText}`;
     }
-
     this.error = init.error || null;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -12900,7 +11628,6 @@ class HttpErrorResponse extends HttpResponseBase {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
  * the given `body`. This function clones the object and adds the body.
@@ -12911,8 +11638,6 @@ class HttpErrorResponse extends HttpResponseBase {
  * The value of `responseType` cannot be a union, as the combined signature could imply.
  *
  */
-
-
 function addBody(options, body) {
   return {
     body,
@@ -12980,8 +11705,6 @@ function addBody(options, body) {
  *
  * @publicApi
  */
-
-
 class HttpClient {
   constructor(handler) {
     this.handler = handler;
@@ -13012,11 +11735,9 @@ class HttpClient {
    *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
    *
    */
-
-
   request(first, url, options = {}) {
-    let req; // First, check whether the primary argument is an instance of `HttpRequest`.
-
+    let req;
+    // First, check whether the primary argument is an instance of `HttpRequest`.
     if (first instanceof HttpRequest) {
       // It is. The other arguments must be undefined (per the signatures) and can be
       // ignored.
@@ -13027,16 +11748,13 @@ class HttpClient {
       // provided.
       // Figure out the headers.
       let headers = undefined;
-
       if (options.headers instanceof HttpHeaders) {
         headers = options.headers;
       } else {
         headers = new HttpHeaders(options.headers);
-      } // Sort out parameters.
-
-
+      }
+      // Sort out parameters.
       let params = undefined;
-
       if (!!options.params) {
         if (options.params instanceof HttpParams) {
           params = options.params;
@@ -13045,9 +11763,8 @@ class HttpClient {
             fromObject: options.params
           });
         }
-      } // Construct the request.
-
-
+      }
+      // Construct the request.
       req = new HttpRequest(first, url, options.body !== undefined ? options.body : null, {
         headers,
         context: options.context,
@@ -13057,25 +11774,23 @@ class HttpClient {
         responseType: options.responseType || 'json',
         withCredentials: options.withCredentials
       });
-    } // Start with an Observable.of() the initial request, and run the handler (which
+    }
+    // Start with an Observable.of() the initial request, and run the handler (which
     // includes all interceptors) inside a concatMap(). This way, the handler runs
     // inside an Observable chain, which causes interceptors to be re-run on every
     // subscription (this also makes retries re-run the handler, including interceptors).
-
-
-    const events$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.of)(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.concatMap)(req => this.handler.handle(req))); // If coming via the API signature which accepts a previously constructed HttpRequest,
+    const events$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.of)(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.concatMap)(req => this.handler.handle(req)));
+    // If coming via the API signature which accepts a previously constructed HttpRequest,
     // the only option is to get the event stream. Otherwise, return the event stream if
     // that is what was requested.
-
     if (first instanceof HttpRequest || options.observe === 'events') {
       return events$;
-    } // The requested stream contains either the full response or the body. In either
+    }
+    // The requested stream contains either the full response or the body. In either
     // case, the first step is to filter the event stream to extract a stream of
     // responses(s).
-
-
-    const res$ = events$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.filter)(event => event instanceof HttpResponse)); // Decide which stream to return.
-
+    const res$ = events$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.filter)(event => event instanceof HttpResponse));
+    // Decide which stream to return.
     switch (options.observe || 'body') {
       case 'body':
         // The requested stream is the body. Map the response stream to the response
@@ -13090,40 +11805,32 @@ class HttpClient {
               if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
                 throw new Error('Response is not an ArrayBuffer.');
               }
-
               return res.body;
             }));
-
           case 'blob':
             return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => {
               // Validate that the body is a Blob.
               if (res.body !== null && !(res.body instanceof Blob)) {
                 throw new Error('Response is not a Blob.');
               }
-
               return res.body;
             }));
-
           case 'text':
             return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => {
               // Validate that the body is a string.
               if (res.body !== null && typeof res.body !== 'string') {
                 throw new Error('Response is not a string.');
               }
-
               return res.body;
             }));
-
           case 'json':
           default:
             // No validation needed for JSON responses, as they can be of any type.
             return res$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(res => res.body));
         }
-
       case 'response':
         // The response stream was requested directly, so return it.
         return res$;
-
       default:
         // Guard against new future observe types being added.
         throw new Error(`Unreachable: unhandled observe type ${options.observe}}`);
@@ -13138,8 +11845,6 @@ class HttpClient {
    * @param options The HTTP options to send with the request.
    *
    */
-
-
   delete(url, options = {}) {
     return this.request('DELETE', url, options);
   }
@@ -13148,8 +11853,6 @@ class HttpClient {
    * `GET` request to execute on the server. See the individual overloads for
    * details on the return type.
    */
-
-
   get(url, options = {}) {
     return this.request('GET', url, options);
   }
@@ -13160,8 +11863,6 @@ class HttpClient {
    * resource itself. See the individual overloads for
    * details on the return type.
    */
-
-
   head(url, options = {}) {
     return this.request('HEAD', url, options);
   }
@@ -13183,8 +11884,6 @@ class HttpClient {
    * @param callbackParam The callback function name.
    *
    */
-
-
   jsonp(url, callbackParam) {
     return this.request('JSONP', url, {
       params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
@@ -13199,8 +11898,6 @@ class HttpClient {
    * without implying a resource action. See the individual overloads for
    * details on the return type.
    */
-
-
   options(url, options = {}) {
     return this.request('OPTIONS', url, options);
   }
@@ -13209,8 +11906,6 @@ class HttpClient {
    * `PATCH` request to execute on the server. See the individual overloads for
    * details on the return type.
    */
-
-
   patch(url, body, options = {}) {
     return this.request('PATCH', url, addBody(options, body));
   }
@@ -13220,8 +11915,6 @@ class HttpClient {
    * the replaced resource. See the individual overloads for
    * details on the return type.
    */
-
-
   post(url, body, options = {}) {
     return this.request('POST', url, addBody(options, body));
   }
@@ -13231,23 +11924,17 @@ class HttpClient {
    * with a new set of values.
    * See the individual overloads for details on the return type.
    */
-
-
   put(url, body, options = {}) {
     return this.request('PUT', url, addBody(options, body));
   }
-
 }
-
 HttpClient.ɵfac = function HttpClient_Factory(t) {
   return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpHandler));
 };
-
 HttpClient.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: HttpClient,
   factory: HttpClient.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClient, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -13257,6 +11944,7 @@ HttpClient.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["�
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -13264,24 +11952,19 @@ HttpClient.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["�
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
  *
  *
  */
-
-
 class HttpInterceptorHandler {
   constructor(next, interceptor) {
     this.next = next;
     this.interceptor = interceptor;
   }
-
   handle(req) {
     return this.interceptor.intercept(req, this.next);
   }
-
 }
 /**
  * A multi-provider token that represents the array of registered
@@ -13289,31 +11972,25 @@ class HttpInterceptorHandler {
  *
  * @publicApi
  */
-
-
 const HTTP_INTERCEPTORS = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('HTTP_INTERCEPTORS');
-
 class NoopInterceptor {
   intercept(req, next) {
     return next.handle(req);
   }
-
 }
-
 NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) {
   return new (t || NoopInterceptor)();
 };
-
 NoopInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: NoopInterceptor,
   factory: NoopInterceptor.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](NoopInterceptor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -13325,20 +12002,17 @@ NoopInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
 // whole page. Each request is assigned an id and the callback name is constructed
 // from that. The next id to be assigned is tracked in a global variable here that
 // is shared among all applications on the page.
-
-
 let nextRequestId = 0;
 /**
  * When a pending <script> is unsubscribed we'll move it to this document, so it won't be
  * executed.
  */
-
-let foreignDocument; // Error text given when a JSONP script is injected, but doesn't invoke the callback
+let foreignDocument;
+// Error text given when a JSONP script is injected, but doesn't invoke the callback
 // passed in its URL.
-
-const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.'; // Error text given when a request is passed to the JsonpClientBackend that doesn't
+const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
+// Error text given when a request is passed to the JsonpClientBackend that doesn't
 // have a request method JSONP.
-
 const JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
 const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
 /**
@@ -13348,7 +12022,6 @@ const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response typ
  *
  *
  */
-
 class JsonpCallbackContext {}
 /**
  * Processes an `HttpRequest` with the JSONP method,
@@ -13358,8 +12031,6 @@ class JsonpCallbackContext {}
  *
  * @publicApi
  */
-
-
 class JsonpClientBackend {
   constructor(callbackMap, document) {
     this.callbackMap = callbackMap;
@@ -13367,14 +12038,11 @@ class JsonpClientBackend {
     /**
      * A resolved promise that can be used to schedule microtasks in the event handlers.
      */
-
     this.resolvedPromise = Promise.resolve();
   }
   /**
    * Get the name of the next callback method, by incrementing the global `nextRequestId`.
    */
-
-
   nextCallback() {
     return `ng_jsonp_callback_${nextRequestId++}`;
   }
@@ -13384,8 +12052,6 @@ class JsonpClientBackend {
    * @returns An observable of the response events.
    *
    */
-
-
   handle(req) {
     // Firstly, check both the method and response type. If either doesn't match
     // then the request was improperly routed here and cannot be handled.
@@ -13393,61 +12059,57 @@ class JsonpClientBackend {
       throw new Error(JSONP_ERR_WRONG_METHOD);
     } else if (req.responseType !== 'json') {
       throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
-    } // Everything else happens inside the Observable boundary.
-
-
+    }
+    // Everything else happens inside the Observable boundary.
     return new rxjs__WEBPACK_IMPORTED_MODULE_5__.Observable(observer => {
       // The first step to make a request is to generate the callback name, and replace the
       // callback placeholder in the URL with the name. Care has to be taken here to ensure
       // a trailing &, if matched, gets inserted back into the URL in the correct place.
       const callback = this.nextCallback();
-      const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`); // Construct the <script> tag and point it at the URL.
-
+      const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
+      // Construct the <script> tag and point it at the URL.
       const node = this.document.createElement('script');
-      node.src = url; // A JSONP request requires waiting for multiple callbacks. These variables
+      node.src = url;
+      // A JSONP request requires waiting for multiple callbacks. These variables
       // are closed over and track state across those callbacks.
       // The response object, if one has been received, or null otherwise.
-
-      let body = null; // Whether the response callback has been called.
-
-      let finished = false; // Set the response callback in this.callbackMap (which will be the window
+      let body = null;
+      // Whether the response callback has been called.
+      let finished = false;
+      // Set the response callback in this.callbackMap (which will be the window
       // object in the browser. The script being loaded via the <script> tag will
       // eventually call this callback.
-
       this.callbackMap[callback] = data => {
         // Data has been received from the JSONP script. Firstly, delete this callback.
-        delete this.callbackMap[callback]; // Set state to indicate data was received.
-
+        delete this.callbackMap[callback];
+        // Set state to indicate data was received.
         body = data;
         finished = true;
-      }; // cleanup() is a utility closure that removes the <script> from the page and
+      };
+      // cleanup() is a utility closure that removes the <script> from the page and
       // the response callback from the window. This logic is used in both the
       // success, error, and cancellation paths, so it's extracted out for convenience.
-
-
       const cleanup = () => {
         // Remove the <script> tag if it's still on the page.
         if (node.parentNode) {
           node.parentNode.removeChild(node);
-        } // Remove the response callback from the callbackMap (window object in the
+        }
+        // Remove the response callback from the callbackMap (window object in the
         // browser).
-
-
         delete this.callbackMap[callback];
-      }; // onLoad() is the success callback which runs after the response callback
+      };
+      // onLoad() is the success callback which runs after the response callback
       // if the JSONP script loads successfully. The event itself is unimportant.
       // If something went wrong, onLoad() may run without the response callback
       // having been invoked.
-
-
       const onLoad = event => {
         // We wrap it in an extra Promise, to ensure the microtask
         // is scheduled after the loaded endpoint has executed any potential microtask itself,
         // which is not guaranteed in Internet Explorer and EdgeHTML. See issue #39496
         this.resolvedPromise.then(() => {
           // Cleanup the page.
-          cleanup(); // Check whether the response callback has run.
-
+          cleanup();
+          // Check whether the response callback has run.
           if (!finished) {
             // It hasn't, something went wrong with the request. Return an error via
             // the Observable error path. All JSONP errors have status 0.
@@ -13458,58 +12120,51 @@ class JsonpClientBackend {
               error: new Error(JSONP_ERR_NO_CALLBACK)
             }));
             return;
-          } // Success. body either contains the response body or null if none was
+          }
+          // Success. body either contains the response body or null if none was
           // returned.
-
-
           observer.next(new HttpResponse({
             body,
-            status: 200
-            /* Ok */
-            ,
+            status: 200 /* Ok */,
             statusText: 'OK',
             url
-          })); // Complete the stream, the response is over.
-
+          }));
+          // Complete the stream, the response is over.
           observer.complete();
         });
-      }; // onError() is the error callback, which runs if the script returned generates
+      };
+      // onError() is the error callback, which runs if the script returned generates
       // a Javascript error. It emits the error via the Observable error channel as
       // a HttpErrorResponse.
-
-
       const onError = error => {
-        cleanup(); // Wrap the error in a HttpErrorResponse.
-
+        cleanup();
+        // Wrap the error in a HttpErrorResponse.
         observer.error(new HttpErrorResponse({
           error,
           status: 0,
           statusText: 'JSONP Error',
           url
         }));
-      }; // Subscribe to both the success (load) and error events on the <script> tag,
+      };
+      // Subscribe to both the success (load) and error events on the <script> tag,
       // and add it to the page.
-
-
       node.addEventListener('load', onLoad);
       node.addEventListener('error', onError);
-      this.document.body.appendChild(node); // The request has now been successfully sent.
-
+      this.document.body.appendChild(node);
+      // The request has now been successfully sent.
       observer.next({
         type: HttpEventType.Sent
-      }); // Cancellation handler.
-
+      });
+      // Cancellation handler.
       return () => {
         if (!finished) {
           this.removeListeners(node);
-        } // And finally, clean up the page.
-
-
+        }
+        // And finally, clean up the page.
         cleanup();
       };
     });
   }
-
   removeListeners(script) {
     // Issue #34818
     // Changing <script>'s ownerDocument will prevent it from execution.
@@ -13517,21 +12172,16 @@ class JsonpClientBackend {
     if (!foreignDocument) {
       foreignDocument = this.document.implementation.createHTMLDocument();
     }
-
     foreignDocument.adoptNode(script);
   }
-
 }
-
 JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) {
   return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT));
 };
-
 JsonpClientBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: JsonpClientBackend,
   factory: JsonpClientBackend.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](JsonpClientBackend, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -13555,8 +12205,6 @@ JsonpClientBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
  *
  * @publicApi
  */
-
-
 class JsonpInterceptor {
   constructor(jsonp) {
     this.jsonp = jsonp;
@@ -13568,28 +12216,21 @@ class JsonpInterceptor {
    * if no interceptors remain in the chain.
    * @returns An observable of the event stream.
    */
-
-
   intercept(req, next) {
     if (req.method === 'JSONP') {
       return this.jsonp.handle(req);
-    } // Fall through for normal HTTP requests.
-
-
+    }
+    // Fall through for normal HTTP requests.
     return next.handle(req);
   }
-
 }
-
 JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) {
   return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](JsonpClientBackend));
 };
-
 JsonpInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: JsonpInterceptor,
   factory: JsonpInterceptor.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](JsonpInterceptor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -13599,22 +12240,18 @@ JsonpInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
     }];
   }, null);
 })();
-
 const XSSI_PREFIX = /^\)\]\}',?\n/;
 /**
  * Determine an appropriate URL for the response, by checking either
  * XMLHttpRequest.responseURL or the X-Request-URL header.
  */
-
 function getResponseUrl(xhr) {
   if ('responseURL' in xhr && xhr.responseURL) {
     return xhr.responseURL;
   }
-
   if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
     return xhr.getResponseHeader('X-Request-URL');
   }
-
   return null;
 }
 /**
@@ -13624,8 +12261,6 @@ function getResponseUrl(xhr) {
  *
  * @publicApi
  */
-
-
 class HttpXhrBackend {
   constructor(xhrFactory) {
     this.xhrFactory = xhrFactory;
@@ -13635,75 +12270,66 @@ class HttpXhrBackend {
    * @param req The request object.
    * @returns An observable of the response events.
    */
-
-
   handle(req) {
     // Quick check to give a better error message when a user attempts to use
     // HttpClient.jsonp() without installing the HttpClientJsonpModule
     if (req.method === 'JSONP') {
       throw new Error(`Attempted to construct Jsonp request without HttpClientJsonpModule installed.`);
-    } // Everything happens on Observable subscription.
-
-
+    }
+    // Everything happens on Observable subscription.
     return new rxjs__WEBPACK_IMPORTED_MODULE_5__.Observable(observer => {
       // Start by setting up the XHR object with request method, URL, and withCredentials flag.
       const xhr = this.xhrFactory.build();
       xhr.open(req.method, req.urlWithParams);
-
       if (!!req.withCredentials) {
         xhr.withCredentials = true;
-      } // Add all the requested headers.
-
-
-      req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(','))); // Add an Accept header if one isn't present already.
-
+      }
+      // Add all the requested headers.
+      req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(',')));
+      // Add an Accept header if one isn't present already.
       if (!req.headers.has('Accept')) {
         xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
-      } // Auto-detect the Content-Type header if one isn't present already.
-
-
+      }
+      // Auto-detect the Content-Type header if one isn't present already.
       if (!req.headers.has('Content-Type')) {
-        const detectedType = req.detectContentTypeHeader(); // Sometimes Content-Type detection fails.
-
+        const detectedType = req.detectContentTypeHeader();
+        // Sometimes Content-Type detection fails.
         if (detectedType !== null) {
           xhr.setRequestHeader('Content-Type', detectedType);
         }
-      } // Set the responseType if one was requested.
-
-
+      }
+      // Set the responseType if one was requested.
       if (req.responseType) {
-        const responseType = req.responseType.toLowerCase(); // JSON responses need to be processed as text. This is because if the server
+        const responseType = req.responseType.toLowerCase();
+        // JSON responses need to be processed as text. This is because if the server
         // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
         // xhr.response will be null, and xhr.responseText cannot be accessed to
         // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
         // is parsed by first requesting text and then applying JSON.parse.
-
         xhr.responseType = responseType !== 'json' ? responseType : 'text';
-      } // Serialize the request body if one is present. If not, this will be set to null.
-
-
-      const reqBody = req.serializeBody(); // If progress events are enabled, response headers will be delivered
+      }
+      // Serialize the request body if one is present. If not, this will be set to null.
+      const reqBody = req.serializeBody();
+      // If progress events are enabled, response headers will be delivered
       // in two events - the HttpHeaderResponse event and the full HttpResponse
       // event. However, since response headers don't change in between these
       // two events, it doesn't make sense to parse them twice. So headerResponse
       // caches the data extracted from the response whenever it's first parsed,
       // to ensure parsing isn't duplicated.
-
-      let headerResponse = null; // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+      let headerResponse = null;
+      // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
       // state, and memoizes it into headerResponse.
-
       const partialFromXhr = () => {
         if (headerResponse !== null) {
           return headerResponse;
         }
-
-        const statusText = xhr.statusText || 'OK'; // Parse headers from XMLHttpRequest - this step is lazy.
-
-        const headers = new HttpHeaders(xhr.getAllResponseHeaders()); // Read the response URL from the XMLHttpResponse instance and fall back on the
+        const statusText = xhr.statusText || 'OK';
+        // Parse headers from XMLHttpRequest - this step is lazy.
+        const headers = new HttpHeaders(xhr.getAllResponseHeaders());
+        // Read the response URL from the XMLHttpResponse instance and fall back on the
         // request URL.
-
-        const url = getResponseUrl(xhr) || req.url; // Construct the HttpHeaderResponse and memoize it.
-
+        const url = getResponseUrl(xhr) || req.url;
+        // Construct the HttpHeaderResponse and memoize it.
         headerResponse = new HttpHeaderResponse({
           headers,
           status: xhr.status,
@@ -13711,11 +12337,10 @@ class HttpXhrBackend {
           url
         });
         return headerResponse;
-      }; // Next, a few closures are defined for the various events which XMLHttpRequest can
+      };
+      // Next, a few closures are defined for the various events which XMLHttpRequest can
       // emit. This allows them to be unregistered as event listeners later.
       // First up is the load event, which represents a response being fully available.
-
-
       const onLoad = () => {
         // Read response state from the memoized partial data.
         let {
@@ -13723,36 +12348,28 @@ class HttpXhrBackend {
           status,
           statusText,
           url
-        } = partialFromXhr(); // The body will be read out if present.
-
+        } = partialFromXhr();
+        // The body will be read out if present.
         let body = null;
-
-        if (status !== 204
-        /* NoContent */
-        ) {
+        if (status !== 204 /* NoContent */) {
           // Use XMLHttpRequest.response if set, responseText otherwise.
           body = typeof xhr.response === 'undefined' ? xhr.responseText : xhr.response;
-        } // Normalize another potential bug (this one comes from CORS).
-
-
+        }
+        // Normalize another potential bug (this one comes from CORS).
         if (status === 0) {
-          status = !!body ? 200
-          /* Ok */
-          : 0;
-        } // ok determines whether the response will be transmitted on the event or
+          status = !!body ? 200 /* Ok */ : 0;
+        }
+        // ok determines whether the response will be transmitted on the event or
         // error channel. Unsuccessful status codes (not 2xx) will always be errors,
         // but a successful status code can still result in an error if the user
         // asked for JSON data and the body cannot be parsed as such.
-
-
-        let ok = status >= 200 && status < 300; // Check whether the body needs to be parsed as JSON (in many cases the browser
+        let ok = status >= 200 && status < 300;
+        // Check whether the body needs to be parsed as JSON (in many cases the browser
         // will have done that already).
-
         if (req.responseType === 'json' && typeof body === 'string') {
           // Save the original body, before attempting XSSI prefix stripping.
           const originalBody = body;
           body = body.replace(XSSI_PREFIX, '');
-
           try {
             // Attempt the parse. If it fails, a parse error should be delivered to the user.
             body = body !== '' ? JSON.parse(body) : null;
@@ -13760,13 +12377,13 @@ class HttpXhrBackend {
             // Since the JSON.parse failed, it's reasonable to assume this might not have been a
             // JSON response. Restore the original body (including any XSSI prefix) to deliver
             // a better error response.
-            body = originalBody; // If this was an error request to begin with, leave it as a string, it probably
+            body = originalBody;
+            // If this was an error request to begin with, leave it as a string, it probably
             // just isn't JSON. Otherwise, deliver the parsing error to the user.
-
             if (ok) {
               // Even though the response status was 2xx, this is still an error.
-              ok = false; // The parse error contains the text of the body that failed to parse.
-
+              ok = false;
+              // The parse error contains the text of the body that failed to parse.
               body = {
                 error,
                 text: body
@@ -13774,7 +12391,6 @@ class HttpXhrBackend {
             }
           }
         }
-
         if (ok) {
           // A successful response is delivered on the event stream.
           observer.next(new HttpResponse({
@@ -13783,9 +12399,9 @@ class HttpXhrBackend {
             status,
             statusText,
             url: url || undefined
-          })); // The full body has been received and delivered, no further events
+          }));
+          // The full body has been received and delivered, no further events
           // are possible. This request is complete.
-
           observer.complete();
         } else {
           // An unsuccessful request is delivered on the error channel.
@@ -13798,11 +12414,10 @@ class HttpXhrBackend {
             url: url || undefined
           }));
         }
-      }; // The onError callback is called when something goes wrong at the network level.
+      };
+      // The onError callback is called when something goes wrong at the network level.
       // Connection timeout, DNS error, offline, etc. These are actual errors, and are
       // transmitted on the error channel.
-
-
       const onError = error => {
         const {
           url
@@ -13814,119 +12429,104 @@ class HttpXhrBackend {
           url: url || undefined
         });
         observer.error(res);
-      }; // The sentHeaders flag tracks whether the HttpResponseHeaders event
+      };
+      // The sentHeaders flag tracks whether the HttpResponseHeaders event
       // has been sent on the stream. This is necessary to track if progress
       // is enabled since the event will be sent on only the first download
       // progerss event.
-
-
-      let sentHeaders = false; // The download progress event handler, which is only registered if
+      let sentHeaders = false;
+      // The download progress event handler, which is only registered if
       // progress events are enabled.
-
       const onDownProgress = event => {
         // Send the HttpResponseHeaders event if it hasn't been sent already.
         if (!sentHeaders) {
           observer.next(partialFromXhr());
           sentHeaders = true;
-        } // Start building the download progress event to deliver on the response
+        }
+        // Start building the download progress event to deliver on the response
         // event stream.
-
-
         let progressEvent = {
           type: HttpEventType.DownloadProgress,
           loaded: event.loaded
-        }; // Set the total number of bytes in the event if it's available.
-
+        };
+        // Set the total number of bytes in the event if it's available.
         if (event.lengthComputable) {
           progressEvent.total = event.total;
-        } // If the request was for text content and a partial response is
+        }
+        // If the request was for text content and a partial response is
         // available on XMLHttpRequest, include it in the progress event
         // to allow for streaming reads.
-
-
         if (req.responseType === 'text' && !!xhr.responseText) {
           progressEvent.partialText = xhr.responseText;
-        } // Finally, fire the event.
-
-
+        }
+        // Finally, fire the event.
         observer.next(progressEvent);
-      }; // The upload progress event handler, which is only registered if
+      };
+      // The upload progress event handler, which is only registered if
       // progress events are enabled.
-
-
       const onUpProgress = event => {
         // Upload progress events are simpler. Begin building the progress
         // event.
         let progress = {
           type: HttpEventType.UploadProgress,
           loaded: event.loaded
-        }; // If the total number of bytes being uploaded is available, include
+        };
+        // If the total number of bytes being uploaded is available, include
         // it.
-
         if (event.lengthComputable) {
           progress.total = event.total;
-        } // Send the event.
-
-
+        }
+        // Send the event.
         observer.next(progress);
-      }; // By default, register for load and error events.
-
-
+      };
+      // By default, register for load and error events.
       xhr.addEventListener('load', onLoad);
       xhr.addEventListener('error', onError);
       xhr.addEventListener('timeout', onError);
-      xhr.addEventListener('abort', onError); // Progress events are only enabled if requested.
-
+      xhr.addEventListener('abort', onError);
+      // Progress events are only enabled if requested.
       if (req.reportProgress) {
         // Download progress is always enabled if requested.
-        xhr.addEventListener('progress', onDownProgress); // Upload progress depends on whether there is a body to upload.
-
+        xhr.addEventListener('progress', onDownProgress);
+        // Upload progress depends on whether there is a body to upload.
         if (reqBody !== null && xhr.upload) {
           xhr.upload.addEventListener('progress', onUpProgress);
         }
-      } // Fire the request, and notify the event stream that it was fired.
-
-
+      }
+      // Fire the request, and notify the event stream that it was fired.
       xhr.send(reqBody);
       observer.next({
         type: HttpEventType.Sent
-      }); // This is the return from the Observable function, which is the
+      });
+      // This is the return from the Observable function, which is the
       // request cancellation handler.
-
       return () => {
         // On a cancellation, remove all registered event listeners.
         xhr.removeEventListener('error', onError);
         xhr.removeEventListener('abort', onError);
         xhr.removeEventListener('load', onLoad);
         xhr.removeEventListener('timeout', onError);
-
         if (req.reportProgress) {
           xhr.removeEventListener('progress', onDownProgress);
-
           if (reqBody !== null && xhr.upload) {
             xhr.upload.removeEventListener('progress', onUpProgress);
           }
-        } // Finally, abort the in-flight request.
-
-
+        }
+        // Finally, abort the in-flight request.
         if (xhr.readyState !== xhr.DONE) {
           xhr.abort();
         }
       };
     });
   }
-
 }
-
 HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) {
   return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.XhrFactory));
 };
-
 HttpXhrBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: HttpXhrBackend,
   factory: HttpXhrBackend.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXhrBackend, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -13936,6 +12536,7 @@ HttpXhrBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4_
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -13943,8 +12544,6 @@ HttpXhrBackend.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const XSRF_COOKIE_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('XSRF_COOKIE_NAME');
 const XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.InjectionToken('XSRF_HEADER_NAME');
 /**
@@ -13952,13 +12551,10 @@ const XSRF_HEADER_NAME = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectio
  *
  * @publicApi
  */
-
 class HttpXsrfTokenExtractor {}
 /**
  * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
  */
-
-
 class HttpXsrfCookieExtractor {
   constructor(doc, platform, cookieName) {
     this.doc = doc;
@@ -13969,37 +12565,28 @@ class HttpXsrfCookieExtractor {
     /**
      * @internal for testing
      */
-
     this.parseCount = 0;
   }
-
   getToken() {
     if (this.platform === 'server') {
       return null;
     }
-
     const cookieString = this.doc.cookie || '';
-
     if (cookieString !== this.lastCookieString) {
       this.parseCount++;
       this.lastToken = (0,_angular_common__WEBPACK_IMPORTED_MODULE_6__["ɵparseCookieValue"])(cookieString, this.cookieName);
       this.lastCookieString = cookieString;
     }
-
     return this.lastToken;
   }
-
 }
-
 HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) {
   return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__.DOCUMENT), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.PLATFORM_ID), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](XSRF_COOKIE_NAME));
 };
-
 HttpXsrfCookieExtractor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: HttpXsrfCookieExtractor,
   factory: HttpXsrfCookieExtractor.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXsrfCookieExtractor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -14028,46 +12615,37 @@ HttpXsrfCookieExtractor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_
 /**
  * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
  */
-
-
 class HttpXsrfInterceptor {
   constructor(tokenService, headerName) {
     this.tokenService = tokenService;
     this.headerName = headerName;
   }
-
   intercept(req, next) {
-    const lcUrl = req.url.toLowerCase(); // Skip both non-mutating requests and absolute URLs.
+    const lcUrl = req.url.toLowerCase();
+    // Skip both non-mutating requests and absolute URLs.
     // Non-mutating requests don't require a token, and absolute URLs require special handling
     // anyway as the cookie set
     // on our origin is not the same as the token expected by another origin.
-
     if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') || lcUrl.startsWith('https://')) {
       return next.handle(req);
     }
-
-    const token = this.tokenService.getToken(); // Be careful not to overwrite an existing header of the same name.
-
+    const token = this.tokenService.getToken();
+    // Be careful not to overwrite an existing header of the same name.
     if (token !== null && !req.headers.has(this.headerName)) {
       req = req.clone({
         headers: req.headers.set(this.headerName, token)
       });
     }
-
     return next.handle(req);
   }
-
 }
-
 HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) {
   return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](XSRF_HEADER_NAME));
 };
-
 HttpXsrfInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: HttpXsrfInterceptor,
   factory: HttpXsrfInterceptor.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpXsrfInterceptor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -14083,6 +12661,7 @@ HttpXsrfInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -14090,7 +12669,6 @@ HttpXsrfInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * An injectable `HttpHandler` that applies multiple interceptors
  * to a request before passing it to the given `HttpBackend`.
@@ -14100,35 +12678,27 @@ HttpXsrfInterceptor.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  * on `HttpInterceptingHandler` itself.
  * @see `HttpInterceptor`
  */
-
-
 class HttpInterceptingHandler {
   constructor(backend, injector) {
     this.backend = backend;
     this.injector = injector;
     this.chain = null;
   }
-
   handle(req) {
     if (this.chain === null) {
       const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
       this.chain = interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), this.backend);
     }
-
     return this.chain.handle(req);
   }
-
 }
-
 HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) {
   return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injector));
 };
-
 HttpInterceptingHandler.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
   token: HttpInterceptingHandler,
   factory: HttpInterceptingHandler.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpInterceptingHandler, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable
@@ -14148,13 +12718,10 @@ HttpInterceptingHandler.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_
  *
  *
  */
-
-
 function interceptingHandler(backend, interceptors = []) {
   if (!interceptors) {
     return backend;
   }
-
   return interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), backend);
 }
 /**
@@ -14165,13 +12732,10 @@ function interceptingHandler(backend, interceptors = []) {
  *
  *
  */
-
-
 function jsonpCallbackContext() {
   if (typeof window === 'object') {
     return window;
   }
-
   return {};
 }
 /**
@@ -14186,8 +12750,6 @@ function jsonpCallbackContext() {
  *
  * @publicApi
  */
-
-
 class HttpClientXsrfModule {
   /**
    * Disable the default XSRF protection.
@@ -14209,8 +12771,6 @@ class HttpClientXsrfModule {
    * - Header name default is `X-XSRF-TOKEN`.
    *
    */
-
-
   static withOptions(options = {}) {
     return {
       ngModule: HttpClientXsrfModule,
@@ -14223,13 +12783,10 @@ class HttpClientXsrfModule {
       } : []]
     };
   }
-
 }
-
 HttpClientXsrfModule.ɵfac = function HttpClientXsrfModule_Factory(t) {
   return new (t || HttpClientXsrfModule)();
 };
-
 HttpClientXsrfModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
   type: HttpClientXsrfModule
 });
@@ -14249,7 +12806,6 @@ HttpClientXsrfModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     useValue: 'X-XSRF-TOKEN'
   }]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientXsrfModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
@@ -14280,14 +12836,10 @@ HttpClientXsrfModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  *
  * @publicApi
  */
-
-
 class HttpClientModule {}
-
 HttpClientModule.ɵfac = function HttpClientModule_Factory(t) {
   return new (t || HttpClientModule)();
 };
-
 HttpClientModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
   type: HttpClientModule
 });
@@ -14304,7 +12856,6 @@ HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
     headerName: 'X-XSRF-TOKEN'
   })]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
@@ -14316,7 +12867,6 @@ HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
         cookieName: 'XSRF-TOKEN',
         headerName: 'X-XSRF-TOKEN'
       })],
-
       /**
        * Configures the [dependency injector](guide/glossary#injector) where it is imported
        * with supporting services for HTTP communications.
@@ -14342,14 +12892,10 @@ HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
  *
  * @publicApi
  */
-
-
 class HttpClientJsonpModule {}
-
 HttpClientJsonpModule.ɵfac = function HttpClientJsonpModule_Factory(t) {
   return new (t || HttpClientJsonpModule)();
 };
-
 HttpClientJsonpModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
   type: HttpClientJsonpModule
 });
@@ -14363,7 +12909,6 @@ HttpClientJsonpModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     multi: true
   }]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientJsonpModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule,
@@ -14379,6 +12924,7 @@ HttpClientJsonpModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -14386,7 +12932,6 @@ HttpClientJsonpModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A wrapper around the `XMLHttpRequest` constructor.
  *
@@ -14395,9 +12940,8 @@ HttpClientJsonpModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * @deprecated
  * `XhrFactory` has moved, please import `XhrFactory` from `@angular/common` instead.
  */
-
-
 const XhrFactory = _angular_common__WEBPACK_IMPORTED_MODULE_6__.XhrFactory;
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -43808,6 +42352,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -43815,7 +42361,6 @@ __webpack_require__.r(__webpack_exports__);
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Base class for all ControlValueAccessor classes defined in Forms package.
  * Contains common logic and utility functions.
@@ -43823,7 +42368,6 @@ __webpack_require__.r(__webpack_exports__);
  * Note: this is an *internal-only* class and should not be extended or used directly in
  * applications code.
  */
-
 class BaseControlValueAccessor {
   constructor(_renderer, _elementRef) {
     this._renderer = _renderer;
@@ -43833,14 +42377,11 @@ class BaseControlValueAccessor {
      * element.
      * @nodoc
      */
-
     this.onChange = _ => {};
     /**
      * The registered callback function called when a blur event occurs on the input element.
      * @nodoc
      */
-
-
     this.onTouched = () => {};
   }
   /**
@@ -43848,8 +42389,6 @@ class BaseControlValueAccessor {
    * implementation.
    * @nodoc
    */
-
-
   setProperty(key, value) {
     this._renderer.setProperty(this._elementRef.nativeElement, key, value);
   }
@@ -43857,8 +42396,6 @@ class BaseControlValueAccessor {
    * Registers a function called when the control is touched.
    * @nodoc
    */
-
-
   registerOnTouched(fn) {
     this.onTouched = fn;
   }
@@ -43866,8 +42403,6 @@ class BaseControlValueAccessor {
    * Registers a function called when the control value changes.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this.onChange = fn;
   }
@@ -43875,22 +42410,16 @@ class BaseControlValueAccessor {
    * Sets the "disabled" property on the range input element.
    * @nodoc
    */
-
-
   setDisabledState(isDisabled) {
     this.setProperty('disabled', isDisabled);
   }
-
 }
-
 BaseControlValueAccessor.ɵfac = function BaseControlValueAccessor_Factory(t) {
   return new (t || BaseControlValueAccessor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef));
 };
-
 BaseControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: BaseControlValueAccessor
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BaseControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive
@@ -43911,22 +42440,17 @@ BaseControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_
  * Note: this is an *internal-only* class and should not be extended or used directly in
  * applications code.
  */
-
-
 class BuiltInControlValueAccessor extends BaseControlValueAccessor {}
-
 BuiltInControlValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵBuiltInControlValueAccessor_BaseFactory;
   return function BuiltInControlValueAccessor_Factory(t) {
     return (ɵBuiltInControlValueAccessor_BaseFactory || (ɵBuiltInControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](BuiltInControlValueAccessor)))(t || BuiltInControlValueAccessor);
   };
 }();
-
 BuiltInControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: BuiltInControlValueAccessor,
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BuiltInControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive
@@ -43939,9 +42463,8 @@ BuiltInControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORT
  *
  * @publicApi
  */
-
-
 const NG_VALUE_ACCESSOR = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('NgValueAccessor');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -43949,7 +42472,6 @@ const NG_VALUE_ACCESSOR = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injecti
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 const CHECKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => CheckboxControlValueAccessor),
@@ -43978,7 +42500,6 @@ const CHECKBOX_VALUE_ACCESSOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class CheckboxControlValueAccessor extends BuiltInControlValueAccessor {
   /**
    * Sets the "checked" property on the input element.
@@ -43987,16 +42508,13 @@ class CheckboxControlValueAccessor extends BuiltInControlValueAccessor {
   writeValue(value) {
     this.setProperty('checked', value);
   }
-
 }
-
 CheckboxControlValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵCheckboxControlValueAccessor_BaseFactory;
   return function CheckboxControlValueAccessor_Factory(t) {
     return (ɵCheckboxControlValueAccessor_BaseFactory || (ɵCheckboxControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxControlValueAccessor)))(t || CheckboxControlValueAccessor);
   };
 }();
-
 CheckboxControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: CheckboxControlValueAccessor,
   selectors: [["input", "type", "checkbox", "formControlName", ""], ["input", "type", "checkbox", "formControl", ""], ["input", "type", "checkbox", "ngModel", ""]],
@@ -44011,7 +42529,6 @@ CheckboxControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPOR
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([CHECKBOX_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CheckboxControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -44025,6 +42542,7 @@ CheckboxControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPOR
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -44032,8 +42550,6 @@ CheckboxControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPOR
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const DEFAULT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => DefaultValueAccessor),
@@ -44043,7 +42559,6 @@ const DEFAULT_VALUE_ACCESSOR = {
  * We must check whether the agent is Android because composition events
  * behave differently between iOS and Android.
  */
-
 function _isAndroid() {
   const userAgent = (0,_angular_common__WEBPACK_IMPORTED_MODULE_1__["ɵgetDOM"])() ? (0,_angular_common__WEBPACK_IMPORTED_MODULE_1__["ɵgetDOM"])().getUserAgent() : '';
   return /android (\d+)/.test(userAgent.toLowerCase());
@@ -44054,8 +42569,6 @@ function _isAndroid() {
  * the "compositionend" event occurs.
  * @publicApi
  */
-
-
 const COMPOSITION_BUFFER_MODE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('CompositionEventMode');
 /**
  * The default `ControlValueAccessor` for writing a value and listening to changes on input
@@ -44092,15 +42605,12 @@ const COMPOSITION_BUFFER_MODE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.I
  * @ngModule FormsModule
  * @publicApi
  */
-
 class DefaultValueAccessor extends BaseControlValueAccessor {
   constructor(renderer, elementRef, _compositionMode) {
     super(renderer, elementRef);
     this._compositionMode = _compositionMode;
     /** Whether the user is creating a composition string (IME events). */
-
     this._composing = false;
-
     if (this._compositionMode == null) {
       this._compositionMode = !_isAndroid();
     }
@@ -44109,40 +42619,29 @@ class DefaultValueAccessor extends BaseControlValueAccessor {
    * Sets the "value" property on the input element.
    * @nodoc
    */
-
-
   writeValue(value) {
     const normalizedValue = value == null ? '' : value;
     this.setProperty('value', normalizedValue);
   }
   /** @internal */
-
-
   _handleInput(value) {
     if (!this._compositionMode || this._compositionMode && !this._composing) {
       this.onChange(value);
     }
   }
   /** @internal */
-
-
   _compositionStart() {
     this._composing = true;
   }
   /** @internal */
-
-
   _compositionEnd(value) {
     this._composing = false;
     this._compositionMode && this.onChange(value);
   }
-
 }
-
 DefaultValueAccessor.ɵfac = function DefaultValueAccessor_Factory(t) {
   return new (t || DefaultValueAccessor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](COMPOSITION_BUFFER_MODE, 8));
 };
-
 DefaultValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: DefaultValueAccessor,
   selectors: [["input", "formControlName", "", 3, "type", "checkbox"], ["textarea", "formControlName", ""], ["input", "formControl", "", 3, "type", "checkbox"], ["textarea", "formControl", ""], ["input", "ngModel", "", 3, "type", "checkbox"], ["textarea", "ngModel", ""], ["", "ngDefaultControl", ""]],
@@ -44161,7 +42660,6 @@ DefaultValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([DEFAULT_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DefaultValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -44194,6 +42692,7 @@ DefaultValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -44201,13 +42700,10 @@ DefaultValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function isEmptyInputValue(value) {
   // we don't check for string here so it also works with arrays
   return value == null || value.length === 0;
 }
-
 function hasValidLength(value) {
   // non-strict comparison is intentional, to check for both `null` and `undefined` values
   return value != null && typeof value.length === 'number';
@@ -44240,8 +42736,6 @@ function hasValidLength(value) {
  *
  * @publicApi
  */
-
-
 const NG_VALIDATORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('NgValidators');
 /**
  * @description
@@ -44272,7 +42766,6 @@ const NG_VALIDATORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionTo
  *
  * @publicApi
  */
-
 const NG_ASYNC_VALIDATORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('NgAsyncValidators');
 /**
  * A regular expression that matches valid e-mail addresses.
@@ -44304,7 +42797,6 @@ const NG_ASYNC_VALIDATORS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injec
  *
  * See [this commit](https://github.com/angular/angular.js/commit/f3f5cf72e) for more details.
  */
-
 const EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 /**
  * @description
@@ -44317,7 +42809,6 @@ const EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(
  *
  * @publicApi
  */
-
 class Validators {
   /**
    * @description
@@ -44362,8 +42853,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static max(max) {
     return maxValidator(max);
   }
@@ -44387,8 +42876,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static required(control) {
     return requiredValidator(control);
   }
@@ -44413,8 +42900,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static requiredTrue(control) {
     return requiredTrueValidator(control);
   }
@@ -44454,8 +42939,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static email(control) {
     return emailValidator(control);
   }
@@ -44489,8 +42972,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static minLength(minLength) {
     return minLengthValidator(minLength);
   }
@@ -44521,8 +43002,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static maxLength(maxLength) {
     return maxLengthValidator(maxLength);
   }
@@ -44575,8 +43054,6 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static pattern(pattern) {
     return patternValidator(pattern);
   }
@@ -44587,12 +43064,9 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static nullValidator(control) {
     return nullValidator(control);
   }
-
   static compose(validators) {
     return compose(validators);
   }
@@ -44607,28 +43081,23 @@ class Validators {
    * @see `updateValueAndValidity()`
    *
    */
-
-
   static composeAsync(validators) {
     return composeAsync(validators);
   }
-
 }
 /**
  * Validator that requires the control's value to be greater than or equal to the provided number.
  * See `Validators.min` for additional information.
  */
-
-
 function minValidator(min) {
   return control => {
     if (isEmptyInputValue(control.value) || isEmptyInputValue(min)) {
       return null; // don't validate empty values to allow optional controls
     }
 
-    const value = parseFloat(control.value); // Controls with NaN values after parsing should be treated as not having a
+    const value = parseFloat(control.value);
+    // Controls with NaN values after parsing should be treated as not having a
     // minimum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-min
-
     return !isNaN(value) && value < min ? {
       'min': {
         'min': min,
@@ -44641,17 +43110,15 @@ function minValidator(min) {
  * Validator that requires the control's value to be less than or equal to the provided number.
  * See `Validators.max` for additional information.
  */
-
-
 function maxValidator(max) {
   return control => {
     if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
       return null; // don't validate empty values to allow optional controls
     }
 
-    const value = parseFloat(control.value); // Controls with NaN values after parsing should be treated as not having a
+    const value = parseFloat(control.value);
+    // Controls with NaN values after parsing should be treated as not having a
     // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
-
     return !isNaN(value) && value > max ? {
       'max': {
         'max': max,
@@ -44664,8 +43131,6 @@ function maxValidator(max) {
  * Validator that requires the control have a non-empty value.
  * See `Validators.required` for additional information.
  */
-
-
 function requiredValidator(control) {
   return isEmptyInputValue(control.value) ? {
     'required': true
@@ -44676,8 +43141,6 @@ function requiredValidator(control) {
  * used for required checkboxes.
  * See `Validators.requiredTrue` for additional information.
  */
-
-
 function requiredTrueValidator(control) {
   return control.value === true ? null : {
     'required': true
@@ -44687,8 +43150,6 @@ function requiredTrueValidator(control) {
  * Validator that requires the control's value pass an email validation test.
  * See `Validators.email` for additional information.
  */
-
-
 function emailValidator(control) {
   if (isEmptyInputValue(control.value)) {
     return null; // don't validate empty values to allow optional controls
@@ -44702,8 +43163,6 @@ function emailValidator(control) {
  * Validator that requires the length of the control's value to be greater than or equal
  * to the provided minimum length. See `Validators.minLength` for additional information.
  */
-
-
 function minLengthValidator(minLength) {
   return control => {
     if (isEmptyInputValue(control.value) || !hasValidLength(control.value)) {
@@ -44711,7 +43170,6 @@ function minLengthValidator(minLength) {
       // don't validate values without `length` property
       return null;
     }
-
     return control.value.length < minLength ? {
       'minlength': {
         'requiredLength': minLength,
@@ -44724,8 +43182,6 @@ function minLengthValidator(minLength) {
  * Validator that requires the length of the control's value to be less than or equal
  * to the provided maximum length. See `Validators.maxLength` for additional information.
  */
-
-
 function maxLengthValidator(maxLength) {
   return control => {
     return hasValidLength(control.value) && control.value.length > maxLength ? {
@@ -44740,13 +43196,10 @@ function maxLengthValidator(maxLength) {
  * Validator that requires the control's value to match a regex pattern.
  * See `Validators.pattern` for additional information.
  */
-
-
 function patternValidator(pattern) {
   if (!pattern) return nullValidator;
   let regex;
   let regexStr;
-
   if (typeof pattern === 'string') {
     regexStr = '';
     if (pattern.charAt(0) !== '^') regexStr += '^';
@@ -44757,7 +43210,6 @@ function patternValidator(pattern) {
     regexStr = pattern.toString();
     regex = pattern;
   }
-
   return control => {
     if (isEmptyInputValue(control.value)) {
       return null; // don't validate empty values to allow optional controls
@@ -44775,40 +43227,31 @@ function patternValidator(pattern) {
 /**
  * Function that has `ValidatorFn` shape, but performs no operation.
  */
-
-
 function nullValidator(control) {
   return null;
 }
-
 function isPresent(o) {
   return o != null;
 }
-
 function toObservable(r) {
   const obs = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisPromise"])(r) ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.from)(r) : r;
-
   if (!(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisObservable"])(obs) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
     throw new Error(`Expected validator to return Promise or Observable.`);
   }
-
   return obs;
 }
-
 function mergeErrors(arrayOfErrors) {
-  let res = {}; // Not using Array.reduce here due to a Chrome 80 bug
+  let res = {};
+  // Not using Array.reduce here due to a Chrome 80 bug
   // https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
-
   arrayOfErrors.forEach(errors => {
     res = errors != null ? Object.assign(Object.assign({}, res), errors) : res;
   });
   return Object.keys(res).length === 0 ? null : res;
 }
-
 function executeValidators(control, validators) {
   return validators.map(validator => validator(control));
 }
-
 function isValidatorFn(validator) {
   return !validator.validate;
 }
@@ -44820,8 +43263,6 @@ function isValidatorFn(validator) {
  * @param validators The set of validators that may contain validators both in plain function form
  *     as well as represented as a validator class.
  */
-
-
 function normalizeValidators(validators) {
   return validators.map(validator => {
     return isValidatorFn(validator) ? validator : c => validator.validate(c);
@@ -44831,8 +43272,6 @@ function normalizeValidators(validators) {
  * Merges synchronous validators into a single validator function.
  * See `Validators.compose` for additional information.
  */
-
-
 function compose(validators) {
   if (!validators) return null;
   const presentValidators = validators.filter(isPresent);
@@ -44846,8 +43285,6 @@ function compose(validators) {
  * normalizes the list (converts everything to `ValidatorFn`) and merges them into a single
  * validator function.
  */
-
-
 function composeValidators(validators) {
   return validators != null ? compose(normalizeValidators(validators)) : null;
 }
@@ -44855,8 +43292,6 @@ function composeValidators(validators) {
  * Merges asynchronous validators into a single validator function.
  * See `Validators.composeAsync` for additional information.
  */
-
-
 function composeAsync(validators) {
   if (!validators) return null;
   const presentValidators = validators.filter(isPresent);
@@ -44871,8 +43306,6 @@ function composeAsync(validators) {
  * `AsyncValidatorFn`), normalizes the list (converts everything to `AsyncValidatorFn`) and merges
  * them into a single validator function.
  */
-
-
 function composeAsyncValidators(validators) {
   return validators != null ? composeAsync(normalizeValidators(validators)) : null;
 }
@@ -44880,8 +43313,6 @@ function composeAsyncValidators(validators) {
  * Merges raw control validators with a given directive validator and returns the combined list of
  * validators as an array.
  */
-
-
 function mergeValidators(controlValidators, dirValidator) {
   if (controlValidators === null) return [dirValidator];
   return Array.isArray(controlValidators) ? [...controlValidators, dirValidator] : [controlValidators, dirValidator];
@@ -44889,16 +43320,12 @@ function mergeValidators(controlValidators, dirValidator) {
 /**
  * Retrieves the list of raw synchronous validators attached to a given control.
  */
-
-
 function getControlValidators(control) {
   return control._rawValidators;
 }
 /**
  * Retrieves the list of raw asynchronous validators attached to a given control.
  */
-
-
 function getControlAsyncValidators(control) {
   return control._rawAsyncValidators;
 }
@@ -44909,8 +43336,6 @@ function getControlAsyncValidators(control) {
  * @param validators A validator, validators, or null.
  * @returns A validators array.
  */
-
-
 function makeValidatorsArray(validators) {
   if (!validators) return [];
   return Array.isArray(validators) ? validators : [validators];
@@ -44922,8 +43347,6 @@ function makeValidatorsArray(validators) {
  * @param validator The validator to check.
  * @returns Whether the validator is present.
  */
-
-
 function hasValidator(validators, validator) {
   return Array.isArray(validators) ? validators.includes(validator) : validators === validator;
 }
@@ -44934,8 +43357,6 @@ function hasValidator(validators, validator) {
  * @param currentValidators The base array of currrent validators.
  * @returns An array of validators.
  */
-
-
 function addValidators(validators, currentValidators) {
   const current = makeValidatorsArray(currentValidators);
   const validatorsToAdd = makeValidatorsArray(validators);
@@ -44950,10 +43371,10 @@ function addValidators(validators, currentValidators) {
   });
   return current;
 }
-
 function removeValidators(validators, currentValidators) {
   return makeValidatorsArray(currentValidators).filter(v => !hasValidator(validators, v));
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -44961,7 +43382,6 @@ function removeValidators(validators, currentValidators) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  * Base class for control directives.
@@ -44970,8 +43390,6 @@ function removeValidators(validators, currentValidators) {
  *
  * @publicApi
  */
-
-
 class AbstractControlDirective {
   constructor() {
     /**
@@ -44984,20 +43402,16 @@ class AbstractControlDirective {
      * function.
      * @internal
      */
-
     this._rawAsyncValidators = [];
     /*
      * The set of callbacks to be invoked when directive instance is being destroyed.
      */
-
     this._onDestroyCallbacks = [];
   }
   /**
    * @description
    * Reports the value of the control if it is present, otherwise null.
    */
-
-
   get value() {
     return this.control ? this.control.value : null;
   }
@@ -45007,8 +43421,6 @@ class AbstractControlDirective {
    * validation errors exist with the current value.
    * If the control is not present, null is returned.
    */
-
-
   get valid() {
     return this.control ? this.control.valid : null;
   }
@@ -45017,8 +43429,6 @@ class AbstractControlDirective {
    * Reports whether the control is invalid, meaning that an error exists in the input value.
    * If the control is not present, null is returned.
    */
-
-
   get invalid() {
     return this.control ? this.control.invalid : null;
   }
@@ -45028,8 +43438,6 @@ class AbstractControlDirective {
    * errors are not yet available for the input value. If the control is not present, null is
    * returned.
    */
-
-
   get pending() {
     return this.control ? this.control.pending : null;
   }
@@ -45039,8 +43447,6 @@ class AbstractControlDirective {
    * in the UI and is exempt from validation checks and excluded from aggregate
    * values of ancestor controls. If the control is not present, null is returned.
    */
-
-
   get disabled() {
     return this.control ? this.control.disabled : null;
   }
@@ -45049,8 +43455,6 @@ class AbstractControlDirective {
    * Reports whether the control is enabled, meaning that the control is included in ancestor
    * calculations of validity or value. If the control is not present, null is returned.
    */
-
-
   get enabled() {
     return this.control ? this.control.enabled : null;
   }
@@ -45058,8 +43462,6 @@ class AbstractControlDirective {
    * @description
    * Reports the control's validation errors. If the control is not present, null is returned.
    */
-
-
   get errors() {
     return this.control ? this.control.errors : null;
   }
@@ -45068,8 +43470,6 @@ class AbstractControlDirective {
    * Reports whether the control is pristine, meaning that the user has not yet changed
    * the value in the UI. If the control is not present, null is returned.
    */
-
-
   get pristine() {
     return this.control ? this.control.pristine : null;
   }
@@ -45078,8 +43478,6 @@ class AbstractControlDirective {
    * Reports whether the control is dirty, meaning that the user has changed
    * the value in the UI. If the control is not present, null is returned.
    */
-
-
   get dirty() {
     return this.control ? this.control.dirty : null;
   }
@@ -45088,8 +43486,6 @@ class AbstractControlDirective {
    * Reports whether the control is touched, meaning that the user has triggered
    * a `blur` event on it. If the control is not present, null is returned.
    */
-
-
   get touched() {
     return this.control ? this.control.touched : null;
   }
@@ -45099,8 +43495,6 @@ class AbstractControlDirective {
    * 'VALID', 'INVALID', 'DISABLED', and 'PENDING'.
    * If the control is not present, null is returned.
    */
-
-
   get status() {
     return this.control ? this.control.status : null;
   }
@@ -45109,8 +43503,6 @@ class AbstractControlDirective {
    * Reports whether the control is untouched, meaning that the user has not yet triggered
    * a `blur` event on it. If the control is not present, null is returned.
    */
-
-
   get untouched() {
     return this.control ? this.control.untouched : null;
   }
@@ -45119,8 +43511,6 @@ class AbstractControlDirective {
    * Returns a multicasting observable that emits a validation status whenever it is
    * calculated for the control. If the control is not present, null is returned.
    */
-
-
   get statusChanges() {
     return this.control ? this.control.statusChanges : null;
   }
@@ -45130,8 +43520,6 @@ class AbstractControlDirective {
    * value of the control changes in the UI or programmatically.
    * If the control is not present, null is returned.
    */
-
-
   get valueChanges() {
     return this.control ? this.control.valueChanges : null;
   }
@@ -45140,8 +43528,6 @@ class AbstractControlDirective {
    * Returns an array that represents the path from the top-level form to this control.
    * Each index is the string name of the control on that level.
    */
-
-
   get path() {
     return null;
   }
@@ -45149,8 +43535,6 @@ class AbstractControlDirective {
    * Sets synchronous validators for this directive.
    * @internal
    */
-
-
   _setValidators(validators) {
     this._rawValidators = validators || [];
     this._composedValidatorFn = composeValidators(this._rawValidators);
@@ -45159,8 +43543,6 @@ class AbstractControlDirective {
    * Sets asynchronous validators for this directive.
    * @internal
    */
-
-
   _setAsyncValidators(validators) {
     this._rawAsyncValidators = validators || [];
     this._composedAsyncValidatorFn = composeAsyncValidators(this._rawAsyncValidators);
@@ -45170,8 +43552,6 @@ class AbstractControlDirective {
    * Synchronous validator function composed of all the synchronous validators registered with this
    * directive.
    */
-
-
   get validator() {
     return this._composedValidatorFn || null;
   }
@@ -45180,8 +43560,6 @@ class AbstractControlDirective {
    * Asynchronous validator function composed of all the asynchronous validators registered with
    * this directive.
    */
-
-
   get asyncValidator() {
     return this._composedAsyncValidatorFn || null;
   }
@@ -45190,8 +43568,6 @@ class AbstractControlDirective {
    * when directive instance is being destroyed.
    * @internal
    */
-
-
   _registerOnDestroy(fn) {
     this._onDestroyCallbacks.push(fn);
   }
@@ -45200,19 +43576,14 @@ class AbstractControlDirective {
    * Note: calling this function also clears the list of callbacks.
    * @internal
    */
-
-
   _invokeOnDestroyCallbacks() {
     this._onDestroyCallbacks.forEach(fn => fn());
-
     this._onDestroyCallbacks = [];
   }
   /**
    * @description
    * Resets the control with the provided value if the control is present.
    */
-
-
   reset(value = undefined) {
     if (this.control) this.control.reset(value);
   }
@@ -45246,8 +43617,6 @@ class AbstractControlDirective {
    *
    * If the control is not present, false is returned.
    */
-
-
   hasError(errorCode, path) {
     return this.control ? this.control.hasError(errorCode, path) : false;
   }
@@ -45278,13 +43647,11 @@ class AbstractControlDirective {
    * @returns error data for that particular error. If the control or error is not present,
    * null is returned.
    */
-
-
   getError(errorCode, path) {
     return this.control ? this.control.getError(errorCode, path) : null;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45292,7 +43659,6 @@ class AbstractControlDirective {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  * A base class that all `FormControl`-based directives extend. It binds a `FormControl`
@@ -45300,8 +43666,6 @@ class AbstractControlDirective {
  *
  * @publicApi
  */
-
-
 class NgControl extends AbstractControlDirective {
   constructor() {
     super(...arguments);
@@ -45311,23 +43675,20 @@ class NgControl extends AbstractControlDirective {
      *
      * @internal
      */
-
     this._parent = null;
     /**
      * @description
      * The name for the control
      */
-
     this.name = null;
     /**
      * @description
      * The value accessor for the control
      */
-
     this.valueAccessor = null;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45335,7 +43696,6 @@ class NgControl extends AbstractControlDirective {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  * A base class for directives that contain multiple registered instances of `NgControl`.
@@ -45343,8 +43703,6 @@ class NgControl extends AbstractControlDirective {
  *
  * @publicApi
  */
-
-
 class ControlContainer extends AbstractControlDirective {
   /**
    * @description
@@ -45357,13 +43715,11 @@ class ControlContainer extends AbstractControlDirective {
    * @description
    * The path to this group.
    */
-
-
   get path() {
     return null;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45371,33 +43727,26 @@ class ControlContainer extends AbstractControlDirective {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class AbstractControlStatus {
   constructor(cd) {
     this._cd = cd;
   }
-
   is(status) {
-    var _a, _b, _c; // Currently with ViewEngine (in AOT mode) it's not possible to use private methods in host
+    var _a, _b, _c;
+    // Currently with ViewEngine (in AOT mode) it's not possible to use private methods in host
     // bindings.
     // TODO: once ViewEngine is removed, this function should be refactored:
     //  - make the `is` method `protected`, so it's not accessible publicly
     //  - move the `submitted` status logic to the `NgControlStatusGroup` class
     //    and make it `private` or `protected` too.
-
-
     if (status === 'submitted') {
       // We check for the `submitted` field from `NgForm` and `FormGroupDirective` classes, but
       // we avoid instanceof checks to prevent non-tree-shakable references to those types.
       return !!((_a = this._cd) === null || _a === void 0 ? void 0 : _a.submitted);
     }
-
     return !!((_c = (_b = this._cd) === null || _b === void 0 ? void 0 : _b.control) === null || _c === void 0 ? void 0 : _c[status]);
   }
-
 }
-
 const ngControlStatusHost = {
   '[class.ng-untouched]': 'is("untouched")',
   '[class.ng-touched]': 'is("touched")',
@@ -45440,18 +43789,14 @@ const ngGroupStatusHost = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class NgControlStatus extends AbstractControlStatus {
   constructor(cd) {
     super(cd);
   }
-
 }
-
 NgControlStatus.ɵfac = function NgControlStatus_Factory(t) {
   return new (t || NgControlStatus)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgControl, 2));
 };
-
 NgControlStatus.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgControlStatus,
   selectors: [["", "formControlName", ""], ["", "ngModel", ""], ["", "formControl", ""]],
@@ -45463,7 +43808,6 @@ NgControlStatus.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgControlStatus, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -45492,19 +43836,14 @@ NgControlStatus.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class NgControlStatusGroup extends AbstractControlStatus {
   constructor(cd) {
     super(cd);
   }
-
 }
-
 NgControlStatusGroup.ɵfac = function NgControlStatusGroup_Factory(t) {
   return new (t || NgControlStatusGroup)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 10));
 };
-
 NgControlStatusGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgControlStatusGroup,
   selectors: [["", "formGroupName", ""], ["", "formArrayName", ""], ["", "ngModelGroup", ""], ["", "formGroup", ""], ["form", 3, "ngNoForm", ""], ["", "ngForm", ""]],
@@ -45516,7 +43855,6 @@ NgControlStatusGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgControlStatusGroup, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -45535,6 +43873,7 @@ NgControlStatusGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45542,8 +43881,6 @@ NgControlStatusGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const formControlNameExample = `
   <div [formGroup]="myGroup">
     <input formControlName="firstName">
@@ -45593,6 +43930,7 @@ const ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45600,7 +43938,6 @@ const ngModelWithFormGroupExample = `
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 function controlParentException() {
   return new Error(`formControlName must be used with a parent formGroup directive.  You'll want to add a formGroup
       directive and pass it an existing FormGroup instance (you can create one in your class).
@@ -45609,7 +43946,6 @@ function controlParentException() {
 
     ${formControlNameExample}`);
 }
-
 function ngModelGroupException() {
   return new Error(`formControlName cannot be used with an ngModelGroup parent. It is only compatible with parents
       that also have a "form" prefix: formGroupName, formArrayName, or formGroup.
@@ -45622,7 +43958,6 @@ function ngModelGroupException() {
 
       ${ngModelGroupExample}`);
 }
-
 function missingFormException() {
   return new Error(`formGroup expects a FormGroup instance. Please pass one in.
 
@@ -45630,7 +43965,6 @@ function missingFormException() {
 
       ${formControlNameExample}`);
 }
-
 function groupParentException() {
   return new Error(`formGroupName must be used with a parent formGroup directive.  You'll want to add a formGroup
     directive and pass it an existing FormGroup instance (you can create one in your class).
@@ -45639,7 +43973,6 @@ function groupParentException() {
 
     ${formGroupNameExample}`);
 }
-
 function arrayParentException() {
   return new Error(`formArrayName must be used with a parent formGroup directive.  You'll want to add a formGroup
       directive and pass it an existing FormGroup instance (you can create one in your class).
@@ -45648,7 +43981,6 @@ function arrayParentException() {
 
       ${formArrayNameExample}`);
 }
-
 const disabledAttrWarning = `
   It looks like you're using the disabled attribute with a reactive form directive. If you set disabled to true
   when you set up this control in your component class, the disabled attribute will actually be set in the DOM for
@@ -45660,7 +43992,6 @@ const disabledAttrWarning = `
     last: new FormControl('Drew', Validators.required)
   });
 `;
-
 function ngModelWarning(directiveName) {
   return `
   It looks like you're using ngModel on the same form field as ${directiveName}.
@@ -45672,25 +44003,22 @@ function ngModelWarning(directiveName) {
   https://angular.io/api/forms/${directiveName === 'formControl' ? 'FormControlDirective' : 'FormControlName'}#use-with-ngmodel
   `;
 }
-
 function describeKey(isFormGroup, key) {
   return isFormGroup ? `with name: '${key}'` : `at index: ${key}`;
 }
-
 function noControlsError(isFormGroup) {
   return `
     There are no form controls registered with this ${isFormGroup ? 'group' : 'array'} yet. If you're using ngModel,
     you may want to check next tick (e.g. use setTimeout).
   `;
 }
-
 function missingControlError(isFormGroup, key) {
   return `Cannot find form control ${describeKey(isFormGroup, key)}`;
 }
-
 function missingControlValueError(isFormGroup, key) {
   return `Must supply a value for form control ${describeKey(isFormGroup, key)}`;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -45698,8 +44026,6 @@ function missingControlValueError(isFormGroup, key) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function controlPath(name, parent) {
   return [...parent.path, name];
 }
@@ -45710,14 +44036,11 @@ function controlPath(name, parent) {
  * @param control Form control instance that should be linked.
  * @param dir Directive that should be linked with a given control.
  */
-
-
 function setUpControl(control, dir) {
   if (typeof ngDevMode === 'undefined' || ngDevMode) {
     if (!control) _throwError(dir, 'Cannot find control with');
     if (!dir.valueAccessor) _throwError(dir, 'No value accessor for form control with');
   }
-
   setUpValidators(control, dir);
   dir.valueAccessor.writeValue(control.value);
   setUpViewChangePipeline(control, dir);
@@ -45736,34 +44059,27 @@ function setUpControl(control, dir) {
  *     contain asserts to verify that it's not called once directive is destroyed. We need this flag
  *     to avoid potentially breaking changes caused by better control cleanup introduced in #39235.
  */
-
-
 function cleanUpControl(control, dir, validateControlPresenceOnChange = true) {
   const noop = () => {
     if (validateControlPresenceOnChange && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       _noControlError(dir);
     }
-  }; // The `valueAccessor` field is typically defined on FromControl and FormControlName directive
+  };
+  // The `valueAccessor` field is typically defined on FromControl and FormControlName directive
   // instances and there is a logic in `selectValueAccessor` function that throws if it's not the
   // case. We still check the presence of `valueAccessor` before invoking its methods to make sure
   // that cleanup works correctly if app code or tests are setup to ignore the error thrown from
   // `selectValueAccessor`. See https://github.com/angular/angular/issues/40521.
-
-
   if (dir.valueAccessor) {
     dir.valueAccessor.registerOnChange(noop);
     dir.valueAccessor.registerOnTouched(noop);
   }
-
   cleanUpValidators(control, dir);
-
   if (control) {
     dir._invokeOnDestroyCallbacks();
-
     control._registerOnCollectionChange(() => {});
   }
 }
-
 function registerOnValidatorChange(validators, onChange) {
   validators.forEach(validator => {
     if (validator.registerOnValidatorChange) validator.registerOnValidatorChange(onChange);
@@ -45776,17 +44092,14 @@ function registerOnValidatorChange(validators, onChange) {
  * @param control Form control where disabled change handler should be setup.
  * @param dir Corresponding directive instance associated with this control.
  */
-
-
 function setUpDisabledChangeHandler(control, dir) {
   if (dir.valueAccessor.setDisabledState) {
     const onDisabledChange = isDisabled => {
       dir.valueAccessor.setDisabledState(isDisabled);
     };
-
-    control.registerOnDisabledChange(onDisabledChange); // Register a callback function to cleanup disabled change handler
+    control.registerOnDisabledChange(onDisabledChange);
+    // Register a callback function to cleanup disabled change handler
     // from a control instance when a directive is destroyed.
-
     dir._registerOnDestroy(() => {
       control._unregisterOnDisabledChange(onDisabledChange);
     });
@@ -45799,11 +44112,8 @@ function setUpDisabledChangeHandler(control, dir) {
  * @param control Form control where directive validators should be setup.
  * @param dir Directive instance that contains validators to be setup.
  */
-
-
 function setUpValidators(control, dir) {
   const validators = getControlValidators(control);
-
   if (dir.validator !== null) {
     control.setValidators(mergeValidators(validators, dir.validator));
   } else if (typeof validators === 'function') {
@@ -45816,18 +44126,14 @@ function setUpValidators(control, dir) {
     // validators logic below.
     control.setValidators([validators]);
   }
-
   const asyncValidators = getControlAsyncValidators(control);
-
   if (dir.asyncValidator !== null) {
     control.setAsyncValidators(mergeValidators(asyncValidators, dir.asyncValidator));
   } else if (typeof asyncValidators === 'function') {
     control.setAsyncValidators([asyncValidators]);
-  } // Re-run validation when validator binding changes, e.g. minlength=3 -> minlength=4
-
-
+  }
+  // Re-run validation when validator binding changes, e.g. minlength=3 -> minlength=4
   const onValidatorChange = () => control.updateValueAndValidity();
-
   registerOnValidatorChange(dir._rawValidators, onValidatorChange);
   registerOnValidatorChange(dir._rawAsyncValidators, onValidatorChange);
 }
@@ -45840,49 +44146,38 @@ function setUpValidators(control, dir) {
  * @param dir Directive instance that contains validators to be removed.
  * @returns true if a control was updated as a result of this action.
  */
-
-
 function cleanUpValidators(control, dir) {
   let isControlUpdated = false;
-
   if (control !== null) {
     if (dir.validator !== null) {
       const validators = getControlValidators(control);
-
       if (Array.isArray(validators) && validators.length > 0) {
         // Filter out directive validator function.
         const updatedValidators = validators.filter(validator => validator !== dir.validator);
-
         if (updatedValidators.length !== validators.length) {
           isControlUpdated = true;
           control.setValidators(updatedValidators);
         }
       }
     }
-
     if (dir.asyncValidator !== null) {
       const asyncValidators = getControlAsyncValidators(control);
-
       if (Array.isArray(asyncValidators) && asyncValidators.length > 0) {
         // Filter out directive async validator function.
         const updatedAsyncValidators = asyncValidators.filter(asyncValidator => asyncValidator !== dir.asyncValidator);
-
         if (updatedAsyncValidators.length !== asyncValidators.length) {
           isControlUpdated = true;
           control.setAsyncValidators(updatedAsyncValidators);
         }
       }
     }
-  } // Clear onValidatorChange callbacks by providing a noop function.
-
-
+  }
+  // Clear onValidatorChange callbacks by providing a noop function.
   const noop = () => {};
-
   registerOnValidatorChange(dir._rawValidators, noop);
   registerOnValidatorChange(dir._rawAsyncValidators, noop);
   return isControlUpdated;
 }
-
 function setUpViewChangePipeline(control, dir) {
   dir.valueAccessor.registerOnChange(newValue => {
     control._pendingValue = newValue;
@@ -45891,7 +44186,6 @@ function setUpViewChangePipeline(control, dir) {
     if (control.updateOn === 'change') updateControl(control, dir);
   });
 }
-
 function setUpBlurPipeline(control, dir) {
   dir.valueAccessor.registerOnTouched(() => {
     control._pendingTouched = true;
@@ -45899,7 +44193,6 @@ function setUpBlurPipeline(control, dir) {
     if (control.updateOn !== 'submit') control.markAsTouched();
   });
 }
-
 function updateControl(control, dir) {
   if (control._pendingDirty) control.markAsDirty();
   control.setValue(control._pendingValue, {
@@ -45908,18 +44201,16 @@ function updateControl(control, dir) {
   dir.viewToModelUpdate(control._pendingValue);
   control._pendingChange = false;
 }
-
 function setUpModelChangePipeline(control, dir) {
   const onChange = (newValue, emitModelEvent) => {
     // control -> view
-    dir.valueAccessor.writeValue(newValue); // control -> ngModel
-
+    dir.valueAccessor.writeValue(newValue);
+    // control -> ngModel
     if (emitModelEvent) dir.viewToModelUpdate(newValue);
   };
-
-  control.registerOnChange(onChange); // Register a callback function to cleanup onChange handler
+  control.registerOnChange(onChange);
+  // Register a callback function to cleanup onChange handler
   // from a control instance when a directive is destroyed.
-
   dir._registerOnDestroy(() => {
     control._unregisterOnChange(onChange);
   });
@@ -45931,8 +44222,6 @@ function setUpModelChangePipeline(control, dir) {
  * @param control FormGroup or FormArray instance that should be linked.
  * @param dir Directive that provides view validators.
  */
-
-
 function setUpFormContainer(control, dir) {
   if (control == null && (typeof ngDevMode === 'undefined' || ngDevMode)) _throwError(dir, 'Cannot find control with');
   setUpValidators(control, dir);
@@ -45944,62 +44233,48 @@ function setUpFormContainer(control, dir) {
  * @param dir Directive that provided view validators.
  * @returns true if a control was updated as a result of this action.
  */
-
-
 function cleanUpFormContainer(control, dir) {
   return cleanUpValidators(control, dir);
 }
-
 function _noControlError(dir) {
   return _throwError(dir, 'There is no FormControl instance attached to form control element with');
 }
-
 function _throwError(dir, message) {
   const messageEnd = _describeControlLocation(dir);
-
   throw new Error(`${message} ${messageEnd}`);
 }
-
 function _describeControlLocation(dir) {
   const path = dir.path;
   if (path && path.length > 1) return `path: '${path.join(' -> ')}'`;
   if (path === null || path === void 0 ? void 0 : path[0]) return `name: '${path}'`;
   return 'unspecified name attribute';
 }
-
 function _throwInvalidValueAccessorError(dir) {
   const loc = _describeControlLocation(dir);
-
   throw new Error(`Value accessor was not provided as an array for form control with ${loc}. ` + `Check that the \`NG_VALUE_ACCESSOR\` token is configured as a \`multi: true\` provider.`);
 }
-
 function isPropertyUpdated(changes, viewModel) {
   if (!changes.hasOwnProperty('model')) return false;
   const change = changes['model'];
   if (change.isFirstChange()) return true;
   return !Object.is(viewModel, change.currentValue);
 }
-
 function isBuiltInAccessor(valueAccessor) {
   // Check if a given value accessor is an instance of a class that directly extends
   // `BuiltInControlValueAccessor` one.
   return Object.getPrototypeOf(valueAccessor.constructor) === BuiltInControlValueAccessor;
 }
-
 function syncPendingControls(form, directives) {
   form._syncPendingControls();
-
   directives.forEach(dir => {
     const control = dir.control;
-
     if (control.updateOn === 'submit' && control._pendingChange) {
       dir.viewToModelUpdate(control._pendingValue);
       control._pendingChange = false;
     }
   });
-} // TODO: vsavkin remove it once https://github.com/angular/angular/issues/3011 is implemented
-
-
+}
+// TODO: vsavkin remove it once https://github.com/angular/angular/issues/3011 is implemented
 function selectValueAccessor(dir, valueAccessors) {
   if (!valueAccessors) return null;
   if (!Array.isArray(valueAccessors) && (typeof ngDevMode === 'undefined' || ngDevMode)) _throwInvalidValueAccessorError(dir);
@@ -46020,29 +44295,25 @@ function selectValueAccessor(dir, valueAccessors) {
   if (customAccessor) return customAccessor;
   if (builtinAccessor) return builtinAccessor;
   if (defaultAccessor) return defaultAccessor;
-
   if (typeof ngDevMode === 'undefined' || ngDevMode) {
     _throwError(dir, 'No valid value accessor for form control with');
   }
-
   return null;
 }
-
 function removeListItem(list, el) {
   const index = list.indexOf(el);
   if (index > -1) list.splice(index, 1);
-} // TODO(kara): remove after deprecation period
-
-
+}
+// TODO(kara): remove after deprecation period
 function _ngModelWarning(name, type, instance, warningConfig) {
   if (warningConfig === 'never') return;
-
   if ((warningConfig === null || warningConfig === 'once') && !type._ngModelWarningSentOnce || warningConfig === 'always' && !instance._ngModelWarningSent) {
     console.warn(ngModelWarning(name));
     type._ngModelWarningSentOnce = true;
     instance._ngModelWarningSent = true;
   }
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -46050,22 +44321,18 @@ function _ngModelWarning(name, type, instance, warningConfig) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const NG_DEV_MODE = typeof ngDevMode === 'undefined' || !!ngDevMode;
 /**
  * Reports that a FormControl is valid, meaning that no errors exist in the input value.
  *
  * @see `status`
  */
-
 const VALID = 'VALID';
 /**
  * Reports that a FormControl is invalid, meaning that an error exists in the input value.
  *
  * @see `status`
  */
-
 const INVALID = 'INVALID';
 /**
  * Reports that a FormControl is pending, meaning that that async validation is occurring and
@@ -46074,7 +44341,6 @@ const INVALID = 'INVALID';
  * @see `markAsPending`
  * @see `status`
  */
-
 const PENDING = 'PENDING';
 /**
  * Reports that a FormControl is disabled, meaning that the control is exempt from ancestor
@@ -46083,19 +44349,15 @@ const PENDING = 'PENDING';
  * @see `markAsDisabled`
  * @see `status`
  */
-
 const DISABLED = 'DISABLED';
-
 function _find(control, path, delimiter) {
   if (path == null) return null;
-
   if (!Array.isArray(path)) {
     path = path.split(delimiter);
   }
-
-  if (Array.isArray(path) && path.length === 0) return null; // Not using Array.reduce here due to a Chrome 80 bug
+  if (Array.isArray(path) && path.length === 0) return null;
+  // Not using Array.reduce here due to a Chrome 80 bug
   // https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
-
   let controlToFind = control;
   path.forEach(name => {
     if (isFormGroup(controlToFind)) {
@@ -46111,76 +44373,52 @@ function _find(control, path, delimiter) {
 /**
  * Gets validators from either an options object or given validators.
  */
-
-
 function pickValidators(validatorOrOpts) {
   return (isOptionsObj(validatorOrOpts) ? validatorOrOpts.validators : validatorOrOpts) || null;
 }
 /**
  * Creates validator function by combining provided validators.
  */
-
-
 function coerceToValidator(validator) {
   return Array.isArray(validator) ? composeValidators(validator) : validator || null;
 }
 /**
  * Gets async validators from either an options object or given validators.
  */
-
-
 function pickAsyncValidators(asyncValidator, validatorOrOpts) {
   return (isOptionsObj(validatorOrOpts) ? validatorOrOpts.asyncValidators : asyncValidator) || null;
 }
 /**
  * Creates async validator function by combining provided async validators.
  */
-
-
 function coerceToAsyncValidator(asyncValidator) {
   return Array.isArray(asyncValidator) ? composeAsyncValidators(asyncValidator) : asyncValidator || null;
 }
-
 function isOptionsObj(validatorOrOpts) {
   return validatorOrOpts != null && !Array.isArray(validatorOrOpts) && typeof validatorOrOpts === 'object';
 }
-
 const isFormControl = control => control instanceof FormControl;
-
 const isFormGroup = control => control instanceof FormGroup;
-
 const isFormArray = control => control instanceof FormArray;
-
 function getRawValue(control) {
   return isFormControl(control) ? control.value : control.getRawValue();
 }
-
 function assertControlPresent(parent, key) {
   const isGroup = isFormGroup(parent);
   const controls = parent.controls;
   const collection = isGroup ? Object.keys(controls) : controls;
-
   if (!collection.length) {
-    throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1000
-    /* NO_CONTROLS */
-    , NG_DEV_MODE ? noControlsError(isGroup) : '');
+    throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1000 /* NO_CONTROLS */, NG_DEV_MODE ? noControlsError(isGroup) : '');
   }
-
   if (!controls[key]) {
-    throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1001
-    /* MISSING_CONTROL */
-    , NG_DEV_MODE ? missingControlError(isGroup, key) : '');
+    throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1001 /* MISSING_CONTROL */, NG_DEV_MODE ? missingControlError(isGroup, key) : '');
   }
 }
-
 function assertAllValuesPresent(control, value) {
   const isGroup = isFormGroup(control);
-
   control._forEachChild((_, key) => {
     if (value[key] === undefined) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1002
-      /* MISSING_CONTROL_VALUE */
-      , NG_DEV_MODE ? missingControlValueError(isGroup, key) : '');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](1002 /* MISSING_CONTROL_VALUE */, NG_DEV_MODE ? missingControlValueError(isGroup, key) : '');
     }
   });
 }
@@ -46198,8 +44436,6 @@ function assertAllValuesPresent(control, value) {
  *
  * @publicApi
  */
-
-
 class AbstractControl {
   /**
    * Initialize the AbstractControl instance.
@@ -46217,15 +44453,11 @@ class AbstractControl {
      *
      * @internal
      */
-
     this._hasOwnPendingAsyncValidator = false;
     /** @internal */
-
     this._pendingTouched = false;
     /** @internal */
-
     this._onCollectionChange = () => {};
-
     this._parent = null;
     /**
      * A control is `pristine` if the user has not yet changed
@@ -46234,7 +44466,6 @@ class AbstractControl {
      * @returns True if the user has not yet changed the value in the UI; compare `dirty`.
      * Programmatic changes to a control's value do not mark it dirty.
      */
-
     this.pristine = true;
     /**
      * True if the control is marked as `touched`.
@@ -46242,10 +44473,8 @@ class AbstractControl {
      * A control is marked `touched` once the user has triggered
      * a `blur` event on it.
      */
-
     this.touched = false;
     /** @internal */
-
     this._onDisabledChange = [];
     this._rawValidators = validators;
     this._rawAsyncValidators = asyncValidators;
@@ -46257,12 +44486,9 @@ class AbstractControl {
    * If multiple validators have been added, this will be a single composed function.
    * See `Validators.compose()` for additional information.
    */
-
-
   get validator() {
     return this._composedValidatorFn;
   }
-
   set validator(validatorFn) {
     this._rawValidators = this._composedValidatorFn = validatorFn;
   }
@@ -46271,20 +44497,15 @@ class AbstractControl {
    * If multiple validators have been added, this will be a single composed function.
    * See `Validators.compose()` for additional information.
    */
-
-
   get asyncValidator() {
     return this._composedAsyncValidatorFn;
   }
-
   set asyncValidator(asyncValidatorFn) {
     this._rawAsyncValidators = this._composedAsyncValidatorFn = asyncValidatorFn;
   }
   /**
    * The parent control.
    */
-
-
   get parent() {
     return this._parent;
   }
@@ -46296,8 +44517,6 @@ class AbstractControl {
    * @returns True if the control has passed all of its validation tests,
    * false otherwise.
    */
-
-
   get valid() {
     return this.status === VALID;
   }
@@ -46309,8 +44528,6 @@ class AbstractControl {
    * @returns True if this control has failed one or more of its validation checks,
    * false otherwise.
    */
-
-
   get invalid() {
     return this.status === INVALID;
   }
@@ -46322,8 +44539,6 @@ class AbstractControl {
    * @returns True if this control is in the process of conducting a validation check,
    * false otherwise.
    */
-
-
   get pending() {
     return this.status == PENDING;
   }
@@ -46338,8 +44553,6 @@ class AbstractControl {
    *
    * @returns True if the control is disabled, false otherwise.
    */
-
-
   get disabled() {
     return this.status === DISABLED;
   }
@@ -46352,8 +44565,6 @@ class AbstractControl {
    * @see {@link AbstractControl.status}
    *
    */
-
-
   get enabled() {
     return this.status !== DISABLED;
   }
@@ -46364,8 +44575,6 @@ class AbstractControl {
    * @returns True if the user has changed the value of this control in the UI; compare `pristine`.
    * Programmatic changes to a control's value do not mark it dirty.
    */
-
-
   get dirty() {
     return !this.pristine;
   }
@@ -46375,8 +44584,6 @@ class AbstractControl {
    * A control is `untouched` if the user has not yet triggered
    * a `blur` event on it.
    */
-
-
   get untouched() {
     return !this.touched;
   }
@@ -46386,8 +44593,6 @@ class AbstractControl {
    * Possible values: `'change'` | `'blur'` | `'submit'`
    * Default value: `'change'`
    */
-
-
   get updateOn() {
     return this._updateOn ? this._updateOn : this.parent ? this.parent.updateOn : 'change';
   }
@@ -46401,8 +44606,6 @@ class AbstractControl {
    * If you want to add a new validator without affecting existing ones, consider
    * using `addValidators()` method instead.
    */
-
-
   setValidators(validators) {
     this._rawValidators = validators;
     this._composedValidatorFn = coerceToValidator(validators);
@@ -46417,8 +44620,6 @@ class AbstractControl {
    * If you want to add a new validator without affecting existing ones, consider
    * using `addAsyncValidators()` method instead.
    */
-
-
   setAsyncValidators(validators) {
     this._rawAsyncValidators = validators;
     this._composedAsyncValidatorFn = coerceToAsyncValidator(validators);
@@ -46435,8 +44636,6 @@ class AbstractControl {
    *
    * @param validators The new validator function or functions to add to this control.
    */
-
-
   addValidators(validators) {
     this.setValidators(addValidators(validators, this._rawValidators));
   }
@@ -46451,8 +44650,6 @@ class AbstractControl {
    *
    * @param validators The new asynchronous validator function or functions to add to this control.
    */
-
-
   addAsyncValidators(validators) {
     this.setAsyncValidators(addValidators(validators, this._rawAsyncValidators));
   }
@@ -46467,8 +44664,6 @@ class AbstractControl {
    *
    * @param validators The validator or validators to remove.
    */
-
-
   removeValidators(validators) {
     this.setValidators(removeValidators(validators, this._rawValidators));
   }
@@ -46483,8 +44678,6 @@ class AbstractControl {
    *
    * @param validators The asynchronous validator or validators to remove.
    */
-
-
   removeAsyncValidators(validators) {
     this.setAsyncValidators(removeValidators(validators, this._rawAsyncValidators));
   }
@@ -46495,8 +44688,6 @@ class AbstractControl {
    * @param validator The validator to check for presence. Compared by function reference.
    * @returns Whether the provided validator was found on this control.
    */
-
-
   hasValidator(validator) {
     return hasValidator(this._rawValidators, validator);
   }
@@ -46508,8 +44699,6 @@ class AbstractControl {
    *     reference.
    * @returns Whether the provided asynchronous validator was found on this control.
    */
-
-
   hasAsyncValidator(validator) {
     return hasValidator(this._rawAsyncValidators, validator);
   }
@@ -46520,8 +44709,6 @@ class AbstractControl {
    * `updateValueAndValidity()` for the new validation to take effect.
    *
    */
-
-
   clearValidators() {
     this.validator = null;
   }
@@ -46532,8 +44719,6 @@ class AbstractControl {
    * `updateValueAndValidity()` for the new validation to take effect.
    *
    */
-
-
   clearAsyncValidators() {
     this.asyncValidator = null;
   }
@@ -46550,11 +44735,8 @@ class AbstractControl {
    * * `onlySelf`: When true, mark only this control. When false or not supplied,
    * marks all direct ancestors. Default is false.
    */
-
-
   markAsTouched(opts = {}) {
     this.touched = true;
-
     if (this._parent && !opts.onlySelf) {
       this._parent.markAsTouched(opts);
     }
@@ -46563,13 +44745,10 @@ class AbstractControl {
    * Marks the control and all its descendant controls as `touched`.
    * @see `markAsTouched()`
    */
-
-
   markAllAsTouched() {
     this.markAsTouched({
       onlySelf: true
     });
-
     this._forEachChild(control => control.markAllAsTouched());
   }
   /**
@@ -46587,18 +44766,14 @@ class AbstractControl {
    * * `onlySelf`: When true, mark only this control. When false or not supplied,
    * marks all direct ancestors. Default is false.
    */
-
-
   markAsUntouched(opts = {}) {
     this.touched = false;
     this._pendingTouched = false;
-
     this._forEachChild(control => {
       control.markAsUntouched({
         onlySelf: true
       });
     });
-
     if (this._parent && !opts.onlySelf) {
       this._parent._updateTouched(opts);
     }
@@ -46616,11 +44791,8 @@ class AbstractControl {
    * * `onlySelf`: When true, mark only this control. When false or not supplied,
    * marks all direct ancestors. Default is false.
    */
-
-
   markAsDirty(opts = {}) {
     this.pristine = false;
-
     if (this._parent && !opts.onlySelf) {
       this._parent.markAsDirty(opts);
     }
@@ -46641,18 +44813,14 @@ class AbstractControl {
    * * `onlySelf`: When true, mark only this control. When false or not supplied,
    * marks all direct ancestors. Default is false.
    */
-
-
   markAsPristine(opts = {}) {
     this.pristine = true;
     this._pendingDirty = false;
-
     this._forEachChild(control => {
       control.markAsPristine({
         onlySelf: true
       });
     });
-
     if (this._parent && !opts.onlySelf) {
       this._parent._updatePristine(opts);
     }
@@ -46673,15 +44841,11 @@ class AbstractControl {
    * When false, no events are emitted.
    *
    */
-
-
   markAsPending(opts = {}) {
     this.status = PENDING;
-
     if (opts.emitEvent !== false) {
       this.statusChanges.emit(this.status);
     }
-
     if (this._parent && !opts.onlySelf) {
       this._parent.markAsPending(opts);
     }
@@ -46703,33 +44867,25 @@ class AbstractControl {
    * observables emit events with the latest status and value when the control is disabled.
    * When false, no events are emitted.
    */
-
-
   disable(opts = {}) {
     // If parent has been marked artificially dirty we don't want to re-calculate the
     // parent's dirtiness based on the children.
     const skipPristineCheck = this._parentMarkedDirty(opts.onlySelf);
-
     this.status = DISABLED;
     this.errors = null;
-
     this._forEachChild(control => {
       control.disable(Object.assign(Object.assign({}, opts), {
         onlySelf: true
       }));
     });
-
     this._updateValue();
-
     if (opts.emitEvent !== false) {
       this.valueChanges.emit(this.value);
       this.statusChanges.emit(this.status);
     }
-
     this._updateAncestors(Object.assign(Object.assign({}, opts), {
       skipPristineCheck
     }));
-
     this._onDisabledChange.forEach(changeFn => changeFn(true));
   }
   /**
@@ -46750,49 +44906,37 @@ class AbstractControl {
    * observables emit events with the latest status and value when the control is enabled.
    * When false, no events are emitted.
    */
-
-
   enable(opts = {}) {
     // If parent has been marked artificially dirty we don't want to re-calculate the
     // parent's dirtiness based on the children.
     const skipPristineCheck = this._parentMarkedDirty(opts.onlySelf);
-
     this.status = VALID;
-
     this._forEachChild(control => {
       control.enable(Object.assign(Object.assign({}, opts), {
         onlySelf: true
       }));
     });
-
     this.updateValueAndValidity({
       onlySelf: true,
       emitEvent: opts.emitEvent
     });
-
     this._updateAncestors(Object.assign(Object.assign({}, opts), {
       skipPristineCheck
     }));
-
     this._onDisabledChange.forEach(changeFn => changeFn(false));
   }
-
   _updateAncestors(opts) {
     if (this._parent && !opts.onlySelf) {
       this._parent.updateValueAndValidity(opts);
-
       if (!opts.skipPristineCheck) {
         this._parent._updatePristine();
       }
-
       this._parent._updateTouched();
     }
   }
   /**
    * @param parent Sets the parent of the control
    */
-
-
   setParent(parent) {
     this._parent = parent;
   }
@@ -46810,76 +44954,60 @@ class AbstractControl {
    * observables emit events with the latest status and value when the control is updated.
    * When false, no events are emitted.
    */
-
-
   updateValueAndValidity(opts = {}) {
     this._setInitialStatus();
-
     this._updateValue();
-
     if (this.enabled) {
       this._cancelExistingSubscription();
-
       this.errors = this._runValidator();
       this.status = this._calculateStatus();
-
       if (this.status === VALID || this.status === PENDING) {
         this._runAsyncValidator(opts.emitEvent);
       }
     }
-
     if (opts.emitEvent !== false) {
       this.valueChanges.emit(this.value);
       this.statusChanges.emit(this.status);
     }
-
     if (this._parent && !opts.onlySelf) {
       this._parent.updateValueAndValidity(opts);
     }
   }
   /** @internal */
-
-
   _updateTreeValidity(opts = {
     emitEvent: true
   }) {
     this._forEachChild(ctrl => ctrl._updateTreeValidity(opts));
-
     this.updateValueAndValidity({
       onlySelf: true,
       emitEvent: opts.emitEvent
     });
   }
-
   _setInitialStatus() {
     this.status = this._allControlsDisabled() ? DISABLED : VALID;
   }
-
   _runValidator() {
     return this.validator ? this.validator(this) : null;
   }
-
   _runAsyncValidator(emitEvent) {
     if (this.asyncValidator) {
       this.status = PENDING;
       this._hasOwnPendingAsyncValidator = true;
       const obs = toObservable(this.asyncValidator(this));
       this._asyncValidationSubscription = obs.subscribe(errors => {
-        this._hasOwnPendingAsyncValidator = false; // This will trigger the recalculation of the validation status, which depends on
+        this._hasOwnPendingAsyncValidator = false;
+        // This will trigger the recalculation of the validation status, which depends on
         // the state of the asynchronous validation (whether it is in progress or not). So, it is
         // necessary that we have updated the `_hasOwnPendingAsyncValidator` boolean flag first.
-
         this.setErrors(errors, {
           emitEvent
         });
       });
     }
   }
-
   _cancelExistingSubscription() {
     if (this._asyncValidationSubscription) {
       this._asyncValidationSubscription.unsubscribe();
-
       this._hasOwnPendingAsyncValidator = false;
     }
   }
@@ -46906,11 +45034,8 @@ class AbstractControl {
    * expect(login.valid).toEqual(true);
    * ```
    */
-
-
   setErrors(errors, opts = {}) {
     this.errors = errors;
-
     this._updateControlsErrors(opts.emitEvent !== false);
   }
   /**
@@ -46941,8 +45066,6 @@ class AbstractControl {
    *
    * * `this.form.get(['items', 0, 'price']);`
    */
-
-
   get(path) {
     return _find(this, path, '.');
   }
@@ -46973,8 +45096,6 @@ class AbstractControl {
    * @returns error data for that particular error. If the control or error is not present,
    * null is returned.
    */
-
-
   getError(errorCode, path) {
     const control = path ? this.get(path) : this;
     return control && control.errors ? control.errors[errorCode] : null;
@@ -47009,47 +45130,34 @@ class AbstractControl {
    *
    * If the control is not present, false is returned.
    */
-
-
   hasError(errorCode, path) {
     return !!this.getError(errorCode, path);
   }
   /**
    * Retrieves the top-level ancestor of this control.
    */
-
-
   get root() {
     let x = this;
-
     while (x._parent) {
       x = x._parent;
     }
-
     return x;
   }
   /** @internal */
-
-
   _updateControlsErrors(emitEvent) {
     this.status = this._calculateStatus();
-
     if (emitEvent) {
       this.statusChanges.emit(this.status);
     }
-
     if (this._parent) {
       this._parent._updateControlsErrors(emitEvent);
     }
   }
   /** @internal */
-
-
   _initObservables() {
     this.valueChanges = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     this.statusChanges = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
   }
-
   _calculateStatus() {
     if (this._allControlsDisabled()) return DISABLED;
     if (this.errors) return INVALID;
@@ -47058,58 +45166,40 @@ class AbstractControl {
     return VALID;
   }
   /** @internal */
-
-
   _anyControlsHaveStatus(status) {
     return this._anyControls(control => control.status === status);
   }
   /** @internal */
-
-
   _anyControlsDirty() {
     return this._anyControls(control => control.dirty);
   }
   /** @internal */
-
-
   _anyControlsTouched() {
     return this._anyControls(control => control.touched);
   }
   /** @internal */
-
-
   _updatePristine(opts = {}) {
     this.pristine = !this._anyControlsDirty();
-
     if (this._parent && !opts.onlySelf) {
       this._parent._updatePristine(opts);
     }
   }
   /** @internal */
-
-
   _updateTouched(opts = {}) {
     this.touched = this._anyControlsTouched();
-
     if (this._parent && !opts.onlySelf) {
       this._parent._updateTouched(opts);
     }
   }
   /** @internal */
-
-
   _isBoxedValue(formState) {
     return typeof formState === 'object' && formState !== null && Object.keys(formState).length === 2 && 'value' in formState && 'disabled' in formState;
   }
   /** @internal */
-
-
   _registerOnCollectionChange(fn) {
     this._onCollectionChange = fn;
   }
   /** @internal */
-
-
   _setUpdateStrategy(opts) {
     if (isOptionsObj(opts) && opts.updateOn != null) {
       this._updateOn = opts.updateOn;
@@ -47120,13 +45210,10 @@ class AbstractControl {
    *
    * @internal
    */
-
-
   _parentMarkedDirty(onlySelf) {
     const parentDirty = this._parent && this._parent.dirty;
     return !onlySelf && !!parentDirty && !this._parent._anyControlsDirty();
   }
-
 }
 /**
  * Tracks the value and validation status of an individual form control.
@@ -47225,8 +45312,6 @@ class AbstractControl {
  *
  * @publicApi
  */
-
-
 class FormControl extends AbstractControl {
   /**
    * Creates a new `FormControl` instance.
@@ -47249,21 +45334,14 @@ class FormControl extends AbstractControl {
      * a default value.
      * @publicApi
      */
-
     this.defaultValue = null;
     /** @internal */
-
     this._onChange = [];
     /** @internal */
-
     this._pendingChange = false;
-
     this._applyFormState(formState);
-
     this._setUpdateStrategy(validatorOrOpts);
-
     this._initObservables();
-
     this.updateValueAndValidity({
       onlySelf: true,
       // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
@@ -47272,7 +45350,6 @@ class FormControl extends AbstractControl {
       // to `true` to allow that during the control creation process.
       emitEvent: !!this.asyncValidator
     });
-
     if (isOptionsObj(validatorOrOpts) && validatorOrOpts.initialValueIsDefault) {
       if (this._isBoxedValue(formState)) {
         this.defaultValue = formState.value;
@@ -47304,15 +45381,11 @@ class FormControl extends AbstractControl {
    * event to update the model.
    *
    */
-
-
   setValue(value, options = {}) {
     this.value = this._pendingValue = value;
-
     if (this._onChange.length && options.emitModelToViewChange !== false) {
       this._onChange.forEach(changeFn => changeFn(this.value, options.emitViewToModelChange !== false));
     }
-
     this.updateValueAndValidity(options);
   }
   /**
@@ -47324,8 +45397,6 @@ class FormControl extends AbstractControl {
    *
    * @see `setValue` for options
    */
-
-
   patchValue(value, options = {}) {
     this.setValue(value, options);
   }
@@ -47362,11 +45433,8 @@ class FormControl extends AbstractControl {
    * When false, no events are emitted.
    *
    */
-
-
   reset(formState = this.defaultValue, options = {}) {
     this._applyFormState(formState);
-
     this.markAsPristine(options);
     this.markAsUntouched(options);
     this.setValue(this.value, options);
@@ -47375,22 +45443,16 @@ class FormControl extends AbstractControl {
   /**
    * @internal
    */
-
-
   _updateValue() {}
   /**
    * @internal
    */
-
-
   _anyControls(condition) {
     return false;
   }
   /**
    * @internal
    */
-
-
   _allControlsDisabled() {
     return this.disabled;
   }
@@ -47399,8 +45461,6 @@ class FormControl extends AbstractControl {
    *
    * @param fn The method that is called when the value changes
    */
-
-
   registerOnChange(fn) {
     this._onChange.push(fn);
   }
@@ -47408,8 +45468,6 @@ class FormControl extends AbstractControl {
    * Internal function to unregister a change events listener.
    * @internal
    */
-
-
   _unregisterOnChange(fn) {
     removeListItem(this._onChange, fn);
   }
@@ -47418,8 +45476,6 @@ class FormControl extends AbstractControl {
    *
    * @param fn The method that is called when the disabled status changes.
    */
-
-
   registerOnDisabledChange(fn) {
     this._onDisabledChange.push(fn);
   }
@@ -47427,25 +45483,18 @@ class FormControl extends AbstractControl {
    * Internal function to unregister a disabled event listener.
    * @internal
    */
-
-
   _unregisterOnDisabledChange(fn) {
     removeListItem(this._onDisabledChange, fn);
   }
   /**
    * @internal
    */
-
-
   _forEachChild(cb) {}
   /** @internal */
-
-
   _syncPendingControls() {
     if (this.updateOn === 'submit') {
       if (this._pendingDirty) this.markAsDirty();
       if (this._pendingTouched) this.markAsTouched();
-
       if (this._pendingChange) {
         this.setValue(this._pendingValue, {
           onlySelf: true,
@@ -47454,10 +45503,8 @@ class FormControl extends AbstractControl {
         return true;
       }
     }
-
     return false;
   }
-
   _applyFormState(formState) {
     if (this._isBoxedValue(formState)) {
       this.value = this._pendingValue = formState.value;
@@ -47472,7 +45519,6 @@ class FormControl extends AbstractControl {
       this.value = this._pendingValue = formState;
     }
   }
-
 }
 /**
  * Tracks the value and validity state of a group of `FormControl` instances.
@@ -47546,8 +45592,6 @@ class FormControl extends AbstractControl {
  *
  * @publicApi
  */
-
-
 class FormGroup extends AbstractControl {
   /**
    * Creates a new `FormGroup` instance.
@@ -47565,13 +45609,9 @@ class FormGroup extends AbstractControl {
   constructor(controls, validatorOrOpts, asyncValidator) {
     super(pickValidators(validatorOrOpts), pickAsyncValidators(asyncValidator, validatorOrOpts));
     this.controls = controls;
-
     this._initObservables();
-
     this._setUpdateStrategy(validatorOrOpts);
-
     this._setUpControls();
-
     this.updateValueAndValidity({
       onlySelf: true,
       // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
@@ -47589,15 +45629,11 @@ class FormGroup extends AbstractControl {
    * @param name The control name to register in the collection
    * @param control Provides the control for the given name
    */
-
-
   registerControl(name, control) {
     if (this.controls[name]) return this.controls[name];
     this.controls[name] = control;
     control.setParent(this);
-
     control._registerOnCollectionChange(this._onCollectionChange);
-
     return control;
   }
   /**
@@ -47615,14 +45651,11 @@ class FormGroup extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * added. When false, no events are emitted.
    */
-
-
   addControl(name, control, options = {}) {
     this.registerControl(name, control);
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
-
     this._onCollectionChange();
   }
   /**
@@ -47637,15 +45670,12 @@ class FormGroup extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * removed. When false, no events are emitted.
    */
-
-
   removeControl(name, options = {}) {
     if (this.controls[name]) this.controls[name]._registerOnCollectionChange(() => {});
     delete this.controls[name];
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
-
     this._onCollectionChange();
   }
   /**
@@ -47661,8 +45691,6 @@ class FormGroup extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * replaced with a new one. When false, no events are emitted.
    */
-
-
   setControl(name, control, options = {}) {
     if (this.controls[name]) this.controls[name]._registerOnCollectionChange(() => {});
     delete this.controls[name];
@@ -47670,7 +45698,6 @@ class FormGroup extends AbstractControl {
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
-
     this._onCollectionChange();
   }
   /**
@@ -47683,8 +45710,6 @@ class FormGroup extends AbstractControl {
    *
    * @returns false for disabled controls, true otherwise.
    */
-
-
   contains(controlName) {
     return this.controls.hasOwnProperty(controlName) && this.controls[controlName].enabled;
   }
@@ -47723,8 +45748,6 @@ class FormGroup extends AbstractControl {
    * observables emit events with the latest status and value when the control value is updated.
    * When false, no events are emitted.
    */
-
-
   setValue(value, options = {}) {
     assertAllValuesPresent(this, value);
     Object.keys(value).forEach(name => {
@@ -47767,16 +45790,12 @@ class FormGroup extends AbstractControl {
    * is updated. When false, no events are emitted. The configuration options are passed to
    * the {@link AbstractControl#updateValueAndValidity updateValueAndValidity} method.
    */
-
-
   patchValue(value, options = {}) {
     // Even though the `value` argument type doesn't allow `null` and `undefined` values, the
     // `patchValue` can be called recursively and inner data structures might have these values, so
     // we just ignore such cases when a field containing FormGroup instance receives `null` or
     // `undefined` as a value.
-    if (value == null
-    /* both `null` and `undefined` */
-    ) return;
+    if (value == null /* both `null` and `undefined` */) return;
     Object.keys(value).forEach(name => {
       if (this.controls[name]) {
         this.controls[name].patchValue(value[name], {
@@ -47844,8 +45863,6 @@ class FormGroup extends AbstractControl {
    * console.log(form.get('first').status);  // 'DISABLED'
    * ```
    */
-
-
   reset(value = {}, options = {}) {
     this._forEachChild((control, name) => {
       control.reset(value[name], {
@@ -47853,11 +45870,8 @@ class FormGroup extends AbstractControl {
         emitEvent: options.emitEvent
       });
     });
-
     this._updatePristine(options);
-
     this._updateTouched(options);
-
     this.updateValueAndValidity(options);
   }
   /**
@@ -47867,8 +45881,6 @@ class FormGroup extends AbstractControl {
    * The `value` property is the best way to get the value of the group, because
    * it excludes disabled controls in the `FormGroup`.
    */
-
-
   getRawValue() {
     return this._reduceChildren({}, (acc, control, name) => {
       acc[name] = getRawValue(control);
@@ -47876,21 +45888,16 @@ class FormGroup extends AbstractControl {
     });
   }
   /** @internal */
-
-
   _syncPendingControls() {
     let subtreeUpdated = this._reduceChildren(false, (updated, child) => {
       return child._syncPendingControls() ? true : updated;
     });
-
     if (subtreeUpdated) this.updateValueAndValidity({
       onlySelf: true
     });
     return subtreeUpdated;
   }
   /** @internal */
-
-
   _forEachChild(cb) {
     Object.keys(this.controls).forEach(key => {
       // The list of controls can change (for ex. controls might be removed) while the loop
@@ -47901,72 +45908,52 @@ class FormGroup extends AbstractControl {
     });
   }
   /** @internal */
-
-
   _setUpControls() {
     this._forEachChild(control => {
       control.setParent(this);
-
       control._registerOnCollectionChange(this._onCollectionChange);
     });
   }
   /** @internal */
-
-
   _updateValue() {
     this.value = this._reduceValue();
   }
   /** @internal */
-
-
   _anyControls(condition) {
     for (const controlName of Object.keys(this.controls)) {
       const control = this.controls[controlName];
-
       if (this.contains(controlName) && condition(control)) {
         return true;
       }
     }
-
     return false;
   }
   /** @internal */
-
-
   _reduceValue() {
     return this._reduceChildren({}, (acc, control, name) => {
       if (control.enabled || this.disabled) {
         acc[name] = control.value;
       }
-
       return acc;
     });
   }
   /** @internal */
-
-
   _reduceChildren(initValue, fn) {
     let res = initValue;
-
     this._forEachChild((control, name) => {
       res = fn(res, control, name);
     });
-
     return res;
   }
   /** @internal */
-
-
   _allControlsDisabled() {
     for (const controlName of Object.keys(this.controls)) {
       if (this.controls[controlName].enabled) {
         return false;
       }
     }
-
     return Object.keys(this.controls).length > 0 || this.disabled;
   }
-
 }
 /**
  * Tracks the value and validity state of an array of `FormControl`,
@@ -48032,8 +46019,6 @@ class FormGroup extends AbstractControl {
  *
  * @publicApi
  */
-
-
 class FormArray extends AbstractControl {
   /**
    * Creates a new `FormArray` instance.
@@ -48051,13 +46036,9 @@ class FormArray extends AbstractControl {
   constructor(controls, validatorOrOpts, asyncValidator) {
     super(pickValidators(validatorOrOpts), pickAsyncValidators(asyncValidator, validatorOrOpts));
     this.controls = controls;
-
     this._initObservables();
-
     this._setUpdateStrategy(validatorOrOpts);
-
     this._setUpControls();
-
     this.updateValueAndValidity({
       onlySelf: true,
       // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
@@ -48072,8 +46053,6 @@ class FormArray extends AbstractControl {
    *
    * @param index Index in the array to retrieve the control
    */
-
-
   at(index) {
     return this.controls[index];
   }
@@ -48087,17 +46066,12 @@ class FormArray extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * inserted. When false, no events are emitted.
    */
-
-
   push(control, options = {}) {
     this.controls.push(control);
-
     this._registerControl(control);
-
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
-
     this._onCollectionChange();
   }
   /**
@@ -48111,13 +46085,9 @@ class FormArray extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * inserted. When false, no events are emitted.
    */
-
-
   insert(index, control, options = {}) {
     this.controls.splice(index, 0, control);
-
     this._registerControl(control);
-
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
@@ -48132,8 +46102,6 @@ class FormArray extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * removed. When false, no events are emitted.
    */
-
-
   removeAt(index, options = {}) {
     if (this.controls[index]) this.controls[index]._registerOnCollectionChange(() => {});
     this.controls.splice(index, 1);
@@ -48152,29 +46120,21 @@ class FormArray extends AbstractControl {
    * `valueChanges` observables emit events with the latest status and value when the control is
    * replaced with a new one. When false, no events are emitted.
    */
-
-
   setControl(index, control, options = {}) {
     if (this.controls[index]) this.controls[index]._registerOnCollectionChange(() => {});
     this.controls.splice(index, 1);
-
     if (control) {
       this.controls.splice(index, 0, control);
-
       this._registerControl(control);
     }
-
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
-
     this._onCollectionChange();
   }
   /**
    * Length of the control array.
    */
-
-
   get length() {
     return this.controls.length;
   }
@@ -48213,8 +46173,6 @@ class FormArray extends AbstractControl {
    * The configuration options are passed to the {@link AbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
    */
-
-
   setValue(value, options = {}) {
     assertAllValuesPresent(this, value);
     value.forEach((newValue, index) => {
@@ -48258,16 +46216,12 @@ class FormArray extends AbstractControl {
    * is updated. When false, no events are emitted. The configuration options are passed to
    * the {@link AbstractControl#updateValueAndValidity updateValueAndValidity} method.
    */
-
-
   patchValue(value, options = {}) {
     // Even though the `value` argument type doesn't allow `null` and `undefined` values, the
     // `patchValue` can be called recursively and inner data structures might have these values, so
     // we just ignore such cases when a field containing FormArray instance receives `null` or
     // `undefined` as a value.
-    if (value == null
-    /* both `null` and `undefined` */
-    ) return;
+    if (value == null /* both `null` and `undefined` */) return;
     value.forEach((newValue, index) => {
       if (this.at(index)) {
         this.at(index).patchValue(newValue, {
@@ -48324,8 +46278,6 @@ class FormArray extends AbstractControl {
    * The configuration options are passed to the {@link AbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
    */
-
-
   reset(value = [], options = {}) {
     this._forEachChild((control, index) => {
       control.reset(value[index], {
@@ -48333,11 +46285,8 @@ class FormArray extends AbstractControl {
         emitEvent: options.emitEvent
       });
     });
-
     this._updatePristine(options);
-
     this._updateTouched(options);
-
     this.updateValueAndValidity(options);
   }
   /**
@@ -48346,8 +46295,6 @@ class FormArray extends AbstractControl {
    * Reports all values regardless of disabled status.
    * For enabled controls only, the `value` property is the best way to get the value of the array.
    */
-
-
   getRawValue() {
     return this.controls.map(control => getRawValue(control));
   }
@@ -48387,21 +46334,15 @@ class FormArray extends AbstractControl {
    * }
    * ```
    */
-
-
   clear(options = {}) {
     if (this.controls.length < 1) return;
-
     this._forEachChild(control => control._registerOnCollectionChange(() => {}));
-
     this.controls.splice(0);
     this.updateValueAndValidity({
       emitEvent: options.emitEvent
     });
   }
   /** @internal */
-
-
   _syncPendingControls() {
     let subtreeUpdated = this.controls.reduce((updated, child) => {
       return child._syncPendingControls() ? true : updated;
@@ -48412,49 +46353,36 @@ class FormArray extends AbstractControl {
     return subtreeUpdated;
   }
   /** @internal */
-
-
   _forEachChild(cb) {
     this.controls.forEach((control, index) => {
       cb(control, index);
     });
   }
   /** @internal */
-
-
   _updateValue() {
     this.value = this.controls.filter(control => control.enabled || this.disabled).map(control => control.value);
   }
   /** @internal */
-
-
   _anyControls(condition) {
     return this.controls.some(control => control.enabled && condition(control));
   }
   /** @internal */
-
-
   _setUpControls() {
     this._forEachChild(control => this._registerControl(control));
   }
   /** @internal */
-
-
   _allControlsDisabled() {
     for (const control of this.controls) {
       if (control.enabled) return false;
     }
-
     return this.controls.length > 0 || this.disabled;
   }
-
   _registerControl(control) {
     control.setParent(this);
-
     control._registerOnCollectionChange(this._onCollectionChange);
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -48462,13 +46390,10 @@ class FormArray extends AbstractControl {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const formDirectiveProvider$1 = {
   provide: ControlContainer,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => NgForm)
 };
-
 const resolvedPromise$1 = (() => Promise.resolve(null))();
 /**
  * @description
@@ -48534,8 +46459,6 @@ const resolvedPromise$1 = (() => Promise.resolve(null))();
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class NgForm extends ControlContainer {
   constructor(validators, asyncValidators) {
     super();
@@ -48543,20 +46466,16 @@ class NgForm extends ControlContainer {
      * @description
      * Returns whether the form submission has been triggered.
      */
-
     this.submitted = false;
     this._directives = new Set();
     /**
      * @description
      * Event emitter for the "ngSubmit" event
      */
-
     this.ngSubmit = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     this.form = new FormGroup({}, composeValidators(validators), composeAsyncValidators(asyncValidators));
   }
   /** @nodoc */
-
-
   ngAfterViewInit() {
     this._setUpdateStrategy();
   }
@@ -48564,8 +46483,6 @@ class NgForm extends ControlContainer {
    * @description
    * The directive instance.
    */
-
-
   get formDirective() {
     return this;
   }
@@ -48573,8 +46490,6 @@ class NgForm extends ControlContainer {
    * @description
    * The internal `FormGroup` instance.
    */
-
-
   get control() {
     return this.form;
   }
@@ -48583,8 +46498,6 @@ class NgForm extends ControlContainer {
    * Returns an array representing the path to this group. Because this directive
    * always lives at the top level of a form, it is always an empty array.
    */
-
-
   get path() {
     return [];
   }
@@ -48592,8 +46505,6 @@ class NgForm extends ControlContainer {
    * @description
    * Returns a map of the controls in this group.
    */
-
-
   get controls() {
     return this.form.controls;
   }
@@ -48604,18 +46515,14 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModel` directive instance.
    */
-
-
   addControl(dir) {
     resolvedPromise$1.then(() => {
       const container = this._findContainer(dir.path);
-
       dir.control = container.registerControl(dir.name, dir.control);
       setUpControl(dir.control, dir);
       dir.control.updateValueAndValidity({
         emitEvent: false
       });
-
       this._directives.add(dir);
     });
   }
@@ -48625,8 +46532,6 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModel` directive instance.
    */
-
-
   getControl(dir) {
     return this.form.get(dir.path);
   }
@@ -48636,16 +46541,12 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModel` directive instance.
    */
-
-
   removeControl(dir) {
     resolvedPromise$1.then(() => {
       const container = this._findContainer(dir.path);
-
       if (container) {
         container.removeControl(dir.name);
       }
-
       this._directives.delete(dir);
     });
   }
@@ -48655,12 +46556,9 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModelGroup` directive instance.
    */
-
-
   addFormGroup(dir) {
     resolvedPromise$1.then(() => {
       const container = this._findContainer(dir.path);
-
       const group = new FormGroup({});
       setUpFormContainer(group, dir);
       container.registerControl(dir.name, group);
@@ -48675,12 +46573,9 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModelGroup` directive instance.
    */
-
-
   removeFormGroup(dir) {
     resolvedPromise$1.then(() => {
       const container = this._findContainer(dir.path);
-
       if (container) {
         container.removeControl(dir.name);
       }
@@ -48692,8 +46587,6 @@ class NgForm extends ControlContainer {
    *
    * @param dir The `NgModelGroup` directive instance.
    */
-
-
   getFormGroup(dir) {
     return this.form.get(dir.path);
   }
@@ -48703,8 +46596,6 @@ class NgForm extends ControlContainer {
    * @param dir The `NgControl` directive instance.
    * @param value The new value for the directive's control.
    */
-
-
   updateModel(dir, value) {
     resolvedPromise$1.then(() => {
       const ctrl = this.form.get(dir.path);
@@ -48717,8 +46608,6 @@ class NgForm extends ControlContainer {
    *
    * @param value The new value
    */
-
-
   setValue(value) {
     this.control.setValue(value);
   }
@@ -48729,8 +46618,6 @@ class NgForm extends ControlContainer {
    *
    * @param $event The "submit" event object
    */
-
-
   onSubmit($event) {
     this.submitted = true;
     syncPendingControls(this.form, this._directives);
@@ -48741,8 +46628,6 @@ class NgForm extends ControlContainer {
    * @description
    * Method called when the "reset" event is triggered on the form.
    */
-
-
   onReset() {
     this.resetForm();
   }
@@ -48752,30 +46637,23 @@ class NgForm extends ControlContainer {
    *
    * @param value The new value for the form.
    */
-
-
   resetForm(value = undefined) {
     this.form.reset(value);
     this.submitted = false;
   }
-
   _setUpdateStrategy() {
     if (this.options && this.options.updateOn != null) {
       this.form._updateOn = this.options.updateOn;
     }
   }
-
   _findContainer(path) {
     path.pop();
     return path.length ? this.form.get(path) : this.form;
   }
-
 }
-
 NgForm.ɵfac = function NgForm_Factory(t) {
   return new (t || NgForm)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10));
 };
-
 NgForm.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgForm,
   selectors: [["form", 3, "ngNoForm", "", 3, "formGroup", ""], ["ng-form"], ["", "ngForm", ""]],
@@ -48797,7 +46675,6 @@ NgForm.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
   exportAs: ["ngForm"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formDirectiveProvider$1]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgForm, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -48840,6 +46717,7 @@ NgForm.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -48847,26 +46725,20 @@ NgForm.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  * A base class for code shared between the `NgModelGroup` and `FormGroupName` directives.
  *
  * @publicApi
  */
-
-
 class AbstractFormGroupDirective extends ControlContainer {
   /** @nodoc */
   ngOnInit() {
-    this._checkParentType(); // Register the group with its parent group.
-
-
+    this._checkParentType();
+    // Register the group with its parent group.
     this.formDirective.addFormGroup(this);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.formDirective) {
       // Remove the group from its parent group.
@@ -48877,8 +46749,6 @@ class AbstractFormGroupDirective extends ControlContainer {
    * @description
    * The `FormGroup` bound to this directive.
    */
-
-
   get control() {
     return this.formDirective.getFormGroup(this);
   }
@@ -48886,8 +46756,6 @@ class AbstractFormGroupDirective extends ControlContainer {
    * @description
    * The path to this group from the top-level directive.
    */
-
-
   get path() {
     return controlPath(this.name == null ? this.name : this.name.toString(), this._parent);
   }
@@ -48895,35 +46763,28 @@ class AbstractFormGroupDirective extends ControlContainer {
    * @description
    * The top-level directive for this group if present, otherwise null.
    */
-
-
   get formDirective() {
     return this._parent ? this._parent.formDirective : null;
   }
   /** @internal */
-
-
   _checkParentType() {}
-
 }
-
 AbstractFormGroupDirective.ɵfac = /* @__PURE__ */function () {
   let ɵAbstractFormGroupDirective_BaseFactory;
   return function AbstractFormGroupDirective_Factory(t) {
     return (ɵAbstractFormGroupDirective_BaseFactory || (ɵAbstractFormGroupDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](AbstractFormGroupDirective)))(t || AbstractFormGroupDirective);
   };
 }();
-
 AbstractFormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: AbstractFormGroupDirective,
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AbstractFormGroupDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -48931,8 +46792,6 @@ AbstractFormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function modelParentException() {
   return new Error(`
     ngModel cannot be used to register form controls with a parent formGroup directive.  Try using
@@ -48946,7 +46805,6 @@ function modelParentException() {
 
     ${ngModelWithFormGroupExample}`);
 }
-
 function formGroupNameException() {
   return new Error(`
     ngModel cannot be used to register form controls with a parent formGroupName or formArrayName directive.
@@ -48959,7 +46817,6 @@ function formGroupNameException() {
 
     ${ngModelGroupExample}`);
 }
-
 function missingNameException() {
   return new Error(`If ngModel is used within a form tag, either the name attribute must be set or the form
     control must be defined as 'standalone' in ngModelOptions.
@@ -48967,7 +46824,6 @@ function missingNameException() {
     Example 1: <input [(ngModel)]="person.firstName" name="first">
     Example 2: <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}">`);
 }
-
 function modelGroupParentException() {
   return new Error(`
     ngModelGroup cannot be used with a parent formGroup directive.
@@ -48980,6 +46836,7 @@ function modelGroupParentException() {
 
     ${ngModelGroupExample}`);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -48987,8 +46844,6 @@ function modelGroupParentException() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const modelGroupProvider = {
   provide: ControlContainer,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => NgModelGroup)
@@ -49019,31 +46874,23 @@ const modelGroupProvider = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class NgModelGroup extends AbstractFormGroupDirective {
   constructor(parent, validators, asyncValidators) {
     super();
     this._parent = parent;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
   }
   /** @internal */
-
-
   _checkParentType() {
     if (!(this._parent instanceof NgModelGroup) && !(this._parent instanceof NgForm) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw modelGroupParentException();
     }
   }
-
 }
-
 NgModelGroup.ɵfac = function NgModelGroup_Factory(t) {
   return new (t || NgModelGroup)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 5), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10));
 };
-
 NgModelGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgModelGroup,
   selectors: [["", "ngModelGroup", ""]],
@@ -49053,7 +46900,6 @@ NgModelGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
   exportAs: ["ngModelGroup"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([modelGroupProvider]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgModelGroup, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -49098,6 +46944,7 @@ NgModelGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -49105,8 +46952,6 @@ NgModelGroup.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const formControlBinding$1 = {
   provide: NgControl,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => NgModel)
@@ -49128,7 +46973,6 @@ const formControlBinding$1 = {
  * - this is just one extra run no matter how many `ngModel`s have been changed.
  * - this is a general problem when using `exportAs` for directives!
  */
-
 const resolvedPromise = (() => Promise.resolve(null))();
 /**
  * @description
@@ -49215,41 +47059,30 @@ const resolvedPromise = (() => Promise.resolve(null))();
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class NgModel extends NgControl {
   constructor(parent, validators, asyncValidators, valueAccessors, _changeDetectorRef) {
     super();
     this._changeDetectorRef = _changeDetectorRef;
     this.control = new FormControl();
     /** @internal */
-
     this._registered = false;
     /**
      * @description
      * Event emitter for producing the `ngModelChange` event after
      * the view model updates.
      */
-
     this.update = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     this._parent = parent;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
-
     this.valueAccessor = selectValueAccessor(this, valueAccessors);
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     this._checkForErrors();
-
     if (!this._registered || 'name' in changes) {
       if (this._registered) {
         this._checkName();
-
         if (this.formDirective) {
           // We can't call `formDirective.removeControl(this)`, because the `name` has already been
           // changed. We also can't reset the name temporarily since the logic in `removeControl`
@@ -49262,23 +47095,17 @@ class NgModel extends NgControl {
           });
         }
       }
-
       this._setUpControl();
     }
-
     if ('isDisabled' in changes) {
       this._updateDisabled(changes);
     }
-
     if (isPropertyUpdated(changes, this.viewModel)) {
       this._updateValue(this.model);
-
       this.viewModel = this.model;
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     this.formDirective && this.formDirective.removeControl(this);
   }
@@ -49287,8 +47114,6 @@ class NgModel extends NgControl {
    * Returns an array that represents the path from the top-level form to this control.
    * Each index is the string name of the control on that level.
    */
-
-
   get path() {
     return this._getPath(this.name);
   }
@@ -49296,8 +47121,6 @@ class NgModel extends NgControl {
    * @description
    * The top-level directive for this control if present, otherwise null.
    */
-
-
   get formDirective() {
     return this._parent ? this._parent.formDirective : null;
   }
@@ -49307,45 +47130,35 @@ class NgModel extends NgControl {
    *
    * @param newValue The new value emitted by `ngModelChange`.
    */
-
-
   viewToModelUpdate(newValue) {
     this.viewModel = newValue;
     this.update.emit(newValue);
   }
-
   _setUpControl() {
     this._setUpdateStrategy();
-
     this._isStandalone() ? this._setUpStandalone() : this.formDirective.addControl(this);
     this._registered = true;
   }
-
   _setUpdateStrategy() {
     if (this.options && this.options.updateOn != null) {
       this.control._updateOn = this.options.updateOn;
     }
   }
-
   _isStandalone() {
     return !this._parent || !!(this.options && this.options.standalone);
   }
-
   _setUpStandalone() {
     setUpControl(this.control, this);
     this.control.updateValueAndValidity({
       emitEvent: false
     });
   }
-
   _checkForErrors() {
     if (!this._isStandalone()) {
       this._checkParentType();
     }
-
     this._checkName();
   }
-
   _checkParentType() {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       if (!(this._parent instanceof NgModelGroup) && this._parent instanceof AbstractFormGroupDirective) {
@@ -49355,52 +47168,41 @@ class NgModel extends NgControl {
       }
     }
   }
-
   _checkName() {
     if (this.options && this.options.name) this.name = this.options.name;
-
     if (!this._isStandalone() && !this.name && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw missingNameException();
     }
   }
-
   _updateValue(value) {
     resolvedPromise.then(() => {
       var _a;
-
       this.control.setValue(value, {
         emitViewToModelChange: false
       });
       (_a = this._changeDetectorRef) === null || _a === void 0 ? void 0 : _a.markForCheck();
     });
   }
-
   _updateDisabled(changes) {
     const disabledValue = changes['isDisabled'].currentValue;
     const isDisabled = disabledValue === '' || disabledValue && disabledValue !== 'false';
     resolvedPromise.then(() => {
       var _a;
-
       if (isDisabled && !this.control.disabled) {
         this.control.disable();
       } else if (!isDisabled && this.control.disabled) {
         this.control.enable();
       }
-
       (_a = this._changeDetectorRef) === null || _a === void 0 ? void 0 : _a.markForCheck();
     });
   }
-
   _getPath(controlName) {
     return this._parent ? controlPath(controlName, this._parent) : [controlName];
   }
-
 }
-
 NgModel.ɵfac = function NgModel_Factory(t) {
   return new (t || NgModel)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 9), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALUE_ACCESSOR, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef, 8));
 };
-
 NgModel.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgModel,
   selectors: [["", "ngModel", "", 3, "formControlName", "", 3, "formControl", ""]],
@@ -49416,7 +47218,6 @@ NgModel.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
   exportAs: ["ngModel"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formControlBinding$1]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgModel, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -49494,6 +47295,7 @@ NgModel.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -49501,7 +47303,6 @@ NgModel.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -49519,20 +47320,15 @@ NgModel.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
  * @ngModule ReactiveFormsModule
  * @ngModule FormsModule
  */
-
-
 class ɵNgNoValidate {}
-
 ɵNgNoValidate.ɵfac = function ɵNgNoValidate_Factory(t) {
   return new (t || ɵNgNoValidate)();
 };
-
 ɵNgNoValidate.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: ɵNgNoValidate,
   selectors: [["form", 3, "ngNoForm", "", 3, "ngNativeValidate", ""]],
   hostAttrs: ["novalidate", ""]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ɵNgNoValidate, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -49544,6 +47340,7 @@ class ɵNgNoValidate {}
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -49551,8 +47348,6 @@ class ɵNgNoValidate {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const NUMBER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => NumberValueAccessor),
@@ -49582,7 +47377,6 @@ const NUMBER_VALUE_ACCESSOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class NumberValueAccessor extends BuiltInControlValueAccessor {
   /**
    * Sets the "value" property on the input element.
@@ -49597,23 +47391,18 @@ class NumberValueAccessor extends BuiltInControlValueAccessor {
    * Registers a function called when the control value changes.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this.onChange = value => {
       fn(value == '' ? null : parseFloat(value));
     };
   }
-
 }
-
 NumberValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵNumberValueAccessor_BaseFactory;
   return function NumberValueAccessor_Factory(t) {
     return (ɵNumberValueAccessor_BaseFactory || (ɵNumberValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](NumberValueAccessor)))(t || NumberValueAccessor);
   };
 }();
-
 NumberValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NumberValueAccessor,
   selectors: [["input", "type", "number", "formControlName", ""], ["input", "type", "number", "formControl", ""], ["input", "type", "number", "ngModel", ""]],
@@ -49628,7 +47417,6 @@ NumberValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([NUMBER_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NumberValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -49642,6 +47430,7 @@ NumberValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -49649,14 +47438,11 @@ NumberValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => RadioControlValueAccessor),
   multi: true
 };
-
 function throwNameError() {
   throw new Error(`
       If you define both a name and a formControlName attribute on your radio button, their values
@@ -49669,19 +47455,14 @@ function throwNameError() {
  * declared *after* the `RadioControlRegistry` class and the `providedIn` doesn't support
  * `forwardRef` logic.
  */
-
-
 class RadioControlRegistryModule {}
-
 RadioControlRegistryModule.ɵfac = function RadioControlRegistryModule_Factory(t) {
   return new (t || RadioControlRegistryModule)();
 };
-
 RadioControlRegistryModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: RadioControlRegistryModule
 });
 RadioControlRegistryModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({});
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RadioControlRegistryModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule
@@ -49691,8 +47472,6 @@ RadioControlRegistryModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
  * @description
  * Class used by Angular to track radio buttons. For internal use only.
  */
-
-
 class RadioControlRegistry {
   constructor() {
     this._accessors = [];
@@ -49701,8 +47480,6 @@ class RadioControlRegistry {
    * @description
    * Adds a control to the internal registry. For internal use only.
    */
-
-
   add(control, accessor) {
     this._accessors.push([control, accessor]);
   }
@@ -49710,13 +47487,10 @@ class RadioControlRegistry {
    * @description
    * Removes a control from the internal registry. For internal use only.
    */
-
-
   remove(accessor) {
     for (let i = this._accessors.length - 1; i >= 0; --i) {
       if (this._accessors[i][1] === accessor) {
         this._accessors.splice(i, 1);
-
         return;
       }
     }
@@ -49725,8 +47499,6 @@ class RadioControlRegistry {
    * @description
    * Selects a radio button. For internal use only.
    */
-
-
   select(accessor) {
     this._accessors.forEach(c => {
       if (this._isSameGroup(c, accessor) && c[1] !== accessor) {
@@ -49734,24 +47506,19 @@ class RadioControlRegistry {
       }
     });
   }
-
   _isSameGroup(controlPair, accessor) {
     if (!controlPair[0].control) return false;
     return controlPair[0]._parent === accessor._control._parent && controlPair[1].name === accessor.name;
   }
-
 }
-
 RadioControlRegistry.ɵfac = function RadioControlRegistry_Factory(t) {
   return new (t || RadioControlRegistry)();
 };
-
 RadioControlRegistry.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: RadioControlRegistry,
   factory: RadioControlRegistry.ɵfac,
   providedIn: RadioControlRegistryModule
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RadioControlRegistry, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -49780,8 +47547,6 @@ RadioControlRegistry.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class RadioControlValueAccessor extends BuiltInControlValueAccessor {
   constructor(renderer, elementRef, _registry, _injector) {
     super(renderer, elementRef);
@@ -49794,22 +47559,15 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
      * `BaseControlValueAccessor` class.
      * @nodoc
      */
-
     this.onChange = () => {};
   }
   /** @nodoc */
-
-
   ngOnInit() {
     this._control = this._injector.get(NgControl);
-
     this._checkName();
-
     this._registry.add(this._control, this);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     this._registry.remove(this);
   }
@@ -49817,8 +47575,6 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
    * Sets the "checked" property value on the radio input element.
    * @nodoc
    */
-
-
   writeValue(value) {
     this._state = value === this.value;
     this.setProperty('checked', this._state);
@@ -49827,14 +47583,10 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
    * Registers a function called when the control value changes.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this._fn = fn;
-
     this.onChange = () => {
       fn(this.value);
-
       this._registry.select(this);
     };
   }
@@ -49843,26 +47595,19 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
    *
    * @param value
    */
-
-
   fireUncheck(value) {
     this.writeValue(value);
   }
-
   _checkName() {
     if (this.name && this.formControlName && this.name !== this.formControlName && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwNameError();
     }
-
     if (!this.name && this.formControlName) this.name = this.formControlName;
   }
-
 }
-
 RadioControlValueAccessor.ɵfac = function RadioControlValueAccessor_Factory(t) {
   return new (t || RadioControlValueAccessor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](RadioControlRegistry), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector));
 };
-
 RadioControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RadioControlValueAccessor,
   selectors: [["input", "type", "radio", "formControlName", ""], ["input", "type", "radio", "formControl", ""], ["input", "type", "radio", "ngModel", ""]],
@@ -49882,7 +47627,6 @@ RadioControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([RADIO_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RadioControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -49916,6 +47660,7 @@ RadioControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -49923,8 +47668,6 @@ RadioControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const RANGE_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => RangeValueAccessor),
@@ -49954,7 +47697,6 @@ const RANGE_VALUE_ACCESSOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class RangeValueAccessor extends BuiltInControlValueAccessor {
   /**
    * Sets the "value" property on the input element.
@@ -49967,23 +47709,18 @@ class RangeValueAccessor extends BuiltInControlValueAccessor {
    * Registers a function called when the control value changes.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this.onChange = value => {
       fn(value == '' ? null : parseFloat(value));
     };
   }
-
 }
-
 RangeValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵRangeValueAccessor_BaseFactory;
   return function RangeValueAccessor_Factory(t) {
     return (ɵRangeValueAccessor_BaseFactory || (ɵRangeValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](RangeValueAccessor)))(t || RangeValueAccessor);
   };
 }();
-
 RangeValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RangeValueAccessor,
   selectors: [["input", "type", "range", "formControlName", ""], ["input", "type", "range", "formControl", ""], ["input", "type", "range", "ngModel", ""]],
@@ -50000,7 +47737,6 @@ RangeValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([RANGE_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RangeValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -50015,6 +47751,7 @@ RangeValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -50022,12 +47759,9 @@ RangeValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Token to provide to turn off the ngModel warning on formControl and formControlName.
  */
-
-
 const NG_MODEL_WITH_FORM_CONTROL_WARNING = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('NgModelWithFormControlWarning');
 const formControlBinding = {
   provide: NgControl,
@@ -50055,13 +47789,11 @@ const formControlBinding = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class FormControlDirective extends NgControl {
   constructor(validators, asyncValidators, valueAccessors, _ngModelWarningConfig) {
     super();
     this._ngModelWarningConfig = _ngModelWarningConfig;
     /** @deprecated as of v6 */
-
     this.update = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     /**
      * @description
@@ -50070,67 +47802,47 @@ class FormControlDirective extends NgControl {
      *
      * @internal
      */
-
     this._ngModelWarningSent = false;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
-
     this.valueAccessor = selectValueAccessor(this, valueAccessors);
   }
   /**
    * @description
    * Triggers a warning in dev mode that this input should not be used with reactive forms.
    */
-
-
   set isDisabled(isDisabled) {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       console.warn(disabledAttrWarning);
     }
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     if (this._isControlChanged(changes)) {
       const previousForm = changes['form'].previousValue;
-
       if (previousForm) {
-        cleanUpControl(previousForm, this,
-        /* validateControlPresenceOnChange */
-        false);
+        cleanUpControl(previousForm, this, /* validateControlPresenceOnChange */false);
       }
-
       setUpControl(this.form, this);
-
       if (this.control.disabled && this.valueAccessor.setDisabledState) {
         this.valueAccessor.setDisabledState(true);
       }
-
       this.form.updateValueAndValidity({
         emitEvent: false
       });
     }
-
     if (isPropertyUpdated(changes, this.viewModel)) {
       if (typeof ngDevMode === 'undefined' || ngDevMode) {
         _ngModelWarning('formControl', FormControlDirective, this, this._ngModelWarningConfig);
       }
-
       this.form.setValue(this.model);
       this.viewModel = this.model;
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.form) {
-      cleanUpControl(this.form, this,
-      /* validateControlPresenceOnChange */
-      false);
+      cleanUpControl(this.form, this, /* validateControlPresenceOnChange */false);
     }
   }
   /**
@@ -50138,8 +47850,6 @@ class FormControlDirective extends NgControl {
    * Returns an array that represents the path from the top-level form to this control.
    * Each index is the string name of the control on that level.
    */
-
-
   get path() {
     return [];
   }
@@ -50147,8 +47857,6 @@ class FormControlDirective extends NgControl {
    * @description
    * The `FormControl` bound to this directive.
    */
-
-
   get control() {
     return this.form;
   }
@@ -50158,17 +47866,13 @@ class FormControlDirective extends NgControl {
    *
    * @param newValue The new value for the view model.
    */
-
-
   viewToModelUpdate(newValue) {
     this.viewModel = newValue;
     this.update.emit(newValue);
   }
-
   _isControlChanged(changes) {
     return changes.hasOwnProperty('form');
   }
-
 }
 /**
  * @description
@@ -50177,14 +47881,10 @@ class FormControlDirective extends NgControl {
  *
  * @internal
  */
-
-
 FormControlDirective._ngModelWarningSentOnce = false;
-
 FormControlDirective.ɵfac = function FormControlDirective_Factory(t) {
   return new (t || FormControlDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALUE_ACCESSOR, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_MODEL_WITH_FORM_CONTROL_WARNING, 8));
 };
-
 FormControlDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: FormControlDirective,
   selectors: [["", "formControl", ""]],
@@ -50199,7 +47899,6 @@ FormControlDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
   exportAs: ["ngForm"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formControlBinding]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormControlDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -50267,6 +47966,7 @@ FormControlDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -50274,8 +47974,6 @@ FormControlDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const formDirectiveProvider = {
   provide: ControlContainer,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => FormGroupDirective)
@@ -50304,7 +48002,6 @@ const formDirectiveProvider = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class FormGroupDirective extends ControlContainer {
   constructor(validators, asyncValidators) {
     super();
@@ -50314,66 +48011,50 @@ class FormGroupDirective extends ControlContainer {
      * @description
      * Reports whether the form submission has been triggered.
      */
-
     this.submitted = false;
     /**
      * Callback that should be invoked when controls in FormGroup or FormArray collection change
      * (added or removed). This callback triggers corresponding DOM updates.
      */
-
     this._onCollectionChange = () => this._updateDomValue();
     /**
      * @description
      * Tracks the list of added `FormControlName` instances
      */
-
-
     this.directives = [];
     /**
      * @description
      * Tracks the `FormGroup` bound to this directive.
      */
-
     this.form = null;
     /**
      * @description
      * Emits an event when the form submission has been triggered.
      */
-
     this.ngSubmit = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     this._checkFormPresent();
-
     if (changes.hasOwnProperty('form')) {
       this._updateValidators();
-
       this._updateDomValue();
-
       this._updateRegistrations();
-
       this._oldForm = this.form;
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.form) {
-      cleanUpValidators(this.form, this); // Currently the `onCollectionChange` callback is rewritten each time the
+      cleanUpValidators(this.form, this);
+      // Currently the `onCollectionChange` callback is rewritten each time the
       // `_registerOnCollectionChange` function is invoked. The implication is that cleanup should
       // happen *only* when the `onCollectionChange` callback was set by this directive instance.
       // Otherwise it might cause overriding a callback of some other directive instances. We should
       // consider updating this logic later to make it similar to how `onChange` callbacks are
       // handled, see https://github.com/angular/angular/issues/39732 for additional info.
-
       if (this.form._onCollectionChange === this._onCollectionChange) {
         this.form._registerOnCollectionChange(() => {});
       }
@@ -50383,8 +48064,6 @@ class FormGroupDirective extends ControlContainer {
    * @description
    * Returns this directive's instance.
    */
-
-
   get formDirective() {
     return this;
   }
@@ -50392,8 +48071,6 @@ class FormGroupDirective extends ControlContainer {
    * @description
    * Returns the `FormGroup` bound to this directive.
    */
-
-
   get control() {
     return this.form;
   }
@@ -50402,8 +48079,6 @@ class FormGroupDirective extends ControlContainer {
    * Returns an array representing the path to this group. Because this directive
    * always lives at the top level of a form, it always an empty array.
    */
-
-
   get path() {
     return [];
   }
@@ -50414,8 +48089,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormControlName` directive instance.
    */
-
-
   addControl(dir) {
     const ctrl = this.form.get(dir.path);
     setUpControl(ctrl, dir);
@@ -50431,8 +48104,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormControlName` directive instance.
    */
-
-
   getControl(dir) {
     return this.form.get(dir.path);
   }
@@ -50442,12 +48113,8 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormControlName` directive instance.
    */
-
-
   removeControl(dir) {
-    cleanUpControl(dir.control || null, dir,
-    /* validateControlPresenceOnChange */
-    false);
+    cleanUpControl(dir.control || null, dir, /* validateControlPresenceOnChange */false);
     removeListItem(this.directives, dir);
   }
   /**
@@ -50455,8 +48122,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormGroupName` directive instance.
    */
-
-
   addFormGroup(dir) {
     this._setUpFormContainer(dir);
   }
@@ -50466,8 +48131,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormGroupName` directive instance.
    */
-
-
   removeFormGroup(dir) {
     this._cleanUpFormContainer(dir);
   }
@@ -50477,8 +48140,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormGroupName` directive instance.
    */
-
-
   getFormGroup(dir) {
     return this.form.get(dir.path);
   }
@@ -50487,8 +48148,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormArrayName` directive instance.
    */
-
-
   addFormArray(dir) {
     this._setUpFormContainer(dir);
   }
@@ -50498,8 +48157,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormArrayName` directive instance.
    */
-
-
   removeFormArray(dir) {
     this._cleanUpFormContainer(dir);
   }
@@ -50509,8 +48166,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param dir The `FormArrayName` directive instance.
    */
-
-
   getFormArray(dir) {
     return this.form.get(dir.path);
   }
@@ -50520,8 +48175,6 @@ class FormGroupDirective extends ControlContainer {
    * @param dir The `FormControlName` directive instance.
    * @param value The new value for the directive's control.
    */
-
-
   updateModel(dir, value) {
     const ctrl = this.form.get(dir.path);
     ctrl.setValue(value);
@@ -50533,8 +48186,6 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param $event The "submit" event object
    */
-
-
   onSubmit($event) {
     this.submitted = true;
     syncPendingControls(this.form, this.directives);
@@ -50545,8 +48196,6 @@ class FormGroupDirective extends ControlContainer {
    * @description
    * Method called when the "reset" event is triggered on the form.
    */
-
-
   onReset() {
     this.resetForm();
   }
@@ -50556,59 +48205,49 @@ class FormGroupDirective extends ControlContainer {
    *
    * @param value The new value for the form.
    */
-
-
   resetForm(value = undefined) {
     this.form.reset(value);
     this.submitted = false;
   }
   /** @internal */
-
-
   _updateDomValue() {
     this.directives.forEach(dir => {
       const oldCtrl = dir.control;
       const newCtrl = this.form.get(dir.path);
-
       if (oldCtrl !== newCtrl) {
         // Note: the value of the `dir.control` may not be defined, for example when it's a first
         // `FormControl` that is added to a `FormGroup` instance (via `addControl` call).
-        cleanUpControl(oldCtrl || null, dir); // Check whether new control at the same location inside the corresponding `FormGroup` is an
+        cleanUpControl(oldCtrl || null, dir);
+        // Check whether new control at the same location inside the corresponding `FormGroup` is an
         // instance of `FormControl` and perform control setup only if that's the case.
         // Note: we don't need to clear the list of directives (`this.directives`) here, it would be
         // taken care of in the `removeControl` method invoked when corresponding `formControlName`
         // directive instance is being removed (invoked from `FormControlName.ngOnDestroy`).
-
         if (isFormControl(newCtrl)) {
           setUpControl(newCtrl, dir);
           dir.control = newCtrl;
         }
       }
     });
-
     this.form._updateTreeValidity({
       emitEvent: false
     });
   }
-
   _setUpFormContainer(dir) {
     const ctrl = this.form.get(dir.path);
-    setUpFormContainer(ctrl, dir); // NOTE: this operation looks unnecessary in case no new validators were added in
+    setUpFormContainer(ctrl, dir);
+    // NOTE: this operation looks unnecessary in case no new validators were added in
     // `setUpFormContainer` call. Consider updating this code to match the logic in
     // `_cleanUpFormContainer` function.
-
     ctrl.updateValueAndValidity({
       emitEvent: false
     });
   }
-
   _cleanUpFormContainer(dir) {
     if (this.form) {
       const ctrl = this.form.get(dir.path);
-
       if (ctrl) {
         const isControlUpdated = cleanUpFormContainer(ctrl, dir);
-
         if (isControlUpdated) {
           // Run validity check only in case a control was updated (i.e. view validators were
           // removed) as removing view validators might cause validity to change.
@@ -50619,35 +48258,27 @@ class FormGroupDirective extends ControlContainer {
       }
     }
   }
-
   _updateRegistrations() {
     this.form._registerOnCollectionChange(this._onCollectionChange);
-
     if (this._oldForm) {
       this._oldForm._registerOnCollectionChange(() => {});
     }
   }
-
   _updateValidators() {
     setUpValidators(this.form, this);
-
     if (this._oldForm) {
       cleanUpValidators(this._oldForm, this);
     }
   }
-
   _checkFormPresent() {
     if (!this.form && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw missingFormException();
     }
   }
-
 }
-
 FormGroupDirective.ɵfac = function FormGroupDirective_Factory(t) {
   return new (t || FormGroupDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10));
 };
-
 FormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: FormGroupDirective,
   selectors: [["", "formGroup", ""]],
@@ -50669,7 +48300,6 @@ FormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
   exportAs: ["ngForm"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formDirectiveProvider]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormGroupDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -50714,6 +48344,7 @@ FormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -50721,8 +48352,6 @@ FormGroupDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const formGroupNameProvider = {
   provide: ControlContainer,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => FormGroupName)
@@ -50774,31 +48403,23 @@ const formGroupNameProvider = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class FormGroupName extends AbstractFormGroupDirective {
   constructor(parent, validators, asyncValidators) {
     super();
     this._parent = parent;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
   }
   /** @internal */
-
-
   _checkParentType() {
     if (_hasInvalidParent(this._parent) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw groupParentException();
     }
   }
-
 }
-
 FormGroupName.ɵfac = function FormGroupName_Factory(t) {
   return new (t || FormGroupName)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 13), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10));
 };
-
 FormGroupName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: FormGroupName,
   selectors: [["", "formGroupName", ""]],
@@ -50807,7 +48428,6 @@ FormGroupName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formGroupNameProvider]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormGroupName, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -50853,7 +48473,6 @@ FormGroupName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
     }]
   });
 })();
-
 const formArrayNameProvider = {
   provide: ControlContainer,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => FormArrayName)
@@ -50882,14 +48501,11 @@ const formArrayNameProvider = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class FormArrayName extends ControlContainer {
   constructor(parent, validators, asyncValidators) {
     super();
     this._parent = parent;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
   }
   /**
@@ -50897,19 +48513,14 @@ class FormArrayName extends ControlContainer {
    * @throws If the directive does not have a valid parent.
    * @nodoc
    */
-
-
   ngOnInit() {
     this._checkParentType();
-
     this.formDirective.addFormArray(this);
   }
   /**
    * A lifecycle method called before the directive's instance is destroyed. For internal use only.
    * @nodoc
    */
-
-
   ngOnDestroy() {
     if (this.formDirective) {
       this.formDirective.removeFormArray(this);
@@ -50919,8 +48530,6 @@ class FormArrayName extends ControlContainer {
    * @description
    * The `FormArray` bound to this directive.
    */
-
-
   get control() {
     return this.formDirective.getFormArray(this);
   }
@@ -50928,8 +48537,6 @@ class FormArrayName extends ControlContainer {
    * @description
    * The top-level directive for this group if present, otherwise null.
    */
-
-
   get formDirective() {
     return this._parent ? this._parent.formDirective : null;
   }
@@ -50938,24 +48545,18 @@ class FormArrayName extends ControlContainer {
    * Returns an array that represents the path from the top-level form to this control.
    * Each index is the string name of the control on that level.
    */
-
-
   get path() {
     return controlPath(this.name == null ? this.name : this.name.toString(), this._parent);
   }
-
   _checkParentType() {
     if (_hasInvalidParent(this._parent) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw arrayParentException();
     }
   }
-
 }
-
 FormArrayName.ɵfac = function FormArrayName_Factory(t) {
   return new (t || FormArrayName)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 13), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10));
 };
-
 FormArrayName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: FormArrayName,
   selectors: [["", "formArrayName", ""]],
@@ -50964,7 +48565,6 @@ FormArrayName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([formArrayNameProvider]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormArrayName, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51010,10 +48610,10 @@ FormArrayName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__[
     }]
   });
 })();
-
 function _hasInvalidParent(parent) {
   return !(parent instanceof FormGroupName) && !(parent instanceof FormGroupDirective) && !(parent instanceof FormArrayName);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -51021,8 +48621,6 @@ function _hasInvalidParent(parent) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const controlNameBinding = {
   provide: NgControl,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => FormControlName)
@@ -51061,14 +48659,12 @@ const controlNameBinding = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class FormControlName extends NgControl {
   constructor(parent, validators, asyncValidators, valueAccessors, _ngModelWarningConfig) {
     super();
     this._ngModelWarningConfig = _ngModelWarningConfig;
     this._added = false;
     /** @deprecated as of v6 */
-
     this.update = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     /**
      * @description
@@ -51077,45 +48673,33 @@ class FormControlName extends NgControl {
      *
      * @internal
      */
-
     this._ngModelWarningSent = false;
     this._parent = parent;
-
     this._setValidators(validators);
-
     this._setAsyncValidators(asyncValidators);
-
     this.valueAccessor = selectValueAccessor(this, valueAccessors);
   }
   /**
    * @description
    * Triggers a warning in dev mode that this input should not be used with reactive forms.
    */
-
-
   set isDisabled(isDisabled) {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       console.warn(disabledAttrWarning);
     }
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     if (!this._added) this._setUpControl();
-
     if (isPropertyUpdated(changes, this.viewModel)) {
       if (typeof ngDevMode === 'undefined' || ngDevMode) {
         _ngModelWarning('formControlName', FormControlName, this, this._ngModelWarningConfig);
       }
-
       this.viewModel = this.model;
       this.formDirective.updateModel(this, this.model);
     }
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.formDirective) {
       this.formDirective.removeControl(this);
@@ -51127,8 +48711,6 @@ class FormControlName extends NgControl {
    *
    * @param newValue The new value for the view model.
    */
-
-
   viewToModelUpdate(newValue) {
     this.viewModel = newValue;
     this.update.emit(newValue);
@@ -51138,8 +48720,6 @@ class FormControlName extends NgControl {
    * Returns an array that represents the path from the top-level form to this control.
    * Each index is the string name of the control on that level.
    */
-
-
   get path() {
     return controlPath(this.name == null ? this.name : this.name.toString(), this._parent);
   }
@@ -51147,12 +48727,9 @@ class FormControlName extends NgControl {
    * @description
    * The top-level directive for this group if present, otherwise null.
    */
-
-
   get formDirective() {
     return this._parent ? this._parent.formDirective : null;
   }
-
   _checkParentType() {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       if (!(this._parent instanceof FormGroupName) && this._parent instanceof AbstractFormGroupDirective) {
@@ -51162,19 +48739,14 @@ class FormControlName extends NgControl {
       }
     }
   }
-
   _setUpControl() {
     this._checkParentType();
-
     this.control = this.formDirective.addControl(this);
-
     if (this.control.disabled && this.valueAccessor.setDisabledState) {
       this.valueAccessor.setDisabledState(true);
     }
-
     this._added = true;
   }
-
 }
 /**
  * @description
@@ -51183,14 +48755,10 @@ class FormControlName extends NgControl {
  *
  * @internal
  */
-
-
 FormControlName._ngModelWarningSentOnce = false;
-
 FormControlName.ɵfac = function FormControlName_Factory(t) {
   return new (t || FormControlName)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ControlContainer, 13), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_ASYNC_VALIDATORS, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_VALUE_ACCESSOR, 10), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NG_MODEL_WITH_FORM_CONTROL_WARNING, 8));
 };
-
 FormControlName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: FormControlName,
   selectors: [["", "formControlName", ""]],
@@ -51204,7 +48772,6 @@ FormControlName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([controlNameBinding]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormControlName, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51280,6 +48847,7 @@ FormControlName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -51287,20 +48855,16 @@ FormControlName.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const SELECT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => SelectControlValueAccessor),
   multi: true
 };
-
 function _buildValueString$1(id, value) {
   if (id == null) return `${value}`;
   if (value && typeof value === 'object') value = 'Object';
   return `${id}: ${value}`.slice(0, 50);
 }
-
 function _extractId$1(valueString) {
   return valueString.split(':')[0];
 }
@@ -51360,16 +48924,12 @@ function _extractId$1(valueString) {
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class SelectControlValueAccessor extends BuiltInControlValueAccessor {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this._optionMap = new Map();
     /** @internal */
-
     this._idCounter = 0;
     this._compareWith = Object.is;
   }
@@ -51378,36 +48938,26 @@ class SelectControlValueAccessor extends BuiltInControlValueAccessor {
    * Tracks the option comparison algorithm for tracking identities when
    * checking for changes.
    */
-
-
   set compareWith(fn) {
     if (typeof fn !== 'function' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw new Error(`compareWith must be a function, but received ${JSON.stringify(fn)}`);
     }
-
     this._compareWith = fn;
   }
   /**
    * Sets the "value" property on the select element.
    * @nodoc
    */
-
-
   writeValue(value) {
     this.value = value;
-
     const id = this._getOptionId(value);
-
     const valueString = _buildValueString$1(id, value);
-
     this.setProperty('value', valueString);
   }
   /**
    * Registers a function called when the control value changes.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this.onChange = valueString => {
       this.value = this._getOptionValue(valueString);
@@ -51415,39 +48965,28 @@ class SelectControlValueAccessor extends BuiltInControlValueAccessor {
     };
   }
   /** @internal */
-
-
   _registerOption() {
     return (this._idCounter++).toString();
   }
   /** @internal */
-
-
   _getOptionId(value) {
     for (const id of Array.from(this._optionMap.keys())) {
       if (this._compareWith(this._optionMap.get(id), value)) return id;
     }
-
     return null;
   }
   /** @internal */
-
-
   _getOptionValue(valueString) {
     const id = _extractId$1(valueString);
-
     return this._optionMap.has(id) ? this._optionMap.get(id) : valueString;
   }
-
 }
-
 SelectControlValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵSelectControlValueAccessor_BaseFactory;
   return function SelectControlValueAccessor_Factory(t) {
     return (ɵSelectControlValueAccessor_BaseFactory || (ɵSelectControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](SelectControlValueAccessor)))(t || SelectControlValueAccessor);
   };
 }();
-
 SelectControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: SelectControlValueAccessor,
   selectors: [["select", "formControlName", "", 3, "multiple", ""], ["select", "formControl", "", 3, "multiple", ""], ["select", "ngModel", "", 3, "multiple", ""]],
@@ -51465,7 +49004,6 @@ SelectControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([SELECT_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SelectControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51493,8 +49031,6 @@ SelectControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class NgSelectOption {
   constructor(_element, _renderer, _select) {
     this._element = _element;
@@ -51507,15 +49043,10 @@ class NgSelectOption {
    * Tracks the value bound to the option element. Unlike the value binding,
    * ngValue supports binding to objects.
    */
-
-
   set ngValue(value) {
     if (this._select == null) return;
-
     this._select._optionMap.set(this.id, value);
-
     this._setElementValue(_buildValueString$1(this.id, value));
-
     this._select.writeValue(this._select.value);
   }
   /**
@@ -51523,36 +49054,25 @@ class NgSelectOption {
    * Tracks simple string values bound to the option element.
    * For objects, use the `ngValue` input binding.
    */
-
-
   set value(value) {
     this._setElementValue(value);
-
     if (this._select) this._select.writeValue(this._select.value);
   }
   /** @internal */
-
-
   _setElementValue(value) {
     this._renderer.setProperty(this._element.nativeElement, 'value', value);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this._select) {
       this._select._optionMap.delete(this.id);
-
       this._select.writeValue(this._select.value);
     }
   }
-
 }
-
 NgSelectOption.ɵfac = function NgSelectOption_Factory(t) {
   return new (t || NgSelectOption)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](SelectControlValueAccessor, 9));
 };
-
 NgSelectOption.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: NgSelectOption,
   selectors: [["option"]],
@@ -51561,7 +49081,6 @@ NgSelectOption.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
     value: "value"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgSelectOption, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51592,6 +49111,7 @@ NgSelectOption.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -51599,27 +49119,21 @@ NgSelectOption.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const SELECT_MULTIPLE_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => SelectMultipleControlValueAccessor),
   multi: true
 };
-
 function _buildValueString(id, value) {
   if (id == null) return `${value}`;
   if (typeof value === 'string') value = `'${value}'`;
   if (value && typeof value === 'object') value = 'Object';
   return `${id}: ${value}`.slice(0, 50);
 }
-
 function _extractId(valueString) {
   return valueString.split(':')[0];
 }
 /** Mock interface for HTMLCollection */
-
-
 class HTMLCollection {}
 /**
  * @description
@@ -51656,16 +49170,12 @@ class HTMLCollection {}
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this._optionMap = new Map();
     /** @internal */
-
     this._idCounter = 0;
     this._compareWith = Object.is;
   }
@@ -51674,29 +49184,22 @@ class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
    * Tracks the option comparison algorithm for tracking identities when
    * checking for changes.
    */
-
-
   set compareWith(fn) {
     if (typeof fn !== 'function' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw new Error(`compareWith must be a function, but received ${JSON.stringify(fn)}`);
     }
-
     this._compareWith = fn;
   }
   /**
    * Sets the "value" property on one or of more of the select's options.
    * @nodoc
    */
-
-
   writeValue(value) {
     this.value = value;
     let optionSelectedStateSetter;
-
     if (Array.isArray(value)) {
       // convert values to ids
       const ids = value.map(v => this._getOptionId(v));
-
       optionSelectedStateSetter = (opt, o) => {
         opt._setSelected(ids.indexOf(o.toString()) > -1);
       };
@@ -51705,7 +49208,6 @@ class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
         opt._setSelected(false);
       };
     }
-
     this._optionMap.forEach(optionSelectedStateSetter);
   }
   /**
@@ -51713,82 +49215,60 @@ class SelectMultipleControlValueAccessor extends BuiltInControlValueAccessor {
    * and writes an array of the selected options.
    * @nodoc
    */
-
-
   registerOnChange(fn) {
     this.onChange = element => {
       const selected = [];
       const selectedOptions = element.selectedOptions;
-
       if (selectedOptions !== undefined) {
         const options = selectedOptions;
-
         for (let i = 0; i < options.length; i++) {
           const opt = options[i];
-
           const val = this._getOptionValue(opt.value);
-
           selected.push(val);
         }
-      } // Degrade to use `options` when `selectedOptions` property is not available.
+      }
+      // Degrade to use `options` when `selectedOptions` property is not available.
       // Note: the `selectedOptions` is available in all supported browsers, but the Domino lib
       // doesn't have it currently, see https://github.com/fgnass/domino/issues/177.
       else {
         const options = element.options;
-
         for (let i = 0; i < options.length; i++) {
           const opt = options[i];
-
           if (opt.selected) {
             const val = this._getOptionValue(opt.value);
-
             selected.push(val);
           }
         }
       }
-
       this.value = selected;
       fn(selected);
     };
   }
   /** @internal */
-
-
   _registerOption(value) {
     const id = (this._idCounter++).toString();
-
     this._optionMap.set(id, value);
-
     return id;
   }
   /** @internal */
-
-
   _getOptionId(value) {
     for (const id of Array.from(this._optionMap.keys())) {
       if (this._compareWith(this._optionMap.get(id)._value, value)) return id;
     }
-
     return null;
   }
   /** @internal */
-
-
   _getOptionValue(valueString) {
     const id = _extractId(valueString);
-
     return this._optionMap.has(id) ? this._optionMap.get(id)._value : valueString;
   }
-
 }
-
 SelectMultipleControlValueAccessor.ɵfac = /* @__PURE__ */function () {
   let ɵSelectMultipleControlValueAccessor_BaseFactory;
   return function SelectMultipleControlValueAccessor_Factory(t) {
     return (ɵSelectMultipleControlValueAccessor_BaseFactory || (ɵSelectMultipleControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](SelectMultipleControlValueAccessor)))(t || SelectMultipleControlValueAccessor);
   };
 }();
-
 SelectMultipleControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: SelectMultipleControlValueAccessor,
   selectors: [["select", "multiple", "", "formControlName", ""], ["select", "multiple", "", "formControl", ""], ["select", "multiple", "", "ngModel", ""]],
@@ -51806,7 +49286,6 @@ SelectMultipleControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([SELECT_MULTIPLE_VALUE_ACCESSOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SelectMultipleControlValueAccessor, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51834,14 +49313,11 @@ SelectMultipleControlValueAccessor.ɵdir = /* @__PURE__ */_angular_core__WEBPACK
  * @ngModule FormsModule
  * @publicApi
  */
-
-
 class ɵNgSelectMultipleOption {
   constructor(_element, _renderer, _select) {
     this._element = _element;
     this._renderer = _renderer;
     this._select = _select;
-
     if (this._select) {
       this.id = this._select._registerOption(this);
     }
@@ -51851,14 +49327,10 @@ class ɵNgSelectMultipleOption {
    * Tracks the value bound to the option element. Unlike the value binding,
    * ngValue supports binding to objects.
    */
-
-
   set ngValue(value) {
     if (this._select == null) return;
     this._value = value;
-
     this._setElementValue(_buildValueString(this.id, value));
-
     this._select.writeValue(this._select.value);
   }
   /**
@@ -51866,48 +49338,34 @@ class ɵNgSelectMultipleOption {
    * Tracks simple string values bound to the option element.
    * For objects, use the `ngValue` input binding.
    */
-
-
   set value(value) {
     if (this._select) {
       this._value = value;
-
       this._setElementValue(_buildValueString(this.id, value));
-
       this._select.writeValue(this._select.value);
     } else {
       this._setElementValue(value);
     }
   }
   /** @internal */
-
-
   _setElementValue(value) {
     this._renderer.setProperty(this._element.nativeElement, 'value', value);
   }
   /** @internal */
-
-
   _setSelected(selected) {
     this._renderer.setProperty(this._element.nativeElement, 'selected', selected);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this._select) {
       this._select._optionMap.delete(this.id);
-
       this._select.writeValue(this._select.value);
     }
   }
-
 }
-
 ɵNgSelectMultipleOption.ɵfac = function ɵNgSelectMultipleOption_Factory(t) {
   return new (t || ɵNgSelectMultipleOption)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](SelectMultipleControlValueAccessor, 9));
 };
-
 ɵNgSelectMultipleOption.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: ɵNgSelectMultipleOption,
   selectors: [["option"]],
@@ -51916,7 +49374,6 @@ class ɵNgSelectMultipleOption {
     value: "value"
   }
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ɵNgSelectMultipleOption, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -51947,6 +49404,7 @@ class ɵNgSelectMultipleOption {
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -51954,15 +49412,12 @@ class ɵNgSelectMultipleOption {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Method that updates string to integer if not already a number
  *
  * @param value The value to convert to integer.
  * @returns value of parameter converted to number or integer.
  */
-
-
 function toInteger(value) {
   return typeof value === 'number' ? value : parseInt(value, 10);
 }
@@ -51972,8 +49427,6 @@ function toInteger(value) {
  * @param value input value.
  * @returns value of parameter converted to boolean.
  */
-
-
 function toBoolean(input) {
   return input != null && input !== false && `${input}` !== 'false';
 }
@@ -51983,8 +49436,6 @@ function toBoolean(input) {
  * @param value The value to convert to float.
  * @returns value of parameter converted to number or float.
  */
-
-
 function toFloat(value) {
   return typeof value === 'number' ? value : parseFloat(value);
 }
@@ -51994,35 +49445,26 @@ function toFloat(value) {
  *
  * For internal use only, this class is not intended for use outside of the Forms package.
  */
-
-
 class AbstractValidatorDirective {
   constructor() {
     this._validator = nullValidator;
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     if (this.inputName in changes) {
       const input = this.normalizeInput(changes[this.inputName].currentValue);
       this._enabled = this.enabled(input);
       this._validator = this._enabled ? this.createValidator(input) : nullValidator;
-
       if (this._onChange) {
         this._onChange();
       }
     }
   }
   /** @nodoc */
-
-
   validate(control) {
     return this._validator(control);
   }
   /** @nodoc */
-
-
   registerOnValidatorChange(fn) {
     this._onChange = fn;
   }
@@ -52033,25 +49475,18 @@ class AbstractValidatorDirective {
    * `null` and `undefined`). Validator classes that extend this base class can override this
    * function with the logic specific to a particular validator directive.
    */
-
-
   enabled(input) {
-    return input != null
-    /* both `null` and `undefined` */
-    ;
+    return input != null /* both `null` and `undefined` */;
   }
-
 }
 
 AbstractValidatorDirective.ɵfac = function AbstractValidatorDirective_Factory(t) {
   return new (t || AbstractValidatorDirective)();
 };
-
 AbstractValidatorDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: AbstractValidatorDirective,
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AbstractValidatorDirective, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive
@@ -52061,8 +49496,6 @@ AbstractValidatorDirective.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
  * @description
  * Provider which adds `MaxValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const MAX_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => MaxValidator),
@@ -52089,31 +49522,23 @@ const MAX_VALIDATOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class MaxValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'max';
     /** @internal */
-
     this.normalizeInput = input => toFloat(input);
     /** @internal */
-
-
     this.createValidator = max => maxValidator(max);
   }
-
 }
-
 MaxValidator.ɵfac = /* @__PURE__ */function () {
   let ɵMaxValidator_BaseFactory;
   return function MaxValidator_Factory(t) {
     return (ɵMaxValidator_BaseFactory || (ɵMaxValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MaxValidator)))(t || MaxValidator);
   };
 }();
-
 MaxValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: MaxValidator,
   selectors: [["input", "type", "number", "max", "", "formControlName", ""], ["input", "type", "number", "max", "", "formControl", ""], ["input", "type", "number", "max", "", "ngModel", ""]],
@@ -52128,7 +49553,6 @@ MaxValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([MAX_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MaxValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52149,8 +49573,6 @@ MaxValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * @description
  * Provider which adds `MinValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const MIN_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => MinValidator),
@@ -52177,31 +49599,23 @@ const MIN_VALIDATOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class MinValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'min';
     /** @internal */
-
     this.normalizeInput = input => toFloat(input);
     /** @internal */
-
-
     this.createValidator = min => minValidator(min);
   }
-
 }
-
 MinValidator.ɵfac = /* @__PURE__ */function () {
   let ɵMinValidator_BaseFactory;
   return function MinValidator_Factory(t) {
     return (ɵMinValidator_BaseFactory || (ɵMinValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MinValidator)))(t || MinValidator);
   };
 }();
-
 MinValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: MinValidator,
   selectors: [["input", "type", "number", "min", "", "formControlName", ""], ["input", "type", "number", "min", "", "formControl", ""], ["input", "type", "number", "min", "", "ngModel", ""]],
@@ -52216,7 +49630,6 @@ MinValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([MIN_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MinValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52237,8 +49650,6 @@ MinValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * @description
  * Provider which adds `RequiredValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const REQUIRED_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => RequiredValidator),
@@ -52248,7 +49659,6 @@ const REQUIRED_VALIDATOR = {
  * @description
  * Provider which adds `CheckboxRequiredValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
 const CHECKBOX_REQUIRED_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => CheckboxRequiredValidator),
@@ -52273,37 +49683,27 @@ const CHECKBOX_REQUIRED_VALIDATOR = {
  * @ngModule ReactiveFormsModule
  * @publicApi
  */
-
 class RequiredValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'required';
     /** @internal */
-
     this.normalizeInput = input => toBoolean(input);
     /** @internal */
-
-
     this.createValidator = input => requiredValidator;
   }
   /** @nodoc */
-
-
   enabled(input) {
     return input;
   }
-
 }
-
 RequiredValidator.ɵfac = /* @__PURE__ */function () {
   let ɵRequiredValidator_BaseFactory;
   return function RequiredValidator_Factory(t) {
     return (ɵRequiredValidator_BaseFactory || (ɵRequiredValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](RequiredValidator)))(t || RequiredValidator);
   };
 }();
-
 RequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RequiredValidator,
   selectors: [["", "required", "", "formControlName", "", 3, "type", "checkbox"], ["", "required", "", "formControl", "", 3, "type", "checkbox"], ["", "required", "", "ngModel", "", 3, "type", "checkbox"]],
@@ -52318,7 +49718,6 @@ RequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([REQUIRED_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RequiredValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52356,25 +49755,19 @@ RequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
  * @ngModule FormsModule
  * @ngModule ReactiveFormsModule
  */
-
-
 class CheckboxRequiredValidator extends RequiredValidator {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.createValidator = input => requiredTrueValidator;
   }
-
 }
-
 CheckboxRequiredValidator.ɵfac = /* @__PURE__ */function () {
   let ɵCheckboxRequiredValidator_BaseFactory;
   return function CheckboxRequiredValidator_Factory(t) {
     return (ɵCheckboxRequiredValidator_BaseFactory || (ɵCheckboxRequiredValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxRequiredValidator)))(t || CheckboxRequiredValidator);
   };
 }();
-
 CheckboxRequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: CheckboxRequiredValidator,
   selectors: [["input", "type", "checkbox", "required", "", "formControlName", ""], ["input", "type", "checkbox", "required", "", "formControl", ""], ["input", "type", "checkbox", "required", "", "ngModel", ""]],
@@ -52386,7 +49779,6 @@ CheckboxRequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([CHECKBOX_REQUIRED_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CheckboxRequiredValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52403,8 +49795,6 @@ CheckboxRequiredValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED
  * @description
  * Provider which adds `EmailValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const EMAIL_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => EmailValidator),
@@ -52437,40 +49827,31 @@ const EMAIL_VALIDATOR = {
  * @ngModule FormsModule
  * @ngModule ReactiveFormsModule
  */
-
 class EmailValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'email';
     /** @internal */
-
-    this.normalizeInput = input => // Avoid TSLint requirement to omit semicolon, see
+    this.normalizeInput = input =>
+    // Avoid TSLint requirement to omit semicolon, see
     // https://github.com/palantir/tslint/issues/1476
     // tslint:disable-next-line:semicolon
     input === '' || input === true || input === 'true';
     /** @internal */
-
-
     this.createValidator = input => emailValidator;
   }
   /** @nodoc */
-
-
   enabled(input) {
     return input;
   }
-
 }
-
 EmailValidator.ɵfac = /* @__PURE__ */function () {
   let ɵEmailValidator_BaseFactory;
   return function EmailValidator_Factory(t) {
     return (ɵEmailValidator_BaseFactory || (ɵEmailValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](EmailValidator)))(t || EmailValidator);
   };
 }();
-
 EmailValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: EmailValidator,
   selectors: [["", "email", "", "formControlName", ""], ["", "email", "", "formControl", ""], ["", "email", "", "ngModel", ""]],
@@ -52479,7 +49860,6 @@ EmailValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([EMAIL_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](EmailValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52497,8 +49877,6 @@ EmailValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
  * @description
  * Provider which adds `MinLengthValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const MIN_LENGTH_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => MinLengthValidator),
@@ -52525,31 +49903,23 @@ const MIN_LENGTH_VALIDATOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class MinLengthValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'minlength';
     /** @internal */
-
     this.normalizeInput = input => toInteger(input);
     /** @internal */
-
-
     this.createValidator = minlength => minLengthValidator(minlength);
   }
-
 }
-
 MinLengthValidator.ɵfac = /* @__PURE__ */function () {
   let ɵMinLengthValidator_BaseFactory;
   return function MinLengthValidator_Factory(t) {
     return (ɵMinLengthValidator_BaseFactory || (ɵMinLengthValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MinLengthValidator)))(t || MinLengthValidator);
   };
 }();
-
 MinLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: MinLengthValidator,
   selectors: [["", "minlength", "", "formControlName", ""], ["", "minlength", "", "formControl", ""], ["", "minlength", "", "ngModel", ""]],
@@ -52564,7 +49934,6 @@ MinLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([MIN_LENGTH_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MinLengthValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52585,8 +49954,6 @@ MinLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
  * @description
  * Provider which adds `MaxLengthValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const MAX_LENGTH_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => MaxLengthValidator),
@@ -52613,31 +49980,23 @@ const MAX_LENGTH_VALIDATOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class MaxLengthValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'maxlength';
     /** @internal */
-
     this.normalizeInput = input => toInteger(input);
     /** @internal */
-
-
     this.createValidator = maxlength => maxLengthValidator(maxlength);
   }
-
 }
-
 MaxLengthValidator.ɵfac = /* @__PURE__ */function () {
   let ɵMaxLengthValidator_BaseFactory;
   return function MaxLengthValidator_Factory(t) {
     return (ɵMaxLengthValidator_BaseFactory || (ɵMaxLengthValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MaxLengthValidator)))(t || MaxLengthValidator);
   };
 }();
-
 MaxLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: MaxLengthValidator,
   selectors: [["", "maxlength", "", "formControlName", ""], ["", "maxlength", "", "formControl", ""], ["", "maxlength", "", "ngModel", ""]],
@@ -52652,7 +50011,6 @@ MaxLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([MAX_LENGTH_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MaxLengthValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52673,8 +50031,6 @@ MaxLengthValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
  * @description
  * Provider which adds `PatternValidator` to the `NG_VALIDATORS` multi-provider list.
  */
-
-
 const PATTERN_VALIDATOR = {
   provide: NG_VALIDATORS,
   useExisting: (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(() => PatternValidator),
@@ -52703,31 +50059,23 @@ const PATTERN_VALIDATOR = {
  * @ngModule FormsModule
  * @publicApi
  */
-
 class PatternValidator extends AbstractValidatorDirective {
   constructor() {
     super(...arguments);
     /** @internal */
-
     this.inputName = 'pattern';
     /** @internal */
-
     this.normalizeInput = input => input;
     /** @internal */
-
-
     this.createValidator = input => patternValidator(input);
   }
-
 }
-
 PatternValidator.ɵfac = /* @__PURE__ */function () {
   let ɵPatternValidator_BaseFactory;
   return function PatternValidator_Factory(t) {
     return (ɵPatternValidator_BaseFactory || (ɵPatternValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](PatternValidator)))(t || PatternValidator);
   };
 }();
-
 PatternValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: PatternValidator,
   selectors: [["", "pattern", "", "formControlName", ""], ["", "pattern", "", "formControl", ""], ["", "pattern", "", "ngModel", ""]],
@@ -52742,7 +50090,6 @@ PatternValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([PATTERN_VALIDATOR]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PatternValidator, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -52759,6 +50106,7 @@ PatternValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
     }]
   });
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -52766,28 +50114,22 @@ PatternValidator.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const SHARED_FORM_DIRECTIVES = [ɵNgNoValidate, NgSelectOption, ɵNgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, RangeValueAccessor, CheckboxControlValueAccessor, SelectControlValueAccessor, SelectMultipleControlValueAccessor, RadioControlValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, MinLengthValidator, MaxLengthValidator, PatternValidator, CheckboxRequiredValidator, EmailValidator, MinValidator, MaxValidator];
 const TEMPLATE_DRIVEN_DIRECTIVES = [NgModel, NgModelGroup, NgForm];
 const REACTIVE_DRIVEN_DIRECTIVES = [FormControlDirective, FormGroupDirective, FormControlName, FormGroupName, FormArrayName];
 /**
  * Internal module used for sharing directives between FormsModule and ReactiveFormsModule
  */
-
 class ɵInternalFormsSharedModule {}
-
 ɵInternalFormsSharedModule.ɵfac = function ɵInternalFormsSharedModule_Factory(t) {
   return new (t || ɵInternalFormsSharedModule)();
 };
-
 ɵInternalFormsSharedModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: ɵInternalFormsSharedModule
 });
 ɵInternalFormsSharedModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
   imports: [[RadioControlRegistryModule]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ɵInternalFormsSharedModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
@@ -52798,6 +50140,7 @@ class ɵInternalFormsSharedModule {}
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -52805,7 +50148,6 @@ class ɵInternalFormsSharedModule {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Exports the required providers and directives for template-driven forms,
  * making them available for import by NgModules that import this module.
@@ -52818,21 +50160,16 @@ class ɵInternalFormsSharedModule {}
  *
  * @publicApi
  */
-
-
 class FormsModule {}
-
 FormsModule.ɵfac = function FormsModule_Factory(t) {
   return new (t || FormsModule)();
 };
-
 FormsModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: FormsModule
 });
 FormsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
   imports: [ɵInternalFormsSharedModule]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormsModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
@@ -52855,8 +50192,6 @@ FormsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["�
  *
  * @publicApi
  */
-
-
 class ReactiveFormsModule {
   /**
    * @description
@@ -52875,20 +50210,16 @@ class ReactiveFormsModule {
       }]
     };
   }
-
 }
-
 ReactiveFormsModule.ɵfac = function ReactiveFormsModule_Factory(t) {
   return new (t || ReactiveFormsModule)();
 };
-
 ReactiveFormsModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: ReactiveFormsModule
 });
 ReactiveFormsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
   imports: [ɵInternalFormsSharedModule]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ReactiveFormsModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
@@ -52898,6 +50229,7 @@ ReactiveFormsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -52905,8 +50237,6 @@ ReactiveFormsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function isAbstractControlOptions(options) {
   return options.asyncValidators !== undefined || options.validators !== undefined || options.updateOn !== undefined;
 }
@@ -52922,16 +50252,12 @@ function isAbstractControlOptions(options) {
  *
  * @publicApi
  */
-
-
 class FormBuilder {
   group(controlsConfig, options = null) {
     const controls = this._reduceControls(controlsConfig);
-
     let validators = null;
     let asyncValidators = null;
     let updateOn = undefined;
-
     if (options != null) {
       if (isAbstractControlOptions(options)) {
         // `options` are `AbstractControlOptions`
@@ -52944,7 +50270,6 @@ class FormBuilder {
         asyncValidators = options['asyncValidator'] != null ? options['asyncValidator'] : null;
       }
     }
-
     return new FormGroup(controls, {
       asyncValidators,
       updateOn,
@@ -52974,8 +50299,6 @@ class FormBuilder {
    * <code-example path="forms/ts/formBuilder/form_builder_example.ts" region="disabled-control">
    * </code-example>
    */
-
-
   control(formState, validatorOrOpts, asyncValidator) {
     return new FormControl(formState, validatorOrOpts, asyncValidator);
   }
@@ -52993,15 +50316,11 @@ class FormBuilder {
    * @param asyncValidator A single async validator or array of async validator
    * functions.
    */
-
-
   array(controlsConfig, validatorOrOpts, asyncValidator) {
     const controls = controlsConfig.map(c => this._createControl(c));
     return new FormArray(controls, validatorOrOpts, asyncValidator);
   }
   /** @internal */
-
-
   _reduceControls(controlsConfig) {
     const controls = {};
     Object.keys(controlsConfig).forEach(controlName => {
@@ -53010,8 +50329,6 @@ class FormBuilder {
     return controls;
   }
   /** @internal */
-
-
   _createControl(controlConfig) {
     if (isFormControl(controlConfig) || isFormGroup(controlConfig) || isFormArray(controlConfig)) {
       return controlConfig;
@@ -53024,19 +50341,15 @@ class FormBuilder {
       return this.control(controlConfig);
     }
   }
-
 }
-
 FormBuilder.ɵfac = function FormBuilder_Factory(t) {
   return new (t || FormBuilder)();
 };
-
 FormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: FormBuilder,
   factory: FormBuilder.ɵfac,
   providedIn: ReactiveFormsModule
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormBuilder, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
@@ -53045,6 +50358,7 @@ FormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53052,13 +50366,11 @@ FormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @publicApi
  */
-
-
 const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53149,6 +50461,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53156,21 +50470,19 @@ __webpack_require__.r(__webpack_exports__);
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Provides DOM operations in any browser environment.
  *
  * @security Tread carefully! Interacting with the DOM directly is dangerous and
  * can introduce XSS risks.
  */
-
 class GenericBrowserDomAdapter extends _angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵDomAdapter"] {
   constructor() {
     super(...arguments);
     this.supportsDOMEvents = true;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53178,115 +50490,90 @@ class GenericBrowserDomAdapter extends _angular_common__WEBPACK_IMPORTED_MODULE_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * A `DomAdapter` powered by full browser DOM APIs.
  *
  * @security Tread carefully! Interacting with the DOM directly is dangerous and
  * can introduce XSS risks.
  */
-
 /* tslint:disable:requireParameterType no-console */
-
-
 class BrowserDomAdapter extends GenericBrowserDomAdapter {
   static makeCurrent() {
     (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵsetRootDomAdapter"])(new BrowserDomAdapter());
   }
-
   onAndCancel(el, evt, listener) {
-    el.addEventListener(evt, listener, false); // Needed to follow Dart's subscription semantic, until fix of
+    el.addEventListener(evt, listener, false);
+    // Needed to follow Dart's subscription semantic, until fix of
     // https://code.google.com/p/dart/issues/detail?id=17406
-
     return () => {
       el.removeEventListener(evt, listener, false);
     };
   }
-
   dispatchEvent(el, evt) {
     el.dispatchEvent(evt);
   }
-
   remove(node) {
     if (node.parentNode) {
       node.parentNode.removeChild(node);
     }
   }
-
   createElement(tagName, doc) {
     doc = doc || this.getDefaultDocument();
     return doc.createElement(tagName);
   }
-
   createHtmlDocument() {
     return document.implementation.createHTMLDocument('fakeTitle');
   }
-
   getDefaultDocument() {
     return document;
   }
-
   isElementNode(node) {
     return node.nodeType === Node.ELEMENT_NODE;
   }
-
   isShadowRoot(node) {
     return node instanceof DocumentFragment;
   }
   /** @deprecated No longer being used in Ivy code. To be removed in version 14. */
-
-
   getGlobalEventTarget(doc, target) {
     if (target === 'window') {
       return window;
     }
-
     if (target === 'document') {
       return doc;
     }
-
     if (target === 'body') {
       return doc.body;
     }
-
     return null;
   }
-
   getBaseHref(doc) {
     const href = getBaseElementHref();
     return href == null ? null : relativePath(href);
   }
-
   resetBaseElement() {
     baseElement = null;
   }
-
   getUserAgent() {
     return window.navigator.userAgent;
   }
-
   getCookie(name) {
     return (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵparseCookieValue"])(document.cookie, name);
   }
-
 }
-
 let baseElement = null;
-
 function getBaseElementHref() {
   baseElement = baseElement || document.querySelector('base');
   return baseElement ? baseElement.getAttribute('href') : null;
-} // based on urlUtils.js in AngularJS 1
-
-
+}
+// based on urlUtils.js in AngularJS 1
 let urlParsingNode;
-
 function relativePath(url) {
   urlParsingNode = urlParsingNode || document.createElement('a');
   urlParsingNode.setAttribute('href', url);
   const pathName = urlParsingNode.pathname;
   return pathName.charAt(0) === '/' ? pathName : `/${pathName}`;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53294,15 +50581,11 @@ function relativePath(url) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * An id that identifies a particular application being bootstrapped, that should
  * match across the client/server boundary.
  */
-
-
 const TRANSITION_ID = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('TRANSITION_ID');
-
 function appInitializerFactory(transitionId, document, injector) {
   return () => {
     // Wait for all application initializers to be completed before removing the styles set by
@@ -53310,20 +50593,19 @@ function appInitializerFactory(transitionId, document, injector) {
     injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_1__.ApplicationInitStatus).donePromise.then(() => {
       const dom = (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])();
       const styles = document.querySelectorAll(`style[ng-transition="${transitionId}"]`);
-
       for (let i = 0; i < styles.length; i++) {
         dom.remove(styles[i]);
       }
     });
   };
 }
-
 const SERVER_TRANSITION_PROVIDERS = [{
   provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_INITIALIZER,
   useFactory: appInitializerFactory,
   deps: [TRANSITION_ID, _angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT, _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injector],
   multi: true
 }];
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53331,106 +50613,78 @@ const SERVER_TRANSITION_PROVIDERS = [{
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 class BrowserGetTestability {
   static init() {
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.setTestabilityGetter)(new BrowserGetTestability());
   }
-
   addToWindow(registry) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].getAngularTestability = (elem, findInAncestors = true) => {
       const testability = registry.findTestabilityInTree(elem, findInAncestors);
-
       if (testability == null) {
         throw new Error('Could not find testability for element.');
       }
-
       return testability;
     };
-
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].getAllAngularTestabilities = () => registry.getAllTestabilities();
-
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].getAllAngularRootElements = () => registry.getAllRootElements();
-
-    const whenAllStable = (callback
-    /** TODO #9100 */
-    ) => {
+    const whenAllStable = (callback /** TODO #9100 */) => {
       const testabilities = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].getAllAngularTestabilities();
       let count = testabilities.length;
       let didWork = false;
-
-      const decrement = function (didWork_
-      /** TODO #9100 */
-      ) {
+      const decrement = function (didWork_ /** TODO #9100 */) {
         didWork = didWork || didWork_;
         count--;
-
         if (count == 0) {
           callback(didWork);
         }
       };
-
-      testabilities.forEach(function (testability
-      /** TODO #9100 */
-      ) {
+      testabilities.forEach(function (testability /** TODO #9100 */) {
         testability.whenStable(decrement);
       });
     };
-
     if (!_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].frameworkStabilizers) {
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].frameworkStabilizers = [];
     }
-
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵglobal"].frameworkStabilizers.push(whenAllStable);
   }
-
   findTestabilityInTree(registry, elem, findInAncestors) {
     if (elem == null) {
       return null;
     }
-
     const t = registry.getTestability(elem);
-
     if (t != null) {
       return t;
     } else if (!findInAncestors) {
       return null;
     }
-
     if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().isShadowRoot(elem)) {
       return this.findTestabilityInTree(registry, elem.host, true);
     }
-
     return this.findTestabilityInTree(registry, elem.parentElement, true);
   }
-
 }
+
 /**
  * A factory for `HttpXhrBackend` that uses the `XMLHttpRequest` browser API.
  */
-
-
 class BrowserXhr {
   build() {
     return new XMLHttpRequest();
   }
-
 }
-
 BrowserXhr.ɵfac = function BrowserXhr_Factory(t) {
   return new (t || BrowserXhr)();
 };
-
 BrowserXhr.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: BrowserXhr,
   factory: BrowserXhr.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](BrowserXhr, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53438,14 +50692,11 @@ BrowserXhr.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["�
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * The injection token for the event-manager plug-in service.
  *
  * @publicApi
  */
-
-
 const EVENT_MANAGER_PLUGINS = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('EventManagerPlugins');
 /**
  * An injectable service that provides event management for Angular
@@ -53453,7 +50704,6 @@ const EVENT_MANAGER_PLUGINS = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inj
  *
  * @publicApi
  */
-
 class EventManager {
   /**
    * Initializes an instance of the event-manager service.
@@ -53473,11 +50723,8 @@ class EventManager {
    * event object as an argument.
    * @returns  A callback function that can be used to remove the handler.
    */
-
-
   addEventListener(element, eventName, handler) {
     const plugin = this._findPluginFor(eventName);
-
     return plugin.addEventListener(element, eventName, handler);
   }
   /**
@@ -53490,57 +50737,40 @@ class EventManager {
    * @returns A callback function that can be used to remove the handler.
    * @deprecated No longer being used in Ivy code. To be removed in version 14.
    */
-
-
   addGlobalEventListener(target, eventName, handler) {
     const plugin = this._findPluginFor(eventName);
-
     return plugin.addGlobalEventListener(target, eventName, handler);
   }
   /**
    * Retrieves the compilation zone in which event listeners are registered.
    */
-
-
   getZone() {
     return this._zone;
   }
   /** @internal */
-
-
   _findPluginFor(eventName) {
     const plugin = this._eventNameToPlugin.get(eventName);
-
     if (plugin) {
       return plugin;
     }
-
     const plugins = this._plugins;
-
     for (let i = 0; i < plugins.length; i++) {
       const plugin = plugins[i];
-
       if (plugin.supports(eventName)) {
         this._eventNameToPlugin.set(eventName, plugin);
-
         return plugin;
       }
     }
-
     throw new Error(`No event manager plugin found for event ${eventName}`);
   }
-
 }
-
 EventManager.ɵfac = function EventManager_Factory(t) {
   return new (t || EventManager)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](EVENT_MANAGER_PLUGINS), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgZone));
 };
-
 EventManager.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: EventManager,
   factory: EventManager.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](EventManager, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -53556,23 +50786,19 @@ EventManager.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__[
     }];
   }, null);
 })();
-
 class EventManagerPlugin {
   constructor(_doc) {
     this._doc = _doc;
   }
-
   addGlobalEventListener(element, eventName, handler) {
     const target = (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().getGlobalEventTarget(this._doc, element);
-
     if (!target) {
       throw new Error(`Unsupported event target ${target} for event ${eventName}`);
     }
-
     return this.addEventListener(target, eventName, handler);
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53580,107 +50806,81 @@ class EventManagerPlugin {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class SharedStylesHost {
   constructor() {
     /** @internal */
     this._stylesSet = new Set();
   }
-
   addStyles(styles) {
     const additions = new Set();
     styles.forEach(style => {
       if (!this._stylesSet.has(style)) {
         this._stylesSet.add(style);
-
         additions.add(style);
       }
     });
     this.onStylesAdded(additions);
   }
-
   onStylesAdded(additions) {}
-
   getAllStyles() {
     return Array.from(this._stylesSet);
   }
-
 }
-
 SharedStylesHost.ɵfac = function SharedStylesHost_Factory(t) {
   return new (t || SharedStylesHost)();
 };
-
 SharedStylesHost.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: SharedStylesHost,
   factory: SharedStylesHost.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](SharedStylesHost, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
   }], null, null);
 })();
-
 class DomSharedStylesHost extends SharedStylesHost {
   constructor(_doc) {
     super();
-    this._doc = _doc; // Maps all registered host nodes to a list of style nodes that have been added to the host node.
-
+    this._doc = _doc;
+    // Maps all registered host nodes to a list of style nodes that have been added to the host node.
     this._hostNodes = new Map();
-
     this._hostNodes.set(_doc.head, []);
   }
-
   _addStylesToHost(styles, host, styleNodes) {
     styles.forEach(style => {
       const styleEl = this._doc.createElement('style');
-
       styleEl.textContent = style;
       styleNodes.push(host.appendChild(styleEl));
     });
   }
-
   addHost(hostNode) {
     const styleNodes = [];
-
     this._addStylesToHost(this._stylesSet, hostNode, styleNodes);
-
     this._hostNodes.set(hostNode, styleNodes);
   }
-
   removeHost(hostNode) {
     const styleNodes = this._hostNodes.get(hostNode);
-
     if (styleNodes) {
       styleNodes.forEach(removeStyle);
     }
-
     this._hostNodes.delete(hostNode);
   }
-
   onStylesAdded(additions) {
     this._hostNodes.forEach((styleNodes, hostNode) => {
       this._addStylesToHost(additions, hostNode, styleNodes);
     });
   }
-
   ngOnDestroy() {
     this._hostNodes.forEach(styleNodes => styleNodes.forEach(removeStyle));
   }
-
 }
-
 DomSharedStylesHost.ɵfac = function DomSharedStylesHost_Factory(t) {
   return new (t || DomSharedStylesHost)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 DomSharedStylesHost.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomSharedStylesHost,
   factory: DomSharedStylesHost.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DomSharedStylesHost, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -53694,10 +50894,10 @@ DomSharedStylesHost.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
-
 function removeStyle(styleNode) {
   (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().remove(styleNode);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -53705,8 +50905,6 @@ function removeStyle(styleNode) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const NAMESPACE_URIS = {
   'svg': 'http://www.w3.org/2000/svg',
   'xhtml': 'http://www.w3.org/1999/xhtml',
@@ -53720,19 +50918,15 @@ const NG_DEV_MODE = typeof ngDevMode === 'undefined' || !!ngDevMode;
 const COMPONENT_VARIABLE = '%COMP%';
 const HOST_ATTR = `_nghost-${COMPONENT_VARIABLE}`;
 const CONTENT_ATTR = `_ngcontent-${COMPONENT_VARIABLE}`;
-
 function shimContentAttribute(componentShortId) {
   return CONTENT_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
-
 function shimHostAttribute(componentShortId) {
   return HOST_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
-
 function flattenStyles(compId, styles, target) {
   for (let i = 0; i < styles.length; i++) {
     let style = styles[i];
-
     if (Array.isArray(style)) {
       flattenStyles(compId, style, target);
     } else {
@@ -53740,10 +50934,8 @@ function flattenStyles(compId, styles, target) {
       target.push(style);
     }
   }
-
   return target;
 }
-
 function decoratePreventDefault(eventHandler) {
   // `DebugNode.triggerEventHandler` needs to know if the listener was created with
   // decoratePreventDefault or is a listener added outside the Angular context so it can handle the
@@ -53757,21 +50949,16 @@ function decoratePreventDefault(eventHandler) {
     if (event === '__ngUnwrap__') {
       return eventHandler;
     }
-
     const allowDefaultBehavior = eventHandler(event);
-
     if (allowDefaultBehavior === false) {
       // TODO(tbosch): move preventDefault into event plugins...
       event.preventDefault();
       event.returnValue = false;
     }
-
     return undefined;
   };
 }
-
 let hasLoggedNativeEncapsulationWarning = false;
-
 class DomRendererFactory2 {
   constructor(eventManager, sharedStylesHost, appId) {
     this.eventManager = eventManager;
@@ -53780,41 +50967,35 @@ class DomRendererFactory2 {
     this.rendererByCompId = new Map();
     this.defaultRenderer = new DefaultDomRenderer2(eventManager);
   }
-
   createRenderer(element, type) {
     if (!element || !type) {
       return this.defaultRenderer;
     }
-
     switch (type.encapsulation) {
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.Emulated:
         {
           let renderer = this.rendererByCompId.get(type.id);
-
           if (!renderer) {
             renderer = new EmulatedEncapsulationDomRenderer2(this.eventManager, this.sharedStylesHost, type, this.appId);
             this.rendererByCompId.set(type.id, renderer);
           }
-
           renderer.applyToHost(element);
           return renderer;
         }
       // @ts-ignore TODO: Remove as part of FW-2290. TS complains about us dealing with an enum
       // value that is not known (but previously was the value for ViewEncapsulation.Native)
-
       case 1:
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.ShadowDom:
         // TODO(FW-2290): remove the `case 1:` fallback logic and the warning in v12.
-        if ((typeof ngDevMode === 'undefined' || ngDevMode) && // @ts-ignore TODO: Remove as part of FW-2290. TS complains about us dealing with an
+        if ((typeof ngDevMode === 'undefined' || ngDevMode) &&
+        // @ts-ignore TODO: Remove as part of FW-2290. TS complains about us dealing with an
         // enum value that is not known (but previously was the value for
         // ViewEncapsulation.Native)
         !hasLoggedNativeEncapsulationWarning && type.encapsulation === 1) {
           hasLoggedNativeEncapsulationWarning = true;
           console.warn('ViewEncapsulation.Native is no longer supported. Falling back to ViewEncapsulation.ShadowDom. The fallback will be removed in v12.');
         }
-
         return new ShadowDomRenderer(this.eventManager, this.sharedStylesHost, element, type);
-
       default:
         {
           if (!this.rendererByCompId.has(type.id)) {
@@ -53822,27 +51003,20 @@ class DomRendererFactory2 {
             this.sharedStylesHost.addStyles(styles);
             this.rendererByCompId.set(type.id, this.defaultRenderer);
           }
-
           return this.defaultRenderer;
         }
     }
   }
-
   begin() {}
-
   end() {}
-
 }
-
 DomRendererFactory2.ɵfac = function DomRendererFactory2_Factory(t) {
   return new (t || DomRendererFactory2)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](EventManager), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](DomSharedStylesHost), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID));
 };
-
 DomRendererFactory2.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomRendererFactory2,
   factory: DomRendererFactory2.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DomRendererFactory2, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -53860,16 +51034,13 @@ DomRendererFactory2.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
-
 class DefaultDomRenderer2 {
   constructor(eventManager) {
     this.eventManager = eventManager;
     this.data = Object.create(null);
     this.destroyNode = null;
   }
-
   destroy() {}
-
   createElement(name, namespace) {
     if (namespace) {
       // TODO: `|| namespace` was added in
@@ -53883,61 +51054,47 @@ class DefaultDomRenderer2 {
       // https://github.com/angular/angular/issues/44883
       return document.createElementNS(NAMESPACE_URIS[namespace] || namespace, name);
     }
-
     return document.createElement(name);
   }
-
   createComment(value) {
     return document.createComment(value);
   }
-
   createText(value) {
     return document.createTextNode(value);
   }
-
   appendChild(parent, newChild) {
     parent.appendChild(newChild);
   }
-
   insertBefore(parent, newChild, refChild) {
     if (parent) {
       parent.insertBefore(newChild, refChild);
     }
   }
-
   removeChild(parent, oldChild) {
     if (parent) {
       parent.removeChild(oldChild);
     }
   }
-
   selectRootElement(selectorOrNode, preserveContent) {
     let el = typeof selectorOrNode === 'string' ? document.querySelector(selectorOrNode) : selectorOrNode;
-
     if (!el) {
       throw new Error(`The selector "${selectorOrNode}" did not match any elements`);
     }
-
     if (!preserveContent) {
       el.textContent = '';
     }
-
     return el;
   }
-
   parentNode(node) {
     return node.parentNode;
   }
-
   nextSibling(node) {
     return node.nextSibling;
   }
-
   setAttribute(el, name, value, namespace) {
     if (namespace) {
       name = namespace + ':' + name;
       const namespaceUri = NAMESPACE_URIS[namespace];
-
       if (namespaceUri) {
         el.setAttributeNS(namespaceUri, name, value);
       } else {
@@ -53947,11 +51104,9 @@ class DefaultDomRenderer2 {
       el.setAttribute(name, value);
     }
   }
-
   removeAttribute(el, name, namespace) {
     if (namespace) {
       const namespaceUri = NAMESPACE_URIS[namespace];
-
       if (namespaceUri) {
         el.removeAttributeNS(namespaceUri, name);
       } else {
@@ -53961,15 +51116,12 @@ class DefaultDomRenderer2 {
       el.removeAttribute(name);
     }
   }
-
   addClass(el, name) {
     el.classList.add(name);
   }
-
   removeClass(el, name) {
     el.classList.remove(name);
   }
-
   setStyle(el, style, value, flags) {
     if (flags & (_angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererStyleFlags2.DashCase | _angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererStyleFlags2.Important)) {
       el.style.setProperty(style, value, flags & _angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererStyleFlags2.Important ? 'important' : '');
@@ -53977,7 +51129,6 @@ class DefaultDomRenderer2 {
       el.style[style] = value;
     }
   }
-
   removeStyle(el, style, flags) {
     if (flags & _angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererStyleFlags2.DashCase) {
       el.style.removeProperty(style);
@@ -53987,30 +51138,22 @@ class DefaultDomRenderer2 {
       el.style[style] = '';
     }
   }
-
   setProperty(el, name, value) {
     NG_DEV_MODE && checkNoSyntheticProp(name, 'property');
     el[name] = value;
   }
-
   setValue(node, value) {
     node.nodeValue = value;
   }
-
   listen(target, event, callback) {
     NG_DEV_MODE && checkNoSyntheticProp(event, 'listener');
-
     if (typeof target === 'string') {
       return this.eventManager.addGlobalEventListener(target, event, decoratePreventDefault(callback));
     }
-
     return this.eventManager.addEventListener(target, event, decoratePreventDefault(callback));
   }
-
 }
-
 const AT_CHARCODE = (() => '@'.charCodeAt(0))();
-
 function checkNoSyntheticProp(name, nameKind) {
   if (name.charCodeAt(0) === AT_CHARCODE) {
     throw new Error(`Unexpected synthetic ${nameKind} ${name} found. Please make sure that:
@@ -54018,7 +51161,6 @@ function checkNoSyntheticProp(name, nameKind) {
   - There is corresponding configuration for the animation named \`${name}\` defined in the \`animations\` field of the \`@Component\` decorator (see https://angular.io/api/core/Component#animations).`);
   }
 }
-
 class EmulatedEncapsulationDomRenderer2 extends DefaultDomRenderer2 {
   constructor(eventManager, sharedStylesHost, component, appId) {
     super(eventManager);
@@ -54028,19 +51170,15 @@ class EmulatedEncapsulationDomRenderer2 extends DefaultDomRenderer2 {
     this.contentAttr = shimContentAttribute(appId + '-' + component.id);
     this.hostAttr = shimHostAttribute(appId + '-' + component.id);
   }
-
   applyToHost(element) {
     super.setAttribute(element, this.hostAttr, '');
   }
-
   createElement(parent, name) {
     const el = super.createElement(parent, name);
     super.setAttribute(el, this.contentAttr, '');
     return el;
   }
-
 }
-
 class ShadowDomRenderer extends DefaultDomRenderer2 {
   constructor(eventManager, sharedStylesHost, hostEl, component) {
     super(eventManager);
@@ -54051,39 +51189,32 @@ class ShadowDomRenderer extends DefaultDomRenderer2 {
     });
     this.sharedStylesHost.addHost(this.shadowRoot);
     const styles = flattenStyles(component.id, component.styles, []);
-
     for (let i = 0; i < styles.length; i++) {
       const styleEl = document.createElement('style');
       styleEl.textContent = styles[i];
       this.shadowRoot.appendChild(styleEl);
     }
   }
-
   nodeOrShadowRoot(node) {
     return node === this.hostEl ? this.shadowRoot : node;
   }
-
   destroy() {
     this.sharedStylesHost.removeHost(this.shadowRoot);
   }
-
   appendChild(parent, newChild) {
     return super.appendChild(this.nodeOrShadowRoot(parent), newChild);
   }
-
   insertBefore(parent, newChild, refChild) {
     return super.insertBefore(this.nodeOrShadowRoot(parent), newChild, refChild);
   }
-
   removeChild(parent, oldChild) {
     return super.removeChild(this.nodeOrShadowRoot(parent), oldChild);
   }
-
   parentNode(node) {
     return this.nodeOrShadowRoot(super.parentNode(this.nodeOrShadowRoot(node)));
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54091,39 +51222,30 @@ class ShadowDomRenderer extends DefaultDomRenderer2 {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class DomEventsPlugin extends EventManagerPlugin {
   constructor(doc) {
     super(doc);
-  } // This plugin should come last in the list of plugins, because it accepts all
+  }
+  // This plugin should come last in the list of plugins, because it accepts all
   // events.
-
-
   supports(eventName) {
     return true;
   }
-
   addEventListener(element, eventName, handler) {
     element.addEventListener(eventName, handler, false);
     return () => this.removeEventListener(element, eventName, handler);
   }
-
   removeEventListener(target, eventName, callback) {
     return target.removeEventListener(eventName, callback);
   }
-
 }
-
 DomEventsPlugin.ɵfac = function DomEventsPlugin_Factory(t) {
   return new (t || DomEventsPlugin)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 DomEventsPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomEventsPlugin,
   factory: DomEventsPlugin.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DomEventsPlugin, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -54137,6 +51259,7 @@ DomEventsPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54144,15 +51267,12 @@ DomEventsPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Defines supported modifiers for key events.
  */
-
-
 const MODIFIER_KEYS = ['alt', 'control', 'meta', 'shift'];
-const DOM_KEY_LOCATION_NUMPAD = 3; // Map to convert some key or keyIdentifier values to what will be returned by getEventKey
-
+const DOM_KEY_LOCATION_NUMPAD = 3;
+// Map to convert some key or keyIdentifier values to what will be returned by getEventKey
 const _keyMap = {
   // The following values are here for cross-browser compatibility and to match the W3C standard
   // cf https://www.w3.org/TR/DOM-Level-3-Events-key/
@@ -54169,10 +51289,10 @@ const _keyMap = {
   'Menu': 'ContextMenu',
   'Scroll': 'ScrollLock',
   'Win': 'OS'
-}; // There is a bug in Chrome for numeric keypad keys:
+};
+// There is a bug in Chrome for numeric keypad keys:
 // https://code.google.com/p/chromium/issues/detail?id=155654
 // 1, 2, 3 ... are reported as A, B, C ...
-
 const _chromeNumKeyPadMap = {
   'A': '1',
   'B': '2',
@@ -54194,7 +51314,6 @@ const _chromeNumKeyPadMap = {
 /**
  * Retrieves modifiers from key-event objects.
  */
-
 const MODIFIER_KEY_GETTERS = {
   'alt': event => event.altKey,
   'control': event => event.ctrlKey,
@@ -54205,7 +51324,6 @@ const MODIFIER_KEY_GETTERS = {
  * @publicApi
  * A browser plug-in that provides support for handling of key events in Angular.
  */
-
 class KeyEventsPlugin extends EventManagerPlugin {
   /**
    * Initializes an instance of the browser plug-in.
@@ -54219,8 +51337,6 @@ class KeyEventsPlugin extends EventManagerPlugin {
    * @param eventName The event name to query.
    * @return True if the named key event is supported.
    */
-
-
   supports(eventName) {
     return KeyEventsPlugin.parseEventName(eventName) != null;
   }
@@ -54232,8 +51348,6 @@ class KeyEventsPlugin extends EventManagerPlugin {
    * event object as an argument.
    * @returns The key event that was registered.
    */
-
-
   addEventListener(element, eventName, handler) {
     const parsedEvent = KeyEventsPlugin.parseEventName(eventName);
     const outsideHandler = KeyEventsPlugin.eventCallback(parsedEvent['fullKey'], handler, this.manager.getZone());
@@ -54241,47 +51355,38 @@ class KeyEventsPlugin extends EventManagerPlugin {
       return (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().onAndCancel(element, parsedEvent['domEventName'], outsideHandler);
     });
   }
-
   static parseEventName(eventName) {
     const parts = eventName.toLowerCase().split('.');
     const domEventName = parts.shift();
-
     if (parts.length === 0 || !(domEventName === 'keydown' || domEventName === 'keyup')) {
       return null;
     }
-
     const key = KeyEventsPlugin._normalizeKey(parts.pop());
-
     let fullKey = '';
     MODIFIER_KEYS.forEach(modifierName => {
       const index = parts.indexOf(modifierName);
-
       if (index > -1) {
         parts.splice(index, 1);
         fullKey += modifierName + '.';
       }
     });
     fullKey += key;
-
     if (parts.length != 0 || key.length === 0) {
       // returning null instead of throwing to let another plugin process the event
       return null;
-    } // NOTE: Please don't rewrite this as so, as it will break JSCompiler property renaming.
+    }
+    // NOTE: Please don't rewrite this as so, as it will break JSCompiler property renaming.
     //       The code must remain in the `result['domEventName']` form.
     // return {domEventName, fullKey};
-
-
     const result = {};
     result['domEventName'] = domEventName;
     result['fullKey'] = fullKey;
     return result;
   }
-
   static getEventFullKey(event) {
     let fullKey = '';
     let key = getEventKey(event);
     key = key.toLowerCase();
-
     if (key === ' ') {
       key = 'space'; // for readability
     } else if (key === '.') {
@@ -54291,7 +51396,6 @@ class KeyEventsPlugin extends EventManagerPlugin {
     MODIFIER_KEYS.forEach(modifierName => {
       if (modifierName != key) {
         const modifierGetter = MODIFIER_KEY_GETTERS[modifierName];
-
         if (modifierGetter(event)) {
           fullKey += modifierName + '.';
         }
@@ -54307,42 +51411,31 @@ class KeyEventsPlugin extends EventManagerPlugin {
    * @param zone The zone in which the event occurred.
    * @returns A callback function.
    */
-
-
   static eventCallback(fullKey, handler, zone) {
-    return (event
-    /** TODO #9100 */
-    ) => {
+    return (event /** TODO #9100 */) => {
       if (KeyEventsPlugin.getEventFullKey(event) === fullKey) {
         zone.runGuarded(() => handler(event));
       }
     };
   }
   /** @internal */
-
-
   static _normalizeKey(keyName) {
     // TODO: switch to a Map if the mapping grows too much
     switch (keyName) {
       case 'esc':
         return 'escape';
-
       default:
         return keyName;
     }
   }
-
 }
-
 KeyEventsPlugin.ɵfac = function KeyEventsPlugin_Factory(t) {
   return new (t || KeyEventsPlugin)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 KeyEventsPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: KeyEventsPlugin,
   factory: KeyEventsPlugin.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](KeyEventsPlugin, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -54356,22 +51449,18 @@ KeyEventsPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1
     }];
   }, null);
 })();
-
 function getEventKey(event) {
   let key = event.key;
-
   if (key == null) {
-    key = event.keyIdentifier; // keyIdentifier is defined in the old draft of DOM Level 3 Events implemented by Chrome and
+    key = event.keyIdentifier;
+    // keyIdentifier is defined in the old draft of DOM Level 3 Events implemented by Chrome and
     // Safari cf
     // https://www.w3.org/TR/2007/WD-DOM-Level-3-Events-20071221/events.html#Events-KeyboardEvents-Interfaces
-
     if (key == null) {
       return 'Unidentified';
     }
-
     if (key.startsWith('U+')) {
       key = String.fromCharCode(parseInt(key.substring(2), 16));
-
       if (event.location === DOM_KEY_LOCATION_NUMPAD && _chromeNumKeyPadMap.hasOwnProperty(key)) {
         // There is a bug in Chrome for numeric keypad keys:
         // https://code.google.com/p/chromium/issues/detail?id=155654
@@ -54380,9 +51469,9 @@ function getEventKey(event) {
       }
     }
   }
-
   return _keyMap[key] || key;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54390,23 +51479,18 @@ function getEventKey(event) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function initDomAdapter() {
   BrowserDomAdapter.makeCurrent();
   BrowserGetTestability.init();
 }
-
 function errorHandler() {
   return new _angular_core__WEBPACK_IMPORTED_MODULE_1__.ErrorHandler();
 }
-
 function _document() {
   // Tell ivy about the global document
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetDocument"])(document);
   return document;
 }
-
 const INTERNAL_BROWSER_PLATFORM_PROVIDERS = [{
   provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__.PLATFORM_ID,
   useValue: _angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵPLATFORM_BROWSER_ID"]
@@ -54425,7 +51509,6 @@ const INTERNAL_BROWSER_PLATFORM_PROVIDERS = [{
  *
  * @publicApi
  */
-
 const platformBrowser = (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.createPlatformFactory)(_angular_core__WEBPACK_IMPORTED_MODULE_1__.platformCore, 'browser', INTERNAL_BROWSER_PLATFORM_PROVIDERS);
 const BROWSER_MODULE_PROVIDERS = [{
   provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵINJECTOR_SCOPE"],
@@ -54480,7 +51563,6 @@ const BROWSER_MODULE_PROVIDERS = [{
  *
  * @publicApi
  */
-
 class BrowserModule {
   constructor(parentModule) {
     if (parentModule) {
@@ -54495,8 +51577,6 @@ class BrowserModule {
    * The ID must match between the client and server versions of the app.
    * @returns The reconfigured `BrowserModule` to import into the app's root `AppModule`.
    */
-
-
   static withServerTransition(params) {
     return {
       ngModule: BrowserModule,
@@ -54509,13 +51589,10 @@ class BrowserModule {
       }, SERVER_TRANSITION_PROVIDERS]
     };
   }
-
 }
-
 BrowserModule.ɵfac = function BrowserModule_Factory(t) {
   return new (t || BrowserModule)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](BrowserModule, 12));
 };
-
 BrowserModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
   type: BrowserModule
 });
@@ -54523,7 +51600,6 @@ BrowserModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__[
   providers: BROWSER_MODULE_PROVIDERS,
   imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__.CommonModule, _angular_core__WEBPACK_IMPORTED_MODULE_1__.ApplicationModule]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](BrowserModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule,
@@ -54545,6 +51621,7 @@ BrowserModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__[
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54552,12 +51629,9 @@ BrowserModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__[
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Factory to create a `Meta` service instance for the current DOM document.
  */
-
-
 function createMeta() {
   return new Meta((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 }
@@ -54583,8 +51657,6 @@ function createMeta() {
  *
  * @publicApi
  */
-
-
 class Meta {
   constructor(_doc) {
     this._doc = _doc;
@@ -54600,8 +51672,6 @@ class Meta {
    * @returns The existing element with the same attributes and values if found,
    * the new element if no match is found, or `null` if the tag parameter is not defined.
    */
-
-
   addTag(tag, forceCreation = false) {
     if (!tag) return null;
     return this._getOrCreateElement(tag, forceCreation);
@@ -54614,15 +51684,12 @@ class Meta {
    * @param forceCreation True to create new elements without checking whether they already exist.
    * @returns The matching elements if found, or the new elements.
    */
-
-
   addTags(tags, forceCreation = false) {
     if (!tags) return [];
     return tags.reduce((result, tag) => {
       if (tag) {
         result.push(this._getOrCreateElement(tag, forceCreation));
       }
-
       return result;
     }, []);
   }
@@ -54632,8 +51699,6 @@ class Meta {
    * `"tag_attribute='value string'"`.
    * @returns The matching element, if any.
    */
-
-
   getTag(attrSelector) {
     if (!attrSelector) return null;
     return this._doc.querySelector(`meta[${attrSelector}]`) || null;
@@ -54644,15 +51709,9 @@ class Meta {
    * `"tag_attribute='value string'"`.
    * @returns The matching elements, if any.
    */
-
-
   getTags(attrSelector) {
     if (!attrSelector) return [];
-
-    const list
-    /*NodeList*/
-    = this._doc.querySelectorAll(`meta[${attrSelector}]`);
-
+    const list /*NodeList*/ = this._doc.querySelectorAll(`meta[${attrSelector}]`);
     return list ? [].slice.call(list) : [];
   }
   /**
@@ -54664,17 +51723,13 @@ class Meta {
    * replacement tag.
    * @return The modified element.
    */
-
-
   updateTag(tag, selector) {
     if (!tag) return null;
     selector = selector || this._parseSelector(tag);
     const meta = this.getTag(selector);
-
     if (meta) {
       return this._setMetaElementAttributes(tag, meta);
     }
-
     return this._getOrCreateElement(tag, true);
   }
   /**
@@ -54682,8 +51737,6 @@ class Meta {
    * @param attrSelector A tag attribute and value to match against, to identify
    * an existing tag. A string in the format `"tag_attribute=`value string`"`.
    */
-
-
   removeTag(attrSelector) {
     this.removeTagElement(this.getTag(attrSelector));
   }
@@ -54691,75 +51744,57 @@ class Meta {
    * Removes an existing `<meta>` tag element from the current HTML document.
    * @param meta The tag definition to match against to identify an existing tag.
    */
-
-
   removeTagElement(meta) {
     if (meta) {
       this._dom.remove(meta);
     }
   }
-
   _getOrCreateElement(meta, forceCreation = false) {
     if (!forceCreation) {
-      const selector = this._parseSelector(meta); // It's allowed to have multiple elements with the same name so it's not enough to
+      const selector = this._parseSelector(meta);
+      // It's allowed to have multiple elements with the same name so it's not enough to
       // just check that element with the same name already present on the page. We also need to
       // check if element has tag attributes
-
-
       const elem = this.getTags(selector).filter(elem => this._containsAttributes(meta, elem))[0];
       if (elem !== undefined) return elem;
     }
-
     const element = this._dom.createElement('meta');
-
     this._setMetaElementAttributes(meta, element);
-
     const head = this._doc.getElementsByTagName('head')[0];
-
     head.appendChild(element);
     return element;
   }
-
   _setMetaElementAttributes(tag, el) {
     Object.keys(tag).forEach(prop => el.setAttribute(this._getMetaKeyMap(prop), tag[prop]));
     return el;
   }
-
   _parseSelector(tag) {
     const attr = tag.name ? 'name' : 'property';
     return `${attr}="${tag[attr]}"`;
   }
-
   _containsAttributes(tag, elem) {
     return Object.keys(tag).every(key => elem.getAttribute(this._getMetaKeyMap(key)) === tag[key]);
   }
-
   _getMetaKeyMap(prop) {
     return META_KEYS_MAP[prop] || prop;
   }
-
 }
-
 Meta.ɵfac = function Meta_Factory(t) {
   return new (t || Meta)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 Meta.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: Meta,
   factory: function Meta_Factory(t) {
     let r = null;
-
     if (t) {
       r = new t();
     } else {
       r = createMeta();
     }
-
     return r;
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Meta, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable,
@@ -54781,11 +51816,10 @@ Meta.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdef
 /**
  * Mapping for MetaDefinition properties with their correct meta attribute names
  */
-
-
 const META_KEYS_MAP = {
   httpEquiv: 'http-equiv'
 };
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54793,11 +51827,9 @@ const META_KEYS_MAP = {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Factory to create Title service.
  */
-
 function createTitle() {
   return new Title((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 }
@@ -54811,8 +51843,6 @@ function createTitle() {
  *
  * @publicApi
  */
-
-
 class Title {
   constructor(_doc) {
     this._doc = _doc;
@@ -54820,8 +51850,6 @@ class Title {
   /**
    * Get the title of the current HTML document.
    */
-
-
   getTitle() {
     return this._doc.title;
   }
@@ -54829,34 +51857,26 @@ class Title {
    * Set the title of the current HTML document.
    * @param newTitle
    */
-
-
   setTitle(newTitle) {
     this._doc.title = newTitle || '';
   }
-
 }
-
 Title.ɵfac = function Title_Factory(t) {
   return new (t || Title)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 Title.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: Title,
   factory: function Title_Factory(t) {
     let r = null;
-
     if (t) {
       r = new t();
     } else {
       r = createTitle();
     }
-
     return r;
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Title, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable,
@@ -54875,6 +51895,7 @@ Title.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵde
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54882,15 +51903,11 @@ Title.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵde
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const CAMEL_CASE_REGEXP = /([A-Z])/g;
 const DASH_CASE_REGEXP = /-([a-z])/g;
-
 function camelCaseToDashCase(input) {
   return input.replace(CAMEL_CASE_REGEXP, (...m) => '-' + m[1].toLowerCase());
 }
-
 function dashCaseToCamelCase(input) {
   return input.replace(DASH_CASE_REGEXP, (...m) => m[1].toUpperCase());
 }
@@ -54901,8 +51918,6 @@ function dashCaseToCamelCase(input) {
  * global `ng` object.
  * @param value The value to export.
  */
-
-
 function exportNgVar(name, value) {
   if (typeof COMPILED === 'undefined' || !COMPILED) {
     // Note: we can't export `ng` when using closure enhanced optimization as:
@@ -54913,6 +51928,7 @@ function exportNgVar(name, value) {
     ng[name] = value;
   }
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54920,9 +51936,8 @@ function exportNgVar(name, value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const win = typeof window !== 'undefined' && window || {};
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -54930,25 +51945,21 @@ const win = typeof window !== 'undefined' && window || {};
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 class ChangeDetectionPerfRecord {
   constructor(msPerTick, numTicks) {
     this.msPerTick = msPerTick;
     this.numTicks = numTicks;
   }
-
 }
 /**
  * Entry point for all Angular profiling-related debug tools. This object
  * corresponds to the `ng.profiler` in the dev console.
  */
-
-
 class AngularProfiler {
   constructor(ref) {
     this.appRef = ref.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_1__.ApplicationRef);
-  } // tslint:disable:no-console
-
+  }
+  // tslint:disable:no-console
   /**
    * Exercises change detection in a loop and then prints the average amount of
    * time in milliseconds how long a single round of change detection takes for
@@ -54965,43 +51976,34 @@ class AngularProfiler {
    * ng.profiler.timeChangeDetection({record: true})
    * ```
    */
-
-
   timeChangeDetection(config) {
     const record = config && config['record'];
-    const profileName = 'Change Detection'; // Profiler is not available in Android browsers without dev tools opened
-
+    const profileName = 'Change Detection';
+    // Profiler is not available in Android browsers without dev tools opened
     const isProfilerAvailable = win.console.profile != null;
-
     if (record && isProfilerAvailable) {
       win.console.profile(profileName);
     }
-
     const start = performanceNow();
     let numTicks = 0;
-
     while (numTicks < 5 || performanceNow() - start < 500) {
       this.appRef.tick();
       numTicks++;
     }
-
     const end = performanceNow();
-
     if (record && isProfilerAvailable) {
       win.console.profileEnd(profileName);
     }
-
     const msPerTick = (end - start) / numTicks;
     win.console.log(`ran ${numTicks} change detection cycles`);
     win.console.log(`${msPerTick.toFixed(2)} ms per check`);
     return new ChangeDetectionPerfRecord(msPerTick, numTicks);
   }
-
 }
-
 function performanceNow() {
   return win.performance && win.performance.now ? win.performance.now() : new Date().getTime();
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -55009,8 +52011,6 @@ function performanceNow() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const PROFILER_GLOBAL_NAME = 'profiler';
 /**
  * Enabled Angular debug tools that are accessible via your browser's
@@ -55025,7 +52025,6 @@ const PROFILER_GLOBAL_NAME = 'profiler';
  *
  * @publicApi
  */
-
 function enableDebugTools(ref) {
   exportNgVar(PROFILER_GLOBAL_NAME, new AngularProfiler(ref));
   return ref;
@@ -55035,11 +52034,10 @@ function enableDebugTools(ref) {
  *
  * @publicApi
  */
-
-
 function disableDebugTools() {
   exportNgVar(PROFILER_GLOBAL_NAME, null);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -55047,8 +52045,6 @@ function disableDebugTools() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function escapeHtml(text) {
   const escapedText = {
     '&': '&a;',
@@ -55059,7 +52055,6 @@ function escapeHtml(text) {
   };
   return text.replace(/[&"'<>]/g, s => escapedText[s]);
 }
-
 function unescapeHtml(text) {
   const unescapedText = {
     '&a;': '&',
@@ -55084,8 +52079,6 @@ function unescapeHtml(text) {
  *
  * @publicApi
  */
-
-
 function makeStateKey(key) {
   return key;
 }
@@ -55102,16 +52095,12 @@ function makeStateKey(key) {
  *
  * @publicApi
  */
-
-
 class TransferState {
   constructor() {
     this.store = {};
     this.onSerializeCallbacks = {};
   }
   /** @internal */
-
-
   static init(initState) {
     const transferState = new TransferState();
     transferState.store = initState;
@@ -55120,48 +52109,36 @@ class TransferState {
   /**
    * Get the value corresponding to a key. Return `defaultValue` if key is not found.
    */
-
-
   get(key, defaultValue) {
     return this.store[key] !== undefined ? this.store[key] : defaultValue;
   }
   /**
    * Set the value corresponding to a key.
    */
-
-
   set(key, value) {
     this.store[key] = value;
   }
   /**
    * Remove a key from the store.
    */
-
-
   remove(key) {
     delete this.store[key];
   }
   /**
    * Test whether a key exists in the store.
    */
-
-
   hasKey(key) {
     return this.store.hasOwnProperty(key);
   }
   /**
    * Register a callback to provide the value for a key when `toJson` is called.
    */
-
-
   onSerialize(key, callback) {
     this.onSerializeCallbacks[key] = callback;
   }
   /**
    * Serialize the current state of the store to JSON.
    */
-
-
   toJson() {
     // Call the onSerialize callbacks and put those values into the store.
     for (const key in this.onSerializeCallbacks) {
@@ -55173,33 +52150,26 @@ class TransferState {
         }
       }
     }
-
     return JSON.stringify(this.store);
   }
-
 }
-
 TransferState.ɵfac = function TransferState_Factory(t) {
   return new (t || TransferState)();
 };
-
 TransferState.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: TransferState,
   factory: TransferState.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](TransferState, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
   }], null, null);
 })();
-
 function initTransferState(doc, appId) {
   // Locate the script tag with the JSON data transferred from the server.
   // The id of the script tag is set to the Angular appId + 'state'.
   const script = doc.getElementById(appId + '-state');
   let initialState = {};
-
   if (script && script.textContent) {
     try {
       // Avoid using any here as it triggers lint errors in google3 (any is not allowed).
@@ -55208,7 +52178,6 @@ function initTransferState(doc, appId) {
       console.warn('Exception while restoring TransferState for app ' + appId, e);
     }
   }
-
   return TransferState.init(initialState);
 }
 /**
@@ -55217,14 +52186,10 @@ function initTransferState(doc, appId) {
  *
  * @publicApi
  */
-
-
 class BrowserTransferStateModule {}
-
 BrowserTransferStateModule.ɵfac = function BrowserTransferStateModule_Factory(t) {
   return new (t || BrowserTransferStateModule)();
 };
-
 BrowserTransferStateModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
   type: BrowserTransferStateModule
 });
@@ -55235,7 +52200,6 @@ BrowserTransferStateModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
     deps: [_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT, _angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID]
   }]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](BrowserTransferStateModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule,
@@ -55248,6 +52212,7 @@ BrowserTransferStateModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -55255,14 +52220,11 @@ BrowserTransferStateModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Predicates for use with {@link DebugElement}'s query functions.
  *
  * @publicApi
  */
-
-
 class By {
   /**
    * Match all nodes.
@@ -55283,8 +52245,6 @@ class By {
    *
    * {@example platform-browser/dom/debug/ts/by/by.ts region='by_css'}
    */
-
-
   static css(selector) {
     return debugElement => {
       return debugElement.nativeElement != null ? elementMatches(debugElement.nativeElement, selector) : false;
@@ -55298,21 +52258,17 @@ class By {
    *
    * {@example platform-browser/dom/debug/ts/by/by.ts region='by_directive'}
    */
-
-
   static directive(type) {
     return debugNode => debugNode.providerTokens.indexOf(type) !== -1;
   }
-
 }
-
 function elementMatches(n, selector) {
   if ((0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().isElementNode(n)) {
     return n.matches && n.matches(selector) || n.msMatchesSelector && n.msMatchesSelector(selector) || n.webkitMatchesSelector && n.webkitMatchesSelector(selector);
   }
-
   return false;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -55320,12 +52276,9 @@ function elementMatches(n, selector) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Supported HammerJS recognizer event names.
  */
-
-
 const EVENT_NAMES = {
   // pan
   'pan': true,
@@ -55371,21 +52324,18 @@ const EVENT_NAMES = {
  * @ngModule HammerModule
  * @publicApi
  */
-
 const HAMMER_GESTURE_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('HammerGestureConfig');
 /**
  * Injection token used to provide a {@link HammerLoader} to Angular.
  *
  * @publicApi
  */
-
 const HAMMER_LOADER = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('HammerLoader');
 /**
  * An injectable [HammerJS Manager](https://hammerjs.github.io/api/#hammermanager)
  * for gesture recognition. Configures specific event recognition.
  * @publicApi
  */
-
 class HammerGestureConfig {
   constructor() {
     /**
@@ -55410,7 +52360,6 @@ class HammerGestureConfig {
      * [HammerJS documentation](https://hammerjs.github.io/).
      *
      */
-
     this.overrides = {};
   }
   /**
@@ -55419,8 +52368,6 @@ class HammerGestureConfig {
    * @param element The element that will recognize gestures.
    * @returns A HammerJS event-manager object.
    */
-
-
   buildHammer(element) {
     const mc = new Hammer(element, this.options);
     mc.get('pinch').set({
@@ -55429,25 +52376,19 @@ class HammerGestureConfig {
     mc.get('rotate').set({
       enable: true
     });
-
     for (const eventName in this.overrides) {
       mc.get(eventName).set(this.overrides[eventName]);
     }
-
     return mc;
   }
-
 }
-
 HammerGestureConfig.ɵfac = function HammerGestureConfig_Factory(t) {
   return new (t || HammerGestureConfig)();
 };
-
 HammerGestureConfig.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: HammerGestureConfig,
   factory: HammerGestureConfig.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](HammerGestureConfig, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -55458,8 +52399,6 @@ HammerGestureConfig.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
  *
  * @ngModule HammerModule
  */
-
-
 class HammerGesturesPlugin extends EventManagerPlugin {
   constructor(doc, _config, console, loader) {
     super(doc);
@@ -55468,51 +52407,41 @@ class HammerGesturesPlugin extends EventManagerPlugin {
     this.loader = loader;
     this._loaderPromise = null;
   }
-
   supports(eventName) {
     if (!EVENT_NAMES.hasOwnProperty(eventName.toLowerCase()) && !this.isCustomEvent(eventName)) {
       return false;
     }
-
     if (!window.Hammer && !this.loader) {
       if (typeof ngDevMode === 'undefined' || ngDevMode) {
         this.console.warn(`The "${eventName}" event cannot be bound because Hammer.JS is not ` + `loaded and no custom loader has been specified.`);
       }
-
       return false;
     }
-
     return true;
   }
-
   addEventListener(element, eventName, handler) {
     const zone = this.manager.getZone();
-    eventName = eventName.toLowerCase(); // If Hammer is not present but a loader is specified, we defer adding the event listener
+    eventName = eventName.toLowerCase();
+    // If Hammer is not present but a loader is specified, we defer adding the event listener
     // until Hammer is loaded.
-
     if (!window.Hammer && this.loader) {
-      this._loaderPromise = this._loaderPromise || this.loader(); // This `addEventListener` method returns a function to remove the added listener.
+      this._loaderPromise = this._loaderPromise || this.loader();
+      // This `addEventListener` method returns a function to remove the added listener.
       // Until Hammer is loaded, the returned function needs to *cancel* the registration rather
       // than remove anything.
-
       let cancelRegistration = false;
-
       let deregister = () => {
         cancelRegistration = true;
       };
-
       this._loaderPromise.then(() => {
         // If Hammer isn't actually loaded when the custom loader resolves, give up.
         if (!window.Hammer) {
           if (typeof ngDevMode === 'undefined' || ngDevMode) {
             this.console.warn(`The custom HAMMER_LOADER completed, but Hammer.JS is not present.`);
           }
-
           deregister = () => {};
-
           return;
         }
-
         if (!cancelRegistration) {
           // Now that Hammer is loaded and the listener is being loaded for real,
           // the deregistration function changes from canceling registration to removal.
@@ -55522,54 +52451,44 @@ class HammerGesturesPlugin extends EventManagerPlugin {
         if (typeof ngDevMode === 'undefined' || ngDevMode) {
           this.console.warn(`The "${eventName}" event cannot be bound because the custom ` + `Hammer.JS loader failed.`);
         }
-
         deregister = () => {};
-      }); // Return a function that *executes* `deregister` (and not `deregister` itself) so that we
+      });
+      // Return a function that *executes* `deregister` (and not `deregister` itself) so that we
       // can change the behavior of `deregister` once the listener is added. Using a closure in
       // this way allows us to avoid any additional data structures to track listener removal.
-
-
       return () => {
         deregister();
       };
     }
-
     return zone.runOutsideAngular(() => {
       // Creating the manager bind events, must be done outside of angular
       const mc = this._config.buildHammer(element);
-
       const callback = function (eventObj) {
         zone.runGuarded(function () {
           handler(eventObj);
         });
       };
-
       mc.on(eventName, callback);
       return () => {
-        mc.off(eventName, callback); // destroy mc to prevent memory leak
-
+        mc.off(eventName, callback);
+        // destroy mc to prevent memory leak
         if (typeof mc.destroy === 'function') {
           mc.destroy();
         }
       };
     });
   }
-
   isCustomEvent(eventName) {
     return this._config.events.indexOf(eventName) > -1;
   }
-
 }
-
 HammerGesturesPlugin.ɵfac = function HammerGesturesPlugin_Factory(t) {
   return new (t || HammerGesturesPlugin)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](HAMMER_GESTURE_CONFIG), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵConsole"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](HAMMER_LOADER, 8));
 };
-
 HammerGesturesPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: HammerGesturesPlugin,
   factory: HammerGesturesPlugin.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](HammerGesturesPlugin, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable
@@ -55610,14 +52529,10 @@ HammerGesturesPlugin.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  *
  * @publicApi
  */
-
-
 class HammerModule {}
-
 HammerModule.ɵfac = function HammerModule_Factory(t) {
   return new (t || HammerModule)();
 };
-
 HammerModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
   type: HammerModule
 });
@@ -55633,7 +52548,6 @@ HammerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["
     deps: []
   }]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](HammerModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule,
@@ -55651,6 +52565,7 @@ HammerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -55658,7 +52573,6 @@ HammerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * DomSanitizer helps preventing Cross Site Scripting Security bugs (XSS) by sanitizing
  * values to be safe to use in the different DOM contexts.
@@ -55690,30 +52604,23 @@ HammerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["
  *
  * @publicApi
  */
-
-
 class DomSanitizer {}
-
 DomSanitizer.ɵfac = function DomSanitizer_Factory(t) {
   return new (t || DomSanitizer)();
 };
-
 DomSanitizer.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomSanitizer,
   factory: function DomSanitizer_Factory(t) {
     let r = null;
-
     if (t) {
       r = new (t || DomSanitizer)();
     } else {
       r = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](DomSanitizerImpl);
     }
-
     return r;
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DomSanitizer, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable,
@@ -55723,118 +52630,81 @@ DomSanitizer.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__[
     }]
   }], null, null);
 })();
-
 function domSanitizerImplFactory(injector) {
   return new DomSanitizerImpl(injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 }
-
 class DomSanitizerImpl extends DomSanitizer {
   constructor(_doc) {
     super();
     this._doc = _doc;
   }
-
   sanitize(ctx, value) {
     if (value == null) return null;
-
     switch (ctx) {
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.NONE:
         return value;
-
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.HTML:
-        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "HTML"
-        /* Html */
-        )) {
+        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "HTML" /* Html */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-
         return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵ_sanitizeHtml"])(this._doc, String(value)).toString();
-
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.STYLE:
-        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "Style"
-        /* Style */
-        )) {
+        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "Style" /* Style */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-
         return value;
-
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.SCRIPT:
-        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "Script"
-        /* Script */
-        )) {
+        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "Script" /* Script */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-
         throw new Error('unsafe value used in a script context');
-
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.URL:
         const type = (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵgetSanitizationBypassType"])(value);
-
-        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "URL"
-        /* Url */
-        )) {
+        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "URL" /* Url */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-
         return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵ_sanitizeUrl"])(String(value));
-
       case _angular_core__WEBPACK_IMPORTED_MODULE_1__.SecurityContext.RESOURCE_URL:
-        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "ResourceURL"
-        /* ResourceUrl */
-        )) {
+        if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "ResourceURL" /* ResourceUrl */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-
         throw new Error('unsafe value used in a resource URL context (see https://g.co/ng/security#xss)');
-
       default:
         throw new Error(`Unexpected SecurityContext ${ctx} (see https://g.co/ng/security#xss)`);
     }
   }
-
   bypassSecurityTrustHtml(value) {
     return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵbypassSanitizationTrustHtml"])(value);
   }
-
   bypassSecurityTrustStyle(value) {
     return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵbypassSanitizationTrustStyle"])(value);
   }
-
   bypassSecurityTrustScript(value) {
     return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵbypassSanitizationTrustScript"])(value);
   }
-
   bypassSecurityTrustUrl(value) {
     return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵbypassSanitizationTrustUrl"])(value);
   }
-
   bypassSecurityTrustResourceUrl(value) {
     return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵbypassSanitizationTrustResourceUrl"])(value);
   }
-
 }
-
 DomSanitizerImpl.ɵfac = function DomSanitizerImpl_Factory(t) {
   return new (t || DomSanitizerImpl)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__.DOCUMENT));
 };
-
 DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomSanitizerImpl,
   factory: function DomSanitizerImpl_Factory(t) {
     let r = null;
-
     if (t) {
       r = new t();
     } else {
       r = domSanitizerImplFactory(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injector));
     }
-
     return r;
   },
   providedIn: 'root'
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DomSanitizerImpl, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable,
@@ -55853,13 +52723,6 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
     }];
   }, null);
 })();
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 
 /**
  * @license
@@ -55869,12 +52732,18 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
  * found in the LICENSE file at https://angular.io/license
  */
 
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /**
  * @publicApi
  */
-
-
 const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('13.3.12');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -56011,6 +52880,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -56018,7 +52889,6 @@ __webpack_require__.r(__webpack_exports__);
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Base for events the router goes through, as opposed to events tied to a specific
  * route. Fired one time for any given navigation.
@@ -56043,46 +52913,33 @@ __webpack_require__.r(__webpack_exports__);
  * @see [Router events summary](guide/router-reference#router-events)
  * @publicApi
  */
-
 class RouterEvent {
-  constructor(
-  /** A unique ID that the router assigns to every router navigation. */
-  id,
-  /** The URL that is the destination for this navigation. */
+  constructor( /** A unique ID that the router assigns to every router navigation. */
+  id, /** The URL that is the destination for this navigation. */
   url) {
     this.id = id;
     this.url = url;
   }
-
 }
 /**
  * An event triggered when a navigation starts.
  *
  * @publicApi
  */
-
-
 class NavigationStart extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  navigationTrigger = 'imperative',
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  navigationTrigger = 'imperative', /** @docsNotRequired */
   restoredState = null) {
     super(id, url);
     this.navigationTrigger = navigationTrigger;
     this.restoredState = restoredState;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return `NavigationStart(id: ${this.id}, url: '${this.url}')`;
   }
-
 }
 /**
  * An event triggered when a navigation ends successfully.
@@ -56093,26 +52950,18 @@ class NavigationStart extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class NavigationEnd extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
   urlAfterRedirects) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return `NavigationEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}')`;
   }
-
 }
 /**
  * An event triggered when a navigation is canceled, directly or indirectly.
@@ -56125,26 +52974,18 @@ class NavigationEnd extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class NavigationCancel extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
   reason) {
     super(id, url);
     this.reason = reason;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return `NavigationCancel(id: ${this.id}, url: '${this.url}')`;
   }
-
 }
 /**
  * An event triggered when a navigation fails due to an unexpected error.
@@ -56155,55 +52996,38 @@ class NavigationCancel extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class NavigationError extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
   error) {
     super(id, url);
     this.error = error;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return `NavigationError(id: ${this.id}, url: '${this.url}', error: ${this.error})`;
   }
-
 }
 /**
  * An event triggered when routes are recognized.
  *
  * @publicApi
  */
-
-
 class RoutesRecognized extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  urlAfterRedirects,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  urlAfterRedirects, /** @docsNotRequired */
   state) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
     this.state = state;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return `RoutesRecognized(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
   }
-
 }
 /**
  * An event triggered at the start of the Guard phase of routing.
@@ -56212,27 +53036,19 @@ class RoutesRecognized extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class GuardsCheckStart extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  urlAfterRedirects,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  urlAfterRedirects, /** @docsNotRequired */
   state) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
     this.state = state;
   }
-
   toString() {
     return `GuardsCheckStart(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
   }
-
 }
 /**
  * An event triggered at the end of the Guard phase of routing.
@@ -56241,30 +53057,21 @@ class GuardsCheckStart extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class GuardsCheckEnd extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  urlAfterRedirects,
-  /** @docsNotRequired */
-  state,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  urlAfterRedirects, /** @docsNotRequired */
+  state, /** @docsNotRequired */
   shouldActivate) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
     this.state = state;
     this.shouldActivate = shouldActivate;
   }
-
   toString() {
     return `GuardsCheckEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state}, shouldActivate: ${this.shouldActivate})`;
   }
-
 }
 /**
  * An event triggered at the start of the Resolve phase of routing.
@@ -56276,27 +53083,19 @@ class GuardsCheckEnd extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class ResolveStart extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  urlAfterRedirects,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  urlAfterRedirects, /** @docsNotRequired */
   state) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
     this.state = state;
   }
-
   toString() {
     return `ResolveStart(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
   }
-
 }
 /**
  * An event triggered at the end of the Resolve phase of routing.
@@ -56304,27 +53103,19 @@ class ResolveStart extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class ResolveEnd extends RouterEvent {
-  constructor(
-  /** @docsNotRequired */
-  id,
-  /** @docsNotRequired */
-  url,
-  /** @docsNotRequired */
-  urlAfterRedirects,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  id, /** @docsNotRequired */
+  url, /** @docsNotRequired */
+  urlAfterRedirects, /** @docsNotRequired */
   state) {
     super(id, url);
     this.urlAfterRedirects = urlAfterRedirects;
     this.state = state;
   }
-
   toString() {
     return `ResolveEnd(id: ${this.id}, url: '${this.url}', urlAfterRedirects: '${this.urlAfterRedirects}', state: ${this.state})`;
   }
-
 }
 /**
  * An event triggered before lazy loading a route configuration.
@@ -56333,19 +53124,14 @@ class ResolveEnd extends RouterEvent {
  *
  * @publicApi
  */
-
-
 class RouteConfigLoadStart {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   route) {
     this.route = route;
   }
-
   toString() {
     return `RouteConfigLoadStart(path: ${this.route.path})`;
   }
-
 }
 /**
  * An event triggered when a route has been lazy loaded.
@@ -56354,19 +53140,14 @@ class RouteConfigLoadStart {
  *
  * @publicApi
  */
-
-
 class RouteConfigLoadEnd {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   route) {
     this.route = route;
   }
-
   toString() {
     return `RouteConfigLoadEnd(path: ${this.route.path})`;
   }
-
 }
 /**
  * An event triggered at the start of the child-activation
@@ -56376,20 +53157,15 @@ class RouteConfigLoadEnd {
  *
  * @publicApi
  */
-
-
 class ChildActivationStart {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   snapshot) {
     this.snapshot = snapshot;
   }
-
   toString() {
     const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
     return `ChildActivationStart(path: '${path}')`;
   }
-
 }
 /**
  * An event triggered at the end of the child-activation part
@@ -56398,20 +53174,15 @@ class ChildActivationStart {
  * @see `ResolveStart`
  * @publicApi
  */
-
-
 class ChildActivationEnd {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   snapshot) {
     this.snapshot = snapshot;
   }
-
   toString() {
     const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
     return `ChildActivationEnd(path: '${path}')`;
   }
-
 }
 /**
  * An event triggered at the start of the activation part
@@ -56421,20 +53192,15 @@ class ChildActivationEnd {
  *
  * @publicApi
  */
-
-
 class ActivationStart {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   snapshot) {
     this.snapshot = snapshot;
   }
-
   toString() {
     const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
     return `ActivationStart(path: '${path}')`;
   }
-
 }
 /**
  * An event triggered at the end of the activation part
@@ -56444,47 +53210,36 @@ class ActivationStart {
  *
  * @publicApi
  */
-
-
 class ActivationEnd {
-  constructor(
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
   snapshot) {
     this.snapshot = snapshot;
   }
-
   toString() {
     const path = this.snapshot.routeConfig && this.snapshot.routeConfig.path || '';
     return `ActivationEnd(path: '${path}')`;
   }
-
 }
 /**
  * An event triggered by scrolling.
  *
  * @publicApi
  */
-
-
 class Scroll {
-  constructor(
-  /** @docsNotRequired */
-  routerEvent,
-  /** @docsNotRequired */
-  position,
-  /** @docsNotRequired */
+  constructor( /** @docsNotRequired */
+  routerEvent, /** @docsNotRequired */
+  position, /** @docsNotRequired */
   anchor) {
     this.routerEvent = routerEvent;
     this.position = position;
     this.anchor = anchor;
   }
-
   toString() {
     const pos = this.position ? `${this.position[0]}, ${this.position[1]}` : null;
     return `Scroll(anchor: '${this.anchor}', position: '${pos}')`;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -56492,47 +53247,36 @@ class Scroll {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * The primary routing outlet.
  *
  * @publicApi
  */
-
-
 const PRIMARY_OUTLET = 'primary';
-
 class ParamsAsMap {
   constructor(params) {
     this.params = params || {};
   }
-
   has(name) {
     return Object.prototype.hasOwnProperty.call(this.params, name);
   }
-
   get(name) {
     if (this.has(name)) {
       const v = this.params[name];
       return Array.isArray(v) ? v[0] : v;
     }
-
     return null;
   }
-
   getAll(name) {
     if (this.has(name)) {
       const v = this.params[name];
       return Array.isArray(v) ? v : [v];
     }
-
     return [];
   }
-
   get keys() {
     return Object.keys(this.params);
   }
-
 }
 /**
  * Converts a `Params` instance to a `ParamMap`.
@@ -56541,45 +53285,35 @@ class ParamsAsMap {
  *
  * @publicApi
  */
-
-
 function convertToParamMap(params) {
   return new ParamsAsMap(params);
 }
-
 const NAVIGATION_CANCELING_ERROR = 'ngNavigationCancelingError';
-
 function navigationCancelingError(message) {
   const error = Error('NavigationCancelingError: ' + message);
   error[NAVIGATION_CANCELING_ERROR] = true;
   return error;
 }
-
 function isNavigationCancelingError(error) {
   return error && error[NAVIGATION_CANCELING_ERROR];
-} // Matches the route configuration (`route`) against the actual URL (`segments`).
-
-
+}
+// Matches the route configuration (`route`) against the actual URL (`segments`).
 function defaultUrlMatcher(segments, segmentGroup, route) {
   const parts = route.path.split('/');
-
   if (parts.length > segments.length) {
     // The actual URL is shorter than the config, no match
     return null;
   }
-
   if (route.pathMatch === 'full' && (segmentGroup.hasChildren() || parts.length < segments.length)) {
     // The config is longer than the actual URL but we are looking for a full match, return null
     return null;
   }
-
-  const posParams = {}; // Check each config part against the actual URL
-
+  const posParams = {};
+  // Check each config part against the actual URL
   for (let index = 0; index < parts.length; index++) {
     const part = parts[index];
     const segment = segments[index];
     const isParameter = part.startsWith(':');
-
     if (isParameter) {
       posParams[part.substring(1)] = segment;
     } else if (part !== segment.path) {
@@ -56587,12 +53321,12 @@ function defaultUrlMatcher(segments, segmentGroup, route) {
       return null;
     }
   }
-
   return {
     consumed: segments.slice(0, parts.length),
     posParams
   };
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -56600,45 +53334,33 @@ function defaultUrlMatcher(segments, segmentGroup, route) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function shallowEqualArrays(a, b) {
   if (a.length !== b.length) return false;
-
   for (let i = 0; i < a.length; ++i) {
     if (!shallowEqual(a[i], b[i])) return false;
   }
-
   return true;
 }
-
 function shallowEqual(a, b) {
   // While `undefined` should never be possible, it would sometimes be the case in IE 11
   // and pre-chromium Edge. The check below accounts for this edge case.
   const k1 = a ? Object.keys(a) : undefined;
   const k2 = b ? Object.keys(b) : undefined;
-
   if (!k1 || !k2 || k1.length != k2.length) {
     return false;
   }
-
   let key;
-
   for (let i = 0; i < k1.length; i++) {
     key = k1[i];
-
     if (!equalArraysOrString(a[key], b[key])) {
       return false;
     }
   }
-
   return true;
 }
 /**
  * Test equality for arrays of strings or a string.
  */
-
-
 function equalArraysOrString(a, b) {
   if (Array.isArray(a) && Array.isArray(b)) {
     if (a.length !== b.length) return false;
@@ -56652,28 +53374,21 @@ function equalArraysOrString(a, b) {
 /**
  * Flattens single-level nested arrays.
  */
-
-
 function flatten(arr) {
   return Array.prototype.concat.apply([], arr);
 }
 /**
  * Return the last element of an array.
  */
-
-
 function last(a) {
   return a.length > 0 ? a[a.length - 1] : null;
 }
 /**
  * Verifys all booleans in an array are `true`.
  */
-
-
 function and(bools) {
   return !bools.some(v => !v);
 }
-
 function forEach(map, callback) {
   for (const prop in map) {
     if (map.hasOwnProperty(prop)) {
@@ -56681,21 +53396,19 @@ function forEach(map, callback) {
     }
   }
 }
-
 function wrapIntoObservable(value) {
   if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisObservable"])(value)) {
     return value;
   }
-
   if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵisPromise"])(value)) {
     // Use `Promise.resolve()` to wrap promise-like instances.
     // Required ie when a Resolver returns a AngularJS `$q` promise to correctly trigger the
     // change detection.
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(Promise.resolve(value));
   }
-
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(value);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -56703,12 +53416,9 @@ function wrapIntoObservable(value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function createEmptyUrlTree() {
   return new UrlTree(new UrlSegmentGroup([], {}), {}, null);
 }
-
 const pathCompareMap = {
   'exact': equalSegmentGroups,
   'subset': containsSegmentGroup
@@ -56718,41 +53428,31 @@ const paramCompareMap = {
   'subset': containsParams,
   'ignored': () => true
 };
-
 function containsTree(container, containee, options) {
   return pathCompareMap[options.paths](container.root, containee.root, options.matrixParams) && paramCompareMap[options.queryParams](container.queryParams, containee.queryParams) && !(options.fragment === 'exact' && container.fragment !== containee.fragment);
 }
-
 function equalParams(container, containee) {
   // TODO: This does not handle array params correctly.
   return shallowEqual(container, containee);
 }
-
 function equalSegmentGroups(container, containee, matrixParams) {
   if (!equalPath(container.segments, containee.segments)) return false;
-
   if (!matrixParamsMatch(container.segments, containee.segments, matrixParams)) {
     return false;
   }
-
   if (container.numberOfChildren !== containee.numberOfChildren) return false;
-
   for (const c in containee.children) {
     if (!container.children[c]) return false;
     if (!equalSegmentGroups(container.children[c], containee.children[c], matrixParams)) return false;
   }
-
   return true;
 }
-
 function containsParams(container, containee) {
   return Object.keys(containee).length <= Object.keys(container).length && Object.keys(containee).every(key => equalArraysOrString(container[key], containee[key]));
 }
-
 function containsSegmentGroup(container, containee, matrixParams) {
   return containsSegmentGroupHelper(container, containee, containee.segments, matrixParams);
 }
-
 function containsSegmentGroupHelper(container, containee, containeePaths, matrixParams) {
   if (container.segments.length > containeePaths.length) {
     const current = container.segments.slice(0, containeePaths.length);
@@ -56763,15 +53463,12 @@ function containsSegmentGroupHelper(container, containee, containeePaths, matrix
   } else if (container.segments.length === containeePaths.length) {
     if (!equalPath(container.segments, containeePaths)) return false;
     if (!matrixParamsMatch(container.segments, containeePaths, matrixParams)) return false;
-
     for (const c in containee.children) {
       if (!container.children[c]) return false;
-
       if (!containsSegmentGroup(container.children[c], containee.children[c], matrixParams)) {
         return false;
       }
     }
-
     return true;
   } else {
     const current = containeePaths.slice(0, container.segments.length);
@@ -56782,7 +53479,6 @@ function containsSegmentGroupHelper(container, containee, containeePaths, matrix
     return containsSegmentGroupHelper(container.children[PRIMARY_OUTLET], containee, next, matrixParams);
   }
 }
-
 function matrixParamsMatch(containerPaths, containeePaths, options) {
   return containeePaths.every((containeeSegment, i) => {
     return paramCompareMap[options](containerPaths[i].parameters, containeeSegment.parameters);
@@ -56818,36 +53514,26 @@ function matrixParamsMatch(containerPaths, containeePaths, options) {
  *
  * @publicApi
  */
-
-
 class UrlTree {
   /** @internal */
-  constructor(
-  /** The root segment group of the URL tree */
-  root,
-  /** The query params of the URL */
-  queryParams,
-  /** The fragment of the URL */
+  constructor( /** The root segment group of the URL tree */
+  root, /** The query params of the URL */
+  queryParams, /** The fragment of the URL */
   fragment) {
     this.root = root;
     this.queryParams = queryParams;
     this.fragment = fragment;
   }
-
   get queryParamMap() {
     if (!this._queryParamMap) {
       this._queryParamMap = convertToParamMap(this.queryParams);
     }
-
     return this._queryParamMap;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return DEFAULT_SERIALIZER.serialize(this);
   }
-
 }
 /**
  * @description
@@ -56858,40 +53544,28 @@ class UrlTree {
  *
  * @publicApi
  */
-
-
 class UrlSegmentGroup {
-  constructor(
-  /** The URL segments of this group. See `UrlSegment` for more information */
-  segments,
-  /** The list of children of this group */
+  constructor( /** The URL segments of this group. See `UrlSegment` for more information */
+  segments, /** The list of children of this group */
   children) {
     this.segments = segments;
     this.children = children;
     /** The parent node in the url tree */
-
     this.parent = null;
     forEach(children, (v, k) => v.parent = this);
   }
   /** Whether the segment has child segments */
-
-
   hasChildren() {
     return this.numberOfChildren > 0;
   }
   /** Number of child segments */
-
-
   get numberOfChildren() {
     return Object.keys(this.children).length;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return serializePaths(this);
   }
-
 }
 /**
  * @description
@@ -56919,43 +53593,31 @@ class UrlSegmentGroup {
  *
  * @publicApi
  */
-
-
 class UrlSegment {
-  constructor(
-  /** The path part of a URL segment */
-  path,
-  /** The matrix parameters associated with a segment */
+  constructor( /** The path part of a URL segment */
+  path, /** The matrix parameters associated with a segment */
   parameters) {
     this.path = path;
     this.parameters = parameters;
   }
-
   get parameterMap() {
     if (!this._parameterMap) {
       this._parameterMap = convertToParamMap(this.parameters);
     }
-
     return this._parameterMap;
   }
   /** @docsNotRequired */
-
-
   toString() {
     return serializePath(this);
   }
-
 }
-
 function equalSegments(as, bs) {
   return equalPath(as, bs) && as.every((a, i) => shallowEqual(a.parameters, bs[i].parameters));
 }
-
 function equalPath(as, bs) {
   if (as.length !== bs.length) return false;
   return as.every((a, i) => a.path === bs[i].path);
 }
-
 function mapChildrenIntoArray(segment, fn) {
   let res = [];
   forEach(segment.children, (child, childOutlet) => {
@@ -56982,8 +53644,6 @@ function mapChildrenIntoArray(segment, fn) {
  *
  * @publicApi
  */
-
-
 class UrlSerializer {}
 /**
  * @description
@@ -57003,8 +53663,6 @@ class UrlSerializer {}
  *
  * @publicApi
  */
-
-
 class DefaultUrlSerializer {
   /** Parses a url into a `UrlTree` */
   parse(url) {
@@ -57012,28 +53670,21 @@ class DefaultUrlSerializer {
     return new UrlTree(p.parseRootSegment(), p.parseQueryParams(), p.parseFragment());
   }
   /** Converts a `UrlTree` into a url */
-
-
   serialize(tree) {
     const segment = `/${serializeSegment(tree.root, true)}`;
     const query = serializeQueryParams(tree.queryParams);
     const fragment = typeof tree.fragment === `string` ? `#${encodeUriFragment(tree.fragment)}` : '';
     return `${segment}${query}${fragment}`;
   }
-
 }
-
 const DEFAULT_SERIALIZER = new DefaultUrlSerializer();
-
 function serializePaths(segment) {
   return segment.segments.map(p => serializePath(p)).join('/');
 }
-
 function serializeSegment(segment, root) {
   if (!segment.hasChildren()) {
     return serializePaths(segment);
   }
-
   if (root) {
     const primary = segment.children[PRIMARY_OUTLET] ? serializeSegment(segment.children[PRIMARY_OUTLET], false) : '';
     const children = [];
@@ -57048,14 +53699,12 @@ function serializeSegment(segment, root) {
       if (k === PRIMARY_OUTLET) {
         return [serializeSegment(segment.children[PRIMARY_OUTLET], false)];
       }
-
       return [`${k}:${serializeSegment(v, false)}`];
-    }); // use no parenthesis if the only child is a primary outlet route
-
+    });
+    // use no parenthesis if the only child is a primary outlet route
     if (Object.keys(segment.children).length === 1 && segment.children[PRIMARY_OUTLET] != null) {
       return `${serializePaths(segment)}/${children[0]}`;
     }
-
     return `${serializePaths(segment)}/(${children.join('//')})`;
   }
 }
@@ -57065,8 +53714,6 @@ function serializeSegment(segment, root) {
  * a custom encoding because encodeURIComponent is too aggressive and encodes stuff that doesn't
  * have to be encoded per https://url.spec.whatwg.org.
  */
-
-
 function encodeUriString(s) {
   return encodeURIComponent(s).replace(/%40/g, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',');
 }
@@ -57076,8 +53723,6 @@ function encodeUriString(s) {
  *
  * http://www.site.org/html;mk=mv?k=v#f
  */
-
-
 function encodeUriQuery(s) {
   return encodeUriString(s).replace(/%3B/gi, ';');
 }
@@ -57087,8 +53732,6 @@ function encodeUriQuery(s) {
  *
  * http://www.site.org/html;mk=mv?k=v#f
  */
-
-
 function encodeUriFragment(s) {
   return encodeURI(s);
 }
@@ -57099,30 +53742,23 @@ function encodeUriFragment(s) {
  *
  * http://www.site.org/html;mk=mv?k=v#f
  */
-
-
 function encodeUriSegment(s) {
   return encodeUriString(s).replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%26/gi, '&');
 }
-
 function decode(s) {
   return decodeURIComponent(s);
-} // Query keys/values should have the "+" replaced first, as "+" in a query string is " ".
+}
+// Query keys/values should have the "+" replaced first, as "+" in a query string is " ".
 // decodeURIComponent function will not decode "+" as a space.
-
-
 function decodeQuery(s) {
   return decode(s.replace(/\+/g, '%20'));
 }
-
 function serializePath(path) {
   return `${encodeUriSegment(path.path)}${serializeMatrixParams(path.parameters)}`;
 }
-
 function serializeMatrixParams(params) {
   return Object.keys(params).map(key => `;${encodeUriSegment(key)}=${encodeUriSegment(params[key])}`).join('');
 }
-
 function serializeQueryParams(params) {
   const strParams = Object.keys(params).map(name => {
     const value = params[name];
@@ -57130,198 +53766,151 @@ function serializeQueryParams(params) {
   }).filter(s => !!s);
   return strParams.length ? `?${strParams.join('&')}` : '';
 }
-
 const SEGMENT_RE = /^[^\/()?;=#]+/;
-
 function matchSegments(str) {
   const match = str.match(SEGMENT_RE);
   return match ? match[0] : '';
 }
-
-const QUERY_PARAM_RE = /^[^=?&#]+/; // Return the name of the query param at the start of the string or an empty string
-
+const QUERY_PARAM_RE = /^[^=?&#]+/;
+// Return the name of the query param at the start of the string or an empty string
 function matchQueryParams(str) {
   const match = str.match(QUERY_PARAM_RE);
   return match ? match[0] : '';
 }
-
-const QUERY_PARAM_VALUE_RE = /^[^&#]+/; // Return the value of the query param at the start of the string or an empty string
-
+const QUERY_PARAM_VALUE_RE = /^[^&#]+/;
+// Return the value of the query param at the start of the string or an empty string
 function matchUrlQueryParamValue(str) {
   const match = str.match(QUERY_PARAM_VALUE_RE);
   return match ? match[0] : '';
 }
-
 class UrlParser {
   constructor(url) {
     this.url = url;
     this.remaining = url;
   }
-
   parseRootSegment() {
     this.consumeOptional('/');
-
     if (this.remaining === '' || this.peekStartsWith('?') || this.peekStartsWith('#')) {
       return new UrlSegmentGroup([], {});
-    } // The root segment group never has segments
-
-
+    }
+    // The root segment group never has segments
     return new UrlSegmentGroup([], this.parseChildren());
   }
-
   parseQueryParams() {
     const params = {};
-
     if (this.consumeOptional('?')) {
       do {
         this.parseQueryParam(params);
       } while (this.consumeOptional('&'));
     }
-
     return params;
   }
-
   parseFragment() {
     return this.consumeOptional('#') ? decodeURIComponent(this.remaining) : null;
   }
-
   parseChildren() {
     if (this.remaining === '') {
       return {};
     }
-
     this.consumeOptional('/');
     const segments = [];
-
     if (!this.peekStartsWith('(')) {
       segments.push(this.parseSegment());
     }
-
     while (this.peekStartsWith('/') && !this.peekStartsWith('//') && !this.peekStartsWith('/(')) {
       this.capture('/');
       segments.push(this.parseSegment());
     }
-
     let children = {};
-
     if (this.peekStartsWith('/(')) {
       this.capture('/');
       children = this.parseParens(true);
     }
-
     let res = {};
-
     if (this.peekStartsWith('(')) {
       res = this.parseParens(false);
     }
-
     if (segments.length > 0 || Object.keys(children).length > 0) {
       res[PRIMARY_OUTLET] = new UrlSegmentGroup(segments, children);
     }
-
     return res;
-  } // parse a segment with its matrix parameters
+  }
+  // parse a segment with its matrix parameters
   // ie `name;k1=v1;k2`
-
-
   parseSegment() {
     const path = matchSegments(this.remaining);
-
     if (path === '' && this.peekStartsWith(';')) {
       throw new Error(`Empty path url segment cannot have parameters: '${this.remaining}'.`);
     }
-
     this.capture(path);
     return new UrlSegment(decode(path), this.parseMatrixParams());
   }
-
   parseMatrixParams() {
     const params = {};
-
     while (this.consumeOptional(';')) {
       this.parseParam(params);
     }
-
     return params;
   }
-
   parseParam(params) {
     const key = matchSegments(this.remaining);
-
     if (!key) {
       return;
     }
-
     this.capture(key);
     let value = '';
-
     if (this.consumeOptional('=')) {
       const valueMatch = matchSegments(this.remaining);
-
       if (valueMatch) {
         value = valueMatch;
         this.capture(value);
       }
     }
-
     params[decode(key)] = decode(value);
-  } // Parse a single query parameter `name[=value]`
-
-
+  }
+  // Parse a single query parameter `name[=value]`
   parseQueryParam(params) {
     const key = matchQueryParams(this.remaining);
-
     if (!key) {
       return;
     }
-
     this.capture(key);
     let value = '';
-
     if (this.consumeOptional('=')) {
       const valueMatch = matchUrlQueryParamValue(this.remaining);
-
       if (valueMatch) {
         value = valueMatch;
         this.capture(value);
       }
     }
-
     const decodedKey = decodeQuery(key);
     const decodedVal = decodeQuery(value);
-
     if (params.hasOwnProperty(decodedKey)) {
       // Append to existing values
       let currentVal = params[decodedKey];
-
       if (!Array.isArray(currentVal)) {
         currentVal = [currentVal];
         params[decodedKey] = currentVal;
       }
-
       currentVal.push(decodedVal);
     } else {
       // Create a new value
       params[decodedKey] = decodedVal;
     }
-  } // parse `(a/b//outlet_name:c/d)`
-
-
+  }
+  // parse `(a/b//outlet_name:c/d)`
   parseParens(allowPrimary) {
     const segments = {};
     this.capture('(');
-
     while (!this.consumeOptional(')') && this.remaining.length > 0) {
       const path = matchSegments(this.remaining);
-      const next = this.remaining[path.length]; // if is is not one of these characters, then the segment was unescaped
+      const next = this.remaining[path.length];
+      // if is is not one of these characters, then the segment was unescaped
       // or the group was not closed
-
       if (next !== '/' && next !== ')' && next !== ';') {
         throw new Error(`Cannot parse url '${this.url}'`);
       }
-
       let outletName = undefined;
-
       if (path.indexOf(':') > -1) {
         outletName = path.substr(0, path.indexOf(':'));
         this.capture(outletName);
@@ -57329,36 +53918,30 @@ class UrlParser {
       } else if (allowPrimary) {
         outletName = PRIMARY_OUTLET;
       }
-
       const children = this.parseChildren();
       segments[outletName] = Object.keys(children).length === 1 ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
       this.consumeOptional('//');
     }
-
     return segments;
   }
-
   peekStartsWith(str) {
     return this.remaining.startsWith(str);
-  } // Consumes the prefix when it is present and returns whether it has been consumed
-
-
+  }
+  // Consumes the prefix when it is present and returns whether it has been consumed
   consumeOptional(str) {
     if (this.peekStartsWith(str)) {
       this.remaining = this.remaining.substring(str.length);
       return true;
     }
-
     return false;
   }
-
   capture(str) {
     if (!this.consumeOptional(str)) {
       throw new Error(`Expected "${str}".`);
     }
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -57366,21 +53949,16 @@ class UrlParser {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class Tree {
   constructor(root) {
     this._root = root;
   }
-
   get root() {
     return this._root.value;
   }
   /**
    * @internal
    */
-
-
   parent(t) {
     const p = this.pathFromRoot(t);
     return p.length > 1 ? p[p.length - 2] : null;
@@ -57388,8 +53966,6 @@ class Tree {
   /**
    * @internal
    */
-
-
   children(t) {
     const n = findNode(t, this._root);
     return n ? n.children.map(t => t.value) : [];
@@ -57397,8 +53973,6 @@ class Tree {
   /**
    * @internal
    */
-
-
   firstChild(t) {
     const n = findNode(t, this._root);
     return n && n.children.length > 0 ? n.children[0].value : null;
@@ -57406,8 +53980,6 @@ class Tree {
   /**
    * @internal
    */
-
-
   siblings(t) {
     const p = findPath(t, this._root);
     if (p.length < 2) return [];
@@ -57417,64 +53989,49 @@ class Tree {
   /**
    * @internal
    */
-
-
   pathFromRoot(t) {
     return findPath(t, this._root).map(s => s.value);
   }
-
-} // DFS for the node matching the value
-
-
+}
+// DFS for the node matching the value
 function findNode(value, node) {
   if (value === node.value) return node;
-
   for (const child of node.children) {
     const node = findNode(value, child);
     if (node) return node;
   }
-
   return null;
-} // Return the path to the node with the given value using DFS
-
-
+}
+// Return the path to the node with the given value using DFS
 function findPath(value, node) {
   if (value === node.value) return [node];
-
   for (const child of node.children) {
     const path = findPath(value, child);
-
     if (path.length) {
       path.unshift(node);
       return path;
     }
   }
-
   return [];
 }
-
 class TreeNode {
   constructor(value, children) {
     this.value = value;
     this.children = children;
   }
-
   toString() {
     return `TreeNode(${this.value})`;
   }
-
-} // Return the list of T indexed by outlet name
-
-
+}
+// Return the list of T indexed by outlet name
 function nodeChildrenAsMap(node) {
   const map = {};
-
   if (node) {
     node.children.forEach(child => map[child.value.outlet] = child);
   }
-
   return map;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -57482,7 +54039,6 @@ function nodeChildrenAsMap(node) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Represents the state of the router as a tree of activated routes.
  *
@@ -57514,24 +54070,18 @@ function nodeChildrenAsMap(node) {
  *
  * @publicApi
  */
-
-
 class RouterState extends Tree {
   /** @internal */
-  constructor(root,
-  /** The current snapshot of the router state */
+  constructor(root, /** The current snapshot of the router state */
   snapshot) {
     super(root);
     this.snapshot = snapshot;
     setRouterState(this, root);
   }
-
   toString() {
     return this.snapshot.toString();
   }
-
 }
-
 function createEmptyState(urlTree, rootComponent) {
   const snapshot = createEmptyStateSnapshot(urlTree, rootComponent);
   const emptyUrl = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject([new UrlSegment('', {})]);
@@ -57543,7 +54093,6 @@ function createEmptyState(urlTree, rootComponent) {
   activated.snapshot = snapshot.root;
   return new RouterState(new TreeNode(activated, []), snapshot);
 }
-
 function createEmptyStateSnapshot(urlTree, rootComponent) {
   const emptyParams = {};
   const emptyData = {};
@@ -57571,24 +54120,15 @@ function createEmptyStateSnapshot(urlTree, rootComponent) {
  *
  * @publicApi
  */
-
-
 class ActivatedRoute {
   /** @internal */
-  constructor(
-  /** An observable of the URL segments matched by this route. */
-  url,
-  /** An observable of the matrix parameters scoped to this route. */
-  params,
-  /** An observable of the query parameters shared by all the routes. */
-  queryParams,
-  /** An observable of the URL fragment shared by all the routes. */
-  fragment,
-  /** An observable of the static and resolved data of this route. */
-  data,
-  /** The outlet name of the route, a constant. */
-  outlet,
-  /** The component of the route, a constant. */
+  constructor( /** An observable of the URL segments matched by this route. */
+  url, /** An observable of the matrix parameters scoped to this route. */
+  params, /** An observable of the query parameters shared by all the routes. */
+  queryParams, /** An observable of the URL fragment shared by all the routes. */
+  fragment, /** An observable of the static and resolved data of this route. */
+  data, /** The outlet name of the route, a constant. */
+  outlet, /** The component of the route, a constant. */
   // TODO(vsavkin): remove |string
   component, futureSnapshot) {
     this.url = url;
@@ -57601,38 +54141,26 @@ class ActivatedRoute {
     this._futureSnapshot = futureSnapshot;
   }
   /** The configuration used to match this route. */
-
-
   get routeConfig() {
     return this._futureSnapshot.routeConfig;
   }
   /** The root of the router state. */
-
-
   get root() {
     return this._routerState.root;
   }
   /** The parent of this route in the router state tree. */
-
-
   get parent() {
     return this._routerState.parent(this);
   }
   /** The first child of this route in the router state tree. */
-
-
   get firstChild() {
     return this._routerState.firstChild(this);
   }
   /** The children of this route in the router state tree. */
-
-
   get children() {
     return this._routerState.children(this);
   }
   /** The path from the root of the router state tree to this route. */
-
-
   get pathFromRoot() {
     return this._routerState.pathFromRoot(this);
   }
@@ -57641,54 +54169,43 @@ class ActivatedRoute {
    * specific to the route.
    * The map supports retrieving single and multiple values from the same parameter.
    */
-
-
   get paramMap() {
     if (!this._paramMap) {
       this._paramMap = this.params.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(p => convertToParamMap(p)));
     }
-
     return this._paramMap;
   }
   /**
    * An Observable that contains a map of the query parameters available to all routes.
    * The map supports retrieving single and multiple values from the query parameter.
    */
-
-
   get queryParamMap() {
     if (!this._queryParamMap) {
       this._queryParamMap = this.queryParams.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(p => convertToParamMap(p)));
     }
-
     return this._queryParamMap;
   }
-
   toString() {
     return this.snapshot ? this.snapshot.toString() : `Future(${this._futureSnapshot})`;
   }
-
 }
 /**
  * Returns the inherited params, data, and resolve for a given route.
  * By default, this only inherits values up to the nearest path-less or component-less route.
  * @internal
  */
-
-
 function inheritedParamsDataResolve(route, paramsInheritanceStrategy = 'emptyOnly') {
   const pathFromRoot = route.pathFromRoot;
   let inheritingStartingFrom = 0;
-
   if (paramsInheritanceStrategy !== 'always') {
     inheritingStartingFrom = pathFromRoot.length - 1;
-
     while (inheritingStartingFrom >= 1) {
       const current = pathFromRoot[inheritingStartingFrom];
-      const parent = pathFromRoot[inheritingStartingFrom - 1]; // current route is an empty path => inherits its parent's params and data
-
+      const parent = pathFromRoot[inheritingStartingFrom - 1];
+      // current route is an empty path => inherits its parent's params and data
       if (current.routeConfig && current.routeConfig.path === '') {
-        inheritingStartingFrom--; // parent is componentless => current route should inherit its params and data
+        inheritingStartingFrom--;
+        // parent is componentless => current route should inherit its params and data
       } else if (!parent.component) {
         inheritingStartingFrom--;
       } else {
@@ -57696,12 +54213,9 @@ function inheritedParamsDataResolve(route, paramsInheritanceStrategy = 'emptyOnl
       }
     }
   }
-
   return flattenInherited(pathFromRoot.slice(inheritingStartingFrom));
 }
 /** @internal */
-
-
 function flattenInherited(pathFromRoot) {
   return pathFromRoot.reduce((res, curr) => {
     const params = Object.assign(Object.assign({}, res.params), curr.params);
@@ -57741,12 +54255,9 @@ function flattenInherited(pathFromRoot) {
  *
  * @publicApi
  */
-
-
 class ActivatedRouteSnapshot {
   /** @internal */
-  constructor(
-  /** The URL segments matched by this route */
+  constructor( /** The URL segments matched by this route */
   url,
   /**
    *  The matrix parameters scoped to this route.
@@ -57767,16 +54278,11 @@ class ActivatedRouteSnapshot {
    *  }
    *  ```
    */
-  params,
-  /** The query parameters shared by all the routes */
-  queryParams,
-  /** The URL fragment shared by all the routes */
-  fragment,
-  /** The static and resolved data of this route */
-  data,
-  /** The outlet name of the route */
-  outlet,
-  /** The component of the route */
+  params, /** The query parameters shared by all the routes */
+  queryParams, /** The URL fragment shared by all the routes */
+  fragment, /** The static and resolved data of this route */
+  data, /** The outlet name of the route */
+  outlet, /** The component of the route */
   component, routeConfig, urlSegment, lastPathIndex, resolve) {
     this.url = url;
     this.params = params;
@@ -57791,58 +54297,42 @@ class ActivatedRouteSnapshot {
     this._resolve = resolve;
   }
   /** The root of the router state */
-
-
   get root() {
     return this._routerState.root;
   }
   /** The parent of this route in the router state tree */
-
-
   get parent() {
     return this._routerState.parent(this);
   }
   /** The first child of this route in the router state tree */
-
-
   get firstChild() {
     return this._routerState.firstChild(this);
   }
   /** The children of this route in the router state tree */
-
-
   get children() {
     return this._routerState.children(this);
   }
   /** The path from the root of the router state tree to this route */
-
-
   get pathFromRoot() {
     return this._routerState.pathFromRoot(this);
   }
-
   get paramMap() {
     if (!this._paramMap) {
       this._paramMap = convertToParamMap(this.params);
     }
-
     return this._paramMap;
   }
-
   get queryParamMap() {
     if (!this._queryParamMap) {
       this._queryParamMap = convertToParamMap(this.queryParams);
     }
-
     return this._queryParamMap;
   }
-
   toString() {
     const url = this.url.map(segment => segment.toString()).join('/');
     const matched = this.routeConfig ? this.routeConfig.path : '';
     return `Route(url:'${url}', path:'${matched}')`;
   }
-
 }
 /**
  * @description
@@ -57871,29 +54361,22 @@ class ActivatedRouteSnapshot {
  *
  * @publicApi
  */
-
-
 class RouterStateSnapshot extends Tree {
   /** @internal */
-  constructor(
-  /** The url from which this snapshot was created */
+  constructor( /** The url from which this snapshot was created */
   url, root) {
     super(root);
     this.url = url;
     setRouterState(this, root);
   }
-
   toString() {
     return serializeNode(this._root);
   }
-
 }
-
 function setRouterState(state, node) {
   node.value._routerState = state;
   node.children.forEach(c => setRouterState(state, c));
 }
-
 function serializeNode(node) {
   const c = node.children.length > 0 ? ` { ${node.children.map(serializeNode).join(', ')} } ` : '';
   return `${node.value}${c}`;
@@ -57903,45 +54386,38 @@ function serializeNode(node) {
  * So we push new values into the observables only when they are not the initial values.
  * And we detect that by checking if the snapshot field is set.
  */
-
-
 function advanceActivatedRoute(route) {
   if (route.snapshot) {
     const currentSnapshot = route.snapshot;
     const nextSnapshot = route._futureSnapshot;
     route.snapshot = nextSnapshot;
-
     if (!shallowEqual(currentSnapshot.queryParams, nextSnapshot.queryParams)) {
       route.queryParams.next(nextSnapshot.queryParams);
     }
-
     if (currentSnapshot.fragment !== nextSnapshot.fragment) {
       route.fragment.next(nextSnapshot.fragment);
     }
-
     if (!shallowEqual(currentSnapshot.params, nextSnapshot.params)) {
       route.params.next(nextSnapshot.params);
     }
-
     if (!shallowEqualArrays(currentSnapshot.url, nextSnapshot.url)) {
       route.url.next(nextSnapshot.url);
     }
-
     if (!shallowEqual(currentSnapshot.data, nextSnapshot.data)) {
       route.data.next(nextSnapshot.data);
     }
   } else {
-    route.snapshot = route._futureSnapshot; // this is for resolved data
-
+    route.snapshot = route._futureSnapshot;
+    // this is for resolved data
     route.data.next(route._futureSnapshot.data);
   }
 }
-
 function equalParamsAndUrlSegments(a, b) {
   const equalUrlParams = shallowEqual(a.params, b.params) && equalSegments(a.url, b.url);
   const parentsMismatch = !a.parent !== !b.parent;
   return equalUrlParams && !parentsMismatch && (!a.parent || equalParamsAndUrlSegments(a.parent, b.parent));
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -57949,13 +54425,10 @@ function equalParamsAndUrlSegments(a, b) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function createRouterState(routeReuseStrategy, curr, prevState) {
   const root = createNode(routeReuseStrategy, curr._root, prevState ? prevState._root : undefined);
   return new RouterState(root, curr);
 }
-
 function createNode(routeReuseStrategy, curr, prevState) {
   // reuse an activated route that is currently displayed on the screen
   if (prevState && routeReuseStrategy.shouldReuseRoute(curr.value, prevState.value.snapshot)) {
@@ -57967,7 +54440,6 @@ function createNode(routeReuseStrategy, curr, prevState) {
     if (routeReuseStrategy.shouldAttach(curr.value)) {
       // retrieve an activated route that is used to be displayed, but is not currently displayed
       const detachedRouteHandle = routeReuseStrategy.retrieve(curr.value);
-
       if (detachedRouteHandle !== null) {
         const tree = detachedRouteHandle.route;
         tree.value._futureSnapshot = curr.value;
@@ -57975,13 +54447,11 @@ function createNode(routeReuseStrategy, curr, prevState) {
         return tree;
       }
     }
-
     const value = createActivatedRoute(curr.value);
     const children = curr.children.map(c => createNode(routeReuseStrategy, c));
     return new TreeNode(value, children);
   }
 }
-
 function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
   return curr.children.map(child => {
     for (const p of prevState.children) {
@@ -57989,14 +54459,13 @@ function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
         return createNode(routeReuseStrategy, child, p);
       }
     }
-
     return createNode(routeReuseStrategy, child);
   });
 }
-
 function createActivatedRoute(c) {
   return new ActivatedRoute(new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.url), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.params), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.queryParams), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.fragment), new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(c.data), c.outlet, c.component, c);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58004,24 +54473,18 @@ function createActivatedRoute(c) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function createUrlTree(route, urlTree, commands, queryParams, fragment) {
   if (commands.length === 0) {
     return tree(urlTree.root, urlTree.root, urlTree.root, queryParams, fragment);
   }
-
   const nav = computeNavigation(commands);
-
   if (nav.toRoot()) {
     return tree(urlTree.root, urlTree.root, new UrlSegmentGroup([], {}), queryParams, fragment);
   }
-
   const startingPosition = findStartingPosition(nav, urlTree, route);
   const segmentGroup = startingPosition.processChildren ? updateSegmentGroupChildren(startingPosition.segmentGroup, startingPosition.index, nav.commands) : updateSegmentGroup(startingPosition.segmentGroup, startingPosition.index, nav.commands);
   return tree(urlTree.root, startingPosition.segmentGroup, segmentGroup, queryParams, fragment);
 }
-
 function isMatrixParams(command) {
   return typeof command === 'object' && command != null && !command.outlets && !command.segmentPath;
 }
@@ -58029,29 +54492,22 @@ function isMatrixParams(command) {
  * Determines if a given command has an `outlets` map. When we encounter a command
  * with an outlets k/v map, we need to apply each outlet individually to the existing segment.
  */
-
-
 function isCommandWithOutlets(command) {
   return typeof command === 'object' && command != null && command.outlets;
 }
-
 function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment) {
   let qp = {};
-
   if (queryParams) {
     forEach(queryParams, (value, name) => {
       qp[name] = Array.isArray(value) ? value.map(v => `${v}`) : `${value}`;
     });
   }
-
   if (oldRoot === oldSegmentGroup) {
     return new UrlTree(newSegmentGroup, qp, fragment);
   }
-
   const newRoot = replaceSegment(oldRoot, oldSegmentGroup, newSegmentGroup);
   return new UrlTree(newRoot, qp, fragment);
 }
-
 function replaceSegment(current, oldSegment, newSegment) {
   const children = {};
   forEach(current.children, (c, outletName) => {
@@ -58063,37 +54519,28 @@ function replaceSegment(current, oldSegment, newSegment) {
   });
   return new UrlSegmentGroup(current.segments, children);
 }
-
 class Navigation {
   constructor(isAbsolute, numberOfDoubleDots, commands) {
     this.isAbsolute = isAbsolute;
     this.numberOfDoubleDots = numberOfDoubleDots;
     this.commands = commands;
-
     if (isAbsolute && commands.length > 0 && isMatrixParams(commands[0])) {
       throw new Error('Root segment cannot have matrix parameters');
     }
-
     const cmdWithOutlet = commands.find(isCommandWithOutlets);
-
     if (cmdWithOutlet && cmdWithOutlet !== last(commands)) {
       throw new Error('{outlets:{}} has to be the last command');
     }
   }
-
   toRoot() {
     return this.isAbsolute && this.commands.length === 1 && this.commands[0] == '/';
   }
-
 }
 /** Transforms commands to a normalized `Navigation` */
-
-
 function computeNavigation(commands) {
   if (typeof commands[0] === 'string' && commands.length === 1 && commands[0] === '/') {
     return new Navigation(true, 0, commands);
   }
-
   let numberOfDoubleDots = 0;
   let isAbsolute = false;
   const res = commands.reduce((res, cmd, cmdIdx) => {
@@ -58107,19 +54554,17 @@ function computeNavigation(commands) {
           outlets
         }];
       }
-
       if (cmd.segmentPath) {
         return [...res, cmd.segmentPath];
       }
     }
-
     if (!(typeof cmd === 'string')) {
       return [...res, cmd];
     }
-
     if (cmdIdx === 0) {
       cmd.split('/').forEach((urlPart, partIndex) => {
-        if (partIndex == 0 && urlPart === '.') {// skip './a'
+        if (partIndex == 0 && urlPart === '.') {
+          // skip './a'
         } else if (partIndex == 0 && urlPart === '') {
           //  '/a'
           isAbsolute = true;
@@ -58132,81 +54577,64 @@ function computeNavigation(commands) {
       });
       return res;
     }
-
     return [...res, cmd];
   }, []);
   return new Navigation(isAbsolute, numberOfDoubleDots, res);
 }
-
 class Position {
   constructor(segmentGroup, processChildren, index) {
     this.segmentGroup = segmentGroup;
     this.processChildren = processChildren;
     this.index = index;
   }
-
 }
-
 function findStartingPosition(nav, tree, route) {
   if (nav.isAbsolute) {
     return new Position(tree.root, true, 0);
   }
-
   if (route.snapshot._lastPathIndex === -1) {
-    const segmentGroup = route.snapshot._urlSegment; // Pathless ActivatedRoute has _lastPathIndex === -1 but should not process children
+    const segmentGroup = route.snapshot._urlSegment;
+    // Pathless ActivatedRoute has _lastPathIndex === -1 but should not process children
     // see issue #26224, #13011, #35687
     // However, if the ActivatedRoute is the root we should process children like above.
-
     const processChildren = segmentGroup === tree.root;
     return new Position(segmentGroup, processChildren, 0);
   }
-
   const modifier = isMatrixParams(nav.commands[0]) ? 0 : 1;
   const index = route.snapshot._lastPathIndex + modifier;
   return createPositionApplyingDoubleDots(route.snapshot._urlSegment, index, nav.numberOfDoubleDots);
 }
-
 function createPositionApplyingDoubleDots(group, index, numberOfDoubleDots) {
   let g = group;
   let ci = index;
   let dd = numberOfDoubleDots;
-
   while (dd > ci) {
     dd -= ci;
     g = g.parent;
-
     if (!g) {
       throw new Error('Invalid number of \'../\'');
     }
-
     ci = g.segments.length;
   }
-
   return new Position(g, false, ci - dd);
 }
-
 function getOutlets(commands) {
   if (isCommandWithOutlets(commands[0])) {
     return commands[0].outlets;
   }
-
   return {
     [PRIMARY_OUTLET]: commands
   };
 }
-
 function updateSegmentGroup(segmentGroup, startIndex, commands) {
   if (!segmentGroup) {
     segmentGroup = new UrlSegmentGroup([], {});
   }
-
   if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
     return updateSegmentGroupChildren(segmentGroup, startIndex, commands);
   }
-
   const m = prefixedWith(segmentGroup, startIndex, commands);
   const slicedCommands = commands.slice(m.commandIndex);
-
   if (m.match && m.pathIndex < segmentGroup.segments.length) {
     const g = new UrlSegmentGroup(segmentGroup.segments.slice(0, m.pathIndex), {});
     g.children[PRIMARY_OUTLET] = new UrlSegmentGroup(segmentGroup.segments.slice(m.pathIndex), segmentGroup.children);
@@ -58221,7 +54649,6 @@ function updateSegmentGroup(segmentGroup, startIndex, commands) {
     return createNewSegmentGroup(segmentGroup, startIndex, commands);
   }
 }
-
 function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
   if (commands.length === 0) {
     return new UrlSegmentGroup(segmentGroup.segments, {});
@@ -58232,7 +54659,6 @@ function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
       if (typeof commands === 'string') {
         commands = [commands];
       }
-
       if (commands !== null) {
         children[outlet] = updateSegmentGroup(segmentGroup.children[outlet], startIndex, commands);
       }
@@ -58245,7 +54671,6 @@ function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
     return new UrlSegmentGroup(segmentGroup.segments, children);
   }
 }
-
 function prefixedWith(segmentGroup, startIndex, commands) {
   let currentCommandIndex = 0;
   let currentPathIndex = startIndex;
@@ -58254,22 +54679,19 @@ function prefixedWith(segmentGroup, startIndex, commands) {
     pathIndex: 0,
     commandIndex: 0
   };
-
   while (currentPathIndex < segmentGroup.segments.length) {
     if (currentCommandIndex >= commands.length) return noMatch;
     const path = segmentGroup.segments[currentPathIndex];
-    const command = commands[currentCommandIndex]; // Do not try to consume command as part of the prefixing if it has outlets because it can
+    const command = commands[currentCommandIndex];
+    // Do not try to consume command as part of the prefixing if it has outlets because it can
     // contain outlets other than the one being processed. Consuming the outlets command would
     // result in other outlets being ignored.
-
     if (isCommandWithOutlets(command)) {
       break;
     }
-
     const curr = `${command}`;
     const next = currentCommandIndex < commands.length - 1 ? commands[currentCommandIndex + 1] : null;
     if (currentPathIndex > 0 && curr === undefined) break;
-
     if (curr && next && typeof next === 'object' && next.outlets === undefined) {
       if (!compare(curr, next, path)) return noMatch;
       currentCommandIndex += 2;
@@ -58277,40 +54699,32 @@ function prefixedWith(segmentGroup, startIndex, commands) {
       if (!compare(curr, {}, path)) return noMatch;
       currentCommandIndex++;
     }
-
     currentPathIndex++;
   }
-
   return {
     match: true,
     pathIndex: currentPathIndex,
     commandIndex: currentCommandIndex
   };
 }
-
 function createNewSegmentGroup(segmentGroup, startIndex, commands) {
   const paths = segmentGroup.segments.slice(0, startIndex);
   let i = 0;
-
   while (i < commands.length) {
     const command = commands[i];
-
     if (isCommandWithOutlets(command)) {
       const children = createNewSegmentChildren(command.outlets);
       return new UrlSegmentGroup(paths, children);
-    } // if we start with an object literal, we need to reuse the path part from the segment
-
-
+    }
+    // if we start with an object literal, we need to reuse the path part from the segment
     if (i === 0 && isMatrixParams(commands[0])) {
       const p = segmentGroup.segments[startIndex];
       paths.push(new UrlSegment(p.path, stringify(commands[0])));
       i++;
       continue;
     }
-
     const curr = isCommandWithOutlets(command) ? command.outlets[PRIMARY_OUTLET] : `${command}`;
     const next = i < commands.length - 1 ? commands[i + 1] : null;
-
     if (curr && next && isMatrixParams(next)) {
       paths.push(new UrlSegment(curr, stringify(next)));
       i += 2;
@@ -58319,33 +54733,29 @@ function createNewSegmentGroup(segmentGroup, startIndex, commands) {
       i++;
     }
   }
-
   return new UrlSegmentGroup(paths, {});
 }
-
 function createNewSegmentChildren(outlets) {
   const children = {};
   forEach(outlets, (commands, outlet) => {
     if (typeof commands === 'string') {
       commands = [commands];
     }
-
     if (commands !== null) {
       children[outlet] = createNewSegmentGroup(new UrlSegmentGroup([], {}), 0, commands);
     }
   });
   return children;
 }
-
 function stringify(params) {
   const res = {};
   forEach(params, (v, k) => res[k] = `${v}`);
   return res;
 }
-
 function compare(path, params, segment) {
   return path == segment.path && shallowEqual(params, segment.parameters);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58353,13 +54763,10 @@ function compare(path, params, segment) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const activateRoutes = (rootContexts, routeReuseStrategy, forwardEvent) => (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
   new ActivateRoutes(routeReuseStrategy, t.targetRouterState, t.currentRouterState, forwardEvent).activate(rootContexts);
   return t;
 });
-
 class ActivateRoutes {
   constructor(routeReuseStrategy, futureState, currState, forwardEvent) {
     this.routeReuseStrategy = routeReuseStrategy;
@@ -58367,40 +54774,35 @@ class ActivateRoutes {
     this.currState = currState;
     this.forwardEvent = forwardEvent;
   }
-
   activate(parentContexts) {
     const futureRoot = this.futureState._root;
     const currRoot = this.currState ? this.currState._root : null;
     this.deactivateChildRoutes(futureRoot, currRoot, parentContexts);
     advanceActivatedRoute(this.futureState.root);
     this.activateChildRoutes(futureRoot, currRoot, parentContexts);
-  } // De-activate the child route that are not re-used for the future state
-
-
+  }
+  // De-activate the child route that are not re-used for the future state
   deactivateChildRoutes(futureNode, currNode, contexts) {
-    const children = nodeChildrenAsMap(currNode); // Recurse on the routes active in the future state to de-activate deeper children
-
+    const children = nodeChildrenAsMap(currNode);
+    // Recurse on the routes active in the future state to de-activate deeper children
     futureNode.children.forEach(futureChild => {
       const childOutletName = futureChild.value.outlet;
       this.deactivateRoutes(futureChild, children[childOutletName], contexts);
       delete children[childOutletName];
-    }); // De-activate the routes that will not be re-used
-
+    });
+    // De-activate the routes that will not be re-used
     forEach(children, (v, childName) => {
       this.deactivateRouteAndItsChildren(v, contexts);
     });
   }
-
   deactivateRoutes(futureNode, currNode, parentContext) {
     const future = futureNode.value;
     const curr = currNode ? currNode.value : null;
-
     if (future === curr) {
       // Reusing the node, check to see if the children need to be de-activated
       if (future.component) {
         // If we have a normal route, we need to go through an outlet.
         const context = parentContext.getContext(future.outlet);
-
         if (context) {
           this.deactivateChildRoutes(futureNode, currNode, context.children);
         }
@@ -58415,7 +54817,6 @@ class ActivateRoutes {
       }
     }
   }
-
   deactivateRouteAndItsChildren(route, parentContexts) {
     // If there is no component, the Route is never attached to an outlet (because there is no
     // component to attach).
@@ -58425,16 +54826,13 @@ class ActivateRoutes {
       this.deactivateRouteAndOutlet(route, parentContexts);
     }
   }
-
   detachAndStoreRouteSubtree(route, parentContexts) {
     const context = parentContexts.getContext(route.value.outlet);
     const contexts = context && route.value.component ? context.children : parentContexts;
     const children = nodeChildrenAsMap(route);
-
     for (const childOutlet of Object.keys(children)) {
       this.deactivateRouteAndItsChildren(children[childOutlet], contexts);
     }
-
     if (context && context.outlet) {
       const componentRef = context.outlet.detach();
       const contexts = context.children.onOutletDeactivated();
@@ -58445,48 +54843,42 @@ class ActivateRoutes {
       });
     }
   }
-
   deactivateRouteAndOutlet(route, parentContexts) {
-    const context = parentContexts.getContext(route.value.outlet); // The context could be `null` if we are on a componentless route but there may still be
+    const context = parentContexts.getContext(route.value.outlet);
+    // The context could be `null` if we are on a componentless route but there may still be
     // children that need deactivating.
-
     const contexts = context && route.value.component ? context.children : parentContexts;
     const children = nodeChildrenAsMap(route);
-
     for (const childOutlet of Object.keys(children)) {
       this.deactivateRouteAndItsChildren(children[childOutlet], contexts);
     }
-
     if (context && context.outlet) {
       // Destroy the component
-      context.outlet.deactivate(); // Destroy the contexts for all the outlets that were in the component
-
-      context.children.onOutletDeactivated(); // Clear the information about the attached component on the context but keep the reference to
+      context.outlet.deactivate();
+      // Destroy the contexts for all the outlets that were in the component
+      context.children.onOutletDeactivated();
+      // Clear the information about the attached component on the context but keep the reference to
       // the outlet.
-
       context.attachRef = null;
       context.resolver = null;
       context.route = null;
     }
   }
-
   activateChildRoutes(futureNode, currNode, contexts) {
     const children = nodeChildrenAsMap(currNode);
     futureNode.children.forEach(c => {
       this.activateRoutes(c, children[c.value.outlet], contexts);
       this.forwardEvent(new ActivationEnd(c.value.snapshot));
     });
-
     if (futureNode.children.length) {
       this.forwardEvent(new ChildActivationEnd(futureNode.value.snapshot));
     }
   }
-
   activateRoutes(futureNode, currNode, parentContexts) {
     const future = futureNode.value;
     const curr = currNode ? currNode.value : null;
-    advanceActivatedRoute(future); // reusing the node
-
+    advanceActivatedRoute(future);
+    // reusing the node
     if (future === curr) {
       if (future.component) {
         // If we have a normal route, we need to go through an outlet.
@@ -58500,20 +54892,17 @@ class ActivateRoutes {
       if (future.component) {
         // if we have a normal route, we need to place the component into the outlet and recurse.
         const context = parentContexts.getOrCreateContext(future.outlet);
-
         if (this.routeReuseStrategy.shouldAttach(future.snapshot)) {
           const stored = this.routeReuseStrategy.retrieve(future.snapshot);
           this.routeReuseStrategy.store(future.snapshot, null);
           context.children.onOutletReAttached(stored.contexts);
           context.attachRef = stored.componentRef;
           context.route = stored.route.value;
-
           if (context.outlet) {
             // Attach right away when the outlet has already been instantiated
             // Otherwise attach from `RouterOutlet.ngOnInit` when it is instantiated
             context.outlet.attach(stored.componentRef, stored.route.value);
           }
-
           advanceActivatedRoute(stored.route.value);
           this.activateChildRoutes(futureNode, null, context.children);
         } else {
@@ -58522,13 +54911,11 @@ class ActivateRoutes {
           context.attachRef = null;
           context.route = future;
           context.resolver = cmpFactoryResolver;
-
           if (context.outlet) {
             // Activate the outlet when it has already been instantiated
             // Otherwise it will get activated from its `ngOnInit` when instantiated
             context.outlet.activateWith(future, cmpFactoryResolver);
           }
-
           this.activateChildRoutes(futureNode, null, context.children);
         }
       } else {
@@ -58537,18 +54924,16 @@ class ActivateRoutes {
       }
     }
   }
-
 }
-
 function parentLoadedConfig(snapshot) {
   for (let s = snapshot.parent; s; s = s.parent) {
     const route = s.routeConfig;
     if (route && route._loadedConfig) return route._loadedConfig;
     if (route && route.component) return null;
   }
-
   return null;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58556,15 +54941,13 @@ function parentLoadedConfig(snapshot) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class LoadedRouterConfig {
   constructor(routes, module) {
     this.routes = routes;
     this.module = module;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58572,7 +54955,6 @@ class LoadedRouterConfig {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Simple function check, but generic so type inference will flow. Example:
  *
@@ -58586,35 +54968,28 @@ class LoadedRouterConfig {
  *   throw "Must provide the `product` function";
  * }
  */
-
-
 function isFunction(v) {
   return typeof v === 'function';
 }
-
 function isBoolean(v) {
   return typeof v === 'boolean';
 }
-
 function isUrlTree(v) {
   return v instanceof UrlTree;
 }
-
 function isCanLoad(guard) {
   return guard && isFunction(guard.canLoad);
 }
-
 function isCanActivate(guard) {
   return guard && isFunction(guard.canActivate);
 }
-
 function isCanActivateChild(guard) {
   return guard && isFunction(guard.canActivateChild);
 }
-
 function isCanDeactivate(guard) {
   return guard && isFunction(guard.canDeactivate);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58622,38 +54997,35 @@ function isCanDeactivate(guard) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const INITIAL_VALUE = Symbol('INITIAL_VALUE');
-
 function prioritizedGuardValue() {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(obs => {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.combineLatest)(obs.map(o => o.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.take)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.startWith)(INITIAL_VALUE)))).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.scan)((acc, list) => {
       let isPending = false;
       return list.reduce((innerAcc, val, i) => {
-        if (innerAcc !== INITIAL_VALUE) return innerAcc; // Toggle pending flag if any values haven't been set yet
-
-        if (val === INITIAL_VALUE) isPending = true; // Any other return values are only valid if we haven't yet hit a pending
+        if (innerAcc !== INITIAL_VALUE) return innerAcc;
+        // Toggle pending flag if any values haven't been set yet
+        if (val === INITIAL_VALUE) isPending = true;
+        // Any other return values are only valid if we haven't yet hit a pending
         // call. This guarantees that in the case of a guard at the bottom of the
         // tree that returns a redirect, we will wait for the higher priority
         // guard at the top to finish before performing the redirect.
-
         if (!isPending) {
           // Early return when we hit a `false` value as that should always
           // cancel navigation
           if (val === false) return val;
-
           if (i === list.length - 1 || isUrlTree(val)) {
             return val;
           }
         }
-
         return innerAcc;
       }, acc);
-    }, INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(item => item !== INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(item => isUrlTree(item) ? item : item === true), //
+    }, INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(item => item !== INITIAL_VALUE), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(item => isUrlTree(item) ? item : item === true),
+    //
     (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.take)(1));
   });
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58661,14 +55033,11 @@ function prioritizedGuardValue() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Store contextual information about a `RouterOutlet`
  *
  * @publicApi
  */
-
-
 class OutletContext {
   constructor() {
     this.outlet = null;
@@ -58677,23 +55046,18 @@ class OutletContext {
     this.children = new ChildrenOutletContexts();
     this.attachRef = null;
   }
-
 }
 /**
  * Store contextual information about the children (= nested) `RouterOutlet`
  *
  * @publicApi
  */
-
-
 class ChildrenOutletContexts {
   constructor() {
     // contexts for child outlets, by name.
     this.contexts = new Map();
   }
   /** Called when a `RouterOutlet` directive is instantiated */
-
-
   onChildOutletCreated(childName, outlet) {
     const context = this.getOrCreateContext(childName);
     context.outlet = outlet;
@@ -58704,11 +55068,8 @@ class ChildrenOutletContexts {
    * We need to keep the context as the outlet could be destroyed inside a NgIf and might be
    * re-created later.
    */
-
-
   onChildOutletDestroyed(childName) {
     const context = this.getContext(childName);
-
     if (context) {
       context.outlet = null;
       context.attachRef = null;
@@ -58718,34 +55079,27 @@ class ChildrenOutletContexts {
    * Called when the corresponding route is deactivated during navigation.
    * Because the component get destroyed, all children outlet are destroyed.
    */
-
-
   onOutletDeactivated() {
     const contexts = this.contexts;
     this.contexts = new Map();
     return contexts;
   }
-
   onOutletReAttached(contexts) {
     this.contexts = contexts;
   }
-
   getOrCreateContext(childName) {
     let context = this.getContext(childName);
-
     if (!context) {
       context = new OutletContext();
       this.contexts.set(childName, context);
     }
-
     return context;
   }
-
   getContext(childName) {
     return this.contexts.get(childName) || null;
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -58753,7 +55107,6 @@ class ChildrenOutletContexts {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -58805,8 +55158,6 @@ class ChildrenOutletContexts {
  *
  * @publicApi
  */
-
-
 class RouterOutlet {
   constructor(parentContexts, location, resolver, name, changeDetector) {
     this.parentContexts = parentContexts;
@@ -58821,32 +55172,25 @@ class RouterOutlet {
      * Emits an attached component instance when the `RouteReuseStrategy` instructs to re-attach a
      * previously detached subtree.
      **/
-
     this.attachEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     /**
      * Emits a detached component instance when the `RouteReuseStrategy` instructs to detach the
      * subtree.
      */
-
     this.detachEvents = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     this.name = name || PRIMARY_OUTLET;
     parentContexts.onChildOutletCreated(this.name, this);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     this.parentContexts.onChildOutletDestroyed(this.name);
   }
   /** @nodoc */
-
-
   ngOnInit() {
     if (!this.activated) {
       // If the outlet was not instantiated at the time the route got activated we need to populate
       // the outlet when it is initialized (ie inside a NgIf)
       const context = this.parentContexts.getContext(this.name);
-
       if (context && context.route) {
         if (context.attachRef) {
           // `attachRef` is populated when there is an existing component to mount
@@ -58858,7 +55202,6 @@ class RouterOutlet {
       }
     }
   }
-
   get isActivated() {
     return !!this.activated;
   }
@@ -58866,30 +55209,23 @@ class RouterOutlet {
    * @returns The currently activated component instance.
    * @throws An error if the outlet is not activated.
    */
-
-
   get component() {
     if (!this.activated) throw new Error('Outlet is not activated');
     return this.activated.instance;
   }
-
   get activatedRoute() {
     if (!this.activated) throw new Error('Outlet is not activated');
     return this._activatedRoute;
   }
-
   get activatedRouteData() {
     if (this._activatedRoute) {
       return this._activatedRoute.snapshot.data;
     }
-
     return {};
   }
   /**
    * Called when the `RouteReuseStrategy` instructs to detach the subtree
    */
-
-
   detach() {
     if (!this.activated) throw new Error('Outlet is not activated');
     this.location.detach();
@@ -58902,15 +55238,12 @@ class RouterOutlet {
   /**
    * Called when the `RouteReuseStrategy` instructs to re-attach a previously detached subtree
    */
-
-
   attach(ref, activatedRoute) {
     this.activated = ref;
     this._activatedRoute = activatedRoute;
     this.location.insert(ref.hostView);
     this.attachEvents.emit(ref.instance);
   }
-
   deactivate() {
     if (this.activated) {
       const c = this.component;
@@ -58920,12 +55253,10 @@ class RouterOutlet {
       this.deactivateEvents.emit(c);
     }
   }
-
   activateWith(activatedRoute, resolver) {
     if (this.isActivated) {
       throw new Error('Cannot activate an already activated outlet');
     }
-
     this._activatedRoute = activatedRoute;
     const snapshot = activatedRoute._futureSnapshot;
     const component = snapshot.routeConfig.component;
@@ -58933,19 +55264,16 @@ class RouterOutlet {
     const factory = resolver.resolveComponentFactory(component);
     const childContexts = this.parentContexts.getOrCreateContext(this.name).children;
     const injector = new OutletInjector(activatedRoute, childContexts, this.location.injector);
-    this.activated = this.location.createComponent(factory, this.location.length, injector); // Calling `markForCheck` to make sure we will run the change detection when the
+    this.activated = this.location.createComponent(factory, this.location.length, injector);
+    // Calling `markForCheck` to make sure we will run the change detection when the
     // `RouterOutlet` is inside a `ChangeDetectionStrategy.OnPush` component.
-
     this.changeDetector.markForCheck();
     this.activateEvents.emit(this.activated.instance);
   }
-
 }
-
 RouterOutlet.ɵfac = function RouterOutlet_Factory(t) {
   return new (t || RouterOutlet)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ChildrenOutletContexts), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ViewContainerRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ComponentFactoryResolver), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectAttribute"]('name'), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef));
 };
-
 RouterOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RouterOutlet,
   selectors: [["router-outlet"]],
@@ -58957,7 +55285,6 @@ RouterOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
   },
   exportAs: ["outlet"]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterOutlet, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -59000,27 +55327,23 @@ RouterOutlet.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }]
   });
 })();
-
 class OutletInjector {
   constructor(route, childContexts, parent) {
     this.route = route;
     this.childContexts = childContexts;
     this.parent = parent;
   }
-
   get(token, notFoundValue) {
     if (token === ActivatedRoute) {
       return this.route;
     }
-
     if (token === ChildrenOutletContexts) {
       return this.childContexts;
     }
-
     return this.parent.get(token, notFoundValue);
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59028,7 +55351,6 @@ class OutletInjector {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * This component is used internally within the router to be a placeholder when an empty
  * router-outlet is needed. For example, with a config such as:
@@ -59038,14 +55360,10 @@ class OutletInjector {
  * In order to render, there needs to be a component on this config, which will default
  * to this `EmptyOutletComponent`.
  */
-
-
 class ɵEmptyOutletComponent {}
-
 ɵEmptyOutletComponent.ɵfac = function ɵEmptyOutletComponent_Factory(t) {
   return new (t || ɵEmptyOutletComponent)();
 };
-
 ɵEmptyOutletComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
   type: ɵEmptyOutletComponent,
   selectors: [["ng-component"]],
@@ -59059,7 +55377,6 @@ class ɵEmptyOutletComponent {}
   directives: [RouterOutlet],
   encapsulation: 2
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ɵEmptyOutletComponent, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
@@ -59068,6 +55385,7 @@ class ɵEmptyOutletComponent {}
     }]
   }], null, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59075,8 +55393,6 @@ class ɵEmptyOutletComponent {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function validateConfig(config, parentPath = '') {
   // forEach doesn't iterate undefined values
   for (let i = 0; i < config.length; i++) {
@@ -59085,7 +55401,6 @@ function validateConfig(config, parentPath = '') {
     validateNode(route, fullPath);
   }
 }
-
 function validateNode(route, fullPath) {
   if (typeof ngDevMode === 'undefined' || ngDevMode) {
     if (!route) {
@@ -59101,71 +55416,55 @@ function validateNode(route, fullPath) {
       ];
     `);
     }
-
     if (Array.isArray(route)) {
       throw new Error(`Invalid configuration of route '${fullPath}': Array cannot be specified`);
     }
-
     if (!route.component && !route.children && !route.loadChildren && route.outlet && route.outlet !== PRIMARY_OUTLET) {
       throw new Error(`Invalid configuration of route '${fullPath}': a componentless route without children or loadChildren cannot have a named outlet set`);
     }
-
     if (route.redirectTo && route.children) {
       throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and children cannot be used together`);
     }
-
     if (route.redirectTo && route.loadChildren) {
       throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and loadChildren cannot be used together`);
     }
-
     if (route.children && route.loadChildren) {
       throw new Error(`Invalid configuration of route '${fullPath}': children and loadChildren cannot be used together`);
     }
-
     if (route.redirectTo && route.component) {
       throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and component cannot be used together`);
     }
-
     if (route.redirectTo && route.canActivate) {
       throw new Error(`Invalid configuration of route '${fullPath}': redirectTo and canActivate cannot be used together. Redirects happen before activation ` + `so canActivate will never be executed.`);
     }
-
     if (route.path && route.matcher) {
       throw new Error(`Invalid configuration of route '${fullPath}': path and matcher cannot be used together`);
     }
-
     if (route.redirectTo === void 0 && !route.component && !route.children && !route.loadChildren) {
       throw new Error(`Invalid configuration of route '${fullPath}'. One of the following must be provided: component, redirectTo, children or loadChildren`);
     }
-
     if (route.path === void 0 && route.matcher === void 0) {
       throw new Error(`Invalid configuration of route '${fullPath}': routes must have either a path or a matcher specified`);
     }
-
     if (typeof route.path === 'string' && route.path.charAt(0) === '/') {
       throw new Error(`Invalid configuration of route '${fullPath}': path cannot start with a slash`);
     }
-
     if (route.path === '' && route.redirectTo !== void 0 && route.pathMatch === void 0) {
       const exp = `The default value of 'pathMatch' is 'prefix', but often the intent is to use 'full'.`;
       throw new Error(`Invalid configuration of route '{path: "${fullPath}", redirectTo: "${route.redirectTo}"}': please provide 'pathMatch'. ${exp}`);
     }
-
     if (route.pathMatch !== void 0 && route.pathMatch !== 'full' && route.pathMatch !== 'prefix') {
       throw new Error(`Invalid configuration of route '${fullPath}': pathMatch can only be set to 'prefix' or 'full'`);
     }
   }
-
   if (route.children) {
     validateConfig(route.children, fullPath);
   }
 }
-
 function getFullPath(parentPath, currentRoute) {
   if (!currentRoute) {
     return parentPath;
   }
-
   if (!parentPath && !currentRoute.path) {
     return '';
   } else if (parentPath && !currentRoute.path) {
@@ -59179,23 +55478,17 @@ function getFullPath(parentPath, currentRoute) {
 /**
  * Makes a copy of the config and adds any default required properties.
  */
-
-
 function standardizeConfig(r) {
   const children = r.children && r.children.map(standardizeConfig);
   const c = children ? Object.assign(Object.assign({}, r), {
     children
   }) : Object.assign({}, r);
-
   if (!c.component && (children || c.loadChildren) && c.outlet && c.outlet !== PRIMARY_OUTLET) {
     c.component = ɵEmptyOutletComponent;
   }
-
   return c;
 }
 /** Returns the `route.outlet` or PRIMARY_OUTLET if none exists. */
-
-
 function getOutlet(route) {
   return route.outlet || PRIMARY_OUTLET;
 }
@@ -59203,13 +55496,12 @@ function getOutlet(route) {
  * Sorts the `routes` such that the ones with an outlet matching `outletName` come first.
  * The order of the configs is otherwise preserved.
  */
-
-
 function sortByMatchingOutlets(routes, outletName) {
   const sortedConfig = routes.filter(r => getOutlet(r) === outletName);
   sortedConfig.push(...routes.filter(r => getOutlet(r) !== outletName));
   return sortedConfig;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59217,8 +55509,6 @@ function sortByMatchingOutlets(routes, outletName) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 const noMatch$1 = {
   matched: false,
   consumedSegments: [],
@@ -59226,15 +55516,12 @@ const noMatch$1 = {
   parameters: {},
   positionalParamSegments: {}
 };
-
 function match(segmentGroup, route, segments) {
   var _a;
-
   if (route.path === '') {
     if (route.pathMatch === 'full' && (segmentGroup.hasChildren() || segments.length > 0)) {
       return Object.assign({}, noMatch$1);
     }
-
     return {
       matched: true,
       consumedSegments: [],
@@ -59243,7 +55530,6 @@ function match(segmentGroup, route, segments) {
       positionalParamSegments: {}
     };
   }
-
   const matcher = route.matcher || defaultUrlMatcher;
   const res = matcher(segments, segmentGroup, route);
   if (!res) return Object.assign({}, noMatch$1);
@@ -59261,7 +55547,6 @@ function match(segmentGroup, route, segments) {
     positionalParamSegments: (_a = res.posParams) !== null && _a !== void 0 ? _a : {}
   };
 }
-
 function split(segmentGroup, consumedSegments, slicedSegments, config, relativeLinkResolution = 'corrected') {
   if (slicedSegments.length > 0 && containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, config)) {
     const s = new UrlSegmentGroup(consumedSegments, createChildrenForEmptyPaths(segmentGroup, consumedSegments, config, new UrlSegmentGroup(slicedSegments, segmentGroup.children)));
@@ -59272,7 +55557,6 @@ function split(segmentGroup, consumedSegments, slicedSegments, config, relativeL
       slicedSegments: []
     };
   }
-
   if (slicedSegments.length === 0 && containsEmptyPathMatches(segmentGroup, slicedSegments, config)) {
     const s = new UrlSegmentGroup(segmentGroup.segments, addEmptyPathsToChildrenIfNeeded(segmentGroup, consumedSegments, slicedSegments, config, segmentGroup.children, relativeLinkResolution));
     s._sourceSegment = segmentGroup;
@@ -59282,7 +55566,6 @@ function split(segmentGroup, consumedSegments, slicedSegments, config, relativeL
       slicedSegments
     };
   }
-
   const s = new UrlSegmentGroup(segmentGroup.segments, segmentGroup.children);
   s._sourceSegment = segmentGroup;
   s._segmentIndexShift = consumedSegments.length;
@@ -59291,34 +55574,27 @@ function split(segmentGroup, consumedSegments, slicedSegments, config, relativeL
     slicedSegments
   };
 }
-
 function addEmptyPathsToChildrenIfNeeded(segmentGroup, consumedSegments, slicedSegments, routes, children, relativeLinkResolution) {
   const res = {};
-
   for (const r of routes) {
     if (emptyPathMatch(segmentGroup, slicedSegments, r) && !children[getOutlet(r)]) {
       const s = new UrlSegmentGroup([], {});
       s._sourceSegment = segmentGroup;
-
       if (relativeLinkResolution === 'legacy') {
         s._segmentIndexShift = segmentGroup.segments.length;
       } else {
         s._segmentIndexShift = consumedSegments.length;
       }
-
       res[getOutlet(r)] = s;
     }
   }
-
   return Object.assign(Object.assign({}, children), res);
 }
-
 function createChildrenForEmptyPaths(segmentGroup, consumedSegments, routes, primarySegment) {
   const res = {};
   res[PRIMARY_OUTLET] = primarySegment;
   primarySegment._sourceSegment = segmentGroup;
   primarySegment._segmentIndexShift = consumedSegments.length;
-
   for (const r of routes) {
     if (r.path === '' && getOutlet(r) !== PRIMARY_OUTLET) {
       const s = new UrlSegmentGroup([], {});
@@ -59327,23 +55603,18 @@ function createChildrenForEmptyPaths(segmentGroup, consumedSegments, routes, pri
       res[getOutlet(r)] = s;
     }
   }
-
   return res;
 }
-
 function containsEmptyPathMatchesWithNamedOutlets(segmentGroup, slicedSegments, routes) {
   return routes.some(r => emptyPathMatch(segmentGroup, slicedSegments, r) && getOutlet(r) !== PRIMARY_OUTLET);
 }
-
 function containsEmptyPathMatches(segmentGroup, slicedSegments, routes) {
   return routes.some(r => emptyPathMatch(segmentGroup, slicedSegments, r));
 }
-
 function emptyPathMatch(segmentGroup, slicedSegments, r) {
   if ((segmentGroup.hasChildren() || slicedSegments.length > 0) && r.pathMatch === 'full') {
     return false;
   }
-
   return r.path === '';
 }
 /**
@@ -59351,8 +55622,6 @@ function emptyPathMatch(segmentGroup, slicedSegments, r) {
  * verifying that its children are a full match for the remainder of the `rawSegment` children as
  * well.
  */
-
-
 function isImmediateMatch(route, rawSegment, segments, outlet) {
   // We allow matches to empty paths when the outlets differ so we can match a url like `/(b:b)` to
   // a config like
@@ -59368,17 +55637,15 @@ function isImmediateMatch(route, rawSegment, segments, outlet) {
   if (getOutlet(route) !== outlet && (outlet === PRIMARY_OUTLET || !emptyPathMatch(rawSegment, segments, route))) {
     return false;
   }
-
   if (route.path === '**') {
     return true;
   }
-
   return match(rawSegment, route, segments).matched;
 }
-
 function noLeftoversInUrl(segmentGroup, segments, outlet) {
   return segments.length === 0 && !segmentGroup.children[outlet];
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59386,34 +55653,25 @@ function noLeftoversInUrl(segmentGroup, segments, outlet) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class NoMatch$1 {
   constructor(segmentGroup) {
     this.segmentGroup = segmentGroup || null;
   }
-
 }
-
 class AbsoluteRedirect {
   constructor(urlTree) {
     this.urlTree = urlTree;
   }
-
 }
-
 function noMatch(segmentGroup) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new NoMatch$1(segmentGroup));
 }
-
 function absoluteRedirect(newTree) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new AbsoluteRedirect(newTree));
 }
-
 function namedOutletsRedirect(redirectTo) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(new Error(`Only absolute redirects can have named outlets. redirectTo: '${redirectTo}'`));
 }
-
 function canLoadFails(route) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_11__.throwError)(navigationCancelingError(`Cannot load children because the guard of the route "path: '${route.path}'" returned false`));
 }
@@ -59422,12 +55680,9 @@ function canLoadFails(route) {
  *
  * Lazy modules are loaded along the way.
  */
-
-
 function applyRedirects$1(moduleInjector, configLoader, urlSerializer, urlTree, config) {
   return new ApplyRedirects(moduleInjector, configLoader, urlSerializer, urlTree, config).apply();
 }
-
 class ApplyRedirects {
   constructor(moduleInjector, configLoader, urlSerializer, urlTree, config) {
     this.configLoader = configLoader;
@@ -59437,15 +55692,14 @@ class ApplyRedirects {
     this.allowRedirects = true;
     this.ngModule = moduleInjector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
   }
-
   apply() {
-    const splitGroup = split(this.urlTree.root, [], [], this.config).segmentGroup; // TODO(atscott): creating a new segment removes the _sourceSegment _segmentIndexShift, which is
+    const splitGroup = split(this.urlTree.root, [], [], this.config).segmentGroup;
+    // TODO(atscott): creating a new segment removes the _sourceSegment _segmentIndexShift, which is
     // only necessary to prevent failures in tests which assert exact object matches. The `split` is
     // now shared between `applyRedirects` and `recognize` but only the `recognize` step needs these
     // properties. Before the implementations were merged, the `applyRedirects` would not assign
     // them. We should be able to remove this logic as a "breaking change" but should do some more
     // investigation into the failures first.
-
     const rootSegmentGroup = new UrlSegmentGroup(splitGroup.segments, splitGroup.children);
     const expanded$ = this.expandSegmentGroup(this.ngModule, this.config, rootSegmentGroup, PRIMARY_OUTLET);
     const urlTrees$ = expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(rootSegmentGroup => {
@@ -59455,19 +55709,16 @@ class ApplyRedirects {
       if (e instanceof AbsoluteRedirect) {
         // After an absolute redirect we do not apply any more redirects!
         // If this implementation changes, update the documentation note in `redirectTo`.
-        this.allowRedirects = false; // we need to run matching, so we can fetch all lazy-loaded modules
-
+        this.allowRedirects = false;
+        // we need to run matching, so we can fetch all lazy-loaded modules
         return this.match(e.urlTree);
       }
-
       if (e instanceof NoMatch$1) {
         throw this.noMatchError(e);
       }
-
       throw e;
     }));
   }
-
   match(tree) {
     const expanded$ = this.expandSegmentGroup(this.ngModule, this.config, tree.root, PRIMARY_OUTLET);
     const mapped$ = expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(rootSegmentGroup => {
@@ -59477,36 +55728,29 @@ class ApplyRedirects {
       if (e instanceof NoMatch$1) {
         throw this.noMatchError(e);
       }
-
       throw e;
     }));
   }
-
   noMatchError(e) {
     return new Error(`Cannot match any routes. URL Segment: '${e.segmentGroup}'`);
   }
-
   createUrlTree(rootCandidate, queryParams, fragment) {
     const root = rootCandidate.segments.length > 0 ? new UrlSegmentGroup([], {
       [PRIMARY_OUTLET]: rootCandidate
     }) : rootCandidate;
     return new UrlTree(root, queryParams, fragment);
   }
-
   expandSegmentGroup(ngModule, routes, segmentGroup, outlet) {
     if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
       return this.expandChildren(ngModule, routes, segmentGroup).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(children => new UrlSegmentGroup([], children)));
     }
-
     return this.expandSegment(ngModule, segmentGroup, routes, segmentGroup.segments, outlet, true);
-  } // Recursively expand segment groups for all the child outlets
-
-
+  }
+  // Recursively expand segment groups for all the child outlets
   expandChildren(ngModule, routes, segmentGroup) {
     // Expand outlets one at a time, starting with the primary outlet. We need to do it this way
     // because an absolute redirect from the primary outlet takes precedence.
     const childOutlets = [];
-
     for (const child of Object.keys(segmentGroup.children)) {
       if (child === 'primary') {
         childOutlets.unshift(child);
@@ -59514,12 +55758,11 @@ class ApplyRedirects {
         childOutlets.push(child);
       }
     }
-
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(childOutlets).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(childOutlet => {
-      const child = segmentGroup.children[childOutlet]; // Sort the routes so routes with outlets that match the segment appear
+      const child = segmentGroup.children[childOutlet];
+      // Sort the routes so routes with outlets that match the segment appear
       // first, followed by routes for other outlets, which might match if they have an
       // empty path.
-
       const sortedRoutes = sortByMatchingOutlets(routes, childOutlet);
       return this.expandSegmentGroup(ngModule, sortedRoutes, child, childOutlet).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(s => ({
         segment: s,
@@ -59530,7 +55773,6 @@ class ApplyRedirects {
       return children;
     }, {}), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_14__.last)());
   }
-
   expandSegment(ngModule, segmentGroup, routes, segments, outlet, allowRedirects) {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(routes).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(r => {
       const expanded$ = this.expandSegmentAgainstRoute(ngModule, segmentGroup, routes, r, segments, outlet, allowRedirects);
@@ -59538,7 +55780,6 @@ class ApplyRedirects {
         if (e instanceof NoMatch$1) {
           return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
         }
-
         throw e;
       }));
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)(s => !!s), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)((e, _) => {
@@ -59546,51 +55787,39 @@ class ApplyRedirects {
         if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
           return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup([], {}));
         }
-
         return noMatch(segmentGroup);
       }
-
       throw e;
     }));
   }
-
   expandSegmentAgainstRoute(ngModule, segmentGroup, routes, route, paths, outlet, allowRedirects) {
     if (!isImmediateMatch(route, segmentGroup, paths, outlet)) {
       return noMatch(segmentGroup);
     }
-
     if (route.redirectTo === undefined) {
       return this.matchSegmentAgainstRoute(ngModule, segmentGroup, route, paths, outlet);
     }
-
     if (allowRedirects && this.allowRedirects) {
       return this.expandSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, paths, outlet);
     }
-
     return noMatch(segmentGroup);
   }
-
   expandSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet) {
     if (route.path === '**') {
       return this.expandWildCardWithParamsAgainstRouteUsingRedirect(ngModule, routes, route, outlet);
     }
-
     return this.expandRegularSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet);
   }
-
   expandWildCardWithParamsAgainstRouteUsingRedirect(ngModule, routes, route, outlet) {
     const newTree = this.applyRedirectCommands([], route.redirectTo, {});
-
     if (route.redirectTo.startsWith('/')) {
       return absoluteRedirect(newTree);
     }
-
     return this.lineralizeSegments(route, newTree).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(newSegments => {
       const group = new UrlSegmentGroup(newSegments, {});
       return this.expandSegment(ngModule, group, routes, newSegments, outlet, false);
     }));
   }
-
   expandRegularSegmentAgainstRouteUsingRedirect(ngModule, segmentGroup, routes, route, segments, outlet) {
     const {
       matched,
@@ -59600,16 +55829,13 @@ class ApplyRedirects {
     } = match(segmentGroup, route, segments);
     if (!matched) return noMatch(segmentGroup);
     const newTree = this.applyRedirectCommands(consumedSegments, route.redirectTo, positionalParamSegments);
-
     if (route.redirectTo.startsWith('/')) {
       return absoluteRedirect(newTree);
     }
-
     return this.lineralizeSegments(route, newTree).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(newSegments => {
       return this.expandSegment(ngModule, segmentGroup, routes, newSegments.concat(remainingSegments), outlet, false);
     }));
   }
-
   matchSegmentAgainstRoute(ngModule, rawSegmentGroup, route, segments, outlet) {
     if (route.path === '**') {
       if (route.loadChildren) {
@@ -59619,10 +55845,8 @@ class ApplyRedirects {
           return new UrlSegmentGroup(segments, {});
         }));
       }
-
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup(segments, {}));
     }
-
     const {
       matched,
       consumedSegments,
@@ -59636,37 +55860,31 @@ class ApplyRedirects {
       const {
         segmentGroup: splitSegmentGroup,
         slicedSegments
-      } = split(rawSegmentGroup, consumedSegments, remainingSegments, childConfig); // See comment on the other call to `split` about why this is necessary.
-
+      } = split(rawSegmentGroup, consumedSegments, remainingSegments, childConfig);
+      // See comment on the other call to `split` about why this is necessary.
       const segmentGroup = new UrlSegmentGroup(splitSegmentGroup.segments, splitSegmentGroup.children);
-
       if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
         const expanded$ = this.expandChildren(childModule, childConfig, segmentGroup);
         return expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(children => new UrlSegmentGroup(consumedSegments, children)));
       }
-
       if (childConfig.length === 0 && slicedSegments.length === 0) {
         return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new UrlSegmentGroup(consumedSegments, {}));
       }
-
       const matchedOnOutlet = getOutlet(route) === outlet;
       const expanded$ = this.expandSegment(childModule, segmentGroup, childConfig, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet, true);
       return expanded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(cs => new UrlSegmentGroup(consumedSegments.concat(cs.segments), cs.children)));
     }));
   }
-
   getChildConfig(ngModule, route, segments) {
     if (route.children) {
       // The children belong to the same module
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new LoadedRouterConfig(route.children, ngModule));
     }
-
     if (route.loadChildren) {
       // lazy children belong to the loaded module
       if (route._loadedConfig !== undefined) {
         return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(route._loadedConfig);
       }
-
       return this.runCanLoadGuards(ngModule.injector, route, segments).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(shouldLoadResult => {
         if (shouldLoadResult) {
           return this.configLoader.load(ngModule.injector, route).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(cfg => {
@@ -59674,21 +55892,17 @@ class ApplyRedirects {
             return cfg;
           }));
         }
-
         return canLoadFails(route);
       }));
     }
-
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(new LoadedRouterConfig([], ngModule));
   }
-
   runCanLoadGuards(moduleInjector, route, segments) {
     const canLoad = route.canLoad;
     if (!canLoad || canLoad.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
     const canLoadObservables = canLoad.map(injectionToken => {
       const guard = moduleInjector.get(injectionToken);
       let guardVal;
-
       if (isCanLoad(guard)) {
         guardVal = guard.canLoad(route, segments);
       } else if (isFunction(guard)) {
@@ -59696,7 +55910,6 @@ class ApplyRedirects {
       } else {
         throw new Error('Invalid CanLoad guard');
       }
-
       return wrapIntoObservable(guardVal);
     });
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canLoadObservables).pipe(prioritizedGuardValue(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(result => {
@@ -59706,40 +55919,31 @@ class ApplyRedirects {
       throw error;
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(result => result === true));
   }
-
   lineralizeSegments(route, urlTree) {
     let res = [];
     let c = urlTree.root;
-
     while (true) {
       res = res.concat(c.segments);
-
       if (c.numberOfChildren === 0) {
         return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(res);
       }
-
       if (c.numberOfChildren > 1 || !c.children[PRIMARY_OUTLET]) {
         return namedOutletsRedirect(route.redirectTo);
       }
-
       c = c.children[PRIMARY_OUTLET];
     }
   }
-
   applyRedirectCommands(segments, redirectTo, posParams) {
     return this.applyRedirectCreatreUrlTree(redirectTo, this.urlSerializer.parse(redirectTo), segments, posParams);
   }
-
   applyRedirectCreatreUrlTree(redirectTo, urlTree, segments, posParams) {
     const newRoot = this.createSegmentGroup(redirectTo, urlTree.root, segments, posParams);
     return new UrlTree(newRoot, this.createQueryParams(urlTree.queryParams, this.urlTree.queryParams), urlTree.fragment);
   }
-
   createQueryParams(redirectToParams, actualParams) {
     const res = {};
     forEach(redirectToParams, (v, k) => {
       const copySourceValue = typeof v === 'string' && v.startsWith(':');
-
       if (copySourceValue) {
         const sourceName = v.substring(1);
         res[k] = actualParams[sourceName];
@@ -59749,7 +55953,6 @@ class ApplyRedirects {
     });
     return res;
   }
-
   createSegmentGroup(redirectTo, group, segments, posParams) {
     const updatedSegments = this.createSegments(redirectTo, group.segments, segments, posParams);
     let children = {};
@@ -59758,32 +55961,25 @@ class ApplyRedirects {
     });
     return new UrlSegmentGroup(updatedSegments, children);
   }
-
   createSegments(redirectTo, redirectToSegments, actualSegments, posParams) {
     return redirectToSegments.map(s => s.path.startsWith(':') ? this.findPosParam(redirectTo, s, posParams) : this.findOrReturn(s, actualSegments));
   }
-
   findPosParam(redirectTo, redirectToUrlSegment, posParams) {
     const pos = posParams[redirectToUrlSegment.path.substring(1)];
     if (!pos) throw new Error(`Cannot redirect to '${redirectTo}'. Cannot find '${redirectToUrlSegment.path}'.`);
     return pos;
   }
-
   findOrReturn(redirectToUrlSegment, actualSegments) {
     let idx = 0;
-
     for (const s of actualSegments) {
       if (s.path === redirectToUrlSegment.path) {
         actualSegments.splice(idx);
         return s;
       }
-
       idx++;
     }
-
     return redirectToUrlSegment;
   }
-
 }
 /**
  * When possible, merges the primary outlet child into the parent `UrlSegmentGroup`.
@@ -59793,14 +55989,11 @@ class ApplyRedirects {
  * children become the children of `s`. Think of this like a 'squash', merging the child segment
  * group into the parent.
  */
-
-
 function mergeTrivialChildren(s) {
   if (s.numberOfChildren === 1 && s.children[PRIMARY_OUTLET]) {
     const c = s.children[PRIMARY_OUTLET];
     return new UrlSegmentGroup(s.segments.concat(c.segments), c.children);
   }
-
   return s;
 }
 /**
@@ -59808,23 +56001,20 @@ function mergeTrivialChildren(s) {
  * (those which have no segments and no children themselves). The latter prevents serializing a
  * group into something like `/a(aux:)`, where `aux` is an empty child segment.
  */
-
-
 function squashSegmentGroup(segmentGroup) {
   const newChildren = {};
-
   for (const childOutlet of Object.keys(segmentGroup.children)) {
     const child = segmentGroup.children[childOutlet];
-    const childCandidate = squashSegmentGroup(child); // don't add empty children
-
+    const childCandidate = squashSegmentGroup(child);
+    // don't add empty children
     if (childCandidate.segments.length > 0 || childCandidate.hasChildren()) {
       newChildren[childOutlet] = childCandidate;
     }
   }
-
   const s = new UrlSegmentGroup(segmentGroup.segments, newChildren);
   return mergeTrivialChildren(s);
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59832,13 +56022,12 @@ function squashSegmentGroup(segmentGroup) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function applyRedirects(moduleInjector, configLoader, urlSerializer, config) {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => applyRedirects$1(moduleInjector, configLoader, urlSerializer, t.extractedUrl, config).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(urlAfterRedirects => Object.assign(Object.assign({}, t), {
     urlAfterRedirects
   }))));
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -59846,30 +56035,23 @@ function applyRedirects(moduleInjector, configLoader, urlSerializer, config) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class CanActivate {
   constructor(path) {
     this.path = path;
     this.route = this.path[this.path.length - 1];
   }
-
 }
-
 class CanDeactivate {
   constructor(component, route) {
     this.component = component;
     this.route = route;
   }
-
 }
-
 function getAllRouteGuards(future, curr, parentContexts) {
   const futureRoot = future._root;
   const currRoot = curr ? curr._root : null;
   return getChildRouteGuards(futureRoot, currRoot, parentContexts, [futureRoot.value]);
 }
-
 function getCanActivateChild(p) {
   const canActivateChild = p.routeConfig ? p.routeConfig.canActivateChild : null;
   if (!canActivateChild || canActivateChild.length === 0) return null;
@@ -59878,65 +56060,57 @@ function getCanActivateChild(p) {
     guards: canActivateChild
   };
 }
-
 function getToken(token, snapshot, moduleInjector) {
   const config = getClosestLoadedConfig(snapshot);
   const injector = config ? config.module.injector : moduleInjector;
   return injector.get(token);
 }
-
 function getClosestLoadedConfig(snapshot) {
   if (!snapshot) return null;
-
   for (let s = snapshot.parent; s; s = s.parent) {
     const route = s.routeConfig;
     if (route && route._loadedConfig) return route._loadedConfig;
   }
-
   return null;
 }
-
 function getChildRouteGuards(futureNode, currNode, contexts, futurePath, checks = {
   canDeactivateChecks: [],
   canActivateChecks: []
 }) {
-  const prevChildren = nodeChildrenAsMap(currNode); // Process the children of the future route
-
+  const prevChildren = nodeChildrenAsMap(currNode);
+  // Process the children of the future route
   futureNode.children.forEach(c => {
     getRouteGuards(c, prevChildren[c.value.outlet], contexts, futurePath.concat([c.value]), checks);
     delete prevChildren[c.value.outlet];
-  }); // Process any children left from the current route (not active for the future route)
-
+  });
+  // Process any children left from the current route (not active for the future route)
   forEach(prevChildren, (v, k) => deactivateRouteAndItsChildren(v, contexts.getContext(k), checks));
   return checks;
 }
-
 function getRouteGuards(futureNode, currNode, parentContexts, futurePath, checks = {
   canDeactivateChecks: [],
   canActivateChecks: []
 }) {
   const future = futureNode.value;
   const curr = currNode ? currNode.value : null;
-  const context = parentContexts ? parentContexts.getContext(futureNode.value.outlet) : null; // reusing the node
-
+  const context = parentContexts ? parentContexts.getContext(futureNode.value.outlet) : null;
+  // reusing the node
   if (curr && future.routeConfig === curr.routeConfig) {
     const shouldRun = shouldRunGuardsAndResolvers(curr, future, future.routeConfig.runGuardsAndResolvers);
-
     if (shouldRun) {
       checks.canActivateChecks.push(new CanActivate(futurePath));
     } else {
       // we need to set the data
       future.data = curr.data;
       future._resolvedData = curr._resolvedData;
-    } // If we have a component, we need to go through an outlet.
-
-
+    }
+    // If we have a component, we need to go through an outlet.
     if (future.component) {
-      getChildRouteGuards(futureNode, currNode, context ? context.children : null, futurePath, checks); // if we have a componentless route, we recurse but keep the same outlet map.
+      getChildRouteGuards(futureNode, currNode, context ? context.children : null, futurePath, checks);
+      // if we have a componentless route, we recurse but keep the same outlet map.
     } else {
       getChildRouteGuards(futureNode, currNode, parentContexts, futurePath, checks);
     }
-
     if (shouldRun && context && context.outlet && context.outlet.isActivated) {
       checks.canDeactivateChecks.push(new CanDeactivate(context.outlet.component, curr));
     }
@@ -59944,43 +56118,35 @@ function getRouteGuards(futureNode, currNode, parentContexts, futurePath, checks
     if (curr) {
       deactivateRouteAndItsChildren(currNode, context, checks);
     }
-
-    checks.canActivateChecks.push(new CanActivate(futurePath)); // If we have a component, we need to go through an outlet.
-
+    checks.canActivateChecks.push(new CanActivate(futurePath));
+    // If we have a component, we need to go through an outlet.
     if (future.component) {
-      getChildRouteGuards(futureNode, null, context ? context.children : null, futurePath, checks); // if we have a componentless route, we recurse but keep the same outlet map.
+      getChildRouteGuards(futureNode, null, context ? context.children : null, futurePath, checks);
+      // if we have a componentless route, we recurse but keep the same outlet map.
     } else {
       getChildRouteGuards(futureNode, null, parentContexts, futurePath, checks);
     }
   }
-
   return checks;
 }
-
 function shouldRunGuardsAndResolvers(curr, future, mode) {
   if (typeof mode === 'function') {
     return mode(curr, future);
   }
-
   switch (mode) {
     case 'pathParamsChange':
       return !equalPath(curr.url, future.url);
-
     case 'pathParamsOrQueryParamsChange':
       return !equalPath(curr.url, future.url) || !shallowEqual(curr.queryParams, future.queryParams);
-
     case 'always':
       return true;
-
     case 'paramsOrQueryParamsChange':
       return !equalParamsAndUrlSegments(curr, future) || !shallowEqual(curr.queryParams, future.queryParams);
-
     case 'paramsChange':
     default:
       return !equalParamsAndUrlSegments(curr, future);
   }
 }
-
 function deactivateRouteAndItsChildren(route, context, checks) {
   const children = nodeChildrenAsMap(route);
   const r = route.value;
@@ -59993,7 +56159,6 @@ function deactivateRouteAndItsChildren(route, context, checks) {
       deactivateRouteAndItsChildren(node, null, checks);
     }
   });
-
   if (!r.component) {
     checks.canDeactivateChecks.push(new CanDeactivate(null, r));
   } else if (context && context.outlet && context.outlet.isActivated) {
@@ -60002,6 +56167,7 @@ function deactivateRouteAndItsChildren(route, context, checks) {
     checks.canDeactivateChecks.push(new CanDeactivate(null, r));
   }
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60009,8 +56175,6 @@ function deactivateRouteAndItsChildren(route, context, checks) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function checkGuards(moduleInjector, forwardEvent) {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
     const {
@@ -60021,13 +56185,11 @@ function checkGuards(moduleInjector, forwardEvent) {
         canDeactivateChecks
       }
     } = t;
-
     if (canDeactivateChecks.length === 0 && canActivateChecks.length === 0) {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(Object.assign(Object.assign({}, t), {
         guardsResult: true
       }));
     }
-
     return runCanDeactivateChecks(canDeactivateChecks, targetSnapshot, currentSnapshot, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(canDeactivate => {
       return canDeactivate && isBoolean(canDeactivate) ? runCanActivateChecks(targetSnapshot, canActivateChecks, moduleInjector, forwardEvent) : (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canDeactivate);
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(guardsResult => Object.assign(Object.assign({}, t), {
@@ -60035,13 +56197,11 @@ function checkGuards(moduleInjector, forwardEvent) {
     })));
   });
 }
-
 function runCanDeactivateChecks(checks, futureRSS, currRSS, moduleInjector) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(checks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(check => runCanDeactivate(check.component, check.route, currRSS, futureRSS, moduleInjector)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)(result => {
     return result !== true;
   }, true));
 }
-
 function runCanActivateChecks(futureSnapshot, checks, moduleInjector, forwardEvent) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(checks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(check => {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_19__.concat)(fireChildActivationStart(check.route.parent, forwardEvent), fireActivationStart(check.route, forwardEvent), runCanActivateChild(futureSnapshot, check.path, moduleInjector), runCanActivate(futureSnapshot, check.route, moduleInjector));
@@ -60057,13 +56217,10 @@ function runCanActivateChecks(futureSnapshot, checks, moduleInjector, forwardEve
  * return
  * `true` so checks continue to run.
  */
-
-
 function fireActivationStart(snapshot, forwardEvent) {
   if (snapshot !== null && forwardEvent) {
     forwardEvent(new ActivationStart(snapshot));
   }
-
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
 }
 /**
@@ -60074,16 +56231,12 @@ function fireActivationStart(snapshot, forwardEvent) {
  * return
  * `true` so checks continue to run.
  */
-
-
 function fireChildActivationStart(snapshot, forwardEvent) {
   if (snapshot !== null && forwardEvent) {
     forwardEvent(new ChildActivationStart(snapshot));
   }
-
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
 }
-
 function runCanActivate(futureRSS, futureARS, moduleInjector) {
   const canActivate = futureARS.routeConfig ? futureARS.routeConfig.canActivate : null;
   if (!canActivate || canActivate.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
@@ -60091,7 +56244,6 @@ function runCanActivate(futureRSS, futureARS, moduleInjector) {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_20__.defer)(() => {
       const guard = getToken(c, futureARS, moduleInjector);
       let observable;
-
       if (isCanActivate(guard)) {
         observable = wrapIntoObservable(guard.canActivate(futureARS, futureRSS));
       } else if (isFunction(guard)) {
@@ -60099,13 +56251,11 @@ function runCanActivate(futureRSS, futureARS, moduleInjector) {
       } else {
         throw new Error('Invalid CanActivate guard');
       }
-
       return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
     });
   });
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canActivateObservables).pipe(prioritizedGuardValue());
 }
-
 function runCanActivateChild(futureRSS, path, moduleInjector) {
   const futureARS = path[path.length - 1];
   const canActivateChildGuards = path.slice(0, path.length - 1).reverse().map(p => getCanActivateChild(p)).filter(_ => _ !== null);
@@ -60114,7 +56264,6 @@ function runCanActivateChild(futureRSS, path, moduleInjector) {
       const guardsMapped = d.guards.map(c => {
         const guard = getToken(c, d.node, moduleInjector);
         let observable;
-
         if (isCanActivateChild(guard)) {
           observable = wrapIntoObservable(guard.canActivateChild(futureARS, futureRSS));
         } else if (isFunction(guard)) {
@@ -60122,7 +56271,6 @@ function runCanActivateChild(futureRSS, path, moduleInjector) {
         } else {
           throw new Error('Invalid CanActivateChild guard');
         }
-
         return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
       });
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(guardsMapped).pipe(prioritizedGuardValue());
@@ -60130,14 +56278,12 @@ function runCanActivateChild(futureRSS, path, moduleInjector) {
   });
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canActivateChildGuardsMapped).pipe(prioritizedGuardValue());
 }
-
 function runCanDeactivate(component, currARS, currRSS, futureRSS, moduleInjector) {
   const canDeactivate = currARS && currARS.routeConfig ? currARS.routeConfig.canDeactivate : null;
   if (!canDeactivate || canDeactivate.length === 0) return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(true);
   const canDeactivateObservables = canDeactivate.map(c => {
     const guard = getToken(c, currARS, moduleInjector);
     let observable;
-
     if (isCanDeactivate(guard)) {
       observable = wrapIntoObservable(guard.canDeactivate(component, currARS, currRSS, futureRSS));
     } else if (isFunction(guard)) {
@@ -60145,11 +56291,11 @@ function runCanDeactivate(component, currARS, currRSS, futureRSS, moduleInjector
     } else {
       throw new Error('Invalid CanDeactivate guard');
     }
-
     return observable.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_15__.first)());
   });
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(canDeactivateObservables).pipe(prioritizedGuardValue());
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60157,19 +56303,14 @@ function runCanDeactivate(component, currARS, currRSS, futureRSS, moduleInjector
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 class NoMatch {}
-
 function newObservableError(e) {
   // TODO(atscott): This pattern is used throughout the router code and can be `throwError` instead.
   return new rxjs__WEBPACK_IMPORTED_MODULE_21__.Observable(obs => obs.error(e));
 }
-
 function recognize$1(rootComponentType, config, urlTree, url, paramsInheritanceStrategy = 'emptyOnly', relativeLinkResolution = 'legacy') {
   try {
     const result = new Recognizer(rootComponentType, config, urlTree, url, paramsInheritanceStrategy, relativeLinkResolution).recognize();
-
     if (result === null) {
       return newObservableError(new NoMatch());
     } else {
@@ -60181,7 +56322,6 @@ function recognize$1(rootComponentType, config, urlTree, url, paramsInheritanceS
     return newObservableError(e);
   }
 }
-
 class Recognizer {
   constructor(rootComponentType, config, urlTree, url, paramsInheritanceStrategy, relativeLinkResolution) {
     this.rootComponentType = rootComponentType;
@@ -60191,24 +56331,20 @@ class Recognizer {
     this.paramsInheritanceStrategy = paramsInheritanceStrategy;
     this.relativeLinkResolution = relativeLinkResolution;
   }
-
   recognize() {
     const rootSegmentGroup = split(this.urlTree.root, [], [], this.config.filter(c => c.redirectTo === undefined), this.relativeLinkResolution).segmentGroup;
     const children = this.processSegmentGroup(this.config, rootSegmentGroup, PRIMARY_OUTLET);
-
     if (children === null) {
       return null;
-    } // Use Object.freeze to prevent readers of the Router state from modifying it outside of a
+    }
+    // Use Object.freeze to prevent readers of the Router state from modifying it outside of a
     // navigation, resulting in the router being out of sync with the browser.
-
-
     const root = new ActivatedRouteSnapshot([], Object.freeze({}), Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, {}, PRIMARY_OUTLET, this.rootComponentType, null, this.urlTree.root, -1, {});
     const rootNode = new TreeNode(root, children);
     const routeState = new RouterStateSnapshot(this.url, rootNode);
     this.inheritParamsAndData(routeState._root);
     return routeState;
   }
-
   inheritParamsAndData(routeNode) {
     const route = routeNode.value;
     const i = inheritedParamsDataResolve(route, this.paramsInheritanceStrategy);
@@ -60216,12 +56352,10 @@ class Recognizer {
     route.data = Object.freeze(i.data);
     routeNode.children.forEach(n => this.inheritParamsAndData(n));
   }
-
   processSegmentGroup(config, segmentGroup, outlet) {
     if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
       return this.processChildren(config, segmentGroup);
     }
-
     return this.processSegment(config, segmentGroup, segmentGroup.segments, outlet);
   }
   /**
@@ -60232,103 +56366,83 @@ class Recognizer {
    * @param segmentGroup - The `UrlSegmentGroup` whose children need to be matched against the
    *     config.
    */
-
-
   processChildren(config, segmentGroup) {
     const children = [];
-
     for (const childOutlet of Object.keys(segmentGroup.children)) {
-      const child = segmentGroup.children[childOutlet]; // Sort the config so that routes with outlets that match the one being activated appear
+      const child = segmentGroup.children[childOutlet];
+      // Sort the config so that routes with outlets that match the one being activated appear
       // first, followed by routes for other outlets, which might match if they have an empty path.
-
       const sortedConfig = sortByMatchingOutlets(config, childOutlet);
       const outletChildren = this.processSegmentGroup(sortedConfig, child, childOutlet);
-
       if (outletChildren === null) {
         // Configs must match all segment children so because we did not find a match for this
         // outlet, return `null`.
         return null;
       }
-
       children.push(...outletChildren);
-    } // Because we may have matched two outlets to the same empty path segment, we can have multiple
+    }
+    // Because we may have matched two outlets to the same empty path segment, we can have multiple
     // activated results for the same outlet. We should merge the children of these results so the
     // final return value is only one `TreeNode` per outlet.
-
-
     const mergedChildren = mergeEmptyPathMatches(children);
-
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       // This should really never happen - we are only taking the first match for each outlet and
       // merge the empty path matches.
       checkOutletNameUniqueness(mergedChildren);
     }
-
     sortActivatedRouteSnapshots(mergedChildren);
     return mergedChildren;
   }
-
   processSegment(config, segmentGroup, segments, outlet) {
     for (const r of config) {
       const children = this.processSegmentAgainstRoute(r, segmentGroup, segments, outlet);
-
       if (children !== null) {
         return children;
       }
     }
-
     if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
       return [];
     }
-
     return null;
   }
-
   processSegmentAgainstRoute(route, rawSegment, segments, outlet) {
     if (route.redirectTo || !isImmediateMatch(route, rawSegment, segments, outlet)) return null;
     let snapshot;
     let consumedSegments = [];
     let remainingSegments = [];
-
     if (route.path === '**') {
       const params = segments.length > 0 ? last(segments).parameters : {};
       snapshot = new ActivatedRouteSnapshot(segments, params, Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, getData(route), getOutlet(route), route.component, route, getSourceSegmentGroup(rawSegment), getPathIndexShift(rawSegment) + segments.length, getResolve(route));
     } else {
       const result = match(rawSegment, route, segments);
-
       if (!result.matched) {
         return null;
       }
-
       consumedSegments = result.consumedSegments;
       remainingSegments = result.remainingSegments;
       snapshot = new ActivatedRouteSnapshot(consumedSegments, result.parameters, Object.freeze(Object.assign({}, this.urlTree.queryParams)), this.urlTree.fragment, getData(route), getOutlet(route), route.component, route, getSourceSegmentGroup(rawSegment), getPathIndexShift(rawSegment) + consumedSegments.length, getResolve(route));
     }
-
     const childConfig = getChildConfig(route);
     const {
       segmentGroup,
       slicedSegments
-    } = split(rawSegment, consumedSegments, remainingSegments, // Filter out routes with redirectTo because we are trying to create activated route
+    } = split(rawSegment, consumedSegments, remainingSegments,
+    // Filter out routes with redirectTo because we are trying to create activated route
     // snapshots and don't handle redirects here. That should have been done in
     // `applyRedirects`.
     childConfig.filter(c => c.redirectTo === undefined), this.relativeLinkResolution);
-
     if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
       const children = this.processChildren(childConfig, segmentGroup);
-
       if (children === null) {
         return null;
       }
-
       return [new TreeNode(snapshot, children)];
     }
-
     if (childConfig.length === 0 && slicedSegments.length === 0) {
       return [new TreeNode(snapshot, [])];
     }
-
-    const matchedOnOutlet = getOutlet(route) === outlet; // If we matched a config due to empty path match on a different outlet, we need to continue
+    const matchedOnOutlet = getOutlet(route) === outlet;
+    // If we matched a config due to empty path match on a different outlet, we need to continue
     // passing the current outlet for the segment rather than switch to PRIMARY.
     // Note that we switch to primary when we have a match because outlet configs look like this:
     // {path: 'a', outlet: 'a', children: [
@@ -60336,18 +56450,13 @@ class Recognizer {
     //  {path: 'c', component: C},
     // ]}
     // Notice that the children of the named outlet are configured with the primary outlet
-
     const children = this.processSegment(childConfig, segmentGroup, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet);
-
     if (children === null) {
       return null;
     }
-
     return [new TreeNode(snapshot, children)];
   }
-
 }
-
 function sortActivatedRouteSnapshots(nodes) {
   nodes.sort((a, b) => {
     if (a.value.outlet === PRIMARY_OUTLET) return -1;
@@ -60355,19 +56464,15 @@ function sortActivatedRouteSnapshots(nodes) {
     return a.value.outlet.localeCompare(b.value.outlet);
   });
 }
-
 function getChildConfig(route) {
   if (route.children) {
     return route.children;
   }
-
   if (route.loadChildren) {
     return route._loadedConfig.routes;
   }
-
   return [];
 }
-
 function hasEmptyPathConfig(node) {
   const config = node.value.routeConfig;
   return config && config.path === '' && config.redirectTo === undefined;
@@ -60377,85 +56482,68 @@ function hasEmptyPathConfig(node) {
  * children from each duplicate. This is necessary because different outlets can match a single
  * empty path route config and the results need to then be merged.
  */
-
-
 function mergeEmptyPathMatches(nodes) {
-  const result = []; // The set of nodes which contain children that were merged from two duplicate empty path nodes.
-
+  const result = [];
+  // The set of nodes which contain children that were merged from two duplicate empty path nodes.
   const mergedNodes = new Set();
-
   for (const node of nodes) {
     if (!hasEmptyPathConfig(node)) {
       result.push(node);
       continue;
     }
-
     const duplicateEmptyPathNode = result.find(resultNode => node.value.routeConfig === resultNode.value.routeConfig);
-
     if (duplicateEmptyPathNode !== undefined) {
       duplicateEmptyPathNode.children.push(...node.children);
       mergedNodes.add(duplicateEmptyPathNode);
     } else {
       result.push(node);
     }
-  } // For each node which has children from multiple sources, we need to recompute a new `TreeNode`
+  }
+  // For each node which has children from multiple sources, we need to recompute a new `TreeNode`
   // by also merging those children. This is necessary when there are multiple empty path configs in
   // a row. Put another way: whenever we combine children of two nodes, we need to also check if any
   // of those children can be combined into a single node as well.
-
-
   for (const mergedNode of mergedNodes) {
     const mergedChildren = mergeEmptyPathMatches(mergedNode.children);
     result.push(new TreeNode(mergedNode.value, mergedChildren));
   }
-
   return result.filter(n => !mergedNodes.has(n));
 }
-
 function checkOutletNameUniqueness(nodes) {
   const names = {};
   nodes.forEach(n => {
     const routeWithSameOutletName = names[n.value.outlet];
-
     if (routeWithSameOutletName) {
       const p = routeWithSameOutletName.url.map(s => s.toString()).join('/');
       const c = n.value.url.map(s => s.toString()).join('/');
       throw new Error(`Two segments cannot have the same outlet name: '${p}' and '${c}'.`);
     }
-
     names[n.value.outlet] = n.value;
   });
 }
-
 function getSourceSegmentGroup(segmentGroup) {
   let s = segmentGroup;
-
   while (s._sourceSegment) {
     s = s._sourceSegment;
   }
-
   return s;
 }
-
 function getPathIndexShift(segmentGroup) {
   let s = segmentGroup;
   let res = s._segmentIndexShift ? s._segmentIndexShift : 0;
-
   while (s._sourceSegment) {
     s = s._sourceSegment;
     res += s._segmentIndexShift ? s._segmentIndexShift : 0;
   }
-
   return res - 1;
 }
-
 function getData(route) {
   return route.data || {};
 }
-
 function getResolve(route) {
   return route.resolve || {};
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60463,13 +56551,12 @@ function getResolve(route) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function recognize(rootComponentType, config, serializer, paramsInheritanceStrategy, relativeLinkResolution) {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => recognize$1(rootComponentType, config, t.urlAfterRedirects, serializer(t.urlAfterRedirects), paramsInheritanceStrategy, relativeLinkResolution).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(targetSnapshot => Object.assign(Object.assign({}, t), {
     targetSnapshot
   }))));
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60477,8 +56564,6 @@ function recognize(rootComponentType, config, serializer, paramsInheritanceStrat
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-
 function resolveData(paramsInheritanceStrategy, moduleInjector) {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
     const {
@@ -60487,16 +56572,13 @@ function resolveData(paramsInheritanceStrategy, moduleInjector) {
         canActivateChecks
       }
     } = t;
-
     if (!canActivateChecks.length) {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t);
     }
-
     let canActivateChecksResolved = 0;
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(canActivateChecks).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(check => runResolve(check.route, targetSnapshot, paramsInheritanceStrategy, moduleInjector)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(() => canActivateChecksResolved++), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_22__.takeLast)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(_ => canActivateChecksResolved === canActivateChecks.length ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t) : rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY));
   });
 }
-
 function runResolve(futureARS, futureRSS, paramsInheritanceStrategy, moduleInjector) {
   const resolve = futureARS._resolve;
   return resolveNode(resolve, futureARS, futureRSS, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(resolvedData => {
@@ -60505,14 +56587,11 @@ function runResolve(futureARS, futureRSS, paramsInheritanceStrategy, moduleInjec
     return null;
   }));
 }
-
 function resolveNode(resolve, futureARS, futureRSS, moduleInjector) {
   const keys = getDataKeys(resolve);
-
   if (keys.length === 0) {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)({});
   }
-
   const data = {};
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(keys).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(key => getResolver(resolve[key], futureARS, futureRSS, moduleInjector).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(value => {
     data[key] = value;
@@ -60522,19 +56601,17 @@ function resolveNode(resolve, futureARS, futureRSS, moduleInjector) {
     if (getDataKeys(data).length === keys.length) {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(data);
     }
-
     return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
   }));
 }
-
 function getDataKeys(obj) {
   return [...Object.keys(obj), ...Object.getOwnPropertySymbols(obj)];
 }
-
 function getResolver(injectionToken, futureARS, futureRSS, moduleInjector) {
   const resolver = getToken(injectionToken, futureARS, moduleInjector);
   return resolver.resolve ? wrapIntoObservable(resolver.resolve(futureARS, futureRSS)) : wrapIntoObservable(resolver(futureARS, futureRSS));
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60542,26 +56619,22 @@ function getResolver(injectionToken, futureARS, futureRSS, moduleInjector) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * Perform a side effect through a switchMap for every emission on the source Observable,
  * but return an Observable that is identical to the source. It's essentially the same as
  * the `tap` operator, but if the side effectful `next` function returns an ObservableInput,
  * it will wait before continuing with the original value.
  */
-
-
 function switchTap(next) {
   return (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(v => {
     const nextResult = next(v);
-
     if (nextResult) {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(nextResult).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(() => v));
     }
-
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(v);
   });
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60569,7 +56642,6 @@ function switchTap(next) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -60577,8 +56649,6 @@ function switchTap(next) {
  *
  * @publicApi
  */
-
-
 class RouteReuseStrategy {}
 /**
  * @description
@@ -60597,8 +56667,6 @@ class RouteReuseStrategy {}
  * class that extends the `BaseRouteReuseStrategy` one.
  * @publicApi
  */
-
-
 class BaseRouteReuseStrategy {
   /**
    * Whether the given route should detach for later reuse.
@@ -60610,18 +56678,12 @@ class BaseRouteReuseStrategy {
   /**
    * A no-op; the route is never stored since this strategy never detaches routes for later re-use.
    */
-
-
   store(route, detachedTree) {}
   /** Returns `false`, meaning the route (and its subtree) is never reattached */
-
-
   shouldAttach(route) {
     return false;
   }
   /** Returns `null` because this strategy does not store routes for later re-use. */
-
-
   retrieve(route) {
     return null;
   }
@@ -60630,15 +56692,12 @@ class BaseRouteReuseStrategy {
    * This strategy returns `true` when the future route config and current route config are
    * identical.
    */
-
-
   shouldReuseRoute(future, curr) {
     return future.routeConfig === curr.routeConfig;
   }
-
 }
-
 class DefaultRouteReuseStrategy extends BaseRouteReuseStrategy {}
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60646,7 +56705,6 @@ class DefaultRouteReuseStrategy extends BaseRouteReuseStrategy {}
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * The [DI token](guide/glossary/#di-token) for a router configuration.
  *
@@ -60657,10 +56715,7 @@ class DefaultRouteReuseStrategy extends BaseRouteReuseStrategy {}
  *
  * @publicApi
  */
-
-
 const ROUTES = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTES');
-
 class RouterConfigLoader {
   constructor(injector, compiler, onLoadStartListener, onLoadEndListener) {
     this.injector = injector;
@@ -60668,37 +56723,32 @@ class RouterConfigLoader {
     this.onLoadStartListener = onLoadStartListener;
     this.onLoadEndListener = onLoadEndListener;
   }
-
   load(parentInjector, route) {
     if (route._loader$) {
       return route._loader$;
     }
-
     if (this.onLoadStartListener) {
       this.onLoadStartListener(route);
     }
-
     const moduleFactory$ = this.loadModuleFactory(route.loadChildren);
     const loadRunner = moduleFactory$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(factory => {
       if (this.onLoadEndListener) {
         this.onLoadEndListener(route);
       }
-
-      const module = factory.create(parentInjector); // When loading a module that doesn't provide `RouterModule.forChild()` preloader
+      const module = factory.create(parentInjector);
+      // When loading a module that doesn't provide `RouterModule.forChild()` preloader
       // will get stuck in an infinite loop. The child module's Injector will look to
       // its parent `Injector` when it doesn't find any ROUTES so it will return routes
       // for it's parent module instead.
-
       return new LoadedRouterConfig(flatten(module.injector.get(ROUTES, undefined, _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Self | _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Optional)).map(standardizeConfig), module);
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(err => {
       route._loader$ = undefined;
       throw err;
-    })); // Use custom ConnectableObservable as share in runners pipe increasing the bundle size too much
-
+    }));
+    // Use custom ConnectableObservable as share in runners pipe increasing the bundle size too much
     route._loader$ = new rxjs__WEBPACK_IMPORTED_MODULE_24__.ConnectableObservable(loadRunner, () => new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_26__.refCount)());
     return route._loader$;
   }
-
   loadModuleFactory(loadChildren) {
     return wrapIntoObservable(loadChildren()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.mergeMap)(t => {
       if (t instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleFactory) {
@@ -60708,8 +56758,8 @@ class RouterConfigLoader {
       }
     }));
   }
-
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -60717,7 +56767,6 @@ class RouterConfigLoader {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -60725,41 +56774,30 @@ class RouterConfigLoader {
  *
  * @publicApi
  */
-
-
 class UrlHandlingStrategy {}
 /**
  * @publicApi
  */
-
-
 class DefaultUrlHandlingStrategy {
   shouldProcessUrl(url) {
     return true;
   }
-
   extract(url) {
     return url;
   }
-
   merge(newUrlPart, wholeUrl) {
     return newUrlPart;
   }
-
 }
-
 function defaultErrorHandler(error) {
   throw error;
 }
-
 function defaultMalformedUriErrorHandler(error, urlSerializer, url) {
   return urlSerializer.parse('/');
 }
 /**
  * @internal
  */
-
-
 function defaultRouterHook(snapshot, runExtras) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
 }
@@ -60767,8 +56805,6 @@ function defaultRouterHook(snapshot, runExtras) {
  * The equivalent `IsActiveMatchOptions` options for `Router.isActive` is called with `true`
  * (exact = true).
  */
-
-
 const exactMatchOptions = {
   paths: 'exact',
   fragment: 'ignored',
@@ -60779,7 +56815,6 @@ const exactMatchOptions = {
  * The equivalent `IsActiveMatchOptions` options for `Router.isActive` is called with `false`
  * (exact = false).
  */
-
 const subsetMatchOptions = {
   paths: 'subset',
   fragment: 'ignored',
@@ -60798,7 +56833,6 @@ const subsetMatchOptions = {
  *
  * @publicApi
  */
-
 class Router {
   /**
    * Creates the router service.
@@ -60822,18 +56856,15 @@ class Router {
      * the router can then use this to compute how to restore the state back to the previously active
      * page.
      */
-
     this.currentPageId = 0;
     this.isNgZoneEnabled = false;
     /**
      * An event stream for routing events in this NgModule.
      */
-
     this.events = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
     /**
      * A handler for navigation errors in this NgModule.
      */
-
     this.errorHandler = defaultErrorHandler;
     /**
      * A handler for errors thrown by `Router.parseUrl(url)`
@@ -60841,13 +56872,11 @@ class Router {
      * The most common case is a `%` sign
      * that's not encoded and is not part of a percent encoded sequence.
      */
-
     this.malformedUriErrorHandler = defaultMalformedUriErrorHandler;
     /**
      * True if at least one navigation event has occurred,
      * false otherwise.
      */
-
     this.navigated = false;
     this.lastSuccessfulId = -1;
     /**
@@ -60857,7 +56886,6 @@ class Router {
      *
      * @internal
      */
-
     this.hooks = {
       beforePreactivation: defaultRouterHook,
       afterPreactivation: defaultRouterHook
@@ -60866,12 +56894,10 @@ class Router {
      * A strategy for extracting and merging URLs.
      * Used for AngularJS to Angular migrations.
      */
-
     this.urlHandlingStrategy = new DefaultUrlHandlingStrategy();
     /**
      * A strategy for re-using routes.
      */
-
     this.routeReuseStrategy = new DefaultRouteReuseStrategy();
     /**
      * How to handle a navigation request to the current URL. One of:
@@ -60886,7 +56912,6 @@ class Router {
      * routed components on same url navigation, you need to set `onSameUrlNavigation` to `'reload'`
      * _and_ provide a `RouteReuseStrategy` which returns `false` for `shouldReuseRoute`.
      */
-
     this.onSameUrlNavigation = 'ignore';
     /**
      * How to merge parameters, data, and resolved data from parent to child
@@ -60897,7 +56922,6 @@ class Router {
      * - `'always'` : Inherit parent parameters, data, and resolved data
      * for all child routes.
      */
-
     this.paramsInheritanceStrategy = 'emptyOnly';
     /**
      * Determines when the router updates the browser URL.
@@ -60906,13 +56930,11 @@ class Router {
      * You can choose to update early so that, if navigation fails,
      * you can show an error message with the URL that failed.
      */
-
     this.urlUpdateStrategy = 'deferred';
     /**
      * Enables a bug fix that corrects relative link resolution in components with empty paths.
      * @see `RouterModule`
      */
-
     this.relativeLinkResolution = 'corrected';
     /**
      * Configures how the Router attempts to restore state when a navigation is cancelled.
@@ -60936,13 +56958,9 @@ class Router {
      * The default value is `replace`.
      *
      */
-
     this.canceledNavigationResolution = 'replace';
-
     const onLoadStart = r => this.triggerEvent(new RouteConfigLoadStart(r));
-
     const onLoadEnd = r => this.triggerEvent(new RouteConfigLoadEnd(r));
-
     this.ngModule = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
     this.console = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"]);
     const ngZone = injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone);
@@ -60985,24 +57003,23 @@ class Router {
    * important for computing the target page id for new navigations because we need to ensure each
    * page id in the browser history is 1 more than the previous entry.
    */
-
-
   get browserPageId() {
     var _a;
-
     return (_a = this.location.getState()) === null || _a === void 0 ? void 0 : _a.ɵrouterPageId;
   }
-
   setupNavigations(transitions) {
     const eventsSubject = this.events;
-    return transitions.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => t.id !== 0), // Extract URL
+    return transitions.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => t.id !== 0),
+    // Extract URL
     (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => Object.assign(Object.assign({}, t), {
       extractedUrl: this.urlHandlingStrategy.extract(t.rawUrl)
-    })), // Using switchMap so we cancel executing navigations when a new one comes in
+    })),
+    // Using switchMap so we cancel executing navigations when a new one comes in
     (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
       let completed = false;
       let errored = false;
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe( // Store the Navigation object
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(
+      // Store the Navigation object
       (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
         this.currentNavigation = {
           id: t.id,
@@ -61016,52 +57033,52 @@ class Router {
         };
       }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
         const browserUrlTree = this.browserUrlTree.toString();
-        const urlTransition = !this.navigated || t.extractedUrl.toString() !== browserUrlTree || // Navigations which succeed or ones which fail and are cleaned up
+        const urlTransition = !this.navigated || t.extractedUrl.toString() !== browserUrlTree ||
+        // Navigations which succeed or ones which fail and are cleaned up
         // correctly should result in `browserUrlTree` and `currentUrlTree`
         // matching. If this is not the case, assume something went wrong and try
         // processing the URL again.
         browserUrlTree !== this.currentUrlTree.toString();
         const processCurrentUrl = (this.onSameUrlNavigation === 'reload' ? true : urlTransition) && this.urlHandlingStrategy.shouldProcessUrl(t.rawUrl);
-
         if (processCurrentUrl) {
           // If the source of the navigation is from a browser event, the URL is
           // already updated. We already need to sync the internal state.
           if (isBrowserTriggeredNavigation(t.source)) {
             this.browserUrlTree = t.extractedUrl;
           }
-
-          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe( // Fire NavigationStart event
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(
+          // Fire NavigationStart event
           (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(t => {
             const transition = this.transitions.getValue();
             eventsSubject.next(new NavigationStart(t.id, this.serializeUrl(t.extractedUrl), t.source, t.restoredState));
-
             if (transition !== this.transitions.getValue()) {
               return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
-            } // This delay is required to match old behavior that forced
+            }
+            // This delay is required to match old behavior that forced
             // navigation to always be async
-
-
             return Promise.resolve(t);
-          }), // ApplyRedirects
-          applyRedirects(this.ngModule.injector, this.configLoader, this.urlSerializer, this.config), // Update the currentNavigation
+          }),
+          // ApplyRedirects
+          applyRedirects(this.ngModule.injector, this.configLoader, this.urlSerializer, this.config),
+          // Update the currentNavigation
           // `urlAfterRedirects` is guaranteed to be set after this point
           (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
             this.currentNavigation = Object.assign(Object.assign({}, this.currentNavigation), {
               finalUrl: t.urlAfterRedirects
             });
-          }), // Recognize
-          recognize(this.rootComponentType, this.config, url => this.serializeUrl(url), this.paramsInheritanceStrategy, this.relativeLinkResolution), // Update URL if in `eager` update mode
+          }),
+          // Recognize
+          recognize(this.rootComponentType, this.config, url => this.serializeUrl(url), this.paramsInheritanceStrategy, this.relativeLinkResolution),
+          // Update URL if in `eager` update mode
           (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
             if (this.urlUpdateStrategy === 'eager') {
               if (!t.extras.skipLocationChange) {
                 const rawUrl = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
                 this.setBrowserUrl(rawUrl, t);
               }
-
               this.browserUrlTree = t.urlAfterRedirects;
-            } // Fire RoutesRecognized
-
-
+            }
+            // Fire RoutesRecognized
             const routesRecognized = new RoutesRecognized(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
             eventsSubject.next(routesRecognized);
           }));
@@ -61070,7 +57087,6 @@ class Router {
           /* When the current URL shouldn't be processed, but the previous one was,
            * we handle this "error condition" by navigating to the previously
            * successful URL, but leaving the URL intact.*/
-
           if (processPreviousUrl) {
             const {
               id,
@@ -61101,7 +57117,8 @@ class Router {
             return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
           }
         }
-      }), // Before Preactivation
+      }),
+      // Before Preactivation
       switchTap(t => {
         const {
           targetSnapshot,
@@ -61120,7 +57137,8 @@ class Router {
           skipLocationChange: !!skipLocationChange,
           replaceUrl: !!replaceUrl
         });
-      }), // --- GUARDS ---
+      }),
+      // --- GUARDS ---
       (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
         const guardsStart = new GuardsCheckStart(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
         this.triggerEvent(guardsStart);
@@ -61132,7 +57150,6 @@ class Router {
           error.url = t.guardsResult;
           throw error;
         }
-
         const guardsEnd = new GuardsCheckEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot, !!t.guardsResult);
         this.triggerEvent(guardsEnd);
       }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => {
@@ -61141,9 +57158,9 @@ class Router {
           this.cancelNavigationTransition(t, '');
           return false;
         }
-
         return true;
-      }), // --- RESOLVE ---
+      }),
+      // --- RESOLVE ---
       switchTap(t => {
         if (t.guards.canActivateChecks.length) {
           return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)(t => {
@@ -61165,9 +57182,9 @@ class Router {
             this.triggerEvent(resolveEnd);
           }));
         }
-
         return undefined;
-      }), // --- AFTER PREACTIVATION ---
+      }),
+      // --- AFTER PREACTIVATION ---
       switchTap(t => {
         const {
           targetSnapshot,
@@ -61201,23 +57218,19 @@ class Router {
         this.currentUrlTree = t.urlAfterRedirects;
         this.rawUrlTree = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
         this.routerState = t.targetRouterState;
-
         if (this.urlUpdateStrategy === 'deferred') {
           if (!t.extras.skipLocationChange) {
             this.setBrowserUrl(this.rawUrlTree, t);
           }
-
           this.browserUrlTree = t.urlAfterRedirects;
         }
       }), activateRoutes(this.rootContexts, this.routeReuseStrategy, evt => this.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_18__.tap)({
         next() {
           completed = true;
         },
-
         complete() {
           completed = true;
         }
-
       }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_27__.finalize)(() => {
         var _a;
         /* When the navigation stream finishes either through error or success, we
@@ -61227,15 +57240,12 @@ class Router {
          * sure the NavigationCancel
          * event is fired when a navigation gets cancelled but not caught by other
          * means. */
-
-
         if (!completed && !errored) {
           const cancelationReason = `Navigation ID ${t.id} is not equal to the current navigation id ${this.navigationId}`;
           this.cancelNavigationTransition(t, cancelationReason);
-        } // Only clear current navigation if it is still set to the one that
+        }
+        // Only clear current navigation if it is still set to the one that
         // finalized.
-
-
         if (((_a = this.currentNavigation) === null || _a === void 0 ? void 0 : _a.id) === t.id) {
           this.currentNavigation = null;
         }
@@ -61254,10 +57264,8 @@ class Router {
         errored = true;
         /* This error type is issued during Redirect, and is handled as a
          * cancellation rather than an error. */
-
         if (isNavigationCancelingError(e)) {
           const redirecting = isUrlTree(e.url);
-
           if (!redirecting) {
             // Set property only if we're not redirecting. If we landed on a page and
             // redirect to `/` route, the new navigation is going to see the `/`
@@ -61267,11 +57275,10 @@ class Router {
             this.navigated = true;
             this.restoreHistory(t, true);
           }
-
           const navCancel = new NavigationCancel(t.id, this.serializeUrl(t.extractedUrl), e.message);
-          eventsSubject.next(navCancel); // When redirecting, we need to delay resolving the navigation
+          eventsSubject.next(navCancel);
+          // When redirecting, we need to delay resolving the navigation
           // promise and push it to the redirect navigation
-
           if (!redirecting) {
             t.resolve(false);
           } else {
@@ -61298,47 +57305,39 @@ class Router {
           }
           /* All other errors should reset to the router's internal URL reference to
            * the pre-error state. */
-
         } else {
           this.restoreHistory(t, true);
           const navError = new NavigationError(t.id, this.serializeUrl(t.extractedUrl), e);
           eventsSubject.next(navError);
-
           try {
             t.resolve(this.errorHandler(e));
           } catch (ee) {
             t.reject(ee);
           }
         }
-
         return rxjs__WEBPACK_IMPORTED_MODULE_23__.EMPTY;
-      })); // TODO(jasonaden): remove cast once g3 is on updated TypeScript
+      }));
+      // TODO(jasonaden): remove cast once g3 is on updated TypeScript
     }));
   }
   /**
    * @internal
    * TODO: this should be removed once the constructor of the router made internal
    */
-
-
   resetRootComponentType(rootComponentType) {
-    this.rootComponentType = rootComponentType; // TODO: vsavkin router 4.0 should make the root component set to null
+    this.rootComponentType = rootComponentType;
+    // TODO: vsavkin router 4.0 should make the root component set to null
     // this will simplify the lifecycle of the router.
-
     this.routerState.root.component = this.rootComponentType;
   }
-
   setTransition(t) {
     this.transitions.next(Object.assign(Object.assign({}, this.transitions.value), t));
   }
   /**
    * Sets up the location change listener and performs the initial navigation.
    */
-
-
   initialNavigation() {
     this.setUpLocationChangeListener();
-
     if (this.navigationId === 0) {
       this.navigateByUrl(this.location.path(true), {
         replaceUrl: true
@@ -61350,8 +57349,6 @@ class Router {
    * the Router (the browser back/forward buttons, for example) and schedules a corresponding Router
    * navigation so that the correct events, guards, etc. are triggered.
    */
-
-
   setUpLocationChangeListener() {
     // Don't need to use Zone.wrap any more, because zone.js
     // already patch onPopState, so location change callback will
@@ -61359,30 +57356,25 @@ class Router {
     if (!this.locationSubscription) {
       this.locationSubscription = this.location.subscribe(event => {
         const source = event['type'] === 'popstate' ? 'popstate' : 'hashchange';
-
         if (source === 'popstate') {
           // The `setTimeout` was added in #12160 and is likely to support Angular/AngularJS
           // hybrid apps.
           setTimeout(() => {
             var _a;
-
             const extras = {
               replaceUrl: true
-            }; // Navigations coming from Angular router have a navigationId state
+            };
+            // Navigations coming from Angular router have a navigationId state
             // property. When this exists, restore the state.
-
             const state = ((_a = event.state) === null || _a === void 0 ? void 0 : _a.navigationId) ? event.state : null;
-
             if (state) {
               const stateCopy = Object.assign({}, state);
               delete stateCopy.navigationId;
               delete stateCopy.ɵrouterPageId;
-
               if (Object.keys(stateCopy).length !== 0) {
                 extras.state = stateCopy;
               }
             }
-
             const urlTree = this.parseUrl(event['url']);
             this.scheduleNavigation(urlTree, source, state, extras);
           }, 0);
@@ -61391,8 +57383,6 @@ class Router {
     }
   }
   /** The current URL. */
-
-
   get url() {
     return this.serializeUrl(this.currentUrlTree);
   }
@@ -61400,14 +57390,10 @@ class Router {
    * Returns the current `Navigation` object when the router is navigating,
    * and `null` when idle.
    */
-
-
   getCurrentNavigation() {
     return this.currentNavigation;
   }
   /** @internal */
-
-
   triggerEvent(event) {
     this.events.next(event);
   }
@@ -61427,8 +57413,6 @@ class Router {
    * ]);
    * ```
    */
-
-
   resetConfig(config) {
     validateConfig(config);
     this.config = config.map(standardizeConfig);
@@ -61436,22 +57420,16 @@ class Router {
     this.lastSuccessfulId = -1;
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     this.dispose();
   }
   /** Disposes of the router. */
-
-
   dispose() {
     this.transitions.complete();
-
     if (this.locationSubscription) {
       this.locationSubscription.unsubscribe();
       this.locationSubscription = undefined;
     }
-
     this.disposed = true;
   }
   /**
@@ -61502,8 +57480,6 @@ class Router {
    * tree should be created relative to the root.
    * ```
    */
-
-
   createUrlTree(commands, navigationExtras = {}) {
     const {
       relativeTo,
@@ -61515,24 +57491,19 @@ class Router {
     const a = relativeTo || this.routerState.root;
     const f = preserveFragment ? this.currentUrlTree.fragment : fragment;
     let q = null;
-
     switch (queryParamsHandling) {
       case 'merge':
         q = Object.assign(Object.assign({}, this.currentUrlTree.queryParams), queryParams);
         break;
-
       case 'preserve':
         q = this.currentUrlTree.queryParams;
         break;
-
       default:
         q = queryParams || null;
     }
-
     if (q !== null) {
       q = this.removeEmptyProps(q);
     }
-
     return createUrlTree(a, this.currentUrlTree, commands, q, f !== null && f !== void 0 ? f : null);
   }
   /**
@@ -61559,15 +57530,12 @@ class Router {
    * @see [Routing and Navigation guide](guide/router)
    *
    */
-
-
   navigateByUrl(url, extras = {
     skipLocationChange: false
   }) {
     if (typeof ngDevMode === 'undefined' || ngDevMode && this.isNgZoneEnabled && !_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone.isInAngularZone()) {
       this.console.warn(`Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?`);
     }
-
     const urlTree = isUrlTree(url) ? url : this.parseUrl(url);
     const mergedTree = this.urlHandlingStrategy.merge(urlTree, this.rawUrlTree);
     return this.scheduleNavigation(mergedTree, 'imperative', null, extras);
@@ -61602,8 +57570,6 @@ class Router {
    * @see [Routing and Navigation guide](guide/router)
    *
    */
-
-
   navigate(commands, extras = {
     skipLocationChange: false
   }) {
@@ -61611,29 +57577,21 @@ class Router {
     return this.navigateByUrl(this.createUrlTree(commands, extras), extras);
   }
   /** Serializes a `UrlTree` into a string */
-
-
   serializeUrl(url) {
     return this.urlSerializer.serialize(url);
   }
   /** Parses a string into a `UrlTree` */
-
-
   parseUrl(url) {
     let urlTree;
-
     try {
       urlTree = this.urlSerializer.parse(url);
     } catch (e) {
       urlTree = this.malformedUriErrorHandler(e, this.urlSerializer, url);
     }
-
     return urlTree;
   }
-
   isActive(url, matchOptions) {
     let options;
-
     if (matchOptions === true) {
       options = Object.assign({}, exactMatchOptions);
     } else if (matchOptions === false) {
@@ -61641,27 +57599,21 @@ class Router {
     } else {
       options = matchOptions;
     }
-
     if (isUrlTree(url)) {
       return containsTree(this.currentUrlTree, url, options);
     }
-
     const urlTree = this.parseUrl(url);
     return containsTree(this.currentUrlTree, urlTree, options);
   }
-
   removeEmptyProps(params) {
     return Object.keys(params).reduce((result, key) => {
       const value = params[key];
-
       if (value !== null && value !== undefined) {
         result[key] = value;
       }
-
       return result;
     }, {});
   }
-
   processNavigations() {
     this.navigations.subscribe(t => {
       this.navigated = true;
@@ -61674,18 +57626,14 @@ class Router {
       this.console.warn(`Unhandled Navigation Error: ${e}`);
     });
   }
-
   scheduleNavigation(rawUrl, source, restoredState, extras, priorPromise) {
     var _a, _b;
-
     if (this.disposed) {
       return Promise.resolve(false);
     }
-
     let resolve;
     let reject;
     let promise;
-
     if (priorPromise) {
       resolve = priorPromise.resolve;
       reject = priorPromise.reject;
@@ -61696,20 +57644,16 @@ class Router {
         reject = rej;
       });
     }
-
     const id = ++this.navigationId;
     let targetPageId;
-
     if (this.canceledNavigationResolution === 'computed') {
       const isInitialPage = this.currentPageId === 0;
-
       if (isInitialPage) {
         restoredState = this.location.getState();
-      } // If the `ɵrouterPageId` exist in the state then `targetpageId` should have the value of
+      }
+      // If the `ɵrouterPageId` exist in the state then `targetpageId` should have the value of
       // `ɵrouterPageId`. This is the case for something like a page refresh where we assign the
       // target id to the previously set value for that page.
-
-
       if (restoredState && restoredState.ɵrouterPageId) {
         targetPageId = restoredState.ɵrouterPageId;
       } else {
@@ -61725,7 +57669,6 @@ class Router {
       // This is unused when `canceledNavigationResolution` is not computed.
       targetPageId = 0;
     }
-
     this.setTransition({
       id,
       targetPageId,
@@ -61740,18 +57683,16 @@ class Router {
       promise,
       currentSnapshot: this.routerState.snapshot,
       currentRouterState: this.routerState
-    }); // Make sure that the error is propagated even though `processNavigations` catch
+    });
+    // Make sure that the error is propagated even though `processNavigations` catch
     // handler does not rethrow
-
     return promise.catch(e => {
       return Promise.reject(e);
     });
   }
-
   setBrowserUrl(url, t) {
     const path = this.urlSerializer.serialize(url);
     const state = Object.assign(Object.assign({}, t.extras.state), this.generateNgRouterState(t.id, t.targetPageId));
-
     if (this.location.isCurrentPathEqualTo(path) || !!t.extras.replaceUrl) {
       this.location.replaceState(path, '', state);
     } else {
@@ -61762,32 +57703,29 @@ class Router {
    * Performs the necessary rollback action to restore the browser URL to the
    * state before the transition.
    */
-
-
   restoreHistory(t, restoringFromCaughtError = false) {
     var _a, _b;
-
     if (this.canceledNavigationResolution === 'computed') {
-      const targetPagePosition = this.currentPageId - t.targetPageId; // The navigator change the location before triggered the browser event,
+      const targetPagePosition = this.currentPageId - t.targetPageId;
+      // The navigator change the location before triggered the browser event,
       // so we need to go back to the current url if the navigation is canceled.
       // Also, when navigation gets cancelled while using url update strategy eager, then we need to
       // go back. Because, when `urlUpdateSrategy` is `eager`; `setBrowserUrl` method is called
       // before any verification.
-
       const browserUrlUpdateOccurred = t.source === 'popstate' || this.urlUpdateStrategy === 'eager' || this.currentUrlTree === ((_a = this.currentNavigation) === null || _a === void 0 ? void 0 : _a.finalUrl);
-
       if (browserUrlUpdateOccurred && targetPagePosition !== 0) {
         this.location.historyGo(targetPagePosition);
       } else if (this.currentUrlTree === ((_b = this.currentNavigation) === null || _b === void 0 ? void 0 : _b.finalUrl) && targetPagePosition === 0) {
         // We got to the activation stage (where currentUrlTree is set to the navigation's
         // finalUrl), but we weren't moving anywhere in history (skipLocationChange or replaceUrl).
         // We still need to reset the router state back to what it was when the navigation started.
-        this.resetState(t); // TODO(atscott): resetting the `browserUrlTree` should really be done in `resetState`.
+        this.resetState(t);
+        // TODO(atscott): resetting the `browserUrlTree` should really be done in `resetState`.
         // Investigate if this can be done by running TGP.
-
         this.browserUrlTree = t.currentUrlTree;
         this.resetUrlToCurrentUrlTree();
-      } else {// The browser URL and router state was not updated before the navigation cancelled so
+      } else {
+        // The browser URL and router state was not updated before the navigation cancelled so
         // there's no restoration needed.
       }
     } else if (this.canceledNavigationResolution === 'replace') {
@@ -61798,32 +57736,27 @@ class Router {
       if (restoringFromCaughtError) {
         this.resetState(t);
       }
-
       this.resetUrlToCurrentUrlTree();
     }
   }
-
   resetState(t) {
     this.routerState = t.currentRouterState;
-    this.currentUrlTree = t.currentUrlTree; // Note here that we use the urlHandlingStrategy to get the reset `rawUrlTree` because it may be
+    this.currentUrlTree = t.currentUrlTree;
+    // Note here that we use the urlHandlingStrategy to get the reset `rawUrlTree` because it may be
     // configured to handle only part of the navigation URL. This means we would only want to reset
     // the part of the navigation handled by the Angular router rather than the whole URL. In
     // addition, the URLHandlingStrategy may be configured to specifically preserve parts of the URL
     // when merging, such as the query params so they are not lost on a refresh.
-
     this.rawUrlTree = this.urlHandlingStrategy.merge(this.currentUrlTree, t.rawUrl);
   }
-
   resetUrlToCurrentUrlTree() {
     this.location.replaceState(this.urlSerializer.serialize(this.rawUrlTree), '', this.generateNgRouterState(this.lastSuccessfulId, this.currentPageId));
   }
-
   cancelNavigationTransition(t, reason) {
     const navCancel = new NavigationCancel(t.id, this.serializeUrl(t.extractedUrl), reason);
     this.triggerEvent(navCancel);
     t.resolve(false);
   }
-
   generateNgRouterState(navigationId, routerPageId) {
     if (this.canceledNavigationResolution === 'computed') {
       return {
@@ -61831,23 +57764,18 @@ class Router {
         ɵrouterPageId: routerPageId
       };
     }
-
     return {
       navigationId
     };
   }
-
 }
-
 Router.ɵfac = function Router_Factory(t) {
   _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinvalidFactory"]();
 };
-
 Router.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: Router,
   factory: Router.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Router, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -61869,20 +57797,18 @@ Router.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
     }];
   }, null);
 })();
-
 function validateCommands(commands) {
   for (let i = 0; i < commands.length; i++) {
     const cmd = commands[i];
-
     if (cmd == null) {
       throw new Error(`The requested path contains ${cmd} segment at index ${i}`);
     }
   }
 }
-
 function isBrowserTriggeredNavigation(source) {
   return source !== 'imperative';
 }
+
 /**
  * @description
  *
@@ -61980,8 +57906,6 @@ function isBrowserTriggeredNavigation(source) {
  *
  * @publicApi
  */
-
-
 class RouterLink {
   constructor(router, route, tabIndexAttribute, renderer, el) {
     this.router = router;
@@ -61991,7 +57915,6 @@ class RouterLink {
     this.el = el;
     this.commands = null;
     /** @internal */
-
     this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
     this.setTabIndexIfNotOnNativeEl('0');
   }
@@ -61999,18 +57922,12 @@ class RouterLink {
    * Modifies the tab index if there was not a tabindex attribute on the element during
    * instantiation.
    */
-
-
   setTabIndexIfNotOnNativeEl(newTabIndex) {
-    if (this.tabIndexAttribute != null
-    /* both `null` and `undefined` */
-    ) {
+    if (this.tabIndexAttribute != null /* both `null` and `undefined` */) {
       return;
     }
-
     const renderer = this.renderer;
     const nativeElement = this.el.nativeElement;
-
     if (newTabIndex !== null) {
       renderer.setAttribute(nativeElement, 'tabindex', newTabIndex);
     } else {
@@ -62018,8 +57935,6 @@ class RouterLink {
     }
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     // This is subscribed to by `RouterLinkActive` so that it knows to update when there are changes
     // to the RouterLinks it's tracking.
@@ -62032,8 +57947,6 @@ class RouterLink {
    *   - **null|undefined**: effectively disables the `routerLink`
    * @see {@link Router#createUrlTree Router#createUrlTree}
    */
-
-
   set routerLink(commands) {
     if (commands != null) {
       this.commands = Array.isArray(commands) ? commands : [commands];
@@ -62044,13 +57957,10 @@ class RouterLink {
     }
   }
   /** @nodoc */
-
-
   onClick() {
     if (this.urlTree === null) {
       return true;
     }
-
     const extras = {
       skipLocationChange: attrBoolValue(this.skipLocationChange),
       replaceUrl: attrBoolValue(this.replaceUrl),
@@ -62059,12 +57969,10 @@ class RouterLink {
     this.router.navigateByUrl(this.urlTree, extras);
     return true;
   }
-
   get urlTree() {
     if (this.commands === null) {
       return null;
     }
-
     return this.router.createUrlTree(this.commands, {
       // If the `relativeTo` input is not defined, we want to use `this.route` by default.
       // Otherwise, we should use the value provided by the user in the input.
@@ -62075,13 +57983,10 @@ class RouterLink {
       preserveFragment: attrBoolValue(this.preserveFragment)
     });
   }
-
 }
-
 RouterLink.ɵfac = function RouterLink_Factory(t) {
   return new (t || RouterLink)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectAttribute"]('tabindex'), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef));
 };
-
 RouterLink.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RouterLink,
   selectors: [["", "routerLink", "", 5, "a", 5, "area"]],
@@ -62105,7 +58010,6 @@ RouterLink.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLink, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -62173,20 +58077,17 @@ RouterLink.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
  *
  * @publicApi
  */
-
-
 class RouterLinkWithHref {
   constructor(router, route, locationStrategy) {
     this.router = router;
     this.route = route;
     this.locationStrategy = locationStrategy;
-    this.commands = null; // the url displayed on the anchor element.
+    this.commands = null;
+    // the url displayed on the anchor element.
     // @HostBinding('attr.href') is used rather than @HostBinding() because it removes the
     // href attribute when it becomes `null`.
-
     this.href = null;
     /** @internal */
-
     this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
     this.subscription = router.events.subscribe(s => {
       if (s instanceof NavigationEnd) {
@@ -62201,8 +58102,6 @@ class RouterLinkWithHref {
    *   - **null|undefined**: Disables the link by removing the `href`
    * @see {@link Router#createUrlTree Router#createUrlTree}
    */
-
-
   set routerLink(commands) {
     if (commands != null) {
       this.commands = Array.isArray(commands) ? commands : [commands];
@@ -62211,30 +58110,22 @@ class RouterLinkWithHref {
     }
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     this.updateTargetUrlAndHref();
     this.onChanges.next(this);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
   /** @nodoc */
-
-
   onClick(button, ctrlKey, shiftKey, altKey, metaKey) {
     if (button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
       return true;
     }
-
     if (typeof this.target === 'string' && this.target != '_self' || this.urlTree === null) {
       return true;
     }
-
     const extras = {
       skipLocationChange: attrBoolValue(this.skipLocationChange),
       replaceUrl: attrBoolValue(this.replaceUrl),
@@ -62243,16 +58134,13 @@ class RouterLinkWithHref {
     this.router.navigateByUrl(this.urlTree, extras);
     return false;
   }
-
   updateTargetUrlAndHref() {
     this.href = this.urlTree !== null ? this.locationStrategy.prepareExternalUrl(this.router.serializeUrl(this.urlTree)) : null;
   }
-
   get urlTree() {
     if (this.commands === null) {
       return null;
     }
-
     return this.router.createUrlTree(this.commands, {
       // If the `relativeTo` input is not defined, we want to use `this.route` by default.
       // Otherwise, we should use the value provided by the user in the input.
@@ -62263,13 +58151,10 @@ class RouterLinkWithHref {
       preserveFragment: attrBoolValue(this.preserveFragment)
     });
   }
-
 }
-
 RouterLinkWithHref.ɵfac = function RouterLinkWithHref_Factory(t) {
   return new (t || RouterLinkWithHref)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_28__.LocationStrategy));
 };
-
 RouterLinkWithHref.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RouterLinkWithHref,
   selectors: [["a", "routerLink", ""], ["area", "routerLink", ""]],
@@ -62280,7 +58165,6 @@ RouterLinkWithHref.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
         return ctx.onClick($event.button, $event.ctrlKey, $event.shiftKey, $event.altKey, $event.metaKey);
       });
     }
-
     if (rf & 2) {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"]("target", ctx.target)("href", ctx.href, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     }
@@ -62299,7 +58183,6 @@ RouterLinkWithHref.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
   },
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLinkWithHref, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -62358,10 +58241,10 @@ RouterLinkWithHref.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
     }]
   });
 })();
-
 function attrBoolValue(s) {
   return s === '' || !!s;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -62369,7 +58252,6 @@ function attrBoolValue(s) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  *
  * @description
@@ -62429,8 +58311,6 @@ function attrBoolValue(s) {
  *
  * @publicApi
  */
-
-
 class RouterLinkActive {
   constructor(router, element, renderer, cdr, link, linkWithHref) {
     this.router = router;
@@ -62448,7 +58328,6 @@ class RouterLinkActive {
      *
      * @see Router.isActive
      */
-
     this.routerLinkActiveOptions = {
       exact: false
     };
@@ -62468,7 +58347,6 @@ class RouterLinkActive {
      *  (isActiveChange)="this.onRouterLinkActive($event)">Bob</a>
      * ```
      */
-
     this.isActiveChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
     this.routerEventsSubscription = router.events.subscribe(s => {
       if (s instanceof NavigationEnd) {
@@ -62477,8 +58355,6 @@ class RouterLinkActive {
     });
   }
   /** @nodoc */
-
-
   ngAfterContentInit() {
     // `of(null)` is used to force subscribe body to execute once immediately (like `startWith`).
     (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(this.links.changes, this.linksWithHrefs.changes, (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)()).subscribe(_ => {
@@ -62486,10 +58362,8 @@ class RouterLinkActive {
       this.subscribeToEachLinkOnChanges();
     });
   }
-
   subscribeToEachLinkOnChanges() {
     var _a;
-
     (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     const allLinkChanges = [...this.links.toArray(), ...this.linksWithHrefs.toArray(), this.link, this.linkWithHref].filter(link => !!link).map(link => link.onChanges);
     this.linkInputChangesSubscription = (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(allLinkChanges).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)()).subscribe(link => {
@@ -62498,32 +58372,24 @@ class RouterLinkActive {
       }
     });
   }
-
   set routerLinkActive(data) {
     const classes = Array.isArray(data) ? data : data.split(' ');
     this.classes = classes.filter(c => !!c);
   }
   /** @nodoc */
-
-
   ngOnChanges(changes) {
     this.update();
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     var _a;
-
     this.routerEventsSubscription.unsubscribe();
     (_a = this.linkInputChangesSubscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
   }
-
   update() {
     if (!this.links || !this.linksWithHrefs || !this.router.navigated) return;
     Promise.resolve().then(() => {
       const hasActiveLinks = this.hasActiveLinks();
-
       if (this.isActive !== hasActiveLinks) {
         this.isActive = hasActiveLinks;
         this.cdr.markForCheck();
@@ -62533,30 +58399,26 @@ class RouterLinkActive {
           } else {
             this.renderer.removeClass(this.element.nativeElement, c);
           }
-        }); // Emit on isActiveChange after classes are updated
-
+        });
+        // Emit on isActiveChange after classes are updated
         this.isActiveChange.emit(hasActiveLinks);
       }
     });
   }
-
   isLinkActive(router) {
-    const options = isActiveMatchOptions(this.routerLinkActiveOptions) ? this.routerLinkActiveOptions : // While the types should disallow `undefined` here, it's possible without strict inputs
+    const options = isActiveMatchOptions(this.routerLinkActiveOptions) ? this.routerLinkActiveOptions :
+    // While the types should disallow `undefined` here, it's possible without strict inputs
     this.routerLinkActiveOptions.exact || false;
     return link => link.urlTree ? router.isActive(link.urlTree, options) : false;
   }
-
   hasActiveLinks() {
     const isActiveCheckFn = this.isLinkActive(this.router);
     return this.link && isActiveCheckFn(this.link) || this.linkWithHref && isActiveCheckFn(this.linkWithHref) || this.links.some(isActiveCheckFn) || this.linksWithHrefs.some(isActiveCheckFn);
   }
-
 }
-
 RouterLinkActive.ɵfac = function RouterLinkActive_Factory(t) {
   return new (t || RouterLinkActive)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](RouterLink, 8), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](RouterLinkWithHref, 8));
 };
-
 RouterLinkActive.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
   type: RouterLinkActive,
   selectors: [["", "routerLinkActive", ""]],
@@ -62565,10 +58427,8 @@ RouterLinkActive.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵcontentQuery"](dirIndex, RouterLink, 5);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵcontentQuery"](dirIndex, RouterLinkWithHref, 5);
     }
-
     if (rf & 2) {
       let _t;
-
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.links = _t);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.linksWithHrefs = _t);
     }
@@ -62583,7 +58443,6 @@ RouterLinkActive.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
   exportAs: ["routerLinkActive"],
   features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterLinkActive, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive,
@@ -62638,11 +58497,10 @@ RouterLinkActive.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
 /**
  * Use instead of `'paths' in options` to be compatible with property renaming
  */
-
-
 function isActiveMatchOptions(options) {
   return !!options.paths;
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -62650,7 +58508,6 @@ function isActiveMatchOptions(options) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @description
  *
@@ -62658,8 +58515,6 @@ function isActiveMatchOptions(options) {
  *
  * @publicApi
  */
-
-
 class PreloadingStrategy {}
 /**
  * @description
@@ -62672,13 +58527,10 @@ class PreloadingStrategy {}
  *
  * @publicApi
  */
-
-
 class PreloadAllModules {
   preload(route, fn) {
     return fn().pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_12__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null)));
   }
-
 }
 /**
  * @description
@@ -62689,13 +58541,10 @@ class PreloadAllModules {
  *
  * @publicApi
  */
-
-
 class NoPreloading {
   preload(route, fn) {
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
   }
-
 }
 /**
  * The preloader optimistically loads all router configurations to
@@ -62709,56 +58558,45 @@ class NoPreloading {
  *
  * @publicApi
  */
-
-
 class RouterPreloader {
   constructor(router, compiler, injector, preloadingStrategy) {
     this.router = router;
     this.injector = injector;
     this.preloadingStrategy = preloadingStrategy;
-
     const onStartLoad = r => router.triggerEvent(new RouteConfigLoadStart(r));
-
     const onEndLoad = r => router.triggerEvent(new RouteConfigLoadEnd(r));
-
     this.loader = new RouterConfigLoader(injector, compiler, onStartLoad, onEndLoad);
   }
-
   setUpPreloading() {
     this.subscription = this.router.events.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(e => e instanceof NavigationEnd), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_13__.concatMap)(() => this.preload())).subscribe(() => {});
   }
-
   preload() {
     const ngModule = this.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModuleRef);
     return this.processRoutes(ngModule, this.router.config);
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-
   processRoutes(ngModule, routes) {
     const res = [];
-
     for (const route of routes) {
       // we already have the config loaded, just recurse
       if (route.loadChildren && !route.canLoad && route._loadedConfig) {
         const childConfig = route._loadedConfig;
-        res.push(this.processRoutes(childConfig.module, childConfig.routes)); // no config loaded, fetch the config
+        res.push(this.processRoutes(childConfig.module, childConfig.routes));
+        // no config loaded, fetch the config
       } else if (route.loadChildren && !route.canLoad) {
-        res.push(this.preloadConfig(ngModule, route)); // recurse into children
+        res.push(this.preloadConfig(ngModule, route));
+        // recurse into children
       } else if (route.children) {
         res.push(this.processRoutes(ngModule, route.children));
       }
     }
-
     return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(res).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.mergeAll)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(_ => void 0));
   }
-
   preloadConfig(ngModule, route) {
     return this.preloadingStrategy.preload(route, () => {
       const loaded$ = route._loadedConfig ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(route._loadedConfig) : this.loader.load(ngModule.injector, route);
@@ -62768,18 +58606,14 @@ class RouterPreloader {
       }));
     });
   }
-
 }
-
 RouterPreloader.ɵfac = function RouterPreloader_Factory(t) {
   return new (t || RouterPreloader)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](Router), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Compiler), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](PreloadingStrategy));
 };
-
 RouterPreloader.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: RouterPreloader,
   factory: RouterPreloader.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterPreloader, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -62795,23 +58629,19 @@ RouterPreloader.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
     }];
   }, null);
 })();
-
 class RouterScroller {
-  constructor(router,
-  /** @docsNotRequired */
-  viewportScroller, options = {}) {
+  constructor(router, /** @docsNotRequired */viewportScroller, options = {}) {
     this.router = router;
     this.viewportScroller = viewportScroller;
     this.options = options;
     this.lastId = 0;
     this.lastSource = 'imperative';
     this.restoredId = 0;
-    this.store = {}; // Default both options to 'disabled'
-
+    this.store = {};
+    // Default both options to 'disabled'
     options.scrollPositionRestoration = options.scrollPositionRestoration || 'disabled';
     options.anchorScrolling = options.anchorScrolling || 'disabled';
   }
-
   init() {
     // we want to disable the automatic scrolling because having two places
     // responsible for scrolling results race conditions, especially given
@@ -62819,11 +58649,9 @@ class RouterScroller {
     if (this.options.scrollPositionRestoration !== 'disabled') {
       this.viewportScroller.setHistoryScrollRestoration('manual');
     }
-
     this.routerEventsSubscription = this.createScrollEvents();
     this.scrollEventsSubscription = this.consumeScrollEvents();
   }
-
   createScrollEvents() {
     return this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
@@ -62837,18 +58665,17 @@ class RouterScroller {
       }
     });
   }
-
   consumeScrollEvents() {
     return this.router.events.subscribe(e => {
-      if (!(e instanceof Scroll)) return; // a popstate event. The pop state event will always ignore anchor scrolling.
-
+      if (!(e instanceof Scroll)) return;
+      // a popstate event. The pop state event will always ignore anchor scrolling.
       if (e.position) {
         if (this.options.scrollPositionRestoration === 'top') {
           this.viewportScroller.scrollToPosition([0, 0]);
         } else if (this.options.scrollPositionRestoration === 'enabled') {
           this.viewportScroller.scrollToPosition(e.position);
-        } // imperative navigation "forward"
-
+        }
+        // imperative navigation "forward"
       } else {
         if (e.anchor && this.options.anchorScrolling === 'enabled') {
           this.viewportScroller.scrollToAnchor(e.anchor);
@@ -62858,34 +58685,26 @@ class RouterScroller {
       }
     });
   }
-
   scheduleScrollEvent(routerEvent, anchor) {
     this.router.triggerEvent(new Scroll(routerEvent, this.lastSource === 'popstate' ? this.store[this.restoredId] : null, anchor));
   }
   /** @nodoc */
-
-
   ngOnDestroy() {
     if (this.routerEventsSubscription) {
       this.routerEventsSubscription.unsubscribe();
     }
-
     if (this.scrollEventsSubscription) {
       this.scrollEventsSubscription.unsubscribe();
     }
   }
-
 }
-
 RouterScroller.ɵfac = function RouterScroller_Factory(t) {
   _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinvalidFactory"]();
 };
-
 RouterScroller.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: RouterScroller,
   factory: RouterScroller.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterScroller, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -62899,6 +58718,7 @@ RouterScroller.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }];
   }, null);
 })();
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -62906,24 +58726,19 @@ RouterScroller.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * The directives defined in the `RouterModule`.
  */
-
-
 const ROUTER_DIRECTIVES = [RouterOutlet, RouterLink, RouterLinkWithHref, RouterLinkActive, ɵEmptyOutletComponent];
 /**
  * A [DI token](guide/glossary/#di-token) for the router service.
  *
  * @publicApi
  */
-
 const ROUTER_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTER_CONFIGURATION');
 /**
  * @docsNotRequired
  */
-
 const ROUTER_FORROOT_GUARD = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('ROUTER_FORROOT_GUARD');
 const ROUTER_PROVIDERS = [_angular_common__WEBPACK_IMPORTED_MODULE_28__.Location, {
   provide: UrlSerializer,
@@ -62942,7 +58757,6 @@ const ROUTER_PROVIDERS = [_angular_common__WEBPACK_IMPORTED_MODULE_28__.Location
     enableTracing: false
   }
 }];
-
 function routerNgProbeToken() {
   return new _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgProbeToken('Router', Router);
 }
@@ -62967,8 +58781,6 @@ function routerNgProbeToken() {
  *
  * @publicApi
  */
-
-
 class RouterModule {
   // Note: We are injecting the Router so it gets created eagerly...
   constructor(guard, router) {}
@@ -62990,8 +58802,6 @@ class RouterModule {
    * @return The new `NgModule`.
    *
    */
-
-
   static forRoot(routes, config) {
     return {
       ngModule: RouterModule,
@@ -63036,26 +58846,20 @@ class RouterModule {
    * @return The new NgModule.
    *
    */
-
-
   static forChild(routes) {
     return {
       ngModule: RouterModule,
       providers: [provideRoutes(routes)]
     };
   }
-
 }
-
 RouterModule.ɵfac = function RouterModule_Factory(t) {
   return new (t || RouterModule)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](ROUTER_FORROOT_GUARD, 8), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](Router, 8));
 };
-
 RouterModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
   type: RouterModule
 });
 RouterModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({});
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterModule, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
@@ -63080,24 +58884,19 @@ RouterModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
     }];
   }, null);
 })();
-
 function createRouterScroller(router, viewportScroller, config) {
   if (config.scrollOffset) {
     viewportScroller.setOffset(config.scrollOffset);
   }
-
   return new RouterScroller(router, viewportScroller, config);
 }
-
 function provideLocationStrategy(platformLocationStrategy, baseHref, options = {}) {
   return options.useHash ? new _angular_common__WEBPACK_IMPORTED_MODULE_28__.HashLocationStrategy(platformLocationStrategy, baseHref) : new _angular_common__WEBPACK_IMPORTED_MODULE_28__.PathLocationStrategy(platformLocationStrategy, baseHref);
 }
-
 function provideForRootGuard(router) {
   if ((typeof ngDevMode === 'undefined' || ngDevMode) && router) {
     throw new Error(`RouterModule.forRoot() called twice. Lazy loaded modules should use RouterModule.forChild() instead.`);
   }
-
   return 'guarded';
 }
 /**
@@ -63116,8 +58915,6 @@ function provideForRootGuard(router) {
  *
  * @publicApi
  */
-
-
 function provideRoutes(routes) {
   return [{
     provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -63129,65 +58926,52 @@ function provideRoutes(routes) {
     useValue: routes
   }];
 }
-
 function setupRouter(urlSerializer, contexts, location, injector, compiler, config, opts = {}, urlHandlingStrategy, routeReuseStrategy) {
   const router = new Router(null, urlSerializer, contexts, location, injector, compiler, flatten(config));
-
   if (urlHandlingStrategy) {
     router.urlHandlingStrategy = urlHandlingStrategy;
   }
-
   if (routeReuseStrategy) {
     router.routeReuseStrategy = routeReuseStrategy;
   }
-
   assignExtraOptionsToRouter(opts, router);
-
   if (opts.enableTracing) {
     router.events.subscribe(e => {
-      var _a, _b; // tslint:disable:no-console
-
-
+      var _a, _b;
+      // tslint:disable:no-console
       (_a = console.group) === null || _a === void 0 ? void 0 : _a.call(console, `Router Event: ${e.constructor.name}`);
       console.log(e.toString());
       console.log(e);
-      (_b = console.groupEnd) === null || _b === void 0 ? void 0 : _b.call(console); // tslint:enable:no-console
+      (_b = console.groupEnd) === null || _b === void 0 ? void 0 : _b.call(console);
+      // tslint:enable:no-console
     });
   }
 
   return router;
 }
-
 function assignExtraOptionsToRouter(opts, router) {
   if (opts.errorHandler) {
     router.errorHandler = opts.errorHandler;
   }
-
   if (opts.malformedUriErrorHandler) {
     router.malformedUriErrorHandler = opts.malformedUriErrorHandler;
   }
-
   if (opts.onSameUrlNavigation) {
     router.onSameUrlNavigation = opts.onSameUrlNavigation;
   }
-
   if (opts.paramsInheritanceStrategy) {
     router.paramsInheritanceStrategy = opts.paramsInheritanceStrategy;
   }
-
   if (opts.relativeLinkResolution) {
     router.relativeLinkResolution = opts.relativeLinkResolution;
   }
-
   if (opts.urlUpdateStrategy) {
     router.urlUpdateStrategy = opts.urlUpdateStrategy;
   }
-
   if (opts.canceledNavigationResolution) {
     router.canceledNavigationResolution = opts.canceledNavigationResolution;
   }
 }
-
 function rootRoute(router) {
   return router.routerState.root;
 }
@@ -63202,8 +58986,6 @@ function rootRoute(router) {
  * The router navigation starts, reaches the point when preactivation is done, and then
  * pauses. It waits for the hook to be resolved. We then resolve it only in a bootstrap listener.
  */
-
-
 class RouterInitializer {
   constructor(injector) {
     this.injector = injector;
@@ -63211,7 +58993,6 @@ class RouterInitializer {
     this.destroyed = false;
     this.resultOfPreactivationDone = new rxjs__WEBPACK_IMPORTED_MODULE_25__.Subject();
   }
-
   appInitializer() {
     const p = this.injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_28__.LOCATION_INITIALIZED, Promise.resolve(null));
     return p.then(() => {
@@ -63219,75 +59000,64 @@ class RouterInitializer {
       if (this.destroyed) {
         return Promise.resolve(true);
       }
-
       let resolve = null;
       const res = new Promise(r => resolve = r);
       const router = this.injector.get(Router);
       const opts = this.injector.get(ROUTER_CONFIGURATION);
-
       if (opts.initialNavigation === 'disabled') {
         router.setUpLocationChangeListener();
         resolve(true);
-      } else if ( // TODO: enabled is deprecated as of v11, can be removed in v13
+      } else if (
+      // TODO: enabled is deprecated as of v11, can be removed in v13
       opts.initialNavigation === 'enabled' || opts.initialNavigation === 'enabledBlocking') {
         router.hooks.afterPreactivation = () => {
           // only the initial navigation should be delayed
           if (!this.initNavigation) {
             this.initNavigation = true;
             resolve(true);
-            return this.resultOfPreactivationDone; // subsequent navigations should not be delayed
+            return this.resultOfPreactivationDone;
+            // subsequent navigations should not be delayed
           } else {
             return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
           }
         };
-
         router.initialNavigation();
       } else {
         resolve(true);
       }
-
       return res;
     });
   }
-
   bootstrapListener(bootstrappedComponentRef) {
     const opts = this.injector.get(ROUTER_CONFIGURATION);
     const preloader = this.injector.get(RouterPreloader);
     const routerScroller = this.injector.get(RouterScroller);
     const router = this.injector.get(Router);
     const ref = this.injector.get(_angular_core__WEBPACK_IMPORTED_MODULE_0__.ApplicationRef);
-
     if (bootstrappedComponentRef !== ref.components[0]) {
       return;
-    } // Default case
-
-
+    }
+    // Default case
     if (opts.initialNavigation === 'enabledNonBlocking' || opts.initialNavigation === undefined) {
       router.initialNavigation();
     }
-
     preloader.setUpPreloading();
     routerScroller.init();
     router.resetRootComponentType(ref.componentTypes[0]);
     this.resultOfPreactivationDone.next(null);
     this.resultOfPreactivationDone.complete();
   }
-
   ngOnDestroy() {
     this.destroyed = true;
   }
-
 }
-
 RouterInitializer.ɵfac = function RouterInitializer_Factory(t) {
   return new (t || RouterInitializer)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector));
 };
-
 RouterInitializer.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: RouterInitializer,
   factory: RouterInitializer.ɵfac
 });
-
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouterInitializer, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable
@@ -63297,11 +59067,9 @@ RouterInitializer.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
     }];
   }, null);
 })();
-
 function getAppInitializer(r) {
   return r.appInitializer.bind(r);
 }
-
 function getBootstrapListener(r) {
   return r.bootstrapListener.bind(r);
 }
@@ -63311,10 +59079,7 @@ function getBootstrapListener(r) {
  *
  * @publicApi
  */
-
-
 const ROUTER_INITIALIZER = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('Router Initializer');
-
 function provideRouterInitializer() {
   return [RouterInitializer, {
     provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.APP_INITIALIZER,
@@ -63331,6 +59096,7 @@ function provideRouterInitializer() {
     useExisting: ROUTER_INITIALIZER
   }];
 }
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -63338,13 +59104,11 @@ function provideRouterInitializer() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 /**
  * @publicApi
  */
-
-
 const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('13.3.12');
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
