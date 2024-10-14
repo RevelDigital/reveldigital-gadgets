@@ -225,7 +225,7 @@ i
 
       for (var key in json) {
 
-        var quote = json[key].quote;
+        var quote = json[key];
 
         var tr = $('<tr>').addClass('item');
         if (prefs.getBool('include-graphic')) {
