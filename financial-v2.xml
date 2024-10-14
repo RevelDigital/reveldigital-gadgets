@@ -217,7 +217,7 @@ i
   
   var update = function () {
 
-    var url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
+    var url = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + prefs.getString("symbols");
 
     $.getJSON(url, function(json) {
 
@@ -241,19 +241,19 @@ i
         }
 
         if (prefs.getBool('include-name')) {
-          tr.append($('<td class="value name">').text(quote.companyName));
+          tr.append($('<td class="value name">').text(quote.name));
         }
         if (prefs.getBool('include-symbol')) {
           tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          tr.append($('<td class="value last-trade">').text(quote.latestPrice));
+          tr.append($('<td class="value last-trade">').text(parseFloat(quote.open) + parseFloat(quote.change)));
         }
         if (prefs.getBool('include-change')) {
           tr.append($('<td class="value change">').text(quote.change));
         }
         if (prefs.getBool('include-days-range')) {
-          tr.append($('<td class="value days-range">').text((Math.round((quote.high - quote.low) * 100) / 100)));
+          tr.append($('<td class="value days-range">').text((Math.round((parseFloat(quote.high) - parseFloat(quote.low)) * 100) / 100)));
         }
         if (prefs.getBool('include-days-low')) {
           tr.append($('<td class="value days-low">').text(quote.low));
@@ -261,23 +261,23 @@ i
         if (prefs.getBool('include-days-high')) {
           tr.append($('<td class="value days-high">').text(quote.high));
         }
-        if (prefs.getBool('include-volume') && quote.latestVolume) {
-          tr.append($('<td class="value volume">').text(quote.latestVolume.commarize()));
+        if (prefs.getBool('include-volume') && quote.volume) {
+          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).commarize()));
         }
         if (prefs.getBool('include-year-low')) {
-          tr.append($('<td class="value year-low">').text(quote.week52Low));
+          tr.append($('<td class="value year-low">').text(quote.fifty_two_week.low));
         }
         if (prefs.getBool('include-year-high')) {
-          tr.append($('<td class="value year-high">').text(quote.week52High));
+          tr.append($('<td class="value year-high">').text(quote.fifty_two_week.high));
         }
-        if (prefs.getBool('include-market-cap') && quote.marketCap) {
-          tr.append($('<td class="value market-cap">').text(quote.marketCap.commarize()));
-        }
-        if (prefs.getBool('include-avg-daily-volume') && quote.avgTotalVolume) {
-          tr.append($('<td class="value avg-daily-volume">').text(quote.avgTotalVolume.commarize()));
+        //if (prefs.getBool('include-market-cap') && quote.marketCap) {
+        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).commarize()));
+        //}
+        if (prefs.getBool('include-avg-daily-volume') && quote.average_volume) {
+          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).commarize()));
         }
         if (prefs.getBool('include-exchange')) {
-          tr.append($('<td class="value exchange">').text(quote.primaryExchange));
+          tr.append($('<td class="value exchange">').text(quote.exchange));
         }
 
         $("div.quotescontainer > table > tbody").append(tr);
