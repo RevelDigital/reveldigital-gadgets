@@ -247,7 +247,7 @@ i
           tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          tr.append($('<td class="value last-trade">').text(parseFloat(quote.open) + parseFloat(quote.change)));
+          tr.append($('<td class="value last-trade">').text((parseFloat(quote.open) + parseFloat(quote.change)).toFixed(2)));
         }
         if (prefs.getBool('include-change')) {
           tr.append($('<td class="value change">').text(quote.change));
@@ -262,7 +262,7 @@ i
           tr.append($('<td class="value days-high">').text(quote.high));
         }
         if (prefs.getBool('include-volume') && quote.volume) {
-          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).commarize()));
+          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).toFixed(2).commarize()));
         }
         if (prefs.getBool('include-year-low')) {
           tr.append($('<td class="value year-low">').text(quote.fifty_two_week.low));
@@ -271,10 +271,10 @@ i
           tr.append($('<td class="value year-high">').text(quote.fifty_two_week.high));
         }
         //if (prefs.getBool('include-market-cap') && quote.marketCap) {
-        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).commarize()));
+        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).toFixed(2).commarize()));
         //}
         if (prefs.getBool('include-avg-daily-volume') && quote.average_volume) {
-          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).commarize()));
+          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).toFixed(2).commarize()));
         }
         if (prefs.getBool('include-exchange')) {
           tr.append($('<td class="value exchange">').text(quote.exchange));
