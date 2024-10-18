@@ -217,9 +217,15 @@ i
   
   var update = function () {
 
-    var url = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + prefs.getString("symbols");
+    var symbols =prefs.getString("symbols");
+
+    var url = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + symbols;
 
     $.getJSON(url, function(json) {
+
+      if (symbols.split(',').length == 1) {
+        json = { [symbols]: json };
+      }
 
       $("div.quotescontainer > table > tbody").empty();
 
