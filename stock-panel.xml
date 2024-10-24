@@ -145,17 +145,17 @@
   var prefs = new gadgets.Prefs();
 
   var symbols = prefs.getString("symbols");
-   
+
   Handlebars.registerHelper('latestPrice', function (quote) {
       return (parseFloat(quote.open) + parseFloat(quote.change)).toFixed(2);
   });
 
   Handlebars.registerHelper('fixed', function(value) {
-      return value.toFixed(2);
+      return parseFloat(value).toFixed(2);
   });
 
   Handlebars.registerHelper('isDown', function (price) {
-      return price < 0;
+      return parseFloat(price) < 0;
   });
   
   Handlebars.registerHelper("prettifyDate", function(timestamp) {
