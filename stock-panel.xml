@@ -123,8 +123,8 @@
         </h2>
 
         <h3>
-            {{#if (isDown change)}}<span class="down">{{change}} ({{percent_change}}%)</span>
-            {{else}}<span class="up">+{{change}} ({{percent_change}}%)</span>{{/if}}
+            {{#if (isDown change)}}<span class="down">{{fixed change}} ({{fixed percent_change}}%)</span>
+            {{else}}<span class="up">+{{fixed change}} ({{fixed percent_change}}%)</span>{{/if}}
         </h3>
         
         <h4>
@@ -145,10 +145,13 @@
   var prefs = new gadgets.Prefs();
 
   var symbols = prefs.getString("symbols");
-  
-    
+   
   Handlebars.registerHelper('latestPrice', function (quote) {
-      return quote.open + quote.change;
+      return (parseFloat(quote.open) + parseFloat(quote.change)).toFixed(2);
+  });
+
+  Handlebars.registerHelper('fixed', function(value) {
+      return value.toFixed(2);
   });
 
   Handlebars.registerHelper('isDown', function (price) {
