@@ -159,7 +159,7 @@
   });
   
   Handlebars.registerHelper("prettifyDate", function(timestamp) {
-    return new Date(timestamp).toString()
+    return new Date(timestamp * 1000).toString()
   });
 
   var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
