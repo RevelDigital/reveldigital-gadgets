@@ -111,24 +111,24 @@
 <script id="template" type="text/x-handlebars-template">
     <div class="quote">
         <h5>
-            {{quote.name}}
+            {{name}}
         </h5>
 
         <h1>
-            <strong> {{quote.symbol}} </strong>
+            <strong> {{symbol}} </strong>
         </h1>
 
         <h2>
-            ${{latestPrice quote}}
+            ${{latestPrice}}
         </h2>
 
         <h3>
-            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.percent_change}}%)</span>
-            {{else}}<span class="up">+{{quote.change}} ({{quote.percent_change}}%)</span>{{/if}}
+            {{#if (isDown change)}}<span class="down">{{change}} ({{percent_change}}%)</span>
+            {{else}}<span class="up">+{{change}} ({{percent_change}}%)</span>{{/if}}
         </h3>
         
         <h4>
-            (Last Quote: {{prettifyDate quote.timestamp}})
+            (Last Quote: {{prettifyDate timestamp}})
         </h4>
     </div>
 </script>
