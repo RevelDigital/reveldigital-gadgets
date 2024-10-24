@@ -111,7 +111,7 @@
 <script id="template" type="text/x-handlebars-template">
     <div class="quote">
         <h5>
-            {{quote.companyName}}
+            {{quote.name}}
         </h5>
 
         <h1>
@@ -119,16 +119,16 @@
         </h1>
 
         <h2>
-            ${{quote.latestPrice}}
+            ${{latestPrice quote}}
         </h2>
 
         <h3>
-            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
-            {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
+            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.percent_change}}%)</span>
+            {{else}}<span class="up">+{{quote.change}} ({{quote.percent_change}}%)</span>{{/if}}
         </h3>
         
         <h4>
-            (Last Quote: {{quote.latestTime}})
+            (Last Quote: {{prettifyDate quote.timestamp}})
         </h4>
     </div>
 </script>
@@ -146,10 +146,19 @@
 
   var symbols = prefs.getString("symbols");
   
+    
+  Handlebars.registerHelper('latestPrice', function (quote) {
+      return quote.open + quote.change;
+  });
+
   Handlebars.registerHelper('isDown', function (price) {
       return price < 0;
   });
   
+  Handlebars.registerHelper("prettifyDate", function(timestamp) {
+    return new Date(timestamp).toString()
+  });
+
   var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
 
   function load() {
@@ -171,14 +180,18 @@
 
   function get() {
 
-    var api = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + symbols + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
-    
+    var api = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + symbols;
+
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-      
+        
+        if (symbols.split(',').length == 1) {
+          data = { [symbols]: data };
+        }
+
         try {
           $("#container").slick("unslick");
         } catch (e) {}
