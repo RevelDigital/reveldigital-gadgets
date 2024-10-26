@@ -128,7 +128,7 @@
         </h3>
         
         <h4>
-            (Last Quote: {{prettifyDate timestamp}})
+            Last Quote: {{prettifyDate timestamp}}
         </h4>
     </div>
 </script>
