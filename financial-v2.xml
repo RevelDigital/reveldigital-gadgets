@@ -255,25 +255,25 @@ i
           tr.append($('<td class="value last-trade">').text(parseFloat(quote.close).toFixed(2)));
         }
         if (prefs.getBool('include-change')) {
-          tr.append($('<td class="value change">').text(quote.change));
+          tr.append($('<td class="value change">').text(parseFloat(quote.change).toFixed(2)));
         }
         if (prefs.getBool('include-days-range')) {
           tr.append($('<td class="value days-range">').text((Math.round((parseFloat(quote.high) - parseFloat(quote.low)) * 100) / 100)));
         }
         if (prefs.getBool('include-days-low')) {
-          tr.append($('<td class="value days-low">').text(quote.low));
+          tr.append($('<td class="value days-low">').text(parseFloat(quote.low).toFixed(2)));
         }
         if (prefs.getBool('include-days-high')) {
-          tr.append($('<td class="value days-high">').text(quote.high));
+          tr.append($('<td class="value days-high">').text(parseFloat(quote.high).toFixed(2)));
         }
         if (prefs.getBool('include-volume') && quote.volume) {
           tr.append($('<td class="value volume">').text(parseFloat(quote.volume).toFixed(2)));
         }
         if (prefs.getBool('include-year-low')) {
-          tr.append($('<td class="value year-low">').text(quote.fifty_two_week.low));
+          tr.append($('<td class="value year-low">').text(parseFloat(quote.fifty_two_week.low).toFixed(2)));
         }
         if (prefs.getBool('include-year-high')) {
-          tr.append($('<td class="value year-high">').text(quote.fifty_two_week.high));
+          tr.append($('<td class="value year-high">').text(parseFloat(quote.fifty_two_week.high).toFixed(2)));
         }
         //if (prefs.getBool('include-market-cap') && quote.marketCap) {
         //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).toFixed(2)));
