@@ -253,7 +253,7 @@ i
           tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          tr.append($('<td class="value last-trade">').text((parseFloat(quote.open) + parseFloat(quote.change)).toFixed(2)));
+          tr.append($('<td class="value last-trade">').text(parseFloat(quote.close).toFixed(2).commarize()));
         }
         if (prefs.getBool('include-change')) {
           tr.append($('<td class="value change">').text(quote.change));
