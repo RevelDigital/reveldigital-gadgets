@@ -183,7 +183,7 @@
 
   function get() {
 
-    var api = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + symbols;
+    var api = "https://proxy-svc.reveldigital.app/stocks/quote?symbol=" + symbols;
 
     $.ajax({
       type: 'GET',

@@ -219,7 +219,7 @@ i
 
     var symbols =prefs.getString("symbols");
 
-    var url = "https://api-proxy.reveldigital.com/stocks/quote?symbol=" + symbols;
+    var url = "https://proxy-svc.reveldigital.app/stocks/quote?symbol=" + symbols;
 
     $.getJSON(url, function(json) {
 
