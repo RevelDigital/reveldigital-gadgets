@@ -19,7 +19,6 @@
   <UserPref name="include-volume" display_name="Include Volume" datatype="bool" default_value="false" />
   <UserPref name="include-year-low" display_name="Include Year Low" datatype="bool" default_value="false" />
   <UserPref name="include-year-high" display_name="Include Year High" datatype="bool" default_value="false" />
-  <UserPref name="include-market-cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
   <UserPref name="include-avg-daily-volume" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
   <UserPref name="include-exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -253,7 +252,7 @@ i
           tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          tr.append($('<td class="value last-trade">').text(parseFloat(quote.close).toFixed(2).commarize()));
+          tr.append($('<td class="value last-trade">').text(parseFloat(quote.close).toFixed(2)));
         }
         if (prefs.getBool('include-change')) {
           tr.append($('<td class="value change">').text(quote.change));
@@ -268,7 +267,7 @@ i
           tr.append($('<td class="value days-high">').text(quote.high));
         }
         if (prefs.getBool('include-volume') && quote.volume) {
-          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).toFixed(2).commarize()));
+          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).toFixed(2)));
         }
         if (prefs.getBool('include-year-low')) {
           tr.append($('<td class="value year-low">').text(quote.fifty_two_week.low));
@@ -277,10 +276,10 @@ i
           tr.append($('<td class="value year-high">').text(quote.fifty_two_week.high));
         }
         //if (prefs.getBool('include-market-cap') && quote.marketCap) {
-        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).toFixed(2).commarize()));
+        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).toFixed(2)));
         //}
         if (prefs.getBool('include-avg-daily-volume') && quote.average_volume) {
-          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).toFixed(2).commarize()));
+          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).toFixed(2)));
         }
         if (prefs.getBool('include-exchange')) {
           tr.append($('<td class="value exchange">').text(quote.exchange));
