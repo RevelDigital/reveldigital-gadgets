@@ -211,7 +211,7 @@ AppComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_86_listener() { return ctx.callback(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](87, "Callback");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](88, "button", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](88, "button", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_88_listener() { return ctx.finish(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](89, "Finish");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -789,9 +789,14 @@ class PlayerClientService {
    * @param value Preference value
    */
   setPreference(key, value) {
-    if (window.parent === window.top) {
-      console.log('%csetPreference() is only available in preview mode.', 'background-color:blue; color:yellow;');
-    }
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+      if (yield this.isPreviewMode()) {
+        const client = yield this.getClient();
+        client.setPreference(key, value);
+      } else {
+        console.log('%csetPreference() is only available in preview mode.', 'background-color:blue; color:yellow;');
+      }
+    });
   }
   // ---
   // PRIVATE METHODS.
