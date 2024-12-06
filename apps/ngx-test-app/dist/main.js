@@ -104,7 +104,9 @@ class AppComponent {
         this.client.finish();
     }
     setPreference() {
-        this.client.setPreference('myPref', 'myValue');
+        this.client.setPreference('myPref', 'myValue').then(() => {
+            console.log('Preference set');
+        });
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_1__.PlayerClientService)); };
