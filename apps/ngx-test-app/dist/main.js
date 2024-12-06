@@ -952,13 +952,13 @@ class NoopClient {
     });
   }
   setPreference(key, value) {
-    if (window.parent !== window.top) {
-      window.parent.postMessage(JSON.stringify({
-        type: 'setPreference',
-        key: key,
-        value: value
-      }), '*');
-    }
+    //if (window.parent !== window.top) {
+    window.parent.postMessage(JSON.stringify({
+      type: 'setPreference',
+      key: key,
+      value: value
+    }), '*');
+    //}
   }
 }
 const isLocal = /localhost/.test(document.location.host);
