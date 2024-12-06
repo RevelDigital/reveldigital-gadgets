@@ -104,7 +104,7 @@ class AppComponent {
         this.client.finish();
     }
     setPreference() {
-        this.client.setPreference('myPref', 'myValue').then(() => {
+        this.client.setPreference('myStringPref', `Updated ${new Date()}`).then(() => {
             console.log('Preference set');
         });
     }
