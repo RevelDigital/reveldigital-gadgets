@@ -39,7 +39,7 @@
             height: __UP_rdH__px;
             overflow: hidden;
         }
-    </style><link rel="stylesheet" href="styles.css"><body>
+    </style><link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/styles.css"><body>
     <app-root></app-root>
 <script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/runtime.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/polyfills.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/vendor.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/main.js" type="module"></script></body>]]></Content>
 </Module>
