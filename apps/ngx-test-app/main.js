@@ -33,13 +33,22 @@ class AppComponent {
             console.log(`onCommand: ${cmd.name}, ${cmd.arg}`);
         });
         this.client.onStart$.subscribe(() => {
-            console.log("onStart");
+            console.log('onStart');
             this.state = 'Started';
         });
         this.client.onStop$.subscribe(() => {
-            console.log("onStop");
+            console.log('onStop');
             this.state = 'Stopped';
         });
+        this.client.onConfig$.subscribe((e) => {
+            console.log(`onConfig: ${e.type}`);
+        });
+        // this.client.onPostMessage$.subscribe((msg: any) => {
+        //   console.log(`onPostMessage: ${msg}`);
+        //   if (msg.type === 'applyConfig') {
+        //     this.client.applyConfig(msg.config);
+        //   }
+        // });
     }
     ngOnInit() {
         setInterval(() => {
@@ -109,9 +118,14 @@ class AppComponent {
         });
     }
     applyConfig() {
-        this.client.applyConfig({ prefs: { "myStringPref": "Updated ${new Date()}" } }).then(() => {
-            console.log('Config applied');
+        this.client.applyConfig({ prefs: { 'myStringPref': `Updated ${new Date()}` } }).then(() => {
+            window.close();
         });
+        //window.opener.postMessage({ type: 'applyConfig', config: { prefs: { "myStringPref": "Updated ${new Date()}" } } }, '*');
+        //window.close();
+        // this.client.applyConfig({ prefs: { "myStringPref": "Updated ${new Date()}" } }).then(() => {
+        //   console.log('Config applied');
+        // });
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_1__.PlayerClientService)); };
@@ -223,8 +237,8 @@ AppComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](89, "Finish");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](90, "button", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_90_listener() { return ctx.setPreference(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, "Set Preference");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_90_listener() { return ctx.applyConfig(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, "Apply Config");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()()()()()()();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](9);
@@ -369,20 +383,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PlayerClientService": () => (/* binding */ PlayerClientService),
 /* harmony export */   "SafeStylePipe": () => (/* binding */ SafeStylePipe)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 228);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 6317);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 3280);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 1203);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 9337);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 116);
 /* harmony import */ var js_yaml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-yaml */ 5474);
 /* harmony import */ var webfontloader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! webfontloader */ 7522);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ 8784);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser */ 318);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ 8784);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 2816);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ 6362);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/platform-browser */ 318);
 
 
 
@@ -398,18 +413,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Generated by genversion.
-const version = '1.0.11';
+const version = '1.0.12';
+var ConfigType;
+(function (ConfigType) {
+  ConfigType["OpenConfig"] = "openConfig";
+  ConfigType["ApplyConfig"] = "applyConfig";
+})(ConfigType || (ConfigType = {}));
 class PlayerClientService {
-  // private onPostMessageSub: Subscription;
-  // private onPostMessageEvt$ = fromEvent(window, 'message').pipe(
-  //   filter((messageEvent: MessageEvent) =>
-  //     messageEvent.source !== window.parent &&
-  //     typeof messageEvent.data === 'string' &&
-  //     messageEvent.data.startsWith('reveldigital:')),
-  //   map((e: any) => { return JSON.parse(e.substring(13)) as Command }),
-  //   share(),
-  //   tap(this.onCommand$)
-  // );
   /** @ignore */
   constructor(zone) {
     /**
@@ -428,17 +438,31 @@ class PlayerClientService {
      * Signals the gadgets has been stopped by the player.
      */
     this.onStop$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__.Subject();
+    this.onConfig$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__.Subject();
+    this.onPostMessage$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__.Subject();
     /** @ignore */
-    this.onStartEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(document, 'RevelDigital.Start').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(this.onStart$));
+    this.onStartEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(window, 'RevelDigital.Start').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(this.onStart$));
     /** @ignore */
-    this.onStopEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(document, 'RevelDigital.Stop').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(this.onStop$));
+    this.onStopEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(window, 'RevelDigital.Stop').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(this.onStop$));
     /** @ignore */
-    this.onCommandEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(document, 'RevelDigital.Command').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.map)(e => {
+    this.onCommandEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(window, 'RevelDigital.Command').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.map)(e => {
       return {
         name: e.detail.name,
         arg: e.detail.arg
       };
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(this.onCommand$));
+    /** @ignore */
+    this.onConfigEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(window, 'RevelDigital.Config').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(e => {
+      console.log(e);
+      if (e.detail.type === 'applyConfig' && e.detail.isOpener) {
+        this.applyConfig(e.detail.config); // propagate config to iframe parent from the popup window
+      } else {
+        this.onConfig$.next(e.detail);
+      }
+    }));
+    this.onPostMessageEvt$ = (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.fromEvent)(window, 'message').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.filter)(messageEvent =>
+    //messageEvent.source !== window.parent &&
+    typeof messageEvent.data === 'string'), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.map)(e => JSON.parse(e.data)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.share)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(e => this.onPostMessage$.next(e)));
     let self = this;
     window.RevelDigital = {
       Controller: {
@@ -465,15 +489,19 @@ class PlayerClientService {
     this.onStartSub = this.onStartEvt$.subscribe(() => {});
     this.onStopSub = this.onStopEvt$.subscribe(() => {});
     this.onCommandSub = this.onCommandEvt$.subscribe(() => {});
+    this.onConfigSub = this.onConfigEvt$.subscribe(() => {});
+    this.onPostMessageSub = this.onPostMessageEvt$.subscribe(() => {});
     this.clientPromise = null;
     this.onReady$.next(true);
   }
   /** @ignore */
   ngOnDestroy() {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
     (_a = this.onStartSub) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     (_b = this.onStopSub) === null || _b === void 0 ? void 0 : _b.unsubscribe();
     (_c = this.onCommandSub) === null || _c === void 0 ? void 0 : _c.unsubscribe();
+    (_d = this.onConfigSub) === null || _d === void 0 ? void 0 : _d.unsubscribe();
+    (_e = this.onPostMessageSub) === null || _e === void 0 ? void 0 : _e.unsubscribe();
     this.onReady$.next(false);
   }
   /** @ignore */
@@ -537,7 +565,7 @@ class PlayerClientService {
    * @returns Date/time in ISO8601 format
    */
   getDeviceTime(date) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       if (date !== undefined) {
         return client.getDeviceTime(date);
@@ -551,7 +579,7 @@ class PlayerClientService {
    * @returns Timezone Name
    */
   getDeviceTimeZoneName() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getDeviceTimeZoneName();
     });
@@ -562,7 +590,7 @@ class PlayerClientService {
    * @returns Timezone ID
    */
   getDeviceTimeZoneID() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getDeviceTimeZoneID();
     });
@@ -573,7 +601,7 @@ class PlayerClientService {
    * @returns Timezone offset
    */
   getDeviceTimeZoneOffset() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getDeviceTimeZoneOffset();
     });
@@ -584,7 +612,7 @@ class PlayerClientService {
    * @returns Language code
    */
   getLanguageCode() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getLanguageCode();
     });
@@ -595,7 +623,7 @@ class PlayerClientService {
    * @returns Device key
    */
   getDeviceKey() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getDeviceKey();
     });
@@ -672,7 +700,7 @@ class PlayerClientService {
    * @returns Path to the root folder
    */
   getRevelRoot() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getRevelRoot();
     });
@@ -683,7 +711,7 @@ class PlayerClientService {
    * @returns Map of commands currently active for this device.
    */
   getCommandMap() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return JSON.parse(yield client.getCommandMap());
     });
@@ -704,7 +732,7 @@ class PlayerClientService {
    * @returns True if the gadget is running in preview mode, false otherwise.
    */
   isPreviewMode() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client instanceof NoopClient;
     });
@@ -715,7 +743,7 @@ class PlayerClientService {
   * @returns Device details.
   */
   getDevice() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       let obj = JSON.parse(yield client.getDevice());
       const device = [obj].map(device => {
@@ -748,7 +776,7 @@ class PlayerClientService {
    * @returns Width of the visualization area
    */
   getWidth() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getWidth();
     });
@@ -759,7 +787,7 @@ class PlayerClientService {
    * @returns Height of the visualization area
    */
   getHeight() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getHeight();
     });
@@ -771,7 +799,7 @@ class PlayerClientService {
    * @returns Duration of the current item in milliseconds
    */
   getDuration() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       const client = yield this.getClient();
       return client.getDuration();
     });
@@ -782,7 +810,7 @@ class PlayerClientService {
    * @returns SDK version
    */
   getSdkVersion() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(version);
     });
   }
@@ -796,7 +824,7 @@ class PlayerClientService {
    * @param value Preference value
    */
   setPreference(key, value) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       if (yield this.isPreviewMode()) {
         const client = yield this.getClient();
         client.setPreference(key, value);
@@ -805,11 +833,11 @@ class PlayerClientService {
       }
     });
   }
-  applyConfig(config) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+  applyConfig(prefs) {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       if (yield this.isPreviewMode()) {
         const client = yield this.getClient();
-        client.applyConfig(config);
+        client.applyConfig(prefs);
       } else {
         console.log('%capplyConfig() is only available in preview mode.', 'background-color:blue; color:yellow;');
       }
@@ -853,22 +881,22 @@ class PlayerClientService {
   }
 }
 PlayerClientService.ɵfac = function PlayerClientService_Factory(t) {
-  return new (t || PlayerClientService)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__.NgZone));
+  return new (t || PlayerClientService)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_10__.NgZone));
 };
-PlayerClientService.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjectable"]({
+PlayerClientService.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjectable"]({
   token: PlayerClientService,
   factory: PlayerClientService.ɵfac,
   providedIn: 'root'
 });
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](PlayerClientService, [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.Injectable,
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵsetClassMetadata"](PlayerClientService, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.Injectable,
     args: [{
       providedIn: 'root'
     }]
   }], function () {
     return [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.NgZone
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.NgZone
     }];
   }, null);
 })();
@@ -889,27 +917,27 @@ class NoopClient {
     return Promise.resolve(new Date().toISOString());
   }
   getDeviceTimeZoneName() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getDeviceTimeZoneID() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getDeviceTimeZoneOffset() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getLanguageCode() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getDeviceKey() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
@@ -929,12 +957,12 @@ class NoopClient {
     // NOOP implement, nothing to do....
   }
   getRevelRoot() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getCommandMap() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve('{}');
     });
   }
@@ -942,27 +970,27 @@ class NoopClient {
     // NOOP implement, nothing to do....
   }
   getDevice() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getWidth() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getHeight() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getDuration() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(null);
     });
   }
   getSdkVersion() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       return Promise.resolve(version);
     });
   }
@@ -975,15 +1003,30 @@ class NoopClient {
     }), '*');
     //}
   }
-  applyConfig(config) {
-    window.parent.postMessage(JSON.stringify({
-      type: 'applyConfig',
-      config: config
-    }), '*');
+  applyConfig(prefs) {
+    let evt = new CustomEvent('RevelDigital.Config', {
+      detail: {
+        type: ConfigType.ApplyConfig,
+        prefs: prefs,
+        isOpener: window.opener !== null
+      }
+    });
+    if (window.opener) {
+      window.opener.dispatchEvent(evt);
+    } else {
+      window.parent.dispatchEvent(evt);
+    }
+    // window.opener.postMessage(
+    //   JSON.stringify({
+    //     type: 'applyConfig',
+    //     config: config
+    //   }),
+    //   '*'
+    // );
   }
 }
 const isLocal = /localhost/.test(document.location.host);
-!isLocal && (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.enableProdMode)();
+!isLocal && (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.enableProdMode)();
 /** @ignore */
 class AppInitService {
   constructor(http, _route, _router) {
@@ -992,9 +1035,9 @@ class AppInitService {
     this._router = _router;
   }
   init() {
-    return new Promise(resolve => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+    return new Promise(resolve => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
       this.loadFonts();
-      if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.isDevMode)()) {
+      if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.isDevMode)()) {
         console.log('%cRunning in development mode', 'background-color:blue; color:yellow;');
         /**
          * Shim the shindig prefs functionality for dev mode
@@ -1086,26 +1129,26 @@ class AppInitService {
   }
 }
 AppInitService.ɵfac = function AppInitService_Factory(t) {
-  return new (t || AppInitService)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.Router));
+  return new (t || AppInitService)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_12__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_12__.Router));
 };
-AppInitService.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjectable"]({
+AppInitService.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjectable"]({
   token: AppInitService,
   factory: AppInitService.ɵfac,
   providedIn: 'root'
 });
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](AppInitService, [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.Injectable,
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵsetClassMetadata"](AppInitService, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.Injectable,
     args: [{
       providedIn: 'root'
     }]
   }], function () {
     return [{
-      type: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClient
+      type: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClient
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_12__.ActivatedRoute
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_12__.Router
     }];
   }, null);
 })();
@@ -1128,22 +1171,22 @@ class SafeStylePipe {
   }
 }
 SafeStylePipe.ɵfac = function SafeStylePipe_Factory(t) {
-  return new (t || SafeStylePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__.DomSanitizer, 16));
+  return new (t || SafeStylePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__.DomSanitizer, 16));
 };
-SafeStylePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefinePipe"]({
+SafeStylePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefinePipe"]({
   name: "safeStyle",
   type: SafeStylePipe,
   pure: true
 });
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](SafeStylePipe, [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.Pipe,
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵsetClassMetadata"](SafeStylePipe, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.Pipe,
     args: [{
       name: 'safeStyle'
     }]
   }], function () {
     return [{
-      type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__.DomSanitizer
+      type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__.DomSanitizer
     }];
   }, null);
 })();
@@ -1151,13 +1194,13 @@ class NgSafeStylePipeModule {}
 NgSafeStylePipeModule.ɵfac = function NgSafeStylePipeModule_Factory(t) {
   return new (t || NgSafeStylePipeModule)();
 };
-NgSafeStylePipeModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({
+NgSafeStylePipeModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineNgModule"]({
   type: NgSafeStylePipeModule
 });
-NgSafeStylePipeModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({});
+NgSafeStylePipeModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjector"]({});
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](NgSafeStylePipeModule, [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.NgModule,
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵsetClassMetadata"](NgSafeStylePipeModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule,
     args: [{
       declarations: [SafeStylePipe],
       exports: [SafeStylePipe]
@@ -1171,17 +1214,17 @@ class PlayerClientModule {}
 PlayerClientModule.ɵfac = function PlayerClientModule_Factory(t) {
   return new (t || PlayerClientModule)();
 };
-PlayerClientModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({
+PlayerClientModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineNgModule"]({
   type: PlayerClientModule
 });
-PlayerClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({
+PlayerClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjector"]({
   providers: [{
-    provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__.APP_INITIALIZER,
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_10__.APP_INITIALIZER,
     useFactory: initializeApp,
     deps: [AppInitService, PlayerClientService],
     multi: true
   }, {
-    provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__.LOCALE_ID,
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_10__.LOCALE_ID,
     useFactory: () => {
       try {
         return new gadgets.Prefs().getLang();
@@ -1190,24 +1233,24 @@ PlayerClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
       }
     }
   }, {
-    provide: _angular_common__WEBPACK_IMPORTED_MODULE_13__.APP_BASE_HREF,
+    provide: _angular_common__WEBPACK_IMPORTED_MODULE_14__.APP_BASE_HREF,
     useValue: '/gadgets/ifr'
   }],
-  imports: [[_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule.forRoot([]), NgSafeStylePipeModule], NgSafeStylePipeModule]
+  imports: [[_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_12__.RouterModule.forRoot([]), NgSafeStylePipeModule], NgSafeStylePipeModule]
 });
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](PlayerClientModule, [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.NgModule,
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵsetClassMetadata"](PlayerClientModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule,
     args: [{
-      imports: [_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule.forRoot([]), NgSafeStylePipeModule],
+      imports: [_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_12__.RouterModule.forRoot([]), NgSafeStylePipeModule],
       exports: [NgSafeStylePipeModule],
       providers: [{
-        provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__.APP_INITIALIZER,
+        provide: _angular_core__WEBPACK_IMPORTED_MODULE_10__.APP_INITIALIZER,
         useFactory: initializeApp,
         deps: [AppInitService, PlayerClientService],
         multi: true
       }, {
-        provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__.LOCALE_ID,
+        provide: _angular_core__WEBPACK_IMPORTED_MODULE_10__.LOCALE_ID,
         useFactory: () => {
           try {
             return new gadgets.Prefs().getLang();
@@ -1216,14 +1259,14 @@ PlayerClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE
           }
         }
       }, {
-        provide: _angular_common__WEBPACK_IMPORTED_MODULE_13__.APP_BASE_HREF,
+        provide: _angular_common__WEBPACK_IMPORTED_MODULE_14__.APP_BASE_HREF,
         useValue: '/gadgets/ifr'
       }]
     }]
   }], null, null);
 })();
 function initializeApp(appInitService) {
-  return () => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+  return () => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
     PlayerClientService.init({});
     yield appInitService.init();
   });
