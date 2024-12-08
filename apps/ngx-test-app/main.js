@@ -108,6 +108,11 @@ class AppComponent {
             console.log('Preference set');
         });
     }
+    applyConfig() {
+        this.client.applyConfig({ prefs: { "myStringPref": "Updated ${new Date()}" } }).then(() => {
+            console.log('Config applied');
+        });
+    }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_reveldigital_player_client__WEBPACK_IMPORTED_MODULE_1__.PlayerClientService)); };
 AppComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 92, vars: 23, consts: [[1, "w-screen", "h-screen", "flex", "flex-col", "items-center", "justify-center", "bg-gradient-to-br", "from-violet-600", "to-indigo-600"], [1, "not-prose", "relative", "mt-10", "rounded-xl"], [1, "shadow-sm", "overflow-hidden", "my-8", "rounded-xl"], [1, "border-collapse", "table-auto", "text-sm"], [1, "bg-white", "dark:bg-slate-800"], [1, "border-b", "border-slate-100", "dark:border-slate-600", "p-4", "pl-8", "text-slate-500", "dark:text-slate-400"], [1, "border-b", "border-slate-100", "dark:border-slate-600", "p-4", "text-slate-500", "dark:text-slate-400", "font-bold", "text-center"], [1, "border-b", "border-slate-100", "dark:border-slate-700", "p-4", "pl-8", "text-slate-500", "dark:text-slate-400"], [1, "border-b", "border-slate-100", "dark:border-slate-700", "p-4", "text-slate-500", "dark:text-slate-400", "font-bold", "text-center"], [1, "mr-2", "bg-transparent", "hover:bg-blue-500", "text-blue-700", "font-semibold", "hover:text-white", "py-2", "px-4", "border", "border-blue-500", "hover:border-transparent", "rounded", 3, "click"], [1, "bg-transparent", "hover:bg-blue-500", "text-blue-700", "font-semibold", "hover:text-white", "py-2", "px-4", "border", "border-blue-500", "hover:border-transparent", "rounded", 3, "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
@@ -800,6 +805,16 @@ class PlayerClientService {
       }
     });
   }
+  applyConfig(config) {
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+      if (yield this.isPreviewMode()) {
+        const client = yield this.getClient();
+        client.applyConfig(config);
+      } else {
+        console.log('%capplyConfig() is only available in preview mode.', 'background-color:blue; color:yellow;');
+      }
+    });
+  }
   // ---
   // PRIVATE METHODS.
   // ---
@@ -959,6 +974,12 @@ class NoopClient {
       value: value
     }), '*');
     //}
+  }
+  applyConfig(config) {
+    window.parent.postMessage(JSON.stringify({
+      type: 'applyConfig',
+      config: config
+    }), '*');
   }
 }
 const isLocal = /localhost/.test(document.location.host);
