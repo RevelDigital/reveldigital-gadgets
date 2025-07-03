@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-<ModulePrefs title="Christmas Countdown" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
+<ModulePrefs title="Christmas Countdown Gadget" background="transparent" author="RevelDigital" description="Countdown days until Christmas">
 <UserPref required="true" datatype="hidden" display_name="width" name="rdW"/>
 <UserPref required="true" datatype="hidden" display_name="height" name="rdH"/>
 <UserPref required="true" default_value="font-family:'Mountains of Christmas',cursive;color:#ffffff;font-size:65px;" datatype="style" display_name="Message Style" name="message-style"/>

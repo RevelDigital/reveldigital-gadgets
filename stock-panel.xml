@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-  <ModulePrefs title="Stock Quote Panel Gadget" description="Large format stock quote supporting multiple symbols. Data provided for free by IEX." author="RevelDigital" background="transparent">
+  <ModulePrefs title="Stock Panel Gadget" description="Large format stock quote supporting multiple symbols" author="RevelDigital" background="transparent">
     <Require feature="reveldigital" />
     <Require feature="jquery" />
     <Require feature="webfont" />

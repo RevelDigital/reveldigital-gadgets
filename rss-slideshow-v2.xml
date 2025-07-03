@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital RSS Scroller" description="Rotates through RSS feed items" author="RevelDigital" background="transparent">
+<ModulePrefs title="RSS Slideshow Gadget" description="Rotates through RSS feed items" author="RevelDigital" background="transparent">
   <UserPref name="feedUrl" display_name="RSS Feed" datatype="enum" default_value="http://rss.cnn.com/rss/cnn_topstories.rss">
     <EnumValue display_value="CNN Top Stories" value="http://rss.cnn.com/rss/cnn_topstories.rss" />
     <EnumValue display_value="CNN World" value="http://rss.cnn.com/rss/cnn_world.rss" />

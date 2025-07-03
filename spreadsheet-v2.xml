@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Google Spreadsheet Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001563671-Google-Sheets-Integration" description="Basic tabular display of Google spreadsheet data" author="RevelDigital" background="transparent">
+<ModulePrefs title="Google Sheets Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360001563671-Google-Sheets-Gadget" description="Basic tabular display of Google Sheets data" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
