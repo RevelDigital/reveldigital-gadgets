@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Mini Weather Gadget" description="Compact weather with high/low temperature and current condition icon. Great for incorporating into headers, footers, or other confined areas of your layout" author="RevelDigital" background="transparent">
+<ModulePrefs title="Mini Weather Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/33831357734157-Weather-Gadgets" description="Compact weather with high/low temperature and current condition icon" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />

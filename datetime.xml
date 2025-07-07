@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="Date/Time Gadget" description="Displays date and time with formatting options" author="RevelDigital" background="transparent">
+<ModulePrefs title="Date &amp; Time Gadget" description="Displays date and time with formatting options" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
