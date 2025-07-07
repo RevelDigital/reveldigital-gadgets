@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital Weather Map" description="Animated weather maps including precipition, cloud cover, and temperature" author="RevelDigital" background="transparent">
+  <Require feature="reveldigital" />
+  <Require feature="jquery" />
+  <Require feature="webfont" />
+  
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="units" display_name="Temperature Units" datatype="enum" default_value="f">
+    <EnumValue value="f" display_value="US" />
+    <EnumValue value="c" display_value="Metric" />
+  </UserPref>
+  <UserPref name="location" display_name="Location" datatype="string" default_value="*|DEVICE.LOCATION.CITY|*, *|DEVICE.LOCATION.STATE|*" />
+  <UserPref name="maptype" display_name="Map Type" datatype="enum" default_value="radar" multiple="true">
+    <EnumValue value="radar" display_value="Radar" />
+    <EnumValue value="satellite-visible" display_value="Satellite - Visible" />
+    <EnumValue value="satellite-geocolor" display_value="Satellite - GeoColor" />
+    <EnumValue value="satellite" display_value="Satellite - Infrared (B/W)" />
+    <EnumValue value="satellite-infrared-color" display_value="Satellite - Infrared (Color)" />
+    <EnumValue value="satellite-water-vapor" display_value="Satellite - Water Vapor" />
+    <EnumValue value="fsatellite" display_value="Forecast Satellite" />
+    <EnumValue value="temperatures" display_value="Temperatures" />
+    <EnumValue value="temperatures-text" display_value="Temperatures - Text" />
+    <EnumValue value="humidity" display_value="Humidity" />
+    <EnumValue value="humidity-text" display_value="Humidity - Text" />
+    <EnumValue value="wind-speeds" display_value="Wind Speeds" />
+    <EnumValue value="wind-speeds-text" display_value="Wind Speeds - Text" />
+    <EnumValue value="wind-dir" display_value="Wind Direction" />
+    <EnumValue value="wind-chill" display_value="Wind Chill" />
+    <EnumValue value="wind-chill-text" display_value="Wind Chill - Text" />
+    <EnumValue value="heat-index" display_value="Heat Index" />
+    <EnumValue value="heat-index-text" display_value="Heat-index - Text" />
+    <EnumValue value="feels-like" display_value="Feels Like" />
+    <EnumValue value="feels-like-text" display_value="Feels Like - Text" />
+    <EnumValue value="precip" display_value="Precipitation" />
+    <EnumValue value="air-quality" display_value="Air Quality" />
+    <EnumValue value="drought-monitor" display_value="Drought Monitor" />
+    <EnumValue value="air-quality-index" display_value="Air Quality Index" />
+    <EnumValue value="tropical-cyclones" display_value="Tropical Cyclones" />
+    <EnumValue value="tropical-cyclones-names" display_value="Tropical Cyclones - Names" />
+    <EnumValue value="tropical-cyclones-position-icons" display_value="Tropical Cyclones - Position Icons" />
+    <EnumValue value="tropical-cyclones-track-lines" display_value="Tropical Cyclones - Track Lines" />
+    <EnumValue value="tropical-cyclones-track-point-icons" display_value="Tropical Cyclones - Track Icons" />
+    <EnumValue value="tropical-cyclones-forecast-error-cones" display_value="Tropical Cyclones - Forecast Error Cones" />
+    <EnumValue value="fradar" display_value="Forecast Radar" />
+    <EnumValue value="ftemperatures" display_value="Forecast Temperatures" />
+    <EnumValue value="ftemperatures-max" display_value="Forecast High Temps" />
+    <EnumValue value="ftemperatures-min" display_value="Forecast Low Temps" />
+    <EnumValue value="fqpf-6h" display_value="Forecast Precip (6 Hour Intervals)" />
+    <EnumValue value="fqsf-accum" display_value="Forecast Snow Accum" />
+    <EnumValue value="fsnow-depth" display_value="Forecast Snow Depth" />
+    <EnumValue value="fwind-speeds" display_value="Forecast Winds" />
+    <EnumValue value="fwind-chill" display_value="Forecast Wind Chill" />
+    <EnumValue value="fheat-index" display_value="Forecast Heat Index" />
+    <EnumValue value="maritime-swell-heights" display_value="Primary Swell Heights" />
+    <EnumValue value="maritime-sst" display_value="Sea Surface Temperature" />
+    <EnumValue value="maritime-wave-heights" display_value="Primary Wave Heights" />
+    <EnumValue value="snow-depth" display_value="Estimated Snow Depth" />
+    <EnumValue value="temperatures-outlook-6-10d-cpc" display_value="6-10d Temp Outlook" />
+    <EnumValue value="precip-outlook-6-10d-cpc" display_value="6-10d Precip Outlook" />
+  </UserPref>
+  <UserPref name="zoom" display_name="Zoom Level" datatype="string" default_value="8" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+
+  body * {
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+
+  body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+  }
+
+  #temp {
+    __UP_font-style__;
+  }
+
+  .awxjs__map-legend {
+    display: none;
+  }
+  
+</style>
+
+<div id="map">
+</div>
+
+<script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
+
+<script type="text/javascript">
+
+  var re = /[^\/]+$/;
+  
+  var prefs = new gadgets.Prefs();
+
+  var unit = prefs.getString("units");
+  var aeris;
+
+  function load() {
+  
+    aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW');
+
+    setInterval(function() {
+      loadMap();
+    }, 1000 * 60 * 30);
+
+    loadMap();
+  }
+
+  function loadMap() {
+    var location = prefs.getString('location');
+
+    if (location === '' || location.indexOf('*|DEVICE.LOCATION.CITY|*') !== -1) {
+      location = 'Fargo, ND';
+    }
+
+    aeris.views().then((views) => {
+      const map = new views.Map(document.getElementById('map'), {
+          map: {
+              center: location,
+              zoom: prefs.getInt('zoom'),
+              size: {
+                  width: __UP_rdW__,
+                  height: __UP_rdH__
+              },
+              layers: {
+                  data: prefs.getString('maptype').split('|').join(','),
+                  overlays: 'admin-dk'
+              },
+              metric: prefs.getString('units') === 'c'
+          },
+          animation: {
+            autoplay: true
+          }
+      });
+    });
+  }
+  
+  gadgets.util.registerOnLoadHandler(load);
+  
+</script>
+
+]]>
+</Content>
+</Module>

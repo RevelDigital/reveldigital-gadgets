@@ -6,7 +6,7 @@
     <Require feature="webfont" />
     
     <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" default_value="MSFT,AAPL" />
-    <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Verdana;color:rgb(0, 0, 0);font-size:28px;" required="true" />
+    <UserPref name="font-style" display_name="Font Style" datatype="style" default_value="font-family:Open Sans,Verdana;color:rgb(0, 0, 0);font-size:28px;" required="true" />
     <UserPref name="duration" display_name="Display duration for each stock (seconds)" datatype="string" default_value="5" />
     <UserPref name="showPanel" display_name="Show background panel" datatype="bool" default_value="true" />
     <UserPref name="panelColor" display_name="Panel Color" datatype="color" default_value="#ffffff" />
@@ -111,24 +111,24 @@
 <script id="template" type="text/x-handlebars-template">
     <div class="quote">
         <h5>
-            {{quote.companyName}}
+            {{name}}
         </h5>
 
         <h1>
-            <strong> {{quote.symbol}} </strong>
+            <strong> {{symbol}} </strong>
         </h1>
 
         <h2>
-            ${{quote.latestPrice}}
+            ${{fixed close}}
         </h2>
 
         <h3>
-            {{#if (isDown quote.change)}}<span class="down">{{quote.change}} ({{quote.changePercent}}%)</span>
-            {{else}}<span class="up">+{{quote.change}} ({{quote.changePercent}}%)</span>{{/if}}
+            {{#if (isDown change)}}<span class="down">{{fixed change}} ({{fixed percent_change}}%)</span>
+            {{else}}<span class="up">+{{fixed change}} ({{fixed percent_change}}%)</span>{{/if}}
         </h3>
         
         <h4>
-            (Last Quote: {{quote.latestTime}})
+            Last Quote: {{prettifyDate timestamp}}
         </h4>
     </div>
 </script>
@@ -145,11 +145,23 @@
   var prefs = new gadgets.Prefs();
 
   var symbols = prefs.getString("symbols");
-  
+
+  Handlebars.registerHelper('latestPrice', function (quote) {
+      return (parseFloat(quote.open) + parseFloat(quote.change)).toFixed(2);
+  });
+
+  Handlebars.registerHelper('fixed', function(value) {
+      return parseFloat(value).toFixed(2);
+  });
+
   Handlebars.registerHelper('isDown', function (price) {
-      return price < 0;
+      return parseFloat(price) < 0;
   });
   
+  Handlebars.registerHelper("prettifyDate", function(timestamp) {
+    return new Date(timestamp * 1000).toString()
+  });
+
   var currentTemplate = Handlebars.compile(document.getElementById("template").innerHTML);
 
   function load() {
@@ -171,14 +183,18 @@
 
   function get() {
 
-    var api = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + symbols + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
-    
+    var api = "https://proxy-svc.reveldigital.app/stocks/quote?symbol=" + symbols;
+
     $.ajax({
       type: 'GET',
       url: api,
       dataType: 'json',
       success: function(data) {
-      
+        
+        if (symbols.split(',').length == 1) {
+          data = { [symbols]: data };
+        }
+
         try {
           $("#container").slick("unslick");
         } catch (e) {}

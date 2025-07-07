@@ -1,50 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Module> 
-    <ModulePrefs title="RevelDigital Angular Gadget Demo" description="Angular Gadget Demo" author="RevelDigital" background="transparent">
-		<Require feature="jquery" />
-		<Require feature="reveldigital" />
-		
-		<UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
-		<UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
-		<UserPref name="rdKey" display_name="Device Registration Key" required="false" default_value="*|DEVICE.REGISTRATIONKEY|*" datatype="hidden" />
-    </ModulePrefs>
-    <Content type="html">
-        <![CDATA[
-            <style type="text/css">
-                html
-				{
-                    width: __UP_rdW__px;
-                    height: __UP_rdH__px;
-                }
-				body, app-root
-				{
-					background: transparent;
-					width: __UP_rdW__px;
-					height: __UP_rdH__px;
-					overflow: hidden;
-				}
-            </style>
-            <link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/styles.css">
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="My Gadget" title_url="https://mysupporturl.org" version="0.0.1" description="Describe the purpose of your gadget here" author="My Organization" background="transparent">
+    <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+    <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+    <Require feature="reveldigital"/>
+    <Require feature="offline"/>
+    <Require feature="webfont"/>
+    <UserPref name="myStringPref" display_name="Sample string preference" datatype="string" default_value="test string" required="true" multiple="false"/>
+    <UserPref name="myBoolPref" display_name="Sample boolean preference" datatype="bool" default_value="true" required="true" multiple="false">
+      <DependsOn name="myEnumPref" type="any_of">
+        <Value>fast</Value>
+      </DependsOn>
+    </UserPref>
+    <UserPref name="myStylePref" display_name="Sample style preference" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" multiple="false"/>
+    <UserPref name="myEnumPref" display_name="Sample enum preference" datatype="enum" default_value="fast" required="true" multiple="false">
+      <EnumValue value="fastest" display_value="Fastest"/>
+      <EnumValue value="fast" display_value="Fast"/>
+      <EnumValue value="medium" display_value="Medium"/>
+    </UserPref>
+    <UserPref name="rdW" display_name="Width" datatype="hidden" default_value="280" required="true"/>
+    <UserPref name="rdH" display_name="Height" datatype="hidden" default_value="190" required="true"/>
+    <UserPref name="rdKey" datatype="hidden"/>
+    <UserPref name="ForeColor" datatype="hidden"/>
+    <UserPref name="BackColor" datatype="hidden"/>
+  </ModulePrefs>
+  <Content type="html"><![CDATA[<style type="text/css">
+        /*noinspection ALL*/
+        html {
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+        }
 
-			<app-root></app-root>
-			
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/runtime.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/polyfills.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/vendor.js" type="module"></script>
-			<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/dist/main.js" type="module"></script>
-
-			<script type="text/javascript">
-
-				function load() {
-					if (typeof CefSharp !== "undefined") {
-						CefSharp.BindObjectAsync('Client').then(function() {
-							console.log('CEF Bound');
-						});
-					}
-				}
-				gadgets.util.registerOnLoadHandler(load);
-				
-			</script>
-        ]]>
-    </Content>
+        /*noinspection ALL*/
+        body,
+        app-root {
+            background: transparent;
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+            overflow: hidden;
+        }
+    </style><link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/styles.css"><body>
+    <app-root></app-root>
+<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/runtime.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/polyfills.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/vendor.js" type="module"></script><script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ngx-test-app/main.js" type="module"></script></body>]]></Content>
 </Module>

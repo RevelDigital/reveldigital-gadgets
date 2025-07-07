@@ -42,16 +42,13 @@
 					background-color: #__UP_BackColor__;
 				}
             </style>
-			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/styles.263b6fa8b8569581201d.css">
+			<link rel="stylesheet" href="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/styles.7a001811f828e7e2.css">
             <body>
             	<app-root></app-root>
 		
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es2015.5a677b55b72869ec6d4b.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime-es5.5a677b55b72869ec6d4b.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es5.c4e093cfa2298c61c960.js" nomodule defer></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills-es2015.a2379c6c7018c26dd81b.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es2015.c2e1c581fd3f3fa95155.js" type="module"></script>
-				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main-es5.c2e1c581fd3f3fa95155.js" nomodule defer></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/runtime.5d3114479138c80b.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/polyfills.81c0c657d31e6618.js" type="module"></script>
+				<script src="https://reveldigital.github.io/reveldigital-gadgets/apps/ng-fids-app/main.7e2435a8e92f0bbf.js" type="module"></script>
 
 				<script type="text/javascript">
 

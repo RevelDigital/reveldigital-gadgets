@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="My Gadget" title_url="https://mysupporturl.org" version="0.0.1" description="Describe the purpose of your gadget here" author="My Organization" background="transparent">
+    <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+    <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+    <Require feature="reveldigital"/>
+    <Require feature="offline"/>
+    <Require feature="webfont"/>
+    <UserPref name="myStringPref" display_name="Sample string preference" datatype="string" default_value="test string" required="true" multiple="false"/>
+    <UserPref name="myBoolPref" display_name="Sample boolean preference" datatype="bool" default_value="true" required="true" multiple="false">
+      <DependsOn name="myEnumPref" type="any_of">
+        <Value>fast</Value>
+      </DependsOn>
+    </UserPref>
+    <UserPref name="myStylePref" display_name="Sample style preference" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" multiple="false"/>
+    <UserPref name="myEnumPref" display_name="Sample enum preference" datatype="enum" default_value="fast" required="true" multiple="false">
+      <EnumValue value="fastest" display_value="Fastest"/>
+      <EnumValue value="fast" display_value="Fast"/>
+      <EnumValue value="medium" display_value="Medium"/>
+    </UserPref>
+    <UserPref name="rdW" display_name="Width" datatype="hidden" default_value="280" required="true"/>
+    <UserPref name="rdH" display_name="Height" datatype="hidden" default_value="190" required="true"/>
+    <UserPref name="rdKey" datatype="hidden"/>
+    <UserPref name="ForeColor" datatype="hidden"/>
+    <UserPref name="BackColor" datatype="hidden"/>
+  </ModulePrefs>
+  <Content type="html"><![CDATA[<style type="text/css">
+        /*noinspection ALL*/
+        html {
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+        }
+
+        /*noinspection ALL*/
+        body,
+        app-root {
+            background: transparent;
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+            overflow: hidden;
+        }
+    </style><link rel="stylesheet" href="styles.css"><body>
+    <app-root></app-root>
+<script src="runtime.js" type="module"></script><script src="polyfills.js" type="module"></script><script src="vendor.js" type="module"></script><script src="main.js" type="module"></script></body>]]></Content>
+</Module>

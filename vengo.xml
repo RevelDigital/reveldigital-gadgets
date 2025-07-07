@@ -78,7 +78,8 @@ body
       console.log("All ads have been played");
 
       if (typeof Client != "undefined") {
-        document.getElementsByTagName("body").style.opacity = "0";
+        document.getElementById('vast-player').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==');
+        //document.getElementsByTagName("body").style.opacity = "0";
         Client.complete();
       }
     }
@@ -90,7 +91,10 @@ body
       onStart: function() {
         //var url = prefs.getString('playerUrl') + "?organization_id=" + prefs.getString('orgId') + "&ad_unit_id=" + prefs.getString('adUnitId') + "&cacheBuster=" + new Date().getTime();
         var url = prefs.getString('playerUrl') + "?organization_id=" + prefs.getString('orgId') + "&ad_unit_id=" + prefs.getString('adUnitId') + "&max_ad_duration=" + prefs.getString('maxAdDuration') + "&no_ad_url=" + prefs.getString('noAdUrl') + "&cacheBuster=" + new Date().getTime();
-        $('#vast-player').attr('src', url);
+
+        console.log(url);
+
+        document.getElementById('vast-player').setAttribute('src', url);
       },
       onStop: function() {}
     }

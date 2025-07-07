@@ -6,8 +6,8 @@
   <Require feature="webfont" />
   
   <UserPref name="symbols" display_name="Stock Symbols (eg. MSFT,AIG,JPM)" datatype="string" />
-  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
-  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:24px;text-align:left;" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Open Sans;color:rgb(255, 255, 255);font-size:18px;" required="true" />
   <UserPref name="include-graphic" display_name="Include Graphic" datatype="bool" default_value="true" />
   <UserPref name="include-name" display_name="Include Name" datatype="bool" default_value="true" />
   <UserPref name="include-symbol" display_name="Include Symbol" datatype="bool" default_value="true" />
@@ -19,7 +19,6 @@
   <UserPref name="include-volume" display_name="Include Volume" datatype="bool" default_value="false" />
   <UserPref name="include-year-low" display_name="Include Year Low" datatype="bool" default_value="false" />
   <UserPref name="include-year-high" display_name="Include Year High" datatype="bool" default_value="false" />
-  <UserPref name="include-market-cap" display_name="Include Market Cap" datatype="bool" default_value="false" />
   <UserPref name="include-avg-daily-volume" display_name="Include Avg. Daily Volume" datatype="bool" default_value="false" />
   <UserPref name="include-exchange" display_name="Include Exchange" datatype="bool" default_value="false" />
   <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
@@ -217,15 +216,21 @@ i
   
   var update = function () {
 
-    var url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=" + prefs.getString("symbols") + "&types=quote&token=pk_f71a1f44f5424217b795af2a1bf92466";
+    var symbols =prefs.getString("symbols");
+
+    var url = "https://proxy-svc.reveldigital.app/stocks/quote?symbol=" + symbols;
 
     $.getJSON(url, function(json) {
+
+      if (symbols.split(',').length == 1) {
+        json = { [symbols]: json };
+      }
 
       $("div.quotescontainer > table > tbody").empty();
 
       for (var key in json) {
 
-        var quote = json[key].quote;
+        var quote = json[key];
 
         var tr = $('<tr>').addClass('item');
         if (prefs.getBool('include-graphic')) {
@@ -241,43 +246,43 @@ i
         }
 
         if (prefs.getBool('include-name')) {
-          tr.append($('<td class="value name">').text(quote.companyName));
+          tr.append($('<td class="value name">').text(quote.name));
         }
         if (prefs.getBool('include-symbol')) {
           tr.append($('<td class="value symbol">').text(quote.symbol));
         }
         if (prefs.getBool('include-last-trade')) {
-          tr.append($('<td class="value last-trade">').text(quote.latestPrice));
+          tr.append($('<td class="value last-trade">').text(parseFloat(quote.close).toFixed(2)));
         }
         if (prefs.getBool('include-change')) {
-          tr.append($('<td class="value change">').text(quote.change));
+          tr.append($('<td class="value change">').text(parseFloat(quote.change).toFixed(2)));
         }
         if (prefs.getBool('include-days-range')) {
-          tr.append($('<td class="value days-range">').text((Math.round((quote.high - quote.low) * 100) / 100)));
+          tr.append($('<td class="value days-range">').text((Math.round((parseFloat(quote.high) - parseFloat(quote.low)) * 100) / 100)));
         }
         if (prefs.getBool('include-days-low')) {
-          tr.append($('<td class="value days-low">').text(quote.low));
+          tr.append($('<td class="value days-low">').text(parseFloat(quote.low).toFixed(2)));
         }
         if (prefs.getBool('include-days-high')) {
-          tr.append($('<td class="value days-high">').text(quote.high));
+          tr.append($('<td class="value days-high">').text(parseFloat(quote.high).toFixed(2)));
         }
-        if (prefs.getBool('include-volume') && quote.latestVolume) {
-          tr.append($('<td class="value volume">').text(quote.latestVolume.commarize()));
+        if (prefs.getBool('include-volume') && quote.volume) {
+          tr.append($('<td class="value volume">').text(parseFloat(quote.volume).toFixed(2)));
         }
         if (prefs.getBool('include-year-low')) {
-          tr.append($('<td class="value year-low">').text(quote.week52Low));
+          tr.append($('<td class="value year-low">').text(parseFloat(quote.fifty_two_week.low).toFixed(2)));
         }
         if (prefs.getBool('include-year-high')) {
-          tr.append($('<td class="value year-high">').text(quote.week52High));
+          tr.append($('<td class="value year-high">').text(parseFloat(quote.fifty_two_week.high).toFixed(2)));
         }
-        if (prefs.getBool('include-market-cap') && quote.marketCap) {
-          tr.append($('<td class="value market-cap">').text(quote.marketCap.commarize()));
-        }
-        if (prefs.getBool('include-avg-daily-volume') && quote.avgTotalVolume) {
-          tr.append($('<td class="value avg-daily-volume">').text(quote.avgTotalVolume.commarize()));
+        //if (prefs.getBool('include-market-cap') && quote.marketCap) {
+        //  tr.append($('<td class="value market-cap">').text(parseFloat(quote.marketCap).toFixed(2)));
+        //}
+        if (prefs.getBool('include-avg-daily-volume') && quote.average_volume) {
+          tr.append($('<td class="value avg-daily-volume">').text(parseFloat(quote.average_volume).toFixed(2)));
         }
         if (prefs.getBool('include-exchange')) {
-          tr.append($('<td class="value exchange">').text(quote.primaryExchange));
+          tr.append($('<td class="value exchange">').text(quote.exchange));
         }
 
         $("div.quotescontainer > table > tbody").append(tr);
