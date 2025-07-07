@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module> 
-<ModulePrefs title="RevelDigital Weather Map" description="Animated weather maps including precipition, cloud cover, and temperature" author="RevelDigital" background="transparent">
+<ModulePrefs title="Weather Map Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/33831357734157-Weather-Gadgets" description="Animated weather maps including precipitation, cloud cover, temperature, air quality, and others" author="RevelDigital" background="transparent">
   <Require feature="reveldigital" />
   <Require feature="jquery" />
   <Require feature="webfont" />
