@@ -21,7 +21,7 @@
         }
 
         body {
-          background: #030d80;
+          background: transparent;
           padding: 0 24px;
           color: white;
           margin: 0;
@@ -35,7 +35,6 @@
       <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
       <body>
-        <h1>Thank You!</h1>
       </body>
 
       <script>
