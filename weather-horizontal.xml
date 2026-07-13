@@ -257,173 +257,65 @@
   var search = prefs.getString("Location");
   var unit = prefs.getString("Units");    
     
-  var conditionMap_aeris = {
-    "am_pcloudyr.png": "40d",
-    "am_showers.png": "40d",
-    "am_showshowers.png": "46d",
-    "am_tstorm.png": "4d",
-    "blizzard.png": "46d",
-    "blizzardn.png": "46n",
-    "blowingsnow.png": "42d",
-    "blowingsnown.png": "42n",
-    "chancetstorm.png": "38d",
-    "chancetstormn.png": "38n",
-    "clear.png": "32d",
-    "clearn.png": "32n",
-    "clearw.png": "32d",
-    "clearwn.png": "32n",
-    "cloudy.png": "26d",
-    "cloudyn.png": "26n",
-    "cloudyw.png": "26d",
-    "cloudywn.png": "26n",
-    "drizzle.png": "9d",
-    "drizzlef.png": "9d",
-    "drizzlen.png": "9n",
-    "dust.png": "19d",
-    "fair.png": "33d",
-    "fairn.png": "33n",
-    "fairw.png": "33d",
-    "fairwn.png": "33n",
-    "fdrizzle.png": "8d",
-    "fdrizzlen.png": "8n",
-    "flurries.png": "13d",
-    "flurriesn.png": "13n",
-    "flurriesw.png": "13d",
-    "flurrieswn.png": "13n",
-    "fog.png": "20d",
-    "fogn.png": "20n",
-    "freezingrain.png": "10d",
-    "freezingrainn.png": "10n",
-    "hazy.png": "21d",
-    "hazyn.png": "21n",
-    "mcloudy.png": "27d",
-    "mcloudyn.png": "27n",
-    "mcloudyr.png": "27d",
-    "mcloudyrn.png": "27n",
-    "mcloudyrw.png": "27d",
-    "mcloudyrwn.png": "27n",
-    "mcloudys.png": "27d",
-    "mcloudysfn.png": "27n",
-    "mcloudysfw.png": "27d",
-    "mcloudysfwn.png": "27n",
-    "mcloudysn.png": "27d",
-    "mcloudysw.png": "27d",
-    "mcloudyswn.png": "27n",
-    "mcloudyt.png": "27d",
-    "mcloudytn.png": "27n",
-    "mcloudytw.png": "27d",
-    "mcloudytwn.png": "27n",
-    "mcloudyw.png": "27d",
-    "mcloudywn.png": "27n",
-    "na.png": "",
-    "pcloudy.png": "29d",
-    "pcloudyn.png": "29n",
-    "pcloudyr.png": "29d",
-    "pcloudyrn.png": "29n",
-    "pcloudyrw.png": "29d",
-    "pcloudyrwn.png": "29n",
-    "pcloudys.png": "29d",
-    "pcloudysf.png": "29d",
-    "pcloudysfn.png": "29n",
-    "pcloudysfw.png": "29d",
-    "pcloudysfwn.png": "29n",
-    "pcloudysn.png": "29n",
-    "pcloudysw.png": "29d",
-    "pcloudyswn.png": "29n",
-    "pcloudyt.png": "29d",
-    "pcloudytn.png": "29n",
-    "pcloudytw.png": "29d",
-    "pcloudytwn.png": "29n",
-    "pcloudyw.png": "29d",
-    "pcloudywn.png": "29n",
-    "pm_pcloudy.png": "29d",
-    "pm_pcloudyr.png": "29d",
-    "pm_showers.png": "12d",
-    "pm_snowshowers.png": "46d",
-    "pm_tstorm.png": "4d",
-    "rain.png": "11d",
-    "rainandsnow.png": "5d",
-    "rainandsnown.png": "5n",
-    "rainn.png": "11n",
-    "raintosnow.png": "5d",
-    "raintosnown.png": "5n",
-    "rainw.png": "11d",
-    "showers.png": "11d",
-    "showersn.png": "11n",
-    "showersw.png": "11d",
-    "sleet.png": "18d",
-    "sleetn.png": "18n",
-    "sleetsnow.png": "7d",
-    "smoke.png": "22d",
-    "smoken.png": "22n",
-    "snow.png": "16d",
-    "snown.png": "16n",
-    "snowshowers.png": "46d",	
-    "snowshowersn.png": "46n",
-    "snowshowersw.png": "46d",
-    "snowshowerswn.png": "46n",
-    "snowtorain.png": "5d",
-    "snowtorainn.png": "5n",
-    "snoww.png": "16d",
-    "snowwn.png": "16n",
-    "sunny.png": "32d",
-    "sunnyn.png": "32n",
-    "sunnyw.png": "32d",
-    "sunnywn.png": "32n",
-    "tstorm.png": "4d",
-    "tstormn.png": "4n",
-    "tstormsw.png": "4d",
-    "tstormswn.png": "4n",
-    "tstormw.png": "4d",
-    "tstormwn.png": "4n",
-    "wind.png": "24d",
-    "wintrymix.png": "7d",
-    "wintrymixn.png": "7n"
-  };
-    
+  // Icon per weather condition returned by the proxy, as [day, night] codes.
   var conditionMap = {
-    "chanceflurries": "42d",
-    "chancerain": "40d",
-    "chancesleet": "18d",
-    "chancesnow": "42d",
-    "chancetstorms": "38d",
-    "clear": "32d",
-    "cloudy": "26d",
-    "flurries": "13d",
-    "fog": "20d",
-    "hazy": "21d",
-    "mostlycloudy": "28d",
-    "mostlysunny": "29d",
-    "partlycloudy": "30d",
-    "partlysunny": "28d",
-    "sleet": "18d",
-    "rain": "11d",
-    "snow": "16d",
-    "sunny": "32d",
-    "tstorms": "4d",
-    "nt_chanceflurries": "42n",
-    "nt_chancerain": "40n",
-    "nt_chancesleet": "18n",
-    "nt_chancesnow": "42n",
-    "nt_chancetstorms": "38n",
-    "nt_clear": "32n",
-    "nt_cloudy": "26n",
-    "nt_flurries": "13n",
-    "nt_fog": "20n",
-    "nt_hazy": "21n",
-    "nt_mostlycloudy": "28n",
-    "nt_mostlysunny": "29n",
-    "nt_partlycloudy": "30n",
-    "nt_partlysunny": "28n",
-    "nt_sleet": "18n",
-    "nt_rain": "11n",
-    "nt_snow": "16n",
-    "nt_sunny": "32n",
-    "nt_tstorms": "4n"
+    "clear": ["32d", "32n"],
+    "partly-cloudy": ["29d", "29n"],
+    "cloudy": ["26d", "26n"],
+    "fog": ["20d", "20n"],
+    "drizzle": ["9d", "9n"],
+    "freezing-rain": ["10d", "10n"],
+    "rain": ["11d", "11n"],
+    "showers": ["11d", "11n"],
+    "snow": ["16d", "16n"],
+    "thunderstorm": ["4d", "4n"],
+    "unknown": ["32d", "32n"]
   };
-  
+
+  function getIconCode(condition, isDay) {
+    var pair = conditionMap[condition] || conditionMap["unknown"];
+    return isDay === false ? pair[1] : pair[0];
+  }
+
+  var WEATHER_API = 'https://proxy-svc.reveldigital.app/weather';
+
+  // The proxy is always asked for US units and Celsius is derived here, so devices on
+  // either unit preference share a single cached upstream response.
+  function toC(f) {
+    return f == null ? null : (f - 32) * 5 / 9;
+  }
+
+  function resolveLocation(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      return "Fargo, ND";
+    }
+    return location;
+  }
+
+  function adaptCurrent(current) {
+    return {
+      icon: current.weather.icon,
+      isDay: current.isDay,
+      weather: current.weather.label,
+      tempF: current.temp,
+      tempC: toC(current.temp)
+    };
+  }
+
+  function adaptDay(day) {
+    return {
+      icon: day.weather.icon,
+      isDay: true,
+      weather: day.weather.label,
+      maxTempF: day.high,
+      minTempF: day.low,
+      maxTempC: toC(day.high),
+      minTempC: toC(day.low)
+    };
+  }
+
   Handlebars.registerHelper('getIcon', function (icon) {
-      return conditionMap_aeris[icon];
+      return getIconCode(icon, this.isDay);
   });
   Handlebars.registerHelper('round', function (num) {
       return parseInt(num);
@@ -443,60 +335,34 @@
       }
     });
     
-    getConditions(search);
-    getForecast(search);
-    
+    getWeather(search);
+
     if (prefs.getString("TileColor") != "") {
       $(".box").css("box-shadow", "0 4px 4px rgba(0,0,0,0.5)");
     }
-    
+
     setInterval(function() {
-      getConditions(search);
-      getForecast(search);
+      getWeather(search);
     }, 1000 * 60 * 30);
   }
-  
-  function getConditions(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
+
+  // Current conditions and the forecast arrive in one response, so this is a single call.
+  function getWeather(location) {
     $.ajax({
       type: 'GET',
-      url: api,
+      url: WEATHER_API,
+      data: { q: resolveLocation(location), units: 'us', days: 2 },
       dataType: 'json',
       success: function(data) {
-        if (data.success === false) {
+        if (!data || !data.current || !data.forecast || data.forecast.length < 2) {
           return;
         }
-        $("#current .content").html(currentTemplate(data.response.ob));
+        $("#current .content").html(currentTemplate(adaptCurrent(data.current)));
+        $("#today .content").html(forecastTemplate(adaptDay(data.forecast[0])));
+        $("#tomorrow .content").html(forecastTemplate(adaptDay(data.forecast[1])));
 
         setTimeout(function () {
-          $("#current img").addClass("visible");
-        }, 1000);
-      }
-    });
-  }
-
-  function getForecast(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
-    $.ajax({
-      type: 'GET',
-      url: api,
-      dataType: 'json',
-      success: function(data) {
-        if (data.success === false) {
-          return;
-        }
-        $("#today .content").html(forecastTemplate(data.response[0].periods[0]));
-        $("#tomorrow .content").html(forecastTemplate(data.response[0].periods[1]));
-
-        setTimeout(function () {
-            $("#today img").addClass("visible");
-            $("#tomorrow img").addClass("visible");
+          $("#current img, #today img, #tomorrow img").addClass("visible");
         }, 1000);
       }
     });
