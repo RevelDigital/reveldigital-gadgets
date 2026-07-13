@@ -89,173 +89,55 @@
   var search = prefs.getString("location");
   var unit = prefs.getString("units");
   
-  var conditionMap_aeris = {
-    "am_pcloudyr.png": "cloud-rain-sun",
-    "am_showers.png": "cloud-rain",
-    "am_showshowers.png": "cloud-snow",
-    "am_tstorm.png": "cloud-lightning",
-    "blizzard.png": "snow",
-    "blizzardn.png": "snow",
-    "blowingsnow.png": "snow",
-    "blowingsnown.png": "snow",
-    "chancetstorm.png": "cloud-lightning-sun-2",
-    "chancetstormn.png": "cloud-lightning-moon",
-    "clear.png": "sun",
-    "clearn.png": "moon-50",
-    "clearw.png": "sun",
-    "clearwn.png": "moon-50",
-    "cloudy.png": "clouds",
-    "cloudyn.png": "clouds",
-    "cloudyw.png": "clouds",
-    "cloudywn.png": "clouds",
-    "drizzle.png": "clouds",
-    "drizzlef.png": "clouds",
-    "drizzlen.png": "clouds",
-    "dust.png": "fog",
-    "fair.png": "sun",
-    "fairn.png": "moon-50",
-    "fairw.png": "sun",
-    "fairwn.png": "moon-50",
-    "fdrizzle.png": "drizzle",
-    "fdrizzlen.png": "drizzle",
-    "flurries.png": "cloud-snow-sun",
-    "flurriesn.png": "cloud-snow-moon",
-    "flurriesw.png": "cloud-snow-sun",
-    "flurrieswn.png": "cloud-snow-moon",
-    "fog.png": "fog",
-    "fogn.png": "fog",
-    "freezingrain.png": "rain",
-    "freezingrainn.png": "rain",
-    "hazy.png": "fog",
-    "hazyn.png": "fog",
-    "mcloudy.png": "clouds-sun",
-    "mcloudyn.png": "clouds-moon",
-    "mcloudyr.png": "cloud-rain-sun",
-    "mcloudyrn.png": "cloud-rain-moon",
-    "mcloudyrw.png": "cloud-wind-sun",
-    "mcloudyrwn.png": "cloud-wind-moon",
-    "mcloudys.png": "cloud-snow-sun",
-    "mcloudysfn.png": "cloud-snow-moon",
-    "mcloudysfw.png": "cloud-snow-sun",
-    "mcloudysfwn.png": "cloud-snow-moon",
-    "mcloudysn.png": "cloud-snow-moon",
-    "mcloudysw.png": "cloud-snow-sun",
-    "mcloudyswn.png": "cloud-snow-moon",
-    "mcloudyt.png": "cloud-rain-lightning-sun",
-    "mcloudytn.png": "cloud-rain-lightning-moon",
-    "mcloudytw.png": "cloud-rain-lightning-sun",
-    "mcloudytwn.png": "cloud-rain-lightning-moon",
-    "mcloudyw.png": "cloud-wind-2",
-    "mcloudywn.png": "cloud-wind-2-moon",
-    "na.png": "",
-    "pcloudy.png": "clouds-sun",
-    "pcloudyn.png": "clouds-moon",
-    "pcloudyr.png": "cloud-rain-sun",
-    "pcloudyrn.png": "cloud-rain-moon",
-    "pcloudyrw.png": "cloud-wind-sun",
-    "pcloudyrwn.png": "cloud-wind-moon",
-    "pcloudys.png": "cloud-snow-sun",
-    "pcloudysf.png": "cloud-snow-sun",
-    "pcloudysfn.png": "cloud-snow-moon",
-    "pcloudysfw.png": "cloud-snow-sun",
-    "pcloudysfwn.png": "cloud-snow-moon",
-    "pcloudysn.png": "cloud-snow-moon",
-    "pcloudysw.png": "cloud-rain-sun",
-    "pcloudyswn.png": "cloud-snow-moon",
-    "pcloudyt.png": "cloud-rain-lightning-sun",
-    "pcloudytn.png": "cloud-rain-lightning-moon",
-    "pcloudytw.png": "cloud-rain-lightning-sun",
-    "pcloudytwn.png": "cloud-rain-lightning-moon",
-    "pcloudyw.png": "cloud-wind-2",
-    "pcloudywn.png": "cloud-wind-2-moon",
-    "pm_pcloudy.png": "clouds-sun",
-    "pm_pcloudyr.png": "cloud-rain-sun",
-    "pm_showers.png": "rain",
-    "pm_snowshowers.png": "snow",
-    "pm_tstorm.png": "lightning",
-    "rain.png": "rain",
-    "rainandsnow.png": "hail",
-    "rainandsnown.png": "hail",
-    "rainn.png": "rain",
-    "raintosnow.png": "rain",
-    "raintosnown.png": "rain",
-    "rainw.png": "rain",
-    "showers.png": "rain",
-    "showersn.png": "rain",
-    "showersw.png": "rain",
-    "sleet.png": "drizzle",
-    "sleetn.png": "drizzle",
-    "sleetsnow.png": "drizzle",
-    "smoke.png": "fog",
-    "smoken.png": "fog",
-    "snow.png": "snow",
-    "snown.png": "snow",
-    "snowshowers.png": "snow",	
-    "snowshowersn.png": "snow",
-    "snowshowersw.png": "snow",
-    "snowshowerswn.png": "snow",
-    "snowtorain.png": "snow",
-    "snowtorainn.png": "snow",
-    "snoww.png": "snow",
-    "snowwn.png": "snow",
-    "sunny.png": "sun",
-    "sunnyn.png": "sun",
-    "sunnyw.png": "sun",
-    "sunnywn.png": "sun",
-    "tstorm.png": "lightning",
-    "tstormn.png": "lightning",
-    "tstormsw.png": "lightning",
-    "tstormswn.png": "lightning",
-    "tstormw.png": "lightning",
-    "tstormwn.png": "lightning",
-    "wind.png": "wind",
-    "wintrymix.png": "drizzle",
-    "wintrymixn.png": "drizzle"
-  };
-  
+  // Icon per weather condition returned by the proxy, as [day, night] classes.
   var conditionMap = {
-    "chanceflurries": "diw-cloud-snow-sun",
-    "chancerain": "diw-cloud-rain-sun",
-    "chancesleet": "diw-cloud-drizzle-sun",
-    "chancesnow": "diw-cloud-snow-sun",
-    "chancetstorms": "diw-cloud-lightning-sun",
-    "clear": "diw-sun",
-    "cloudy": "diw-cloud",
-    "flurries": "diw-snow",
-    "fog": "diw-fog",
-    "hazy": "diw-cloud-fog-sun",
-    "mostlycloudy": "diw-clouds-sun",
-    "mostlysunny": "diw-clouds-sun",
-    "partlycloudy": "diw-clouds-sun",
-    "partlysunny": "diw-clouds-sun",
-    "sleet": "diw-drizzle",
-    "rain": "diw-rain",
-    "snow": "diw-snow",
-    "sunny": "diw-sun",
-    "tstorms": "diw-lightning",
-    "nt_chanceflurries": "diw-cloud-snow-moon",
-    "nt_chancerain": "diw-cloud-rain-moon",
-    "nt_chancesleet": "diw-cloud-drizzle-moon",
-    "nt_chancesnow": "diw-cloud-snow-moon",
-    "nt_chancetstorms": "diw-cloud-lightning-moon",
-    "nt_clear": "diw-moon",
-    "nt_cloudy": "diw-cloud",
-    "nt_flurries": "diw-snow",
-    "nt_fog": "diw-fog",
-    "nt_hazy": "diw-cloud-fog-moon",
-    "nt_mostlycloudy": "diw-clouds-moon",
-    "nt_mostlysunny": "diw-clouds-moon",
-    "nt_partlycloudy": "diw-clouds-moon",
-    "nt_partlysunny": "diw-clouds-moon",
-    "nt_sleet": "diw-drizzle",
-    "nt_rain": "diw-rain",
-    "nt_snow": "diw-snow",
-    "nt_sunny": "diw-moon",
-    "nt_tstorms": "diw-lightning"
+    "clear": ["sun", "moon-50"],
+    "partly-cloudy": ["clouds-sun", "clouds-moon"],
+    "cloudy": ["clouds", "clouds-moon"],
+    "fog": ["fog", "fog"],
+    "drizzle": ["drizzle", "drizzle"],
+    "freezing-rain": ["hail", "hail"],
+    "rain": ["rain", "cloud-rain-moon"],
+    "showers": ["cloud-rain-sun", "cloud-rain-moon"],
+    "snow": ["snow", "cloud-snow-moon"],
+    "thunderstorm": ["lightning", "cloud-lightning-moon"],
+    "unknown": ["sun", "moon-50"]
   };
 
+  function getIconCode(condition, isDay) {
+    var pair = conditionMap[condition] || conditionMap["unknown"];
+    return isDay === false ? pair[1] : pair[0];
+  }
+
+  var WEATHER_API = 'https://proxy-svc.reveldigital.app/weather';
+
+  // The proxy is always asked for US units and Celsius is derived here, so devices on
+  // either unit preference share a single cached upstream response.
+  function toC(f) {
+    return f == null ? null : (f - 32) * 5 / 9;
+  }
+
+  function resolveLocation(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      return "Fargo, ND";
+    }
+    return location;
+  }
+
+  function adaptDay(day) {
+    return {
+      icon: day.weather.icon,
+      isDay: true,
+      weather: day.weather.label,
+      maxTempF: day.high,
+      minTempF: day.low,
+      maxTempC: toC(day.high),
+      minTempC: toC(day.low)
+    };
+  }
+
   Handlebars.registerHelper('getIcon', function (icon) {
-      return conditionMap_aeris[icon];
+      return getIconCode(icon, this.isDay);
   });
   Handlebars.registerHelper('round', function (num) {
       return parseInt(num);
@@ -282,20 +164,16 @@
   }
 
   function getForecast(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    
-    var api = 'https://proxy-svc.reveldigital.app/weather/forecasts/' + encodeURIComponent(location) + '?a=1';
     $.ajax({
       type: 'GET',
-      url: api,
+      url: WEATHER_API,
+      data: { q: resolveLocation(location), units: 'us', days: 1 },
       dataType: 'json',
       success: function(data) {
-        if (data.success === false) {
+        if (!data || !data.forecast || !data.forecast.length) {
           return;
         }
-        $("#container").html(currentTemplate(data.response[0].periods[0]));
+        $("#container").html(currentTemplate(adaptDay(data.forecast[0])));
       }
     });
   }

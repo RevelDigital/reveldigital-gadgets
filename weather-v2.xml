@@ -198,34 +198,51 @@ div, span
   if (prefs.getString("Units") == 'si'){
     metricU = true;}
   
-  function mapIcon(icon) {
-  
-    switch (icon) {
+  var WEATHER_API = 'https://proxy-svc.reveldigital.app/weather';
+
+  // The proxy is always asked for US units and metric is derived here, so devices on
+  // either unit preference share a single cached upstream response.
+  function toC(f) {
+    return f == null ? null : (f - 32) * 5 / 9;
+  }
+
+  function toKPH(mph) {
+    return mph == null ? null : mph * 1.609344;
+  }
+
+  function resolveLocation(location) {
+    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
+      return "Fargo, ND";
+    }
+    return location;
+  }
+
+  // Skycons has no thunderstorm animation, so storms fall back to rain.
+  function mapIcon(condition, isDay) {
+
+    switch (condition) {
       case 'clear':
-        return Skycons.CLEAR_DAY;
-      case 'clearn':
-        return Skycons.CLEAR_NIGHT;
-      case 'pcloudyn':
-        return Skycons.PARTLY_CLOUDY_NIGHT;
-      case 'pcloudy':
-        return Skycons.PARTLY_CLOUDY_DAY;
+        return isDay === false ? Skycons.CLEAR_NIGHT : Skycons.CLEAR_DAY;
+      case 'partly-cloudy':
+        return isDay === false ? Skycons.PARTLY_CLOUDY_NIGHT : Skycons.PARTLY_CLOUDY_DAY;
       case 'cloudy':
         return Skycons.CLOUDY;
+      case 'drizzle':
       case 'rain':
+      case 'showers':
+      case 'thunderstorm':
         return Skycons.RAIN;
-      case 'sleet':
+      case 'freezing-rain':
         return Skycons.SLEET;
       case 'snow':
         return Skycons.SNOW;
-      case 'wind':
-        return Skycons.WIND;
       case 'fog':
         return Skycons.FOG;
       default:
-        return Skycons.CLEAR_DAY;
+        return isDay === false ? Skycons.CLEAR_NIGHT : Skycons.CLEAR_DAY;
     }
   }
-  
+
   function load() {
     
     WebFont.load({
@@ -241,90 +258,75 @@ div, span
       "resizeClear": true
     });
     
-    getConditions(search);
-    getForecast(search);
-    
+    getWeather(search);
+
     setInterval(function() {
-      getConditions(search);
-      getForecast(search);
+      getWeather(search);
     }, 1000 * 60 * 30);
   }
 
-   function getConditions(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    var api = 'https://api.aerisapi.com/observations/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
+  // Current conditions and the forecast arrive in one response, so this is a single call.
+  function getWeather(location) {
     $.ajax({
       type: 'GET',
-      url: api,
+      url: WEATHER_API,
+      data: {
+        q: resolveLocation(location),
+        units: 'us',
+        days: prefs.getInt("ForecastDays")
+      },
       dataType: 'json',
       success: function(data) {
-        if (data.success === false) {
+        if (!data || !data.current || !data.forecast) {
           return;
         }
-        skycons.remove("fe_current_icon");
-        skycons.add("fe_current_icon", mapIcon((data.response.ob.icon).split('.').slice(0, -1).join('.')));
-        $(".fe_summary").text(data.response.ob.weatherShort);
-        if (metricU) {
-          $(".fe_wind").text("Wind: " + parseInt(data.response.ob.windSpeedKPH) + " kph");
-          $(".fe_temp").text(parseInt(data.response.ob.tempC));}
-        else {
-          $(".fe_wind").text("Wind: " + parseInt(data.response.ob.windSpeedMPH) + " mph");
-          $(".fe_temp").text(parseInt(data.response.ob.tempF));}
+        renderCurrent(data.current);
+        renderForecast(data.forecast);
       }
     });
   }
 
-  function getForecast(location) {
-    if (location == "" || location.indexOf("*|DEVICE.LOCATION.CITY|*") != -1) {
-      location = "Fargo, ND";
-    }
-    var api = 'https://api.aerisapi.com/forecasts/' + encodeURIComponent(location) + '?client_id=hUqX7OlM6GSNFSm9wyhPF&client_secret=dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW';
-    $.ajax({
-      type: 'GET',
-      url: api,
-      dataType: 'json',
-      success: function(data) {
-        if (data.success === false) {
-          return;
-        }
-        $('.fe_daily').empty();
-      
-        if (metricU){
-          var max = data.response[0].periods[0].maxTempC;
-          var min = data.response[0].periods[0].minTempC;}
-        else {
-          var max = data.response[0].periods[0].maxTempF;
-          var min = data.response[0].periods[0].minTempF;}
+  function renderCurrent(current) {
+    skycons.remove("fe_current_icon");
+    skycons.add("fe_current_icon", mapIcon(current.weather.icon, current.isDay));
+    $(".fe_summary").text(current.weather.label);
 
-        for (let i = 0; i < prefs.getInt("ForecastDays"); i++) {
-            var t = new Date(1970,0,1);
-            t.setSeconds(data.response[0].periods[i].timestamp);
-            
-            var fe_day = $("<div class='fe_day'></div>");
-            var fe_label = $("<span class='fe_label'></span>");
-            var fe_icon = $("<canvas class='fe_icon' width='70' height='70' id='fe_day_icon" + i + "'></canvas>");
-            var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
-            var fe_high_temp = $("<span class='fe_high_temp'></span>");
-            var fe_low_temp = $("<span class='fe_low_temp'></span>");
-            fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
-            fe_day.append(fe_label).append(fe_icon).append(fe_temp_bar);
-            $(".fe_daily").append(fe_day);
-            
-            skycons.add('fe_day_icon' + i, mapIcon((data.response[0].periods[i].icon).split('.').slice(0, -1).join('.')));
-            if (metricU) {
-              $(fe_high_temp).text(parseInt(data.response[0].periods[i].maxTempC));
-              $(fe_low_temp).text(parseInt(data.response[0].periods[i].minTempC));
-              $(fe_label).text(days[t.getDay()]);
-              $(fe_temp_bar).css('height', (data.response[0].periods[i].maxTempC - data.response[0].periods[i].minTempC) * 3 + 'px');}
-            else {
-              $(fe_high_temp).text(parseInt(data.response[0].periods[i].maxTempF));
-              $(fe_low_temp).text(parseInt(data.response[0].periods[i].minTempF));
-              $(fe_label).text(days[t.getDay()]);
-              $(fe_temp_bar).css('height', (data.response[0].periods[i].maxTempF - data.response[0].periods[i].minTempF) * 3 + 'px');}
-        }}
-    });
+    if (metricU) {
+      $(".fe_wind").text("Wind: " + parseInt(toKPH(current.windSpeed)) + " kph");
+      $(".fe_temp").text(parseInt(toC(current.temp)));}
+    else {
+      $(".fe_wind").text("Wind: " + parseInt(current.windSpeed) + " mph");
+      $(".fe_temp").text(parseInt(current.temp));}
+  }
+
+  function renderForecast(forecast) {
+    $('.fe_daily').empty();
+
+    for (let i = 0; i < forecast.length; i++) {
+        var day = forecast[i];
+        // The date is a plain YYYY-MM-DD; anchoring it at midnight local time keeps
+        // the weekday from slipping a day in timezones behind UTC.
+        var t = new Date(day.date + "T00:00:00");
+
+        var high = metricU ? toC(day.high) : day.high;
+        var low = metricU ? toC(day.low) : day.low;
+
+        var fe_day = $("<div class='fe_day'></div>");
+        var fe_label = $("<span class='fe_label'></span>");
+        var fe_icon = $("<canvas class='fe_icon' width='70' height='70' id='fe_day_icon" + i + "'></canvas>");
+        var fe_temp_bar = $("<div class='fe_temp_bar'></div>");
+        var fe_high_temp = $("<span class='fe_high_temp'></span>");
+        var fe_low_temp = $("<span class='fe_low_temp'></span>");
+        fe_temp_bar.append(fe_high_temp).append(fe_low_temp);
+        fe_day.append(fe_label).append(fe_icon).append(fe_temp_bar);
+        $(".fe_daily").append(fe_day);
+
+        skycons.add('fe_day_icon' + i, mapIcon(day.weather.icon, true));
+        $(fe_high_temp).text(parseInt(high));
+        $(fe_low_temp).text(parseInt(low));
+        $(fe_label).text(days[t.getDay()]);
+        $(fe_temp_bar).css('height', (high - low) * 3 + 'px');
+    }
   }
 
   gadgets.util.registerOnLoadHandler(load);
