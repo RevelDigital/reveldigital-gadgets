@@ -122,9 +122,21 @@
   var unit = prefs.getString("units");
   var aeris;
 
+  function onLoadError(err) {
+    console.error('Weather map failed to load', err);
+    if (typeof Client != "undefined" && typeof(Client.finish) == "function") {
+      Client.finish();
+    }
+  }
+
   function load() {
-  
-    aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW');
+
+    try {
+      aeris = new AerisWeather('hUqX7OlM6GSNFSm9wyhPF', 'dkklytjvrU9sVSfMsNwF6rTiFk8VObvUkwlhPgrW');
+    } catch (e) {
+      onLoadError(e);
+      return;
+    }
 
     setInterval(function() {
       loadMap();
@@ -159,7 +171,7 @@
             autoplay: true
           }
       });
-    });
+    }).catch(onLoadError);
   }
   
   gadgets.util.registerOnLoadHandler(load);
